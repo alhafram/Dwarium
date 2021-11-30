@@ -2,37 +2,76 @@ const electron = require('electron')
 
 const app = electron.app
 const BrowserWindow = electron.BrowserWindow
+const BrowserView = electron.BrowserView
 const path = require('path')
 const url = require('url')
+const ipcMain = electron.ipcMain
+
+const remoteMain = require("@electron/remote/main")
+remoteMain.initialize()
+
+app.allowRendererProcessReuse = true;
 
 let mainWindow
+let browserView
+
+function getControlBounds() {
+    const contentBounds = mainWindow.getContentBounds();
+    return {
+        x: 0,
+        y: 0,
+        width: contentBounds.width,
+        height: 50
+    };
+}
+
+function setContentBounds() {
+    const [contentWidth, contentHeight] = mainWindow.getContentSize();
+    const controlBounds = getControlBounds();
+    if(browserView) {
+        browserView.setBounds({
+            x: 0,
+            y: controlBounds.y + controlBounds.height,
+            width: contentWidth,
+            height: contentHeight - controlBounds.height + 2 // Fix white line
+        });
+    }
+}
 
 function createWindow() {
+
     mainWindow = new BrowserWindow({
+        width: 1400,
+        height: 900,
         title: 'Dwarium',
         icon: __dirname + '/icon.icns',
         webPreferences: {
-            sandbox: true
+            sandbox: true,
+            preload: path.join(__dirname, "preload.js")
         },
+        useContentSize: true,
         show: false
     })
+
+    browserView = new BrowserView({
+        enablePreferredSizeMode: true
+    })
+    mainWindow.addBrowserView(browserView)
+
+    browserView.setBounds(getControlBounds())
+    browserView.setAutoResize({
+        width: true
+    });
+    browserView.webContents.loadURL('http://w2.dwar.ru')
+    setContentBounds()
+
     mainWindow.maximize();
     mainWindow.show();
 
-    // const filter = { urls: ['*://*.dwar.ru/*'] };
-    //   electron.session.defaultSession.webRequest.onBeforeSendHeaders(filter, (details, callback) => {
-    //       console.log(filter, details)
-    //     // details.requestHeaders['User-Agent'] = 'MyAgent'
-    //     callback({ requestHeaders: details.requestHeaders })
-    //   })
-    mainWindow.loadURL('http://w2.dwar.ru')
-
-    // alternatively, uncomment the following line to load index.html via
-    // 'chrome://brave' to expose additional APIs such as 'chrome.ipcRenderer'
-    // mainWindow.loadURL('chrome://brave/' + __dirname + '/index.html');
+    mainWindow.loadFile(`${path.join(app.getAppPath(), 'index.html')}`);
 
     // Open the DevTools.
-    mainWindow.webContents.openDevTools()
+    // mainWindow.webContents.openDevTools()
 
     mainWindow.on('closed', function() {
         mainWindow = null
@@ -40,6 +79,10 @@ function createWindow() {
 
     mainWindow.on('page-title-updated', (evt) => {
         evt.preventDefault();
+    });
+
+    ipcMain.on("load_url", (evt, args) => {
+        browserView.webContents.loadURL('http://' + args + '.dwar.ru')
     });
 }
 

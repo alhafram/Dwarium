@@ -1,14 +1,15 @@
-// preload.js
+const {
+    ipcRenderer
+} = require("electron");
 
-// All of the Node.js APIs are available in the preload process.
-// It has the same sandbox as a Chrome extension.
 window.addEventListener('DOMContentLoaded', () => {
-    const replaceText = (selector, text) => {
-        const element = document.getElementById(selector)
-        if(element) element.innerText = text
-    }
-
-    for(const dependency of['chrome', 'node', 'electron']) {
-        replaceText(`${dependency}-version`, process.versions[dependency])
-    }
-})
+    document.querySelector("#button-1").addEventListener("click", () => {
+        if(document.querySelector("#button-1 > div.knobs").attributes.server.value == "W1") {
+            document.querySelector("#button-1 > div.knobs").attributes.server.value = "W2"
+            ipcRenderer.send("load_url", "w2")
+        } else {
+            document.querySelector("#button-1 > div.knobs").attributes.server.value = "W1"
+            ipcRenderer.send("load_url", "w1")
+        }
+    })
+});
