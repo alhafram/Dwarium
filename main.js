@@ -7,11 +7,6 @@ const path = require('path')
 const url = require('url')
 const ipcMain = electron.ipcMain
 
-const remoteMain = require("@electron/remote/main")
-remoteMain.initialize()
-
-app.allowRendererProcessReuse = true;
-
 let mainWindow
 let browserView
 
