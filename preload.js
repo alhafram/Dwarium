@@ -1,6 +1,6 @@
 const {
     ipcRenderer
-} = require("electron");
+} = require("electron")
 
 window.addEventListener('DOMContentLoaded', () => {
     document.querySelector("#button-1").addEventListener("click", () => {
@@ -12,4 +12,6 @@ window.addEventListener('DOMContentLoaded', () => {
             ipcRenderer.send("load_url", "w1")
         }
     })
+    document.querySelector("#button-1 .checkbox").checked = true
+    document.querySelector("#button-1").click()
 });

@@ -60,7 +60,7 @@ function createWindow() {
     browserView.webContents.loadURL('http://w2.dwar.ru')
     setContentBounds()
 
-    mainWindow.maximize();
+    // mainWindow.maximize();
     mainWindow.show();
 
     mainWindow.loadFile(`${path.join(app.getAppPath(), 'index.html')}`);
