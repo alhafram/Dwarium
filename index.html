@@ -198,6 +198,23 @@
     .tab button.active {
         background-color: #ccc;
     }
+
+    .ab {
+        display: inline-block;
+        padding: 1em 2em;
+        text-decoration: none;
+        background-color: #f1f1f1;
+        color: #000;
+        cursor: pointer;
+    }
+
+    .ab:hover {
+        background-color: #ddd;
+    }
+
+    .ab.active {
+        background-color: #ccc;
+    }
 </style>
 
 <script>
@@ -207,25 +224,33 @@
         }
         console.log("Active")
         let buttons = Array.from(document.querySelector("body > div.tab").children)
-        buttons.filter(b => b.className.includes("tablinks"))
-        buttons.forEach(b => b.className = "tablinks")
+        buttons.filter(b => b.className.includes("ab"))
+        buttons.forEach(b => b.className = "ab")
         evt.currentTarget.className += " active";
-        document.dispatchEvent(new CustomEvent('make_active', { detail: { id: evt.currentTarget.id } }))
+        document.dispatchEvent(new CustomEvent('make_active', {
+            detail: {
+                id: evt.currentTarget.id
+            }
+        }))
     }
 
     function addTab() {
         let buttons = Array.from(document.querySelector("body > div.tab").children)
-        buttons.filter(b => b.className.includes("tablinks"))
-        buttons.forEach(b => b.className = "tablinks")
-
-        const new_tab = document.createElement("button")
+        buttons.filter(b => b.className.includes("ab"))
+        buttons.forEach(b => b.className = "ab")
+        //
+        const new_tab = document.createElement("a")
         const id = "tab_" + (buttons.length - 1)
         new_tab.textContent = "New tab"
         new_tab.id = id
-        new_tab.className += "tablinks active"
+        new_tab.className += "ab active"
         new_tab.onclick = makeActive
         document.querySelector("body > div.tab").insertBefore(new_tab, document.querySelector("#new_tab"))
-        document.dispatchEvent(new CustomEvent('new_tab', { detail: { id: id } }))
+        document.dispatchEvent(new CustomEvent('new_tab', {
+            detail: {
+                id: id
+            }
+        }))
     }
 </script>
 
@@ -248,6 +273,6 @@
 
 
 <div class="tab">
-    <button id="main" class="tablinks active" onclick="makeActive(event)">Main</button>
+    <a id="main" onclick="makeActive(event)" class="ab active">Main</a>
     <button onclick="addTab()" id="new_tab">+</button>
 </div>
