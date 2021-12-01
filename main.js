@@ -76,6 +76,10 @@ function createWindow() {
         evt.preventDefault();
     });
 
+    mainWindow.on('resized', (evt) => {
+        setContentBounds()
+    })
+
     ipcMain.on("load_url", (evt, args) => {
         browserView.webContents.loadURL('http://' + args + '.dwar.ru')
     });
