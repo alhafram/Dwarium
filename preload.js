@@ -12,9 +12,6 @@ window.addEventListener('DOMContentLoaded', () => {
             ipcRenderer.send("load_url", "w1")
         }
     })
-    document.querySelector("#button-1 .checkbox").checked = true
-    document.querySelector("#button-1").click()
-
     document.querySelector("#reload_button").addEventListener("click", () => {
         ipcRenderer.send("reload")
     })
@@ -22,4 +19,19 @@ window.addEventListener('DOMContentLoaded', () => {
 
 ipcRenderer.on('start_navigation_with_url', (event, url) => {
     document.querySelector(".effect-10").value = url
+})
+
+ipcRenderer.on('server', (event, server) => {
+    if(!server) {
+        // Default - W2
+        document.querySelector("#button-1 .checkbox").checked = true
+        document.querySelector("#button-1").click()
+        ipcRenderer.send("load_url", "w2")
+    } else {
+        ipcRenderer.send("load_url", server)
+        if(server == 'w2') {
+            document.querySelector("#button-1 .checkbox").checked = true
+            document.querySelector("#button-1").click()
+        }
+    }
 })

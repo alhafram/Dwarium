@@ -62,7 +62,6 @@ function createWindow() {
 
     // mainWindow.maximize();
     mainWindow.show();
-
     mainWindow.loadFile(`${path.join(app.getAppPath(), 'index.html')}`);
 
     // Open the DevTools.
@@ -97,11 +96,14 @@ function createWindow() {
 
     ipcMain.on("load_url", (evt, args) => {
         browserView.webContents.loadURL('http://' + args + '.dwar.ru')
+        writeData('server', args)
     });
 
     ipcMain.on('reload', (evt) => {
         browserView.webContents.reload()
     })
+
+    loadConfig()
 }
 
 app.on('ready', createWindow)
@@ -117,3 +119,30 @@ app.on('activate', function() {
         createWindow()
     }
 })
+
+const fs = require('fs')
+const filePath = path.join(__dirname, 'config.json')
+
+function loadConfig() {
+    mainWindow.webContents.send('server', readData('server'))
+}
+
+function writeData(key, value) {
+    let contents = parseData()
+    contents[key] = value;
+    fs.writeFileSync(filePath, JSON.stringify(contents));
+}
+
+function readData(key, value) {
+    let contents = parseData()
+    return contents[key]
+}
+
+function parseData() {
+    const defaultData = {}
+    try {
+        return JSON.parse(fs.readFileSync(filePath));
+    } catch(error) {
+        return defaultData;
+    }
+}
