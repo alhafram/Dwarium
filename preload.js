@@ -46,3 +46,13 @@ ipcRenderer.on('url', (event, url, id) => {
     document.querySelector(".effect-10").disabled = id == 'main'
     document.querySelector(".effect-10").value = url
 })
+
+ipcRenderer.on('close_tab', (evt, id) => {
+    let tabs = Array.from(document.querySelector("body > div.tab").children).filter(t => t.tagName == 'A')
+    let current_tab = tabs.filter(t => t.id == id)[0]
+    if(current_tab) {
+        document.querySelector("body > div.tab").removeChild(current_tab)
+        ipcRenderer.send("remove_view", id)
+        tabs[0].click()
+    }
+})

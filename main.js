@@ -34,6 +34,7 @@ function setContentBounds() {
 }
 
 var tabs = {}
+var current_tab_id = null
 
 function createWindow() {
 
@@ -54,6 +55,7 @@ function createWindow() {
         enablePreferredSizeMode: true
     })
     tabs['main'] = browserView
+    current_tab_id = 'main'
     mainWindow.setBrowserView(browserView)
 
     browserView.setBounds(getControlBounds())
@@ -111,6 +113,7 @@ function createWindow() {
         })
         // console.log('ID', id)
         tabs[id] = browserView
+        current_tab_id = id
         mainWindow.setBrowserView(browserView)
 
         browserView.setBounds(getControlBounds())
@@ -125,10 +128,23 @@ function createWindow() {
     ipcMain.on('make_active', (evt, id) => {
         mainWindow.setBrowserView(tabs[id])
         browserView = tabs[id]
+        current_tab_id = id
         mainWindow.webContents.send('url', tabs[id].webContents.getURL(), id)
     })
 
+    ipcMain.on('remove_view', (evt, id) => {
+        tabs[id] = null
+    })
+
     loadConfig()
+
+    electron.globalShortcut.register('CommandOrControl+W', () => {
+        if(browserView == tabs['main']) {
+            console.log("CANT CLOSE ITS MAIN WINDOW")
+        } else {
+            mainWindow.webContents.send('close_tab', current_tab_id)
+        }
+    })
 }
 
 app.on('ready', createWindow)
