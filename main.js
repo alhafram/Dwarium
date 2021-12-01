@@ -119,10 +119,13 @@ function createWindow() {
         });
         setContentBounds()
         browserView.webContents.loadURL('https://google.com')
+        mainWindow.webContents.send('url', 'https://google.com', id)
     })
 
     ipcMain.on('make_active', (evt, id) => {
         mainWindow.setBrowserView(tabs[id])
+        browserView = tabs[id]
+        mainWindow.webContents.send('url', tabs[id].webContents.getURL(), id)
     })
 
     loadConfig()

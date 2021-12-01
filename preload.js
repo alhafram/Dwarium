@@ -41,3 +41,8 @@ ipcRenderer.on('server', (event, server) => {
         }
     }
 })
+
+ipcRenderer.on('url', (event, url, id) => {
+    document.querySelector(".effect-10").disabled = id == 'main'
+    document.querySelector(".effect-10").value = url
+})
