@@ -15,6 +15,9 @@ window.addEventListener('DOMContentLoaded', () => {
     document.querySelector("#button-1 .checkbox").checked = true
     document.querySelector("#button-1").click()
 
+    document.querySelector("#reload_button").addEventListener("click", () => {
+        ipcRenderer.send("reload")
+    })
 });
 
 ipcRenderer.on('start_navigation_with_url', (event, url) => {

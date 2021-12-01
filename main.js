@@ -70,6 +70,17 @@ function createWindow() {
 
     browserView.webContents.on('did-start-navigation', (evt) => {
         mainWindow.webContents.send('start_navigation_with_url', evt.sender.getURL())
+        // console.log("Start navigation", evt.sender.getURL())
+    })
+
+    browserView.webContents.on('did-navigate', (evt) => {
+        // mainWindow.webContents.send('start_navigation_with_url', evt.sender.getURL())
+        // console.log("Finish navigation", evt.sender.getURL())
+    })
+
+    browserView.webContents.on('did-frame-navigate', (evt) => {
+        // mainWindow.webContents.send('start_navigation_with_url', evt.sender.getURL())
+        // console.log("Finish frame navigation", evt.sender.getURL())
     })
 
     mainWindow.on('closed', function() {
@@ -87,6 +98,10 @@ function createWindow() {
     ipcMain.on("load_url", (evt, args) => {
         browserView.webContents.loadURL('http://' + args + '.dwar.ru')
     });
+
+    ipcMain.on('reload', (evt) => {
+        browserView.webContents.reload()
+    })
 }
 
 app.on('ready', createWindow)
