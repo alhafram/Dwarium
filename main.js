@@ -16,7 +16,7 @@ function getControlBounds() {
         x: 0,
         y: 0,
         width: contentBounds.width,
-        height: 50
+        height: 100
     };
 }
 
@@ -32,6 +32,8 @@ function setContentBounds() {
         });
     }
 }
+
+var tabs = {}
 
 function createWindow() {
 
@@ -51,13 +53,13 @@ function createWindow() {
     browserView = new BrowserView({
         enablePreferredSizeMode: true
     })
-    mainWindow.addBrowserView(browserView)
+    tabs['main'] = browserView
+    mainWindow.setBrowserView(browserView)
 
     browserView.setBounds(getControlBounds())
     browserView.setAutoResize({
         width: true
     });
-    browserView.webContents.loadURL('http://w2.dwar.ru')
     setContentBounds()
 
     // mainWindow.maximize();
@@ -101,6 +103,26 @@ function createWindow() {
 
     ipcMain.on('reload', (evt) => {
         browserView.webContents.reload()
+    })
+
+    ipcMain.on('new_tab', (evt, id) => {
+        browserView = new BrowserView({
+            enablePreferredSizeMode: true
+        })
+        // console.log('ID', id)
+        tabs[id] = browserView
+        mainWindow.setBrowserView(browserView)
+
+        browserView.setBounds(getControlBounds())
+        browserView.setAutoResize({
+            width: true
+        });
+        setContentBounds()
+        browserView.webContents.loadURL('https://google.com')
+    })
+
+    ipcMain.on('make_active', (evt, id) => {
+        mainWindow.setBrowserView(tabs[id])
     })
 
     loadConfig()

@@ -15,6 +15,12 @@ window.addEventListener('DOMContentLoaded', () => {
     document.querySelector("#reload_button").addEventListener("click", () => {
         ipcRenderer.send("reload")
     })
+    document.addEventListener('new_tab', (evt) => {
+        ipcRenderer.send("new_tab", evt.detail.id)
+    })
+    document.addEventListener('make_active', (evt) => {
+        ipcRenderer.send("make_active", evt.detail.id)
+    })
 });
 
 ipcRenderer.on('start_navigation_with_url', (event, url) => {
