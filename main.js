@@ -66,7 +66,11 @@ function createWindow() {
     mainWindow.loadFile(`${path.join(app.getAppPath(), 'index.html')}`);
 
     // Open the DevTools.
-    // mainWindow.webContents.openDevTools()
+    // browserView.webContents.openDevTools()
+
+    browserView.webContents.on('did-start-navigation', (evt) => {
+        mainWindow.webContents.send('start_navigation_with_url', evt.sender.getURL())
+    })
 
     mainWindow.on('closed', function() {
         mainWindow = null

@@ -14,4 +14,9 @@ window.addEventListener('DOMContentLoaded', () => {
     })
     document.querySelector("#button-1 .checkbox").checked = true
     document.querySelector("#button-1").click()
+
 });
+
+ipcRenderer.on('start_navigation_with_url', (event, url) => {
+    document.querySelector(".effect-10").value = url
+})
