@@ -169,17 +169,17 @@ function loadConfig() {
 }
 
 function writeData(key, value) {
-    let contents = parseData()
+    let contents = parseData(filePath)
     contents[key] = value;
     fs.writeFileSync(filePath, JSON.stringify(contents));
 }
 
 function readData(key, value) {
-    let contents = parseData()
+    let contents = parseData(filePath)
     return contents[key]
 }
 
-function parseData() {
+function parseData(filePath) {
     const defaultData = {}
     try {
         return JSON.parse(fs.readFileSync(filePath));
