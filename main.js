@@ -7,6 +7,9 @@ const path = require('path')
 const url = require('url')
 const ipcMain = electron.ipcMain
 
+const configService = require('./services/ConfigService')
+const TabsController = require('./services/TabsController')
+
 let mainWindow
 let browserView
 
@@ -33,8 +36,7 @@ function setContentBounds() {
     }
 }
 
-var tabs = {}
-var current_tab_id = null
+let current_server = null
 
 function createWindow() {
 
@@ -55,9 +57,10 @@ function createWindow() {
     browserView = new BrowserView({
         enablePreferredSizeMode: true
     })
-    tabs['main'] = browserView
-    current_tab_id = 'main'
+    TabsController.setupMain(browserView)
     mainWindow.setBrowserView(browserView)
+    current_server = configService.server
+    mainWindow.webContents.send('server', current_server)
 
     browserView.setBounds(getControlBounds())
     browserView.setAutoResize({
@@ -84,9 +87,10 @@ function createWindow() {
         setContentBounds()
     })
 
-    ipcMain.on("load_url", (evt, args) => {
-        browserView.webContents.loadURL('http://' + args + '.dwar.ru')
-        writeData('server', args)
+    ipcMain.on("load_url", (evt, server) => {
+        current_server = server
+        browserView.webContents.loadURL(`http://${current_server}.dwar.ru`)
+        configService.writeData('server', server)
     });
 
     ipcMain.on('reload', (evt) => {
@@ -111,7 +115,7 @@ function createWindow() {
             width: true, height: true
         });
         child.loadFile(`${path.join(app.getAppPath(), './Dressing/index.html')}`);
-        dressing_browser_view.webContents.loadURL('http://w1.dwar.ru/user_iframe.php?group=2')
+        dressing_browser_view.webContents.loadURL(`http://${current_server}.dwar.ru/user_iframe.php?group=2`)
         // dressing_browser_view.webContents.openDevTools()
         child.show();
 
@@ -124,8 +128,8 @@ function createWindow() {
         browserView = new BrowserView({
             enablePreferredSizeMode: true
         })
-        tabs[id] = browserView
-        current_tab_id = id
+        TabsController.addTab(id, browserView)
+        TabsController.setupCurrent(id)
         mainWindow.setBrowserView(browserView)
 
         browserView.setBounds(getControlBounds())
@@ -138,17 +142,15 @@ function createWindow() {
     })
 
     ipcMain.on('make_active', (evt, id) => {
-        mainWindow.setBrowserView(tabs[id])
-        browserView = tabs[id]
-        current_tab_id = id
-        mainWindow.webContents.send('url', tabs[id].webContents.getURL(), id)
+        TabsController.setupCurrent(id)
+        mainWindow.setBrowserView(TabsController.currentTab())
+        browserView = TabsController.currentTab()
+        mainWindow.webContents.send('url', TabsController.currentTab().webContents.getURL(), id)
     })
 
     ipcMain.on('remove_view', (evt, id) => {
-        tabs[id] = null
+        TabsController.deleteTab(id)
     })
-
-    loadConfig()
 }
 
 app.on('ready', createWindow)
@@ -164,30 +166,3 @@ app.on('activate', function() {
         createWindow()
     }
 })
-
-const fs = require('fs')
-const filePath = path.join(__dirname, 'config.json')
-
-function loadConfig() {
-    mainWindow.webContents.send('server', readData('server'))
-}
-
-function writeData(key, value) {
-    let contents = parseData(filePath)
-    contents[key] = value;
-    fs.writeFileSync(filePath, JSON.stringify(contents));
-}
-
-function readData(key, value) {
-    let contents = parseData(filePath)
-    return contents[key]
-}
-
-function parseData(filePath) {
-    const defaultData = {}
-    try {
-        return JSON.parse(fs.readFileSync(filePath));
-    } catch(error) {
-        return defaultData;
-    }
-}

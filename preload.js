@@ -26,10 +26,6 @@ window.addEventListener('DOMContentLoaded', () => {
     })
 });
 
-ipcRenderer.on('start_navigation_with_url', (event, url) => {
-    document.querySelector(".effect-10").value = url
-})
-
 ipcRenderer.on('server', (event, server) => {
     if(!server) {
         // Default - W2
