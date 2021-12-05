@@ -45,7 +45,8 @@ function createWindow() {
         icon: __dirname + '/icon.icns',
         webPreferences: {
             sandbox: true,
-            preload: path.join(__dirname, "preload.js")
+            preload: path.join(__dirname, "preload.js"),
+            backgroundThrottling: false
         },
         useContentSize: true,
         show: false
@@ -71,21 +72,6 @@ function createWindow() {
     // Open the DevTools.
     // browserView.webContents.openDevTools()
 
-    browserView.webContents.on('did-start-navigation', (evt) => {
-        mainWindow.webContents.send('start_navigation_with_url', evt.sender.getURL())
-        // console.log("Start navigation", evt.sender.getURL())
-    })
-
-    browserView.webContents.on('did-navigate', (evt) => {
-        // mainWindow.webContents.send('start_navigation_with_url', evt.sender.getURL())
-        // console.log("Finish navigation", evt.sender.getURL())
-    })
-
-    browserView.webContents.on('did-frame-navigate', (evt) => {
-        // mainWindow.webContents.send('start_navigation_with_url', evt.sender.getURL())
-        // console.log("Finish frame navigation", evt.sender.getURL())
-    })
-
     mainWindow.on('closed', function() {
         mainWindow = null
     })
@@ -107,11 +93,37 @@ function createWindow() {
         browserView.webContents.reload()
     })
 
+    ipcMain.on('open_dressing_room', (evt) => {
+        let child = new BrowserWindow({
+            parent: mainWindow,
+            width: 700,
+            height: 700,
+            useContentSize: true,
+            show: false
+        });
+        let dressing_browser_view = new BrowserView({
+            enablePreferredSizeMode: true
+        })
+        child.addBrowserView(dressing_browser_view)
+
+        dressing_browser_view.setBounds({ x: 0, y: 0, height: 0, width: 0 })
+        dressing_browser_view.setAutoResize({
+            width: true, height: true
+        });
+        child.loadFile(`${path.join(app.getAppPath(), './Dressing/index.html')}`);
+        dressing_browser_view.webContents.loadURL('http://w1.dwar.ru/user_iframe.php?group=2')
+        // dressing_browser_view.webContents.openDevTools()
+        child.show();
+
+        dressing_browser_view.webContents.executeJavaScript('art_alt').then(res => {
+            console.log(res)
+        })
+    })
+
     ipcMain.on('new_tab', (evt, id) => {
         browserView = new BrowserView({
             enablePreferredSizeMode: true
         })
-        // console.log('ID', id)
         tabs[id] = browserView
         current_tab_id = id
         mainWindow.setBrowserView(browserView)
@@ -137,14 +149,6 @@ function createWindow() {
     })
 
     loadConfig()
-
-    electron.globalShortcut.register('CommandOrControl+W', () => {
-        if(browserView == tabs['main']) {
-            console.log("CANT CLOSE ITS MAIN WINDOW")
-        } else {
-            mainWindow.webContents.send('close_tab', current_tab_id)
-        }
-    })
 }
 
 app.on('ready', createWindow)

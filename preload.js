@@ -15,6 +15,9 @@ window.addEventListener('DOMContentLoaded', () => {
     document.querySelector("#reload_button").addEventListener("click", () => {
         ipcRenderer.send("reload")
     })
+    document.querySelector("#dressing_room_button").addEventListener("click", () => {
+        ipcRenderer.send("open_dressing_room")
+    })
     document.addEventListener('new_tab', (evt) => {
         ipcRenderer.send("new_tab", evt.detail.id)
     })
