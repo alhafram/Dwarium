@@ -10,6 +10,8 @@ const configService = require('./services/ConfigService')
 const TabsController = require('./services/TabsController')
 const { MainWindow } = require('./components/MainWindow')
 
+const { parse } = require('./Dressing/backpack_parser')
+
 let mainWindow
 let current_server = null
 
@@ -49,7 +51,10 @@ function createWindow() {
             width: 700,
             height: 700,
             useContentSize: true,
-            show: false
+            show: false,
+            webPreferences: {
+                preload: path.join(__dirname, "preloadDressroom.js"),
+            },
         });
         let dressing_browser_view = new BrowserView({
             enablePreferredSizeMode: true
@@ -65,7 +70,8 @@ function createWindow() {
         child.show();
 
         dressing_browser_view.webContents.executeJavaScript('art_alt').then(res => {
-            console.log(res)
+            let summary = parse(res)
+            child.webContents.send('getItems', summary)
         })
     })
 
