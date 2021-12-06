@@ -64,11 +64,11 @@ function parse(art_alt) {
     let bracers = items.filter(i => bracers_ids.includes(i.kind_id)) // Bracers
     items = items.filter(i => !bracers_ids.includes(i.kind_id))
 
-    let main_weapons_kind_ids = ['10', '12']
+    let main_weapons_kind_ids = ['10', '12'] // 10 - 1h --- 12 - 2h
     let main_weapons = items.filter(i => main_weapons_kind_ids.includes(i.kind_id)) // Main weapons
     items = items.filter(i => !main_weapons_kind_ids.includes(i.kind_id))
 
-    let offhand_weapons_kind_ids = ['44', '17'] // WIP
+    let offhand_weapons_kind_ids = ['44', '17'] // 44 - weapon --- 17 - shield
     let offhand_weapons = items.filter(i => offhand_weapons_kind_ids.includes(i.kind_id)) // Offhand weapons
     items = items.filter(i => !offhand_weapons_kind_ids.includes(i.kind_id))
 

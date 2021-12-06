@@ -12441,17 +12441,25 @@ let items = {
 
 setTimeout(() => {
 
-let arr = []
-    arr = arr.concat(items.helmets)
-    arr = arr.concat(items.shoulders)
-    arr = arr.concat(items.bracers)
-    arr = arr.concat(items.main_weapons)
-    arr = arr.concat(items.offhand_weapons)
-    arr = arr.concat(items.cuirasses)
-    arr = arr.concat(items.leggings)
-    arr = arr.concat(items.chainmails)
-    arr = arr.concat(items.boots)
+    let arr = []
+    arr = arr.concat(convertItemIntoDiv(items.helmets))
+    arr = arr.concat(convertItemIntoDiv(items.shoulders))
+    arr = arr.concat(convertItemIntoDiv(items.bracers))
+    arr = arr.concat(convertItemIntoDiv(items.main_weapons))
+    arr = arr.concat(convertItemIntoDiv(items.offhand_weapons))
+    arr = arr.concat(convertItemIntoDiv(items.cuirasses))
+    arr = arr.concat(convertItemIntoDiv(items.leggings))
+    arr = arr.concat(convertItemIntoDiv(items.chainmails))
+    arr = arr.concat(convertItemIntoDiv(items.boots))
     arr.flatMap(i => i).forEach(item => {
+        let parent = document.querySelector('.current_items')
+        parent.appendChild(item)
+    });
+    document.dispatchEvent(new Event('AttachDND'))
+}, 100)
+
+function convertItemIntoDiv(items) {
+  return items.map(item => {
         let parent = document.querySelector('.current_items')
         let divItem = document.createElement('div')
         divItem.className = 'box'
@@ -12459,10 +12467,18 @@ let arr = []
         divItem.setAttribute('equiped', 'false')
         divItem.style = `background-image: url('http://w1.dwar.ru/${item.image}');background-repeat: no-repeat;background-size: cover;`
         divItem.setAttribute('type', getType(item.kind_id))
-        parent.appendChild(divItem)
+        if(item.kind_id == 12) {
+          divItem.setAttribute('weapon', "2h")
+        }
+       if(item.kind_id == 10) {
+         divItem.setAttribute('weapon', "1h")
+       }
+        if(item.kind_id == 44 || item.kind_id == 17) {
+          divItem.setAttribute('weapon', "off")
+        }
+        return divItem
     });
-    document.dispatchEvent(new Event('AttachDND'))
-}, 1000)
+}
 
 function getType(kind_id) {
     if(kind_id == 1) {
