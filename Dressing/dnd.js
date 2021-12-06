@@ -1,106 +1,148 @@
 document.addEventListener("AttachDND", event => {
-  var dragSrcEl = null;
 
-  function handleDragStart(e) {
-    this.style.opacity = "0.4";
+    var dragSrcEl = null
+    var armorTypeSelected = null
 
-    dragSrcEl = this;
-
-    e.dataTransfer.effectAllowed = "move";
-    e.dataTransfer.setData("text/html", this.innerHTML);
-  }
-
-  function handleDragOver(e) {
-    if (e.preventDefault) {
-      e.preventDefault();
+    function handleDragStartEquipableItem(e) {
+        this.style.opacity = "0.4"
+        dragSrcEl = this;
+        e.dataTransfer.setData("text/html", this.innerHTML);
     }
 
-    e.dataTransfer.dropEffect = "move";
-
-    return false;
-  }
-
-  function handleDragEnter(e) {
-    this.classList.add("over");
-  }
-
-  function handleDragLeave(e) {
-    this.classList.remove("over");
-  }
-
-  function handleDrop(e) {
-    if (e.stopPropagation) {
-      e.stopPropagation(); // stops the browser from redirecting.
-    }
-    console.log(dragSrcEl, this)
-    if (dragSrcEl != this && this.childElementCount == 0 && dragSrcEl.attributes.equiped.value == "false") {
-      this.append(dragSrcEl);
-      this.style.visibility = "hidden";
-      this.children[0].style.visibility = "visible";
-      dragSrcEl.attributes.equiped.value = true;
+    function handleDragOverStaticItemBox(e) {
+        if(e.preventDefault) {
+            e.preventDefault()
+        }
+        return false;
     }
 
-    return false;
-  }
-
-  function handleDropIntoAllItems(e) {
-    if (e.stopPropagation) {
-      e.stopPropagation(); // stops the browser from redirecting.
+    function handleDropEquipableItemOnStaticItemBox(e) {
+        if(e.stopPropagation) {
+            e.stopPropagation()
+        }
+        if(dragSrcEl != this && this.childElementCount == 0 && dragSrcEl.attributes.equiped.value == "false" && dragSrcEl.attributes.type.value == this.attributes.type.value) {
+            this.append(dragSrcEl);
+            this.style.visibility = "hidden";
+            this.children[0].style.visibility = "visible";
+            dragSrcEl.attributes.equiped.value = true;
+        }
+        armorTypeSelected = null
+        return false;
     }
 
-    if(dragSrcEl != this) {
-      dragSrcEl.parentElement.style.visibility = "visible";
-      dragSrcEl.attributes.equiped.value = false;
-      document.querySelectorAll(".current_items")[0].appendChild(dragSrcEl);
+    function handleDropEquipableItemIntoAllItems(e) {
+        if(e.stopPropagation) {
+            e.stopPropagation();
+        }
+        if(dragSrcEl != this) {
+            dragSrcEl.parentElement.style.visibility = "visible";
+            dragSrcEl.attributes.equiped.value = false;
+            document.querySelectorAll(".current_items")[0].appendChild(dragSrcEl);
+        }
+        return false;
     }
 
-    return false;
-  }
-
-  function handleDragOverAllItems(e) {
-    if (e.preventDefault) {
-      e.preventDefault();
+    function handleDragOverEquipableItemOverAllItems(e) {
+        if(e.preventDefault) {
+            e.preventDefault();
+        }
+        return false;
     }
 
-    e.dataTransfer.dropEffect = "move";
+    function handleDragEndEquipableItem(e) {
+        this.style.opacity = "1"
+    }
 
-    return false;
-  }
+    function handleClickEquipableItem(e) {
+        if(e.detail == 1) {
+          return
+        }
+        if(this.attributes.equiped.value != "true" && e.detail == 2) {
+            let item_box_arr = Array.from(document.querySelector('.equipped_items').children).filter(e => e.id == this.attributes.type.value)
+            if(item_box_arr.length > 0) {
+                let item_box = item_box_arr[0].children[0]
+                if(item_box.childElementCount == 1) {
+                    let equiped_item = item_box.children[0]
+                    equiped_item.attributes.equiped.value = false;
+                    document.querySelectorAll(".current_items")[0].appendChild(equiped_item);
+                }
+                item_box.append(this);
+                item_box.style.visibility = "hidden";
+                item_box.children[0].style.visibility = "visible";
+                this.attributes.equiped.value = true;
+                if(armorTypeSelected) {
+                    document.getElementById(armorTypeSelected + "_box").style.border = ""
+                    armorTypeSelected = null
+                    filterCurrentItems()
+                }
+            }
+            return
+        }
+        if(this.attributes.equiped.value == "true" && e.detail == 2) {
+            this.parentElement.style.visibility = "visible";
+            this.attributes.equiped.value = false;
+            document.querySelectorAll(".current_items")[0].appendChild(this);
+            if(armorTypeSelected) {
+                filterCurrentItems()
+            }
+            e.stopPropagation()
+        }
+    }
 
-  function handleDragEnd(e) {
-    this.style.opacity = "1";
-
+    let items = document.querySelectorAll(".current_items .box");
     items.forEach(function(item) {
-      item.classList.remove("over");
+        item.addEventListener("dragstart", handleDragStartEquipableItem, false);
+        item.addEventListener("dragend", handleDragEndEquipableItem, false);
+        item.addEventListener("click", handleClickEquipableItem, false);
     });
-  }
 
-  function doubleClickEquipedItem(e) {
-    if(this.attributes.equiped.value == "true" && e.detail == 2) {
-      this.parentElement.style.visibility = "visible";
-      this.attributes.equiped.value = false;
-      document.querySelectorAll(".current_items")[0].appendChild(this);
+    let equip_items = document.querySelectorAll(".equipped_items .box_static");
+    equip_items.forEach(function(item) {
+        item.addEventListener("dragover", handleDragOverStaticItemBox, false);
+        item.addEventListener("drop", handleDropEquipableItemOnStaticItemBox, false);
+    });
+
+    let all_items = document.querySelectorAll(".current_items");
+    all_items.forEach(function(item) {
+        item.addEventListener("drop", handleDropEquipableItemIntoAllItems, false);
+        item.addEventListener("dragover", handleDragOverEquipableItemOverAllItems, false);
+    });
+
+    let armor_types = ['helmet', 'shoulders', 'bracers', 'main_weapon', 'offhand_weapon', 'cuirass', 'leggings', 'chain_mail', 'boots']
+    armor_types.forEach(t => {
+        document.getElementById(t + "_box").addEventListener('click', (e) => {
+            if(document.getElementById(t + "_box").childElementCount == 1) {
+              return
+            }
+            if(document.getElementById(t + "_box").style.border == "" && document.getElementById(t + "_box").childElementCount == 0) {
+                if(armorTypeSelected != null) {
+                    document.getElementById(armorTypeSelected + "_box").style.border = ""
+                    armorTypeSelected = null
+                    filterCurrentItems()
+                }
+                armorTypeSelected = t
+                document.getElementById(t + "_box").style.border = '3px dotted #666'
+                filterCurrentItems()
+            } else {
+                document.getElementById(t + "_box").style.border = ""
+                armorTypeSelected = null
+                filterCurrentItems()
+            }
+        });
+    })
+
+    function filterCurrentItems() {
+        let items = Array.from(document.querySelector('.current_items').children)
+        items.forEach(i => {
+            if(armorTypeSelected) {
+                if(i.attributes.type.value == armorTypeSelected) {
+                    i.style.display = 'inline-block'
+                } else {
+                    i.style.display = 'none'
+                }
+            } else {
+                i.style.display = 'inline-block'
+            }
+        })
     }
-  }
-
-  let items = document.querySelectorAll(".current_items .box");
-  items.forEach(function(item) {
-    item.addEventListener("dragstart", handleDragStart, false);
-    item.addEventListener("dragend", handleDragEnd, false);
-    item.addEventListener("click", doubleClickEquipedItem, false);
-  });
-
-  let equip_items = document.querySelectorAll(".equipped_items .box_static");
-  equip_items.forEach(function(item) {
-    item.addEventListener("dragenter", handleDragEnter, false);
-    item.addEventListener("dragover", handleDragOver, false);
-    item.addEventListener("dragleave", handleDragLeave, false);
-    item.addEventListener("drop", handleDrop, false);
-  });
-
-  let all_items = document.querySelectorAll(".current_items");
-  all_items.forEach(function(item) {
-    item.addEventListener("drop", handleDropIntoAllItems, false);
-    item.addEventListener("dragover", handleDragOverAllItems, false);
-  });
 });

@@ -1,12 +1,10 @@
 /* Copyright 2018 Google LLC.
 SPDX-License-Identifier: Apache-2.0 */
-
 /* CSS files add styling rules to your content */
-
 body {
-  font-family: "Benton Sans", "Helvetica Neue", helvetica, arial, sans-serif;
-  margin: 2em;
-  font-size: 15px;
+    font-family: "Benton Sans", "Helvetica Neue", helvetica, arial, sans-serif;
+    margin: 2em;
+    font-size: 15px;
 }
 
 .current_items {
@@ -14,137 +12,136 @@ body {
     justify-content: center;
     border: 3px dotted #666;
     height: 90px;
-    width: 590px;
+    width: 100%;
     overflow: auto;
     white-space: nowrap;
 }
 
 #person {
-  background-image: url('https://cdn.glitch.me/2564928c-694b-4cfc-96b7-b073c5018e3e%2Fperson.png?v=1638651580361');
-  background-repeat: no-repeat;
-  width: 150px;
-  height: 320px;
-  position: absolute;
-  background-position: center;
-  background-size: cover;
-  margin-left: 262px;
-  margin-top: 75px;
-
+    background-image: url('https://cdn.glitch.me/2564928c-694b-4cfc-96b7-b073c5018e3e%2Fperson.png?v=1638651580361');
+    background-repeat: no-repeat;
+    width: 150px;
+    height: 320px;
+    position: absolute;
+    background-position: center;
+    background-size: cover;
+    margin-left: 262px;
+    margin-top: 75px;
 }
 
 .current_items div {
-  margin: 5px;
+    margin: 5px;
 }
 
 .box {
-  border: 2px solid #666;
-  border-radius: 0.5em;
-  cursor: move;
-  height: 70px;
-  width: 70px;
-  display: inline-block;
+    border: 2px solid #666;
+    border-radius: 0.5em;
+    cursor: move;
+    height: 70px;
+    width: 70px;
+    display: inline-block;
 }
 
 .box_static {
-  border: 2px solid #666;
-  border-radius: 0.5em;
-  height: 70px;
-  width: 70px;
+    border: 2px solid #666;
+    border-radius: 0.5em;
+    height: 70px;
+    width: 70px;
 }
 
 #helmet {
-  margin-left: 300px;
-  position: absolute;
+    margin-left: 300px;
+    position: absolute;
 }
 
 #helmet_box {
-  background-image: url('https://cdn.glitch.me/2564928c-694b-4cfc-96b7-b073c5018e3e%2Flight-helm.svg?v=1638649389445');
+    background-image: url('https://cdn.glitch.me/2564928c-694b-4cfc-96b7-b073c5018e3e%2Flight-helm.svg?v=1638649389445');
 }
 
 #shoulders {
-  margin-left: 190px;
-  margin-top: 50px;
-  position: absolute;
+    margin-left: 190px;
+    margin-top: 50px;
+    position: absolute;
 }
 
 #shoulders_box {
-  background-image: url('https://cdn.glitch.me/2564928c-694b-4cfc-96b7-b073c5018e3e%2Fspiked-shoulder-armor.svg?v=1638649408411');
+    background-image: url('https://cdn.glitch.me/2564928c-694b-4cfc-96b7-b073c5018e3e%2Fspiked-shoulder-armor.svg?v=1638649408411');
 }
 
 #bracers {
-  margin-left: 410px;
-  margin-top: 50px;
-  position: absolute;
+    margin-left: 410px;
+    margin-top: 50px;
+    position: absolute;
 }
 
 #bracers_box {
-  background-image: url('https://cdn.glitch.me/2564928c-694b-4cfc-96b7-b073c5018e3e%2Fgloves.svg?v=1638649397763');
+    background-image: url('https://cdn.glitch.me/2564928c-694b-4cfc-96b7-b073c5018e3e%2Fgloves.svg?v=1638649397763');
 }
 
 #main_weapon {
-  margin-left: 190px;
-  margin-top: 140px;
-  position: absolute;
+    margin-left: 190px;
+    margin-top: 140px;
+    position: absolute;
 }
 
 #main_weapon_box {
-  background-image: url('https://cdn.glitch.me/2564928c-694b-4cfc-96b7-b073c5018e3e%2Faxe-sword.svg?v=1638650825184');
+    background-image: url('https://cdn.glitch.me/2564928c-694b-4cfc-96b7-b073c5018e3e%2Faxe-sword.svg?v=1638650825184');
 }
 
 #offhand_weapon {
-  margin-left: 410px;
-  margin-top: 140px;
-  position: absolute;
+    margin-left: 410px;
+    margin-top: 140px;
+    position: absolute;
 }
 
 #offhand_weapon_box {
-  background-image: url('https://cdn.glitch.me/2564928c-694b-4cfc-96b7-b073c5018e3e%2Fswords-emblem.svg?v=1638650827416');
+    background-image: url('https://cdn.glitch.me/2564928c-694b-4cfc-96b7-b073c5018e3e%2Fswords-emblem.svg?v=1638650827416');
 }
 
 #cuirass {
-  margin-left: 190px;
-  margin-top: 230px;
-  position: absolute;
+    margin-left: 190px;
+    margin-top: 230px;
+    position: absolute;
 }
 
 #cuirass_box {
-  background-image: url('https://cdn.glitch.me/2564928c-694b-4cfc-96b7-b073c5018e3e%2Fchest-armor.svg?v=1638649395067');
+    background-image: url('https://cdn.glitch.me/2564928c-694b-4cfc-96b7-b073c5018e3e%2Fchest-armor.svg?v=1638649395067');
 }
 
 #leggings {
-  margin-left: 410px;
-  margin-top: 230px;
-  position: absolute;
+    margin-left: 410px;
+    margin-top: 230px;
+    position: absolute;
 }
 
 #leggings_box {
-  background-image: url('https://cdn.glitch.me/2564928c-694b-4cfc-96b7-b073c5018e3e%2Fmetal-skirt.svg?v=1638649402525');
+    background-image: url('https://cdn.glitch.me/2564928c-694b-4cfc-96b7-b073c5018e3e%2Fmetal-skirt.svg?v=1638649402525');
 }
 
 #chain_mail {
-  margin-left: 190px;
-  margin-top: 320px;
-  position: absolute;
+    margin-left: 190px;
+    margin-top: 320px;
+    position: absolute;
 }
 
 #chain_mail_box {
-  background-image: url('https://cdn.glitch.me/2564928c-694b-4cfc-96b7-b073c5018e3e%2Fshoulder-armor.svg?v=1638649404800');
+    background-image: url('https://cdn.glitch.me/2564928c-694b-4cfc-96b7-b073c5018e3e%2Fshoulder-armor.svg?v=1638649404800');
 }
 
 #boots {
-  margin-left: 410px;
-  margin-top: 320px;
-  position: absolute;
+    margin-left: 410px;
+    margin-top: 320px;
+    position: absolute;
 }
 
 #boots_box {
-  background-image: url('https://cdn.glitch.me/2564928c-694b-4cfc-96b7-b073c5018e3e%2Fleg-armor.svg?v=1638649387416');
+    background-image: url('https://cdn.glitch.me/2564928c-694b-4cfc-96b7-b073c5018e3e%2Fleg-armor.svg?v=1638649387416');
 }
 
 leggings .box.over {
-  border: 3px dotted #666;
+    border: 3px dotted #666;
 }
 
 [draggable] {
-  user-select: none;
+    user-select: none;
 }

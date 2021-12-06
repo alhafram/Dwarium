@@ -59,12 +59,7 @@ function createWindow() {
         let dressing_browser_view = new BrowserView({
             enablePreferredSizeMode: true
         })
-        child.addBrowserView(dressing_browser_view)
-
-        dressing_browser_view.setBounds({ x: 0, y: 0, height: 0, width: 0 })
-        dressing_browser_view.setAutoResize({
-            width: true, height: true
-        });
+        child.webContents.openDevTools()
         child.loadFile(`${path.join(app.getAppPath(), './Dressing/index.html')}`);
         dressing_browser_view.webContents.loadURL(`http://${current_server}.dwar.ru/user_iframe.php?group=2`)
         child.show();
