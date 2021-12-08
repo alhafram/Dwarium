@@ -12,13 +12,11 @@ SPDX-License-Identifier: Apache-2.0 -->
     <link rel="stylesheet" href="./style.css" />
     <script src="./dnd.js"></script>
     <script src="./mock.js"></script>
+    <script src="./filter.js"></script>
 </head>
 
 <body>
-    <div class="current_items">
-    </div>
-
-    <br /><br /><br />
+    <div class="content">
     <div class="equipped_items">
         <div id="helmet">
             <div type="helmet" id="helmet_box" class="box_static"></div>
@@ -49,6 +47,24 @@ SPDX-License-Identifier: Apache-2.0 -->
         </div>
         <div id="person">
         </div>
+    </div>
+    <div class="grayItems" >
+        <input class="itemCheckbox" checked type="checkbox" id="i_gray">
+        <label class="itemsCheckboxFilter i_gray" for="i_gray"></label>
+
+        <input class="itemCheckbox" checked type="checkbox" id="i_green">
+        <label class="itemsCheckboxFilter i_green" for="i_green"></label>
+
+        <input class="itemCheckbox" checked type="checkbox" id="i_blue">
+        <label class="itemsCheckboxFilter i_blue" for="i_blue"></label>
+
+        <input class="itemCheckbox" checked type="checkbox" id="i_purple">
+        <label class="itemsCheckboxFilter i_purple" for="i_purple"></label>
+
+        <input class="itemCheckbox" checked type="checkbox" id="i_red">
+        <label class="itemsCheckboxFilter i_red" for="i_red"></label>
+    </div>
+    <div class="current_items"></div>
     </div>
 </body>
 

@@ -7,14 +7,43 @@ body {
     font-size: 15px;
 }
 
-.current_items {
-    flex-wrap: wrap;
-    justify-content: center;
-    border: 3px dotted #666;
-    height: 90px;
+.content {
+    display: flex;
     width: 100%;
-    overflow: auto;
-    white-space: nowrap;
+}
+
+.current_items {
+    border: 3px dotted #666;
+    height: 50%;
+    width:  80%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+    grid-gap: 10px;
+
+    margin-left: 10px;
+    padding-right: 10px;
+}
+
+.grayItems {
+/*     border: 1px dotted #000; */
+    width: 30px;
+    height: 30px;
+}
+
+.equipped_items {
+/*     border: 3px dotted #666; */
+    height: 400px;
+    width: 350px;
+    flex-shrink: 0;
+
+}
+
+:root {
+  --helmetLeftMargin: 120px;
+  --leftItemsLeftMargin: calc(var(--helmetLeftMargin) - 110px);
+  --rightItemsLeftMaring: calc(var(--helmetLeftMargin) + 110px);
+  --topDefaultMargin: 50px;
+  --topDefaultAdditionalMargin: 90px;
 }
 
 #person {
@@ -25,7 +54,7 @@ body {
     position: absolute;
     background-position: center;
     background-size: cover;
-    margin-left: 262px;
+    margin-left: calc(var(--helmetLeftMargin) - 38px);
     margin-top: 75px;
 }
 
@@ -50,7 +79,7 @@ body {
 }
 
 #helmet {
-    margin-left: 300px;
+    margin-left: var(--helmetLeftMargin);
     position: absolute;
 }
 
@@ -59,8 +88,8 @@ body {
 }
 
 #shoulders {
-    margin-left: 190px;
-    margin-top: 50px;
+    margin-left: var(--leftItemsLeftMargin);
+    margin-top: var(--topDefaultMargin);
     position: absolute;
 }
 
@@ -69,8 +98,8 @@ body {
 }
 
 #bracers {
-    margin-left: 410px;
-    margin-top: 50px;
+    margin-left: var(--rightItemsLeftMaring);
+    margin-top: var(--topDefaultMargin);
     position: absolute;
 }
 
@@ -79,8 +108,8 @@ body {
 }
 
 #main_weapon {
-    margin-left: 190px;
-    margin-top: 140px;
+    margin-left: var(--leftItemsLeftMargin);
+    margin-top: calc(var(--topDefaultMargin) + var(--topDefaultAdditionalMargin));
     position: absolute;
 }
 
@@ -89,8 +118,8 @@ body {
 }
 
 #offhand_weapon {
-    margin-left: 410px;
-    margin-top: 140px;
+    margin-left: var(--rightItemsLeftMaring);
+    margin-top: calc(var(--topDefaultMargin) + var(--topDefaultAdditionalMargin));
     position: absolute;
 }
 
@@ -99,8 +128,8 @@ body {
 }
 
 #cuirass {
-    margin-left: 190px;
-    margin-top: 230px;
+    margin-left: var(--leftItemsLeftMargin);
+    margin-top: calc(var(--topDefaultMargin) + var(--topDefaultAdditionalMargin) * 2);
     position: absolute;
 }
 
@@ -109,8 +138,8 @@ body {
 }
 
 #leggings {
-    margin-left: 410px;
-    margin-top: 230px;
+    margin-left: var(--rightItemsLeftMaring);
+    margin-top: calc(var(--topDefaultMargin) + var(--topDefaultAdditionalMargin) * 2);
     position: absolute;
 }
 
@@ -119,8 +148,8 @@ body {
 }
 
 #chain_mail {
-    margin-left: 190px;
-    margin-top: 320px;
+    margin-left: var(--leftItemsLeftMargin);
+    margin-top: calc(var(--topDefaultMargin) + var(--topDefaultAdditionalMargin) * 3);
     position: absolute;
 }
 
@@ -129,8 +158,8 @@ body {
 }
 
 #boots {
-    margin-left: 410px;
-    margin-top: 320px;
+    margin-left: var(--rightItemsLeftMaring);
+    margin-top: calc(var(--topDefaultMargin) + var(--topDefaultAdditionalMargin) * 3);
     position: absolute;
 }
 
@@ -144,4 +173,78 @@ leggings .box.over {
 
 [draggable] {
     user-select: none;
+}
+
+
+
+
+.itemCheckbox
+{
+    display: none;
+}
+
+.itemsCheckboxFilter
+{
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    margin: 0 auto;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.i_gray {
+    background-color: gray;
+}
+
+.i_green {
+    background-color: green;
+    margin-top: 40px;
+}
+
+.i_blue {
+    background-color: blue;
+    margin-top: 80px;
+}
+
+.i_purple {
+    background-color: purple;
+    margin-top: 120px;
+}
+
+.i_red {
+    background-color: red;
+    margin-top: 160px;
+}
+
+.itemsCheckboxFilter:before
+{
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 0;
+    left: 0;
+    width: 26px;
+    height: 26px;
+    margin: 0 auto;
+    background-color: #fff;
+    transform: translateY(-50%);
+    border-radius: 50%;
+    transition: 0.2s ease width, 0.2s ease height;
+}
+
+.itemsCheckboxFilter:hover:before
+{
+    width: 20px;
+    height: 20px;
+}
+
+#i_gray:checked + .itemsCheckboxFilter:before,
+#i_green:checked + .itemsCheckboxFilter:before,
+#i_blue:checked + .itemsCheckboxFilter:before,
+#i_purple:checked + .itemsCheckboxFilter:before,
+#i_red:checked + .itemsCheckboxFilter:before
+{
+    width: 0;
+    height: 0;
 }

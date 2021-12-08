@@ -12467,6 +12467,7 @@ function convertItemIntoDiv(items) {
         divItem.setAttribute('equiped', 'false')
         divItem.style = `background-image: url('http://w1.dwar.ru/${item.image}');background-repeat: no-repeat;background-size: cover;`
         divItem.setAttribute('type', getType(item.kind_id))
+        divItem.setAttribute('quality', item.quality)
         if(item.kind_id == 12) {
           divItem.setAttribute('weapon', "2h")
         }
