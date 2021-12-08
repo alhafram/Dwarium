@@ -48,18 +48,17 @@ document.addEventListener("AttachDND", event => {
     function handleDragStartEquipableItem(e) {
         this.style.opacity = "0.4"
         state.currentElement = this
-        e.dataTransfer.setData("text/html", this.innerHTML);
     }
 
     function handleDragEndEquipableItem(e) {
         this.style.opacity = "1"
     }
 
-    function handleDragOverStaticItemBox(e) {
+    function handleDragOver(e) {
         if(e.preventDefault) {
             e.preventDefault()
         }
-        return false;
+        return false
     }
 
     function handleDropEquipableItemOnStaticItemBox(e) {
@@ -68,32 +67,15 @@ document.addEventListener("AttachDND", event => {
         }
         if(state.currentElement != this &&
             this.childElementCount == 0 &&
-            state.currentElement.attributes.equiped.value == "false" &&
             state.currentElement.attributes.type.value == this.attributes.type.value) {
-            if(state.currentElement.attributes.weapon) {
-                if(state.currentElement.attributes.weapon.value == "2h") {
-                    putOffItem(state.offhand_weapon.box, true)
-                    putOffItem(state.main_weapon.box)
-
-                    let mainWeaponCopy = state.currentElement.cloneNode(true)
-                    mainWeaponCopy.attributes.type.value = 'offhand_weapon'
-                    setupEquipableItemEvents(mainWeaponCopy)
-                    putOnItem(mainWeaponCopy)
-                }
-            }
             putOnItem(state.currentElement)
-            if(armorTypeSelected) {
-                document.getElementById(armorTypeSelected + "_box").style.border = ""
-                armorTypeSelected = null
-                filterCurrentItems()
-            }
         }
-        return false;
+        return false
     }
 
     function handleDropEquipableItemIntoAllItems(e) {
         if(e.stopPropagation) {
-            e.stopPropagation();
+            e.stopPropagation()
         }
 
         if(state.currentElement.attributes.weapon) {
@@ -101,16 +83,8 @@ document.addEventListener("AttachDND", event => {
         } else {
             putOffItem(state.currentElement.parentElement)
         }
-        armorTypeSelected = null
-        filterCurrentItems()
-        return false;
-    }
-
-    function handleDragOverEquipableItemOverAllItems(e) {
-        if(e.preventDefault) {
-            e.preventDefault();
-        }
-        return false;
+        filterWithResettingArmorType()
+        return false
     }
 
     function handleClickEquipableItem(e) {
@@ -119,38 +93,7 @@ document.addEventListener("AttachDND", event => {
         }
         if(this.attributes.equiped.value != "true" && e.detail == 2) {
             let itemBox = document.querySelector(`#${this.attributes.type.value}_box`)
-
-            if(this.attributes.weapon) {
-                if(this.attributes.weapon.value == "2h") {
-                    if(state.main_weapon.box.children.length > 0 && state.main_weapon.box.children[0].attributes.weapon.value == "2h") {
-                        putOffItem(state.offhand_weapon.box, true)
-                        putOffItem(state.main_weapon.box)
-                    }
-                    if(state.main_weapon.box.children.length > 0 && state.main_weapon.box.children[0].attributes.weapon.value == "1h" ||
-                        state.offhand_weapon.box.children.length > 0 && state.offhand_weapon.box.children[0].attributes.weapon.value == "off") {
-                        putOffItem(state.offhand_weapon.box)
-                        putOffItem(state.main_weapon.box)
-                    }
-
-                    let mainWeaponCopy = this.cloneNode(true)
-                    mainWeaponCopy.attributes.type.value = 'offhand_weapon'
-                    mainWeaponCopy.style.opacity = "0.4"
-                    setupEquipableItemEvents(mainWeaponCopy)
-                    putOnItem(mainWeaponCopy)
-                }
-                if(this.attributes.weapon.value == "1h" || this.attributes.weapon.value == "off") {
-                    if(state.main_weapon.box.childElementCount > 0) {
-                        if(state.main_weapon.box.children[0].attributes.weapon.value == "2h") {
-                            putOffItem(state.offhand_weapon.box, true)
-                            putOffItem(state.main_weapon.box)
-                        } else {
-                            putOffItem(itemBox)
-                        }
-                    }
-                }
-            } else {
-                putOffItem(itemBox)
-            }
+            state.currentElement = this
             putOnItem(this)
             return
         }
@@ -161,29 +104,27 @@ document.addEventListener("AttachDND", event => {
             } else {
                 putOffItem(itemBox)
             }
-            if(armorTypeSelected) {
-                filterCurrentItems()
-            }
+            filterWithResettingArmorType()
             e.stopPropagation()
         }
     }
 
-    let items = document.querySelectorAll(".current_items .box");
+    let items = document.querySelectorAll(".current_items .box")
     items.forEach(function(item) {
         setupEquipableItemEvents(item)
-    });
+    })
 
-    let equip_items = document.querySelectorAll(".equipped_items .box_static");
+    let equip_items = document.querySelectorAll(".equipped_items .box_static")
     equip_items.forEach(function(item) {
-        item.addEventListener("dragover", handleDragOverStaticItemBox, false);
-        item.addEventListener("drop", handleDropEquipableItemOnStaticItemBox, false);
-    });
+        item.addEventListener("dragover", handleDragOver, false)
+        item.addEventListener("drop", handleDropEquipableItemOnStaticItemBox, false)
+    })
 
-    let all_items = document.querySelectorAll(".current_items");
+    let all_items = document.querySelectorAll(".current_items")
     all_items.forEach(function(item) {
-        item.addEventListener("drop", handleDropEquipableItemIntoAllItems, false);
-        item.addEventListener("dragover", handleDragOverEquipableItemOverAllItems, false);
-    });
+        item.addEventListener("drop", handleDropEquipableItemIntoAllItems, false)
+        item.addEventListener("dragover", handleDragOver, false)
+    })
 
     let armor_types = ['helmet', 'shoulders', 'bracers', 'main_weapon', 'offhand_weapon', 'cuirass', 'leggings', 'chain_mail', 'boots']
     armor_types.forEach(t => {
@@ -193,25 +134,29 @@ document.addEventListener("AttachDND", event => {
             }
             if(document.getElementById(t + "_box").style.border == "" && document.getElementById(t + "_box").childElementCount == 0) {
                 if(armorTypeSelected != null) {
-                    document.getElementById(armorTypeSelected + "_box").style.border = ""
-                    armorTypeSelected = null
-                    filterCurrentItems()
+                    filterWithResettingArmorType()
                 }
                 armorTypeSelected = t
                 document.getElementById(t + "_box").style.border = '3px dotted #666'
                 filterCurrentItems()
             } else {
-                document.getElementById(t + "_box").style.border = ""
-                armorTypeSelected = null
-                filterCurrentItems()
+                filterWithResettingArmorType()
             }
-        });
+        })
     })
 
     function setupEquipableItemEvents(item) {
-        item.addEventListener("dragstart", handleDragStartEquipableItem, false);
-        item.addEventListener("dragend", handleDragEndEquipableItem, false);
-        item.addEventListener("click", handleClickEquipableItem, false);
+        item.addEventListener("dragstart", handleDragStartEquipableItem, false)
+        item.addEventListener("dragend", handleDragEndEquipableItem, false)
+        item.addEventListener("click", handleClickEquipableItem, false)
+    }
+
+    function filterWithResettingArmorType() {
+        if(armorTypeSelected) {
+            document.getElementById(armorTypeSelected + "_box").style.border = ""
+            armorTypeSelected = null
+            filterCurrentItems()
+        }
     }
 
     function filterCurrentItems() {
@@ -232,35 +177,64 @@ document.addEventListener("AttachDND", event => {
     function putOffItem(element, remove) {
         if(element.childElementCount > 0) {
             let item = element.children[0]
-            element.style.visibility = "visible";
-            item.attributes.equiped.value = false;
+            element.style.visibility = "visible"
+            item.attributes.equiped.value = false
             state[item.attributes.type.value].item = null
             if(remove) {
                 element.removeChild(item)
             } else {
-                document.querySelectorAll(".current_items")[0].appendChild(item);
+                document.querySelectorAll(".current_items")[0].appendChild(item)
             }
         }
     }
 
     function putOnItem(item) {
+        if(state.currentElement.attributes.weapon && !item.attributes.copy) {
+            if(state.currentElement.attributes.weapon.value == "2h") {
+                putOffWeapon(state.currentElement)
+                let mainWeaponCopy = state.currentElement.cloneNode(true)
+                mainWeaponCopy.attributes.type.value = 'offhand_weapon'
+                mainWeaponCopy.setAttribute('copy', true)
+                mainWeaponCopy.style.opacity = "0.4"
+                setupEquipableItemEvents(mainWeaponCopy)
+                putOnItem(mainWeaponCopy)
+            } else {
+                putOffWeapon(state.currentElement)
+            }
+        } else {
+            let itemBox = document.querySelector(`#${state.currentElement.attributes.type.value}_box`)
+            putOffItem(itemBox)
+        }
         state[item.attributes.type.value].item = item
         state[item.attributes.type.value].box.appendChild(item)
-        state[item.attributes.type.value].box.style.visibility = "hidden";
-        state[item.attributes.type.value].box.children[0].style.visibility = "visible";
-        item.attributes.equiped.value = true;
+        state[item.attributes.type.value].box.style.visibility = "hidden"
+        state[item.attributes.type.value].box.children[0].style.visibility = "visible"
+        item.attributes.equiped.value = true
+        filterWithResettingArmorType()
     }
 
     function putOffWeapon(item) {
         if(item.attributes.weapon.value == "2h") {
-            putOffItem(state.offhand_weapon.box, true)
+            putOffItem(state.offhand_weapon.box, state.offhand_weapon.item && state.offhand_weapon.item.attributes.copy && state.offhand_weapon.item.attributes.copy.value == "true")
             putOffItem(state.main_weapon.box)
         }
         if(item.attributes.weapon.value == "1h") {
-            putOffItem(state.main_weapon.box)
+            if(state.main_weapon.item) {
+                if(state.main_weapon.item.attributes.weapon.value == "2h") {
+                    putOffWeapon(state.main_weapon.item)
+                } else {
+                    putOffItem(state.main_weapon.box)
+                }
+            }
         }
         if(item.attributes.weapon.value == "off") {
-            putOffItem(state.offhand_weapon.box)
+            if(state.offhand_weapon.item) {
+                if(state.offhand_weapon.item.attributes.weapon.value == "2h") {
+                    putOffWeapon(state.offhand_weapon.item)
+                } else {
+                    putOffItem(state.offhand_weapon.box)
+                }
+            }
         }
     }
-});
+})
