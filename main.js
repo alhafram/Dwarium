@@ -27,7 +27,7 @@ function createMainBrowserView() {
     browserView.setAutoResize({
         width: true
     });
-    // browserView.webContents.openDevTools()
+    browserView.webContents.openDevTools()
     return browserView
 }
 
@@ -119,8 +119,8 @@ function createWindow() {
         TabsController.deleteTab(id)
     })
 
-    ipcMain.on('MakeRequest', (evt, data) => {
-        browserView.webContents.executeJavaScript(data)
+    ipcMain.on('MakeRequest', async (evt, req) => {
+        await browserView.webContents.executeJavaScript(req)
     })
 }
 

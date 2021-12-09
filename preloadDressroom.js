@@ -15,3 +15,10 @@ ipcRenderer.on('getWearedItems', (event, items) => {
     }});
     document.dispatchEvent(evt)
 })
+
+
+window.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('MakeRequest', (evt) => {
+        ipcRenderer.send("MakeRequest", evt.detail)
+    })
+});
