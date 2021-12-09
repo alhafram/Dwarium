@@ -21,12 +21,13 @@ let current_server = null
 
 function createMainBrowserView() {
     let browserView = new BrowserView({
-        enablePreferredSizeMode: true
+        enablePreferredSizeMode: true,
     })
     browserView.setBounds(mainWindow.getControlBounds())
     browserView.setAutoResize({
         width: true
     });
+    // browserView.webContents.openDevTools()
     return browserView
 }
 
@@ -40,7 +41,7 @@ function createWindow() {
 
     ipcMain.on("load_url", (evt, server) => {
         current_server = server
-        TabsController.currentTab().webContents.loadURL(`http://${current_server}.dwar.ru`)
+        TabsController.currentTab().webContents.loadURL(`http://${current_server}.dwar.ru/`)
         mainWindow.webContents.send('url', `http://${current_server}.dwar.ru`, TabsController.current_tab_id)
         configService.writeData('server', server)
     });
@@ -50,88 +51,89 @@ function createWindow() {
     })
 
     ipcMain.on('open_dressing_room', (evt) => {
-                let child = new BrowserWindow({
-                    parent: mainWindow,
-                    width: 900,
-                    height: 700,
-                    minWidth: 900,
-                    minHeight: 700,
-                    useContentSize: true,
-                    show: false,
-                    webPreferences: {
-                        preload: path.join(__dirname, "preloadDressroom.js")
-                    },
-                });
-                // child.loadURL('app://Dressing/index.html');
-                child.loadFile(`${path.join(app.getAppPath(), './Dressing/index.html')}`);
+        let child = new BrowserWindow({
+            parent: mainWindow,
+            width: 900,
+            height: 700,
+            minWidth: 900,
+            minHeight: 700,
+            useContentSize: true,
+            show: false,
+            webPreferences: {
+                preload: path.join(__dirname, "preloadDressroom.js")
+            },
+        });
+        // child.loadURL('app://Dressing/index.html');
+        child.loadFile(`${path.join(app.getAppPath(), './Dressing/index.html')}`);
 
-                let dressingItemsBrowserView = new BrowserView({
-                    enablePreferredSizeMode: true,
-                })
-                dressingItemsBrowserView.webContents.loadURL(`http://${current_server}.dwar.ru/user_iframe.php?group=2`)
-                    // dressingItemsBrowserView.webContents.openDevTools()
-                child.addBrowserView(dressingItemsBrowserView)
-                let wearedItemsBrowserView = new BrowserView({
-                    enablePreferredSizeMode: true,
-                })
-                wearedItemsBrowserView.webContents.loadURL(`http://${current_server}.dwar.ru/user.php`)
-                    // wearedItemsBrowserView.webContents.openDevTools()
-                child.addBrowserView(wearedItemsBrowserView)
+        let dressingItemsBrowserView = new BrowserView({
+            enablePreferredSizeMode: true,
+        })
+        dressingItemsBrowserView.webContents.loadURL(`http://${current_server}.dwar.ru/user_iframe.php?group=2`)
+            // dressingItemsBrowserView.webContents.openDevTools()
+        child.addBrowserView(dressingItemsBrowserView)
+        let wearedItemsBrowserView = new BrowserView({
+            enablePreferredSizeMode: true,
+        })
+        wearedItemsBrowserView.webContents.loadURL(`http://${current_server}.dwar.ru/user.php`)
+            // wearedItemsBrowserView.webContents.openDevTools()
+        child.addBrowserView(wearedItemsBrowserView)
 
-                child.webContents.on('did-finish-load', async() => {
-                    let allItems = await dressingItemsBrowserView.webContents.executeJavaScript('art_alt')
-                    let allItemsSummary = parse(allItems)
-                    let wearedItems = await wearedItemsBrowserView.webContents.executeJavaScript('art_alt')
-                    let wearedItemsSummary = parse(wearedItems)
+        child.webContents.on('did-finish-load', async() => {
+            let allItems = await dressingItemsBrowserView.webContents.executeJavaScript('art_alt')
+            let allItemsSummary = parse(allItems)
+            let wearedItems = await wearedItemsBrowserView.webContents.executeJavaScript('art_alt')
+            let wearedItemsSummary = parse(wearedItems)
 
-                    child.webContents.send('getAllItems', allItemsSummary)
-                    child.webContents.send('getWearedItems', wearedItemsSummary)
-                    child.show();
-                })
+            child.webContents.send('getAllItems', allItemsSummary)
+            child.webContents.send('getWearedItems', wearedItemsSummary)
+            child.show();
+        })
+    })
 
-                ipcMain.on('new_tab', (evt, id) => {
-                    let browserView = new BrowserView({
-                        enablePreferredSizeMode: true
-                    })
-                    TabsController.addTab(id, browserView)
-                    TabsController.setupCurrent(id)
-                    mainWindow.setBrowserView(browserView)
+    ipcMain.on('new_tab', (evt, id) => {
+        let browserView = new BrowserView({
+            enablePreferredSizeMode: true
+        })
+        TabsController.addTab(id, browserView)
+        TabsController.setupCurrent(id)
+        mainWindow.setBrowserView(browserView)
 
-                    browserView.setBounds(mainWindow.getControlBounds())
-                    browserView.setAutoResize({
-                        width: true
-                    });
-                    mainWindow.setContentBounds(TabsController.currentTab())
-                    browserView.webContents.loadURL('https://google.com')
-                    mainWindow.webContents.send('url', 'https://google.com', id)
-                })
+        browserView.setBounds(mainWindow.getControlBounds())
+        browserView.setAutoResize({
+            width: true
+        });
+        mainWindow.setContentBounds(TabsController.currentTab())
+        browserView.webContents.loadURL('https://google.com')
+        mainWindow.webContents.send('url', 'https://google.com', id)
+    })
 
-                ipcMain.on('make_active', (evt, id) => {
-                    console.log("MAKE ACTIVE")
-                    TabsController.setupCurrent(id)
-                    mainWindow.setBrowserView(TabsController.currentTab())
-                    mainWindow.webContents.send('url', TabsController.currentTab().webContents.getURL(), id)
-                })
+    ipcMain.on('make_active', (evt, id) => {
+        console.log("MAKE ACTIVE")
+        TabsController.setupCurrent(id)
+        mainWindow.setBrowserView(TabsController.currentTab())
+        mainWindow.webContents.send('url', TabsController.currentTab().webContents.getURL(), id)
+    })
 
-                ipcMain.on('remove_view', (evt, id) => {
-                    TabsController.deleteTab(id)
-                })
+    ipcMain.on('remove_view', (evt, id) => {
+        TabsController.deleteTab(id)
+    })
 
-                ipcMain.on('MakeRequest', (evt, data) => {
-                    browserView.webContents.executeJavaScript(data)
-                })
-            }
+    ipcMain.on('MakeRequest', (evt, data) => {
+        browserView.webContents.executeJavaScript(data)
+    })
+}
 
-            app.on('ready', createWindow)
+app.on('ready', createWindow)
 
-            app.on('window-all-closed', function() {
-                if(process.platform !== 'darwin') {
-                    app.quit()
-                }
-            })
+app.on('window-all-closed', function() {
+    if(process.platform !== 'darwin') {
+        app.quit()
+    }
+})
 
-            app.on('activate', function() {
-                if(mainWindow === null) {
-                    createWindow()
-                }
-            })
+app.on('activate', function() {
+    if(mainWindow === null) {
+        createWindow()
+    }
+})
