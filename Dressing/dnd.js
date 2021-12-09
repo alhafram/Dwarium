@@ -194,6 +194,9 @@ function handleDragOver(e) {
 }
 
 function handleDropEquipableItemOnStaticItemBox(e) {
+    if(!this.currentElement) {
+        return
+    }
     if(e.stopPropagation) {
         e.stopPropagation()
     }

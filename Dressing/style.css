@@ -15,35 +15,34 @@ body {
 .current_items {
     border: 3px dotted #666;
     height: 50%;
-    width:  80%;
+    width: 80%;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
     grid-gap: 10px;
-
     margin-left: 10px;
     padding-right: 10px;
 }
 
 .grayItems {
-/*     border: 1px dotted #000; */
+    /*     border: 1px dotted #000; */
     width: 30px;
     height: 30px;
     flex-shrink: 0;
 }
 
 .equipped_items {
-/*     border: 3px dotted #666; */
+    /*     border: 3px dotted #666; */
     height: 400px;
     width: 350px;
     flex-shrink: 0;
 }
 
 :root {
-  --helmetLeftMargin: 120px;
-  --leftItemsLeftMargin: calc(var(--helmetLeftMargin) - 110px);
-  --rightItemsLeftMaring: calc(var(--helmetLeftMargin) + 110px);
-  --topDefaultMargin: 50px;
-  --topDefaultAdditionalMargin: 90px;
+    --helmetLeftMargin: 120px;
+    --leftItemsLeftMargin: calc(var(--helmetLeftMargin) - 110px);
+    --rightItemsLeftMaring: calc(var(--helmetLeftMargin) + 110px);
+    --topDefaultMargin: 50px;
+    --topDefaultAdditionalMargin: 90px;
 }
 
 #person {
@@ -175,16 +174,11 @@ leggings .box.over {
     user-select: none;
 }
 
-
-
-
-.itemCheckbox
-{
+.itemCheckbox {
     display: none;
 }
 
-.itemsCheckboxFilter
-{
+.itemsCheckboxFilter {
     position: absolute;
     width: 30px;
     height: 30px;
@@ -217,8 +211,7 @@ leggings .box.over {
     margin-top: 160px;
 }
 
-.itemsCheckboxFilter:before
-{
+.itemsCheckboxFilter:before {
     content: "";
     position: absolute;
     top: 50%;
@@ -233,18 +226,16 @@ leggings .box.over {
     transition: 0.2s ease width, 0.2s ease height;
 }
 
-.itemsCheckboxFilter:hover:before
-{
+.itemsCheckboxFilter:hover:before {
     width: 20px;
     height: 20px;
 }
 
-#i_gray:checked + .itemsCheckboxFilter:before,
-#i_green:checked + .itemsCheckboxFilter:before,
-#i_blue:checked + .itemsCheckboxFilter:before,
-#i_purple:checked + .itemsCheckboxFilter:before,
-#i_red:checked + .itemsCheckboxFilter:before
-{
+#i_gray:checked+.itemsCheckboxFilter:before,
+#i_green:checked+.itemsCheckboxFilter:before,
+#i_blue:checked+.itemsCheckboxFilter:before,
+#i_purple:checked+.itemsCheckboxFilter:before,
+#i_red:checked+.itemsCheckboxFilter:before {
     width: 0;
     height: 0;
 }

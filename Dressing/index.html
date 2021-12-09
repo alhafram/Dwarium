@@ -10,61 +10,74 @@ SPDX-License-Identifier: Apache-2.0 -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./sets.css" />
     <script src="./dnd.js"></script>
-    <!-- <script src="./mock.js"></script> -->
+    <script src="./mock.js"></script>
     <script src="./filter.js"></script>
+    <script src="./sets.js"></script>
 </head>
 
 <body>
     <div class="content">
-    <div class="equipped_items">
-        <div id="helmet">
-            <div type="helmet" id="helmet_box" class="box_static"></div>
+        <div class="sets">
+            <article id="addSetButton" class="leaderboard__profile" id="defaultSet">
+                <img src="https://cdn-icons-png.flaticon.com/512/1828/1828925.png" class="leaderboard__picture">
+                <span class="leaderboard__name">Add set</span>
+            </article>
         </div>
-        <div id="shoulders">
-            <div type="shoulders" id="shoulders_box" class="box_static"></div>
+        <div class="equipped_items">
+            <div id="helmet">
+                <div type="helmet" id="helmet_box" class="box_static"></div>
+            </div>
+            <div id="shoulders">
+                <div type="shoulders" id="shoulders_box" class="box_static"></div>
+            </div>
+            <div id="bracers">
+                <div type="bracers" id="bracers_box" class="box_static"></div>
+            </div>
+            <div id="main_weapon">
+                <div type="main_weapon" id="main_weapon_box" class="box_static"></div>
+            </div>
+            <div id="offhand_weapon">
+                <div type="offhand_weapon" id="offhand_weapon_box" class="box_static"></div>
+            </div>
+            <div id="cuirass">
+                <div type="cuirass" id="cuirass_box" class="box_static"></div>
+            </div>
+            <div id="leggings">
+                <div type="leggings" id="leggings_box" class="box_static"></div>
+            </div>
+            <div id="chain_mail">
+                <div type="chain_mail" id="chain_mail_box" class="box_static"></div>
+            </div>
+            <div id="boots">
+                <div type="boots" id="boots_box" class="box_static"></div>
+            </div>
+            <div id="person">
+            </div>
+            <div style="width: 200px; margin-top: 400px; display: flex;">
+                <button style="margin-right: 10px;">Unequip</button>
+                <input id="currentSetTitle" style="padding: 7px 15px; border: 1px solid #ccc;" type="text" maxlength="15" value="Default set" placeholder="">
+                <button style="margin-left: 10px;" onclick="saveSet(this)">Save</button>
+            </div>
         </div>
-        <div id="bracers">
-            <div type="bracers" id="bracers_box" class="box_static"></div>
-        </div>
-        <div id="main_weapon">
-            <div type="main_weapon" id="main_weapon_box" class="box_static"></div>
-        </div>
-        <div id="offhand_weapon">
-            <div type="offhand_weapon" id="offhand_weapon_box" class="box_static"></div>
-        </div>
-        <div id="cuirass">
-            <div type="cuirass" id="cuirass_box" class="box_static"></div>
-        </div>
-        <div id="leggings">
-            <div type="leggings" id="leggings_box" class="box_static"></div>
-        </div>
-        <div id="chain_mail">
-            <div type="chain_mail" id="chain_mail_box" class="box_static"></div>
-        </div>
-        <div id="boots">
-            <div type="boots" id="boots_box" class="box_static"></div>
-        </div>
-        <div id="person">
-        </div>
-    </div>
-    <div class="grayItems" >
-        <input class="itemCheckbox" checked type="checkbox" id="i_gray">
-        <label class="itemsCheckboxFilter i_gray" for="i_gray"></label>
+        <div class="grayItems">
+            <input class="itemCheckbox" checked type="checkbox" id="i_gray">
+            <label class="itemsCheckboxFilter i_gray" for="i_gray"></label>
 
-        <input class="itemCheckbox" checked type="checkbox" id="i_green">
-        <label class="itemsCheckboxFilter i_green" for="i_green"></label>
+            <input class="itemCheckbox" checked type="checkbox" id="i_green">
+            <label class="itemsCheckboxFilter i_green" for="i_green"></label>
 
-        <input class="itemCheckbox" checked type="checkbox" id="i_blue">
-        <label class="itemsCheckboxFilter i_blue" for="i_blue"></label>
+            <input class="itemCheckbox" checked type="checkbox" id="i_blue">
+            <label class="itemsCheckboxFilter i_blue" for="i_blue"></label>
 
-        <input class="itemCheckbox" checked type="checkbox" id="i_purple">
-        <label class="itemsCheckboxFilter i_purple" for="i_purple"></label>
+            <input class="itemCheckbox" checked type="checkbox" id="i_purple">
+            <label class="itemsCheckboxFilter i_purple" for="i_purple"></label>
 
-        <input class="itemCheckbox" checked type="checkbox" id="i_red">
-        <label class="itemsCheckboxFilter i_red" for="i_red"></label>
-    </div>
-    <div class="current_items"></div>
+            <input class="itemCheckbox" checked type="checkbox" id="i_red">
+            <label class="itemsCheckboxFilter i_red" for="i_red"></label>
+        </div>
+        <div class="current_items"></div>
     </div>
 </body>
 

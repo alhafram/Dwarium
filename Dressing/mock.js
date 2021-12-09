@@ -12439,47 +12439,16 @@ let items = {
     "other": []
 }
 
-// setTimeout(() => {
-//
-//     let arr = []
-//     arr = arr.concat(convertItemIntoDiv(items.helmets))
-//     arr = arr.concat(convertItemIntoDiv(items.shoulders))
-//     arr = arr.concat(convertItemIntoDiv(items.bracers))
-//     arr = arr.concat(convertItemIntoDiv(items.main_weapons))
-//     arr = arr.concat(convertItemIntoDiv(items.offhand_weapons))
-//     arr = arr.concat(convertItemIntoDiv(items.cuirasses))
-//     arr = arr.concat(convertItemIntoDiv(items.leggings))
-//     arr = arr.concat(convertItemIntoDiv(items.chainmails))
-//     arr = arr.concat(convertItemIntoDiv(items.boots))
-//     arr.flatMap(i => i).forEach(item => {
-//         let parent = document.querySelector('.current_items')
-//         parent.appendChild(item)
-//     });
-//     document.dispatchEvent(new Event('AttachDND'))
-// }, 100)
-
-function convertItemIntoDiv(items) {
-  return items.map(item => {
-        let parent = document.querySelector('.current_items')
-        let divItem = document.createElement('div')
-        divItem.className = 'box'
-        divItem.draggable = 'true'
-        divItem.setAttribute('equiped', 'false')
-        divItem.style = `background-image: url('http://w1.dwar.ru/${item.image}');background-repeat: no-repeat;background-size: cover;`
-        divItem.setAttribute('type', getType(item.kind_id))
-        divItem.setAttribute('quality', item.quality)
-        if(item.kind_id == 12) {
-          divItem.setAttribute('weapon', "2h")
-        }
-       if(item.kind_id == 10) {
-         divItem.setAttribute('weapon', "1h")
-       }
-        if(item.kind_id == 44 || item.kind_id == 17) {
-          divItem.setAttribute('weapon', "off")
-        }
-        return divItem
-    });
-}
+setTimeout(() => {
+    var setsEvt = new CustomEvent("LoadSets", {detail: {
+        items: {}
+    }});
+    document.dispatchEvent(setsEvt)
+    var evt = new CustomEvent("AttachDND", {detail: {
+        items: items
+    }});
+    document.dispatchEvent(evt)
+}, 100)
 
 function getType(kind_id) {
     if(kind_id == 1) {

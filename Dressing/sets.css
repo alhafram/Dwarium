@@ -1,0 +1,43 @@
+.sets {
+    /* border: 3px dotted #666; */
+    height: 400px;
+    width: 200px;
+    flex-shrink: 0;
+    background-color: #eaeaea;
+    font-family: 'Source Sans Pro', sans-serif;
+    overflow: scroll;
+}
+
+.leaderboard__profile {
+    border-radius: 12px;
+    margin: 10px;
+    display: flex;
+    padding: 10px 10px 10px 10px;
+    overflow: hidden;
+    height: 30px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform .25s cubic-bezier(.7, .98, .86, .98), box-shadow .25s cubic-bezier(.7, .98, .86, .98);
+    background-color: #fff;
+}
+
+.leaderboard__profile+.active {
+    background-color: #222;
+}
+
+.leaderboard__profile:hover {
+    transform: scale(1.05);
+}
+
+.leaderboard__name {
+    color: #979cb0;
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: 0.64px;
+    margin-left: 10px;
+}
+
+.leaderboard__picture {
+    width: 20px;
+    object-fit: contain;
+}
