@@ -1,7 +1,12 @@
-function parse(art_alt) {
+function parse(art_alt, filterEquip) {
     let objects = Array.from(Object.keys(art_alt).map(k => art_alt[k]))
+    let items = null
 
-    let items = objects.filter(o => o.action == 'equip') // All items you can equip
+    if(filterEquip) {
+        items = objects.filter(o => o.action == 'equip') // All items you can equip
+    } else {
+        items = objects
+    }
 
     let arcats = items.filter(i => i.kind_id == '161') // Arcats
     items = items.filter(i => i.kind_id != '161')

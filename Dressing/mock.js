@@ -12439,24 +12439,24 @@ let items = {
     "other": []
 }
 
-setTimeout(() => {
-
-    let arr = []
-    arr = arr.concat(convertItemIntoDiv(items.helmets))
-    arr = arr.concat(convertItemIntoDiv(items.shoulders))
-    arr = arr.concat(convertItemIntoDiv(items.bracers))
-    arr = arr.concat(convertItemIntoDiv(items.main_weapons))
-    arr = arr.concat(convertItemIntoDiv(items.offhand_weapons))
-    arr = arr.concat(convertItemIntoDiv(items.cuirasses))
-    arr = arr.concat(convertItemIntoDiv(items.leggings))
-    arr = arr.concat(convertItemIntoDiv(items.chainmails))
-    arr = arr.concat(convertItemIntoDiv(items.boots))
-    arr.flatMap(i => i).forEach(item => {
-        let parent = document.querySelector('.current_items')
-        parent.appendChild(item)
-    });
-    document.dispatchEvent(new Event('AttachDND'))
-}, 100)
+// setTimeout(() => {
+//
+//     let arr = []
+//     arr = arr.concat(convertItemIntoDiv(items.helmets))
+//     arr = arr.concat(convertItemIntoDiv(items.shoulders))
+//     arr = arr.concat(convertItemIntoDiv(items.bracers))
+//     arr = arr.concat(convertItemIntoDiv(items.main_weapons))
+//     arr = arr.concat(convertItemIntoDiv(items.offhand_weapons))
+//     arr = arr.concat(convertItemIntoDiv(items.cuirasses))
+//     arr = arr.concat(convertItemIntoDiv(items.leggings))
+//     arr = arr.concat(convertItemIntoDiv(items.chainmails))
+//     arr = arr.concat(convertItemIntoDiv(items.boots))
+//     arr.flatMap(i => i).forEach(item => {
+//         let parent = document.querySelector('.current_items')
+//         parent.appendChild(item)
+//     });
+//     document.dispatchEvent(new Event('AttachDND'))
+// }, 100)
 
 function convertItemIntoDiv(items) {
   return items.map(item => {
