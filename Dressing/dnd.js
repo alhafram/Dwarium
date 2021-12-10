@@ -91,6 +91,10 @@ document.addEventListener("AttachDND", event => {
         currentElement: null,
         isOn(itemType) {
             return this[itemType].item != null
+        },
+        getEquipedItems() {
+            let items = Object.keys(state).map(key => state[key]).filter(obj => obj != null && Object.keys(obj) != 0)
+            return items.map(i => i.item).filter(i => i != null)
         }
     }
 })
@@ -194,7 +198,7 @@ function handleDragOver(e) {
 }
 
 function handleDropEquipableItemOnStaticItemBox(e) {
-    if(!this.currentElement) {
+    if(!state.currentElement) {
         return
     }
     if(e.stopPropagation) {
@@ -323,7 +327,6 @@ function putOnItem(item, fake) {
         }
     } else {
         let itemBox = document.querySelector(`#${state.currentElement.attributes.type.value}_box`)
-        console.log("HERERERE", itemBox)
         putOffItem(itemBox, false, true)
     }
     state[item.attributes.type.value].item = item
