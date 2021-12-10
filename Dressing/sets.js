@@ -9,10 +9,7 @@ let setsState = {
 
 document.addEventListener("LoadSets", event => {
     let sets = Object.keys(localStorage).filter(key => key.startsWith("set_"))
-    // if(Object.keys(event.detail.items).length == 0) {
-    if(sets.length == 0) {
-
-    } else {
+    if(!sets.isEmpty()) {
         for(var set of sets) {
             let jsonSet = JSON.parse(localStorage[set])
             let article = document.createElement('article')
@@ -104,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.querySelector("#addSetButton").addEventListener('click', e => {
         let sets = Object.keys(localStorage)
-        let emptySet = sets.filter(i => JSON.parse(localStorage[i]).ids.length == 0)[0]
+        let emptySet = sets.filter(i => JSON.parse(localStorage[i]).ids.isEmpty())[0]
         if(emptySet) {
             alert(`Такой набор вещей уже существует: ${JSON.parse(localStorage[emptySet]).title}`)
             return
