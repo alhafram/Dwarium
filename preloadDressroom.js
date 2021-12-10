@@ -10,6 +10,10 @@ ipcRenderer.on('getAllItems', (event, items) => {
 })
 
 ipcRenderer.on('getWearedItems', (event, items) => {
+    var setsEvt = new CustomEvent("LoadSets", {detail: {
+        items: {}
+    }});
+    document.dispatchEvent(setsEvt)
     var evt = new CustomEvent("PutOnItems", {detail: {
         items: items
     }});
