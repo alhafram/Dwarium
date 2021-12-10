@@ -1,38 +1,33 @@
 let items = {
     "arcats": [
         {
-            "id": "4188414419",
-            "title": "Великий тетрарк инициативы",
-            "ord": "2",
+            "id": "3033607492",
+            "title": "Слабый триарк вампиризма",
+            "ord": "1",
             "kind_id": "161",
             "storage_type": "0",
             "profession": "0",
-            "color": "#990099",
-            "quality": "3",
+            "cnt": 2287,
+            "color": "#666666",
+            "quality": "0",
             "time_expire": "0",
-            "image": "/images/data/artifacts/ark_dblue_4_2.gif",
-            "picture": "/images/data/artifacts/ark_dblue_4_2.gif",
+            "image": "/images/data/artifacts/ark_red_1_1.gif",
+            "picture": "/images/data/artifacts/ark_red_1_1.gif",
             "kind": "Аркат",
-            "type_id": "156",
+            "type_id": "154",
             "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
             "lev": {
                 "title": " Уровень ",
-                "value": "19"
+                "value": "11"
             },
-            "skills": [
-                {
-                    "title": "Инициатива",
-                    "value": "<b>+35</b>"
-                }
-            ],
+            "skills": [],
             "skills_e": [],
-            "nogive": "Предмет нельзя передать",
             "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат инициативы!</STRONG>",
+            "desc": "Дает <STRONG>1%</STRONG> <STRONG><SPAN style=\"color:red\">вампирический эффект</SPAN></STRONG> боевым аурам.<br /><STRONG>Одновременно можно надеть только один из аркатов мощи, вампиризма или крови!</STRONG>",
             "sell": true,
             "drop": true,
             "equip": true,
-            "add_attrs": " artifact_id=\"4188414419\" price_type=\"1\" sell_price=\"0.1\"",
+            "add_attrs": " artifact_id=\"3033607492\" price_type=\"1\" sell_price=\"0.1\"",
             "icon_list": {
                 "1": "info",
                 "2": "sell"
@@ -42,49 +37,37 @@ let items = {
             "_act2": 3,
             "_act3": 0,
             "_act4": 0,
-            "artifact_alt_id": "AA_4188414419"
+            "artifact_alt_id": "AA_3033607492"
         },
         {
-            "id": "3720466375",
-            "title": "Сильный эксарк проницания",
+            "id": "3384101310",
+            "title": "Слабый пентарк вампиризма",
             "ord": "2",
             "kind_id": "161",
             "storage_type": "0",
             "profession": "0",
-            "color": "#3300ff",
-            "quality": "2",
+            "cnt": 20,
+            "color": "#666666",
+            "quality": "0",
             "time_expire": "0",
-            "image": "/images/data/artifacts/ark_turquoise_3_4.gif",
-            "picture": "/images/data/artifacts/ark_turquoise_3_4.gif",
+            "image": "/images/data/artifacts/ark_red_1_3.gif",
+            "picture": "/images/data/artifacts/ark_red_1_3.gif",
             "kind": "Аркат",
-            "type_id": "147",
+            "type_id": "154",
             "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
             "lev": {
                 "title": " Уровень ",
-                "value": "18"
+                "value": "13"
             },
-            "skills": [
-                {
-                    "title": "Проницание огонь-воздух",
-                    "value": "<b>+60</b>"
-                },
-                {
-                    "title": "Проницание свет-тьма",
-                    "value": "<b>+60</b>"
-                },
-                {
-                    "title": "Проницание земля-вода",
-                    "value": "<b>+60</b>"
-                }
-            ],
+            "skills": [],
             "skills_e": [],
             "nogive": "Предмет нельзя передать",
             "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат проницания!</STRONG>",
+            "desc": "Дает <STRONG>1%</STRONG> <STRONG><SPAN style=\"color:red\">вампирический эффект</SPAN></STRONG> боевым аурам.<br /><STRONG>Одновременно можно надеть только один из аркатов мощи, вампиризма или крови!</STRONG>",
             "sell": true,
             "drop": true,
             "equip": true,
-            "add_attrs": " artifact_id=\"3720466375\" price_type=\"1\" sell_price=\"0.1\"",
+            "add_attrs": " artifact_id=\"3384101310\" price_type=\"1\" sell_price=\"0.1\"",
             "icon_list": {
                 "1": "info",
                 "2": "sell"
@@ -94,50 +77,37 @@ let items = {
             "_act2": 3,
             "_act3": 0,
             "_act4": 0,
-            "artifact_alt_id": "AA_3720466375"
+            "artifact_alt_id": "AA_3384101310"
         },
         {
-            "id": "3720466212",
-            "title": "Эксарк проницания",
+            "id": "3384101471",
+            "title": "Слабый тетрарк вампиризма",
             "ord": "4",
             "kind_id": "161",
             "storage_type": "0",
             "profession": "0",
-            "cnt": 2,
-            "color": "#339900",
-            "quality": "1",
+            "cnt": 5,
+            "color": "#666666",
+            "quality": "0",
             "time_expire": "0",
-            "image": "/images/data/artifacts/ark_turquoise_2_4.gif",
-            "picture": "/images/data/artifacts/ark_turquoise_2_4.gif",
+            "image": "/images/data/artifacts/ark_red_1_2.gif",
+            "picture": "/images/data/artifacts/ark_red_1_2.gif",
             "kind": "Аркат",
-            "type_id": "147",
+            "type_id": "154",
             "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
             "lev": {
                 "title": " Уровень ",
-                "value": "16"
+                "value": "11"
             },
-            "skills": [
-                {
-                    "title": "Проницание огонь-воздух",
-                    "value": "<b>+40</b>"
-                },
-                {
-                    "title": "Проницание свет-тьма",
-                    "value": "<b>+40</b>"
-                },
-                {
-                    "title": "Проницание земля-вода",
-                    "value": "<b>+40</b>"
-                }
-            ],
+            "skills": [],
             "skills_e": [],
             "nogive": "Предмет нельзя передать",
             "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат проницания!</STRONG>",
+            "desc": "Дает <STRONG>1%</STRONG> <STRONG><SPAN style=\"color:red\">вампирический эффект</SPAN></STRONG> боевым аурам.<br /><STRONG>Одновременно можно надеть только один из аркатов мощи, вампиризма или крови!</STRONG>",
             "sell": true,
             "drop": true,
             "equip": true,
-            "add_attrs": " artifact_id=\"3720466212\" price_type=\"1\" sell_price=\"0.1\"",
+            "add_attrs": " artifact_id=\"3384101471\" price_type=\"1\" sell_price=\"0.1\"",
             "icon_list": {
                 "1": "info",
                 "2": "sell"
@@ -147,12 +117,91 @@ let items = {
             "_act2": 3,
             "_act3": 0,
             "_act4": 0,
-            "artifact_alt_id": "AA_3720466212"
+            "artifact_alt_id": "AA_3384101471"
         },
         {
-            "id": "3720466201",
-            "title": "Пентарк проницания",
+            "id": "3619337978",
+            "title": "Слабый эксарк вампиризма",
             "ord": "5",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 11,
+            "color": "#666666",
+            "quality": "0",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_red_1_4.gif",
+            "picture": "/images/data/artifacts/ark_red_1_4.gif",
+            "kind": "Аркат",
+            "type_id": "154",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "13"
+            },
+            "skills": [],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "Дает <STRONG>1%</STRONG> <STRONG><SPAN style=\"color:red\">вампирический эффект</SPAN></STRONG> боевым аурам.<br /><STRONG>Одновременно можно надеть только один из аркатов мощи, вампиризма или крови!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3619337978\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3619337978"
+        },
+        {
+            "id": "3586438214",
+            "title": "Тетрарк вампиризма",
+            "ord": "7",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "color": "#339900",
+            "quality": "1",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_red_2_2.gif",
+            "picture": "/images/data/artifacts/ark_red_2_2.gif",
+            "kind": "Аркат",
+            "type_id": "154",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "15"
+            },
+            "skills": [],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "Дает <STRONG>2%</STRONG> <STRONG><SPAN style=\"color:red\">вампирический эффект</SPAN></STRONG> боевым аурам.<br /><STRONG>Одновременно можно надеть только один из аркатов мощи, вампиризма или крови!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3586438214\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3586438214"
+        },
+        {
+            "id": "3619337949",
+            "title": "Пентарк вампиризма",
+            "ord": "9",
             "kind_id": "161",
             "storage_type": "0",
             "profession": "0",
@@ -160,37 +209,24 @@ let items = {
             "color": "#339900",
             "quality": "1",
             "time_expire": "0",
-            "image": "/images/data/artifacts/ark_turquoise_2_3.gif",
-            "picture": "/images/data/artifacts/ark_turquoise_2_3.gif",
+            "image": "/images/data/artifacts/ark_red_2_3.gif",
+            "picture": "/images/data/artifacts/ark_red_2_3.gif",
             "kind": "Аркат",
-            "type_id": "147",
+            "type_id": "154",
             "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
             "lev": {
                 "title": " Уровень ",
                 "value": "16"
             },
-            "skills": [
-                {
-                    "title": "Проницание огонь-воздух",
-                    "value": "<b>+35</b>"
-                },
-                {
-                    "title": "Проницание свет-тьма",
-                    "value": "<b>+35</b>"
-                },
-                {
-                    "title": "Проницание земля-вода",
-                    "value": "<b>+35</b>"
-                }
-            ],
+            "skills": [],
             "skills_e": [],
             "nogive": "Предмет нельзя передать",
             "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат проницания!</STRONG>",
+            "desc": "Дает <STRONG>2%</STRONG> <STRONG><SPAN style=\"color:red\">вампирический эффект</SPAN></STRONG> боевым аурам.<br /><STRONG>Одновременно можно надеть только один из аркатов мощи, вампиризма или крови!</STRONG>",
             "sell": true,
             "drop": true,
             "equip": true,
-            "add_attrs": " artifact_id=\"3720466201\" price_type=\"1\" sell_price=\"0.1\"",
+            "add_attrs": " artifact_id=\"3619337949\" price_type=\"1\" sell_price=\"0.1\"",
             "icon_list": {
                 "1": "info",
                 "2": "sell"
@@ -200,22 +236,282 @@ let items = {
             "_act2": 3,
             "_act3": 0,
             "_act4": 0,
-            "artifact_alt_id": "AA_3720466201"
+            "artifact_alt_id": "AA_3619337949"
         },
         {
-            "id": "4375782938",
-            "title": "Тетрарк проницания",
-            "ord": "6",
+            "id": "3730477453",
+            "title": "Эксарк вампиризма",
+            "ord": "11",
             "kind_id": "161",
             "storage_type": "0",
             "profession": "0",
+            "cnt": 4,
             "color": "#339900",
             "quality": "1",
             "time_expire": "0",
-            "image": "/images/data/artifacts/ark_turquoise_2_2.gif",
-            "picture": "/images/data/artifacts/ark_turquoise_2_2.gif",
+            "image": "/images/data/artifacts/ark_red_2_4.gif",
+            "picture": "/images/data/artifacts/ark_red_2_4.gif",
             "kind": "Аркат",
-            "type_id": "147",
+            "type_id": "154",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "16"
+            },
+            "skills": [],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "Дает <STRONG>2%</STRONG> <STRONG><SPAN style=\"color:red\">вампирический эффект</SPAN></STRONG> боевым аурам.<br /><STRONG>Одновременно можно надеть только один из аркатов мощи, вампиризма или крови!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3730477453\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3730477453"
+        },
+        {
+            "id": "3586438135",
+            "title": "Сильный тетрарк вампиризма",
+            "ord": "13",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 2,
+            "color": "#3300ff",
+            "quality": "2",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_red_3_2.gif",
+            "picture": "/images/data/artifacts/ark_red_3_2.gif",
+            "kind": "Аркат",
+            "type_id": "154",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "17"
+            },
+            "skills": [],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "Дает <STRONG>3%</STRONG> <STRONG><SPAN style=\"color:red\">вампирический эффект</SPAN></STRONG> боевым аурам.<br /><STRONG>Одновременно можно надеть только один из аркатов мощи, вампиризма или крови!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3586438135\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3586438135"
+        },
+        {
+            "id": "3054699983",
+            "title": "Слабый триарк скорости",
+            "ord": "15",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 4244,
+            "color": "#666666",
+            "quality": "0",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_lime_1_1.gif",
+            "picture": "/images/data/artifacts/ark_lime_1_1.gif",
+            "kind": "Аркат",
+            "type_id": "159",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "11"
+            },
+            "skills": [
+                {
+                    "title": "Скорость",
+                    "value": "<b>+2</b>"
+                }
+            ],
+            "skills_e": [],
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат скорости!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3054699983\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3054699983"
+        },
+        {
+            "id": "3384101385",
+            "title": "Слабый тетрарк скорости",
+            "ord": "16",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 10,
+            "color": "#666666",
+            "quality": "0",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_lime_1_2.gif",
+            "picture": "/images/data/artifacts/ark_lime_1_2.gif",
+            "kind": "Аркат",
+            "type_id": "159",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "11"
+            },
+            "skills": [
+                {
+                    "title": "Скорость",
+                    "value": "<b>+3</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат скорости!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3384101385\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3384101385"
+        },
+        {
+            "id": "3384101342",
+            "title": "Слабый пентарк скорости",
+            "ord": "17",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 27,
+            "color": "#666666",
+            "quality": "0",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_lime_1_3.gif",
+            "picture": "/images/data/artifacts/ark_lime_1_3.gif",
+            "kind": "Аркат",
+            "type_id": "159",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "13"
+            },
+            "skills": [
+                {
+                    "title": "Скорость",
+                    "value": "<b>+4</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат скорости!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3384101342\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3384101342"
+        },
+        {
+            "id": "3384100518",
+            "title": "Слабый эксарк скорости",
+            "ord": "18",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 27,
+            "color": "#666666",
+            "quality": "0",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_lime_1_4.gif",
+            "picture": "/images/data/artifacts/ark_lime_1_4.gif",
+            "kind": "Аркат",
+            "type_id": "159",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "13"
+            },
+            "skills": [
+                {
+                    "title": "Скорость",
+                    "value": "<b>+5</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат скорости!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3384100518\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3384100518"
+        },
+        {
+            "id": "3384101595",
+            "title": "Триарк скорости",
+            "ord": "19",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 4,
+            "color": "#339900",
+            "quality": "1",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_lime_2_1.gif",
+            "picture": "/images/data/artifacts/ark_lime_2_1.gif",
+            "kind": "Аркат",
+            "type_id": "159",
             "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
             "lev": {
                 "title": " Уровень ",
@@ -223,26 +519,18 @@ let items = {
             },
             "skills": [
                 {
-                    "title": "Проницание огонь-воздух",
-                    "value": "<b>+30</b>"
-                },
-                {
-                    "title": "Проницание свет-тьма",
-                    "value": "<b>+30</b>"
-                },
-                {
-                    "title": "Проницание земля-вода",
-                    "value": "<b>+30</b>"
+                    "title": "Скорость",
+                    "value": "<b>+7</b>"
                 }
             ],
             "skills_e": [],
             "nogive": "Предмет нельзя передать",
             "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат проницания!</STRONG>",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат скорости!</STRONG>",
             "sell": true,
             "drop": true,
             "equip": true,
-            "add_attrs": " artifact_id=\"4375782938\" price_type=\"1\" sell_price=\"0.1\"",
+            "add_attrs": " artifact_id=\"3384101595\" price_type=\"1\" sell_price=\"0.1\"",
             "icon_list": {
                 "1": "info",
                 "2": "sell"
@@ -252,12 +540,394 @@ let items = {
             "_act2": 3,
             "_act3": 0,
             "_act4": 0,
-            "artifact_alt_id": "AA_4375782938"
+            "artifact_alt_id": "AA_3384101595"
         },
         {
-            "id": "4385200325",
+            "id": "3065130734",
+            "title": "Тетрарк скорости",
+            "ord": "20",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "color": "#339900",
+            "quality": "1",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_lime_2_2.gif",
+            "picture": "/images/data/artifacts/ark_lime_2_2.gif",
+            "kind": "Аркат",
+            "type_id": "159",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "15"
+            },
+            "skills": [
+                {
+                    "title": "Скорость",
+                    "value": "<b>+8</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат скорости!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3065130734\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3065130734"
+        },
+        {
+            "id": "3586594712",
+            "title": "Пентарк скорости",
+            "ord": "21",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 6,
+            "color": "#339900",
+            "quality": "1",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_lime_2_3.gif",
+            "picture": "/images/data/artifacts/ark_lime_2_3.gif",
+            "kind": "Аркат",
+            "type_id": "159",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "16"
+            },
+            "skills": [
+                {
+                    "title": "Скорость",
+                    "value": "<b>+9</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат скорости!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3586594712\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3586594712"
+        },
+        {
+            "id": "3586438141",
+            "title": "Эксарк скорости",
+            "ord": "23",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 6,
+            "color": "#339900",
+            "quality": "1",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_lime_2_4.gif",
+            "picture": "/images/data/artifacts/ark_lime_2_4.gif",
+            "kind": "Аркат",
+            "type_id": "159",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "16"
+            },
+            "skills": [
+                {
+                    "title": "Скорость",
+                    "value": "<b>+10</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат скорости!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3586438141\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3586438141"
+        },
+        {
+            "id": "3133701332",
+            "title": "Сильный триарк скорости",
+            "ord": "24",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 2,
+            "color": "#3300ff",
+            "quality": "2",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_lime_3_1.gif",
+            "picture": "/images/data/artifacts/ark_lime_3_1.gif",
+            "kind": "Аркат",
+            "type_id": "159",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "17"
+            },
+            "skills": [
+                {
+                    "title": "Скорость",
+                    "value": "<b>+12</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат скорости!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3133701332\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3133701332"
+        },
+        {
+            "id": "3619337945",
+            "title": "Сильный тетрарк скорости",
+            "ord": "25",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "color": "#3300ff",
+            "quality": "2",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_lime_3_2.gif",
+            "picture": "/images/data/artifacts/ark_lime_3_2.gif",
+            "kind": "Аркат",
+            "type_id": "159",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "17"
+            },
+            "skills": [
+                {
+                    "title": "Скорость",
+                    "value": "<b>+15</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат скорости!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3619337945\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3619337945"
+        },
+        {
+            "id": "3384101469",
+            "title": "Слабый тетрарк проницания",
+            "ord": "27",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 8,
+            "color": "#666666",
+            "quality": "0",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_turquoise_1_2.gif",
+            "picture": "/images/data/artifacts/ark_turquoise_1_2.gif",
+            "kind": "Аркат",
+            "type_id": "147",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "11"
+            },
+            "skills": [
+                {
+                    "title": "Проницание огонь-воздух",
+                    "value": "<b>+10</b>"
+                },
+                {
+                    "title": "Проницание свет-тьма",
+                    "value": "<b>+10</b>"
+                },
+                {
+                    "title": "Проницание земля-вода",
+                    "value": "<b>+10</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат проницания!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3384101469\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3384101469"
+        },
+        {
+            "id": "3586438194",
+            "title": "Слабый пентарк проницания",
+            "ord": "28",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 15,
+            "color": "#666666",
+            "quality": "0",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_turquoise_1_3.gif",
+            "picture": "/images/data/artifacts/ark_turquoise_1_3.gif",
+            "kind": "Аркат",
+            "type_id": "147",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "13"
+            },
+            "skills": [
+                {
+                    "title": "Проницание огонь-воздух",
+                    "value": "<b>+15</b>"
+                },
+                {
+                    "title": "Проницание свет-тьма",
+                    "value": "<b>+15</b>"
+                },
+                {
+                    "title": "Проницание земля-вода",
+                    "value": "<b>+15</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат проницания!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3586438194\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3586438194"
+        },
+        {
+            "id": "3384101397",
+            "title": "Слабый эксарк проницания",
+            "ord": "29",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 21,
+            "color": "#666666",
+            "quality": "0",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_turquoise_1_4.gif",
+            "picture": "/images/data/artifacts/ark_turquoise_1_4.gif",
+            "kind": "Аркат",
+            "type_id": "147",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "13"
+            },
+            "skills": [
+                {
+                    "title": "Проницание огонь-воздух",
+                    "value": "<b>+20</b>"
+                },
+                {
+                    "title": "Проницание свет-тьма",
+                    "value": "<b>+20</b>"
+                },
+                {
+                    "title": "Проницание земля-вода",
+                    "value": "<b>+20</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат проницания!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3384101397\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3384101397"
+        },
+        {
+            "id": "3858599519",
             "title": "Триарк проницания",
-            "ord": "7",
+            "ord": "30",
             "kind_id": "161",
             "storage_type": "0",
             "profession": "0",
@@ -295,7 +965,7 @@ let items = {
             "sell": true,
             "drop": true,
             "equip": true,
-            "add_attrs": " artifact_id=\"4385200325\" price_type=\"1\" sell_price=\"0.1\"",
+            "add_attrs": " artifact_id=\"3858599519\" price_type=\"1\" sell_price=\"0.1\"",
             "icon_list": {
                 "1": "info",
                 "2": "sell"
@@ -305,261 +975,12 @@ let items = {
             "_act2": 3,
             "_act3": 0,
             "_act4": 0,
-            "artifact_alt_id": "AA_4385200325"
+            "artifact_alt_id": "AA_3858599519"
         },
         {
-            "id": "4385635375",
-            "title": "Слабый эксарк проницания",
-            "ord": "8",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#666666",
-            "quality": "0",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_turquoise_1_4.gif",
-            "picture": "/images/data/artifacts/ark_turquoise_1_4.gif",
-            "kind": "Аркат",
-            "type_id": "147",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "13"
-            },
-            "skills": [
-                {
-                    "title": "Проницание огонь-воздух",
-                    "value": "<b>+20</b>"
-                },
-                {
-                    "title": "Проницание свет-тьма",
-                    "value": "<b>+20</b>"
-                },
-                {
-                    "title": "Проницание земля-вода",
-                    "value": "<b>+20</b>"
-                }
-            ],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат проницания!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"4385635375\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_4385635375"
-        },
-        {
-            "id": "4385635365",
-            "title": "Слабый пентарк проницания",
-            "ord": "9",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "cnt": 3,
-            "color": "#666666",
-            "quality": "0",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_turquoise_1_3.gif",
-            "picture": "/images/data/artifacts/ark_turquoise_1_3.gif",
-            "kind": "Аркат",
-            "type_id": "147",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "13"
-            },
-            "skills": [
-                {
-                    "title": "Проницание огонь-воздух",
-                    "value": "<b>+15</b>"
-                },
-                {
-                    "title": "Проницание свет-тьма",
-                    "value": "<b>+15</b>"
-                },
-                {
-                    "title": "Проницание земля-вода",
-                    "value": "<b>+15</b>"
-                }
-            ],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат проницания!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"4385635365\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_4385635365"
-        },
-        {
-            "id": "4385200273",
-            "title": "Слабый тетрарк проницания",
-            "ord": "10",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "cnt": 2,
-            "color": "#666666",
-            "quality": "0",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_turquoise_1_2.gif",
-            "picture": "/images/data/artifacts/ark_turquoise_1_2.gif",
-            "kind": "Аркат",
-            "type_id": "147",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "11"
-            },
-            "skills": [
-                {
-                    "title": "Проницание огонь-воздух",
-                    "value": "<b>+10</b>"
-                },
-                {
-                    "title": "Проницание свет-тьма",
-                    "value": "<b>+10</b>"
-                },
-                {
-                    "title": "Проницание земля-вода",
-                    "value": "<b>+10</b>"
-                }
-            ],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат проницания!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"4385200273\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_4385200273"
-        },
-        {
-            "id": "4385215309",
-            "title": "Слабый триарк проницания",
-            "ord": "11",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "cnt": 40,
-            "color": "#666666",
-            "quality": "0",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_turquoise_1_1.gif",
-            "picture": "/images/data/artifacts/ark_turquoise_1_1.gif",
-            "kind": "Аркат",
-            "type_id": "147",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "11"
-            },
-            "skills": [
-                {
-                    "title": "Проницание огонь-воздух",
-                    "value": "<b>+5</b>"
-                },
-                {
-                    "title": "Проницание свет-тьма",
-                    "value": "<b>+5</b>"
-                },
-                {
-                    "title": "Проницание земля-вода",
-                    "value": "<b>+5</b>"
-                }
-            ],
-            "skills_e": [],
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат проницания!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"4385215309\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_4385215309"
-        },
-        {
-            "id": "4188425201",
-            "title": "Сильный эксарк мощи",
-            "ord": "13",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#3300ff",
-            "quality": "2",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_orange_3_4.gif",
-            "picture": "/images/data/artifacts/ark_orange_3_4.gif",
-            "kind": "Аркат",
-            "type_id": "153",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "18"
-            },
-            "skills": [],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "Увеличивает урон от боевых аур на <STRONG>3%</STRONG>.<br /><STRONG>Одновременно можно надеть только один из аркатов мощи, вампиризма или крови!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"4188425201\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_4188425201"
-        },
-        {
-            "id": "3720466226",
-            "title": "Эксарк мощи",
-            "ord": "14",
+            "id": "3280256566",
+            "title": "Пентарк проницания",
+            "ord": "31",
             "kind_id": "161",
             "storage_type": "0",
             "profession": "0",
@@ -567,24 +988,37 @@ let items = {
             "color": "#339900",
             "quality": "1",
             "time_expire": "0",
-            "image": "/images/data/artifacts/ark_orange_2_4.gif",
-            "picture": "/images/data/artifacts/ark_orange_2_4.gif",
+            "image": "/images/data/artifacts/ark_turquoise_2_3.gif",
+            "picture": "/images/data/artifacts/ark_turquoise_2_3.gif",
             "kind": "Аркат",
-            "type_id": "153",
+            "type_id": "147",
             "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
             "lev": {
                 "title": " Уровень ",
                 "value": "16"
             },
-            "skills": [],
+            "skills": [
+                {
+                    "title": "Проницание огонь-воздух",
+                    "value": "<b>+35</b>"
+                },
+                {
+                    "title": "Проницание свет-тьма",
+                    "value": "<b>+35</b>"
+                },
+                {
+                    "title": "Проницание земля-вода",
+                    "value": "<b>+35</b>"
+                }
+            ],
             "skills_e": [],
             "nogive": "Предмет нельзя передать",
             "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "Увеличивает урон от боевых аур на <STRONG>2%</STRONG>.<br /><STRONG>Одновременно можно надеть только один из аркатов мощи, вампиризма или крови!</STRONG>",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат проницания!</STRONG>",
             "sell": true,
             "drop": true,
             "equip": true,
-            "add_attrs": " artifact_id=\"3720466226\" price_type=\"1\" sell_price=\"0.1\"",
+            "add_attrs": " artifact_id=\"3280256566\" price_type=\"1\" sell_price=\"0.1\"",
             "icon_list": {
                 "1": "info",
                 "2": "sell"
@@ -594,76 +1028,50 @@ let items = {
             "_act2": 3,
             "_act3": 0,
             "_act4": 0,
-            "artifact_alt_id": "AA_3720466226"
+            "artifact_alt_id": "AA_3280256566"
         },
         {
-            "id": "4385636177",
-            "title": "Пентарк мощи",
-            "ord": "16",
+            "id": "3586593899",
+            "title": "Тетрарк проницания",
+            "ord": "32",
             "kind_id": "161",
             "storage_type": "0",
             "profession": "0",
+            "cnt": 3,
             "color": "#339900",
             "quality": "1",
             "time_expire": "0",
-            "image": "/images/data/artifacts/ark_orange_2_3.gif",
-            "picture": "/images/data/artifacts/ark_orange_2_3.gif",
+            "image": "/images/data/artifacts/ark_turquoise_2_2.gif",
+            "picture": "/images/data/artifacts/ark_turquoise_2_2.gif",
             "kind": "Аркат",
-            "type_id": "153",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "16"
-            },
-            "skills": [],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "Увеличивает урон от боевых аур на <STRONG>2%</STRONG>.<br /><STRONG>Одновременно можно надеть только один из аркатов мощи, вампиризма или крови!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"4385636177\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_4385636177"
-        },
-        {
-            "id": "4188435256",
-            "title": "Тетрарк мощи",
-            "ord": "17",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "cnt": 2,
-            "color": "#339900",
-            "quality": "1",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_orange_2_2.gif",
-            "picture": "/images/data/artifacts/ark_orange_2_2.gif",
-            "kind": "Аркат",
-            "type_id": "153",
+            "type_id": "147",
             "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
             "lev": {
                 "title": " Уровень ",
                 "value": "15"
             },
-            "skills": [],
+            "skills": [
+                {
+                    "title": "Проницание огонь-воздух",
+                    "value": "<b>+30</b>"
+                },
+                {
+                    "title": "Проницание свет-тьма",
+                    "value": "<b>+30</b>"
+                },
+                {
+                    "title": "Проницание земля-вода",
+                    "value": "<b>+30</b>"
+                }
+            ],
             "skills_e": [],
             "nogive": "Предмет нельзя передать",
             "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "Увеличивает урон от боевых аур на <STRONG>2%</STRONG>.<br /><STRONG>Одновременно можно надеть только один из аркатов мощи, вампиризма или крови!</STRONG>",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат проницания!</STRONG>",
             "sell": true,
             "drop": true,
             "equip": true,
-            "add_attrs": " artifact_id=\"4188435256\" price_type=\"1\" sell_price=\"0.1\"",
+            "add_attrs": " artifact_id=\"3586593899\" price_type=\"1\" sell_price=\"0.1\"",
             "icon_list": {
                 "1": "info",
                 "2": "sell"
@@ -673,37 +1081,89 @@ let items = {
             "_act2": 3,
             "_act3": 0,
             "_act4": 0,
-            "artifact_alt_id": "AA_4188435256"
+            "artifact_alt_id": "AA_3586593899"
         },
         {
-            "id": "4382943950",
-            "title": "Слабый эксарк мощи",
-            "ord": "18",
+            "id": "3670486762",
+            "title": "Эксарк проницания",
+            "ord": "33",
             "kind_id": "161",
             "storage_type": "0",
             "profession": "0",
-            "cnt": 4,
+            "cnt": 3,
+            "color": "#339900",
+            "quality": "1",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_turquoise_2_4.gif",
+            "picture": "/images/data/artifacts/ark_turquoise_2_4.gif",
+            "kind": "Аркат",
+            "type_id": "147",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "16"
+            },
+            "skills": [
+                {
+                    "title": "Проницание огонь-воздух",
+                    "value": "<b>+40</b>"
+                },
+                {
+                    "title": "Проницание свет-тьма",
+                    "value": "<b>+40</b>"
+                },
+                {
+                    "title": "Проницание земля-вода",
+                    "value": "<b>+40</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат проницания!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3670486762\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3670486762"
+        },
+        {
+            "id": "3054702976",
+            "title": "Слабый триарк мощи",
+            "ord": "34",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 3082,
             "color": "#666666",
             "quality": "0",
             "time_expire": "0",
-            "image": "/images/data/artifacts/ark_orange_1_4.gif",
-            "picture": "/images/data/artifacts/ark_orange_1_4.gif",
+            "image": "/images/data/artifacts/ark_orange_1_1.gif",
+            "picture": "/images/data/artifacts/ark_orange_1_1.gif",
             "kind": "Аркат",
             "type_id": "153",
             "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
             "lev": {
                 "title": " Уровень ",
-                "value": "13"
+                "value": "11"
             },
             "skills": [],
             "skills_e": [],
-            "nogive": "Предмет нельзя передать",
             "noweight": "Предмет не занимает места в рюкзаке",
             "desc": "Увеличивает урон от боевых аур на <STRONG>1%</STRONG>.<br /><STRONG>Одновременно можно надеть только один из аркатов мощи, вампиризма или крови!</STRONG>",
             "sell": true,
             "drop": true,
             "equip": true,
-            "add_attrs": " artifact_id=\"4382943950\" price_type=\"1\" sell_price=\"0.1\"",
+            "add_attrs": " artifact_id=\"3054702976\" price_type=\"1\" sell_price=\"0.1\"",
             "icon_list": {
                 "1": "info",
                 "2": "sell"
@@ -713,55 +1173,16 @@ let items = {
             "_act2": 3,
             "_act3": 0,
             "_act4": 0,
-            "artifact_alt_id": "AA_4382943950"
+            "artifact_alt_id": "AA_3054702976"
         },
         {
-            "id": "4385200143",
-            "title": "Слабый пентарк мощи",
-            "ord": "19",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "cnt": 8,
-            "color": "#666666",
-            "quality": "0",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_orange_1_3.gif",
-            "picture": "/images/data/artifacts/ark_orange_1_3.gif",
-            "kind": "Аркат",
-            "type_id": "153",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "13"
-            },
-            "skills": [],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "Увеличивает урон от боевых аур на <STRONG>1%</STRONG>.<br /><STRONG>Одновременно можно надеть только один из аркатов мощи, вампиризма или крови!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"4385200143\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_4385200143"
-        },
-        {
-            "id": "4385636253",
+            "id": "3586439117",
             "title": "Слабый тетрарк мощи",
-            "ord": "21",
+            "ord": "35",
             "kind_id": "161",
             "storage_type": "0",
             "profession": "0",
+            "cnt": 5,
             "color": "#666666",
             "quality": "0",
             "time_expire": "0",
@@ -782,7 +1203,7 @@ let items = {
             "sell": true,
             "drop": true,
             "equip": true,
-            "add_attrs": " artifact_id=\"4385636253\" price_type=\"1\" sell_price=\"0.1\"",
+            "add_attrs": " artifact_id=\"3586439117\" price_type=\"1\" sell_price=\"0.1\"",
             "icon_list": {
                 "1": "info",
                 "2": "sell"
@@ -792,80 +1213,37 @@ let items = {
             "_act2": 3,
             "_act3": 0,
             "_act4": 0,
-            "artifact_alt_id": "AA_4385636253"
+            "artifact_alt_id": "AA_3586439117"
         },
         {
-            "id": "3907871484",
-            "title": "Сильный триарк живучести",
-            "ord": "23",
+            "id": "3134579033",
+            "title": "Слабый пентарк мощи",
+            "ord": "36",
             "kind_id": "161",
             "storage_type": "0",
             "profession": "0",
-            "color": "#3300ff",
-            "quality": "2",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_brown_3_1.gif",
-            "picture": "/images/data/artifacts/ark_brown_3_1.gif",
-            "kind": "Аркат",
-            "type_id": "150",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "17"
-            },
-            "skills": [
-                {
-                    "title": "Живучесть",
-                    "value": "<b>+50</b>"
-                }
-            ],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат живучести!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3907871484\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3907871484"
-        },
-        {
-            "id": "4379979547",
-            "title": "Слабый триарк мощи",
-            "ord": "23",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "cnt": 14,
+            "cnt": 17,
             "color": "#666666",
             "quality": "0",
             "time_expire": "0",
-            "image": "/images/data/artifacts/ark_orange_1_1.gif",
-            "picture": "/images/data/artifacts/ark_orange_1_1.gif",
+            "image": "/images/data/artifacts/ark_orange_1_3.gif",
+            "picture": "/images/data/artifacts/ark_orange_1_3.gif",
             "kind": "Аркат",
             "type_id": "153",
             "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
             "lev": {
                 "title": " Уровень ",
-                "value": "11"
+                "value": "13"
             },
             "skills": [],
             "skills_e": [],
+            "nogive": "Предмет нельзя передать",
             "noweight": "Предмет не занимает места в рюкзаке",
             "desc": "Увеличивает урон от боевых аур на <STRONG>1%</STRONG>.<br /><STRONG>Одновременно можно надеть только один из аркатов мощи, вампиризма или крови!</STRONG>",
             "sell": true,
             "drop": true,
             "equip": true,
-            "add_attrs": " artifact_id=\"4379979547\" price_type=\"1\" sell_price=\"0.1\"",
+            "add_attrs": " artifact_id=\"3134579033\" price_type=\"1\" sell_price=\"0.1\"",
             "icon_list": {
                 "1": "info",
                 "2": "sell"
@@ -875,3486 +1253,249 @@ let items = {
             "_act2": 3,
             "_act3": 0,
             "_act4": 0,
-            "artifact_alt_id": "AA_4379979547"
+            "artifact_alt_id": "AA_3134579033"
         },
         {
-            "id": "3493416598",
-            "title": "Великий триарк инициативы",
-            "ord": "25",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#990099",
-            "quality": "3",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_dblue_4_1.gif",
-            "picture": "/images/data/artifacts/ark_dblue_4_1.gif",
-            "kind": "Аркат",
-            "type_id": "156",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "19"
-            },
-            "skills": [
-                {
-                    "title": "Инициатива",
-                    "value": "<b>+30</b>"
-                }
-            ],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат инициативы!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3493416598\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3493416598"
-        },
-        {
-            "id": "4385636173",
-            "title": "Сильный тетрарк инициативы",
-            "ord": "26",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#3300ff",
-            "quality": "2",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_dblue_3_2.gif",
-            "picture": "/images/data/artifacts/ark_dblue_3_2.gif",
-            "kind": "Аркат",
-            "type_id": "156",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "17"
-            },
-            "skills": [
-                {
-                    "title": "Инициатива",
-                    "value": "<b>+18</b>"
-                }
-            ],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат инициативы!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"4385636173\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_4385636173"
-        },
-        {
-            "id": "3720466220",
-            "title": "Эксарк инициативы",
-            "ord": "27",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "cnt": 2,
-            "color": "#339900",
-            "quality": "1",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_dblue_2_4.gif",
-            "picture": "/images/data/artifacts/ark_dblue_2_4.gif",
-            "kind": "Аркат",
-            "type_id": "156",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "16"
-            },
-            "skills": [
-                {
-                    "title": "Инициатива",
-                    "value": "<b>+14</b>"
-                }
-            ],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат инициативы!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3720466220\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3720466220"
-        },
-        {
-            "id": "3720466204",
-            "title": "Пентарк инициативы",
-            "ord": "28",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "cnt": 3,
-            "color": "#339900",
-            "quality": "1",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_dblue_2_3.gif",
-            "picture": "/images/data/artifacts/ark_dblue_2_3.gif",
-            "kind": "Аркат",
-            "type_id": "156",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "16"
-            },
-            "skills": [
-                {
-                    "title": "Инициатива",
-                    "value": "<b>+12</b>"
-                }
-            ],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат инициативы!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3720466204\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3720466204"
-        },
-        {
-            "id": "4385204014",
-            "title": "Тетрарк инициативы",
-            "ord": "29",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#339900",
-            "quality": "1",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_dblue_2_2.gif",
-            "picture": "/images/data/artifacts/ark_dblue_2_2.gif",
-            "kind": "Аркат",
-            "type_id": "156",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "15"
-            },
-            "skills": [
-                {
-                    "title": "Инициатива",
-                    "value": "<b>+9</b>"
-                }
-            ],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат инициативы!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"4385204014\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_4385204014"
-        },
-        {
-            "id": "4279291707",
-            "title": "Триарк инициативы",
-            "ord": "30",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#339900",
-            "quality": "1",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_dblue_2_1.gif",
-            "picture": "/images/data/artifacts/ark_dblue_2_1.gif",
-            "kind": "Аркат",
-            "type_id": "156",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "15"
-            },
-            "skills": [
-                {
-                    "title": "Инициатива",
-                    "value": "<b>+8</b>"
-                }
-            ],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат инициативы!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"4279291707\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_4279291707"
-        },
-        {
-            "id": "3191691091",
-            "title": "Слабый эксарк инициативы",
-            "ord": "31",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "cnt": 6,
-            "color": "#666666",
-            "quality": "0",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_dblue_1_4.gif",
-            "picture": "/images/data/artifacts/ark_dblue_1_4.gif",
-            "kind": "Аркат",
-            "type_id": "156",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "13"
-            },
-            "skills": [
-                {
-                    "title": "Инициатива",
-                    "value": "<b>+6</b>"
-                }
-            ],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат инициативы!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3191691091\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3191691091"
-        },
-        {
-            "id": "3155305817",
-            "title": "Слабый пентарк инициативы",
-            "ord": "32",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "cnt": 3,
-            "color": "#666666",
-            "quality": "0",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_dblue_1_3.gif",
-            "picture": "/images/data/artifacts/ark_dblue_1_3.gif",
-            "kind": "Аркат",
-            "type_id": "156",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "13"
-            },
-            "skills": [
-                {
-                    "title": "Инициатива",
-                    "value": "<b>+4</b>"
-                }
-            ],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат инициативы!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3155305817\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3155305817"
-        },
-        {
-            "id": "4377540268",
-            "title": "Слабый тетрарк инициативы",
-            "ord": "33",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "cnt": 3,
-            "color": "#666666",
-            "quality": "0",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_dblue_1_2.gif",
-            "picture": "/images/data/artifacts/ark_dblue_1_2.gif",
-            "kind": "Аркат",
-            "type_id": "156",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "11"
-            },
-            "skills": [
-                {
-                    "title": "Инициатива",
-                    "value": "<b>+3</b>"
-                }
-            ],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат инициативы!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"4377540268\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_4377540268"
-        },
-        {
-            "id": "3904017493",
-            "title": "Слабый триарк инициативы",
-            "ord": "34",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "cnt": 15,
-            "color": "#666666",
-            "quality": "0",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_dblue_1_1.gif",
-            "picture": "/images/data/artifacts/ark_dblue_1_1.gif",
-            "kind": "Аркат",
-            "type_id": "156",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "11"
-            },
-            "skills": [
-                {
-                    "title": "Инициатива",
-                    "value": "<b>+2</b>"
-                }
-            ],
-            "skills_e": [],
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат инициативы!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3904017493\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3904017493"
-        },
-        {
-            "id": "3720466224",
-            "title": "Эксарк живучести",
-            "ord": "36",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "cnt": 2,
-            "color": "#339900",
-            "quality": "1",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_brown_2_4.gif",
-            "picture": "/images/data/artifacts/ark_brown_2_4.gif",
-            "kind": "Аркат",
-            "type_id": "150",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "16"
-            },
-            "skills": [
-                {
-                    "title": "Живучесть",
-                    "value": "<b>+45</b>"
-                }
-            ],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат живучести!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3720466224\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3720466224"
-        },
-        {
-            "id": "3474439032",
-            "title": "Пентарк живучести",
+            "id": "3384101562",
+            "title": "Слабый эксарк мощи",
             "ord": "37",
             "kind_id": "161",
             "storage_type": "0",
             "profession": "0",
-            "color": "#339900",
-            "quality": "1",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_brown_2_3.gif",
-            "picture": "/images/data/artifacts/ark_brown_2_3.gif",
-            "kind": "Аркат",
-            "type_id": "150",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "16"
-            },
-            "skills": [
-                {
-                    "title": "Живучесть",
-                    "value": "<b>+40</b>"
-                }
-            ],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат живучести!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3474439032\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3474439032"
-        },
-        {
-            "id": "4377579253",
-            "title": "Тетрарк живучести",
-            "ord": "38",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#339900",
-            "quality": "1",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_brown_2_2.gif",
-            "picture": "/images/data/artifacts/ark_brown_2_2.gif",
-            "kind": "Аркат",
-            "type_id": "150",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "15"
-            },
-            "skills": [
-                {
-                    "title": "Живучесть",
-                    "value": "<b>+35</b>"
-                }
-            ],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат живучести!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"4377579253\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_4377579253"
-        },
-        {
-            "id": "3155306011",
-            "title": "Триарк живучести",
-            "ord": "39",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "cnt": 2,
-            "color": "#339900",
-            "quality": "1",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_brown_2_1.gif",
-            "picture": "/images/data/artifacts/ark_brown_2_1.gif",
-            "kind": "Аркат",
-            "type_id": "150",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "15"
-            },
-            "skills": [
-                {
-                    "title": "Живучесть",
-                    "value": "<b>+30</b>"
-                }
-            ],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат живучести!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3155306011\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3155306011"
-        },
-        {
-            "id": "4385204127",
-            "title": "Слабый пентарк живучести",
-            "ord": "41",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "cnt": 6,
-            "color": "#666666",
-            "quality": "0",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_brown_1_3.gif",
-            "picture": "/images/data/artifacts/ark_brown_1_3.gif",
-            "kind": "Аркат",
-            "type_id": "150",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "13"
-            },
-            "skills": [
-                {
-                    "title": "Живучесть",
-                    "value": "<b>+20</b>"
-                }
-            ],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат живучести!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"4385204127\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_4385204127"
-        },
-        {
-            "id": "4385636211",
-            "title": "Слабый эксарк живучести",
-            "ord": "43",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "cnt": 4,
-            "color": "#666666",
-            "quality": "0",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_brown_1_4.gif",
-            "picture": "/images/data/artifacts/ark_brown_1_4.gif",
-            "kind": "Аркат",
-            "type_id": "150",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "13"
-            },
-            "skills": [
-                {
-                    "title": "Живучесть",
-                    "value": "<b>+25</b>"
-                }
-            ],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат живучести!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"4385636211\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_4385636211"
-        },
-        {
-            "id": "4385204157",
-            "title": "Слабый тетрарк живучести",
-            "ord": "45",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "cnt": 2,
-            "color": "#666666",
-            "quality": "0",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_brown_1_2.gif",
-            "picture": "/images/data/artifacts/ark_brown_1_2.gif",
-            "kind": "Аркат",
-            "type_id": "150",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "11"
-            },
-            "skills": [
-                {
-                    "title": "Живучесть",
-                    "value": "<b>+15</b>"
-                }
-            ],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат живучести!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"4385204157\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_4385204157"
-        },
-        {
-            "id": "4385638312",
-            "title": "Слабый триарк живучести",
-            "ord": "47",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "cnt": 11,
-            "color": "#666666",
-            "quality": "0",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_brown_1_1.gif",
-            "picture": "/images/data/artifacts/ark_brown_1_1.gif",
-            "kind": "Аркат",
-            "type_id": "150",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "11"
-            },
-            "skills": [
-                {
-                    "title": "Живучесть",
-                    "value": "<b>+10</b>"
-                }
-            ],
-            "skills_e": [],
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат живучести!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"4385638312\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_4385638312"
-        },
-        {
-            "id": "4188425196",
-            "title": "Великий эксарк антитравматизма",
-            "ord": "50",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#990099",
-            "quality": "3",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_lilac_4_4.gif",
-            "picture": "/images/data/artifacts/ark_lilac_4_4.gif",
-            "kind": "Аркат",
-            "type_id": "158",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "20"
-            },
-            "skills": [
-                {
-                    "title": "Антитравматизм",
-                    "value": "<b>+50</b>"
-                }
-            ],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат антитравматизма!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"4188425196\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_4188425196"
-        },
-        {
-            "id": "4385636205",
-            "title": "Великий пентарк антитравматизма",
-            "ord": "51",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#990099",
-            "quality": "3",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_lilac_4_3.gif",
-            "picture": "/images/data/artifacts/ark_lilac_4_3.gif",
-            "kind": "Аркат",
-            "type_id": "158",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "20"
-            },
-            "skills": [
-                {
-                    "title": "Антитравматизм",
-                    "value": "<b>+45</b>"
-                }
-            ],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат антитравматизма!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"4385636205\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_4385636205"
-        },
-        {
-            "id": "4385636248",
-            "title": "Сильный тетрарк антитравматизма",
-            "ord": "52",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#3300ff",
-            "quality": "2",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_lilac_3_2.gif",
-            "picture": "/images/data/artifacts/ark_lilac_3_2.gif",
-            "kind": "Аркат",
-            "type_id": "158",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "17"
-            },
-            "skills": [
-                {
-                    "title": "Антитравматизм",
-                    "value": "<b>+22</b>"
-                }
-            ],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат антитравматизма!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"4385636248\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_4385636248"
-        },
-        {
-            "id": "3930864707",
-            "title": "Сильный триарк антитравматизма",
-            "ord": "53",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "cnt": 2,
-            "color": "#3300ff",
-            "quality": "2",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_lilac_3_1.gif",
-            "picture": "/images/data/artifacts/ark_lilac_3_1.gif",
-            "kind": "Аркат",
-            "type_id": "158",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "17"
-            },
-            "skills": [
-                {
-                    "title": "Антитравматизм",
-                    "value": "<b>+20</b>"
-                }
-            ],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат антитравматизма!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3930864707\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3930864707"
-        },
-        {
-            "id": "4377540032",
-            "title": "Эксарк антитравматизма",
-            "ord": "54",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#339900",
-            "quality": "1",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_lilac_2_4.gif",
-            "picture": "/images/data/artifacts/ark_lilac_2_4.gif",
-            "kind": "Аркат",
-            "type_id": "158",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "16"
-            },
-            "skills": [
-                {
-                    "title": "Антитравматизм",
-                    "value": "<b>+17</b>"
-                }
-            ],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат антитравматизма!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"4377540032\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_4377540032"
-        },
-        {
-            "id": "3155305653",
-            "title": "Пентарк антитравматизма",
-            "ord": "55",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#339900",
-            "quality": "1",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_lilac_2_3.gif",
-            "picture": "/images/data/artifacts/ark_lilac_2_3.gif",
-            "kind": "Аркат",
-            "type_id": "158",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "16"
-            },
-            "skills": [
-                {
-                    "title": "Антитравматизм",
-                    "value": "<b>+15</b>"
-                }
-            ],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат антитравматизма!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3155305653\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3155305653"
-        },
-        {
-            "id": "3191691138",
-            "title": "Тетрарк антитравматизма",
-            "ord": "56",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "cnt": 2,
-            "color": "#339900",
-            "quality": "1",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_lilac_2_2.gif",
-            "picture": "/images/data/artifacts/ark_lilac_2_2.gif",
-            "kind": "Аркат",
-            "type_id": "158",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "15"
-            },
-            "skills": [
-                {
-                    "title": "Антитравматизм",
-                    "value": "<b>+13</b>"
-                }
-            ],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат антитравматизма!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3191691138\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3191691138"
-        },
-        {
-            "id": "3720466387",
-            "title": "Триарк антитравматизма",
-            "ord": "57",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "cnt": 3,
-            "color": "#339900",
-            "quality": "1",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_lilac_2_1.gif",
-            "picture": "/images/data/artifacts/ark_lilac_2_1.gif",
-            "kind": "Аркат",
-            "type_id": "158",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "15"
-            },
-            "skills": [
-                {
-                    "title": "Антитравматизм",
-                    "value": "<b>+11</b>"
-                }
-            ],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат антитравматизма!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3720466387\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3720466387"
-        },
-        {
-            "id": "3155305995",
-            "title": "Слабый эксарк антитравматизма",
-            "ord": "58",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "cnt": 13,
-            "color": "#666666",
-            "quality": "0",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_lilac_1_4.gif",
-            "picture": "/images/data/artifacts/ark_lilac_1_4.gif",
-            "kind": "Аркат",
-            "type_id": "158",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "13"
-            },
-            "skills": [
-                {
-                    "title": "Антитравматизм",
-                    "value": "<b>+9</b>"
-                }
-            ],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат антитравматизма!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3155305995\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3155305995"
-        },
-        {
-            "id": "3155305639",
-            "title": "Слабый пентарк антитравматизма",
-            "ord": "59",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "cnt": 9,
-            "color": "#666666",
-            "quality": "0",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_lilac_1_3.gif",
-            "picture": "/images/data/artifacts/ark_lilac_1_3.gif",
-            "kind": "Аркат",
-            "type_id": "158",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "13"
-            },
-            "skills": [
-                {
-                    "title": "Антитравматизм",
-                    "value": "<b>+7</b>"
-                }
-            ],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат антитравматизма!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3155305639\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3155305639"
-        },
-        {
-            "id": "3155305988",
-            "title": "Слабый тетрарк антитравматизма",
-            "ord": "60",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "cnt": 251,
-            "color": "#666666",
-            "quality": "0",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_lilac_1_2.gif",
-            "picture": "/images/data/artifacts/ark_lilac_1_2.gif",
-            "kind": "Аркат",
-            "type_id": "158",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "11"
-            },
-            "skills": [
-                {
-                    "title": "Антитравматизм",
-                    "value": "<b>+5</b>"
-                }
-            ],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат антитравматизма!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3155305988\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3155305988"
-        },
-        {
-            "id": "3846508806",
-            "title": "Слабый триарк антитравматизма",
-            "ord": "61",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "cnt": 61,
-            "color": "#666666",
-            "quality": "0",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_lilac_1_1.gif",
-            "picture": "/images/data/artifacts/ark_lilac_1_1.gif",
-            "kind": "Аркат",
-            "type_id": "158",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "11"
-            },
-            "skills": [
-                {
-                    "title": "Антитравматизм",
-                    "value": "<b>+3</b>"
-                }
-            ],
-            "skills_e": [],
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат антитравматизма!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3846508806\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3846508806"
-        },
-        {
-            "id": "3720466372",
-            "title": "Великий тетрарк концентрации",
-            "ord": "63",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#990099",
-            "quality": "3",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_yellow_4_2.gif",
-            "picture": "/images/data/artifacts/ark_yellow_4_2.gif",
-            "kind": "Аркат",
-            "type_id": "148",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "19"
-            },
-            "skills": [
-                {
-                    "title": "Концентрация",
-                    "value": "<b>+70</b>"
-                }
-            ],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат концентрации!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3720466372\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3720466372"
-        },
-        {
-            "id": "4024591106",
-            "title": "Сильный триарк концентрации",
-            "ord": "64",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#3300ff",
-            "quality": "2",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_yellow_3_1.gif",
-            "picture": "/images/data/artifacts/ark_yellow_3_1.gif",
-            "kind": "Аркат",
-            "type_id": "148",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "17"
-            },
-            "skills": [
-                {
-                    "title": "Концентрация",
-                    "value": "<b>+45</b>"
-                }
-            ],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат концентрации!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"4024591106\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_4024591106"
-        },
-        {
-            "id": "4385636174",
-            "title": "Эксарк концентрации",
-            "ord": "65",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "cnt": 2,
-            "color": "#339900",
-            "quality": "1",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_yellow_2_4.gif",
-            "picture": "/images/data/artifacts/ark_yellow_2_4.gif",
-            "kind": "Аркат",
-            "type_id": "148",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "16"
-            },
-            "skills": [
-                {
-                    "title": "Концентрация",
-                    "value": "<b>+40</b>"
-                }
-            ],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат концентрации!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"4385636174\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_4385636174"
-        },
-        {
-            "id": "3187114304",
-            "title": "Триарк концентрации",
-            "ord": "66",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "cnt": 2,
-            "color": "#339900",
-            "quality": "1",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_yellow_2_1.gif",
-            "picture": "/images/data/artifacts/ark_yellow_2_1.gif",
-            "kind": "Аркат",
-            "type_id": "148",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "15"
-            },
-            "skills": [
-                {
-                    "title": "Концентрация",
-                    "value": "<b>+25</b>"
-                }
-            ],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат концентрации!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3187114304\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3187114304"
-        },
-        {
-            "id": "4377540068",
-            "title": "Слабый эксарк концентрации",
-            "ord": "67",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "cnt": 2,
-            "color": "#666666",
-            "quality": "0",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_yellow_1_4.gif",
-            "picture": "/images/data/artifacts/ark_yellow_1_4.gif",
-            "kind": "Аркат",
-            "type_id": "148",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "13"
-            },
-            "skills": [
-                {
-                    "title": "Концентрация",
-                    "value": "<b>+20</b>"
-                }
-            ],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат концентрации!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"4377540068\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_4377540068"
-        },
-        {
-            "id": "4377540147",
-            "title": "Слабый пентарк концентрации",
-            "ord": "68",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "cnt": 46,
-            "color": "#666666",
-            "quality": "0",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_yellow_1_3.gif",
-            "picture": "/images/data/artifacts/ark_yellow_1_3.gif",
-            "kind": "Аркат",
-            "type_id": "148",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "13"
-            },
-            "skills": [
-                {
-                    "title": "Концентрация",
-                    "value": "<b>+15</b>"
-                }
-            ],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат концентрации!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"4377540147\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_4377540147"
-        },
-        {
-            "id": "4377546748",
-            "title": "Слабый триарк концентрации",
-            "ord": "69",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "cnt": 54,
-            "color": "#666666",
-            "quality": "0",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_yellow_1_1.gif",
-            "picture": "/images/data/artifacts/ark_yellow_1_1.gif",
-            "kind": "Аркат",
-            "type_id": "148",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "11"
-            },
-            "skills": [
-                {
-                    "title": "Концентрация",
-                    "value": "<b>+5</b>"
-                }
-            ],
-            "skills_e": [],
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат концентрации!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"4377546748\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_4377546748"
-        },
-        {
-            "id": "4385636171",
-            "title": "Великий тетрарк подавления",
-            "ord": "71",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#990099",
-            "quality": "3",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_grey_4_2.gif",
-            "picture": "/images/data/artifacts/ark_grey_4_2.gif",
-            "kind": "Аркат",
-            "type_id": "149",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "19"
-            },
-            "skills": [
-                {
-                    "title": "Подавление",
-                    "value": "<b>+70</b>"
-                }
-            ],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат подавления!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"4385636171\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_4385636171"
-        },
-        {
-            "id": "4057285444",
-            "title": "Великий триарк подавления",
-            "ord": "72",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#990099",
-            "quality": "3",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_grey_4_1.gif",
-            "picture": "/images/data/artifacts/ark_grey_4_1.gif",
-            "kind": "Аркат",
-            "type_id": "149",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "19"
-            },
-            "skills": [
-                {
-                    "title": "Подавление",
-                    "value": "<b>+65</b>"
-                }
-            ],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат подавления!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"4057285444\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_4057285444"
-        },
-        {
-            "id": "4188425205",
-            "title": "Сильный тетрарк подавления",
-            "ord": "73",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "cnt": 2,
-            "color": "#3300ff",
-            "quality": "2",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_grey_3_2.gif",
-            "picture": "/images/data/artifacts/ark_grey_3_2.gif",
-            "kind": "Аркат",
-            "type_id": "149",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "17"
-            },
-            "skills": [
-                {
-                    "title": "Подавление",
-                    "value": "<b>+50</b>"
-                }
-            ],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат подавления!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"4188425205\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_4188425205"
-        },
-        {
-            "id": "4279291607",
-            "title": "Сильный триарк подавления",
-            "ord": "74",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#3300ff",
-            "quality": "2",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_grey_3_1.gif",
-            "picture": "/images/data/artifacts/ark_grey_3_1.gif",
-            "kind": "Аркат",
-            "type_id": "149",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "17"
-            },
-            "skills": [
-                {
-                    "title": "Подавление",
-                    "value": "<b>+45</b>"
-                }
-            ],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат подавления!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"4279291607\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_4279291607"
-        },
-        {
-            "id": "3720466216",
-            "title": "Эксарк подавления",
-            "ord": "75",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#339900",
-            "quality": "1",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_grey_2_4.gif",
-            "picture": "/images/data/artifacts/ark_grey_2_4.gif",
-            "kind": "Аркат",
-            "type_id": "149",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "16"
-            },
-            "skills": [
-                {
-                    "title": "Подавление",
-                    "value": "<b>+40</b>"
-                }
-            ],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат подавления!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3720466216\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3720466216"
-        },
-        {
-            "id": "3720466202",
-            "title": "Пентарк подавления",
-            "ord": "76",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#339900",
-            "quality": "1",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_grey_2_3.gif",
-            "picture": "/images/data/artifacts/ark_grey_2_3.gif",
-            "kind": "Аркат",
-            "type_id": "149",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "16"
-            },
-            "skills": [
-                {
-                    "title": "Подавление",
-                    "value": "<b>+35</b>"
-                }
-            ],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат подавления!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3720466202\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3720466202"
-        },
-        {
-            "id": "4279291460",
-            "title": "Тетрарк подавления",
-            "ord": "77",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "cnt": 2,
-            "color": "#339900",
-            "quality": "1",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_grey_2_2.gif",
-            "picture": "/images/data/artifacts/ark_grey_2_2.gif",
-            "kind": "Аркат",
-            "type_id": "149",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "15"
-            },
-            "skills": [
-                {
-                    "title": "Подавление",
-                    "value": "<b>+30</b>"
-                }
-            ],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат подавления!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"4279291460\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_4279291460"
-        },
-        {
-            "id": "4279291433",
-            "title": "Триарк подавления",
-            "ord": "78",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "cnt": 2,
-            "color": "#339900",
-            "quality": "1",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_grey_2_1.gif",
-            "picture": "/images/data/artifacts/ark_grey_2_1.gif",
-            "kind": "Аркат",
-            "type_id": "149",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "15"
-            },
-            "skills": [
-                {
-                    "title": "Подавление",
-                    "value": "<b>+25</b>"
-                }
-            ],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат подавления!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"4279291433\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_4279291433"
-        },
-        {
-            "id": "3191691206",
-            "title": "Слабый эксарк подавления",
-            "ord": "79",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "cnt": 3,
-            "color": "#666666",
-            "quality": "0",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_grey_1_4.gif",
-            "picture": "/images/data/artifacts/ark_grey_1_4.gif",
-            "kind": "Аркат",
-            "type_id": "149",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "13"
-            },
-            "skills": [
-                {
-                    "title": "Подавление",
-                    "value": "<b>+20</b>"
-                }
-            ],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат подавления!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3191691206\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3191691206"
-        },
-        {
-            "id": "4377540402",
-            "title": "Слабый пентарк подавления",
-            "ord": "80",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "cnt": 26,
-            "color": "#666666",
-            "quality": "0",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_grey_1_3.gif",
-            "picture": "/images/data/artifacts/ark_grey_1_3.gif",
-            "kind": "Аркат",
-            "type_id": "149",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "13"
-            },
-            "skills": [
-                {
-                    "title": "Подавление",
-                    "value": "<b>+15</b>"
-                }
-            ],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат подавления!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"4377540402\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_4377540402"
-        },
-        {
-            "id": "3155306188",
-            "title": "Слабый тетрарк подавления",
-            "ord": "81",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "cnt": 4,
-            "color": "#666666",
-            "quality": "0",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_grey_1_2.gif",
-            "picture": "/images/data/artifacts/ark_grey_1_2.gif",
-            "kind": "Аркат",
-            "type_id": "149",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "11"
-            },
-            "skills": [
-                {
-                    "title": "Подавление",
-                    "value": "<b>+10</b>"
-                }
-            ],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат подавления!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3155306188\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3155306188"
-        },
-        {
-            "id": "4377543715",
-            "title": "Слабый триарк подавления",
-            "ord": "82",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "cnt": 57,
-            "color": "#666666",
-            "quality": "0",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_grey_1_1.gif",
-            "picture": "/images/data/artifacts/ark_grey_1_1.gif",
-            "kind": "Аркат",
-            "type_id": "149",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "11"
-            },
-            "skills": [
-                {
-                    "title": "Подавление",
-                    "value": "<b>+5</b>"
-                }
-            ],
-            "skills_e": [],
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат подавления!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"4377543715\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_4377543715"
-        },
-        {
-            "id": "4385636246",
-            "title": "Великий триарк скорости",
-            "ord": "84",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#990099",
-            "quality": "3",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_lime_4_1.gif",
-            "picture": "/images/data/artifacts/ark_lime_4_1.gif",
-            "kind": "Аркат",
-            "type_id": "159",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "19"
-            },
-            "skills": [
-                {
-                    "title": "Скорость",
-                    "value": "<b>+21</b>"
-                }
-            ],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат скорости!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"4385636246\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_4385636246"
-        },
-        {
-            "id": "4188414422",
-            "title": "Сильный пентарк скорости",
-            "ord": "85",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#3300ff",
-            "quality": "2",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_lime_3_3.gif",
-            "picture": "/images/data/artifacts/ark_lime_3_3.gif",
-            "kind": "Аркат",
-            "type_id": "159",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "18"
-            },
-            "skills": [
-                {
-                    "title": "Скорость",
-                    "value": "<b>+17</b>"
-                }
-            ],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат скорости!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"4188414422\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_4188414422"
-        },
-        {
-            "id": "3720466383",
-            "title": "Сильный триарк скорости",
-            "ord": "86",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#3300ff",
-            "quality": "2",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_lime_3_1.gif",
-            "picture": "/images/data/artifacts/ark_lime_3_1.gif",
-            "kind": "Аркат",
-            "type_id": "159",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "17"
-            },
-            "skills": [
-                {
-                    "title": "Скорость",
-                    "value": "<b>+12</b>"
-                }
-            ],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат скорости!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3720466383\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3720466383"
-        },
-        {
-            "id": "3720466223",
-            "title": "Эксарк скорости",
-            "ord": "87",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#339900",
-            "quality": "1",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_lime_2_4.gif",
-            "picture": "/images/data/artifacts/ark_lime_2_4.gif",
-            "kind": "Аркат",
-            "type_id": "159",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "16"
-            },
-            "skills": [
-                {
-                    "title": "Скорость",
-                    "value": "<b>+10</b>"
-                }
-            ],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат скорости!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3720466223\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3720466223"
-        },
-        {
-            "id": "3720466205",
-            "title": "Пентарк скорости",
-            "ord": "88",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#339900",
-            "quality": "1",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_lime_2_3.gif",
-            "picture": "/images/data/artifacts/ark_lime_2_3.gif",
-            "kind": "Аркат",
-            "type_id": "159",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "16"
-            },
-            "skills": [
-                {
-                    "title": "Скорость",
-                    "value": "<b>+9</b>"
-                }
-            ],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат скорости!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3720466205\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3720466205"
-        },
-        {
-            "id": "3155305806",
-            "title": "Тетрарк скорости",
-            "ord": "89",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "cnt": 2,
-            "color": "#339900",
-            "quality": "1",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_lime_2_2.gif",
-            "picture": "/images/data/artifacts/ark_lime_2_2.gif",
-            "kind": "Аркат",
-            "type_id": "159",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "15"
-            },
-            "skills": [
-                {
-                    "title": "Скорость",
-                    "value": "<b>+8</b>"
-                }
-            ],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат скорости!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3155305806\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3155305806"
-        },
-        {
-            "id": "3155305924",
-            "title": "Слабый эксарк скорости",
-            "ord": "90",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
             "cnt": 15,
             "color": "#666666",
             "quality": "0",
             "time_expire": "0",
-            "image": "/images/data/artifacts/ark_lime_1_4.gif",
-            "picture": "/images/data/artifacts/ark_lime_1_4.gif",
+            "image": "/images/data/artifacts/ark_orange_1_4.gif",
+            "picture": "/images/data/artifacts/ark_orange_1_4.gif",
             "kind": "Аркат",
-            "type_id": "159",
+            "type_id": "153",
             "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
             "lev": {
                 "title": " Уровень ",
                 "value": "13"
             },
+            "skills": [],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "Увеличивает урон от боевых аур на <STRONG>1%</STRONG>.<br /><STRONG>Одновременно можно надеть только один из аркатов мощи, вампиризма или крови!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3384101562\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3384101562"
+        },
+        {
+            "id": "3357861283",
+            "title": "Триарк мощи",
+            "ord": "38",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 2,
+            "color": "#339900",
+            "quality": "1",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_orange_2_1.gif",
+            "picture": "/images/data/artifacts/ark_orange_2_1.gif",
+            "kind": "Аркат",
+            "type_id": "153",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "15"
+            },
+            "skills": [],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "Увеличивает урон от боевых аур на <STRONG>2%</STRONG>.<br /><STRONG>Одновременно можно надеть только один из аркатов мощи, вампиризма или крови!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3357861283\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3357861283"
+        },
+        {
+            "id": "3586594716",
+            "title": "Пентарк мощи",
+            "ord": "39",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 3,
+            "color": "#339900",
+            "quality": "1",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_orange_2_3.gif",
+            "picture": "/images/data/artifacts/ark_orange_2_3.gif",
+            "kind": "Аркат",
+            "type_id": "153",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "16"
+            },
+            "skills": [],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "Увеличивает урон от боевых аур на <STRONG>2%</STRONG>.<br /><STRONG>Одновременно можно надеть только один из аркатов мощи, вампиризма или крови!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3586594716\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3586594716"
+        },
+        {
+            "id": "3730477450",
+            "title": "Эксарк мощи",
+            "ord": "40",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 4,
+            "color": "#339900",
+            "quality": "1",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_orange_2_4.gif",
+            "picture": "/images/data/artifacts/ark_orange_2_4.gif",
+            "kind": "Аркат",
+            "type_id": "153",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "16"
+            },
+            "skills": [],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "Увеличивает урон от боевых аур на <STRONG>2%</STRONG>.<br /><STRONG>Одновременно можно надеть только один из аркатов мощи, вампиризма или крови!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3730477450\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3730477450"
+        },
+        {
+            "id": "3670486754",
+            "title": "Сильный тетрарк мощи",
+            "ord": "42",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 2,
+            "color": "#3300ff",
+            "quality": "2",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_orange_3_2.gif",
+            "picture": "/images/data/artifacts/ark_orange_3_2.gif",
+            "kind": "Аркат",
+            "type_id": "153",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "17"
+            },
+            "skills": [],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "Увеличивает урон от боевых аур на <STRONG>3%</STRONG>.<br /><STRONG>Одновременно можно надеть только один из аркатов мощи, вампиризма или крови!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3670486754\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3670486754"
+        },
+        {
+            "id": "3054703594",
+            "title": "Слабый триарк барьера",
+            "ord": "44",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 1432,
+            "color": "#666666",
+            "quality": "0",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_green_1_1.gif",
+            "picture": "/images/data/artifacts/ark_green_1_1.gif",
+            "kind": "Аркат",
+            "type_id": "146",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "11"
+            },
             "skills": [
                 {
-                    "title": "Скорость",
+                    "title": "Защита огонь-воздух",
+                    "value": "<b>+5</b>"
+                },
+                {
+                    "title": "Защита свет-тьма",
+                    "value": "<b>+5</b>"
+                },
+                {
+                    "title": "Защита земля-вода",
                     "value": "<b>+5</b>"
                 }
             ],
             "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат скорости!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3155305924\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3155305924"
-        },
-        {
-            "id": "3155305754",
-            "title": "Слабый пентарк скорости",
-            "ord": "91",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "cnt": 6,
-            "color": "#666666",
-            "quality": "0",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_lime_1_3.gif",
-            "picture": "/images/data/artifacts/ark_lime_1_3.gif",
-            "kind": "Аркат",
-            "type_id": "159",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "13"
-            },
-            "skills": [
-                {
-                    "title": "Скорость",
-                    "value": "<b>+4</b>"
-                }
-            ],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат скорости!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3155305754\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3155305754"
-        },
-        {
-            "id": "4377551354",
-            "title": "Слабый триарк скорости",
-            "ord": "92",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "cnt": 59,
-            "color": "#666666",
-            "quality": "0",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_lime_1_1.gif",
-            "picture": "/images/data/artifacts/ark_lime_1_1.gif",
-            "kind": "Аркат",
-            "type_id": "159",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "11"
-            },
-            "skills": [
-                {
-                    "title": "Скорость",
-                    "value": "<b>+2</b>"
-                }
-            ],
-            "skills_e": [],
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат скорости!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"4377551354\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_4377551354"
-        },
-        {
-            "id": "3155306221",
-            "title": "Слабый тетрарк скорости",
-            "ord": "93",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "cnt": 252,
-            "color": "#666666",
-            "quality": "0",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_lime_1_2.gif",
-            "picture": "/images/data/artifacts/ark_lime_1_2.gif",
-            "kind": "Аркат",
-            "type_id": "159",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "11"
-            },
-            "skills": [
-                {
-                    "title": "Скорость",
-                    "value": "<b>+3</b>"
-                }
-            ],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат скорости!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3155306221\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3155306221"
-        },
-        {
-            "id": "4385636206",
-            "title": "Сильный эксарк стойкости",
-            "ord": "95",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#3300ff",
-            "quality": "2",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_white_3_4.gif",
-            "picture": "/images/data/artifacts/ark_white_3_4.gif",
-            "kind": "Аркат",
-            "type_id": "151",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "18"
-            },
-            "skills": [
-                {
-                    "title": "Стойкость",
-                    "value": "<b>+750</b>"
-                }
-            ],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат стойкости!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"4385636206\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_4385636206"
-        },
-        {
-            "id": "4385636172",
-            "title": "Сильный пентарк стойкости",
-            "ord": "96",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#3300ff",
-            "quality": "2",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_white_3_3.gif",
-            "picture": "/images/data/artifacts/ark_white_3_3.gif",
-            "kind": "Аркат",
-            "type_id": "151",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "18"
-            },
-            "skills": [
-                {
-                    "title": "Стойкость",
-                    "value": "<b>+600</b>"
-                }
-            ],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат стойкости!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"4385636172\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_4385636172"
-        },
-        {
-            "id": "3720466384",
-            "title": "Сильный тетрарк стойкости",
-            "ord": "97",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#3300ff",
-            "quality": "2",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_white_3_2.gif",
-            "picture": "/images/data/artifacts/ark_white_3_2.gif",
-            "kind": "Аркат",
-            "type_id": "151",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "17"
-            },
-            "skills": [
-                {
-                    "title": "Стойкость",
-                    "value": "<b>+500</b>"
-                }
-            ],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат стойкости!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3720466384\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3720466384"
-        },
-        {
-            "id": "4279292991",
-            "title": "Сильный триарк стойкости",
-            "ord": "98",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "cnt": 2,
-            "color": "#3300ff",
-            "quality": "2",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_white_3_1.gif",
-            "picture": "/images/data/artifacts/ark_white_3_1.gif",
-            "kind": "Аркат",
-            "type_id": "151",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "17"
-            },
-            "skills": [
-                {
-                    "title": "Стойкость",
-                    "value": "<b>+450</b>"
-                }
-            ],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат стойкости!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"4279292991\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_4279292991"
-        },
-        {
-            "id": "4385636175",
-            "title": "Эксарк стойкости",
-            "ord": "99",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#339900",
-            "quality": "1",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_white_2_4.gif",
-            "picture": "/images/data/artifacts/ark_white_2_4.gif",
-            "kind": "Аркат",
-            "type_id": "151",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "16"
-            },
-            "skills": [
-                {
-                    "title": "Стойкость",
-                    "value": "<b>+400</b>"
-                }
-            ],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат стойкости!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"4385636175\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_4385636175"
-        },
-        {
-            "id": "4385636249",
-            "title": "Пентарк стойкости",
-            "ord": "100",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#339900",
-            "quality": "1",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_white_2_3.gif",
-            "picture": "/images/data/artifacts/ark_white_2_3.gif",
-            "kind": "Аркат",
-            "type_id": "151",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "16"
-            },
-            "skills": [
-                {
-                    "title": "Стойкость",
-                    "value": "<b>+350</b>"
-                }
-            ],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат стойкости!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"4385636249\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_4385636249"
-        },
-        {
-            "id": "3155306399",
-            "title": "Тетрарк стойкости",
-            "ord": "101",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "cnt": 2,
-            "color": "#339900",
-            "quality": "1",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_white_2_2.gif",
-            "picture": "/images/data/artifacts/ark_white_2_2.gif",
-            "kind": "Аркат",
-            "type_id": "151",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "15"
-            },
-            "skills": [
-                {
-                    "title": "Стойкость",
-                    "value": "<b>+250</b>"
-                }
-            ],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат стойкости!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3155306399\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3155306399"
-        },
-        {
-            "id": "4279292879",
-            "title": "Триарк стойкости",
-            "ord": "102",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "cnt": 2,
-            "color": "#339900",
-            "quality": "1",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_white_2_1.gif",
-            "picture": "/images/data/artifacts/ark_white_2_1.gif",
-            "kind": "Аркат",
-            "type_id": "151",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "15"
-            },
-            "skills": [
-                {
-                    "title": "Стойкость",
-                    "value": "<b>+200</b>"
-                }
-            ],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат стойкости!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"4279292879\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_4279292879"
-        },
-        {
-            "id": "3191690745",
-            "title": "Слабый эксарк стойкости",
-            "ord": "103",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "cnt": 4,
-            "color": "#666666",
-            "quality": "0",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_white_1_4.gif",
-            "picture": "/images/data/artifacts/ark_white_1_4.gif",
-            "kind": "Аркат",
-            "type_id": "151",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "13"
-            },
-            "skills": [
-                {
-                    "title": "Стойкость",
-                    "value": "<b>+150</b>"
-                }
-            ],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат стойкости!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3191690745\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3191690745"
-        },
-        {
-            "id": "3180454180",
-            "title": "Слабый пентарк стойкости",
-            "ord": "104",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "cnt": 28,
-            "color": "#666666",
-            "quality": "0",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_white_1_3.gif",
-            "picture": "/images/data/artifacts/ark_white_1_3.gif",
-            "kind": "Аркат",
-            "type_id": "151",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "13"
-            },
-            "skills": [
-                {
-                    "title": "Стойкость",
-                    "value": "<b>+120</b>"
-                }
-            ],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат стойкости!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3180454180\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3180454180"
-        },
-        {
-            "id": "3155306252",
-            "title": "Слабый тетрарк стойкости",
-            "ord": "105",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "cnt": 4,
-            "color": "#666666",
-            "quality": "0",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_white_1_2.gif",
-            "picture": "/images/data/artifacts/ark_white_1_2.gif",
-            "kind": "Аркат",
-            "type_id": "151",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "11"
-            },
-            "skills": [
-                {
-                    "title": "Стойкость",
-                    "value": "<b>+90</b>"
-                }
-            ],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат стойкости!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3155306252\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3155306252"
-        },
-        {
-            "id": "4280221556",
-            "title": "Слабый триарк стойкости",
-            "ord": "106",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "cnt": 69,
-            "color": "#666666",
-            "quality": "0",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_white_1_1.gif",
-            "picture": "/images/data/artifacts/ark_white_1_1.gif",
-            "kind": "Аркат",
-            "type_id": "151",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "11"
-            },
-            "skills": [
-                {
-                    "title": "Стойкость",
-                    "value": "<b>+70</b>"
-                }
-            ],
-            "skills_e": [],
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат стойкости!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"4280221556\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_4280221556"
-        },
-        {
-            "id": "4188414424",
-            "title": "Сильный тетрарк крови",
-            "ord": "108",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#3300ff",
-            "quality": "2",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_viol_3_2.gif",
-            "picture": "/images/data/artifacts/ark_viol_3_2.gif",
-            "kind": "Аркат",
-            "type_id": "155",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "17"
-            },
-            "skills": [],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "Увеличивает <SPAN style=\"color:red\"><STRONG>шанс критического урона</STRONG></SPAN> от боевых аур на <STRONG>3%</STRONG>.<br /><STRONG>Одновременно можно надеть только один из аркатов мощи, вампиризма или крови!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"4188414424\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_4188414424"
-        },
-        {
-            "id": "4188414423",
-            "title": "Сильный триарк крови",
-            "ord": "109",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "cnt": 2,
-            "color": "#3300ff",
-            "quality": "2",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_viol_3_1.gif",
-            "picture": "/images/data/artifacts/ark_viol_3_1.gif",
-            "kind": "Аркат",
-            "type_id": "155",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "17"
-            },
-            "skills": [],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "Увеличивает <SPAN style=\"color:red\"><STRONG>шанс критического урона</STRONG></SPAN> от боевых аур на <STRONG>3%</STRONG>.<br /><STRONG>Одновременно можно надеть только один из аркатов мощи, вампиризма или крови!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"4188414423\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_4188414423"
-        },
-        {
-            "id": "3720466228",
-            "title": "Эксарк крови",
-            "ord": "110",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "cnt": 2,
-            "color": "#339900",
-            "quality": "1",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_viol_2_4.gif",
-            "picture": "/images/data/artifacts/ark_viol_2_4.gif",
-            "kind": "Аркат",
-            "type_id": "155",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "16"
-            },
-            "skills": [],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "Увеличивает <SPAN style=\"color:red\"><STRONG>шанс критического урона</STRONG></SPAN> от боевых аур на <STRONG>2%</STRONG>.<br /><STRONG>Одновременно можно надеть только один из аркатов мощи, вампиризма или крови!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3720466228\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3720466228"
-        },
-        {
-            "id": "3720466209",
-            "title": "Пентарк крови",
-            "ord": "111",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#339900",
-            "quality": "1",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_viol_2_3.gif",
-            "picture": "/images/data/artifacts/ark_viol_2_3.gif",
-            "kind": "Аркат",
-            "type_id": "155",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "16"
-            },
-            "skills": [],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "Увеличивает <SPAN style=\"color:red\"><STRONG>шанс критического урона</STRONG></SPAN> от боевых аур на <STRONG>2%</STRONG>.<br /><STRONG>Одновременно можно надеть только один из аркатов мощи, вампиризма или крови!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3720466209\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3720466209"
-        },
-        {
-            "id": "3720466399",
-            "title": "Слабый эксарк крови",
-            "ord": "112",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "cnt": 5,
-            "color": "#666666",
-            "quality": "0",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_viol_1_4.gif",
-            "picture": "/images/data/artifacts/ark_viol_1_4.gif",
-            "kind": "Аркат",
-            "type_id": "155",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "13"
-            },
-            "skills": [],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "Увеличивает <SPAN style=\"color:red\"><STRONG>шанс критического урона</STRONG></SPAN> от боевых аур на <STRONG>1%</STRONG>.<br /><STRONG>Одновременно можно надеть только один из аркатов мощи, вампиризма или крови!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3720466399\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3720466399"
-        },
-        {
-            "id": "3191690834",
-            "title": "Слабый пентарк крови",
-            "ord": "113",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "cnt": 7,
-            "color": "#666666",
-            "quality": "0",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_viol_1_3.gif",
-            "picture": "/images/data/artifacts/ark_viol_1_3.gif",
-            "kind": "Аркат",
-            "type_id": "155",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "13"
-            },
-            "skills": [],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "Увеличивает <SPAN style=\"color:red\"><STRONG>шанс критического урона</STRONG></SPAN> от боевых аур на <STRONG>1%</STRONG>.<br /><STRONG>Одновременно можно надеть только один из аркатов мощи, вампиризма или крови!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3191690834\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3191690834"
-        },
-        {
-            "id": "3904197166",
-            "title": "Слабый триарк крови",
-            "ord": "114",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "cnt": 650,
-            "color": "#666666",
-            "quality": "0",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_viol_1_1.gif",
-            "picture": "/images/data/artifacts/ark_viol_1_1.gif",
-            "kind": "Аркат",
-            "type_id": "155",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "11"
-            },
-            "skills": [],
-            "skills_e": [],
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "Увеличивает <SPAN style=\"color:red\"><STRONG>шанс критического урона</STRONG></SPAN> от боевых аур на <STRONG>1%</STRONG>.<br /><STRONG>Одновременно можно надеть только один из аркатов мощи, вампиризма или крови!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3904197166\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3904197166"
-        },
-        {
-            "id": "4385636247",
-            "title": "Сильный пентарк барьера",
-            "ord": "116",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#3300ff",
-            "quality": "2",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_green_3_3.gif",
-            "picture": "/images/data/artifacts/ark_green_3_3.gif",
-            "kind": "Аркат",
-            "type_id": "146",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "18"
-            },
-            "skills": [
-                {
-                    "title": "Защита огонь-воздух",
-                    "value": "<b>+55</b>"
-                },
-                {
-                    "title": "Защита свет-тьма",
-                    "value": "<b>+55</b>"
-                },
-                {
-                    "title": "Защита земля-вода",
-                    "value": "<b>+55</b>"
-                }
-            ],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
             "noweight": "Предмет не занимает места в рюкзаке",
             "desc": "<STRONG>Одновременно можно надеть только один аркат барьера!</STRONG>",
             "sell": true,
             "drop": true,
             "equip": true,
-            "add_attrs": " artifact_id=\"4385636247\" price_type=\"1\" sell_price=\"0.1\"",
+            "add_attrs": " artifact_id=\"3054703594\" price_type=\"1\" sell_price=\"0.1\"",
             "icon_list": {
                 "1": "info",
                 "2": "sell"
@@ -4364,281 +1505,16 @@ let items = {
             "_act2": 3,
             "_act3": 0,
             "_act4": 0,
-            "artifact_alt_id": "AA_4385636247"
+            "artifact_alt_id": "AA_3054703594"
         },
         {
-            "id": "3720466211",
-            "title": "Эксарк барьера",
-            "ord": "117",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "cnt": 2,
-            "color": "#339900",
-            "quality": "1",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_green_2_4.gif",
-            "picture": "/images/data/artifacts/ark_green_2_4.gif",
-            "kind": "Аркат",
-            "type_id": "146",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "16"
-            },
-            "skills": [
-                {
-                    "title": "Защита огонь-воздух",
-                    "value": "<b>+40</b>"
-                },
-                {
-                    "title": "Защита свет-тьма",
-                    "value": "<b>+40</b>"
-                },
-                {
-                    "title": "Защита земля-вода",
-                    "value": "<b>+40</b>"
-                }
-            ],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат барьера!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3720466211\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3720466211"
-        },
-        {
-            "id": "3155306187",
-            "title": "Пентарк барьера",
-            "ord": "118",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "cnt": 2,
-            "color": "#339900",
-            "quality": "1",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_green_2_3.gif",
-            "picture": "/images/data/artifacts/ark_green_2_3.gif",
-            "kind": "Аркат",
-            "type_id": "146",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "16"
-            },
-            "skills": [
-                {
-                    "title": "Защита огонь-воздух",
-                    "value": "<b>+35</b>"
-                },
-                {
-                    "title": "Защита свет-тьма",
-                    "value": "<b>+35</b>"
-                },
-                {
-                    "title": "Защита земля-вода",
-                    "value": "<b>+35</b>"
-                }
-            ],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат барьера!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3155306187\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3155306187"
-        },
-        {
-            "id": "3191690946",
-            "title": "Триарк барьера",
-            "ord": "119",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "cnt": 2,
-            "color": "#339900",
-            "quality": "1",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_green_2_1.gif",
-            "picture": "/images/data/artifacts/ark_green_2_1.gif",
-            "kind": "Аркат",
-            "type_id": "146",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "15"
-            },
-            "skills": [
-                {
-                    "title": "Защита огонь-воздух",
-                    "value": "<b>+25</b>"
-                },
-                {
-                    "title": "Защита свет-тьма",
-                    "value": "<b>+25</b>"
-                },
-                {
-                    "title": "Защита земля-вода",
-                    "value": "<b>+25</b>"
-                }
-            ],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат барьера!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3191690946\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3191690946"
-        },
-        {
-            "id": "3155306078",
-            "title": "Слабый эксарк барьера",
-            "ord": "120",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "cnt": 5,
-            "color": "#666666",
-            "quality": "0",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_green_1_4.gif",
-            "picture": "/images/data/artifacts/ark_green_1_4.gif",
-            "kind": "Аркат",
-            "type_id": "146",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "13"
-            },
-            "skills": [
-                {
-                    "title": "Защита огонь-воздух",
-                    "value": "<b>+20</b>"
-                },
-                {
-                    "title": "Защита свет-тьма",
-                    "value": "<b>+20</b>"
-                },
-                {
-                    "title": "Защита земля-вода",
-                    "value": "<b>+20</b>"
-                }
-            ],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат барьера!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3155306078\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3155306078"
-        },
-        {
-            "id": "4377540351",
-            "title": "Слабый пентарк барьера",
-            "ord": "121",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "cnt": 24,
-            "color": "#666666",
-            "quality": "0",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_green_1_3.gif",
-            "picture": "/images/data/artifacts/ark_green_1_3.gif",
-            "kind": "Аркат",
-            "type_id": "146",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "13"
-            },
-            "skills": [
-                {
-                    "title": "Защита огонь-воздух",
-                    "value": "<b>+15</b>"
-                },
-                {
-                    "title": "Защита свет-тьма",
-                    "value": "<b>+15</b>"
-                },
-                {
-                    "title": "Защита земля-вода",
-                    "value": "<b>+15</b>"
-                }
-            ],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат барьера!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"4377540351\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_4377540351"
-        },
-        {
-            "id": "3155306066",
+            "id": "3099778481",
             "title": "Слабый тетрарк барьера",
-            "ord": "122",
+            "ord": "45",
             "kind_id": "161",
             "storage_type": "0",
             "profession": "0",
-            "cnt": 2,
+            "cnt": 16,
             "color": "#666666",
             "quality": "0",
             "time_expire": "0",
@@ -4672,7 +1548,7 @@ let items = {
             "sell": true,
             "drop": true,
             "equip": true,
-            "add_attrs": " artifact_id=\"3155306066\" price_type=\"1\" sell_price=\"0.1\"",
+            "add_attrs": " artifact_id=\"3099778481\" price_type=\"1\" sell_price=\"0.1\"",
             "icon_list": {
                 "1": "info",
                 "2": "sell"
@@ -4682,23 +1558,446 @@ let items = {
             "_act2": 3,
             "_act3": 0,
             "_act4": 0,
-            "artifact_alt_id": "AA_3155306066"
+            "artifact_alt_id": "AA_3099778481"
         },
         {
-            "id": "3854062962",
-            "title": "Слабый триарк барьера",
-            "ord": "123",
+            "id": "3384100504",
+            "title": "Слабый пентарк барьера",
+            "ord": "46",
             "kind_id": "161",
             "storage_type": "0",
             "profession": "0",
-            "cnt": 63,
+            "cnt": 36,
             "color": "#666666",
             "quality": "0",
             "time_expire": "0",
-            "image": "/images/data/artifacts/ark_green_1_1.gif",
-            "picture": "/images/data/artifacts/ark_green_1_1.gif",
+            "image": "/images/data/artifacts/ark_green_1_3.gif",
+            "picture": "/images/data/artifacts/ark_green_1_3.gif",
             "kind": "Аркат",
             "type_id": "146",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "13"
+            },
+            "skills": [
+                {
+                    "title": "Защита огонь-воздух",
+                    "value": "<b>+15</b>"
+                },
+                {
+                    "title": "Защита свет-тьма",
+                    "value": "<b>+15</b>"
+                },
+                {
+                    "title": "Защита земля-вода",
+                    "value": "<b>+15</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат барьера!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3384100504\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3384100504"
+        },
+        {
+            "id": "3384101545",
+            "title": "Слабый эксарк барьера",
+            "ord": "48",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 27,
+            "color": "#666666",
+            "quality": "0",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_green_1_4.gif",
+            "picture": "/images/data/artifacts/ark_green_1_4.gif",
+            "kind": "Аркат",
+            "type_id": "146",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "13"
+            },
+            "skills": [
+                {
+                    "title": "Защита огонь-воздух",
+                    "value": "<b>+20</b>"
+                },
+                {
+                    "title": "Защита свет-тьма",
+                    "value": "<b>+20</b>"
+                },
+                {
+                    "title": "Защита земля-вода",
+                    "value": "<b>+20</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат барьера!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3384101545\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3384101545"
+        },
+        {
+            "id": "3384101450",
+            "title": "Триарк барьера",
+            "ord": "50",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 5,
+            "color": "#339900",
+            "quality": "1",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_green_2_1.gif",
+            "picture": "/images/data/artifacts/ark_green_2_1.gif",
+            "kind": "Аркат",
+            "type_id": "146",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "15"
+            },
+            "skills": [
+                {
+                    "title": "Защита огонь-воздух",
+                    "value": "<b>+25</b>"
+                },
+                {
+                    "title": "Защита свет-тьма",
+                    "value": "<b>+25</b>"
+                },
+                {
+                    "title": "Защита земля-вода",
+                    "value": "<b>+25</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат барьера!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3384101450\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3384101450"
+        },
+        {
+            "id": "3586438145",
+            "title": "Тетрарк барьера",
+            "ord": "52",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "color": "#339900",
+            "quality": "1",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_green_2_2.gif",
+            "picture": "/images/data/artifacts/ark_green_2_2.gif",
+            "kind": "Аркат",
+            "type_id": "146",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "15"
+            },
+            "skills": [
+                {
+                    "title": "Защита огонь-воздух",
+                    "value": "<b>+30</b>"
+                },
+                {
+                    "title": "Защита свет-тьма",
+                    "value": "<b>+30</b>"
+                },
+                {
+                    "title": "Защита земля-вода",
+                    "value": "<b>+30</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат барьера!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3586438145\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3586438145"
+        },
+        {
+            "id": "3586438137",
+            "title": "Пентарк барьера",
+            "ord": "53",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 6,
+            "color": "#339900",
+            "quality": "1",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_green_2_3.gif",
+            "picture": "/images/data/artifacts/ark_green_2_3.gif",
+            "kind": "Аркат",
+            "type_id": "146",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "16"
+            },
+            "skills": [
+                {
+                    "title": "Защита огонь-воздух",
+                    "value": "<b>+35</b>"
+                },
+                {
+                    "title": "Защита свет-тьма",
+                    "value": "<b>+35</b>"
+                },
+                {
+                    "title": "Защита земля-вода",
+                    "value": "<b>+35</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат барьера!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3586438137\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3586438137"
+        },
+        {
+            "id": "3670486757",
+            "title": "Эксарк барьера",
+            "ord": "55",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 3,
+            "color": "#339900",
+            "quality": "1",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_green_2_4.gif",
+            "picture": "/images/data/artifacts/ark_green_2_4.gif",
+            "kind": "Аркат",
+            "type_id": "146",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "16"
+            },
+            "skills": [
+                {
+                    "title": "Защита огонь-воздух",
+                    "value": "<b>+40</b>"
+                },
+                {
+                    "title": "Защита свет-тьма",
+                    "value": "<b>+40</b>"
+                },
+                {
+                    "title": "Защита земля-вода",
+                    "value": "<b>+40</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат барьера!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3670486757\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3670486757"
+        },
+        {
+            "id": "3586594696",
+            "title": "Сильный пентарк барьера",
+            "ord": "56",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 2,
+            "color": "#3300ff",
+            "quality": "2",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_green_3_3.gif",
+            "picture": "/images/data/artifacts/ark_green_3_3.gif",
+            "kind": "Аркат",
+            "type_id": "146",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "18"
+            },
+            "skills": [
+                {
+                    "title": "Защита огонь-воздух",
+                    "value": "<b>+55</b>"
+                },
+                {
+                    "title": "Защита свет-тьма",
+                    "value": "<b>+55</b>"
+                },
+                {
+                    "title": "Защита земля-вода",
+                    "value": "<b>+55</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат барьера!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3586594696\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3586594696"
+        },
+        {
+            "id": "3670486283",
+            "title": "Сильный эксарк барьера",
+            "ord": "57",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 2,
+            "color": "#3300ff",
+            "quality": "2",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_green_3_4.gif",
+            "picture": "/images/data/artifacts/ark_green_3_4.gif",
+            "kind": "Аркат",
+            "type_id": "146",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "18"
+            },
+            "skills": [
+                {
+                    "title": "Защита огонь-воздух",
+                    "value": "<b>+60</b>"
+                },
+                {
+                    "title": "Защита свет-тьма",
+                    "value": "<b>+60</b>"
+                },
+                {
+                    "title": "Защита земля-вода",
+                    "value": "<b>+60</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат барьера!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3670486283\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3670486283"
+        },
+        {
+            "id": "3054705126",
+            "title": "Слабый триарк антитравматизма",
+            "ord": "58",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 4271,
+            "color": "#666666",
+            "quality": "0",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_lilac_1_1.gif",
+            "picture": "/images/data/artifacts/ark_lilac_1_1.gif",
+            "kind": "Аркат",
+            "type_id": "158",
             "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
             "lev": {
                 "title": " Уровень ",
@@ -4706,25 +2005,17 @@ let items = {
             },
             "skills": [
                 {
-                    "title": "Защита огонь-воздух",
-                    "value": "<b>+5</b>"
-                },
-                {
-                    "title": "Защита свет-тьма",
-                    "value": "<b>+5</b>"
-                },
-                {
-                    "title": "Защита земля-вода",
-                    "value": "<b>+5</b>"
+                    "title": "Антитравматизм",
+                    "value": "<b>+3</b>"
                 }
             ],
             "skills_e": [],
             "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат барьера!</STRONG>",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат антитравматизма!</STRONG>",
             "sell": true,
             "drop": true,
             "equip": true,
-            "add_attrs": " artifact_id=\"3854062962\" price_type=\"1\" sell_price=\"0.1\"",
+            "add_attrs": " artifact_id=\"3054705126\" price_type=\"1\" sell_price=\"0.1\"",
             "icon_list": {
                 "1": "info",
                 "2": "sell"
@@ -4734,12 +2025,3592 @@ let items = {
             "_act2": 3,
             "_act3": 0,
             "_act4": 0,
-            "artifact_alt_id": "AA_3854062962"
+            "artifact_alt_id": "AA_3054705126"
         },
         {
-            "id": "4385636207",
-            "title": "Сильный тетрарк интеллекта",
+            "id": "3450499432",
+            "title": "Слабый тетрарк антитравматизма",
+            "ord": "59",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 9,
+            "color": "#666666",
+            "quality": "0",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_lilac_1_2.gif",
+            "picture": "/images/data/artifacts/ark_lilac_1_2.gif",
+            "kind": "Аркат",
+            "type_id": "158",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "11"
+            },
+            "skills": [
+                {
+                    "title": "Антитравматизм",
+                    "value": "<b>+5</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат антитравматизма!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3450499432\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3450499432"
+        },
+        {
+            "id": "3384101318",
+            "title": "Слабый пентарк антитравматизма",
+            "ord": "60",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 24,
+            "color": "#666666",
+            "quality": "0",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_lilac_1_3.gif",
+            "picture": "/images/data/artifacts/ark_lilac_1_3.gif",
+            "kind": "Аркат",
+            "type_id": "158",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "13"
+            },
+            "skills": [
+                {
+                    "title": "Антитравматизм",
+                    "value": "<b>+7</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат антитравматизма!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3384101318\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3384101318"
+        },
+        {
+            "id": "3384100507",
+            "title": "Слабый эксарк антитравматизма",
+            "ord": "61",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 28,
+            "color": "#666666",
+            "quality": "0",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_lilac_1_4.gif",
+            "picture": "/images/data/artifacts/ark_lilac_1_4.gif",
+            "kind": "Аркат",
+            "type_id": "158",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "13"
+            },
+            "skills": [
+                {
+                    "title": "Антитравматизм",
+                    "value": "<b>+9</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат антитравматизма!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3384100507\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3384100507"
+        },
+        {
+            "id": "3586438178",
+            "title": "Тетрарк антитравматизма",
+            "ord": "62",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 4,
+            "color": "#339900",
+            "quality": "1",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_lilac_2_2.gif",
+            "picture": "/images/data/artifacts/ark_lilac_2_2.gif",
+            "kind": "Аркат",
+            "type_id": "158",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "15"
+            },
+            "skills": [
+                {
+                    "title": "Антитравматизм",
+                    "value": "<b>+13</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат антитравматизма!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3586438178\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3586438178"
+        },
+        {
+            "id": "3586593881",
+            "title": "Пентарк антитравматизма",
+            "ord": "63",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 7,
+            "color": "#339900",
+            "quality": "1",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_lilac_2_3.gif",
+            "picture": "/images/data/artifacts/ark_lilac_2_3.gif",
+            "kind": "Аркат",
+            "type_id": "158",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "16"
+            },
+            "skills": [
+                {
+                    "title": "Антитравматизм",
+                    "value": "<b>+15</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат антитравматизма!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3586593881\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3586593881"
+        },
+        {
+            "id": "3586593880",
+            "title": "Эксарк антитравматизма",
+            "ord": "64",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 3,
+            "color": "#339900",
+            "quality": "1",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_lilac_2_4.gif",
+            "picture": "/images/data/artifacts/ark_lilac_2_4.gif",
+            "kind": "Аркат",
+            "type_id": "158",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "16"
+            },
+            "skills": [
+                {
+                    "title": "Антитравматизм",
+                    "value": "<b>+17</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат антитравматизма!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3586593880\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3586593880"
+        },
+        {
+            "id": "3384101576",
+            "title": "Триарк антитравматизма",
+            "ord": "65",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 4,
+            "color": "#339900",
+            "quality": "1",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_lilac_2_1.gif",
+            "picture": "/images/data/artifacts/ark_lilac_2_1.gif",
+            "kind": "Аркат",
+            "type_id": "158",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "15"
+            },
+            "skills": [
+                {
+                    "title": "Антитравматизм",
+                    "value": "<b>+11</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат антитравматизма!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3384101576\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3384101576"
+        },
+        {
+            "id": "3054709099",
+            "title": "Слабый триарк травматизма",
+            "ord": "66",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 3588,
+            "color": "#666666",
+            "quality": "0",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_black_1_1.gif",
+            "picture": "/images/data/artifacts/ark_black_1_1.gif",
+            "kind": "Аркат",
+            "type_id": "157",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "11"
+            },
+            "skills": [
+                {
+                    "title": "Травматизм",
+                    "value": "<b>+2</b>"
+                }
+            ],
+            "skills_e": [],
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат травматизма!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3054709099\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3054709099"
+        },
+        {
+            "id": "3398587092",
+            "title": "Слабый тетрарк травматизма",
+            "ord": "67",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 9,
+            "color": "#666666",
+            "quality": "0",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_black_1_2.gif",
+            "picture": "/images/data/artifacts/ark_black_1_2.gif",
+            "kind": "Аркат",
+            "type_id": "157",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "11"
+            },
+            "skills": [
+                {
+                    "title": "Травматизм",
+                    "value": "<b>+3</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат травматизма!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3398587092\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3398587092"
+        },
+        {
+            "id": "3384101337",
+            "title": "Слабый пентарк травматизма",
+            "ord": "68",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 38,
+            "color": "#666666",
+            "quality": "0",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_black_1_3.gif",
+            "picture": "/images/data/artifacts/ark_black_1_3.gif",
+            "kind": "Аркат",
+            "type_id": "157",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "13"
+            },
+            "skills": [
+                {
+                    "title": "Травматизм",
+                    "value": "<b>+4</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат травматизма!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3384101337\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3384101337"
+        },
+        {
+            "id": "3384100487",
+            "title": "Слабый эксарк травматизма",
+            "ord": "69",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 30,
+            "color": "#666666",
+            "quality": "0",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_black_1_4.gif",
+            "picture": "/images/data/artifacts/ark_black_1_4.gif",
+            "kind": "Аркат",
+            "type_id": "157",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "13"
+            },
+            "skills": [
+                {
+                    "title": "Травматизм",
+                    "value": "<b>+5</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат травматизма!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3384100487\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3384100487"
+        },
+        {
+            "id": "3327519169",
+            "title": "Пентарк травматизма",
+            "ord": "70",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 7,
+            "color": "#339900",
+            "quality": "1",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_black_2_3.gif",
+            "picture": "/images/data/artifacts/ark_black_2_3.gif",
+            "kind": "Аркат",
+            "type_id": "157",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "16"
+            },
+            "skills": [
+                {
+                    "title": "Травматизм",
+                    "value": "<b>+9</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат травматизма!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3327519169\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3327519169"
+        },
+        {
+            "id": "3384101536",
+            "title": "Эксарк травматизма",
+            "ord": "71",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 5,
+            "color": "#339900",
+            "quality": "1",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_black_2_4.gif",
+            "picture": "/images/data/artifacts/ark_black_2_4.gif",
+            "kind": "Аркат",
+            "type_id": "157",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "16"
+            },
+            "skills": [
+                {
+                    "title": "Травматизм",
+                    "value": "<b>+10</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат травматизма!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3384101536\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3384101536"
+        },
+        {
+            "id": "3670486288",
+            "title": "Сильный тетрарк травматизма",
+            "ord": "72",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 2,
+            "color": "#3300ff",
+            "quality": "2",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_black_3_2.gif",
+            "picture": "/images/data/artifacts/ark_black_3_2.gif",
+            "kind": "Аркат",
+            "type_id": "157",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "17"
+            },
+            "skills": [
+                {
+                    "title": "Травматизм",
+                    "value": "<b>+15</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат травматизма!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3670486288\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3670486288"
+        },
+        {
+            "id": "3586438130",
+            "title": "Великий тетрарк травматизма",
+            "ord": "73",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "color": "#990099",
+            "quality": "3",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_black_4_2.gif",
+            "picture": "/images/data/artifacts/ark_black_4_2.gif",
+            "kind": "Аркат",
+            "type_id": "157",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "19"
+            },
+            "skills": [
+                {
+                    "title": "Травматизм",
+                    "value": "<b>+24</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат травматизма!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3586438130\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3586438130"
+        },
+        {
+            "id": "3054709480",
+            "title": "Слабый триарк крови",
+            "ord": "74",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 2611,
+            "color": "#666666",
+            "quality": "0",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_viol_1_1.gif",
+            "picture": "/images/data/artifacts/ark_viol_1_1.gif",
+            "kind": "Аркат",
+            "type_id": "155",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "11"
+            },
+            "skills": [],
+            "skills_e": [],
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "Увеличивает <SPAN style=\"color:red\"><STRONG>шанс критического урона</STRONG></SPAN> от боевых аур на <STRONG>1%</STRONG>.<br /><STRONG>Одновременно можно надеть только один из аркатов мощи, вампиризма или крови!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3054709480\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3054709480"
+        },
+        {
+            "id": "3462859955",
+            "title": "Слабый тетрарк крови",
+            "ord": "75",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 4,
+            "color": "#666666",
+            "quality": "0",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_viol_1_2.gif",
+            "picture": "/images/data/artifacts/ark_viol_1_2.gif",
+            "kind": "Аркат",
+            "type_id": "155",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "11"
+            },
+            "skills": [],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "Увеличивает <SPAN style=\"color:red\"><STRONG>шанс критического урона</STRONG></SPAN> от боевых аур на <STRONG>1%</STRONG>.<br /><STRONG>Одновременно можно надеть только один из аркатов мощи, вампиризма или крови!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3462859955\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3462859955"
+        },
+        {
+            "id": "3384101532",
+            "title": "Слабый пентарк крови",
+            "ord": "76",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 26,
+            "color": "#666666",
+            "quality": "0",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_viol_1_3.gif",
+            "picture": "/images/data/artifacts/ark_viol_1_3.gif",
+            "kind": "Аркат",
+            "type_id": "155",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "13"
+            },
+            "skills": [],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "Увеличивает <SPAN style=\"color:red\"><STRONG>шанс критического урона</STRONG></SPAN> от боевых аур на <STRONG>1%</STRONG>.<br /><STRONG>Одновременно можно надеть только один из аркатов мощи, вампиризма или крови!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3384101532\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3384101532"
+        },
+        {
+            "id": "3384101640",
+            "title": "Слабый эксарк крови",
+            "ord": "77",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 10,
+            "color": "#666666",
+            "quality": "0",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_viol_1_4.gif",
+            "picture": "/images/data/artifacts/ark_viol_1_4.gif",
+            "kind": "Аркат",
+            "type_id": "155",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "13"
+            },
+            "skills": [],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "Увеличивает <SPAN style=\"color:red\"><STRONG>шанс критического урона</STRONG></SPAN> от боевых аур на <STRONG>1%</STRONG>.<br /><STRONG>Одновременно можно надеть только один из аркатов мощи, вампиризма или крови!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3384101640\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3384101640"
+        },
+        {
+            "id": "3125247000",
+            "title": "Триарк крови",
+            "ord": "78",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "color": "#339900",
+            "quality": "1",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_viol_2_1.gif",
+            "picture": "/images/data/artifacts/ark_viol_2_1.gif",
+            "kind": "Аркат",
+            "type_id": "155",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "15"
+            },
+            "skills": [],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "Увеличивает <SPAN style=\"color:red\"><STRONG>шанс критического урона</STRONG></SPAN> от боевых аур на <STRONG>2%</STRONG>.<br /><STRONG>Одновременно можно надеть только один из аркатов мощи, вампиризма или крови!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3125247000\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3125247000"
+        },
+        {
+            "id": "3586439115",
+            "title": "Тетрарк крови",
+            "ord": "79",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 4,
+            "color": "#339900",
+            "quality": "1",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_viol_2_2.gif",
+            "picture": "/images/data/artifacts/ark_viol_2_2.gif",
+            "kind": "Аркат",
+            "type_id": "155",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "15"
+            },
+            "skills": [],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "Увеличивает <SPAN style=\"color:red\"><STRONG>шанс критического урона</STRONG></SPAN> от боевых аур на <STRONG>2%</STRONG>.<br /><STRONG>Одновременно можно надеть только один из аркатов мощи, вампиризма или крови!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3586439115\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3586439115"
+        },
+        {
+            "id": "3670486291",
+            "title": "Пентарк крови",
+            "ord": "80",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 4,
+            "color": "#339900",
+            "quality": "1",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_viol_2_3.gif",
+            "picture": "/images/data/artifacts/ark_viol_2_3.gif",
+            "kind": "Аркат",
+            "type_id": "155",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "16"
+            },
+            "skills": [],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "Увеличивает <SPAN style=\"color:red\"><STRONG>шанс критического урона</STRONG></SPAN> от боевых аур на <STRONG>2%</STRONG>.<br /><STRONG>Одновременно можно надеть только один из аркатов мощи, вампиризма или крови!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3670486291\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3670486291"
+        },
+        {
+            "id": "3586439111",
+            "title": "Эксарк крови",
+            "ord": "81",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 3,
+            "color": "#339900",
+            "quality": "1",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_viol_2_4.gif",
+            "picture": "/images/data/artifacts/ark_viol_2_4.gif",
+            "kind": "Аркат",
+            "type_id": "155",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "16"
+            },
+            "skills": [],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "Увеличивает <SPAN style=\"color:red\"><STRONG>шанс критического урона</STRONG></SPAN> от боевых аур на <STRONG>2%</STRONG>.<br /><STRONG>Одновременно можно надеть только один из аркатов мощи, вампиризма или крови!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3586439111\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3586439111"
+        },
+        {
+            "id": "3586594703",
+            "title": "Сильный тетрарк крови",
+            "ord": "82",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 2,
+            "color": "#3300ff",
+            "quality": "2",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_viol_3_2.gif",
+            "picture": "/images/data/artifacts/ark_viol_3_2.gif",
+            "kind": "Аркат",
+            "type_id": "155",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "17"
+            },
+            "skills": [],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "Увеличивает <SPAN style=\"color:red\"><STRONG>шанс критического урона</STRONG></SPAN> от боевых аур на <STRONG>3%</STRONG>.<br /><STRONG>Одновременно можно надеть только один из аркатов мощи, вампиризма или крови!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3586594703\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3586594703"
+        },
+        {
+            "id": "3054711971",
+            "title": "Слабый триарк стойкости",
+            "ord": "83",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 2812,
+            "color": "#666666",
+            "quality": "0",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_white_1_1.gif",
+            "picture": "/images/data/artifacts/ark_white_1_1.gif",
+            "kind": "Аркат",
+            "type_id": "151",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "11"
+            },
+            "skills": [
+                {
+                    "title": "Стойкость",
+                    "value": "<b>+70</b>"
+                }
+            ],
+            "skills_e": [],
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат стойкости!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3054711971\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3054711971"
+        },
+        {
+            "id": "3368931879",
+            "title": "Слабый тетрарк стойкости",
+            "ord": "84",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 13,
+            "color": "#666666",
+            "quality": "0",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_white_1_2.gif",
+            "picture": "/images/data/artifacts/ark_white_1_2.gif",
+            "kind": "Аркат",
+            "type_id": "151",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "11"
+            },
+            "skills": [
+                {
+                    "title": "Стойкость",
+                    "value": "<b>+90</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат стойкости!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3368931879\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3368931879"
+        },
+        {
+            "id": "3384101329",
+            "title": "Слабый пентарк стойкости",
+            "ord": "85",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 34,
+            "color": "#666666",
+            "quality": "0",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_white_1_3.gif",
+            "picture": "/images/data/artifacts/ark_white_1_3.gif",
+            "kind": "Аркат",
+            "type_id": "151",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "13"
+            },
+            "skills": [
+                {
+                    "title": "Стойкость",
+                    "value": "<b>+120</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат стойкости!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3384101329\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3384101329"
+        },
+        {
+            "id": "3384101322",
+            "title": "Слабый эксарк стойкости",
+            "ord": "86",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 27,
+            "color": "#666666",
+            "quality": "0",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_white_1_4.gif",
+            "picture": "/images/data/artifacts/ark_white_1_4.gif",
+            "kind": "Аркат",
+            "type_id": "151",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "13"
+            },
+            "skills": [
+                {
+                    "title": "Стойкость",
+                    "value": "<b>+150</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат стойкости!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3384101322\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3384101322"
+        },
+        {
+            "id": "3730477887",
+            "title": "Триарк стойкости",
+            "ord": "87",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 3,
+            "color": "#339900",
+            "quality": "1",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_white_2_1.gif",
+            "picture": "/images/data/artifacts/ark_white_2_1.gif",
+            "kind": "Аркат",
+            "type_id": "151",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "15"
+            },
+            "skills": [
+                {
+                    "title": "Стойкость",
+                    "value": "<b>+200</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат стойкости!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3730477887\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3730477887"
+        },
+        {
+            "id": "3586438138",
+            "title": "Пентарк стойкости",
+            "ord": "88",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 6,
+            "color": "#339900",
+            "quality": "1",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_white_2_3.gif",
+            "picture": "/images/data/artifacts/ark_white_2_3.gif",
+            "kind": "Аркат",
+            "type_id": "151",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "16"
+            },
+            "skills": [
+                {
+                    "title": "Стойкость",
+                    "value": "<b>+350</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат стойкости!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3586438138\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3586438138"
+        },
+        {
+            "id": "3730477444",
+            "title": "Эксарк стойкости",
+            "ord": "89",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 5,
+            "color": "#339900",
+            "quality": "1",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_white_2_4.gif",
+            "picture": "/images/data/artifacts/ark_white_2_4.gif",
+            "kind": "Аркат",
+            "type_id": "151",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "16"
+            },
+            "skills": [
+                {
+                    "title": "Стойкость",
+                    "value": "<b>+400</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат стойкости!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3730477444\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3730477444"
+        },
+        {
+            "id": "3054718407",
+            "title": "Слабый триарк интеллекта",
+            "ord": "90",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 3860,
+            "color": "#666666",
+            "quality": "0",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_blue_1_1.gif",
+            "picture": "/images/data/artifacts/ark_blue_1_1.gif",
+            "kind": "Аркат",
+            "type_id": "152",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "11"
+            },
+            "skills": [
+                {
+                    "title": "Интеллект",
+                    "value": "<b>+6</b>"
+                }
+            ],
+            "skills_e": [],
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат интеллекта!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3054718407\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3054718407"
+        },
+        {
+            "id": "3376930360",
+            "title": "Слабый тетрарк интеллекта",
+            "ord": "91",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 6,
+            "color": "#666666",
+            "quality": "0",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_blue_1_2.gif",
+            "picture": "/images/data/artifacts/ark_blue_1_2.gif",
+            "kind": "Аркат",
+            "type_id": "152",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "11"
+            },
+            "skills": [
+                {
+                    "title": "Интеллект",
+                    "value": "<b>+8</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат интеллекта!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3376930360\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3376930360"
+        },
+        {
+            "id": "3384101526",
+            "title": "Слабый пентарк интеллекта",
+            "ord": "92",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 16,
+            "color": "#666666",
+            "quality": "0",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_blue_1_3.gif",
+            "picture": "/images/data/artifacts/ark_blue_1_3.gif",
+            "kind": "Аркат",
+            "type_id": "152",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "13"
+            },
+            "skills": [
+                {
+                    "title": "Интеллект",
+                    "value": "<b>+10</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат интеллекта!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3384101526\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3384101526"
+        },
+        {
+            "id": "3044093593",
+            "title": "Слабый эксарк интеллекта",
+            "ord": "93",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 11,
+            "color": "#666666",
+            "quality": "0",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_blue_1_4.gif",
+            "picture": "/images/data/artifacts/ark_blue_1_4.gif",
+            "kind": "Аркат",
+            "type_id": "152",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "13"
+            },
+            "skills": [
+                {
+                    "title": "Интеллект",
+                    "value": "<b>+12</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат интеллекта!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3044093593\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3044093593"
+        },
+        {
+            "id": "3586594731",
+            "title": "Эксарк интеллекта",
+            "ord": "94",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 3,
+            "color": "#339900",
+            "quality": "1",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_blue_2_4.gif",
+            "picture": "/images/data/artifacts/ark_blue_2_4.gif",
+            "kind": "Аркат",
+            "type_id": "152",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "16"
+            },
+            "skills": [
+                {
+                    "title": "Интеллект",
+                    "value": "<b>+20</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат интеллекта!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3586594731\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3586594731"
+        },
+        {
+            "id": "3670486327",
+            "title": "Триарк интеллекта",
+            "ord": "95",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "color": "#339900",
+            "quality": "1",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_blue_2_1.gif",
+            "picture": "/images/data/artifacts/ark_blue_2_1.gif",
+            "kind": "Аркат",
+            "type_id": "152",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "15"
+            },
+            "skills": [
+                {
+                    "title": "Интеллект",
+                    "value": "<b>+14</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат интеллекта!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3670486327\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3670486327"
+        },
+        {
+            "id": "3586439156",
+            "title": "Тетрарк интеллекта",
+            "ord": "96",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 3,
+            "color": "#339900",
+            "quality": "1",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_blue_2_2.gif",
+            "picture": "/images/data/artifacts/ark_blue_2_2.gif",
+            "kind": "Аркат",
+            "type_id": "152",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "15"
+            },
+            "skills": [
+                {
+                    "title": "Интеллект",
+                    "value": "<b>+16</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат интеллекта!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3586439156\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3586439156"
+        },
+        {
+            "id": "3730477440",
+            "title": "Пентарк интеллекта",
+            "ord": "97",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 4,
+            "color": "#339900",
+            "quality": "1",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_blue_2_3.gif",
+            "picture": "/images/data/artifacts/ark_blue_2_3.gif",
+            "kind": "Аркат",
+            "type_id": "152",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "16"
+            },
+            "skills": [
+                {
+                    "title": "Интеллект",
+                    "value": "<b>+18</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат интеллекта!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3730477440\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3730477440"
+        },
+        {
+            "id": "3619337947",
+            "title": "Пентарк инициативы",
+            "ord": "98",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "color": "#339900",
+            "quality": "1",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_dblue_2_3.gif",
+            "picture": "/images/data/artifacts/ark_dblue_2_3.gif",
+            "kind": "Аркат",
+            "type_id": "156",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "16"
+            },
+            "skills": [
+                {
+                    "title": "Инициатива",
+                    "value": "<b>+12</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат инициативы!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3619337947\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3619337947"
+        },
+        {
+            "id": "3054719381",
+            "title": "Слабый триарк инициативы",
+            "ord": "99",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 175,
+            "color": "#666666",
+            "quality": "0",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_dblue_1_1.gif",
+            "picture": "/images/data/artifacts/ark_dblue_1_1.gif",
+            "kind": "Аркат",
+            "type_id": "156",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "11"
+            },
+            "skills": [
+                {
+                    "title": "Инициатива",
+                    "value": "<b>+2</b>"
+                }
+            ],
+            "skills_e": [],
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат инициативы!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3054719381\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3054719381"
+        },
+        {
+            "id": "3586438181",
+            "title": "Слабый пентарк инициативы",
+            "ord": "101",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "color": "#666666",
+            "quality": "0",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_dblue_1_3.gif",
+            "picture": "/images/data/artifacts/ark_dblue_1_3.gif",
+            "kind": "Аркат",
+            "type_id": "156",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "13"
+            },
+            "skills": [
+                {
+                    "title": "Инициатива",
+                    "value": "<b>+4</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат инициативы!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3586438181\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3586438181"
+        },
+        {
+            "id": "3586438148",
+            "title": "Слабый эксарк инициативы",
+            "ord": "102",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "color": "#666666",
+            "quality": "0",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_dblue_1_4.gif",
+            "picture": "/images/data/artifacts/ark_dblue_1_4.gif",
+            "kind": "Аркат",
+            "type_id": "156",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "13"
+            },
+            "skills": [
+                {
+                    "title": "Инициатива",
+                    "value": "<b>+6</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат инициативы!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3586438148\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3586438148"
+        },
+        {
+            "id": "3586439126",
+            "title": "Триарк инициативы",
+            "ord": "103",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "color": "#339900",
+            "quality": "1",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_dblue_2_1.gif",
+            "picture": "/images/data/artifacts/ark_dblue_2_1.gif",
+            "kind": "Аркат",
+            "type_id": "156",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "15"
+            },
+            "skills": [
+                {
+                    "title": "Инициатива",
+                    "value": "<b>+8</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат инициативы!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3586439126\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3586439126"
+        },
+        {
+            "id": "3730477775",
+            "title": "Тетрарк инициативы",
+            "ord": "104",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 2,
+            "color": "#339900",
+            "quality": "1",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_dblue_2_2.gif",
+            "picture": "/images/data/artifacts/ark_dblue_2_2.gif",
+            "kind": "Аркат",
+            "type_id": "156",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "15"
+            },
+            "skills": [
+                {
+                    "title": "Инициатива",
+                    "value": "<b>+9</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат инициативы!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3730477775\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3730477775"
+        },
+        {
+            "id": "3135029714",
+            "title": "Слабый триарк концентрации",
+            "ord": "107",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 2113,
+            "color": "#666666",
+            "quality": "0",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_yellow_1_1.gif",
+            "picture": "/images/data/artifacts/ark_yellow_1_1.gif",
+            "kind": "Аркат",
+            "type_id": "148",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "11"
+            },
+            "skills": [
+                {
+                    "title": "Концентрация",
+                    "value": "<b>+5</b>"
+                }
+            ],
+            "skills_e": [],
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат концентрации!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3135029714\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3135029714"
+        },
+        {
+            "id": "3352128791",
+            "title": "Слабый тетрарк концентрации",
+            "ord": "108",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 10,
+            "color": "#666666",
+            "quality": "0",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_yellow_1_2.gif",
+            "picture": "/images/data/artifacts/ark_yellow_1_2.gif",
+            "kind": "Аркат",
+            "type_id": "148",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "11"
+            },
+            "skills": [
+                {
+                    "title": "Концентрация",
+                    "value": "<b>+10</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат концентрации!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3352128791\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3352128791"
+        },
+        {
+            "id": "3328288511",
+            "title": "Эксарк концентрации",
+            "ord": "109",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 3,
+            "color": "#339900",
+            "quality": "1",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_yellow_2_4.gif",
+            "picture": "/images/data/artifacts/ark_yellow_2_4.gif",
+            "kind": "Аркат",
+            "type_id": "148",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "16"
+            },
+            "skills": [
+                {
+                    "title": "Концентрация",
+                    "value": "<b>+40</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат концентрации!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3328288511\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3328288511"
+        },
+        {
+            "id": "3384101335",
+            "title": "Слабый пентарк концентрации",
+            "ord": "110",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 24,
+            "color": "#666666",
+            "quality": "0",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_yellow_1_3.gif",
+            "picture": "/images/data/artifacts/ark_yellow_1_3.gif",
+            "kind": "Аркат",
+            "type_id": "148",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "13"
+            },
+            "skills": [
+                {
+                    "title": "Концентрация",
+                    "value": "<b>+15</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат концентрации!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3384101335\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3384101335"
+        },
+        {
+            "id": "3384101781",
+            "title": "Слабый эксарк концентрации",
+            "ord": "111",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 20,
+            "color": "#666666",
+            "quality": "0",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_yellow_1_4.gif",
+            "picture": "/images/data/artifacts/ark_yellow_1_4.gif",
+            "kind": "Аркат",
+            "type_id": "148",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "13"
+            },
+            "skills": [
+                {
+                    "title": "Концентрация",
+                    "value": "<b>+20</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат концентрации!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3384101781\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3384101781"
+        },
+        {
+            "id": "3384100514",
+            "title": "Триарк концентрации",
+            "ord": "112",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 2,
+            "color": "#339900",
+            "quality": "1",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_yellow_2_1.gif",
+            "picture": "/images/data/artifacts/ark_yellow_2_1.gif",
+            "kind": "Аркат",
+            "type_id": "148",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "15"
+            },
+            "skills": [
+                {
+                    "title": "Концентрация",
+                    "value": "<b>+25</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат концентрации!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3384100514\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3384100514"
+        },
+        {
+            "id": "3670486755",
+            "title": "Пентарк концентрации",
+            "ord": "113",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 2,
+            "color": "#339900",
+            "quality": "1",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_yellow_2_3.gif",
+            "picture": "/images/data/artifacts/ark_yellow_2_3.gif",
+            "kind": "Аркат",
+            "type_id": "148",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "16"
+            },
+            "skills": [
+                {
+                    "title": "Концентрация",
+                    "value": "<b>+35</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат концентрации!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3670486755\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3670486755"
+        },
+        {
+            "id": "3360769665",
+            "title": "Слабый триарк подавления",
+            "ord": "114",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 2355,
+            "color": "#666666",
+            "quality": "0",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_grey_1_1.gif",
+            "picture": "/images/data/artifacts/ark_grey_1_1.gif",
+            "kind": "Аркат",
+            "type_id": "149",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "11"
+            },
+            "skills": [
+                {
+                    "title": "Подавление",
+                    "value": "<b>+5</b>"
+                }
+            ],
+            "skills_e": [],
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат подавления!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3360769665\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3360769665"
+        },
+        {
+            "id": "3384101463",
+            "title": "Слабый тетрарк подавления",
+            "ord": "115",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 13,
+            "color": "#666666",
+            "quality": "0",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_grey_1_2.gif",
+            "picture": "/images/data/artifacts/ark_grey_1_2.gif",
+            "kind": "Аркат",
+            "type_id": "149",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "11"
+            },
+            "skills": [
+                {
+                    "title": "Подавление",
+                    "value": "<b>+10</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат подавления!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3384101463\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3384101463"
+        },
+        {
+            "id": "3384101372",
+            "title": "Слабый пентарк подавления",
+            "ord": "116",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 34,
+            "color": "#666666",
+            "quality": "0",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_grey_1_3.gif",
+            "picture": "/images/data/artifacts/ark_grey_1_3.gif",
+            "kind": "Аркат",
+            "type_id": "149",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "13"
+            },
+            "skills": [
+                {
+                    "title": "Подавление",
+                    "value": "<b>+15</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат подавления!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3384101372\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3384101372"
+        },
+        {
+            "id": "3384101332",
+            "title": "Слабый эксарк подавления",
+            "ord": "117",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 24,
+            "color": "#666666",
+            "quality": "0",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_grey_1_4.gif",
+            "picture": "/images/data/artifacts/ark_grey_1_4.gif",
+            "kind": "Аркат",
+            "type_id": "149",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "13"
+            },
+            "skills": [
+                {
+                    "title": "Подавление",
+                    "value": "<b>+20</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат подавления!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3384101332\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3384101332"
+        },
+        {
+            "id": "3730477433",
+            "title": "Пентарк подавления",
+            "ord": "118",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 2,
+            "color": "#339900",
+            "quality": "1",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_grey_2_3.gif",
+            "picture": "/images/data/artifacts/ark_grey_2_3.gif",
+            "kind": "Аркат",
+            "type_id": "149",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "16"
+            },
+            "skills": [
+                {
+                    "title": "Подавление",
+                    "value": "<b>+35</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат подавления!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3730477433\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3730477433"
+        },
+        {
+            "id": "3054713648",
+            "title": "Слабый триарк живучести",
+            "ord": "119",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 831,
+            "color": "#666666",
+            "quality": "0",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_brown_1_1.gif",
+            "picture": "/images/data/artifacts/ark_brown_1_1.gif",
+            "kind": "Аркат",
+            "type_id": "150",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "11"
+            },
+            "skills": [
+                {
+                    "title": "Живучесть",
+                    "value": "<b>+10</b>"
+                }
+            ],
+            "skills_e": [],
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат живучести!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3054713648\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3054713648"
+        },
+        {
+            "id": "3384100515",
+            "title": "Слабый тетрарк живучести",
+            "ord": "120",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 6,
+            "color": "#666666",
+            "quality": "0",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_brown_1_2.gif",
+            "picture": "/images/data/artifacts/ark_brown_1_2.gif",
+            "kind": "Аркат",
+            "type_id": "150",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "11"
+            },
+            "skills": [
+                {
+                    "title": "Живучесть",
+                    "value": "<b>+15</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат живучести!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3384100515\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3384100515"
+        },
+        {
+            "id": "3384101429",
+            "title": "Слабый пентарк живучести",
+            "ord": "121",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 23,
+            "color": "#666666",
+            "quality": "0",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_brown_1_3.gif",
+            "picture": "/images/data/artifacts/ark_brown_1_3.gif",
+            "kind": "Аркат",
+            "type_id": "150",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "13"
+            },
+            "skills": [
+                {
+                    "title": "Живучесть",
+                    "value": "<b>+20</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат живучести!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3384101429\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3384101429"
+        },
+        {
+            "id": "3384101319",
+            "title": "Слабый эксарк живучести",
+            "ord": "122",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 12,
+            "color": "#666666",
+            "quality": "0",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_brown_1_4.gif",
+            "picture": "/images/data/artifacts/ark_brown_1_4.gif",
+            "kind": "Аркат",
+            "type_id": "150",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "13"
+            },
+            "skills": [
+                {
+                    "title": "Живучесть",
+                    "value": "<b>+25</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат живучести!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3384101319\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3384101319"
+        },
+        {
+            "id": "3059701330",
+            "title": "Триарк живучести",
+            "ord": "123",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 6,
+            "color": "#339900",
+            "quality": "1",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_brown_2_1.gif",
+            "picture": "/images/data/artifacts/ark_brown_2_1.gif",
+            "kind": "Аркат",
+            "type_id": "150",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "15"
+            },
+            "skills": [
+                {
+                    "title": "Живучесть",
+                    "value": "<b>+30</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат живучести!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3059701330\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3059701330"
+        },
+        {
+            "id": "3703761108",
+            "title": "Сильный триарк интеллекта",
+            "ord": "124",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 2,
+            "color": "#3300ff",
+            "quality": "2",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_blue_3_1.gif",
+            "picture": "/images/data/artifacts/ark_blue_3_1.gif",
+            "kind": "Аркат",
+            "type_id": "152",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "17"
+            },
+            "skills": [
+                {
+                    "title": "Интеллект",
+                    "value": "<b>+22</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат интеллекта!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3703761108\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3703761108"
+        },
+        {
+            "id": "3586439101",
+            "title": "Сильный триарк стойкости",
             "ord": "125",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "color": "#3300ff",
+            "quality": "2",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_white_3_1.gif",
+            "picture": "/images/data/artifacts/ark_white_3_1.gif",
+            "kind": "Аркат",
+            "type_id": "151",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "17"
+            },
+            "skills": [
+                {
+                    "title": "Стойкость",
+                    "value": "<b>+450</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат стойкости!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3586439101\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3586439101"
+        },
+        {
+            "id": "3790895614",
+            "title": "Великий триарк подавления",
+            "ord": "126",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "color": "#990099",
+            "quality": "3",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_grey_4_1.gif",
+            "picture": "/images/data/artifacts/ark_grey_4_1.gif",
+            "kind": "Аркат",
+            "type_id": "149",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "19"
+            },
+            "skills": [
+                {
+                    "title": "Подавление",
+                    "value": "<b>+65</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат подавления!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3790895614\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3790895614"
+        },
+        {
+            "id": "3586439103",
+            "title": "Сильный тетрарк инициативы",
+            "ord": "127",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 2,
+            "color": "#3300ff",
+            "quality": "2",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_dblue_3_2.gif",
+            "picture": "/images/data/artifacts/ark_dblue_3_2.gif",
+            "kind": "Аркат",
+            "type_id": "156",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "17"
+            },
+            "skills": [
+                {
+                    "title": "Инициатива",
+                    "value": "<b>+18</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат инициативы!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3586439103\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3586439103"
+        },
+        {
+            "id": "3586439097",
+            "title": "Великий триарк проницания",
+            "ord": "128",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "color": "#990099",
+            "quality": "3",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_turquoise_4_1.gif",
+            "picture": "/images/data/artifacts/ark_turquoise_4_1.gif",
+            "kind": "Аркат",
+            "type_id": "147",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "19"
+            },
+            "skills": [
+                {
+                    "title": "Проницание огонь-воздух",
+                    "value": "<b>+65</b>"
+                },
+                {
+                    "title": "Проницание свет-тьма",
+                    "value": "<b>+65</b>"
+                },
+                {
+                    "title": "Проницание земля-вода",
+                    "value": "<b>+65</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат проницания!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3586439097\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3586439097"
+        },
+        {
+            "id": "3619337942",
+            "title": "Сильный пентарк крови",
+            "ord": "129",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "color": "#3300ff",
+            "quality": "2",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_viol_3_3.gif",
+            "picture": "/images/data/artifacts/ark_viol_3_3.gif",
+            "kind": "Аркат",
+            "type_id": "155",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "18"
+            },
+            "skills": [],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "Увеличивает <SPAN style=\"color:red\"><STRONG>шанс критического урона</STRONG></SPAN> от боевых аур на <STRONG>3%</STRONG>.<br /><STRONG>Одновременно можно надеть только один из аркатов мощи, вампиризма или крови!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3619337942\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3619337942"
+        },
+        {
+            "id": "4366766410",
+            "title": "Тетрарк подавления",
+            "ord": "130",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "color": "#339900",
+            "quality": "1",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_grey_2_2.gif",
+            "picture": "/images/data/artifacts/ark_grey_2_2.gif",
+            "kind": "Аркат",
+            "type_id": "149",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "15"
+            },
+            "skills": [
+                {
+                    "title": "Подавление",
+                    "value": "<b>+30</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат подавления!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"4366766410\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_4366766410"
+        },
+        {
+            "id": "4369340675",
+            "title": "Сильный триарк живучести",
+            "ord": "131",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 2,
+            "color": "#3300ff",
+            "quality": "2",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_brown_3_1.gif",
+            "picture": "/images/data/artifacts/ark_brown_3_1.gif",
+            "kind": "Аркат",
+            "type_id": "150",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "17"
+            },
+            "skills": [
+                {
+                    "title": "Живучесть",
+                    "value": "<b>+50</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат живучести!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"4369340675\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_4369340675"
+        },
+        {
+            "id": "4380829227",
+            "title": "Великий пентарк скорости",
+            "ord": "132",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "color": "#990099",
+            "quality": "3",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_lime_4_3.gif",
+            "picture": "/images/data/artifacts/ark_lime_4_3.gif",
+            "kind": "Аркат",
+            "type_id": "159",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "20"
+            },
+            "skills": [
+                {
+                    "title": "Скорость",
+                    "value": "<b>+27</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат скорости!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"4380829227\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_4380829227"
+        },
+        {
+            "id": "4380829230",
+            "title": "Сильный пентарк стойкости",
+            "ord": "133",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "color": "#3300ff",
+            "quality": "2",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_white_3_3.gif",
+            "picture": "/images/data/artifacts/ark_white_3_3.gif",
+            "kind": "Аркат",
+            "type_id": "151",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "18"
+            },
+            "skills": [
+                {
+                    "title": "Стойкость",
+                    "value": "<b>+600</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат стойкости!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"4380829230\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_4380829230"
+        },
+        {
+            "id": "4380829233",
+            "title": "Эксарк живучести",
+            "ord": "134",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 2,
+            "color": "#339900",
+            "quality": "1",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_brown_2_4.gif",
+            "picture": "/images/data/artifacts/ark_brown_2_4.gif",
+            "kind": "Аркат",
+            "type_id": "150",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "16"
+            },
+            "skills": [
+                {
+                    "title": "Живучесть",
+                    "value": "<b>+45</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат живучести!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"4380829233\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_4380829233"
+        },
+        {
+            "id": "4380829251",
+            "title": "Сильный эксарк мощи",
+            "ord": "135",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "color": "#3300ff",
+            "quality": "2",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_orange_3_4.gif",
+            "picture": "/images/data/artifacts/ark_orange_3_4.gif",
+            "kind": "Аркат",
+            "type_id": "153",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "18"
+            },
+            "skills": [],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "Увеличивает урон от боевых аур на <STRONG>3%</STRONG>.<br /><STRONG>Одновременно можно надеть только один из аркатов мощи, вампиризма или крови!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"4380829251\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_4380829251"
+        },
+        {
+            "id": "4380829252",
+            "title": "Сильный триарк травматизма",
+            "ord": "136",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 3,
+            "color": "#3300ff",
+            "quality": "2",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_black_3_1.gif",
+            "picture": "/images/data/artifacts/ark_black_3_1.gif",
+            "kind": "Аркат",
+            "type_id": "157",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "17"
+            },
+            "skills": [
+                {
+                    "title": "Травматизм",
+                    "value": "<b>+12</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат травматизма!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"4380829252\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_4380829252"
+        },
+        {
+            "id": "4380829253",
+            "title": "Сильный тетрарк концентрации",
+            "ord": "137",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "color": "#3300ff",
+            "quality": "2",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_yellow_3_2.gif",
+            "picture": "/images/data/artifacts/ark_yellow_3_2.gif",
+            "kind": "Аркат",
+            "type_id": "148",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "17"
+            },
+            "skills": [
+                {
+                    "title": "Концентрация",
+                    "value": "<b>+50</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат концентрации!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"4380829253\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_4380829253"
+        },
+        {
+            "id": "4380862982",
+            "title": "Тетрарк стойкости",
+            "ord": "138",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 2,
+            "color": "#339900",
+            "quality": "1",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_white_2_2.gif",
+            "picture": "/images/data/artifacts/ark_white_2_2.gif",
+            "kind": "Аркат",
+            "type_id": "151",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "15"
+            },
+            "skills": [
+                {
+                    "title": "Стойкость",
+                    "value": "<b>+250</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат стойкости!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"4380862982\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_4380862982"
+        },
+        {
+            "id": "4380863157",
+            "title": "Великий триарк травматизма",
+            "ord": "139",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 2,
+            "color": "#990099",
+            "quality": "3",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_black_4_1.gif",
+            "picture": "/images/data/artifacts/ark_black_4_1.gif",
+            "kind": "Аркат",
+            "type_id": "157",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "19"
+            },
+            "skills": [
+                {
+                    "title": "Травматизм",
+                    "value": "<b>+21</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат травматизма!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"4380863157\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_4380863157"
+        },
+        {
+            "id": "4380863161",
+            "title": "Сильный тетрарк барьера",
+            "ord": "140",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 2,
+            "color": "#3300ff",
+            "quality": "2",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_green_3_2.gif",
+            "picture": "/images/data/artifacts/ark_green_3_2.gif",
+            "kind": "Аркат",
+            "type_id": "146",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "17"
+            },
+            "skills": [
+                {
+                    "title": "Защита огонь-воздух",
+                    "value": "<b>+50</b>"
+                },
+                {
+                    "title": "Защита свет-тьма",
+                    "value": "<b>+50</b>"
+                },
+                {
+                    "title": "Защита земля-вода",
+                    "value": "<b>+50</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат барьера!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"4380863161\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_4380863161"
+        },
+        {
+            "id": "4380863170",
+            "title": "Триарк травматизма",
+            "ord": "141",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "color": "#339900",
+            "quality": "1",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_black_2_1.gif",
+            "picture": "/images/data/artifacts/ark_black_2_1.gif",
+            "kind": "Аркат",
+            "type_id": "157",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "15"
+            },
+            "skills": [
+                {
+                    "title": "Травматизм",
+                    "value": "<b>+7</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат травматизма!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"4380863170\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_4380863170"
+        },
+        {
+            "id": "4380888839",
+            "title": "Великий эксарк травматизма",
+            "ord": "142",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "color": "#990099",
+            "quality": "3",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_black_4_4.gif",
+            "picture": "/images/data/artifacts/ark_black_4_4.gif",
+            "kind": "Аркат",
+            "type_id": "157",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "20"
+            },
+            "skills": [
+                {
+                    "title": "Травматизм",
+                    "value": "<b>+30</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат травматизма!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"4380888839\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_4380888839"
+        },
+        {
+            "id": "4380888840",
+            "title": "Сильный тетрарк интеллекта",
+            "ord": "143",
             "kind_id": "161",
             "storage_type": "0",
             "profession": "0",
@@ -4768,7 +5639,7 @@ let items = {
             "sell": true,
             "drop": true,
             "equip": true,
-            "add_attrs": " artifact_id=\"4385636207\" price_type=\"1\" sell_price=\"0.1\"",
+            "add_attrs": " artifact_id=\"4380888840\" price_type=\"1\" sell_price=\"0.1\"",
             "icon_list": {
                 "1": "info",
                 "2": "sell"
@@ -4778,691 +5649,368 @@ let items = {
             "_act2": 3,
             "_act3": 0,
             "_act4": 0,
-            "artifact_alt_id": "AA_4385636207"
+            "artifact_alt_id": "AA_4380888840"
         },
         {
-            "id": "3720466225",
-            "title": "Эксарк интеллекта",
-            "ord": "126",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "cnt": 2,
-            "color": "#339900",
-            "quality": "1",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_blue_2_4.gif",
-            "picture": "/images/data/artifacts/ark_blue_2_4.gif",
-            "kind": "Аркат",
-            "type_id": "152",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "16"
-            },
-            "skills": [
-                {
-                    "title": "Интеллект",
-                    "value": "<b>+20</b>"
-                }
-            ],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат интеллекта!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3720466225\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3720466225"
-        },
-        {
-            "id": "3720466206",
-            "title": "Пентарк интеллекта",
-            "ord": "127",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "cnt": 2,
-            "color": "#339900",
-            "quality": "1",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_blue_2_3.gif",
-            "picture": "/images/data/artifacts/ark_blue_2_3.gif",
-            "kind": "Аркат",
-            "type_id": "152",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "16"
-            },
-            "skills": [
-                {
-                    "title": "Интеллект",
-                    "value": "<b>+18</b>"
-                }
-            ],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат интеллекта!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3720466206\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3720466206"
-        },
-        {
-            "id": "3191690936",
-            "title": "Слабый эксарк интеллекта",
-            "ord": "128",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "cnt": 2,
-            "color": "#666666",
-            "quality": "0",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_blue_1_4.gif",
-            "picture": "/images/data/artifacts/ark_blue_1_4.gif",
-            "kind": "Аркат",
-            "type_id": "152",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "13"
-            },
-            "skills": [
-                {
-                    "title": "Интеллект",
-                    "value": "<b>+12</b>"
-                }
-            ],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат интеллекта!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3191690936\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3191690936"
-        },
-        {
-            "id": "3191690241",
-            "title": "Слабый пентарк интеллекта",
-            "ord": "129",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "cnt": 8,
-            "color": "#666666",
-            "quality": "0",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_blue_1_3.gif",
-            "picture": "/images/data/artifacts/ark_blue_1_3.gif",
-            "kind": "Аркат",
-            "type_id": "152",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "13"
-            },
-            "skills": [
-                {
-                    "title": "Интеллект",
-                    "value": "<b>+10</b>"
-                }
-            ],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат интеллекта!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3191690241\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3191690241"
-        },
-        {
-            "id": "4385636210",
-            "title": "Слабый тетрарк интеллекта",
-            "ord": "130",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#666666",
-            "quality": "0",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_blue_1_2.gif",
-            "picture": "/images/data/artifacts/ark_blue_1_2.gif",
-            "kind": "Аркат",
-            "type_id": "152",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "11"
-            },
-            "skills": [
-                {
-                    "title": "Интеллект",
-                    "value": "<b>+8</b>"
-                }
-            ],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат интеллекта!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"4385636210\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_4385636210"
-        },
-        {
-            "id": "3863021115",
-            "title": "Слабый триарк интеллекта",
-            "ord": "131",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "cnt": 699,
-            "color": "#666666",
-            "quality": "0",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_blue_1_1.gif",
-            "picture": "/images/data/artifacts/ark_blue_1_1.gif",
-            "kind": "Аркат",
-            "type_id": "152",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "11"
-            },
-            "skills": [
-                {
-                    "title": "Интеллект",
-                    "value": "<b>+6</b>"
-                }
-            ],
-            "skills_e": [],
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат интеллекта!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3863021115\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3863021115"
-        },
-        {
-            "id": "3720466227",
-            "title": "Эксарк вампиризма",
-            "ord": "133",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#339900",
-            "quality": "1",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_red_2_4.gif",
-            "picture": "/images/data/artifacts/ark_red_2_4.gif",
-            "kind": "Аркат",
-            "type_id": "154",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "16"
-            },
-            "skills": [],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "Дает <STRONG>2%</STRONG> <STRONG><SPAN style=\"color:red\">вампирический эффект</SPAN></STRONG> боевым аурам.<br /><STRONG>Одновременно можно надеть только один из аркатов мощи, вампиризма или крови!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3720466227\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3720466227"
-        },
-        {
-            "id": "3720466208",
-            "title": "Пентарк вампиризма",
-            "ord": "134",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "cnt": 3,
-            "color": "#339900",
-            "quality": "1",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_red_2_3.gif",
-            "picture": "/images/data/artifacts/ark_red_2_3.gif",
-            "kind": "Аркат",
-            "type_id": "154",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "16"
-            },
-            "skills": [],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "Дает <STRONG>2%</STRONG> <STRONG><SPAN style=\"color:red\">вампирический эффект</SPAN></STRONG> боевым аурам.<br /><STRONG>Одновременно можно надеть только один из аркатов мощи, вампиризма или крови!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3720466208\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3720466208"
-        },
-        {
-            "id": "3463474765",
-            "title": "Тетрарк вампиризма",
-            "ord": "135",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#339900",
-            "quality": "1",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_red_2_2.gif",
-            "picture": "/images/data/artifacts/ark_red_2_2.gif",
-            "kind": "Аркат",
-            "type_id": "154",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "15"
-            },
-            "skills": [],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "Дает <STRONG>2%</STRONG> <STRONG><SPAN style=\"color:red\">вампирический эффект</SPAN></STRONG> боевым аурам.<br /><STRONG>Одновременно можно надеть только один из аркатов мощи, вампиризма или крови!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3463474765\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3463474765"
-        },
-        {
-            "id": "3880023028",
-            "title": "Триарк вампиризма",
-            "ord": "136",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "cnt": 2,
-            "color": "#339900",
-            "quality": "1",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_red_2_1.gif",
-            "picture": "/images/data/artifacts/ark_red_2_1.gif",
-            "kind": "Аркат",
-            "type_id": "154",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "15"
-            },
-            "skills": [],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "Дает <STRONG>2%</STRONG> <STRONG><SPAN style=\"color:red\">вампирический эффект</SPAN></STRONG> боевым аурам.<br /><STRONG>Одновременно можно надеть только один из аркатов мощи, вампиризма или крови!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3880023028\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3880023028"
-        },
-        {
-            "id": "3191691121",
-            "title": "Слабый эксарк вампиризма",
-            "ord": "137",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "cnt": 3,
-            "color": "#666666",
-            "quality": "0",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_red_1_4.gif",
-            "picture": "/images/data/artifacts/ark_red_1_4.gif",
-            "kind": "Аркат",
-            "type_id": "154",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "13"
-            },
-            "skills": [],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "Дает <STRONG>1%</STRONG> <STRONG><SPAN style=\"color:red\">вампирический эффект</SPAN></STRONG> боевым аурам.<br /><STRONG>Одновременно можно надеть только один из аркатов мощи, вампиризма или крови!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3191691121\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3191691121"
-        },
-        {
-            "id": "3191690286",
-            "title": "Слабый пентарк вампиризма",
-            "ord": "138",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "cnt": 5,
-            "color": "#666666",
-            "quality": "0",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_red_1_3.gif",
-            "picture": "/images/data/artifacts/ark_red_1_3.gif",
-            "kind": "Аркат",
-            "type_id": "154",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "13"
-            },
-            "skills": [],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "Дает <STRONG>1%</STRONG> <STRONG><SPAN style=\"color:red\">вампирический эффект</SPAN></STRONG> боевым аурам.<br /><STRONG>Одновременно можно надеть только один из аркатов мощи, вампиризма или крови!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3191690286\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3191690286"
-        },
-        {
-            "id": "4188414442",
-            "title": "Слабый тетрарк вампиризма",
-            "ord": "139",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "cnt": 2,
-            "color": "#666666",
-            "quality": "0",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_red_1_2.gif",
-            "picture": "/images/data/artifacts/ark_red_1_2.gif",
-            "kind": "Аркат",
-            "type_id": "154",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "11"
-            },
-            "skills": [],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "Дает <STRONG>1%</STRONG> <STRONG><SPAN style=\"color:red\">вампирический эффект</SPAN></STRONG> боевым аурам.<br /><STRONG>Одновременно можно надеть только один из аркатов мощи, вампиризма или крови!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"4188414442\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_4188414442"
-        },
-        {
-            "id": "3907138944",
-            "title": "Слабый триарк вампиризма",
-            "ord": "140",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "cnt": 613,
-            "color": "#666666",
-            "quality": "0",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_red_1_1.gif",
-            "picture": "/images/data/artifacts/ark_red_1_1.gif",
-            "kind": "Аркат",
-            "type_id": "154",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "11"
-            },
-            "skills": [],
-            "skills_e": [],
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "Дает <STRONG>1%</STRONG> <STRONG><SPAN style=\"color:red\">вампирический эффект</SPAN></STRONG> боевым аурам.<br /><STRONG>Одновременно можно надеть только один из аркатов мощи, вампиризма или крови!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3907138944\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3907138944"
-        },
-        {
-            "id": "3720466221",
-            "title": "Эксарк травматизма",
-            "ord": "142",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "cnt": 3,
-            "color": "#339900",
-            "quality": "1",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_black_2_4.gif",
-            "picture": "/images/data/artifacts/ark_black_2_4.gif",
-            "kind": "Аркат",
-            "type_id": "157",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "16"
-            },
-            "skills": [
-                {
-                    "title": "Травматизм",
-                    "value": "<b>+10</b>"
-                }
-            ],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат травматизма!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3720466221\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3720466221"
-        },
-        {
-            "id": "3484301952",
-            "title": "Пентарк травматизма",
-            "ord": "143",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "cnt": 4,
-            "color": "#339900",
-            "quality": "1",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_black_2_3.gif",
-            "picture": "/images/data/artifacts/ark_black_2_3.gif",
-            "kind": "Аркат",
-            "type_id": "157",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "16"
-            },
-            "skills": [
-                {
-                    "title": "Травматизм",
-                    "value": "<b>+9</b>"
-                }
-            ],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат травматизма!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3484301952\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3484301952"
-        },
-        {
-            "id": "3155305649",
-            "title": "Тетрарк травматизма",
+            "id": "4380889107",
+            "title": "Сильный эксарк подавления",
             "ord": "144",
             "kind_id": "161",
             "storage_type": "0",
             "profession": "0",
-            "cnt": 6,
+            "color": "#3300ff",
+            "quality": "2",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_grey_3_4.gif",
+            "picture": "/images/data/artifacts/ark_grey_3_4.gif",
+            "kind": "Аркат",
+            "type_id": "149",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "18"
+            },
+            "skills": [
+                {
+                    "title": "Подавление",
+                    "value": "<b>+60</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат подавления!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"4380889107\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_4380889107"
+        },
+        {
+            "id": "4380889108",
+            "title": "Сильный тетрарк стойкости",
+            "ord": "145",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "color": "#3300ff",
+            "quality": "2",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_white_3_2.gif",
+            "picture": "/images/data/artifacts/ark_white_3_2.gif",
+            "kind": "Аркат",
+            "type_id": "151",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "17"
+            },
+            "skills": [
+                {
+                    "title": "Стойкость",
+                    "value": "<b>+500</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат стойкости!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"4380889108\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_4380889108"
+        },
+        {
+            "id": "4380889468",
+            "title": "Великий пентарк антитравматизма",
+            "ord": "146",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "color": "#990099",
+            "quality": "3",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_lilac_4_3.gif",
+            "picture": "/images/data/artifacts/ark_lilac_4_3.gif",
+            "kind": "Аркат",
+            "type_id": "158",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "20"
+            },
+            "skills": [
+                {
+                    "title": "Антитравматизм",
+                    "value": "<b>+45</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат антитравматизма!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"4380889468\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_4380889468"
+        },
+        {
+            "id": "4380889845",
+            "title": "Сильный эксарк антитравматизма",
+            "ord": "147",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "color": "#3300ff",
+            "quality": "2",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_lilac_3_4.gif",
+            "picture": "/images/data/artifacts/ark_lilac_3_4.gif",
+            "kind": "Аркат",
+            "type_id": "158",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "18"
+            },
+            "skills": [
+                {
+                    "title": "Антитравматизм",
+                    "value": "<b>+30</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат антитравматизма!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"4380889845\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_4380889845"
+        },
+        {
+            "id": "4380889914",
+            "title": "Великий тетрарк антитравматизма",
+            "ord": "148",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "color": "#990099",
+            "quality": "3",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_lilac_4_2.gif",
+            "picture": "/images/data/artifacts/ark_lilac_4_2.gif",
+            "kind": "Аркат",
+            "type_id": "158",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "19"
+            },
+            "skills": [
+                {
+                    "title": "Антитравматизм",
+                    "value": "<b>+40</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат антитравматизма!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"4380889914\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_4380889914"
+        },
+        {
+            "id": "4380890170",
+            "title": "Сильный тетрарк подавления",
+            "ord": "149",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 3,
+            "color": "#3300ff",
+            "quality": "2",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_grey_3_2.gif",
+            "picture": "/images/data/artifacts/ark_grey_3_2.gif",
+            "kind": "Аркат",
+            "type_id": "149",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "17"
+            },
+            "skills": [
+                {
+                    "title": "Подавление",
+                    "value": "<b>+50</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат подавления!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"4380890170\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_4380890170"
+        },
+        {
+            "id": "4380958577",
+            "title": "Великий тетрарк живучести",
+            "ord": "150",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "color": "#990099",
+            "quality": "3",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_brown_4_2.gif",
+            "picture": "/images/data/artifacts/ark_brown_4_2.gif",
+            "kind": "Аркат",
+            "type_id": "150",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "19"
+            },
+            "skills": [
+                {
+                    "title": "Живучесть",
+                    "value": "<b>+80</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат живучести!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"4380958577\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_4380958577"
+        },
+        {
+            "id": "4380958585",
+            "title": "Эксарк подавления",
+            "ord": "152",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "color": "#339900",
+            "quality": "1",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_grey_2_4.gif",
+            "picture": "/images/data/artifacts/ark_grey_2_4.gif",
+            "kind": "Аркат",
+            "type_id": "149",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "16"
+            },
+            "skills": [
+                {
+                    "title": "Подавление",
+                    "value": "<b>+40</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат подавления!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"4380958585\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_4380958585"
+        },
+        {
+            "id": "4380958589",
+            "title": "Тетрарк травматизма",
+            "ord": "153",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
             "color": "#339900",
             "quality": "1",
             "time_expire": "0",
@@ -5488,7 +6036,7 @@ let items = {
             "sell": true,
             "drop": true,
             "equip": true,
-            "add_attrs": " artifact_id=\"3155305649\" price_type=\"1\" sell_price=\"0.1\"",
+            "add_attrs": " artifact_id=\"4380958589\" price_type=\"1\" sell_price=\"0.1\"",
             "icon_list": {
                 "1": "info",
                 "2": "sell"
@@ -5498,42 +6046,49 @@ let items = {
             "_act2": 3,
             "_act3": 0,
             "_act4": 0,
-            "artifact_alt_id": "AA_3155305649"
+            "artifact_alt_id": "AA_4380958589"
         },
         {
-            "id": "3191691231",
-            "title": "Слабый эксарк травматизма",
-            "ord": "145",
+            "id": "4380974521",
+            "title": "Сильный эксарк проницания",
+            "ord": "154",
             "kind_id": "161",
             "storage_type": "0",
             "profession": "0",
-            "cnt": 5,
-            "color": "#666666",
-            "quality": "0",
+            "color": "#3300ff",
+            "quality": "2",
             "time_expire": "0",
-            "image": "/images/data/artifacts/ark_black_1_4.gif",
-            "picture": "/images/data/artifacts/ark_black_1_4.gif",
+            "image": "/images/data/artifacts/ark_turquoise_3_4.gif",
+            "picture": "/images/data/artifacts/ark_turquoise_3_4.gif",
             "kind": "Аркат",
-            "type_id": "157",
+            "type_id": "147",
             "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
             "lev": {
                 "title": " Уровень ",
-                "value": "13"
+                "value": "18"
             },
             "skills": [
                 {
-                    "title": "Травматизм",
-                    "value": "<b>+5</b>"
+                    "title": "Проницание огонь-воздух",
+                    "value": "<b>+60</b>"
+                },
+                {
+                    "title": "Проницание свет-тьма",
+                    "value": "<b>+60</b>"
+                },
+                {
+                    "title": "Проницание земля-вода",
+                    "value": "<b>+60</b>"
                 }
             ],
             "skills_e": [],
             "nogive": "Предмет нельзя передать",
             "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат травматизма!</STRONG>",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат проницания!</STRONG>",
             "sell": true,
             "drop": true,
             "equip": true,
-            "add_attrs": " artifact_id=\"3191691231\" price_type=\"1\" sell_price=\"0.1\"",
+            "add_attrs": " artifact_id=\"4380974521\" price_type=\"1\" sell_price=\"0.1\"",
             "icon_list": {
                 "1": "info",
                 "2": "sell"
@@ -5543,87 +6098,42 @@ let items = {
             "_act2": 3,
             "_act3": 0,
             "_act4": 0,
-            "artifact_alt_id": "AA_3191691231"
+            "artifact_alt_id": "AA_4380974521"
         },
         {
-            "id": "4385636179",
-            "title": "Слабый пентарк травматизма",
-            "ord": "146",
-            "kind_id": "161",
-            "storage_type": "0",
-            "profession": "0",
-            "cnt": 8,
-            "color": "#666666",
-            "quality": "0",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/ark_black_1_3.gif",
-            "picture": "/images/data/artifacts/ark_black_1_3.gif",
-            "kind": "Аркат",
-            "type_id": "157",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
-            "lev": {
-                "title": " Уровень ",
-                "value": "13"
-            },
-            "skills": [
-                {
-                    "title": "Травматизм",
-                    "value": "<b>+4</b>"
-                }
-            ],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат травматизма!</STRONG>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"4385636179\" price_type=\"1\" sell_price=\"0.1\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_4385636179"
-        },
-        {
-            "id": "4188414453",
-            "title": "Слабый тетрарк травматизма",
-            "ord": "147",
+            "id": "4380974525",
+            "title": "Пентарк живучести",
+            "ord": "155",
             "kind_id": "161",
             "storage_type": "0",
             "profession": "0",
             "cnt": 2,
-            "color": "#666666",
-            "quality": "0",
+            "color": "#339900",
+            "quality": "1",
             "time_expire": "0",
-            "image": "/images/data/artifacts/ark_black_1_2.gif",
-            "picture": "/images/data/artifacts/ark_black_1_2.gif",
+            "image": "/images/data/artifacts/ark_brown_2_3.gif",
+            "picture": "/images/data/artifacts/ark_brown_2_3.gif",
             "kind": "Аркат",
-            "type_id": "157",
+            "type_id": "150",
             "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
             "lev": {
                 "title": " Уровень ",
-                "value": "11"
+                "value": "16"
             },
             "skills": [
                 {
-                    "title": "Травматизм",
-                    "value": "<b>+3</b>"
+                    "title": "Живучесть",
+                    "value": "<b>+40</b>"
                 }
             ],
             "skills_e": [],
             "nogive": "Предмет нельзя передать",
             "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат травматизма!</STRONG>",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат живучести!</STRONG>",
             "sell": true,
             "drop": true,
             "equip": true,
-            "add_attrs": " artifact_id=\"4188414453\" price_type=\"1\" sell_price=\"0.1\"",
+            "add_attrs": " artifact_id=\"4380974525\" price_type=\"1\" sell_price=\"0.1\"",
             "icon_list": {
                 "1": "info",
                 "2": "sell"
@@ -5633,41 +6143,36 @@ let items = {
             "_act2": 3,
             "_act3": 0,
             "_act4": 0,
-            "artifact_alt_id": "AA_4188414453"
+            "artifact_alt_id": "AA_4380974525"
         },
         {
-            "id": "4377546946",
-            "title": "Слабый триарк травматизма",
-            "ord": "148",
+            "id": "4380974534",
+            "title": "Тетрарк мощи",
+            "ord": "156",
             "kind_id": "161",
             "storage_type": "0",
             "profession": "0",
-            "cnt": 58,
-            "color": "#666666",
-            "quality": "0",
+            "color": "#339900",
+            "quality": "1",
             "time_expire": "0",
-            "image": "/images/data/artifacts/ark_black_1_1.gif",
-            "picture": "/images/data/artifacts/ark_black_1_1.gif",
+            "image": "/images/data/artifacts/ark_orange_2_2.gif",
+            "picture": "/images/data/artifacts/ark_orange_2_2.gif",
             "kind": "Аркат",
-            "type_id": "157",
+            "type_id": "153",
             "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
             "lev": {
                 "title": " Уровень ",
-                "value": "11"
+                "value": "15"
             },
-            "skills": [
-                {
-                    "title": "Травматизм",
-                    "value": "<b>+2</b>"
-                }
-            ],
+            "skills": [],
             "skills_e": [],
+            "nogive": "Предмет нельзя передать",
             "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "<STRONG>Одновременно можно надеть только один аркат травматизма!</STRONG>",
+            "desc": "Увеличивает урон от боевых аур на <STRONG>2%</STRONG>.<br /><STRONG>Одновременно можно надеть только один из аркатов мощи, вампиризма или крови!</STRONG>",
             "sell": true,
             "drop": true,
             "equip": true,
-            "add_attrs": " artifact_id=\"4377546946\" price_type=\"1\" sell_price=\"0.1\"",
+            "add_attrs": " artifact_id=\"4380974534\" price_type=\"1\" sell_price=\"0.1\"",
             "icon_list": {
                 "1": "info",
                 "2": "sell"
@@ -5677,78 +6182,476 @@ let items = {
             "_act2": 3,
             "_act3": 0,
             "_act4": 0,
-            "artifact_alt_id": "AA_4377546946"
-        }
-    ],
-    "quivers": [],
-    "amulets": [
+            "artifact_alt_id": "AA_4380974534"
+        },
         {
-            "id": "4431286939",
-            "title": "Амулет «Тень Шайссар»",
-            "ord": "7",
-            "kind_id": "25",
+            "id": "3586593867",
+            "title": "Великий триарк барьера",
+            "ord": "157",
+            "kind_id": "161",
             "storage_type": "0",
             "profession": "0",
-            "color": "#ff0000",
-            "quality": "4",
-            "time_expire": 1793428,
-            "image": "/images/data/artifacts/skvernamul1.gif",
-            "picture": "/images/data/artifacts/skvernamul1.gif",
-            "kind": "Амулет",
-            "type_id": "18",
-            "price": "<span title=\"Золотой\"><img src=\"/images/m_game3.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;125",
-            "dur": "37",
-            "dur_max": "42",
+            "color": "#990099",
+            "quality": "3",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_green_4_1.gif",
+            "picture": "/images/data/artifacts/ark_green_4_1.gif",
+            "kind": "Аркат",
+            "type_id": "146",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "19"
+            },
+            "skills": [
+                {
+                    "title": "Защита огонь-воздух",
+                    "value": "<b>+65</b>"
+                },
+                {
+                    "title": "Защита свет-тьма",
+                    "value": "<b>+65</b>"
+                },
+                {
+                    "title": "Защита земля-вода",
+                    "value": "<b>+65</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат барьера!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3586593867\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3586593867"
+        },
+        {
+            "id": "3730477738",
+            "title": "Великий эксарк скорости",
+            "ord": "158",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "color": "#990099",
+            "quality": "3",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_lime_4_4.gif",
+            "picture": "/images/data/artifacts/ark_lime_4_4.gif",
+            "kind": "Аркат",
+            "type_id": "159",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
             "lev": {
                 "title": " Уровень ",
                 "value": "20"
             },
-            "trend": "Универсал",
             "skills": [
                 {
-                    "title": "Ловкость",
-                    "value": "<b>+65</b>"
-                },
-                {
-                    "title": "Защита",
-                    "value": "<b>+65</b>"
-                },
-                {
-                    "title": "Защита огонь-воздух",
-                    "value": "<b>+165</b>"
-                },
-                {
-                    "title": "Защита свет-тьма",
-                    "value": "<b>+165</b>"
-                },
-                {
-                    "title": "Защита земля-вода",
-                    "value": "<b>+165</b>"
-                },
-                {
-                    "title": "Живучесть",
-                    "value": "<b>+203</b>"
-                },
-                {
-                    "title": "Подавление",
-                    "value": "<b>+90</b>"
+                    "title": "Скорость",
+                    "value": "<b>+30</b>"
                 }
             ],
             "skills_e": [],
-            "exp": {
-                "title": "Время жизни",
-                "value": "20д 18ч 10мин"
-            },
             "nogive": "Предмет нельзя передать",
-            "flags2": {
-                "cant_put_in_storage": "Предмет нельзя &laquo;заморозить&raquo;"
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат скорости!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3730477738\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
             },
-            "desc": "Этот артефакт, вобравший в себя могущество темной магии Эшу, можно получить, одолев <span  ><a ><b class=\"blue\">Шайссар&nbsp;[20]</b></a>&nbsp;<a href=\"#\" onClick=\"showBotInfo(0,2735); return false;\" title=\"Информация о существе\"><img src=\"/images/player_info.gif\" border=0 width=10 height=10 align=\"absmiddle\"></a></span> или <span  ><a ><b class=\"blue\">Призванную Шайссар&nbsp;[18]</b></a>&nbsp;<a href=\"#\" onClick=\"showBotInfo(0,2902); return false;\" title=\"Информация о существе\"><img src=\"/images/player_info.gif\" border=0 width=10 height=10 align=\"absmiddle\"></a></span>.",
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3730477738"
+        },
+        {
+            "id": "4380881893",
+            "title": "Сильный эксарк стойкости",
+            "ord": "160",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "color": "#3300ff",
+            "quality": "2",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_white_3_4.gif",
+            "picture": "/images/data/artifacts/ark_white_3_4.gif",
+            "kind": "Аркат",
+            "type_id": "151",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "18"
+            },
+            "skills": [
+                {
+                    "title": "Стойкость",
+                    "value": "<b>+750</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат стойкости!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"4380881893\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_4380881893"
+        },
+        {
+            "id": "3670486749",
+            "title": "Великий пентарк концентрации",
+            "ord": "161",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "color": "#990099",
+            "quality": "3",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_yellow_4_3.gif",
+            "picture": "/images/data/artifacts/ark_yellow_4_3.gif",
+            "kind": "Аркат",
+            "type_id": "148",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "20"
+            },
+            "skills": [
+                {
+                    "title": "Концентрация",
+                    "value": "<b>+75</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат концентрации!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3670486749\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3670486749"
+        },
+        {
+            "id": "3619337940",
+            "title": "Великий тетрарк мощи",
+            "ord": "163",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "color": "#990099",
+            "quality": "3",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_orange_4_2.gif",
+            "picture": "/images/data/artifacts/ark_orange_4_2.gif",
+            "kind": "Аркат",
+            "type_id": "153",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "19"
+            },
+            "skills": [],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "Увеличивает урон от боевых аур на <STRONG>4%</STRONG>.<br /><STRONG>Одновременно можно надеть только один из аркатов мощи, вампиризма или крови!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3619337940\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3619337940"
+        },
+        {
+            "id": "3586439099",
+            "title": "Сильный эксарк вампиризма",
+            "ord": "164",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "color": "#3300ff",
+            "quality": "2",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_red_3_4.gif",
+            "picture": "/images/data/artifacts/ark_red_3_4.gif",
+            "kind": "Аркат",
+            "type_id": "154",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "18"
+            },
+            "skills": [],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "Дает <STRONG>3%</STRONG> <STRONG><SPAN style=\"color:red\">вампирический эффект</SPAN></STRONG> боевым аурам.<br /><STRONG>Одновременно можно надеть только один из аркатов мощи, вампиризма или крови!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3586439099\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3586439099"
+        },
+        {
+            "id": "4380865701",
+            "title": "Великий тетрарк подавления",
+            "ord": "165",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "color": "#990099",
+            "quality": "3",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_grey_4_2.gif",
+            "picture": "/images/data/artifacts/ark_grey_4_2.gif",
+            "kind": "Аркат",
+            "type_id": "149",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "19"
+            },
+            "skills": [
+                {
+                    "title": "Подавление",
+                    "value": "<b>+70</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат подавления!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"4380865701\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_4380865701"
+        },
+        {
+            "id": "4407478870",
+            "title": "Слабый триарк проницания",
+            "ord": "611987012",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 273,
+            "color": "#666666",
+            "quality": "0",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_turquoise_1_1.gif",
+            "picture": "/images/data/artifacts/ark_turquoise_1_1.gif",
+            "kind": "Аркат",
+            "type_id": "147",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "11"
+            },
+            "skills": [
+                {
+                    "title": "Проницание огонь-воздух",
+                    "value": "<b>+5</b>"
+                },
+                {
+                    "title": "Проницание свет-тьма",
+                    "value": "<b>+5</b>"
+                },
+                {
+                    "title": "Проницание земля-вода",
+                    "value": "<b>+5</b>"
+                }
+            ],
+            "skills_e": [],
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат проницания!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"4407478870\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_4407478870"
+        },
+        {
+            "id": "4425184230",
+            "title": "Сильный пентарк инициативы",
+            "ord": "611987122",
+            "kind_id": "161",
+            "storage_type": "0",
+            "profession": "0",
+            "color": "#3300ff",
+            "quality": "2",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/ark_dblue_3_3.gif",
+            "picture": "/images/data/artifacts/ark_dblue_3_3.gif",
+            "kind": "Аркат",
+            "type_id": "156",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "18"
+            },
+            "skills": [
+                {
+                    "title": "Инициатива",
+                    "value": "<b>+20</b>"
+                }
+            ],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "<STRONG>Одновременно можно надеть только один аркат инициативы!</STRONG>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"4425184230\" price_type=\"1\" sell_price=\"0.1\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_4425184230"
+        }
+    ],
+    "quivers": [
+        {
+            "id": "2945922334",
+            "title": "Большой закрытый колчан",
+            "ord": "16",
+            "kind_id": "131",
+            "storage_type": "0",
+            "profession": "0",
+            "color": "#990099",
+            "quality": "3",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/kolchan_purp_15.gif",
+            "picture": "/images/data/artifacts/kolchan_purp_15.gif",
+            "kind": "Колчан",
+            "type_id": "97",
+            "price": "<span title=\"Золотой\"><img src=\"/images/m_game3.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;20",
+            "dur": "1",
+            "dur_max": "13",
+            "lev": {
+                "title": " Уровень ",
+                "value": "12"
+            },
+            "trend": "Универсал",
+            "skills": [
+                {
+                    "title": "Ярость",
+                    "value": "<b>+65</b><b style=\"color:#990099\"> (25)</b>"
+                },
+                {
+                    "title": "Максимум ярости",
+                    "value": "<b>+115</b><b style=\"color:#3300ff\"> (15)</b>"
+                }
+            ],
+            "skills_e": [],
+            "enchant_icon": "<span class=\"enchants\">\n\t\t<img src=\"/images/enchants/oprava.png\" alt=\"\" class=\"enchant2_png\"><img src=\"/images/enchants/6_3.png\" alt=\"\" class=\"enchant_png\">\n\t\t</span>",
+            "enchant": {
+                "title": "Руна",
+                "value": "<b style=\"color:#990099\">Руна Тар VI</b>"
+            },
+            "enchant_class": "enchant-6_3",
+            "enchant3": {
+                "title": "Оправа",
+                "value": "<b style=\"color:#3300ff;\">Рунная оправа «Стрелы ярости III»</b>"
+            },
+            "symbols": [
+                {
+                    "title": "Символ",
+                    "value": "<b style=\"color:#339900;\">Символ ярости Скор</b>"
+                },
+                {
+                    "title": "Символ",
+                    "value": "<b style=\"color:#666666;\">Символ ярости Скор</b>"
+                }
+            ],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "flags2": {
+                "crashproof": "Неломаемый предмет"
+            },
+            "desc": "Заплечный футляр для ношения стрел, деревянный каркас которого обтянут толстой кожей Пхадда. Закрытый колчан защищает стрелы от дождя. <br>\r\nВмещает 8 стрел.\r\n<br>\r\nДля приобретения данной вещи необходимо иметь <b class=\"redd\"><A href=\"/info/library/?category_id=241&page=2\" target=\"_blank\">репутационный рейтинг</A></b> не ниже <b class=\"redd\">3600</b>.",
             "sell": true,
             "drop": true,
             "repair": true,
             "equip": true,
-            "add_attrs": " artifact_id=\"4431286939\" repair_price=\"297.61904761905\" price_type=\"1\" sell_price=\"30\"",
+            "add_attrs": " artifact_id=\"2945922334\" repair_price=\"100\" price_type=\"1\" sell_price=\"20\"",
             "icon_list": {
                 "1": "info",
                 "2": "sell",
@@ -5759,12 +6662,288 @@ let items = {
             "_act2": 3,
             "_act3": 0,
             "_act4": 0,
-            "artifact_alt_id": "AA_4431286939"
+            "artifact_alt_id": "AA_2945922334"
         },
         {
-            "id": "3155306451",
+            "id": "4391532691",
+            "title": "Вместительный каркасный колчан",
+            "ord": "37",
+            "kind_id": "131",
+            "storage_type": "0",
+            "profession": "0",
+            "color": "#339900",
+            "quality": "1",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/23_02.gif",
+            "picture": "/images/data/artifacts/23_02.gif",
+            "kind": "Колчан",
+            "type_id": "97",
+            "price": "<span title=\"Золотой\"><img src=\"/images/m_game3.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;15",
+            "dur": "12",
+            "dur_max": "12",
+            "lev": {
+                "title": " Уровень ",
+                "value": "17"
+            },
+            "trend": "Универсал",
+            "skills": [
+                {
+                    "title": "Максимум ярости",
+                    "value": "<b>+100</b>"
+                }
+            ],
+            "skills_e": [],
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "flags2": {
+                "can_crashproof": "Предмет можно укрепить смолой"
+            },
+            "desc": "Заплечный футляр для ношения стрел, каркас которого вырезан из дуба и обтянут темной кожей Атши.<br>\r\nВмещает 7 стрел.",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"4391532691\" price_type=\"1\" sell_price=\"30\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_4391532691"
+        },
+        {
+            "id": "4414075118",
+            "title": "Вместительный каркасный колчан",
+            "ord": "57",
+            "kind_id": "131",
+            "storage_type": "0",
+            "profession": "0",
+            "color": "#339900",
+            "quality": "1",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/23_02.gif",
+            "picture": "/images/data/artifacts/23_02.gif",
+            "kind": "Колчан",
+            "type_id": "97",
+            "price": "<span title=\"Золотой\"><img src=\"/images/m_game3.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;15",
+            "dur": "12",
+            "dur_max": "12",
+            "lev": {
+                "title": " Уровень ",
+                "value": "17"
+            },
+            "trend": "Универсал",
+            "skills": [
+                {
+                    "title": "Максимум ярости",
+                    "value": "<b>+100</b>"
+                }
+            ],
+            "skills_e": [],
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "flags2": {
+                "can_crashproof": "Предмет можно укрепить смолой"
+            },
+            "desc": "Заплечный футляр для ношения стрел, каркас которого вырезан из дуба и обтянут темной кожей Атши.<br>\r\nВмещает 7 стрел.",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"4414075118\" price_type=\"1\" sell_price=\"30\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_4414075118"
+        },
+        {
+            "id": "4414086533",
+            "title": "Вместительный каркасный колчан",
+            "ord": "58",
+            "kind_id": "131",
+            "storage_type": "0",
+            "profession": "0",
+            "color": "#339900",
+            "quality": "1",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/23_02.gif",
+            "picture": "/images/data/artifacts/23_02.gif",
+            "kind": "Колчан",
+            "type_id": "97",
+            "price": "<span title=\"Золотой\"><img src=\"/images/m_game3.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;15",
+            "dur": "12",
+            "dur_max": "12",
+            "lev": {
+                "title": " Уровень ",
+                "value": "17"
+            },
+            "trend": "Универсал",
+            "skills": [
+                {
+                    "title": "Максимум ярости",
+                    "value": "<b>+100</b>"
+                }
+            ],
+            "skills_e": [],
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "flags2": {
+                "can_crashproof": "Предмет можно укрепить смолой"
+            },
+            "desc": "Заплечный футляр для ношения стрел, каркас которого вырезан из дуба и обтянут темной кожей Атши.<br>\r\nВмещает 7 стрел.",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"4414086533\" price_type=\"1\" sell_price=\"30\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_4414086533"
+        },
+        {
+            "id": "4455720259",
+            "title": "Вместительный каркасный колчан",
+            "ord": "611987204",
+            "kind_id": "131",
+            "storage_type": "0",
+            "profession": "0",
+            "color": "#339900",
+            "quality": "1",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/23_02.gif",
+            "picture": "/images/data/artifacts/23_02.gif",
+            "kind": "Колчан",
+            "type_id": "97",
+            "price": "<span title=\"Золотой\"><img src=\"/images/m_game3.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;15",
+            "dur": "12",
+            "dur_max": "12",
+            "lev": {
+                "title": " Уровень ",
+                "value": "17"
+            },
+            "trend": "Универсал",
+            "skills": [
+                {
+                    "title": "Максимум ярости",
+                    "value": "<b>+100</b>"
+                }
+            ],
+            "skills_e": [],
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "flags2": {
+                "can_crashproof": "Предмет можно укрепить смолой"
+            },
+            "desc": "Заплечный футляр для ношения стрел, каркас которого вырезан из дуба и обтянут темной кожей Атши.<br>\r\nВмещает 7 стрел.",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"4455720259\" price_type=\"1\" sell_price=\"30\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_4455720259"
+        }
+    ],
+    "amulets": [
+        {
+            "id": "3092000563",
+            "title": "Амулет «Легкий бриз»",
+            "ord": "29",
+            "kind_id": "25",
+            "storage_type": "0",
+            "profession": "0",
+            "color": "#016e71",
+            "quality": "5",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/jewelry_style_amulet_1.gif",
+            "picture": "/images/data/artifacts/jewelry_style_amulet_1.gif",
+            "kind": "Амулет",
+            "type_id": "111",
+            "price": "<span title=\"Медный\"><img src=\"/images/m_game1.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "1"
+            },
+            "trend": "Универсал",
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "Позволяет сменить облик одного из амулетов.",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3092000563\" price_type=\"1\" sell_price=\"0.01\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3092000563"
+        },
+        {
+            "id": "3092000564",
+            "title": "Амулет «Легкий бриз»",
+            "ord": "30",
+            "kind_id": "25",
+            "storage_type": "0",
+            "profession": "0",
+            "color": "#016e71",
+            "quality": "5",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/jewelry_style_amulet_1.gif",
+            "picture": "/images/data/artifacts/jewelry_style_amulet_1.gif",
+            "kind": "Амулет",
+            "type_id": "111",
+            "price": "<span title=\"Медный\"><img src=\"/images/m_game1.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "1"
+            },
+            "trend": "Универсал",
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "Позволяет сменить облик одного из амулетов.",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3092000564\" price_type=\"1\" sell_price=\"0.01\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3092000564"
+        },
+        {
+            "id": "4044762897",
             "title": "Темный амулет некроманта III",
-            "ord": "11",
+            "ord": "611986480",
             "kind_id": "25",
             "storage_type": "0",
             "profession": "0",
@@ -5776,7 +6955,7 @@ let items = {
             "kind": "Амулет",
             "type_id": "18",
             "price": "<span title=\"Золотой\"><img src=\"/images/m_game3.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;25",
-            "dur": "2",
+            "dur": "1",
             "dur_max": "5",
             "lev": {
                 "title": " Уровень ",
@@ -5799,7 +6978,7 @@ let items = {
             "drop": true,
             "repair": true,
             "equip": true,
-            "add_attrs": " artifact_id=\"3155306451\" repair_price=\"500\" price_type=\"1\" sell_price=\"25\"",
+            "add_attrs": " artifact_id=\"4044762897\" repair_price=\"500\" price_type=\"1\" sell_price=\"25\"",
             "icon_list": {
                 "1": "info",
                 "2": "sell",
@@ -5810,18 +6989,18 @@ let items = {
             "_act2": 3,
             "_act3": 0,
             "_act4": 0,
-            "artifact_alt_id": "AA_3155306451"
+            "artifact_alt_id": "AA_4044762897"
         },
         {
-            "id": "4450528061",
+            "id": "4441159125",
             "title": "Амулет «Тень Шайссар»",
-            "ord": "1640598881",
+            "ord": "611987174",
             "kind_id": "25",
             "storage_type": "0",
             "profession": "0",
             "color": "#ff0000",
             "quality": "4",
-            "time_expire": 4061851,
+            "time_expire": 2497080,
             "image": "/images/data/artifacts/skvernamul1.gif",
             "picture": "/images/data/artifacts/skvernamul1.gif",
             "kind": "Амулет",
@@ -5867,7 +7046,7 @@ let items = {
             "skills_e": [],
             "exp": {
                 "title": "Время жизни",
-                "value": "47д 0ч 17мин"
+                "value": "28д 21ч 38мин"
             },
             "nogive": "Предмет нельзя передать",
             "flags2": {
@@ -5877,7 +7056,7 @@ let items = {
             "sell": true,
             "drop": true,
             "equip": true,
-            "add_attrs": " artifact_id=\"4450528061\" price_type=\"1\" sell_price=\"30\"",
+            "add_attrs": " artifact_id=\"4441159125\" price_type=\"1\" sell_price=\"30\"",
             "icon_list": {
                 "1": "info",
                 "2": "sell"
@@ -5887,27 +7066,260 @@ let items = {
             "_act2": 3,
             "_act3": 0,
             "_act4": 0,
-            "artifact_alt_id": "AA_4450528061"
+            "artifact_alt_id": "AA_4441159125"
+        },
+        {
+            "id": "4449695021",
+            "title": "Амулет «Тень Шайссар»",
+            "ord": "611987196",
+            "kind_id": "25",
+            "storage_type": "0",
+            "profession": "0",
+            "color": "#ff0000",
+            "quality": "4",
+            "time_expire": 3556002,
+            "image": "/images/data/artifacts/skvernamul1.gif",
+            "picture": "/images/data/artifacts/skvernamul1.gif",
+            "kind": "Амулет",
+            "type_id": "18",
+            "price": "<span title=\"Золотой\"><img src=\"/images/m_game3.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;115",
+            "dur": "42",
+            "dur_max": "42",
+            "lev": {
+                "title": " Уровень ",
+                "value": "18"
+            },
+            "trend": "Универсал",
+            "skills": [
+                {
+                    "title": "Ловкость",
+                    "value": "<b>+35</b>"
+                },
+                {
+                    "title": "Защита",
+                    "value": "<b>+35</b>"
+                },
+                {
+                    "title": "Защита огонь-воздух",
+                    "value": "<b>+135</b>"
+                },
+                {
+                    "title": "Защита свет-тьма",
+                    "value": "<b>+135</b>"
+                },
+                {
+                    "title": "Защита земля-вода",
+                    "value": "<b>+135</b>"
+                },
+                {
+                    "title": "Живучесть",
+                    "value": "<b>+158</b>"
+                },
+                {
+                    "title": "Подавление",
+                    "value": "<b>+67</b>"
+                }
+            ],
+            "skills_e": [],
+            "exp": {
+                "title": "Время жизни",
+                "value": "41д 3ч 46мин"
+            },
+            "boe": "Предмет станет непередаваемым после надевания",
+            "flags2": {
+                "cant_put_in_storage": "Предмет нельзя &laquo;заморозить&raquo;"
+            },
+            "desc": "Этот артефакт, вобравший в себя могущество темной магии Эшу, можно получить, одолев <span  ><a ><b class=\"blue\">Шайссар&nbsp;[20]</b></a>&nbsp;<a href=\"#\" onClick=\"showBotInfo(0,2735); return false;\" title=\"Информация о существе\"><img src=\"/images/player_info.gif\" border=0 width=10 height=10 align=\"absmiddle\"></a></span> или <span  ><a ><b class=\"blue\">Призванную Шайссар&nbsp;[18]</b></a>&nbsp;<a href=\"#\" onClick=\"showBotInfo(0,2902); return false;\" title=\"Информация о существе\"><img src=\"/images/player_info.gif\" border=0 width=10 height=10 align=\"absmiddle\"></a></span>.",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"4449695021\" price_type=\"1\" sell_price=\"30\" puton_confirm",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "puton_confirm": true,
+            "artifact_alt_id": "AA_4449695021"
+        },
+        {
+            "id": "4454918876",
+            "title": "Амулет «Тень Шайссар»",
+            "ord": "611987202",
+            "kind_id": "25",
+            "storage_type": "0",
+            "profession": "0",
+            "color": "#ff0000",
+            "quality": "4",
+            "time_expire": 4228123,
+            "image": "/images/data/artifacts/skvernamul1.gif",
+            "picture": "/images/data/artifacts/skvernamul1.gif",
+            "kind": "Амулет",
+            "type_id": "18",
+            "price": "<span title=\"Золотой\"><img src=\"/images/m_game3.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;125",
+            "dur": "42",
+            "dur_max": "42",
+            "lev": {
+                "title": " Уровень ",
+                "value": "20"
+            },
+            "trend": "Универсал",
+            "skills": [
+                {
+                    "title": "Ловкость",
+                    "value": "<b>+65</b>"
+                },
+                {
+                    "title": "Защита",
+                    "value": "<b>+65</b>"
+                },
+                {
+                    "title": "Защита огонь-воздух",
+                    "value": "<b>+165</b>"
+                },
+                {
+                    "title": "Защита свет-тьма",
+                    "value": "<b>+165</b>"
+                },
+                {
+                    "title": "Защита земля-вода",
+                    "value": "<b>+165</b>"
+                },
+                {
+                    "title": "Живучесть",
+                    "value": "<b>+203</b>"
+                },
+                {
+                    "title": "Подавление",
+                    "value": "<b>+90</b>"
+                }
+            ],
+            "skills_e": [],
+            "exp": {
+                "title": "Время жизни",
+                "value": "48д 22ч 28мин"
+            },
+            "nogive": "Предмет нельзя передать",
+            "flags2": {
+                "cant_put_in_storage": "Предмет нельзя &laquo;заморозить&raquo;"
+            },
+            "desc": "Этот артефакт, вобравший в себя могущество темной магии Эшу, можно получить, одолев <span  ><a ><b class=\"blue\">Шайссар&nbsp;[20]</b></a>&nbsp;<a href=\"#\" onClick=\"showBotInfo(0,2735); return false;\" title=\"Информация о существе\"><img src=\"/images/player_info.gif\" border=0 width=10 height=10 align=\"absmiddle\"></a></span> или <span  ><a ><b class=\"blue\">Призванную Шайссар&nbsp;[18]</b></a>&nbsp;<a href=\"#\" onClick=\"showBotInfo(0,2902); return false;\" title=\"Информация о существе\"><img src=\"/images/player_info.gif\" border=0 width=10 height=10 align=\"absmiddle\"></a></span>.",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"4454918876\" price_type=\"1\" sell_price=\"30\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_4454918876"
+        },
+        {
+            "id": "4457555999",
+            "title": "Амулет «Тень Шайссар»",
+            "ord": "611987208",
+            "kind_id": "25",
+            "storage_type": "0",
+            "profession": "0",
+            "color": "#ff0000",
+            "quality": "4",
+            "time_expire": 4573670,
+            "image": "/images/data/artifacts/skvernamul1.gif",
+            "picture": "/images/data/artifacts/skvernamul1.gif",
+            "kind": "Амулет",
+            "type_id": "18",
+            "price": "<span title=\"Золотой\"><img src=\"/images/m_game3.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;125",
+            "dur": "42",
+            "dur_max": "42",
+            "lev": {
+                "title": " Уровень ",
+                "value": "20"
+            },
+            "trend": "Универсал",
+            "skills": [
+                {
+                    "title": "Ловкость",
+                    "value": "<b>+65</b>"
+                },
+                {
+                    "title": "Защита",
+                    "value": "<b>+65</b>"
+                },
+                {
+                    "title": "Защита огонь-воздух",
+                    "value": "<b>+165</b>"
+                },
+                {
+                    "title": "Защита свет-тьма",
+                    "value": "<b>+165</b>"
+                },
+                {
+                    "title": "Защита земля-вода",
+                    "value": "<b>+165</b>"
+                },
+                {
+                    "title": "Живучесть",
+                    "value": "<b>+203</b>"
+                },
+                {
+                    "title": "Подавление",
+                    "value": "<b>+90</b>"
+                }
+            ],
+            "skills_e": [],
+            "exp": {
+                "title": "Время жизни",
+                "value": "52д 22ч 27мин"
+            },
+            "boe": "Предмет станет непередаваемым после надевания",
+            "flags2": {
+                "cant_put_in_storage": "Предмет нельзя &laquo;заморозить&raquo;"
+            },
+            "desc": "Этот артефакт, вобравший в себя могущество темной магии Эшу, можно получить, одолев <span  ><a ><b class=\"blue\">Шайссар&nbsp;[20]</b></a>&nbsp;<a href=\"#\" onClick=\"showBotInfo(0,2735); return false;\" title=\"Информация о существе\"><img src=\"/images/player_info.gif\" border=0 width=10 height=10 align=\"absmiddle\"></a></span> или <span  ><a ><b class=\"blue\">Призванную Шайссар&nbsp;[18]</b></a>&nbsp;<a href=\"#\" onClick=\"showBotInfo(0,2902); return false;\" title=\"Информация о существе\"><img src=\"/images/player_info.gif\" border=0 width=10 height=10 align=\"absmiddle\"></a></span>.",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"4457555999\" price_type=\"1\" sell_price=\"30\" puton_confirm",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "puton_confirm": true,
+            "artifact_alt_id": "AA_4457555999"
         }
     ],
     "rings": [
         {
-            "id": "4432815681",
-            "title": "Кольцо власти рассвета",
-            "ord": "4",
+            "id": "4430742653",
+            "title": "Кольцо «Опека Шайссар»",
+            "ord": "611987142",
             "kind_id": "76",
             "storage_type": "0",
             "profession": "0",
-            "color": "#990099",
-            "quality": "3",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/19_ring_skverna_1.gif",
-            "picture": "/images/data/artifacts/19_ring_skverna_1.gif",
+            "color": "#ff0000",
+            "quality": "4",
+            "time_expire": 1293200,
+            "image": "/images/data/artifacts/skvernring1.gif",
+            "picture": "/images/data/artifacts/skvernring1.gif",
             "kind": "Кольца",
             "type_id": "18",
-            "price": "<span title=\"Золотой\"><img src=\"/images/m_game3.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;34",
-            "dur": "25",
-            "dur_max": "25",
+            "price": "<span title=\"Золотой\"><img src=\"/images/m_game3.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;130",
+            "dur": "42",
+            "dur_max": "42",
             "lev": {
                 "title": " Уровень ",
                 "value": "19"
@@ -5915,23 +7327,311 @@ let items = {
             "trend": "Универсал",
             "skills": [
                 {
-                    "title": "Воля",
-                    "value": "<b>+70</b>"
+                    "title": "Ловкость",
+                    "value": "<b>+45</b>"
                 },
                 {
-                    "title": "Мудрость",
-                    "value": "<b>+49</b>"
+                    "title": "Защита",
+                    "value": "<b>+45</b>"
+                },
+                {
+                    "title": "Защита огонь-воздух",
+                    "value": "<b>+150</b>"
+                },
+                {
+                    "title": "Защита свет-тьма",
+                    "value": "<b>+150</b>"
+                },
+                {
+                    "title": "Защита земля-вода",
+                    "value": "<b>+150</b>"
+                },
+                {
+                    "title": "Живучесть",
+                    "value": "<b>+177</b>"
+                },
+                {
+                    "title": "Подавление",
+                    "value": "<b>+74</b>"
                 }
             ],
             "skills_e": [],
+            "exp": {
+                "title": "Время жизни",
+                "value": "14д 23ч 13мин"
+            },
             "nogive": "Предмет нельзя передать",
             "flags2": {
-                "crashproof": "Неломаемый предмет"
+                "cant_put_in_storage": "Предмет нельзя &laquo;заморозить&raquo;"
             },
+            "desc": "Этот артефакт, вобравший в себя могущество темной магии Эшу, можно получить, одолев <span  ><a ><b class=\"blue\">Шайссар&nbsp;[20]</b></a>&nbsp;<a href=\"#\" onClick=\"showBotInfo(0,2735); return false;\" title=\"Информация о существе\"><img src=\"/images/player_info.gif\" border=0 width=10 height=10 align=\"absmiddle\"></a></span> или <span  ><a ><b class=\"blue\">Призванную Шайссар&nbsp;[18]</b></a>&nbsp;<a href=\"#\" onClick=\"showBotInfo(0,2902); return false;\" title=\"Информация о существе\"><img src=\"/images/player_info.gif\" border=0 width=10 height=10 align=\"absmiddle\"></a></span>.",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"4430742653\" price_type=\"1\" sell_price=\"30\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_4430742653"
+        },
+        {
+            "id": "4440131380",
+            "title": "Кольцо «Опека Шайссар»",
+            "ord": "611987175",
+            "kind_id": "76",
+            "storage_type": "0",
+            "profession": "0",
+            "color": "#ff0000",
+            "quality": "4",
+            "time_expire": 2399445,
+            "image": "/images/data/artifacts/skvernring1.gif",
+            "picture": "/images/data/artifacts/skvernring1.gif",
+            "kind": "Кольца",
+            "type_id": "18",
+            "price": "<span title=\"Золотой\"><img src=\"/images/m_game3.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;130",
+            "dur": "41",
+            "dur_max": "42",
+            "lev": {
+                "title": " Уровень ",
+                "value": "19"
+            },
+            "trend": "Универсал",
+            "skills": [
+                {
+                    "title": "Ловкость",
+                    "value": "<b>+45</b>"
+                },
+                {
+                    "title": "Защита",
+                    "value": "<b>+45</b>"
+                },
+                {
+                    "title": "Защита огонь-воздух",
+                    "value": "<b>+150</b>"
+                },
+                {
+                    "title": "Защита свет-тьма",
+                    "value": "<b>+150</b>"
+                },
+                {
+                    "title": "Защита земля-вода",
+                    "value": "<b>+150</b>"
+                },
+                {
+                    "title": "Живучесть",
+                    "value": "<b>+177</b>"
+                },
+                {
+                    "title": "Подавление",
+                    "value": "<b>+74</b>"
+                }
+            ],
+            "skills_e": [],
+            "exp": {
+                "title": "Время жизни",
+                "value": "27д 18ч 30мин"
+            },
+            "nogive": "Предмет нельзя передать",
+            "flags2": {
+                "cant_put_in_storage": "Предмет нельзя &laquo;заморозить&raquo;"
+            },
+            "desc": "Этот артефакт, вобравший в себя могущество темной магии Эшу, можно получить, одолев <span  ><a ><b class=\"blue\">Шайссар&nbsp;[20]</b></a>&nbsp;<a href=\"#\" onClick=\"showBotInfo(0,2735); return false;\" title=\"Информация о существе\"><img src=\"/images/player_info.gif\" border=0 width=10 height=10 align=\"absmiddle\"></a></span> или <span  ><a ><b class=\"blue\">Призванную Шайссар&nbsp;[18]</b></a>&nbsp;<a href=\"#\" onClick=\"showBotInfo(0,2902); return false;\" title=\"Информация о существе\"><img src=\"/images/player_info.gif\" border=0 width=10 height=10 align=\"absmiddle\"></a></span>.",
+            "sell": true,
+            "drop": true,
+            "repair": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"4440131380\" repair_price=\"309.52380952381\" price_type=\"1\" sell_price=\"30\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell",
+                "3": "repair"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_4440131380"
+        },
+        {
+            "id": "4460672308",
+            "title": "Кольцо «Опека Шайссар»",
+            "ord": "611987209",
+            "kind_id": "76",
+            "storage_type": "0",
+            "profession": "0",
+            "color": "#ff0000",
+            "quality": "4",
+            "time_expire": 4850495,
+            "image": "/images/data/artifacts/skvernring1.gif",
+            "picture": "/images/data/artifacts/skvernring1.gif",
+            "kind": "Кольца",
+            "type_id": "18",
+            "price": "<span title=\"Золотой\"><img src=\"/images/m_game3.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;100",
+            "dur": "42",
+            "dur_max": "42",
+            "lev": {
+                "title": " Уровень ",
+                "value": "15"
+            },
+            "trend": "Универсал",
+            "skills": [
+                {
+                    "title": "Ловкость",
+                    "value": "<b>+15</b>"
+                },
+                {
+                    "title": "Защита",
+                    "value": "<b>+15</b>"
+                },
+                {
+                    "title": "Защита огонь-воздух",
+                    "value": "<b>+90</b>"
+                },
+                {
+                    "title": "Защита свет-тьма",
+                    "value": "<b>+90</b>"
+                },
+                {
+                    "title": "Защита земля-вода",
+                    "value": "<b>+90</b>"
+                },
+                {
+                    "title": "Живучесть",
+                    "value": "<b>+88</b>"
+                },
+                {
+                    "title": "Подавление",
+                    "value": "<b>+47</b>"
+                }
+            ],
+            "skills_e": [],
+            "exp": {
+                "title": "Время жизни",
+                "value": "56д 3ч 21мин"
+            },
+            "boe": "Предмет станет непередаваемым после надевания",
+            "flags2": {
+                "cant_put_in_storage": "Предмет нельзя &laquo;заморозить&raquo;"
+            },
+            "desc": "Этот артефакт, вобравший в себя могущество темной магии Эшу, можно получить, одолев <span  ><a ><b class=\"blue\">Шайссар&nbsp;[20]</b></a>&nbsp;<a href=\"#\" onClick=\"showBotInfo(0,2735); return false;\" title=\"Информация о существе\"><img src=\"/images/player_info.gif\" border=0 width=10 height=10 align=\"absmiddle\"></a></span> или <span  ><a ><b class=\"blue\">Призванную Шайссар&nbsp;[18]</b></a>&nbsp;<a href=\"#\" onClick=\"showBotInfo(0,2902); return false;\" title=\"Информация о существе\"><img src=\"/images/player_info.gif\" border=0 width=10 height=10 align=\"absmiddle\"></a></span>.",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"4460672308\" price_type=\"1\" sell_price=\"30\" puton_confirm",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "puton_confirm": true,
+            "artifact_alt_id": "AA_4460672308"
+        },
+        {
+            "id": "4461933811",
+            "title": "Кольцо «Ярость Шайссар»",
+            "ord": "611987218",
+            "kind_id": "76",
+            "storage_type": "0",
+            "profession": "0",
+            "color": "#ff0000",
+            "quality": "4",
+            "time_expire": 4984784,
+            "image": "/images/data/artifacts/skvernring3.gif",
+            "picture": "/images/data/artifacts/skvernring3.gif",
+            "kind": "Кольца",
+            "type_id": "18",
+            "price": "<span title=\"Золотой\"><img src=\"/images/m_game3.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;130",
+            "dur": "42",
+            "dur_max": "42",
+            "lev": {
+                "title": " Уровень ",
+                "value": "19"
+            },
+            "trend": "Универсал",
+            "skills": [
+                {
+                    "title": "Интуиция",
+                    "value": "<b>+90</b>"
+                },
+                {
+                    "title": "Концентрация",
+                    "value": "<b>+74</b>"
+                },
+                {
+                    "title": "Сила",
+                    "value": "<b>+114</b>"
+                },
+                {
+                    "title": "Воля",
+                    "value": "<b>+98</b>"
+                },
+                {
+                    "title": "Мудрость",
+                    "value": "<b>+114</b>"
+                }
+            ],
+            "skills_e": [],
+            "exp": {
+                "title": "Время жизни",
+                "value": "57д 16ч 39мин"
+            },
+            "boe": "Предмет станет непередаваемым после надевания",
+            "flags2": {
+                "cant_put_in_storage": "Предмет нельзя &laquo;заморозить&raquo;"
+            },
+            "desc": "Этот артефакт, вобравший в себя могущество темной магии Эшу, можно получить, одолев <span  ><a ><b class=\"blue\">Шайссар&nbsp;[20]</b></a>&nbsp;<a href=\"#\" onClick=\"showBotInfo(0,2735); return false;\" title=\"Информация о существе\"><img src=\"/images/player_info.gif\" border=0 width=10 height=10 align=\"absmiddle\"></a></span> или <span  ><a ><b class=\"blue\">Призванную Шайссар&nbsp;[18]</b></a>&nbsp;<a href=\"#\" onClick=\"showBotInfo(0,2902); return false;\" title=\"Информация о существе\"><img src=\"/images/player_info.gif\" border=0 width=10 height=10 align=\"absmiddle\"></a></span>.",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"4461933811\" price_type=\"1\" sell_price=\"30\" puton_confirm",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "puton_confirm": true,
+            "artifact_alt_id": "AA_4461933811"
+        }
+    ],
+    "bags": [],
+    "decor": [
+        {
+            "id": "2419496023",
+            "title": "Декоративный Кастет «Мамонт»",
+            "ord": "2",
+            "kind_id": "10",
+            "storage_type": "0",
+            "profession": "0",
+            "color": "#016e71",
+            "quality": "5",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/160644_290.gif",
+            "picture": "/images/data/artifacts/160644_290.gif",
+            "kind": "Основное",
+            "type_id": "2",
+            "trend": "Универсал",
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
             "nosell": "Предмет нельзя сдать в скупку",
             "drop": true,
             "equip": true,
-            "add_attrs": " artifact_id=\"4432815681\"",
+            "add_attrs": " artifact_id=\"2419496023\"",
             "icon_list": [
                 "drop",
                 "info"
@@ -5941,184 +7641,148 @@ let items = {
             "_act2": 3,
             "_act3": 0,
             "_act4": 0,
-            "artifact_alt_id": "AA_4432815681"
+            "artifact_alt_id": "AA_2419496023"
         },
         {
-            "id": "4431377976",
-            "title": "Кольцо «Опека Шайссар»",
-            "ord": "9",
-            "kind_id": "76",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#ff0000",
-            "quality": "4",
-            "time_expire": 1803119,
-            "image": "/images/data/artifacts/skvernring1.gif",
-            "picture": "/images/data/artifacts/skvernring1.gif",
-            "kind": "Кольца",
-            "type_id": "18",
-            "price": "<span title=\"Золотой\"><img src=\"/images/m_game3.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;130",
-            "dur": "35",
-            "dur_max": "42",
-            "lev": {
-                "title": " Уровень ",
-                "value": "19"
-            },
-            "trend": "Универсал",
-            "skills": [
-                {
-                    "title": "Ловкость",
-                    "value": "<b>+45</b>"
-                },
-                {
-                    "title": "Защита",
-                    "value": "<b>+45</b>"
-                },
-                {
-                    "title": "Защита огонь-воздух",
-                    "value": "<b>+150</b>"
-                },
-                {
-                    "title": "Защита свет-тьма",
-                    "value": "<b>+150</b>"
-                },
-                {
-                    "title": "Защита земля-вода",
-                    "value": "<b>+150</b>"
-                },
-                {
-                    "title": "Живучесть",
-                    "value": "<b>+177</b>"
-                },
-                {
-                    "title": "Подавление",
-                    "value": "<b>+74</b>"
-                }
-            ],
-            "skills_e": [],
-            "exp": {
-                "title": "Время жизни",
-                "value": "20д 20ч 51мин"
-            },
-            "nogive": "Предмет нельзя передать",
-            "flags2": {
-                "cant_put_in_storage": "Предмет нельзя &laquo;заморозить&raquo;"
-            },
-            "desc": "Этот артефакт, вобравший в себя могущество темной магии Эшу, можно получить, одолев <span  ><a ><b class=\"blue\">Шайссар&nbsp;[20]</b></a>&nbsp;<a href=\"#\" onClick=\"showBotInfo(0,2735); return false;\" title=\"Информация о существе\"><img src=\"/images/player_info.gif\" border=0 width=10 height=10 align=\"absmiddle\"></a></span> или <span  ><a ><b class=\"blue\">Призванную Шайссар&nbsp;[18]</b></a>&nbsp;<a href=\"#\" onClick=\"showBotInfo(0,2902); return false;\" title=\"Информация о существе\"><img src=\"/images/player_info.gif\" border=0 width=10 height=10 align=\"absmiddle\"></a></span>.",
-            "sell": true,
-            "drop": true,
-            "repair": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"4431377976\" repair_price=\"309.52380952381\" price_type=\"1\" sell_price=\"30\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell",
-                "3": "repair"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_4431377976"
-        },
-        {
-            "id": "4431262829",
-            "title": "Кольцо «Опека Шайссар»",
-            "ord": "10",
-            "kind_id": "76",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#ff0000",
-            "quality": "4",
-            "time_expire": 1790098,
-            "image": "/images/data/artifacts/skvernring1.gif",
-            "picture": "/images/data/artifacts/skvernring1.gif",
-            "kind": "Кольца",
-            "type_id": "18",
-            "price": "<span title=\"Золотой\"><img src=\"/images/m_game3.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;130",
-            "dur": "39",
-            "dur_max": "42",
-            "lev": {
-                "title": " Уровень ",
-                "value": "19"
-            },
-            "trend": "Универсал",
-            "skills": [
-                {
-                    "title": "Ловкость",
-                    "value": "<b>+45</b>"
-                },
-                {
-                    "title": "Защита",
-                    "value": "<b>+45</b>"
-                },
-                {
-                    "title": "Защита огонь-воздух",
-                    "value": "<b>+150</b>"
-                },
-                {
-                    "title": "Защита свет-тьма",
-                    "value": "<b>+150</b>"
-                },
-                {
-                    "title": "Защита земля-вода",
-                    "value": "<b>+150</b>"
-                },
-                {
-                    "title": "Живучесть",
-                    "value": "<b>+177</b>"
-                },
-                {
-                    "title": "Подавление",
-                    "value": "<b>+74</b>"
-                }
-            ],
-            "skills_e": [],
-            "exp": {
-                "title": "Время жизни",
-                "value": "20д 17ч 14мин"
-            },
-            "nogive": "Предмет нельзя передать",
-            "flags2": {
-                "cant_put_in_storage": "Предмет нельзя &laquo;заморозить&raquo;"
-            },
-            "desc": "Этот артефакт, вобравший в себя могущество темной магии Эшу, можно получить, одолев <span  ><a ><b class=\"blue\">Шайссар&nbsp;[20]</b></a>&nbsp;<a href=\"#\" onClick=\"showBotInfo(0,2735); return false;\" title=\"Информация о существе\"><img src=\"/images/player_info.gif\" border=0 width=10 height=10 align=\"absmiddle\"></a></span> или <span  ><a ><b class=\"blue\">Призванную Шайссар&nbsp;[18]</b></a>&nbsp;<a href=\"#\" onClick=\"showBotInfo(0,2902); return false;\" title=\"Информация о существе\"><img src=\"/images/player_info.gif\" border=0 width=10 height=10 align=\"absmiddle\"></a></span>.",
-            "sell": true,
-            "drop": true,
-            "repair": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"4431262829\" repair_price=\"309.52380952381\" price_type=\"1\" sell_price=\"30\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell",
-                "3": "repair"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_4431262829"
-        }
-    ],
-    "bags": [],
-    "decor": [
-        {
-            "id": "3536427389",
-            "title": "Призматический перстень",
-            "ord": "1",
-            "kind_id": "76",
+            "id": "2666431067",
+            "title": "Щит «Несокрушимая твердыня»",
+            "ord": "18",
+            "kind_id": "17",
             "storage_type": "0",
             "profession": "0",
             "color": "#016e71",
             "quality": "5",
             "time_expire": "0",
-            "image": "/images/data/artifacts/signet_ring.gif",
-            "picture": "/images/data/artifacts/signet_ring.gif",
-            "kind": "Кольца",
-            "type_id": "33",
-            "price": "<span title=\"Золотой\"><img src=\"/images/m_game3.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;500",
+            "image": "/images/data/artifacts/shield_nesokrush_tverd.gif",
+            "picture": "/images/data/artifacts/shield_nesokrush_tverd.gif",
+            "kind": "Легкий щит",
+            "type_id": "4",
+            "trend": "Универсал",
+            "skills_e": [],
+            "set": {
+                "title": "Комплект",
+                "value": "<b style=\"color:#016e71\">«Несокрушимая твердыня»</b>"
+            },
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"2666431067\" price_type=\"1\" sell_price=\"0\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_2666431067"
+        },
+        {
+            "id": "2666431069",
+            "title": "Хопеш «Несокрушимая твердыня»",
+            "ord": "19",
+            "kind_id": "10",
+            "storage_type": "0",
+            "profession": "0",
+            "color": "#016e71",
+            "quality": "5",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/weapon_nesokrush_tverd.gif",
+            "picture": "/images/data/artifacts/weapon_nesokrush_tverd.gif",
+            "kind": "Основное",
+            "type_id": "2",
+            "trend": "Универсал",
+            "skills_e": [],
+            "set": {
+                "title": "Комплект",
+                "value": "<b style=\"color:#016e71\">«Несокрушимая твердыня»</b>"
+            },
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"2666431069\" price_type=\"1\" sell_price=\"0\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_2666431069"
+        },
+        {
+            "id": "3375823773",
+            "title": "Обманная алебарда",
+            "ord": "20",
+            "kind_id": "12",
+            "storage_type": "0",
+            "profession": "0",
+            "color": "#016e71",
+            "quality": "5",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/topordvuh1200_a.gif",
+            "picture": "/images/data/artifacts/topordvuh1200_a.gif",
+            "kind": "Двуручное",
+            "type_id": "2",
+            "trend": "Универсал",
+            "skills_e": [
+                {
+                    "title": "Сила",
+                    "value": "<b>+29</b><b style=\"color:#ff0000\"> (29)</b>"
+                },
+                {
+                    "title": "Живучесть",
+                    "value": "<b>+44</b><b style=\"color:#ff0000\"> (44)</b>"
+                },
+                {
+                    "title": "Мудрость",
+                    "value": "<b>+23</b><b style=\"color:#ff0000\"> (23)</b>"
+                }
+            ],
+            "enchant_icon": "<span class=\"enchants\">\n\t\t<img src=\"/images/enchants/enchant4_4.png\" alt=\"\" class=\"enchant_png\">\n\t\t</span>",
+            "enchant4": {
+                "title": "Лак",
+                "value": "<b style=\"color:#ff0000;\">Аметистовый лак</b>"
+            },
+            "enchant_class": "enchant4_5",
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3375823773\" price_type=\"1\" sell_price=\"0\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3375823773"
+        },
+        {
+            "id": "3377844735",
+            "title": "Боевой серп «Геральт»",
+            "ord": "21",
+            "kind_id": "10",
+            "storage_type": "0",
+            "profession": "0",
+            "color": "#016e71",
+            "quality": "5",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/stylish_scyphe.gif",
+            "picture": "/images/data/artifacts/stylish_scyphe.gif",
+            "kind": "Основное",
+            "type_id": "2",
             "lev": {
                 "title": " Уровень ",
                 "value": "3"
@@ -6127,52 +7791,11 @@ let items = {
             "skills_e": [],
             "nogive": "Предмет нельзя передать",
             "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "На первый взгляд этот перстень выглядит как обычное украшение, лишенное каких-либо магических сил. Однако если зарядить его энергией <a class=\"artifact_info b macros_artifact_quality4\" href=\"/artifact_info.php?artikul_id=23346\"  onClick=\"showArtifactInfo(false,23346);return false;\"> зазеркального самоцвета</a>, то перстень на час одарит вас могущественным <a class=\"artifact_info b macros_artifact_quality3\" href=\"/artifact_info.php?artikul_id=29433\"  onClick=\"showArtifactInfo(false,29433);return false;\"> благословением</a>.",
-            "nosell": "Предмет нельзя сдать в скупку",
-            "drop": true,
-            "use": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3536427389\"",
-            "icon_list": [
-                "drop",
-                "use",
-                "info"
-            ],
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 1,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3536427389"
-        },
-        {
-            "id": "3447220006",
-            "title": "Клинок Звездного хранителя",
-            "ord": "4",
-            "kind_id": "10",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#016e71",
-            "quality": "5",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/dw_item_527_7.gif",
-            "picture": "/images/data/artifacts/dw_item_527_7.gif",
-            "kind": "Основное",
-            "type_id": "2",
-            "price": "<span title=\"Золотой\"><img src=\"/images/m_game3.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;12",
-            "trend": "Универсал",
-            "skills_e": [],
-            "set": {
-                "title": "Комплект",
-                "value": "<b style=\"color:#016e71\">«Звездный хранитель»</b>"
-            },
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "Позволяет сменить облик основного или двуручного оружия.\r\n<br><SPAN style=\"color:darkred\">Событие «Звездные хранители» </SPAN>",
+            "desc": "Одинаково хорошо подходит для срезания травы и голов разбушевавшихся мертвяков.",
             "sell": true,
             "drop": true,
             "equip": true,
-            "add_attrs": " artifact_id=\"3447220006\" price_type=\"1\" sell_price=\"30\"",
+            "add_attrs": " artifact_id=\"3377844735\" price_type=\"1\" sell_price=\"0\"",
             "icon_list": {
                 "1": "info",
                 "2": "sell"
@@ -6182,129 +7805,12 @@ let items = {
             "_act2": 3,
             "_act3": 0,
             "_act4": 0,
-            "artifact_alt_id": "AA_3447220006"
+            "artifact_alt_id": "AA_3377844735"
         },
         {
-            "id": "3447220007",
-            "title": "Кинжал Звездного хранителя",
-            "ord": "6",
-            "kind_id": "44",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#016e71",
-            "quality": "5",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/dw_item_528_7.gif",
-            "picture": "/images/data/artifacts/dw_item_528_7.gif",
-            "kind": "Левая рука",
-            "type_id": "2",
-            "price": "<span title=\"Золотой\"><img src=\"/images/m_game3.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;12",
-            "trend": "Универсал",
-            "skills_e": [],
-            "set": {
-                "title": "Комплект",
-                "value": "<b style=\"color:#016e71\">«Звездный хранитель»</b>"
-            },
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "Позволяет сменить облик вспомогательного оружия или щита.\r\n<br><SPAN style=\"color:darkred\">Событие «Звездные хранители» </SPAN>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3447220007\" price_type=\"1\" sell_price=\"30\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3447220007"
-        },
-        {
-            "id": "3447220008",
-            "title": "Щит Звездного хранителя",
-            "ord": "7",
-            "kind_id": "17",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#016e71",
-            "quality": "5",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/dw_item_526_7.gif",
-            "picture": "/images/data/artifacts/dw_item_526_7.gif",
-            "kind": "Легкий щит",
-            "type_id": "4",
-            "price": "<span title=\"Золотой\"><img src=\"/images/m_game3.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;12",
-            "trend": "Универсал",
-            "skills_e": [],
-            "set": {
-                "title": "Комплект",
-                "value": "<b style=\"color:#016e71\">«Звездный хранитель»</b>"
-            },
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "Позволяет сменить облик вспомогательного оружия или щита.\r\n<br><SPAN style=\"color:darkred\">Событие «Звездные хранители» </SPAN>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3447220008\" price_type=\"1\" sell_price=\"30\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3447220008"
-        },
-        {
-            "id": "3447220009",
-            "title": "Глефа Звездного хранителя",
-            "ord": "8",
-            "kind_id": "12",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#016e71",
-            "quality": "5",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/dw_item_524_7.gif",
-            "picture": "/images/data/artifacts/dw_item_524_7.gif",
-            "kind": "Двуручное",
-            "type_id": "2",
-            "price": "<span title=\"Золотой\"><img src=\"/images/m_game3.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;12",
-            "trend": "Универсал",
-            "skills_e": [],
-            "set": {
-                "title": "Комплект",
-                "value": "<b style=\"color:#016e71\">«Звездный хранитель»</b>"
-            },
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "Позволяет сменить облик любого оружия или щита.\r\n<br><SPAN style=\"color:darkred\">Событие «Звездные хранители» </SPAN>",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3447220009\" price_type=\"1\" sell_price=\"30\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3447220009"
-        },
-        {
-            "id": "3447220010",
+            "id": "3440940374",
             "title": "Меч Звездного хранителя",
-            "ord": "9",
+            "ord": "23",
             "kind_id": "10",
             "storage_type": "0",
             "profession": "0",
@@ -6328,7 +7834,7 @@ let items = {
             "sell": true,
             "drop": true,
             "equip": true,
-            "add_attrs": " artifact_id=\"3447220010\" price_type=\"1\" sell_price=\"30\"",
+            "add_attrs": " artifact_id=\"3440940374\" price_type=\"1\" sell_price=\"30\"",
             "icon_list": {
                 "1": "info",
                 "2": "sell"
@@ -6338,87 +7844,129 @@ let items = {
             "_act2": 3,
             "_act3": 0,
             "_act4": 0,
-            "artifact_alt_id": "AA_3447220010"
+            "artifact_alt_id": "AA_3440940374"
         },
         {
-            "id": "3155305624",
-            "title": "Малый топор устойчивости",
-            "ord": "11",
-            "kind_id": "10",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#016e71",
-            "quality": "5",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/style_tank_topor.gif",
-            "picture": "/images/data/artifacts/style_tank_topor.gif",
-            "kind": "Основное",
-            "type_id": "2",
-            "trend": "Универсал",
-            "skills_e": [],
-            "set": {
-                "title": "Комплект",
-                "value": "<b style=\"color:#016e71\">Устойчивости</b>"
-            },
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "sell": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3155305624\" price_type=\"1\" sell_price=\"0\"",
-            "icon_list": [
-                "info",
-                "sell"
-            ],
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 0,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3155305624"
-        },
-        {
-            "id": "3911783406",
-            "title": "Клинок «Коготь Скверны»",
-            "ord": "21",
+            "id": "3440940369",
+            "title": "Кинжал Звездного хранителя",
+            "ord": "24",
             "kind_id": "44",
             "storage_type": "0",
             "profession": "0",
             "color": "#016e71",
             "quality": "5",
             "time_expire": "0",
-            "image": "/images/data/artifacts/skvern_knife.gif",
-            "picture": "/images/data/artifacts/skvern_knife.gif",
+            "image": "/images/data/artifacts/dw_item_528_7.gif",
+            "picture": "/images/data/artifacts/dw_item_528_7.gif",
             "kind": "Левая рука",
             "type_id": "2",
-            "price": "<a href=\"http://www.terrabank.ru/step2/123/ \" target=\"_blank\"><span title=\"Бриллиант\"><img src=\"/images/m_dmd.gif\" border=0 width=11 height=11 align=absmiddle></span></a>&nbsp;25.00",
-            "lev": {
-                "title": " Уровень ",
-                "value": "3"
-            },
+            "price": "<span title=\"Золотой\"><img src=\"/images/m_game3.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;12",
             "trend": "Универсал",
             "skills_e": [],
+            "set": {
+                "title": "Комплект",
+                "value": "<b style=\"color:#016e71\">«Звездный хранитель»</b>"
+            },
             "nogive": "Предмет нельзя передать",
             "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "Клинок кажется созданным из застывшей черной крови. Это один из двух парных клинков, выкованных к десятилетию Фэо.",
-            "nosell": "Предмет нельзя сдать в скупку",
+            "desc": "Позволяет сменить облик вспомогательного оружия или щита.\r\n<br><SPAN style=\"color:darkred\">Событие «Звездные хранители» </SPAN>",
+            "sell": true,
             "drop": true,
             "equip": true,
-            "add_attrs": " artifact_id=\"3911783406\"",
-            "icon_list": [
-                "drop",
-                "info"
-            ],
+            "add_attrs": " artifact_id=\"3440940369\" price_type=\"1\" sell_price=\"30\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
             "action": "equip",
             "_act1": 2,
             "_act2": 3,
             "_act3": 0,
             "_act4": 0,
-            "artifact_alt_id": "AA_3911783406"
+            "artifact_alt_id": "AA_3440940369"
         },
         {
-            "id": "4431893847",
+            "id": "3440940368",
+            "title": "Клинок Звездного хранителя",
+            "ord": "25",
+            "kind_id": "10",
+            "storage_type": "0",
+            "profession": "0",
+            "color": "#016e71",
+            "quality": "5",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/dw_item_527_7.gif",
+            "picture": "/images/data/artifacts/dw_item_527_7.gif",
+            "kind": "Основное",
+            "type_id": "2",
+            "price": "<span title=\"Золотой\"><img src=\"/images/m_game3.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;12",
+            "trend": "Универсал",
+            "skills_e": [],
+            "set": {
+                "title": "Комплект",
+                "value": "<b style=\"color:#016e71\">«Звездный хранитель»</b>"
+            },
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "Позволяет сменить облик основного или двуручного оружия.\r\n<br><SPAN style=\"color:darkred\">Событие «Звездные хранители» </SPAN>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3440940368\" price_type=\"1\" sell_price=\"30\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3440940368"
+        },
+        {
+            "id": "3440940371",
+            "title": "Щит Звездного хранителя",
+            "ord": "26",
+            "kind_id": "17",
+            "storage_type": "0",
+            "profession": "0",
+            "color": "#016e71",
+            "quality": "5",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/dw_item_526_7.gif",
+            "picture": "/images/data/artifacts/dw_item_526_7.gif",
+            "kind": "Легкий щит",
+            "type_id": "4",
+            "price": "<span title=\"Золотой\"><img src=\"/images/m_game3.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;12",
+            "trend": "Универсал",
+            "skills_e": [],
+            "set": {
+                "title": "Комплект",
+                "value": "<b style=\"color:#016e71\">«Звездный хранитель»</b>"
+            },
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "Позволяет сменить облик вспомогательного оружия или щита.\r\n<br><SPAN style=\"color:darkred\">Событие «Звездные хранители» </SPAN>",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3440940371\" price_type=\"1\" sell_price=\"30\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3440940371"
+        },
+        {
+            "id": "4432258243",
             "title": "Щит «Опора добродетели»",
-            "ord": "1640598867",
+            "ord": "611987152",
             "kind_id": "17",
             "storage_type": "0",
             "profession": "0",
@@ -6438,7 +7986,7 @@ let items = {
             "sell": true,
             "drop": true,
             "equip": true,
-            "add_attrs": " artifact_id=\"4431893847\" price_type=\"1\" sell_price=\"30\"",
+            "add_attrs": " artifact_id=\"4432258243\" price_type=\"1\" sell_price=\"30\"",
             "icon_list": {
                 "1": "info",
                 "2": "sell"
@@ -6448,12 +7996,12 @@ let items = {
             "_act2": 3,
             "_act3": 0,
             "_act4": 0,
-            "artifact_alt_id": "AA_4431893847"
+            "artifact_alt_id": "AA_4432258243"
         },
         {
-            "id": "4431893848",
+            "id": "4432258244",
             "title": "Меч «Опора добродетели»",
-            "ord": "1640598868",
+            "ord": "611987153",
             "kind_id": "10",
             "storage_type": "0",
             "profession": "0",
@@ -6473,7 +8021,7 @@ let items = {
             "sell": true,
             "drop": true,
             "equip": true,
-            "add_attrs": " artifact_id=\"4431893848\" price_type=\"1\" sell_price=\"30\"",
+            "add_attrs": " artifact_id=\"4432258244\" price_type=\"1\" sell_price=\"30\"",
             "icon_list": {
                 "1": "info",
                 "2": "sell"
@@ -6483,12 +8031,12 @@ let items = {
             "_act2": 3,
             "_act3": 0,
             "_act4": 0,
-            "artifact_alt_id": "AA_4431893848"
+            "artifact_alt_id": "AA_4432258244"
         },
         {
-            "id": "4432343533",
+            "id": "4432258245",
             "title": "Палаш «Светоч милосердия»",
-            "ord": "1640598869",
+            "ord": "611987154",
             "kind_id": "10",
             "storage_type": "0",
             "profession": "0",
@@ -6508,7 +8056,7 @@ let items = {
             "sell": true,
             "drop": true,
             "equip": true,
-            "add_attrs": " artifact_id=\"4432343533\" price_type=\"1\" sell_price=\"30\"",
+            "add_attrs": " artifact_id=\"4432258245\" price_type=\"1\" sell_price=\"30\"",
             "icon_list": {
                 "1": "info",
                 "2": "sell"
@@ -6518,12 +8066,12 @@ let items = {
             "_act2": 3,
             "_act3": 0,
             "_act4": 0,
-            "artifact_alt_id": "AA_4432343533"
+            "artifact_alt_id": "AA_4432258245"
         },
         {
-            "id": "4432343534",
+            "id": "4432258246",
             "title": "Тесак «Светоч милосердия»",
-            "ord": "1640598870",
+            "ord": "611987155",
             "kind_id": "44",
             "storage_type": "0",
             "profession": "0",
@@ -6543,7 +8091,7 @@ let items = {
             "sell": true,
             "drop": true,
             "equip": true,
-            "add_attrs": " artifact_id=\"4432343534\" price_type=\"1\" sell_price=\"30\"",
+            "add_attrs": " artifact_id=\"4432258246\" price_type=\"1\" sell_price=\"30\"",
             "icon_list": {
                 "1": "info",
                 "2": "sell"
@@ -6553,12 +8101,12 @@ let items = {
             "_act2": 3,
             "_act3": 0,
             "_act4": 0,
-            "artifact_alt_id": "AA_4432343534"
+            "artifact_alt_id": "AA_4432258246"
         },
         {
-            "id": "4433526895",
+            "id": "4433184150",
             "title": "Топор «Щедрый даритель»",
-            "ord": "1640598877",
+            "ord": "611987161",
             "kind_id": "12",
             "storage_type": "0",
             "profession": "0",
@@ -6578,7 +8126,7 @@ let items = {
             "sell": true,
             "drop": true,
             "equip": true,
-            "add_attrs": " artifact_id=\"4433526895\" price_type=\"1\" sell_price=\"30\"",
+            "add_attrs": " artifact_id=\"4433184150\" price_type=\"1\" sell_price=\"30\"",
             "icon_list": {
                 "1": "info",
                 "2": "sell"
@@ -6588,20 +8136,480 @@ let items = {
             "_act2": 3,
             "_act3": 0,
             "_act4": 0,
-            "artifact_alt_id": "AA_4433526895"
+            "artifact_alt_id": "AA_4433184150"
         },
         {
-            "id": "4065226410",
-            "title": "«Единство» V",
-            "ord": "2",
+            "id": "2375140696",
+            "title": "Обманные Кожаные наплечники",
+            "ord": "7",
+            "kind_id": "7",
+            "storage_type": "0",
+            "profession": "0",
+            "color": "#016e71",
+            "quality": "5",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/120502_444.gif",
+            "picture": "/images/data/artifacts/120502_444.gif",
+            "kind": "Наплечники",
+            "type_id": "111",
+            "trend": "Универсал",
+            "skills_e": [
+                {
+                    "title": "Сила",
+                    "value": "<b>+10</b><b style=\"color:#990099\"> (10)</b>"
+                },
+                {
+                    "title": "Живучесть",
+                    "value": "<b>+20</b><b style=\"color:#990099\"> (20)</b>"
+                },
+                {
+                    "title": "Мудрость",
+                    "value": "<b>+5</b><b style=\"color:#990099\"> (5)</b>"
+                }
+            ],
+            "enchant_icon": "<span class=\"enchants\">\n\t\t<img src=\"/images/enchants/enchant4_3.png\" alt=\"\" class=\"enchant_png\">\n\t\t</span>",
+            "enchant4": {
+                "title": "Лак",
+                "value": "<b style=\"color:#990099;\">Бронзовый лак</b>"
+            },
+            "enchant_class": "enchant4_4",
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"2375140696\" price_type=\"1\" sell_price=\"0\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_2375140696"
+        },
+        {
+            "id": "2404238787",
+            "title": "Обманное Льняное одеяние",
+            "ord": "9",
+            "kind_id": "21",
+            "storage_type": "0",
+            "profession": "0",
+            "color": "#016e71",
+            "quality": "5",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/120540_460.gif",
+            "picture": "/images/data/artifacts/120540_460.gif",
+            "kind": "Кольчуга",
+            "type_id": "111",
+            "trend": "Универсал",
+            "skills_e": [
+                {
+                    "title": "Сила",
+                    "value": "<b>+17</b><b style=\"color:#ff0000\"> (17)</b>"
+                },
+                {
+                    "title": "Живучесть",
+                    "value": "<b>+24</b><b style=\"color:#ff0000\"> (24)</b>"
+                },
+                {
+                    "title": "Мудрость",
+                    "value": "<b>+6</b><b style=\"color:#ff0000\"> (6)</b>"
+                }
+            ],
+            "enchant_icon": "<span class=\"enchants\">\n\t\t<img src=\"/images/enchants/enchant4_4.png\" alt=\"\" class=\"enchant_png\">\n\t\t</span>",
+            "enchant4": {
+                "title": "Лак",
+                "value": "<b style=\"color:#ff0000;\">Коричный лак</b>"
+            },
+            "enchant_class": "enchant4_5",
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"2404238787\" price_type=\"1\" sell_price=\"0\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_2404238787"
+        },
+        {
+            "id": "2404238832",
+            "title": "Обманные Кожаные браслеты",
+            "ord": "11",
+            "kind_id": "5",
+            "storage_type": "0",
+            "profession": "0",
+            "color": "#016e71",
+            "quality": "5",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/442_435.gif",
+            "picture": "/images/data/artifacts/442_435.gif",
+            "kind": "Наручи",
+            "type_id": "111",
+            "trend": "Универсал",
+            "skills_e": [
+                {
+                    "title": "Сила",
+                    "value": "<b>+10</b><b style=\"color:#990099\"> (10)</b>"
+                },
+                {
+                    "title": "Мудрость",
+                    "value": "<b>+5</b><b style=\"color:#990099\"> (5)</b>"
+                },
+                {
+                    "title": "Уровень жизни",
+                    "value": "<b>+15</b><b style=\"color:#990099\"> (15)</b>"
+                }
+            ],
+            "enchant_icon": "<span class=\"enchants\">\n\t\t<img src=\"/images/enchants/enchant4_3.png\" alt=\"\" class=\"enchant_png\">\n\t\t</span>",
+            "enchant4": {
+                "title": "Лак",
+                "value": "<b style=\"color:#990099;\">Янтарный лак</b>"
+            },
+            "enchant_class": "enchant4_4",
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"2404238832\" price_type=\"1\" sell_price=\"0\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_2404238832"
+        },
+        {
+            "id": "2375099718",
+            "title": "Обманная Кожаная куртка",
+            "ord": "13",
+            "kind_id": "20",
+            "storage_type": "0",
+            "profession": "0",
+            "color": "#016e71",
+            "quality": "5",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/120428_429.gif",
+            "picture": "/images/data/artifacts/120428_429.gif",
+            "kind": "Кираса",
+            "type_id": "111",
+            "trend": "Универсал",
+            "skills_e": [
+                {
+                    "title": "Сила",
+                    "value": "<b>+23</b><b style=\"color:#ff0000\"> (23)</b>"
+                },
+                {
+                    "title": "Живучесть",
+                    "value": "<b>+34</b><b style=\"color:#ff0000\"> (34)</b>"
+                },
+                {
+                    "title": "Мудрость",
+                    "value": "<b>+21</b><b style=\"color:#ff0000\"> (21)</b>"
+                }
+            ],
+            "enchant_icon": "<span class=\"enchants\">\n\t\t<img src=\"/images/enchants/enchant4_4.png\" alt=\"\" class=\"enchant_png\">\n\t\t</span>",
+            "enchant4": {
+                "title": "Лак",
+                "value": "<b style=\"color:#ff0000;\">Угольный лак</b>"
+            },
+            "enchant_class": "enchant4_5",
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"2375099718\" price_type=\"1\" sell_price=\"0\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_2375099718"
+        },
+        {
+            "id": "2375099772",
+            "title": "Обманные Кожаные поножи",
+            "ord": "15",
+            "kind_id": "6",
+            "storage_type": "0",
+            "profession": "0",
+            "color": "#016e71",
+            "quality": "5",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/120516_450.gif",
+            "picture": "/images/data/artifacts/120516_450.gif",
+            "kind": "Поножи",
+            "type_id": "111",
+            "trend": "Универсал",
+            "skills_e": [
+                {
+                    "title": "Сила",
+                    "value": "<b>+17</b><b style=\"color:#ff0000\"> (17)</b>"
+                },
+                {
+                    "title": "Мудрость",
+                    "value": "<b>+17</b><b style=\"color:#ff0000\"> (17)</b>"
+                },
+                {
+                    "title": "Уровень жизни",
+                    "value": "<b>+26</b><b style=\"color:#ff0000\"> (26)</b>"
+                }
+            ],
+            "enchant_icon": "<span class=\"enchants\">\n\t\t<img src=\"/images/enchants/enchant4_4.png\" alt=\"\" class=\"enchant_png\">\n\t\t</span>",
+            "enchant4": {
+                "title": "Лак",
+                "value": "<b style=\"color:#ff0000;\">Багровый лак</b>"
+            },
+            "enchant_class": "enchant4_5",
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"2375099772\" price_type=\"1\" sell_price=\"0\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_2375099772"
+        },
+        {
+            "id": "2404239408",
+            "title": "Обманный Витой лук",
+            "ord": "16",
+            "kind_id": "116",
+            "storage_type": "0",
+            "profession": "0",
+            "color": "#016e71",
+            "quality": "5",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/162321_467.gif",
+            "picture": "/images/data/artifacts/162321_467.gif",
+            "kind": "Лук",
+            "type_id": "111",
+            "trend": "Универсал",
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"2404239408\" price_type=\"1\" sell_price=\"0\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_2404239408"
+        },
+        {
+            "id": "2404242110",
+            "title": "Обманные Кожаные сапоги",
+            "ord": "16",
+            "kind_id": "2",
+            "storage_type": "0",
+            "profession": "0",
+            "color": "#016e71",
+            "quality": "5",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/120425_428.gif",
+            "picture": "/images/data/artifacts/120425_428.gif",
+            "kind": "Обувь",
+            "type_id": "111",
+            "trend": "Универсал",
+            "skills_e": [
+                {
+                    "title": "Сила",
+                    "value": "<b>+15</b><b style=\"color:#ff0000\"> (15)</b>"
+                },
+                {
+                    "title": "Мудрость",
+                    "value": "<b>+9</b><b style=\"color:#ff0000\"> (9)</b>"
+                },
+                {
+                    "title": "Уровень жизни",
+                    "value": "<b>+18</b><b style=\"color:#ff0000\"> (18)</b>"
+                }
+            ],
+            "enchant_icon": "<span class=\"enchants\">\n\t\t<img src=\"/images/enchants/enchant4_4.png\" alt=\"\" class=\"enchant_png\">\n\t\t</span>",
+            "enchant4": {
+                "title": "Лак",
+                "value": "<b style=\"color:#ff0000;\">Травяной лак</b>"
+            },
+            "enchant_class": "enchant4_5",
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"2404242110\" price_type=\"1\" sell_price=\"0\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_2404242110"
+        },
+        {
+            "id": "2666431063",
+            "title": "Лук «Несокрушимая твердыня»",
+            "ord": "17",
+            "kind_id": "116",
+            "storage_type": "0",
+            "profession": "0",
+            "color": "#016e71",
+            "quality": "5",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/bow_nesokrush_tverd.gif",
+            "picture": "/images/data/artifacts/bow_nesokrush_tverd.gif",
+            "kind": "Лук",
+            "type_id": "111",
+            "trend": "Универсал",
+            "skills_e": [],
+            "set": {
+                "title": "Комплект",
+                "value": "<b style=\"color:#016e71\">«Несокрушимая твердыня»</b>"
+            },
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"2666431063\" price_type=\"1\" sell_price=\"0\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_2666431063"
+        },
+        {
+            "id": "3092000210",
+            "title": "Кольцо «Мистерия океана»",
+            "ord": "28",
             "kind_id": "76",
             "storage_type": "0",
             "profession": "0",
             "color": "#016e71",
             "quality": "5",
             "time_expire": "0",
-            "image": "/images/data/artifacts/unity_5.gif",
-            "picture": "/images/data/artifacts/unity_5.gif",
+            "image": "/images/data/artifacts/jewelry_style_ring_3.gif",
+            "picture": "/images/data/artifacts/jewelry_style_ring_3.gif",
+            "kind": "Кольца",
+            "type_id": "111",
+            "price": "<span title=\"Медный\"><img src=\"/images/m_game1.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "1"
+            },
+            "trend": "Универсал",
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "Позволяет сменить облик одного из колец.",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3092000210\" price_type=\"1\" sell_price=\"0.01\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3092000210"
+        },
+        {
+            "id": "3092000393",
+            "title": "Кольцо «Мистерия океана»",
+            "ord": "611984481",
+            "kind_id": "76",
+            "storage_type": "0",
+            "profession": "0",
+            "color": "#016e71",
+            "quality": "5",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/jewelry_style_ring_3.gif",
+            "picture": "/images/data/artifacts/jewelry_style_ring_3.gif",
+            "kind": "Кольца",
+            "type_id": "111",
+            "price": "<span title=\"Медный\"><img src=\"/images/m_game1.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "1"
+            },
+            "trend": "Универсал",
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "Позволяет сменить облик одного из колец.",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3092000393\" price_type=\"1\" sell_price=\"0.01\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3092000393"
+        },
+        {
+            "id": "4350195411",
+            "title": "«Единство» III",
+            "ord": "611986781",
+            "kind_id": "76",
+            "storage_type": "0",
+            "profession": "0",
+            "color": "#016e71",
+            "quality": "5",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/unity_3.gif",
+            "picture": "/images/data/artifacts/unity_3.gif",
             "kind": "Кольца",
             "type_id": "111",
             "price": "<span title=\"Золотой\"><img src=\"/images/m_game3.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;100",
@@ -6621,7 +8629,7 @@ let items = {
             "desc": "Кольцо, в котором заключена сила героев древности. Магические свойства инкрустированных камней проявляются при воздействии на них <a class=\"artifact_info b macros_artifact_quality3\" href=\"/artifact_info.php?artikul_id=33587\"  onClick=\"showArtifactInfo(false,33587);return false;\">порошка туманника</a>.",
             "nosell": "Предмет нельзя сдать в скупку",
             "equip": true,
-            "add_attrs": " artifact_id=\"4065226410\"",
+            "add_attrs": " artifact_id=\"4350195411\"",
             "icon_list": [
                 "info"
             ],
@@ -6630,368 +8638,51 @@ let items = {
             "_act2": 0,
             "_act3": 0,
             "_act4": 0,
-            "artifact_alt_id": "AA_4065226410"
+            "artifact_alt_id": "AA_4350195411"
         },
         {
-            "id": "3155305999",
-            "title": "Шлем устойчивости",
-            "ord": "10",
-            "kind_id": "1",
+            "id": "4385730976",
+            "title": "Памятное иномирное кольцо",
+            "ord": "611986926",
+            "kind_id": "76",
             "storage_type": "0",
             "profession": "0",
             "color": "#016e71",
             "quality": "5",
             "time_expire": "0",
-            "image": "/images/data/artifacts/style_tank_shlem.gif",
-            "picture": "/images/data/artifacts/style_tank_shlem.gif",
-            "kind": "Шлем",
+            "image": "/images/data/artifacts/ring_green_06.gif",
+            "picture": "/images/data/artifacts/ring_green_06.gif",
+            "kind": "Кольца",
             "type_id": "111",
+            "price": "<span title=\"Медный\"><img src=\"/images/m_game1.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "1"
+            },
             "trend": "Универсал",
             "skills_e": [],
-            "set": {
-                "title": "Комплект",
-                "value": "<b style=\"color:#016e71\">Устойчивости</b>"
-            },
             "nogive": "Предмет нельзя передать",
             "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "Кольцо участника состязаний. Вы славно потрудились и смогли добыть на память одно из иномирных колец.\r\n\r\n<br /><br />Позволяет сменить облик одного из колец.\r\n<br />\r\n<br><SPAN style=\"color:darkred\">Событие «Состязания за кольца Иномирья».</SPAN>",
             "sell": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3155305999\" price_type=\"1\" sell_price=\"0\"",
-            "icon_list": [
-                "info",
-                "sell"
-            ],
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 0,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3155305999"
-        },
-        {
-            "id": "3155306017",
-            "title": "Кольчуга устойчивости",
-            "ord": "12",
-            "kind_id": "21",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#016e71",
-            "quality": "5",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/style_tank_kolch.gif",
-            "picture": "/images/data/artifacts/style_tank_kolch.gif",
-            "kind": "Кольчуга",
-            "type_id": "111",
-            "trend": "Универсал",
-            "skills_e": [
-                {
-                    "title": "Сила",
-                    "value": "<b>+7</b><b style=\"color:#3300ff\"> (7)</b>"
-                },
-                {
-                    "title": "Живучесть",
-                    "value": "<b>+11</b><b style=\"color:#3300ff\"> (11)</b>"
-                },
-                {
-                    "title": "Мудрость",
-                    "value": "<b>+1</b><b style=\"color:#3300ff\"> (1)</b>"
-                }
-            ],
-            "enchant_icon": "<span class=\"enchants\">\n\t\t<img src=\"/images/enchants/enchant4_2.png\" alt=\"\" class=\"enchant_png\">\n\t\t</span>",
-            "enchant4": {
-                "title": "Лак",
-                "value": "<b style=\"color:#3300ff;\">Коричный лак</b>"
-            },
-            "enchant_class": "enchant4_3",
-            "set": {
-                "title": "Комплект",
-                "value": "<b style=\"color:#016e71\">Устойчивости</b>"
-            },
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "sell": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3155306017\" price_type=\"1\" sell_price=\"0\"",
-            "icon_list": [
-                "info",
-                "sell"
-            ],
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 0,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3155306017"
-        },
-        {
-            "id": "3155306243",
-            "title": "Перчатки устойчивости",
-            "ord": "13",
-            "kind_id": "5",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#016e71",
-            "quality": "5",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/style_tank_perch.gif",
-            "picture": "/images/data/artifacts/style_tank_perch.gif",
-            "kind": "Наручи",
-            "type_id": "111",
-            "trend": "Универсал",
-            "skills_e": [],
-            "set": {
-                "title": "Комплект",
-                "value": "<b style=\"color:#016e71\">Устойчивости</b>"
-            },
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "sell": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3155306243\" price_type=\"1\" sell_price=\"0\"",
-            "icon_list": [
-                "info",
-                "sell"
-            ],
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 0,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3155306243"
-        },
-        {
-            "id": "3155306090",
-            "title": "Сапоги устойчивости",
-            "ord": "14",
-            "kind_id": "2",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#016e71",
-            "quality": "5",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/style_tank_sapogi.gif",
-            "picture": "/images/data/artifacts/style_tank_sapogi.gif",
-            "kind": "Обувь",
-            "type_id": "111",
-            "trend": "Универсал",
-            "skills_e": [],
-            "set": {
-                "title": "Комплект",
-                "value": "<b style=\"color:#016e71\">Устойчивости</b>"
-            },
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "sell": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3155306090\" price_type=\"1\" sell_price=\"0\"",
-            "icon_list": [
-                "info",
-                "sell"
-            ],
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 0,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3155306090"
-        },
-        {
-            "id": "3155306151",
-            "title": "Поножи устойчивости",
-            "ord": "16",
-            "kind_id": "6",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#016e71",
-            "quality": "5",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/style_tank_ponoz.gif",
-            "picture": "/images/data/artifacts/style_tank_ponoz.gif",
-            "kind": "Поножи",
-            "type_id": "111",
-            "trend": "Универсал",
-            "skills_e": [],
-            "set": {
-                "title": "Комплект",
-                "value": "<b style=\"color:#016e71\">Устойчивости</b>"
-            },
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "sell": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3155306151\" price_type=\"1\" sell_price=\"0\"",
-            "icon_list": [
-                "info",
-                "sell"
-            ],
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 0,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3155306151"
-        },
-        {
-            "id": "3155305747",
-            "title": "Броня устойчивости",
-            "ord": "17",
-            "kind_id": "20",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#016e71",
-            "quality": "5",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/style_tank_bron.gif",
-            "picture": "/images/data/artifacts/style_tank_bron.gif",
-            "kind": "Кираса",
-            "type_id": "111",
-            "trend": "Универсал",
-            "skills_e": [],
-            "set": {
-                "title": "Комплект",
-                "value": "<b style=\"color:#016e71\">Устойчивости</b>"
-            },
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "sell": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3155305747\" price_type=\"1\" sell_price=\"0\"",
-            "icon_list": [
-                "info",
-                "sell"
-            ],
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 0,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3155305747"
-        },
-        {
-            "id": "3155305783",
-            "title": "Лук устойчивости",
-            "ord": "19",
-            "kind_id": "116",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#016e71",
-            "quality": "5",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/style_tank_luk.gif",
-            "picture": "/images/data/artifacts/style_tank_luk.gif",
-            "kind": "Лук",
-            "type_id": "111",
-            "trend": "Универсал",
-            "skills_e": [],
-            "set": {
-                "title": "Комплект",
-                "value": "<b style=\"color:#016e71\">Устойчивости</b>"
-            },
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "sell": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3155305783\" price_type=\"1\" sell_price=\"0\"",
-            "icon_list": [
-                "info",
-                "sell"
-            ],
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 0,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3155305783"
-        },
-        {
-            "id": "3911777752",
-            "title": "Повязка «Облачение неупокоенного»",
-            "ord": "22",
-            "kind_id": "1",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#016e71",
-            "quality": "5",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/golova_1.gif",
-            "picture": "/images/data/artifacts/golova_1.gif",
-            "kind": "Шлем",
-            "type_id": "111",
-            "trend": "Универсал",
-            "skills_e": [
-                {
-                    "title": "Сила",
-                    "value": "<b>+21</b><b style=\"color:#3300ff\"> (21)</b>"
-                },
-                {
-                    "title": "Мудрость",
-                    "value": "<b>+14</b><b style=\"color:#3300ff\"> (14)</b>"
-                },
-                {
-                    "title": "Уровень жизни",
-                    "value": "<b>+32</b><b style=\"color:#3300ff\"> (32)</b>"
-                }
-            ],
-            "enchant_icon": "<span class=\"enchants\">\n\t\t<img src=\"/images/enchants/enchant4_2.png\" alt=\"\" class=\"enchant_png\">\n\t\t</span>",
-            "enchant4": {
-                "title": "Лак",
-                "value": "<b style=\"color:#3300ff;\">Молочный лак</b>"
-            },
-            "enchant_class": "enchant4_3",
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "nosell": "Предмет нельзя сдать в скупку",
             "drop": true,
             "equip": true,
-            "add_attrs": " artifact_id=\"3911777752\"",
-            "icon_list": [
-                "drop",
-                "info"
-            ],
+            "add_attrs": " artifact_id=\"4385730976\" price_type=\"1\" sell_price=\"0.01\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
             "action": "equip",
             "_act1": 2,
             "_act2": 3,
             "_act3": 0,
             "_act4": 0,
-            "artifact_alt_id": "AA_3911777752"
+            "artifact_alt_id": "AA_4385730976"
         },
         {
-            "id": "3911777756",
-            "title": "Бандаж «Облачение неупокоенного»",
-            "ord": "249",
-            "kind_id": "7",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#016e71",
-            "quality": "5",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/plechi_1.gif",
-            "picture": "/images/data/artifacts/plechi_1.gif",
-            "kind": "Наплечники",
-            "type_id": "111",
-            "trend": "Универсал",
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "nosell": "Предмет нельзя сдать в скупку",
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3911777756\"",
-            "icon_list": [
-                "drop",
-                "info"
-            ],
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3911777756"
-        },
-        {
-            "id": "4454577279",
+            "id": "4454356745",
             "title": "Обруч «Синий огонь»",
-            "ord": "1640598882",
+            "ord": "611987197",
             "kind_id": "1",
             "storage_type": "0",
             "profession": "0",
@@ -7013,7 +8704,7 @@ let items = {
             "nosell": "Предмет нельзя сдать в скупку",
             "drop": true,
             "equip": true,
-            "add_attrs": " artifact_id=\"4454577279\"",
+            "add_attrs": " artifact_id=\"4454356745\"",
             "icon_list": [
                 "drop",
                 "info"
@@ -7023,78 +8714,120 @@ let items = {
             "_act2": 3,
             "_act3": 0,
             "_act4": 0,
-            "artifact_alt_id": "AA_4454577279"
+            "artifact_alt_id": "AA_4454356745"
         }
     ],
     "prof_weapons": [
         {
-            "id": "3155306415",
-            "title": "Атаманский серп",
+            "id": "2342688530",
+            "title": "Крепкий серп",
             "ord": "2",
             "kind_id": "42",
             "storage_type": "1",
             "profession": "1",
-            "color": "#3300ff",
-            "quality": "2",
+            "color": "#339900",
+            "quality": "1",
             "time_expire": "0",
-            "image": "/images/data/artifacts/serp_blue.gif",
-            "picture": "/images/data/artifacts/serp_blue.gif",
+            "image": "/images/data/artifacts/serpgreenkvest.gif",
+            "picture": "/images/data/artifacts/serpgreenkvest.gif",
             "kind": "Серп",
             "type_id": "23",
-            "price": "<span title=\"Золотой\"><img src=\"/images/m_game3.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;6",
-            "dur": "1",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;70",
+            "dur": "7",
             "dur_max": "7",
             "lev": {
                 "title": " Уровень ",
                 "value": "3"
             },
             "trend": "Универсал",
-            "skills": [],
+            "skills": [
+                {
+                    "title": "Максимальный урон",
+                    "value": "<b>+3.0</b>"
+                },
+                {
+                    "title": "Минимальный урон",
+                    "value": "<b>+2.0</b>"
+                }
+            ],
             "skills_e": [],
-            "enchant_icon": "<span class=\"enchants\">\n\t\t<img src=\"/images/enchants/1_1.png\" alt=\"\" class=\"enchant_png\">\n\t\t</span>",
-            "enchant": {
-                "title": "Руна",
-                "value": "<b style=\"color:#339900\">Руна всходов Фэв</b>"
-            },
-            "enchant_class": "enchant-1_1",
             "enchant_mod": {
                 "title": "Встроено",
-                "value": "<b style=\"color:#339900\">Чары сытости «Рагу из птицы» (978)</b>"
+                "value": "<b style=\"color:#3300ff\">Чары зверского палача (50)</b>"
             },
             "nogive": "Предмет нельзя передать",
             "flags2": {
-                "can_crashproof": "Предмет можно укрепить смолой"
+                "crashproof": "Неломаемый предмет"
             },
-            "desc": "Орудие труда гордтов, воинственных обитателей Проклятого поля. При столкновении с врагом этот инструмент легко становится смертоносным оружием. Встреча с <span  ><a ><b class=\"blue\">Гордтом-атаманом&nbsp;[7]</b></a>&nbsp;<a href=\"#\" onClick=\"showBotInfo(0,262); return false;\" title=\"Информация о существе\"><img src=\"/images/player_info.gif\" border=0 width=10 height=10 align=\"absmiddle\"></a></span>, вооруженным таким серпом, не сулит ничего хорошего даже опытному воину. </br>\r\nИспользование этого инструмента дает <b style=\"color:blue\">четырехкратный шанс</b> добыть дополнительные ресурсы.\r\n</br>Применение этого инструмента в бою увеличивает мудрость на <b style=\"color:blue\">5%</b> и силу на <b style=\"color:blue\">5%</b>.",
-            "engrave": "<span class=\"redd b\">Гравировка:</span> Лигрилокосилка!",
+            "desc": "Очень ценный инструмент, без которого не обойтись тому, кто овладел профессией травника.</br>\r\nИспользование этого инструмента дает <b style=\"color:#339900\">удвоенный шанс</b> добыть дополнительные ресурсы.",
             "nosell": "Предмет нельзя сдать в скупку",
             "drop": true,
-            "repair": true,
             "use": true,
             "equip": true,
-            "add_attrs": " artifact_id=\"3155306415\" repair_price=\"85.714285714286\"",
+            "add_attrs": " artifact_id=\"2342688530\"",
             "icon_list": [
                 "drop",
                 "use",
-                "info",
-                "repair"
+                "info"
             ],
             "action": "equip",
             "_act1": 2,
             "_act2": 3,
             "_act3": 1,
             "_act4": 0,
-            "artifact_alt_id": "AA_3155306415"
+            "artifact_alt_id": "AA_2342688530"
         }
     ],
     "belts": [
         {
-            "id": "3976363758",
-            "title": "Эфемерный пояс",
-            "ord": "14",
+            "id": "2096199819",
+            "title": "Паутинный пояс",
+            "ord": "34",
             "kind_id": "31",
             "storage_type": "0",
             "profession": "0",
+            "cnt": 6,
+            "color": "#666666",
+            "quality": "0",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/pautinpoias_1504.gif",
+            "picture": "/images/data/artifacts/pautinpoias_1504.gif",
+            "kind": "Пояс",
+            "type_id": "142",
+            "dur": "1",
+            "dur_max": "1",
+            "lev": {
+                "title": " Уровень ",
+                "value": "5"
+            },
+            "skills": [],
+            "skills_e": [],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "desc": "Гномьи мастера обладали умением извлекать из паутины пещерных чудовищ прочные серебряные нити, из которых они ткали удивительные воинские пояса, добавляющие один слот для эликсиров и свитков. По прошествии времени пояса не утратили своей ценности, но несколько обветшали и потеряли свою долговечность. Паутинный пояс <b>добавляет один слот для эликсиров, свитков и прочих вспомогательных эффектов, используемых в бою.</b>",
+            "nosell": "Предмет нельзя сдать в скупку",
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"2096199819\"",
+            "icon_list": [
+                "drop",
+                "info"
+            ],
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_2096199819"
+        },
+        {
+            "id": "3720672671",
+            "title": "Эфемерный пояс",
+            "ord": "56",
+            "kind_id": "31",
+            "storage_type": "0",
+            "profession": "0",
+            "cnt": 53,
             "color": "#339900",
             "quality": "1",
             "time_expire": "0",
@@ -7117,7 +8850,7 @@ let items = {
             "sell": true,
             "drop": true,
             "equip": true,
-            "add_attrs": " artifact_id=\"3976363758\" price_type=\"1\" sell_price=\"5\"",
+            "add_attrs": " artifact_id=\"3720672671\" price_type=\"1\" sell_price=\"5\"",
             "icon_list": {
                 "1": "info",
                 "2": "sell"
@@ -7127,110 +8860,116 @@ let items = {
             "_act2": 3,
             "_act3": 0,
             "_act4": 0,
-            "artifact_alt_id": "AA_3976363758"
-        },
-        {
-            "id": "3155305835",
-            "title": "Пояс героя",
-            "ord": "1640598857",
-            "kind_id": "31",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#3300ff",
-            "quality": "2",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/Belt_hero_b_080723.gif",
-            "picture": "/images/data/artifacts/Belt_hero_b_080723.gif",
-            "kind": "Пояс",
-            "type_id": "143",
-            "price": "<span title=\"Золотой\"><img src=\"/images/m_game3.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;50",
-            "dur": "6",
-            "dur_max": "17",
-            "lev": {
-                "title": " Уровень ",
-                "value": "11"
-            },
-            "trend": "Универсал",
-            "skills": [],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "flags2": {
-                "crashproof": "Неломаемый предмет"
-            },
-            "rank_min": "Для приобретения или использования вещи необходимо звание <b class=\"redd\"><img src=\"/images/ranks/rank9.gif\" width=\"13\" height=\"13\" border=\"0\" alt=\"\" align=\"absmiddle\">Герой</b>.",
-            "desc": "Пояс героя <b>добавляет три слота для эликсиров, свитков и прочих вспомогательных эффектов, используемых в бою</b>. <br /><STRONG>Тяжёлый пояс (одновременно можно надеть только один тяжёлый пояс).</STRONG>",
-            "sell": true,
-            "drop": true,
-            "repair": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3155305835\" repair_price=\"277.77777777778\" price_type=\"1\" sell_price=\"30\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell",
-                "3": "repair"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3155305835"
+            "artifact_alt_id": "AA_3720672671"
         }
     ],
-    "bracelets": [
+    "bracelets": [],
+    "bows": [
         {
-            "id": "3761628309",
-            "title": "Роскошный браслет могущества",
-            "ord": "1640597936",
-            "kind_id": "137",
+            "id": "3314030357",
+            "title": "Мудреный лук «Разящий без промаха»",
+            "ord": "15",
+            "kind_id": "116",
             "storage_type": "0",
             "profession": "0",
             "color": "#990099",
             "quality": "3",
             "time_expire": "0",
-            "image": "/images/data/artifacts/brac_3_4_fio.gif",
-            "picture": "/images/data/artifacts/brac_3_4_fio.gif",
-            "kind": "Браслет",
-            "type_id": "130",
-            "price": "<span title=\"Золотой\"><img src=\"/images/m_game3.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;36",
+            "image": "/images/data/artifacts/123029_82.gif",
+            "picture": "/images/data/artifacts/123029_82.gif",
+            "kind": "Лук",
+            "type_id": "92",
+            "price": "<span title=\"Золотой\"><img src=\"/images/m_game3.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;170",
+            "dur": "31",
+            "dur_max": "35",
             "lev": {
                 "title": " Уровень ",
-                "value": "20"
+                "value": "17"
             },
+            "trend": "Костолом",
             "skills": [
                 {
-                    "title": "Слоты для аркатов",
-                    "value": "<b>+4</b>"
+                    "title": "Ловкость",
+                    "value": "<b>+14</b><b style=\"color:#990099\"> (5)</b>"
                 },
                 {
-                    "title": "Ячейки для боевых аур",
-                    "value": "<b>+4</b>"
+                    "title": "Защита",
+                    "value": "<b>+15</b><b style=\"color:#339900\"> (6)</b>"
+                },
+                {
+                    "title": "Интуиция",
+                    "value": "<b>+42</b><b style=\"color:#990099\"> (5)</b>"
+                },
+                {
+                    "title": "Интеллект",
+                    "value": "<b>+30</b>"
+                },
+                {
+                    "title": "Сила",
+                    "value": "<b>+107</b><b style=\"color:#990099\"> (15)</b>"
+                },
+                {
+                    "title": "Живучесть",
+                    "value": "<b>+101</b><b style=\"color:#990099\"> (4)</b>"
+                },
+                {
+                    "title": "Мудрость",
+                    "value": "<b>+119</b><b style=\"color:#990099\"> (24)</b>"
+                },
+                {
+                    "title": "Ярость",
+                    "value": "<b>+8</b><b style=\"color:#3300ff\"> (8)</b>"
                 }
             ],
             "skills_e": [],
+            "enchant_icon": "<span class=\"enchants\">\n\t\t<img src=\"/images/enchants/6_3.png\" alt=\"\" class=\"enchant_png\">\n\t\t</span>",
+            "enchant": {
+                "title": "Руна",
+                "value": "<b style=\"color:#990099\">Руна неотвратимости Норт VI</b>"
+            },
+            "enchant_class": "enchant-6_3",
+            "enchant_mod": {
+                "title": "Встроено",
+                "value": "<b style=\"color:#990099\">Чары апологии (11)</b>"
+            },
+            "symbols": [
+                {
+                    "title": "Символ",
+                    "value": "<b style=\"color:#339900;\">Символ обороны Фен</b>"
+                },
+                {
+                    "title": "Символ",
+                    "value": "<b style=\"color:#3300ff;\">Символ ярости Скор</b>"
+                }
+            ],
             "nogive": "Предмет нельзя передать",
-            "desc": "После того как вы экипируете этот браслет, вам откроется доступ к использованию <STRONG>четырех <A href=\"/info/info/index.php?obj=cat&id=29&page=21\" target=\"_blank\">боевых аур</A></STRONG> в бою.<br>\r\n<STRONG>В бою</STRONG> повышает интеллект, живучесть, ловкость, защиту и интуицию носителя <STRONG>на 4%</STRONG>.<br>\r\nДля покупки данной вещи необходимо иметь <b class=\"redd\">8800</b> <b class=\"redd\"><a href=\"info/library/index.php?obj=cat&id=139\" target=_blank>Репутационного рейтинга</a></b>.",
+            "flags2": {
+                "crashproof": "Неломаемый предмет"
+            },
+            "desc": "Для приобретения данной вещи необходимо иметь <b class=\"redd\"><A href=\"/info/library/?category_id=241&page=2\" target=\"_blank\">репутационный рейтинг</A></b> не ниже <b class=\"redd\">7700</b>.",
             "sell": true,
             "drop": true,
+            "repair": true,
+            "use": true,
             "equip": true,
-            "add_attrs": " artifact_id=\"3761628309\" price_type=\"1\" sell_price=\"30\"",
+            "add_attrs": " artifact_id=\"3314030357\" repair_price=\"485.71428571429\" price_type=\"1\" sell_price=\"30\"",
             "icon_list": {
-                "1": "info",
-                "2": "sell"
+                "1": "use",
+                "2": "info",
+                "3": "sell",
+                "4": "repair"
             },
             "action": "equip",
             "_act1": 2,
             "_act2": 3,
-            "_act3": 0,
+            "_act3": 1,
             "_act4": 0,
-            "artifact_alt_id": "AA_3761628309"
-        }
-    ],
-    "bows": [
+            "artifact_alt_id": "AA_3314030357"
+        },
         {
-            "id": "3308798038",
+            "id": "3314030356",
             "title": "Мудреный лук «Выстрел судьбы»",
-            "ord": "57",
+            "ord": "36",
             "kind_id": "116",
             "storage_type": "0",
             "profession": "0",
@@ -7242,7 +8981,7 @@ let items = {
             "kind": "Лук",
             "type_id": "92",
             "price": "<span title=\"Золотой\"><img src=\"/images/m_game3.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;170",
-            "dur": "18",
+            "dur": "35",
             "dur_max": "35",
             "lev": {
                 "title": " Уровень ",
@@ -7252,11 +8991,11 @@ let items = {
             "skills": [
                 {
                     "title": "Ловкость",
-                    "value": "<b>+45</b><b style=\"color:#3300ff\"> (8)</b>"
+                    "value": "<b>+63</b><b style=\"color:#990099\"> (26)</b>"
                 },
                 {
                     "title": "Защита",
-                    "value": "<b>+14</b><b style=\"color:#3300ff\"> (5)</b>"
+                    "value": "<b>+14</b><b style=\"color:#990099\"> (5)</b>"
                 },
                 {
                     "title": "Интуиция",
@@ -7268,36 +9007,48 @@ let items = {
                 },
                 {
                     "title": "Сила",
-                    "value": "<b>+107</b><b style=\"color:#3300ff\"> (15)</b>"
+                    "value": "<b>+107</b><b style=\"color:#990099\"> (15)</b>"
                 },
                 {
                     "title": "Живучесть",
-                    "value": "<b>+99</b><b style=\"color:#3300ff\"> (2)</b>"
+                    "value": "<b>+101</b><b style=\"color:#990099\"> (4)</b>"
                 },
                 {
                     "title": "Мудрость",
-                    "value": "<b>+116</b><b style=\"color:#3300ff\"> (21)</b>"
+                    "value": "<b>+119</b><b style=\"color:#990099\"> (24)</b>"
+                },
+                {
+                    "title": "Концентрация",
+                    "value": "<b>+6</b><b style=\"color:#3300ff\"> (6)</b>"
+                },
+                {
+                    "title": "Подавление",
+                    "value": "<b>-5</b><b style=\"color:#3300ff\"> (-5)</b>"
                 }
             ],
             "skills_e": [],
-            "enchant_icon": "<span class=\"enchants\">\n\t\t<img src=\"/images/enchants/3_2.png\" alt=\"\" class=\"enchant_png\">\n\t\t</span>",
+            "enchant_icon": "<span class=\"enchants\">\n\t\t<img src=\"/images/enchants/6_3.png\" alt=\"\" class=\"enchant_png\">\n\t\t</span>",
             "enchant": {
                 "title": "Руна",
-                "value": "<b style=\"color:#3300ff\">Руна преломления Норт III</b>"
+                "value": "<b style=\"color:#990099\">Руна преломления Норт VI</b>"
             },
-            "enchant_class": "enchant-3_2",
+            "enchant_class": "enchant-6_3",
+            "enchant_mod": {
+                "title": "Встроено",
+                "value": "<b style=\"color:#339900\">Чары мимолетной невидимости (2)</b>"
+            },
             "symbols": [
                 {
                     "title": "Символ",
-                    "value": "<b style=\"color:#666666;\">Символ обороны Фен</b>"
+                    "value": "<b style=\"color:#3300ff;\">Символ твердости Горд</b>"
                 },
                 {
                     "title": "Символ",
-                    "value": "<b style=\"color:#990099;\">Символ воли к победе Пер-Флар</b>"
+                    "value": "<b style=\"color:#3300ff;\">Символ воли к жизни Стриг-Флар</b>"
                 },
                 {
                     "title": "Символ",
-                    "value": "<b style=\"color:#666666;\">Символ уклонения Кос</b>"
+                    "value": "<b style=\"color:#990099;\">Символ уклонения Кос</b>"
                 }
             ],
             "nogive": "Предмет нельзя передать",
@@ -7307,25 +9058,25 @@ let items = {
             "desc": "Для приобретения данной вещи необходимо иметь <b class=\"redd\"><A href=\"/info/library/?category_id=241&page=2\" target=\"_blank\">репутационный рейтинг</A></b> не ниже <b class=\"redd\">7700</b>.",
             "sell": true,
             "drop": true,
-            "repair": true,
+            "use": true,
             "equip": true,
-            "add_attrs": " artifact_id=\"3308798038\" repair_price=\"485.71428571429\" price_type=\"1\" sell_price=\"30\"",
+            "add_attrs": " artifact_id=\"3314030356\" price_type=\"1\" sell_price=\"30\"",
             "icon_list": {
-                "1": "info",
-                "2": "sell",
-                "3": "repair"
+                "1": "use",
+                "2": "info",
+                "3": "sell"
             },
             "action": "equip",
             "_act1": 2,
             "_act2": 3,
-            "_act3": 0,
+            "_act3": 1,
             "_act4": 0,
-            "artifact_alt_id": "AA_3308798038"
+            "artifact_alt_id": "AA_3314030356"
         },
         {
-            "id": "3332763473",
+            "id": "3409605466",
             "title": "Мудреный лук «Вершащий суд»",
-            "ord": "79",
+            "ord": "48",
             "kind_id": "116",
             "storage_type": "0",
             "profession": "0",
@@ -7337,7 +9088,7 @@ let items = {
             "kind": "Лук",
             "type_id": "92",
             "price": "<span title=\"Золотой\"><img src=\"/images/m_game3.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;170",
-            "dur": "32",
+            "dur": "34",
             "dur_max": "35",
             "lev": {
                 "title": " Уровень ",
@@ -7351,40 +9102,60 @@ let items = {
                 },
                 {
                     "title": "Защита",
-                    "value": "<b>+40</b><b style=\"color:#3300ff\"> (5)</b>"
+                    "value": "<b>+40</b><b style=\"color:#990099\"> (5)</b>"
                 },
                 {
                     "title": "Интуиция",
-                    "value": "<b>+10</b><b style=\"color:#3300ff\"> (1)</b>"
+                    "value": "<b>+14</b><b style=\"color:#990099\"> (5)</b>"
                 },
                 {
                     "title": "Интеллект",
-                    "value": "<b>+37</b><b style=\"color:#3300ff\"> (7)</b>"
+                    "value": "<b>+37</b><b style=\"color:#990099\"> (7)</b>"
                 },
                 {
                     "title": "Сила",
-                    "value": "<b>+94</b><b style=\"color:#3300ff\"> (2)</b>"
+                    "value": "<b>+114</b><b style=\"color:#ff0000\"> (22)</b>"
                 },
                 {
                     "title": "Живучесть",
-                    "value": "<b>+111</b><b style=\"color:#3300ff\"> (14)</b>"
+                    "value": "<b>+112</b><b style=\"color:#990099\"> (15)</b>"
                 },
                 {
                     "title": "Мудрость",
-                    "value": "<b>+99</b><b style=\"color:#3300ff\"> (4)</b>"
+                    "value": "<b>+117</b><b style=\"color:#ff0000\"> (22)</b>"
+                },
+                {
+                    "title": "Защита земля-вода",
+                    "value": "<b>+20</b><b style=\"color:#339900\"> (20)</b>"
                 }
             ],
             "skills_e": [],
-            "enchant_icon": "<span class=\"enchants\">\n\t\t<img src=\"/images/enchants/2_2.png\" alt=\"\" class=\"enchant_png\">\n\t\t</span>",
+            "enchant_icon": "<span class=\"enchants\">\n\t\t<img src=\"/images/enchants/6_3.png\" alt=\"\" class=\"enchant_png\">\n\t\t</span>",
             "enchant": {
                 "title": "Руна",
-                "value": "<b style=\"color:#3300ff\">Руна рассудка Норт II (&#9650;25%)</b>"
+                "value": "<b style=\"color:#990099\">Руна рассудка Норт VI</b>"
             },
-            "enchant_class": "enchant-2_2",
+            "enchant_class": "enchant-6_3",
+            "enchant_mod": {
+                "title": "Встроено",
+                "value": "<b style=\"color:#666666\">Чары нападения (25)</b>"
+            },
             "symbols": [
                 {
                     "title": "Символ",
+                    "value": "<b style=\"color:#ff0000;\">Символ могущества Домтар</b>"
+                },
+                {
+                    "title": "Символ",
                     "value": "<b style=\"color:#990099;\">Символ воли к победе Пер-Флар</b>"
+                },
+                {
+                    "title": "Символ",
+                    "value": "<b style=\"color:#ff0000;\">Символ воли к возмездию Ит-Флар</b>"
+                },
+                {
+                    "title": "Символ",
+                    "value": "<b style=\"color:#339900;\">Символ защиты Атмалеф-Мар</b>"
                 }
             ],
             "nogive": "Предмет нельзя передать",
@@ -7395,89 +9166,151 @@ let items = {
             "sell": true,
             "drop": true,
             "repair": true,
+            "use": true,
             "equip": true,
-            "add_attrs": " artifact_id=\"3332763473\" repair_price=\"485.71428571429\" price_type=\"1\" sell_price=\"30\"",
+            "add_attrs": " artifact_id=\"3409605466\" repair_price=\"485.71428571429\" price_type=\"1\" sell_price=\"30\"",
+            "icon_list": {
+                "1": "use",
+                "2": "info",
+                "3": "sell",
+                "4": "repair"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 1,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3409605466"
+        },
+        {
+            "id": "4461975637",
+            "title": "Лук «Призрачная тетива»",
+            "ord": "611987214",
+            "kind_id": "116",
+            "storage_type": "0",
+            "profession": "0",
+            "color": "#339900",
+            "quality": "1",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/152841_219.gif",
+            "picture": "/images/data/artifacts/152841_219.gif",
+            "kind": "Лук",
+            "type_id": "92",
+            "price": "<span title=\"Золотой\"><img src=\"/images/m_game3.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;30",
+            "dur": "25",
+            "dur_max": "25",
+            "lev": {
+                "title": " Уровень ",
+                "value": "17"
+            },
+            "trend": "Ловкач",
+            "skills": [
+                {
+                    "title": "Ловкость",
+                    "value": "<b>+24</b>"
+                },
+                {
+                    "title": "Мудрость",
+                    "value": "<b>+63</b>"
+                }
+            ],
+            "skills_e": [],
+            "flags2": {
+                "can_crashproof": "Предмет можно укрепить смолой"
+            },
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"4461975637\" price_type=\"1\" sell_price=\"30\"",
             "icon_list": {
                 "1": "info",
-                "2": "sell",
-                "3": "repair"
+                "2": "sell"
             },
             "action": "equip",
             "_act1": 2,
             "_act2": 3,
             "_act3": 0,
             "_act4": 0,
-            "artifact_alt_id": "AA_3332763473"
+            "artifact_alt_id": "AA_4461975637"
         }
     ],
     "helmets": [
         {
-            "id": "3215153540",
-            "title": "Шлем «Зов отваги»",
-            "ord": "56",
+            "id": "3759640799",
+            "title": "Шлем «Коварство зверя»",
+            "ord": "13",
             "kind_id": "1",
             "storage_type": "0",
             "profession": "0",
             "color": "#3300ff",
             "quality": "2",
             "time_expire": "0",
-            "image": "/images/data/artifacts/uv_shlem_blue_16-20pvp.gif",
-            "picture": "/images/data/artifacts/uv_shlem_blue_16-20pvp.gif",
+            "image": "/images/data/artifacts/krit_shlem_blue_16-20pvp.gif",
+            "picture": "/images/data/artifacts/krit_shlem_blue_16-20pvp.gif",
             "kind": "Шлем",
             "type_id": "3",
             "price": "<span title=\"Золотой\"><img src=\"/images/m_game3.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;74",
-            "dur": "50",
+            "dur": "40",
             "dur_max": "54",
             "lev": {
                 "title": " Уровень ",
                 "value": "20"
             },
             "cls": [
-                "<img src=\"/images/elements/light.gif\" width=\"11\" height=\"10\" align=\"absmiddle\">&nbsp;Свет",
-                "<img src=\"/images/elements/shadow.gif\" width=\"11\" height=\"10\" align=\"absmiddle\">&nbsp;Тень"
+                "<img src=\"/images/elements/wind.gif\" width=\"11\" height=\"10\" align=\"absmiddle\">&nbsp;Воздух",
+                "<img src=\"/images/elements/fire.gif\" width=\"11\" height=\"10\" align=\"absmiddle\">&nbsp;Огонь"
             ],
-            "trend": "Ловкач",
+            "trend": "Костолом",
             "skills": [
                 {
-                    "title": "Ловкость",
-                    "value": "<b>+127</b>"
+                    "title": "Интуиция",
+                    "value": "<b>+140</b><b style=\"color:#990099\"> (13)</b>"
                 },
                 {
                     "title": "Интеллект",
-                    "value": "<b>+163</b>"
+                    "value": "<b>+109</b>"
                 },
                 {
-                    "title": "Защита огонь-воздух",
-                    "value": "<b>+120</b>"
-                },
-                {
-                    "title": "Защита земля-вода",
+                    "title": "Защита свет-тьма",
                     "value": "<b>+40</b>"
                 },
                 {
+                    "title": "Защита земля-вода",
+                    "value": "<b>+140</b><b style=\"color:#339900\"> (20)</b>"
+                },
+                {
                     "title": "Сила",
-                    "value": "<b>+468</b>"
+                    "value": "<b>+506</b><b style=\"color:#990099\"> (38)</b>"
                 },
                 {
                     "title": "Мудрость",
-                    "value": "<b>+346</b>"
+                    "value": "<b>+399</b><b style=\"color:#990099\"> (53)</b>"
                 },
                 {
                     "title": "Уровень жизни",
                     "value": "<b>+182</b>"
-                },
-                {
-                    "title": "Антитравматизм",
-                    "value": "<b>+15</b><b style=\"color:#3300ff\"> (15)</b>"
                 }
             ],
             "skills_e": [
+                {
+                    "title": "Ловкость",
+                    "value": "<b>+7</b><b style=\"color:#990099\"> (7)</b>"
+                },
+                {
+                    "title": "Живучесть",
+                    "value": "<b>+6</b><b style=\"color:#990099\"> (6)</b>"
+                },
                 {
                     "title": "Стойкость",
                     "value": "<b>+1130</b><b style=\"color:#990099\"> (1130)</b>"
                 }
             ],
-            "enchant_icon": "<span class=\"enchants\">\n\t\t<img src=\"/images/enchants/oprava.png\" alt=\"\" class=\"enchant2_png\"><img src=\"/images/enchants/no_rune.png\" alt=\"\" class=\"enchant_png\">\n\t\t</span>",
+            "enchant_icon": "<span class=\"enchants\">\n\t\t<img src=\"/images/enchants/oprava.png\" alt=\"\" class=\"enchant2_png\"><img src=\"/images/enchants/6_3.png\" alt=\"\" class=\"enchant_png\">\n\t\t</span>",
+            "enchant": {
+                "title": "Руна",
+                "value": "<b style=\"color:#990099\">Руна неотвратимости Тиас VI</b>"
+            },
+            "enchant_class": "enchant-6_3",
             "enchant3": {
                 "title": "Оправа",
                 "value": "<b style=\"color:#990099;\">Оправа ограды Тиас IV</b>"
@@ -7485,16 +9318,16 @@ let items = {
             "symbols": [
                 {
                     "title": "Символ",
-                    "value": "<b style=\"color:#3300ff;\">Символ неуязвимости Атвол</b>"
+                    "value": "<b style=\"color:#ff0000;\">Символ непреклонности Тубар-Дан</b>"
                 },
                 {
                     "title": "Символ",
-                    "value": "<b style=\"color:#ff0000;\">Символ непреклонности Тубар-Дан</b>"
+                    "value": "<b style=\"color:#339900;\">Символ защиты Атмалеф-Мар</b>"
                 }
             ],
             "set": {
                 "title": "Комплект",
-                "value": "<b style=\"color:#3300ff\">Доспехи «Зов отваги»</b>"
+                "value": "<b style=\"color:#3300ff\">Доспехи «Коварство зверя»</b>"
             },
             "nogive": "Предмет нельзя передать",
             "flags2": {
@@ -7505,7 +9338,7 @@ let items = {
             "drop": true,
             "repair": true,
             "equip": true,
-            "add_attrs": " artifact_id=\"3215153540\" repair_price=\"137.03703703704\" price_type=\"1\" sell_price=\"30\"",
+            "add_attrs": " artifact_id=\"3759640799\" repair_price=\"137.03703703704\" price_type=\"1\" sell_price=\"30\"",
             "icon_list": {
                 "1": "info",
                 "2": "sell",
@@ -7516,12 +9349,12 @@ let items = {
             "_act2": 3,
             "_act3": 0,
             "_act4": 0,
-            "artifact_alt_id": "AA_3215153540"
+            "artifact_alt_id": "AA_3759640799"
         },
         {
-            "id": "3155305986",
+            "id": "2197610284",
             "title": "Подводный шлем",
-            "ord": "58",
+            "ord": "25",
             "kind_id": "1",
             "storage_type": "0",
             "profession": "0",
@@ -7544,83 +9377,106 @@ let items = {
                 },
                 {
                     "title": "Сила",
-                    "value": "<b>+57</b>"
+                    "value": "<b>+67</b><b style=\"color:#3300ff\"> (10)</b>"
                 },
                 {
                     "title": "Живучесть",
-                    "value": "<b>+57</b>"
+                    "value": "<b>+60</b><b style=\"color:#666666\"> (3)</b>"
                 }
             ],
-            "skills_e": [],
+            "skills_e": [
+                {
+                    "title": "Интуиция",
+                    "value": "<b>+10</b><b style=\"color:#3300ff\"> (10)</b>"
+                }
+            ],
+            "enchant_icon": "<span class=\"enchants\">\n\t\t<img src=\"/images/enchants/1_2.png\" alt=\"\" class=\"enchant_png\">\n\t\t</span>",
+            "enchant": {
+                "title": "Руна",
+                "value": "<b style=\"color:#3300ff\">Руна силы Тиас</b>"
+            },
+            "enchant_class": "enchant-1_2",
+            "enchant_mod": {
+                "title": "Встроено",
+                "value": "<b style=\"color:#666666\">Чары нападения (14)</b>"
+            },
+            "symbols": [
+                {
+                    "title": "Символ",
+                    "value": "<b style=\"color:#666666;\">Символ жизни Вит</b>"
+                }
+            ],
             "nogive": "Предмет нельзя передать",
             "noweight": "Предмет не занимает места в рюкзаке",
             "nosell": "Предмет нельзя сдать в скупку",
+            "use": true,
             "equip": true,
-            "add_attrs": " artifact_id=\"3155305986\"",
+            "add_attrs": " artifact_id=\"2197610284\"",
             "icon_list": [
+                "use",
                 "info"
             ],
             "action": "equip",
             "_act1": 2,
             "_act2": 0,
-            "_act3": 0,
+            "_act3": 1,
             "_act4": 0,
-            "artifact_alt_id": "AA_3155305986"
+            "artifact_alt_id": "AA_2197610284"
         },
         {
-            "id": "4319555327",
-            "title": "Шлем «Заступник небес»",
-            "ord": "78",
+            "id": "3759640295",
+            "title": "Шлем «Зов отваги»",
+            "ord": "35",
             "kind_id": "1",
             "storage_type": "0",
             "profession": "0",
             "color": "#3300ff",
             "quality": "2",
             "time_expire": "0",
-            "image": "/images/data/artifacts/tank_shlem_blue_16-20pvp.gif",
-            "picture": "/images/data/artifacts/tank_shlem_blue_16-20pvp.gif",
+            "image": "/images/data/artifacts/uv_shlem_blue_16-20pvp.gif",
+            "picture": "/images/data/artifacts/uv_shlem_blue_16-20pvp.gif",
             "kind": "Шлем",
             "type_id": "3",
             "price": "<span title=\"Золотой\"><img src=\"/images/m_game3.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;74",
-            "dur": "45",
+            "dur": "52",
             "dur_max": "54",
             "lev": {
                 "title": " Уровень ",
                 "value": "20"
             },
             "cls": [
-                "<img src=\"/images/elements/water.gif\" width=\"11\" height=\"10\" align=\"absmiddle\">&nbsp;Вода",
-                "<img src=\"/images/elements/earth.gif\" width=\"11\" height=\"10\" align=\"absmiddle\">&nbsp;Земля"
+                "<img src=\"/images/elements/light.gif\" width=\"11\" height=\"10\" align=\"absmiddle\">&nbsp;Свет",
+                "<img src=\"/images/elements/shadow.gif\" width=\"11\" height=\"10\" align=\"absmiddle\">&nbsp;Тень"
             ],
-            "trend": "Тяжеловес",
+            "trend": "Ловкач",
             "skills": [
                 {
-                    "title": "Защита",
+                    "title": "Ловкость",
                     "value": "<b>+140</b><b style=\"color:#990099\"> (13)</b>"
                 },
                 {
                     "title": "Интеллект",
-                    "value": "<b>+172</b><b style=\"color:#990099\"> (9)</b>"
+                    "value": "<b>+163</b>"
                 },
                 {
                     "title": "Защита огонь-воздух",
-                    "value": "<b>+40</b>"
-                },
-                {
-                    "title": "Защита свет-тьма",
                     "value": "<b>+120</b>"
                 },
                 {
+                    "title": "Защита земля-вода",
+                    "value": "<b>+40</b>"
+                },
+                {
                     "title": "Сила",
-                    "value": "<b>+337</b>"
+                    "value": "<b>+506</b><b style=\"color:#990099\"> (38)</b>"
                 },
                 {
                     "title": "Мудрость",
-                    "value": "<b>+137</b>"
+                    "value": "<b>+399</b><b style=\"color:#990099\"> (53)</b>"
                 },
                 {
                     "title": "Уровень жизни",
-                    "value": "<b>+416</b>"
+                    "value": "<b>+182</b>"
                 },
                 {
                     "title": "Подавление",
@@ -7629,20 +9485,28 @@ let items = {
             ],
             "skills_e": [
                 {
+                    "title": "Защита",
+                    "value": "<b>+7</b><b style=\"color:#990099\"> (7)</b>"
+                },
+                {
                     "title": "Живучесть",
-                    "value": "<b>+18</b><b style=\"color:#3300ff\"> (18)</b>"
+                    "value": "<b>+6</b><b style=\"color:#990099\"> (6)</b>"
                 },
                 {
                     "title": "Стойкость",
                     "value": "<b>+1130</b><b style=\"color:#990099\"> (1130)</b>"
                 }
             ],
-            "enchant_icon": "<span class=\"enchants\">\n\t\t<img src=\"/images/enchants/oprava.png\" alt=\"\" class=\"enchant2_png\"><img src=\"/images/enchants/1_2.png\" alt=\"\" class=\"enchant_png\">\n\t\t</span>",
+            "enchant_icon": "<span class=\"enchants\">\n\t\t<img src=\"/images/enchants/oprava.png\" alt=\"\" class=\"enchant2_png\"><img src=\"/images/enchants/6_3.png\" alt=\"\" class=\"enchant_png\">\n\t\t</span>",
             "enchant": {
                 "title": "Руна",
-                "value": "<b style=\"color:#3300ff\">Руна величия Тиас</b>"
+                "value": "<b style=\"color:#990099\">Руна преломления Тиас VI</b>"
             },
-            "enchant_class": "enchant-1_2",
+            "enchant_class": "enchant-6_3",
+            "enchant_mod": {
+                "title": "Встроено",
+                "value": "<b style=\"color:#666666\">Чары нападения (25)</b>"
+            },
             "enchant3": {
                 "title": "Оправа",
                 "value": "<b style=\"color:#990099;\">Оправа ограды Тиас IV</b>"
@@ -7659,111 +9523,132 @@ let items = {
             ],
             "set": {
                 "title": "Комплект",
-                "value": "<b style=\"color:#3300ff\">Доспехи «Заступник небес»</b>"
+                "value": "<b style=\"color:#3300ff\">Доспехи «Зов отваги»</b>"
             },
             "nogive": "Предмет нельзя передать",
             "flags2": {
-                "can_crashproof": "Предмет можно укрепить смолой"
+                "crashproof": "Неломаемый предмет"
             },
             "rank_min": "Для приобретения или использования вещи необходимо звание <b class=\"redd\"><img src=\"/images/ranks/rank19.gif\" width=\"13\" height=\"13\" border=\"0\" alt=\"\" align=\"absmiddle\">Избранник богов</b>.",
             "sell": true,
             "drop": true,
             "repair": true,
+            "use": true,
             "equip": true,
-            "add_attrs": " artifact_id=\"4319555327\" repair_price=\"137.03703703704\" price_type=\"1\" sell_price=\"30\"",
+            "add_attrs": " artifact_id=\"3759640295\" repair_price=\"137.03703703704\" price_type=\"1\" sell_price=\"30\"",
             "icon_list": {
-                "1": "info",
-                "2": "sell",
-                "3": "repair"
+                "1": "use",
+                "2": "info",
+                "3": "sell",
+                "4": "repair"
             },
             "action": "equip",
             "_act1": 2,
             "_act2": 3,
-            "_act3": 0,
+            "_act3": 1,
             "_act4": 0,
-            "artifact_alt_id": "AA_4319555327"
-        }
-    ],
-    "shoulders": [
+            "artifact_alt_id": "AA_3759640295"
+        },
         {
-            "id": "3155305933",
-            "title": "Наплечники «Зов отваги»",
-            "ord": "54",
-            "kind_id": "7",
+            "id": "3759641170",
+            "title": "Мудрёный шлем «Заступник небес»",
+            "ord": "47",
+            "kind_id": "1",
             "storage_type": "0",
             "profession": "0",
-            "color": "#3300ff",
-            "quality": "2",
+            "color": "#990099",
+            "quality": "3",
             "time_expire": "0",
-            "image": "/images/data/artifacts/uv_ple4_blue_16-20pvp.gif",
-            "picture": "/images/data/artifacts/uv_ple4_blue_16-20pvp.gif",
-            "kind": "Наплечники",
+            "image": "/images/data/artifacts/tank_shlem_viol_16-20pvp.gif",
+            "picture": "/images/data/artifacts/tank_shlem_viol_16-20pvp.gif",
+            "kind": "Шлем",
             "type_id": "3",
-            "price": "<span title=\"Золотой\"><img src=\"/images/m_game3.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;65",
-            "dur": "44",
-            "dur_max": "51",
+            "price": "<span title=\"Золотой\"><img src=\"/images/m_game3.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;89",
+            "dur": "54",
+            "dur_max": "54",
             "lev": {
                 "title": " Уровень ",
-                "value": "19"
+                "value": "20"
             },
             "cls": [
-                "<img src=\"/images/elements/light.gif\" width=\"11\" height=\"10\" align=\"absmiddle\">&nbsp;Свет",
-                "<img src=\"/images/elements/shadow.gif\" width=\"11\" height=\"10\" align=\"absmiddle\">&nbsp;Тень"
+                "<img src=\"/images/elements/water.gif\" width=\"11\" height=\"10\" align=\"absmiddle\">&nbsp;Вода",
+                "<img src=\"/images/elements/earth.gif\" width=\"11\" height=\"10\" align=\"absmiddle\">&nbsp;Земля"
             ],
-            "trend": "Ловкач",
+            "trend": "Тяжеловес",
             "skills": [
                 {
-                    "title": "Ловкость",
-                    "value": "<b>+87</b><b style=\"color:#990099\"> (13)</b>"
+                    "title": "Защита",
+                    "value": "<b>+140</b><b style=\"color:#990099\"> (13)</b>"
+                },
+                {
+                    "title": "Инициатива",
+                    "value": "<b>+3</b>"
+                },
+                {
+                    "title": "Интуиция",
+                    "value": "<b>+33</b><b style=\"color:#990099\"> (7)</b>"
                 },
                 {
                     "title": "Интеллект",
-                    "value": "<b>+82</b>"
+                    "value": "<b>+182</b><b style=\"color:#990099\"> (19)</b>"
                 },
                 {
                     "title": "Защита огонь-воздух",
-                    "value": "<b>+70</b>"
+                    "value": "<b>+40</b>"
                 },
                 {
-                    "title": "Защита земля-вода",
-                    "value": "<b>+20</b>"
+                    "title": "Защита свет-тьма",
+                    "value": "<b>+120</b>"
                 },
                 {
                     "title": "Сила",
-                    "value": "<b>+268</b><b style=\"color:#990099\"> (33)</b>"
-                },
-                {
-                    "title": "Живучесть",
-                    "value": "<b>+92</b>"
+                    "value": "<b>+383</b><b style=\"color:#990099\"> (7)</b>"
                 },
                 {
                     "title": "Мудрость",
-                    "value": "<b>+221</b><b style=\"color:#990099\"> (47)</b>"
+                    "value": "<b>+155</b><b style=\"color:#990099\"> (8)</b>"
                 },
                 {
-                    "title": "Подавление",
-                    "value": "<b>+11</b><b style=\"color:#990099\"> (11)</b>"
+                    "title": "Уровень жизни",
+                    "value": "<b>+416</b>"
+                },
+                {
+                    "title": "Антитравматизм",
+                    "value": "<b>+10</b><b style=\"color:#339900\"> (10)</b>"
                 },
                 {
                     "title": "Стойкость",
-                    "value": "<b>+1120</b><b style=\"color:#990099\"> (1120)</b>"
+                    "value": "<b>+1330</b><b style=\"color:#990099\"> (1330)</b>"
                 }
             ],
-            "skills_e": [],
-            "enchant_icon": "<span class=\"enchants\">\n\t\t<img src=\"/images/enchants/oprava.png\" alt=\"\" class=\"enchant2_png\"><img src=\"/images/enchants/1_2.png\" alt=\"\" class=\"enchant_png\">\n\t\t</span>",
+            "skills_e": [
+                {
+                    "title": "Живучесть",
+                    "value": "<b>+38</b><b style=\"color:#990099\"> (38)</b>"
+                }
+            ],
+            "enchant_icon": "<span class=\"enchants\">\n\t\t<img src=\"/images/enchants/oprava.png\" alt=\"\" class=\"enchant2_png\"><img src=\"/images/enchants/6_3.png\" alt=\"\" class=\"enchant_png\">\n\t\t</span>",
             "enchant": {
                 "title": "Руна",
-                "value": "<b style=\"color:#3300ff\">Руна преломления Чуд</b>"
+                "value": "<b style=\"color:#990099\">Руна рассудка Тиас VI</b>"
             },
-            "enchant_class": "enchant-1_2",
+            "enchant_class": "enchant-6_3",
+            "enchant_mod": {
+                "title": "Встроено",
+                "value": "<b style=\"color:#3300ff\">Чары зверского палача (21)</b>"
+            },
             "enchant3": {
                 "title": "Оправа",
-                "value": "<b style=\"color:#990099;\">Оправа ограды Чуд IV</b>"
+                "value": "<b style=\"color:#990099;\">Оправа ограды Тиас IV</b>"
             },
             "symbols": [
                 {
                     "title": "Символ",
-                    "value": "<b style=\"color:#990099;\">Символ смягчения Моллир</b>"
+                    "value": "<b style=\"color:#339900;\">Символ неуязвимости Атвол</b>"
+                },
+                {
+                    "title": "Символ",
+                    "value": "<b style=\"color:#ff0000;\">Символ непреклонности Тубар-Дан</b>"
                 },
                 {
                     "title": "Символ",
@@ -7772,34 +9657,161 @@ let items = {
             ],
             "set": {
                 "title": "Комплект",
-                "value": "<b style=\"color:#3300ff\">Доспехи «Зов отваги»</b>"
+                "value": "<b style=\"color:#990099\">Доспехи «Заступник небес»</b>"
             },
             "nogive": "Предмет нельзя передать",
             "flags2": {
                 "crashproof": "Неломаемый предмет"
             },
-            "rank_min": "Для приобретения или использования вещи необходимо звание <b class=\"redd\"><img src=\"/images/ranks/rank18.gif\" width=\"13\" height=\"13\" border=\"0\" alt=\"\" align=\"absmiddle\">Триумфатор </b>.",
+            "rank_min": "Для приобретения или использования вещи необходимо звание <b class=\"redd\"><img src=\"/images/ranks/rank19.gif\" width=\"13\" height=\"13\" border=\"0\" alt=\"\" align=\"absmiddle\">Избранник богов</b>.",
             "sell": true,
             "drop": true,
-            "repair": true,
             "equip": true,
-            "add_attrs": " artifact_id=\"3155305933\" repair_price=\"125\" price_type=\"1\" sell_price=\"30\"",
+            "add_attrs": " artifact_id=\"3759641170\" price_type=\"1\" sell_price=\"30\"",
             "icon_list": {
                 "1": "info",
-                "2": "sell",
-                "3": "repair"
+                "2": "sell"
             },
             "action": "equip",
             "_act1": 2,
             "_act2": 3,
             "_act3": 0,
             "_act4": 0,
-            "artifact_alt_id": "AA_3155305933"
+            "artifact_alt_id": "AA_3759641170"
+        }
+    ],
+    "shoulders": [
+        {
+            "id": "3755905795",
+            "title": "Мудрёные наплечники «Коварство зверя»",
+            "ord": "9",
+            "kind_id": "7",
+            "storage_type": "0",
+            "profession": "0",
+            "color": "#990099",
+            "quality": "3",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/krit_ple4_viol_16-20pvp.gif",
+            "picture": "/images/data/artifacts/krit_ple4_viol_16-20pvp.gif",
+            "kind": "Наплечники",
+            "type_id": "3",
+            "price": "<span title=\"Золотой\"><img src=\"/images/m_game3.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;78",
+            "dur": "49",
+            "dur_max": "49",
+            "lev": {
+                "title": " Уровень ",
+                "value": "19"
+            },
+            "cls": [
+                "<img src=\"/images/elements/wind.gif\" width=\"11\" height=\"10\" align=\"absmiddle\">&nbsp;Воздух",
+                "<img src=\"/images/elements/fire.gif\" width=\"11\" height=\"10\" align=\"absmiddle\">&nbsp;Огонь"
+            ],
+            "trend": "Костолом",
+            "skills": [
+                {
+                    "title": "Ловкость",
+                    "value": "<b>+18</b><b style=\"color:#990099\"> (7)</b>"
+                },
+                {
+                    "title": "Инициатива",
+                    "value": "<b>+3</b>"
+                },
+                {
+                    "title": "Интуиция",
+                    "value": "<b>+87</b><b style=\"color:#990099\"> (13)</b>"
+                },
+                {
+                    "title": "Интеллект",
+                    "value": "<b>+55</b>"
+                },
+                {
+                    "title": "Защита свет-тьма",
+                    "value": "<b>+20</b>"
+                },
+                {
+                    "title": "Защита земля-вода",
+                    "value": "<b>+70</b>"
+                },
+                {
+                    "title": "Сила",
+                    "value": "<b>+273</b><b style=\"color:#990099\"> (38)</b>"
+                },
+                {
+                    "title": "Живучесть",
+                    "value": "<b>+115</b><b style=\"color:#990099\"> (6)</b>"
+                },
+                {
+                    "title": "Мудрость",
+                    "value": "<b>+227</b><b style=\"color:#990099\"> (53)</b>"
+                },
+                {
+                    "title": "Антитравматизм",
+                    "value": "<b>+10</b><b style=\"color:#339900\"> (10)</b>"
+                },
+                {
+                    "title": "Воля",
+                    "value": "<b>+5</b><b style=\"color:#666666\"> (5)</b>"
+                }
+            ],
+            "skills_e": [
+                {
+                    "title": "Стойкость",
+                    "value": "<b>+920</b><b style=\"color:#990099\"> (920)</b>"
+                }
+            ],
+            "enchant_icon": "<span class=\"enchants\">\n\t\t<img src=\"/images/enchants/oprava.png\" alt=\"\" class=\"enchant2_png\"><img src=\"/images/enchants/6_3.png\" alt=\"\" class=\"enchant_png\">\n\t\t</span>",
+            "enchant": {
+                "title": "Руна",
+                "value": "<b style=\"color:#990099\">Руна неотвратимости Чуд VI</b>"
+            },
+            "enchant_class": "enchant-6_3",
+            "enchant3": {
+                "title": "Оправа",
+                "value": "<b style=\"color:#990099;\">Оправа ограды Чуд IV</b>"
+            },
+            "symbols": [
+                {
+                    "title": "Символ",
+                    "value": "<b style=\"color:#339900;\">Символ неуязвимости Атвол</b>"
+                },
+                {
+                    "title": "Символ",
+                    "value": "<b style=\"color:#990099;\">Символ сокрушения Ит-Кор</b>"
+                },
+                {
+                    "title": "Символ",
+                    "value": "<b style=\"color:#666666;\">Символ уничтожения Карн</b>"
+                }
+            ],
+            "set": {
+                "title": "Комплект",
+                "value": "<b style=\"color:#990099\">Доспехи «Коварство зверя»</b>"
+            },
+            "nogive": "Предмет нельзя передать",
+            "flags2": {
+                "crashproof": "Неломаемый предмет"
+            },
+            "rank_min": "Для приобретения или использования вещи необходимо звание <b class=\"redd\"><img src=\"/images/ranks/rank18.gif\" width=\"13\" height=\"13\" border=\"0\" alt=\"\" align=\"absmiddle\">Триумфатор </b>.",
+            "desc": "Для приобретения данной вещи необходим <b class=\"redd\"><A href=\"/info/library/?category_id=241&page=2\" target=\"_blank\">репутационный рейтинг</A></b> не ниже <b class=\"redd\">8000</b>. ",
+            "sell": true,
+            "drop": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3755905795\" price_type=\"1\" sell_price=\"30\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3755905795"
         },
         {
-            "id": "3155306211",
+            "id": "2197610288",
             "title": "Подводные наплечники",
-            "ord": "65",
+            "ord": "23",
             "kind_id": "7",
             "storage_type": "0",
             "profession": "0",
@@ -7818,37 +9830,189 @@ let items = {
             "skills": [
                 {
                     "title": "Интуиция",
-                    "value": "<b>+18</b>"
+                    "value": "<b>+28</b><b style=\"color:#3300ff\"> (10)</b>"
                 },
                 {
                     "title": "Сила",
-                    "value": "<b>+27</b>"
+                    "value": "<b>+37</b><b style=\"color:#3300ff\"> (10)</b>"
                 },
                 {
                     "title": "Живучесть",
-                    "value": "<b>+27</b>"
+                    "value": "<b>+33</b><b style=\"color:#339900\"> (6)</b>"
                 }
             ],
             "skills_e": [],
+            "enchant_icon": "<span class=\"enchants\">\n\t\t<img src=\"/images/enchants/1_2.png\" alt=\"\" class=\"enchant_png\">\n\t\t</span>",
+            "enchant": {
+                "title": "Руна",
+                "value": "<b style=\"color:#3300ff\">Руна силы Чуд</b>"
+            },
+            "enchant_class": "enchant-1_2",
+            "enchant_mod": {
+                "title": "Встроено",
+                "value": "<b style=\"color:#3300ff\">Чары зверского палача (50)</b>"
+            },
+            "symbols": [
+                {
+                    "title": "Символ",
+                    "value": "<b style=\"color:#339900;\">Символ жизни Вит</b>"
+                }
+            ],
             "nogive": "Предмет нельзя передать",
             "noweight": "Предмет не занимает места в рюкзаке",
             "nosell": "Предмет нельзя сдать в скупку",
+            "use": true,
             "equip": true,
-            "add_attrs": " artifact_id=\"3155306211\"",
+            "add_attrs": " artifact_id=\"2197610288\"",
             "icon_list": [
+                "use",
                 "info"
             ],
             "action": "equip",
             "_act1": 2,
             "_act2": 0,
-            "_act3": 0,
+            "_act3": 1,
             "_act4": 0,
-            "artifact_alt_id": "AA_3155306211"
+            "artifact_alt_id": "AA_2197610288"
         },
         {
-            "id": "4319556035",
+            "id": "3704972361",
+            "title": "Мудрёные наплечники «Зов отваги»",
+            "ord": "33",
+            "kind_id": "7",
+            "storage_type": "0",
+            "profession": "0",
+            "color": "#990099",
+            "quality": "3",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/uv_ple4_viol_16-20pvp.gif",
+            "picture": "/images/data/artifacts/uv_ple4_viol_16-20pvp.gif",
+            "kind": "Наплечники",
+            "type_id": "3",
+            "price": "<span title=\"Золотой\"><img src=\"/images/m_game3.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;78",
+            "dur": "39",
+            "dur_max": "52",
+            "lev": {
+                "title": " Уровень ",
+                "value": "19"
+            },
+            "cls": [
+                "<img src=\"/images/elements/light.gif\" width=\"11\" height=\"10\" align=\"absmiddle\">&nbsp;Свет",
+                "<img src=\"/images/elements/shadow.gif\" width=\"11\" height=\"10\" align=\"absmiddle\">&nbsp;Тень"
+            ],
+            "trend": "Ловкач",
+            "skills": [
+                {
+                    "title": "Ловкость",
+                    "value": "<b>+92</b><b style=\"color:#990099\"> (18)</b>"
+                },
+                {
+                    "title": "Защита",
+                    "value": "<b>+23</b><b style=\"color:#990099\"> (12)</b>"
+                },
+                {
+                    "title": "Инициатива",
+                    "value": "<b>+3</b>"
+                },
+                {
+                    "title": "Интеллект",
+                    "value": "<b>+82</b>"
+                },
+                {
+                    "title": "Защита огонь-воздух",
+                    "value": "<b>+70</b>"
+                },
+                {
+                    "title": "Защита земля-вода",
+                    "value": "<b>+20</b>"
+                },
+                {
+                    "title": "Сила",
+                    "value": "<b>+273</b><b style=\"color:#990099\"> (38)</b>"
+                },
+                {
+                    "title": "Живучесть",
+                    "value": "<b>+115</b><b style=\"color:#990099\"> (6)</b>"
+                },
+                {
+                    "title": "Мудрость",
+                    "value": "<b>+227</b><b style=\"color:#990099\"> (53)</b>"
+                },
+                {
+                    "title": "Стойкость",
+                    "value": "<b>+1020</b><b style=\"color:#990099\"> (1020)</b>"
+                },
+                {
+                    "title": "Интуиция",
+                    "value": "<b>+5</b><b style=\"color:#3300ff\"> (5)</b>"
+                },
+                {
+                    "title": "Подавление",
+                    "value": "<b>+11</b><b style=\"color:#990099\"> (11)</b>"
+                }
+            ],
+            "skills_e": [],
+            "enchant_icon": "<span class=\"enchants\">\n\t\t<img src=\"/images/enchants/oprava.png\" alt=\"\" class=\"enchant2_png\"><img src=\"/images/enchants/6_3.png\" alt=\"\" class=\"enchant_png\">\n\t\t</span>",
+            "enchant": {
+                "title": "Руна",
+                "value": "<b style=\"color:#990099\">Руна преломления Чуд VI</b>"
+            },
+            "enchant_class": "enchant-6_3",
+            "enchant_mod": {
+                "title": "Встроено",
+                "value": "<b style=\"color:#990099\">Чары сытости «Запеченное мясо» (4)</b>"
+            },
+            "enchant3": {
+                "title": "Оправа",
+                "value": "<b style=\"color:#990099;\">Оправа ограды Чуд IV</b>"
+            },
+            "symbols": [
+                {
+                    "title": "Символ",
+                    "value": "<b style=\"color:#3300ff;\">Символ сопротивления Буст</b>"
+                },
+                {
+                    "title": "Символ",
+                    "value": "<b style=\"color:#3300ff;\">Символ баланса Либр</b>"
+                },
+                {
+                    "title": "Символ",
+                    "value": "<b style=\"color:#990099;\">Символ смягчения Моллир</b>"
+                }
+            ],
+            "set": {
+                "title": "Комплект",
+                "value": "<b style=\"color:#990099\">Доспехи «Зов отваги»</b>"
+            },
+            "nogive": "Предмет нельзя передать",
+            "flags2": {
+                "crashproof": "Неломаемый предмет"
+            },
+            "rank_min": "Для приобретения или использования вещи необходимо звание <b class=\"redd\"><img src=\"/images/ranks/rank18.gif\" width=\"13\" height=\"13\" border=\"0\" alt=\"\" align=\"absmiddle\">Триумфатор </b>.",
+            "desc": "Для приобретения данной вещи необходим <b class=\"redd\"><A href=\"/info/library/?category_id=241&page=2\" target=\"_blank\">репутационный рейтинг</A></b> не ниже <b class=\"redd\">8000</b>. ",
+            "sell": true,
+            "drop": true,
+            "repair": true,
+            "use": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3704972361\" repair_price=\"150\" price_type=\"1\" sell_price=\"30\"",
+            "icon_list": {
+                "1": "use",
+                "2": "info",
+                "3": "sell",
+                "4": "repair"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 1,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3704972361"
+        },
+        {
+            "id": "3704972364",
             "title": "Мудрёные наплечники «Заступник небес»",
-            "ord": "76",
+            "ord": "45",
             "kind_id": "7",
             "storage_type": "0",
             "profession": "0",
@@ -7860,7 +10024,7 @@ let items = {
             "kind": "Наплечники",
             "type_id": "3",
             "price": "<span title=\"Золотой\"><img src=\"/images/m_game3.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;78",
-            "dur": "42",
+            "dur": "47",
             "dur_max": "52",
             "lev": {
                 "title": " Уровень ",
@@ -7882,11 +10046,11 @@ let items = {
                 },
                 {
                     "title": "Интуиция",
-                    "value": "<b>+11</b>"
+                    "value": "<b>+18</b><b style=\"color:#990099\"> (7)</b>"
                 },
                 {
                     "title": "Интеллект",
-                    "value": "<b>+91</b><b style=\"color:#990099\"> (9)</b>"
+                    "value": "<b>+101</b><b style=\"color:#990099\"> (19)</b>"
                 },
                 {
                     "title": "Защита огонь-воздух",
@@ -7898,30 +10062,154 @@ let items = {
                 },
                 {
                     "title": "Сила",
-                    "value": "<b>+133</b><b style=\"color:#990099\"> (-20)</b>"
+                    "value": "<b>+160</b><b style=\"color:#990099\"> (7)</b>"
                 },
                 {
                     "title": "Живучесть",
-                    "value": "<b>+296</b><b style=\"color:#990099\"> (70)</b>"
+                    "value": "<b>+264</b><b style=\"color:#990099\"> (38)</b>"
                 },
                 {
                     "title": "Мудрость",
-                    "value": "<b>+75</b>"
+                    "value": "<b>+83</b><b style=\"color:#990099\"> (8)</b>"
                 },
                 {
                     "title": "Подавление",
-                    "value": "<b>+5</b><b style=\"color:#339900\"> (5)</b>"
-                },
-                {
-                    "title": "Стойкость",
-                    "value": "<b>+1020</b><b style=\"color:#990099\"> (1020)</b>"
+                    "value": "<b>+16</b><b style=\"color:#990099\"> (16)</b>"
                 }
             ],
-            "skills_e": [],
+            "skills_e": [
+                {
+                    "title": "Стойкость",
+                    "value": "<b>+920</b><b style=\"color:#990099\"> (920)</b>"
+                }
+            ],
+            "enchant_icon": "<span class=\"enchants\">\n\t\t<img src=\"/images/enchants/oprava.png\" alt=\"\" class=\"enchant2_png\"><img src=\"/images/enchants/6_3.png\" alt=\"\" class=\"enchant_png\">\n\t\t</span>",
+            "enchant": {
+                "title": "Руна",
+                "value": "<b style=\"color:#990099\">Руна рассудка Чуд VI</b>"
+            },
+            "enchant_class": "enchant-6_3",
+            "enchant_mod": {
+                "title": "Встроено",
+                "value": "<b style=\"color:#339900\">Чары мимолетной невидимости (3)</b>"
+            },
+            "enchant3": {
+                "title": "Оправа",
+                "value": "<b style=\"color:#990099;\">Оправа ограды Чуд IV</b>"
+            },
+            "symbols": [
+                {
+                    "title": "Символ",
+                    "value": "<b style=\"color:#990099;\">Символ смягчения Моллир</b>"
+                },
+                {
+                    "title": "Символ",
+                    "value": "<b style=\"color:#339900;\">Символ смягчения Моллир</b>"
+                }
+            ],
+            "set": {
+                "title": "Комплект",
+                "value": "<b style=\"color:#990099\">Доспехи «Заступник небес»</b>"
+            },
+            "nogive": "Предмет нельзя передать",
+            "flags2": {
+                "crashproof": "Неломаемый предмет"
+            },
+            "rank_min": "Для приобретения или использования вещи необходимо звание <b class=\"redd\"><img src=\"/images/ranks/rank18.gif\" width=\"13\" height=\"13\" border=\"0\" alt=\"\" align=\"absmiddle\">Триумфатор </b>.",
+            "desc": "Для приобретения данной вещи необходим <b class=\"redd\"><A href=\"/info/library/?category_id=241&page=2\" target=\"_blank\">репутационный рейтинг</A></b> не ниже <b class=\"redd\">8000</b>. ",
+            "sell": true,
+            "drop": true,
+            "repair": true,
+            "use": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3704972364\" repair_price=\"150\" price_type=\"1\" sell_price=\"30\"",
+            "icon_list": {
+                "1": "use",
+                "2": "info",
+                "3": "sell",
+                "4": "repair"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 1,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3704972364"
+        },
+        {
+            "id": "3044804507",
+            "title": "Мудрёные наплечники Архона",
+            "ord": "53",
+            "kind_id": "7",
+            "storage_type": "0",
+            "profession": "0",
+            "color": "#990099",
+            "quality": "3",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/plechi_uvorot1115pvp_purple.gif",
+            "picture": "/images/data/artifacts/plechi_uvorot1115pvp_purple.gif",
+            "kind": "Наплечники",
+            "type_id": "3",
+            "price": "<span title=\"Золотой\"><img src=\"/images/m_game3.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;78",
+            "dur": "1",
+            "dur_max": "52",
+            "lev": {
+                "title": " Уровень ",
+                "value": "14"
+            },
+            "cls": [
+                "<img src=\"/images/elements/light.gif\" width=\"11\" height=\"10\" align=\"absmiddle\">&nbsp;Свет",
+                "<img src=\"/images/elements/shadow.gif\" width=\"11\" height=\"10\" align=\"absmiddle\">&nbsp;Тень"
+            ],
+            "trend": "Ловкач",
+            "skills": [
+                {
+                    "title": "Ловкость",
+                    "value": "<b>+56</b><b style=\"color:#990099\"> (13)</b>"
+                },
+                {
+                    "title": "Защита",
+                    "value": "<b>+7</b>"
+                },
+                {
+                    "title": "Инициатива",
+                    "value": "<b>+3</b>"
+                },
+                {
+                    "title": "Интеллект",
+                    "value": "<b>+48</b>"
+                },
+                {
+                    "title": "Защита огонь-воздух",
+                    "value": "<b>+40</b>"
+                },
+                {
+                    "title": "Защита земля-вода",
+                    "value": "<b>+10</b>"
+                },
+                {
+                    "title": "Сила",
+                    "value": "<b>+153</b><b style=\"color:#990099\"> (17)</b>"
+                },
+                {
+                    "title": "Живучесть",
+                    "value": "<b>+75</b><b style=\"color:#3300ff\"> (12)</b>"
+                },
+                {
+                    "title": "Мудрость",
+                    "value": "<b>+157</b><b style=\"color:#990099\"> (27)</b>"
+                }
+            ],
+            "skills_e": [
+                {
+                    "title": "Стойкость",
+                    "value": "<b>+920</b><b style=\"color:#990099\"> (920)</b>"
+                }
+            ],
             "enchant_icon": "<span class=\"enchants\">\n\t\t<img src=\"/images/enchants/oprava.png\" alt=\"\" class=\"enchant2_png\"><img src=\"/images/enchants/1_2.png\" alt=\"\" class=\"enchant_png\">\n\t\t</span>",
             "enchant": {
                 "title": "Руна",
-                "value": "<b style=\"color:#3300ff\">Руна величия Чуд</b>"
+                "value": "<b style=\"color:#3300ff\">Руна превосходства Чуд</b>"
             },
             "enchant_class": "enchant-1_2",
             "enchant3": {
@@ -7935,32 +10223,24 @@ let items = {
                 },
                 {
                     "title": "Символ",
-                    "value": "<b style=\"color:#990099;\">Символ панциря Армат</b>"
-                },
-                {
-                    "title": "Символ",
-                    "value": "<b style=\"color:#339900;\">Символ смягчения Моллир</b>"
-                },
-                {
-                    "title": "Символ",
-                    "value": "<b style=\"color:#3300ff;\">Символ сопротивления Буст</b>"
+                    "value": "<b style=\"color:#ff0000;\">Символ умения Прод-Форт</b>"
                 }
             ],
             "set": {
                 "title": "Комплект",
-                "value": "<b style=\"color:#990099\">Доспехи «Заступник небес»</b>"
+                "value": "<b style=\"color:#990099\">Доспехи Архона</b>"
             },
             "nogive": "Предмет нельзя передать",
             "flags2": {
-                "can_crashproof": "Предмет можно укрепить смолой"
+                "crashproof": "Неломаемый предмет"
             },
-            "rank_min": "Для приобретения или использования вещи необходимо звание <b class=\"redd\"><img src=\"/images/ranks/rank18.gif\" width=\"13\" height=\"13\" border=\"0\" alt=\"\" align=\"absmiddle\">Триумфатор </b>.",
-            "desc": "Для приобретения данной вещи необходим <b class=\"redd\"><A href=\"/info/library/?category_id=241&page=2\" target=\"_blank\">репутационный рейтинг</A></b> не ниже <b class=\"redd\">8000</b>. ",
+            "rank_min": "Для приобретения или использования вещи необходимо звание <b class=\"redd\"><img src=\"/images/ranks/rank16.gif\" width=\"13\" height=\"13\" border=\"0\" alt=\"\" align=\"absmiddle\">Властелин боя</b>.",
+            "desc": "Для приобретения данной вещи необходим <b class=\"redd\"><A href=\"/info/library/?category_id=241&page=2\" target=\"_blank\">репутационный рейтинг</A></b> не ниже <b class=\"redd\">2100</b>. ",
             "sell": true,
             "drop": true,
             "repair": true,
             "equip": true,
-            "add_attrs": " artifact_id=\"4319556035\" repair_price=\"150\" price_type=\"1\" sell_price=\"30\"",
+            "add_attrs": " artifact_id=\"3044804507\" repair_price=\"150\" price_type=\"1\" sell_price=\"30\"",
             "icon_list": {
                 "1": "info",
                 "2": "sell",
@@ -7971,78 +10251,348 @@ let items = {
             "_act2": 3,
             "_act3": 0,
             "_act4": 0,
-            "artifact_alt_id": "AA_4319556035"
-        },
+            "artifact_alt_id": "AA_3044804507"
+        }
+    ],
+    "bracers": [
         {
-            "id": "3763463444",
-            "title": "Кожаные наплечники",
-            "ord": "81",
-            "kind_id": "7",
+            "id": "3704977301",
+            "title": "Наручи «Коварство зверя»",
+            "ord": "11",
+            "kind_id": "5",
             "storage_type": "0",
             "profession": "0",
-            "color": "#666666",
-            "quality": "0",
+            "color": "#3300ff",
+            "quality": "2",
             "time_expire": "0",
-            "image": "/images/data/artifacts/shou4.gif",
-            "picture": "/images/data/artifacts/shou4.gif",
-            "kind": "Наплечники",
+            "image": "/images/data/artifacts/krit_pyku_blue_16-20pvp.gif",
+            "picture": "/images/data/artifacts/krit_pyku_blue_16-20pvp.gif",
+            "kind": "Наручи",
             "type_id": "3",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;60",
-            "dur": "95",
-            "dur_max": "95",
+            "price": "<span title=\"Золотой\"><img src=\"/images/m_game3.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;65",
+            "dur": "36",
+            "dur_max": "52",
             "lev": {
                 "title": " Уровень ",
-                "value": "4"
+                "value": "19"
             },
-            "trend": "Универсал",
+            "cls": [
+                "<img src=\"/images/elements/wind.gif\" width=\"11\" height=\"10\" align=\"absmiddle\">&nbsp;Воздух",
+                "<img src=\"/images/elements/fire.gif\" width=\"11\" height=\"10\" align=\"absmiddle\">&nbsp;Огонь"
+            ],
+            "trend": "Костолом",
             "skills": [
                 {
-                    "title": "Защита",
-                    "value": "<b>+5</b>"
+                    "title": "Интуиция",
+                    "value": "<b>+78</b><b style=\"color:#990099\"> (16)</b>"
+                },
+                {
+                    "title": "Интеллект",
+                    "value": "<b>+42</b>"
+                },
+                {
+                    "title": "Защита свет-тьма",
+                    "value": "<b>+20</b>"
+                },
+                {
+                    "title": "Защита земля-вода",
+                    "value": "<b>+50</b>"
                 },
                 {
                     "title": "Сила",
-                    "value": "<b>+5</b>"
+                    "value": "<b>+223</b><b style=\"color:#990099\"> (22)</b>"
+                },
+                {
+                    "title": "Мудрость",
+                    "value": "<b>+201</b><b style=\"color:#990099\"> (33)</b>"
+                },
+                {
+                    "title": "Уровень жизни",
+                    "value": "<b>+70</b>"
+                }
+            ],
+            "skills_e": [
+                {
+                    "title": "Ловкость",
+                    "value": "<b>+7</b><b style=\"color:#990099\"> (7)</b>"
                 },
                 {
                     "title": "Живучесть",
-                    "value": "<b>+7</b>"
+                    "value": "<b>+4</b><b style=\"color:#990099\"> (4)</b>"
+                },
+                {
+                    "title": "Проницание огонь-воздух",
+                    "value": "<b>+200</b><b style=\"color:#3300ff\"> (200)</b>"
+                },
+                {
+                    "title": "Проницание свет-тьма",
+                    "value": "<b>+200</b><b style=\"color:#3300ff\"> (200)</b>"
+                },
+                {
+                    "title": "Проницание земля-вода",
+                    "value": "<b>+200</b><b style=\"color:#3300ff\"> (200)</b>"
                 }
             ],
-            "skills_e": [],
+            "enchant_icon": "<span class=\"enchants\">\n\t\t<img src=\"/images/enchants/oprava.png\" alt=\"\" class=\"enchant2_png\"><img src=\"/images/enchants/6_3.png\" alt=\"\" class=\"enchant_png\">\n\t\t</span>",
+            "enchant": {
+                "title": "Руна",
+                "value": "<b style=\"color:#990099\">Руна уничтожения Мирт VI</b>"
+            },
+            "enchant_class": "enchant-6_3",
             "enchant_mod": {
                 "title": "Встроено",
-                "value": "<b style=\"color:#339900\">Чары сытости «Тушеная индейка» (37)</b>"
+                "value": "<b style=\"color:#666666\">Чары нападения (25)</b>"
+            },
+            "enchant3": {
+                "title": "Оправа",
+                "value": "<b style=\"color:#3300ff;\">Оправа пробивания XI</b>"
             },
             "symbols": [
                 {
                     "title": "Символ",
-                    "value": "<b style=\"color:#ff0000;\">Символ умения Прод-Форт</b>"
+                    "value": "<b style=\"color:#990099;\">Символ сокрушения Ит-Мал</b>"
+                },
+                {
+                    "title": "Символ",
+                    "value": "<b style=\"color:#666666;\">Символ предчувствия Сент</b>"
                 }
             ],
+            "set": {
+                "title": "Комплект",
+                "value": "<b style=\"color:#3300ff\">Доспехи «Коварство зверя»</b>"
+            },
+            "nogive": "Предмет нельзя передать",
+            "flags2": {
+                "crashproof": "Неломаемый предмет"
+            },
+            "rank_min": "Для приобретения или использования вещи необходимо звание <b class=\"redd\"><img src=\"/images/ranks/rank19.gif\" width=\"13\" height=\"13\" border=\"0\" alt=\"\" align=\"absmiddle\">Избранник богов</b>.",
             "sell": true,
             "drop": true,
+            "repair": true,
             "use": true,
             "equip": true,
-            "add_attrs": " artifact_id=\"3763463444\" price_type=\"1\" sell_price=\"6\"",
+            "add_attrs": " artifact_id=\"3704977301\" repair_price=\"125\" price_type=\"1\" sell_price=\"30\"",
             "icon_list": {
                 "1": "use",
                 "2": "info",
-                "3": "sell"
+                "3": "sell",
+                "4": "repair"
             },
             "action": "equip",
             "_act1": 2,
             "_act2": 3,
             "_act3": 1,
             "_act4": 0,
-            "artifact_alt_id": "AA_3763463444"
-        }
-    ],
-    "bracers": [
+            "artifact_alt_id": "AA_3704977301"
+        },
         {
-            "id": "3155306223",
+            "id": "2197610289",
+            "title": "Подводные рукавицы",
+            "ord": "24",
+            "kind_id": "5",
+            "storage_type": "0",
+            "profession": "0",
+            "color": "#666666",
+            "quality": "0",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/podvod_ruki.gif",
+            "picture": "/images/data/artifacts/podvod_ruki.gif",
+            "kind": "Наручи",
+            "type_id": "3",
+            "lev": {
+                "title": " Уровень ",
+                "value": "6"
+            },
+            "trend": "Универсал",
+            "skills": [
+                {
+                    "title": "Интуиция",
+                    "value": "<b>+25</b><b style=\"color:#3300ff\"> (13)</b>"
+                },
+                {
+                    "title": "Сила",
+                    "value": "<b>+37</b><b style=\"color:#3300ff\"> (10)</b>"
+                },
+                {
+                    "title": "Живучесть",
+                    "value": "<b>+27</b>"
+                }
+            ],
+            "skills_e": [],
+            "enchant_icon": "<span class=\"enchants\">\n\t\t<img src=\"/images/enchants/1_2.png\" alt=\"\" class=\"enchant_png\">\n\t\t</span>",
+            "enchant": {
+                "title": "Руна",
+                "value": "<b style=\"color:#3300ff\">Руна силы Мирт</b>"
+            },
+            "enchant_class": "enchant-1_2",
+            "enchant_mod": {
+                "title": "Встроено",
+                "value": "<b style=\"color:#3300ff\">Чары Алалайлы (25)</b>"
+            },
+            "symbols": [
+                {
+                    "title": "Символ",
+                    "value": "<b style=\"color:#666666;\">Символ предчувствия Сент</b>"
+                }
+            ],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "nosell": "Предмет нельзя сдать в скупку",
+            "use": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"2197610289\"",
+            "icon_list": [
+                "use",
+                "info"
+            ],
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 0,
+            "_act3": 1,
+            "_act4": 0,
+            "artifact_alt_id": "AA_2197610289"
+        },
+        {
+            "id": "3538037191",
+            "title": "Наручи «Зов отваги»",
+            "ord": "34",
+            "kind_id": "5",
+            "storage_type": "0",
+            "profession": "0",
+            "color": "#3300ff",
+            "quality": "2",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/uv_pyku_blue_16-20pvp.gif",
+            "picture": "/images/data/artifacts/uv_pyku_blue_16-20pvp.gif",
+            "kind": "Наручи",
+            "type_id": "3",
+            "price": "<span title=\"Золотой\"><img src=\"/images/m_game3.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;65",
+            "dur": "43",
+            "dur_max": "46",
+            "lev": {
+                "title": " Уровень ",
+                "value": "19"
+            },
+            "cls": [
+                "<img src=\"/images/elements/light.gif\" width=\"11\" height=\"10\" align=\"absmiddle\">&nbsp;Свет",
+                "<img src=\"/images/elements/shadow.gif\" width=\"11\" height=\"10\" align=\"absmiddle\">&nbsp;Тень"
+            ],
+            "trend": "Ловкач",
+            "skills": [
+                {
+                    "title": "Ловкость",
+                    "value": "<b>+78</b><b style=\"color:#990099\"> (16)</b>"
+                },
+                {
+                    "title": "Интеллект",
+                    "value": "<b>+62</b>"
+                },
+                {
+                    "title": "Защита огонь-воздух",
+                    "value": "<b>+50</b>"
+                },
+                {
+                    "title": "Защита земля-вода",
+                    "value": "<b>+20</b>"
+                },
+                {
+                    "title": "Сила",
+                    "value": "<b>+223</b><b style=\"color:#990099\"> (22)</b>"
+                },
+                {
+                    "title": "Мудрость",
+                    "value": "<b>+201</b><b style=\"color:#990099\"> (33)</b>"
+                },
+                {
+                    "title": "Уровень жизни",
+                    "value": "<b>+70</b>"
+                },
+                {
+                    "title": "Антитравматизм",
+                    "value": "<b>+5</b><b style=\"color:#666666\"> (5)</b>"
+                }
+            ],
+            "skills_e": [
+                {
+                    "title": "Защита",
+                    "value": "<b>+7</b><b style=\"color:#990099\"> (7)</b>"
+                },
+                {
+                    "title": "Живучесть",
+                    "value": "<b>+4</b><b style=\"color:#990099\"> (4)</b>"
+                },
+                {
+                    "title": "Проницание огонь-воздух",
+                    "value": "<b>+200</b><b style=\"color:#3300ff\"> (200)</b>"
+                },
+                {
+                    "title": "Проницание свет-тьма",
+                    "value": "<b>+200</b><b style=\"color:#3300ff\"> (200)</b>"
+                },
+                {
+                    "title": "Проницание земля-вода",
+                    "value": "<b>+200</b><b style=\"color:#3300ff\"> (200)</b>"
+                }
+            ],
+            "enchant_icon": "<span class=\"enchants\">\n\t\t<img src=\"/images/enchants/oprava.png\" alt=\"\" class=\"enchant2_png\"><img src=\"/images/enchants/6_3.png\" alt=\"\" class=\"enchant_png\">\n\t\t</span>",
+            "enchant": {
+                "title": "Руна",
+                "value": "<b style=\"color:#990099\">Руна превосходства Мирт VI</b>"
+            },
+            "enchant_class": "enchant-6_3",
+            "enchant_mod": {
+                "title": "Встроено",
+                "value": "<b style=\"color:#3300ff\">Чары краткой невидимости (2)</b>"
+            },
+            "enchant3": {
+                "title": "Оправа",
+                "value": "<b style=\"color:#3300ff;\">Оправа пробивания XI</b>"
+            },
+            "symbols": [
+                {
+                    "title": "Символ",
+                    "value": "<b style=\"color:#666666;\">Символ неуязвимости Атвол</b>"
+                },
+                {
+                    "title": "Символ",
+                    "value": "<b style=\"color:#666666;\">Символ уклонения Кос</b>"
+                },
+                {
+                    "title": "Символ",
+                    "value": "<b style=\"color:#990099;\">Символ сокрушения Ит-Кор</b>"
+                }
+            ],
+            "set": {
+                "title": "Комплект",
+                "value": "<b style=\"color:#3300ff\">Доспехи «Зов отваги»</b>"
+            },
+            "flags2": {
+                "can_crashproof": "Предмет можно укрепить смолой"
+            },
+            "rank_min": "Для приобретения или использования вещи необходимо звание <b class=\"redd\"><img src=\"/images/ranks/rank19.gif\" width=\"13\" height=\"13\" border=\"0\" alt=\"\" align=\"absmiddle\">Избранник богов</b>.",
+            "sell": true,
+            "drop": true,
+            "repair": true,
+            "use": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3538037191\" repair_price=\"125\" price_type=\"1\" sell_price=\"30\"",
+            "icon_list": {
+                "1": "use",
+                "2": "info",
+                "3": "sell",
+                "4": "repair"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 1,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3538037191"
+        },
+        {
+            "id": "2521328133",
             "title": "Негаторы Унариуса",
-            "ord": "54",
+            "ord": "35",
             "kind_id": "77",
             "storage_type": "0",
             "profession": "0",
@@ -8061,7 +10611,7 @@ let items = {
             "skills_e": [],
             "enchant_mod": {
                 "title": "Встроено",
-                "value": "<b style=\"color:#3300ff\">Чары зверского палача (50)</b>"
+                "value": "<b style=\"color:#339900\">Чары мимолетной невидимости (4)</b>"
             },
             "nogive": "Предмет нельзя передать",
             "noweight": "Предмет не занимает места в рюкзаке",
@@ -8069,7 +10619,7 @@ let items = {
             "nosell": "Предмет нельзя сдать в скупку",
             "use": true,
             "equip": true,
-            "add_attrs": " artifact_id=\"3155306223\"",
+            "add_attrs": " artifact_id=\"2521328133\"",
             "icon_list": [
                 "use",
                 "info"
@@ -8079,12 +10629,12 @@ let items = {
             "_act2": 0,
             "_act3": 1,
             "_act4": 0,
-            "artifact_alt_id": "AA_3155306223"
+            "artifact_alt_id": "AA_2521328133"
         },
         {
-            "id": "3155305930",
+            "id": "2958129894",
             "title": "Фарги",
-            "ord": "55",
+            "ord": "36",
             "kind_id": "120",
             "storage_type": "0",
             "profession": "0",
@@ -8104,7 +10654,7 @@ let items = {
             "skills_e": [],
             "enchant_mod": {
                 "title": "Встроено",
-                "value": "<b style=\"color:#666666\">Чары нападения (11)</b>"
+                "value": "<b style=\"color:#339900\">Чары мимолетной невидимости (5)</b>"
             },
             "nogive": "Предмет нельзя передать",
             "noweight": "Предмет не занимает места в рюкзаке",
@@ -8112,7 +10662,7 @@ let items = {
             "nosell": "Предмет нельзя сдать в скупку",
             "use": true,
             "equip": true,
-            "add_attrs": " artifact_id=\"3155305930\"",
+            "add_attrs": " artifact_id=\"2958129894\"",
             "icon_list": [
                 "use",
                 "info"
@@ -8122,209 +10672,24 @@ let items = {
             "_act2": 0,
             "_act3": 1,
             "_act4": 0,
-            "artifact_alt_id": "AA_3155305930"
+            "artifact_alt_id": "AA_2958129894"
         },
         {
-            "id": "3155305931",
-            "title": "Наручи «Зов отваги»",
-            "ord": "55",
+            "id": "4342784221",
+            "title": "Мудрёные наручи «Заступник небес»",
+            "ord": "46",
             "kind_id": "5",
             "storage_type": "0",
             "profession": "0",
-            "color": "#3300ff",
-            "quality": "2",
+            "color": "#990099",
+            "quality": "3",
             "time_expire": "0",
-            "image": "/images/data/artifacts/uv_pyku_blue_16-20pvp.gif",
-            "picture": "/images/data/artifacts/uv_pyku_blue_16-20pvp.gif",
+            "image": "/images/data/artifacts/tank_pyku_viol_16-20pvp.gif",
+            "picture": "/images/data/artifacts/tank_pyku_viol_16-20pvp.gif",
             "kind": "Наручи",
             "type_id": "3",
-            "price": "<span title=\"Золотой\"><img src=\"/images/m_game3.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;65",
-            "dur": "6",
-            "dur_max": "52",
-            "lev": {
-                "title": " Уровень ",
-                "value": "19"
-            },
-            "cls": [
-                "<img src=\"/images/elements/light.gif\" width=\"11\" height=\"10\" align=\"absmiddle\">&nbsp;Свет",
-                "<img src=\"/images/elements/shadow.gif\" width=\"11\" height=\"10\" align=\"absmiddle\">&nbsp;Тень"
-            ],
-            "trend": "Ловкач",
-            "skills": [
-                {
-                    "title": "Ловкость",
-                    "value": "<b>+75</b><b style=\"color:#3300ff\"> (13)</b>"
-                },
-                {
-                    "title": "Интеллект",
-                    "value": "<b>+62</b>"
-                },
-                {
-                    "title": "Защита огонь-воздух",
-                    "value": "<b>+50</b>"
-                },
-                {
-                    "title": "Защита земля-вода",
-                    "value": "<b>+20</b>"
-                },
-                {
-                    "title": "Сила",
-                    "value": "<b>+236</b><b style=\"color:#3300ff\"> (35)</b>"
-                },
-                {
-                    "title": "Мудрость",
-                    "value": "<b>+217</b><b style=\"color:#3300ff\"> (49)</b>"
-                },
-                {
-                    "title": "Уровень жизни",
-                    "value": "<b>+70</b>"
-                },
-                {
-                    "title": "Инициатива",
-                    "value": "<b>+3</b><b style=\"color:#ff0000\"> (3)</b>"
-                },
-                {
-                    "title": "Скорость",
-                    "value": "<b>+5</b><b style=\"color:#ff0000\"> (5)</b>"
-                },
-                {
-                    "title": "Интуиция",
-                    "value": "<b>+3</b><b style=\"color:#666666\"> (3)</b>"
-                }
-            ],
-            "skills_e": [
-                {
-                    "title": "Защита",
-                    "value": "<b>+3</b><b style=\"color:#3300ff\"> (3)</b>"
-                },
-                {
-                    "title": "Живучесть",
-                    "value": "<b>+3</b><b style=\"color:#3300ff\"> (3)</b>"
-                },
-                {
-                    "title": "Проницание огонь-воздух",
-                    "value": "<b>+180</b><b style=\"color:#3300ff\"> (180)</b>"
-                },
-                {
-                    "title": "Проницание свет-тьма",
-                    "value": "<b>+180</b><b style=\"color:#3300ff\"> (180)</b>"
-                },
-                {
-                    "title": "Проницание земля-вода",
-                    "value": "<b>+180</b><b style=\"color:#3300ff\"> (180)</b>"
-                }
-            ],
-            "enchant_icon": "<span class=\"enchants\">\n\t\t<img src=\"/images/enchants/oprava.png\" alt=\"\" class=\"enchant2_png\"><img src=\"/images/enchants/3_2.png\" alt=\"\" class=\"enchant_png\">\n\t\t</span>",
-            "enchant": {
-                "title": "Руна",
-                "value": "<b style=\"color:#3300ff\">Руна преломления Мирт III (&#9650;50.03%)</b>"
-            },
-            "enchant_class": "enchant-3_2",
-            "enchant3": {
-                "title": "Оправа",
-                "value": "<b style=\"color:#3300ff;\">Оправа пробивания X</b>"
-            },
-            "symbols": [
-                {
-                    "title": "Символ",
-                    "value": "<b style=\"color:#ff0000;\">Символ стремительности Калид</b>"
-                },
-                {
-                    "title": "Символ",
-                    "value": "<b style=\"color:#666666;\">Символ предчувствия Сент</b>"
-                }
-            ],
-            "set": {
-                "title": "Комплект",
-                "value": "<b style=\"color:#3300ff\">Доспехи «Зов отваги»</b>"
-            },
-            "nogive": "Предмет нельзя передать",
-            "flags2": {
-                "crashproof": "Неломаемый предмет"
-            },
-            "rank_min": "Для приобретения или использования вещи необходимо звание <b class=\"redd\"><img src=\"/images/ranks/rank18.gif\" width=\"13\" height=\"13\" border=\"0\" alt=\"\" align=\"absmiddle\">Триумфатор </b>.",
-            "sell": true,
-            "drop": true,
-            "repair": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3155305931\" repair_price=\"125\" price_type=\"1\" sell_price=\"30\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell",
-                "3": "repair"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3155305931"
-        },
-        {
-            "id": "3155305755",
-            "title": "Подводные рукавицы",
-            "ord": "64",
-            "kind_id": "5",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#666666",
-            "quality": "0",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/podvod_ruki.gif",
-            "picture": "/images/data/artifacts/podvod_ruki.gif",
-            "kind": "Наручи",
-            "type_id": "3",
-            "lev": {
-                "title": " Уровень ",
-                "value": "6"
-            },
-            "trend": "Универсал",
-            "skills": [
-                {
-                    "title": "Интуиция",
-                    "value": "<b>+12</b>"
-                },
-                {
-                    "title": "Сила",
-                    "value": "<b>+27</b>"
-                },
-                {
-                    "title": "Живучесть",
-                    "value": "<b>+27</b>"
-                }
-            ],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "nosell": "Предмет нельзя сдать в скупку",
-            "equip": true,
-            "add_attrs": " artifact_id=\"3155305755\"",
-            "icon_list": [
-                "info"
-            ],
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 0,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3155305755"
-        },
-        {
-            "id": "4319555329",
-            "title": "Наручи «Заступник небес»",
-            "ord": "77",
-            "kind_id": "5",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#3300ff",
-            "quality": "2",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/tank_pyku_blue_16-20pvp.gif",
-            "picture": "/images/data/artifacts/tank_pyku_blue_16-20pvp.gif",
-            "kind": "Наручи",
-            "type_id": "3",
-            "price": "<span title=\"Золотой\"><img src=\"/images/m_game3.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;65",
-            "dur": "39",
+            "price": "<span title=\"Золотой\"><img src=\"/images/m_game3.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;78",
+            "dur": "48",
             "dur_max": "52",
             "lev": {
                 "title": " Уровень ",
@@ -8338,11 +10703,19 @@ let items = {
             "skills": [
                 {
                     "title": "Защита",
-                    "value": "<b>+75</b><b style=\"color:#3300ff\"> (13)</b>"
+                    "value": "<b>+75</b><b style=\"color:#990099\"> (13)</b>"
+                },
+                {
+                    "title": "Инициатива",
+                    "value": "<b>+3</b>"
+                },
+                {
+                    "title": "Интуиция",
+                    "value": "<b>+17</b><b style=\"color:#990099\"> (7)</b>"
                 },
                 {
                     "title": "Интеллект",
-                    "value": "<b>+71</b><b style=\"color:#3300ff\"> (9)</b>"
+                    "value": "<b>+81</b><b style=\"color:#990099\"> (19)</b>"
                 },
                 {
                     "title": "Защита огонь-воздух",
@@ -8354,33 +10727,41 @@ let items = {
                 },
                 {
                     "title": "Сила",
-                    "value": "<b>+137</b>"
+                    "value": "<b>+161</b><b style=\"color:#990099\"> (7)</b>"
                 },
                 {
                     "title": "Мудрость",
-                    "value": "<b>+52</b>"
+                    "value": "<b>+64</b><b style=\"color:#990099\"> (8)</b>"
                 },
                 {
                     "title": "Уровень жизни",
                     "value": "<b>+170</b>"
+                },
+                {
+                    "title": "Антитравматизм",
+                    "value": "<b>+5</b><b style=\"color:#666666\"> (5)</b>"
                 }
             ],
             "skills_e": [
                 {
                     "title": "Живучесть",
-                    "value": "<b>+18</b><b style=\"color:#3300ff\"> (18)</b>"
+                    "value": "<b>+38</b><b style=\"color:#990099\"> (38)</b>"
                 },
                 {
                     "title": "Защита земля-вода",
                     "value": "<b>+200</b><b style=\"color:#3300ff\"> (200)</b>"
                 }
             ],
-            "enchant_icon": "<span class=\"enchants\">\n\t\t<img src=\"/images/enchants/oprava.png\" alt=\"\" class=\"enchant2_png\"><img src=\"/images/enchants/1_2.png\" alt=\"\" class=\"enchant_png\">\n\t\t</span>",
+            "enchant_icon": "<span class=\"enchants\">\n\t\t<img src=\"/images/enchants/oprava.png\" alt=\"\" class=\"enchant2_png\"><img src=\"/images/enchants/6_3.png\" alt=\"\" class=\"enchant_png\">\n\t\t</span>",
             "enchant": {
                 "title": "Руна",
-                "value": "<b style=\"color:#3300ff\">Руна величия Мирт</b>"
+                "value": "<b style=\"color:#990099\">Руна рассудка Мирт VI</b>"
             },
-            "enchant_class": "enchant-1_2",
+            "enchant_class": "enchant-6_3",
+            "enchant_mod": {
+                "title": "Встроено",
+                "value": "<b style=\"color:#3300ff\">Чары зверского палача (50)</b>"
+            },
             "enchant3": {
                 "title": "Оправа",
                 "value": "<b style=\"color:#3300ff;\">Оправа отражения XI</b>"
@@ -8388,16 +10769,20 @@ let items = {
             "symbols": [
                 {
                     "title": "Символ",
-                    "value": "<b style=\"color:#990099;\">Символ защиты Фен-Мал</b>"
+                    "value": "<b style=\"color:#666666;\">Символ неуязвимости Атвол</b>"
                 },
                 {
                     "title": "Символ",
-                    "value": "<b style=\"color:#990099;\">Символ сокрушения Ит-Мал</b>"
+                    "value": "<b style=\"color:#990099;\">Символ защиты Фен-Кор</b>"
+                },
+                {
+                    "title": "Символ",
+                    "value": "<b style=\"color:#990099;\">Символ защиты Фен-Мал</b>"
                 }
             ],
             "set": {
                 "title": "Комплект",
-                "value": "<b style=\"color:#3300ff\">Доспехи «Заступник небес»</b>"
+                "value": "<b style=\"color:#990099\">Доспехи «Заступник небес»</b>"
             },
             "nogive": "Предмет нельзя передать",
             "flags2": {
@@ -8408,7 +10793,7 @@ let items = {
             "drop": true,
             "repair": true,
             "equip": true,
-            "add_attrs": " artifact_id=\"4319555329\" repair_price=\"125\" price_type=\"1\" sell_price=\"30\"",
+            "add_attrs": " artifact_id=\"4342784221\" repair_price=\"150\" price_type=\"1\" sell_price=\"30\"",
             "icon_list": {
                 "1": "info",
                 "2": "sell",
@@ -8419,96 +10804,28 @@ let items = {
             "_act2": 3,
             "_act3": 0,
             "_act4": 0,
-            "artifact_alt_id": "AA_4319555329"
+            "artifact_alt_id": "AA_4342784221"
         },
         {
-            "id": "3763463445",
-            "title": "Кожаные браслеты",
-            "ord": "80",
+            "id": "3073776050",
+            "title": "Мудрёные наручи Архона",
+            "ord": "52",
             "kind_id": "5",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#666666",
-            "quality": "0",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/glus4.gif",
-            "picture": "/images/data/artifacts/glus4.gif",
-            "kind": "Наручи",
-            "type_id": "3",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;60",
-            "dur": "93",
-            "dur_max": "95",
-            "lev": {
-                "title": " Уровень ",
-                "value": "4"
-            },
-            "trend": "Универсал",
-            "skills": [
-                {
-                    "title": "Ловкость",
-                    "value": "<b>+3</b>"
-                },
-                {
-                    "title": "Сила",
-                    "value": "<b>+8</b>"
-                },
-                {
-                    "title": "Уровень жизни",
-                    "value": "<b>+3</b>"
-                }
-            ],
-            "skills_e": [],
-            "enchant_mod": {
-                "title": "Встроено",
-                "value": "<b style=\"color:#990099\">Чары сытости «Мясное ассорти» (55)</b>"
-            },
-            "symbols": [
-                {
-                    "title": "Символ",
-                    "value": "<b style=\"color:#ff0000;\">Символ умения Прод-Форт</b>"
-                }
-            ],
-            "sell": true,
-            "drop": true,
-            "repair": true,
-            "use": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3763463445\" repair_price=\"0.63157894736842\" price_type=\"1\" sell_price=\"0.6\"",
-            "icon_list": {
-                "1": "use",
-                "2": "info",
-                "3": "sell",
-                "4": "repair"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 1,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3763463445"
-        }
-    ],
-    "main_weapons": [
-        {
-            "id": "3155306410",
-            "title": "Мудрёный меч «Зов отваги»",
-            "ord": "50",
-            "kind_id": "10",
             "storage_type": "0",
             "profession": "0",
             "color": "#990099",
             "quality": "3",
             "time_expire": "0",
-            "image": "/images/data/artifacts/uv_right_viol_16-20pvp.gif",
-            "picture": "/images/data/artifacts/uv_right_viol_16-20pvp.gif",
-            "kind": "Основное",
+            "image": "/images/data/artifacts/perchi_uvorot1115pvp_purple.gif",
+            "picture": "/images/data/artifacts/perchi_uvorot1115pvp_purple.gif",
+            "kind": "Наручи",
             "type_id": "3",
-            "price": "<span title=\"Золотой\"><img src=\"/images/m_game3.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;68",
-            "dur": "19",
-            "dur_max": "47",
+            "price": "<span title=\"Золотой\"><img src=\"/images/m_game3.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;78",
+            "dur": "3",
+            "dur_max": "52",
             "lev": {
                 "title": " Уровень ",
-                "value": "17"
+                "value": "14"
             },
             "cls": [
                 "<img src=\"/images/elements/light.gif\" width=\"11\" height=\"10\" align=\"absmiddle\">&nbsp;Свет",
@@ -8518,86 +10835,204 @@ let items = {
             "skills": [
                 {
                     "title": "Ловкость",
-                    "value": "<b>+81</b><b style=\"color:#990099\"> (11)</b>"
+                    "value": "<b>+45</b><b style=\"color:#3300ff\"> (13)</b>"
                 },
                 {
                     "title": "Защита",
-                    "value": "<b>+14</b><b style=\"color:#990099\"> (3)</b>"
+                    "value": "<b>+8</b><b style=\"color:#3300ff\"> (2)</b>"
                 },
                 {
                     "title": "Инициатива",
-                    "value": "<b>+26</b><b style=\"color:#990099\"> (23)</b>"
+                    "value": "<b>+3</b>"
                 },
                 {
                     "title": "Интеллект",
-                    "value": "<b>+75</b>"
-                },
-                {
-                    "title": "Максимальный магический урон",
-                    "value": "<b>+21.1</b>"
-                },
-                {
-                    "title": "Минимальный магический урон",
-                    "value": "<b>+14.1</b>"
-                },
-                {
-                    "title": "Максимальный урон",
-                    "value": "<b>+23.3</b>"
-                },
-                {
-                    "title": "Минимальный урон",
-                    "value": "<b>+15.5</b>"
+                    "value": "<b>+37</b>"
                 },
                 {
                     "title": "Защита огонь-воздух",
-                    "value": "<b>+90</b>"
+                    "value": "<b>+20</b>"
                 },
                 {
                     "title": "Защита земля-вода",
-                    "value": "<b>+40</b>"
+                    "value": "<b>+10</b>"
                 },
                 {
-                    "title": "Живучесть",
-                    "value": "<b>+106</b><b style=\"color:#990099\"> (5)</b>"
+                    "title": "Сила",
+                    "value": "<b>+133</b><b style=\"color:#3300ff\"> (18)</b>"
+                },
+                {
+                    "title": "Мудрость",
+                    "value": "<b>+92</b><b style=\"color:#3300ff\"> (28)</b>"
+                },
+                {
+                    "title": "Уровень жизни",
+                    "value": "<b>+47</b>"
                 }
             ],
             "skills_e": [
                 {
-                    "title": "Сила",
-                    "value": "<b>+33</b><b style=\"color:#990099\"> (33)</b>"
+                    "title": "Проницание огонь-воздух",
+                    "value": "<b>+180</b><b style=\"color:#3300ff\"> (180)</b>"
                 },
                 {
-                    "title": "Мудрость",
-                    "value": "<b>+46</b><b style=\"color:#990099\"> (46)</b>"
+                    "title": "Проницание свет-тьма",
+                    "value": "<b>+180</b><b style=\"color:#3300ff\"> (180)</b>"
+                },
+                {
+                    "title": "Проницание земля-вода",
+                    "value": "<b>+180</b><b style=\"color:#3300ff\"> (180)</b>"
                 }
             ],
-            "enchant_icon": "<span class=\"enchants\">\n\t\t<img src=\"/images/enchants/oprava.png\" alt=\"\" class=\"enchant2_png\"><img src=\"/images/enchants/4_3.png\" alt=\"\" class=\"enchant_png\">\n\t\t</span>",
+            "enchant_icon": "<span class=\"enchants\">\n\t\t<img src=\"/images/enchants/oprava.png\" alt=\"\" class=\"enchant2_png\"><img src=\"/images/enchants/2_2.png\" alt=\"\" class=\"enchant_png\">\n\t\t</span>",
             "enchant": {
                 "title": "Руна",
-                "value": "<b style=\"color:#990099\">Руна преломления Фав IV</b>"
+                "value": "<b style=\"color:#3300ff\">Руна превосходства Мирт II</b>"
             },
-            "enchant_class": "enchant-4_3",
-            "enchant_mod": {
-                "title": "Встроено",
-                "value": "<b style=\"color:#3300ff\">Чары зверского палача (50)</b>"
-            },
+            "enchant_class": "enchant-2_2",
             "enchant3": {
                 "title": "Оправа",
-                "value": "<b style=\"color:#990099;\">Серебристая оправа урагана IV</b>"
+                "value": "<b style=\"color:#3300ff;\">Оправа пробивания X</b>"
             },
             "symbols": [
                 {
                     "title": "Символ",
-                    "value": "<b style=\"color:#3300ff;\">Символ воли к жизни Стриг-Флар</b>"
-                },
-                {
-                    "title": "Символ",
-                    "value": "<b style=\"color:#339900;\">Символ начала Орсус</b>"
+                    "value": "<b style=\"color:#ff0000;\">Символ умения Прод-Форт</b>"
                 }
             ],
             "set": {
                 "title": "Комплект",
-                "value": "<b style=\"color:#990099\">Доспехи «Зов отваги»</b>"
+                "value": "<b style=\"color:#990099\">Доспехи Архона</b>"
+            },
+            "nogive": "Предмет нельзя передать",
+            "flags2": {
+                "crashproof": "Неломаемый предмет"
+            },
+            "rank_min": "Для приобретения или использования вещи необходимо звание <b class=\"redd\"><img src=\"/images/ranks/rank18.gif\" width=\"13\" height=\"13\" border=\"0\" alt=\"\" align=\"absmiddle\">Триумфатор </b>.",
+            "sell": true,
+            "drop": true,
+            "repair": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3073776050\" repair_price=\"150\" price_type=\"1\" sell_price=\"30\"",
+            "icon_list": {
+                "1": "info",
+                "2": "sell",
+                "3": "repair"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 0,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3073776050"
+        }
+    ],
+    "main_weapons": [
+        {
+            "id": "3321186813",
+            "title": "Посох «Коварство зверя»",
+            "ord": "4",
+            "kind_id": "12",
+            "storage_type": "0",
+            "profession": "0",
+            "color": "#3300ff",
+            "quality": "2",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/krit_blue_16-20_pvp.gif",
+            "picture": "/images/data/artifacts/krit_blue_16-20_pvp.gif",
+            "kind": "Двуручное",
+            "type_id": "3",
+            "price": "<span title=\"Золотой\"><img src=\"/images/m_game3.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;114",
+            "dur": "40",
+            "dur_max": "48",
+            "lev": {
+                "title": " Уровень ",
+                "value": "17"
+            },
+            "cls": [
+                "<img src=\"/images/elements/wind.gif\" width=\"11\" height=\"10\" align=\"absmiddle\">&nbsp;Воздух",
+                "<img src=\"/images/elements/fire.gif\" width=\"11\" height=\"10\" align=\"absmiddle\">&nbsp;Огонь"
+            ],
+            "trend": "Костолом",
+            "skills": [
+                {
+                    "title": "Интуиция",
+                    "value": "<b>+151</b><b style=\"color:#990099\"> (22)</b>"
+                },
+                {
+                    "title": "Интеллект",
+                    "value": "<b>+88</b>"
+                },
+                {
+                    "title": "Максимальный магический урон",
+                    "value": "<b>+37.0</b>"
+                },
+                {
+                    "title": "Минимальный магический урон",
+                    "value": "<b>+24.6</b>"
+                },
+                {
+                    "title": "Максимальный урон",
+                    "value": "<b>+43.4</b>"
+                },
+                {
+                    "title": "Минимальный урон",
+                    "value": "<b>+29.0</b>"
+                },
+                {
+                    "title": "Защита свет-тьма",
+                    "value": "<b>+60</b>"
+                },
+                {
+                    "title": "Защита земля-вода",
+                    "value": "<b>+160</b>"
+                },
+                {
+                    "title": "Живучесть",
+                    "value": "<b>+162</b><b style=\"color:#990099\"> (16)</b>"
+                }
+            ],
+            "skills_e": [
+                {
+                    "title": "Ловкость",
+                    "value": "<b>+13</b><b style=\"color:#990099\"> (13)</b>"
+                },
+                {
+                    "title": "Сила",
+                    "value": "<b>+38</b><b style=\"color:#990099\"> (38)</b>"
+                },
+                {
+                    "title": "Мудрость",
+                    "value": "<b>+58</b><b style=\"color:#990099\"> (58)</b>"
+                },
+                {
+                    "title": "Инициатива",
+                    "value": "<b>+20</b><b style=\"color:#990099\"> (20)</b>"
+                }
+            ],
+            "enchant_icon": "<span class=\"enchants\">\n\t\t<img src=\"/images/enchants/oprava.png\" alt=\"\" class=\"enchant2_png\"><img src=\"/images/enchants/6_3.png\" alt=\"\" class=\"enchant_png\">\n\t\t</span>",
+            "enchant": {
+                "title": "Руна",
+                "value": "<b style=\"color:#990099\">Руна уничтожения Фав VI</b>"
+            },
+            "enchant_class": "enchant-6_3",
+            "enchant3": {
+                "title": "Оправа",
+                "value": "<b style=\"color:#990099;\">Серебристая оправа пламени IV</b>"
+            },
+            "symbols": [
+                {
+                    "title": "Символ",
+                    "value": "<b style=\"color:#339900;\">Символ жизни Вит</b>"
+                },
+                {
+                    "title": "Символ",
+                    "value": "<b style=\"color:#ff0000;\">Символ сокрушения Ит-Мал</b>"
+                }
+            ],
+            "set": {
+                "title": "Комплект",
+                "value": "<b style=\"color:#3300ff\">Доспехи «Коварство зверя»</b>"
             },
             "nogive": "Предмет нельзя передать",
             "flags2": {
@@ -8607,26 +11042,24 @@ let items = {
             "sell": true,
             "drop": true,
             "repair": true,
-            "use": true,
             "equip": true,
-            "add_attrs": " artifact_id=\"3155306410\" repair_price=\"141.66666666667\" price_type=\"1\" sell_price=\"30\"",
+            "add_attrs": " artifact_id=\"3321186813\" repair_price=\"237.5\" price_type=\"1\" sell_price=\"30\"",
             "icon_list": {
-                "1": "use",
-                "2": "info",
-                "3": "sell",
-                "4": "repair"
+                "1": "info",
+                "2": "sell",
+                "3": "repair"
             },
             "action": "equip",
             "_act1": 2,
             "_act2": 3,
-            "_act3": 1,
+            "_act3": 0,
             "_act4": 0,
-            "artifact_alt_id": "AA_3155306410"
+            "artifact_alt_id": "AA_3321186813"
         },
         {
-            "id": "3155305789",
+            "id": "2197693798",
             "title": "Гаулдир",
-            "ord": "67",
+            "ord": "19",
             "kind_id": "12",
             "storage_type": "0",
             "profession": "0",
@@ -8664,10 +11097,33 @@ let items = {
                     "value": "<b>+105</b>"
                 }
             ],
-            "skills_e": [],
+            "skills_e": [
+                {
+                    "title": "Интуиция",
+                    "value": "<b>+19</b><b style=\"color:#3300ff\"> (19)</b>"
+                },
+                {
+                    "title": "Сила",
+                    "value": "<b>+19</b><b style=\"color:#3300ff\"> (19)</b>"
+                },
+                {
+                    "title": "Инициатива",
+                    "value": "<b>+8</b><b style=\"color:#666666\"> (8)</b>"
+                }
+            ],
+            "enchant_icon": "<span class=\"enchants\">\n\t\t<img src=\"/images/enchants/oprava.png\" alt=\"\" class=\"enchant2_png\"><img src=\"/images/enchants/1_2.png\" alt=\"\" class=\"enchant_png\">\n\t\t</span>",
+            "enchant": {
+                "title": "Руна",
+                "value": "<b style=\"color:#3300ff\">Руна силы Фав</b>"
+            },
+            "enchant_class": "enchant-1_2",
             "enchant_mod": {
                 "title": "Встроено",
-                "value": "<b style=\"color:#666666\">Чары возврата в Дартронг (200)</b>"
+                "value": "<b style=\"color:#339900\">Чары воскрешения (232)</b>"
+            },
+            "enchant3": {
+                "title": "Оправа",
+                "value": "<b style=\"color:#666666;\">Серебристая оправа пламени I</b>"
             },
             "nogive": "Предмет нельзя передать",
             "noweight": "Предмет не занимает места в рюкзаке",
@@ -8675,7 +11131,7 @@ let items = {
             "nosell": "Предмет нельзя сдать в скупку",
             "use": true,
             "equip": true,
-            "add_attrs": " artifact_id=\"3155305789\"",
+            "add_attrs": " artifact_id=\"2197693798\"",
             "icon_list": [
                 "use",
                 "info"
@@ -8685,170 +11141,158 @@ let items = {
             "_act2": 0,
             "_act3": 1,
             "_act4": 0,
-            "artifact_alt_id": "AA_3155305789"
+            "artifact_alt_id": "AA_2197693798"
         },
         {
-            "id": "3155306147",
-            "title": "Боевой топор Убийцы",
-            "ord": "68",
-            "kind_id": "12",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#ff0000",
-            "quality": "4",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/toporofkiller_sm.gif",
-            "picture": "/images/data/artifacts/toporofkiller_sm.gif",
-            "kind": "Двуручное",
-            "type_id": "3",
-            "price": "<span title=\"Золотой\"><img src=\"/images/m_game3.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;10",
-            "dur": "3",
-            "dur_max": "3",
-            "lev": {
-                "title": " Уровень ",
-                "value": "1"
-            },
-            "trend": "Универсал",
-            "skills": [
-                {
-                    "title": "Ловкость",
-                    "value": "<b>+50</b>"
-                },
-                {
-                    "title": "Защита",
-                    "value": "<b>+50</b>"
-                },
-                {
-                    "title": "Интуиция",
-                    "value": "<b>+50</b>"
-                },
-                {
-                    "title": "Максимальный урон",
-                    "value": "<b>+15.0</b>"
-                },
-                {
-                    "title": "Минимальный урон",
-                    "value": "<b>+10.0</b>"
-                },
-                {
-                    "title": "Уровень жизни",
-                    "value": "<b>+50</b>"
-                }
-            ],
-            "skills_e": [],
-            "enchant_mod": {
-                "title": "Встроено",
-                "value": "<b style=\"color:#990099\">Чары обильной трапезы (42)</b>"
-            },
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "nosell": "Предмет нельзя сдать в скупку",
-            "drop": true,
-            "use": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3155306147\"",
-            "icon_list": [
-                "drop",
-                "use",
-                "info"
-            ],
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 1,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3155306147"
-        },
-        {
-            "id": "3155306129",
-            "title": "Боевой топор Убийцы",
-            "ord": "69",
-            "kind_id": "12",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#ff0000",
-            "quality": "4",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/toporofkiller_sm.gif",
-            "picture": "/images/data/artifacts/toporofkiller_sm.gif",
-            "kind": "Двуручное",
-            "type_id": "3",
-            "price": "<span title=\"Золотой\"><img src=\"/images/m_game3.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;10",
-            "dur": "2",
-            "dur_max": "3",
-            "lev": {
-                "title": " Уровень ",
-                "value": "1"
-            },
-            "trend": "Универсал",
-            "skills": [
-                {
-                    "title": "Ловкость",
-                    "value": "<b>+50</b>"
-                },
-                {
-                    "title": "Защита",
-                    "value": "<b>+50</b>"
-                },
-                {
-                    "title": "Интуиция",
-                    "value": "<b>+50</b>"
-                },
-                {
-                    "title": "Максимальный урон",
-                    "value": "<b>+15.0</b>"
-                },
-                {
-                    "title": "Минимальный урон",
-                    "value": "<b>+10.0</b>"
-                },
-                {
-                    "title": "Уровень жизни",
-                    "value": "<b>+50</b>"
-                }
-            ],
-            "skills_e": [],
-            "enchant_mod": {
-                "title": "Встроено",
-                "value": "<b style=\"color:#339900\">Чары воскрешения (239)</b>"
-            },
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "nosell": "Предмет нельзя сдать в скупку",
-            "drop": true,
-            "repair": true,
-            "use": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3155306129\" repair_price=\"333.33333333333\"",
-            "icon_list": [
-                "drop",
-                "use",
-                "info",
-                "repair"
-            ],
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 1,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3155306129"
-        },
-        {
-            "id": "3734460703",
-            "title": "Мудрёный кастет «Заступник небес»",
-            "ord": "72",
+            "id": "3662581105",
+            "title": "Мудрёный меч «Зов отваги»",
+            "ord": "29",
             "kind_id": "10",
             "storage_type": "0",
             "profession": "0",
             "color": "#990099",
             "quality": "3",
             "time_expire": "0",
-            "image": "/images/data/artifacts/tank_right_viol_16-20pvp.gif",
-            "picture": "/images/data/artifacts/tank_right_viol_16-20pvp.gif",
+            "image": "/images/data/artifacts/uv_right_viol_16-20pvp.gif",
+            "picture": "/images/data/artifacts/uv_right_viol_16-20pvp.gif",
             "kind": "Основное",
             "type_id": "3",
             "price": "<span title=\"Золотой\"><img src=\"/images/m_game3.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;68",
-            "dur": "43",
+            "dur": "39",
+            "dur_max": "47",
+            "lev": {
+                "title": " Уровень ",
+                "value": "17"
+            },
+            "cls": [
+                "<img src=\"/images/elements/light.gif\" width=\"11\" height=\"10\" align=\"absmiddle\">&nbsp;Свет",
+                "<img src=\"/images/elements/shadow.gif\" width=\"11\" height=\"10\" align=\"absmiddle\">&nbsp;Тень"
+            ],
+            "trend": "Ловкач",
+            "skills": [
+                {
+                    "title": "Ловкость",
+                    "value": "<b>+81</b><b style=\"color:#990099\"> (11)</b>"
+                },
+                {
+                    "title": "Защита",
+                    "value": "<b>+18</b><b style=\"color:#990099\"> (7)</b>"
+                },
+                {
+                    "title": "Инициатива",
+                    "value": "<b>+23</b><b style=\"color:#990099\"> (20)</b>"
+                },
+                {
+                    "title": "Интеллект",
+                    "value": "<b>+75</b>"
+                },
+                {
+                    "title": "Максимальный магический урон",
+                    "value": "<b>+21.1</b>"
+                },
+                {
+                    "title": "Минимальный магический урон",
+                    "value": "<b>+14.1</b>"
+                },
+                {
+                    "title": "Максимальный урон",
+                    "value": "<b>+23.3</b>"
+                },
+                {
+                    "title": "Минимальный урон",
+                    "value": "<b>+15.5</b>"
+                },
+                {
+                    "title": "Защита огонь-воздух",
+                    "value": "<b>+90</b>"
+                },
+                {
+                    "title": "Защита земля-вода",
+                    "value": "<b>+40</b>"
+                },
+                {
+                    "title": "Живучесть",
+                    "value": "<b>+128</b><b style=\"color:#990099\"> (27)</b>"
+                },
+                {
+                    "title": "Мудрость",
+                    "value": "<b>+39</b><b style=\"color:#990099\"> (39)</b>"
+                }
+            ],
+            "skills_e": [
+                {
+                    "title": "Сила",
+                    "value": "<b>+35</b><b style=\"color:#990099\"> (35)</b>"
+                }
+            ],
+            "enchant_icon": "<span class=\"enchants\">\n\t\t<img src=\"/images/enchants/oprava.png\" alt=\"\" class=\"enchant2_png\"><img src=\"/images/enchants/6_3.png\" alt=\"\" class=\"enchant_png\">\n\t\t</span>",
+            "enchant": {
+                "title": "Руна",
+                "value": "<b style=\"color:#990099\">Руна преломления Фав VI</b>"
+            },
+            "enchant_class": "enchant-6_3",
+            "enchant_mod": {
+                "title": "Встроено",
+                "value": "<b style=\"color:#666666\">Чары нападения (25)</b>"
+            },
+            "enchant3": {
+                "title": "Оправа",
+                "value": "<b style=\"color:#990099;\">Серебристая оправа урагана IV</b>"
+            },
+            "symbols": [
+                {
+                    "title": "Символ",
+                    "value": "<b style=\"color:#3300ff;\">Символ покрова Пелл</b>"
+                },
+                {
+                    "title": "Символ",
+                    "value": "<b style=\"color:#3300ff;\">Символ воли к жизни Стриг-Флар</b>"
+                }
+            ],
+            "set": {
+                "title": "Комплект",
+                "value": "<b style=\"color:#990099\">Доспехи «Зов отваги»</b>"
+            },
+            "nogive": "Предмет нельзя передать",
+            "flags2": {
+                "can_crashproof": "Предмет можно укрепить смолой"
+            },
+            "rank_min": "Для приобретения или использования вещи необходимо звание <b class=\"redd\"><img src=\"/images/ranks/rank16.gif\" width=\"13\" height=\"13\" border=\"0\" alt=\"\" align=\"absmiddle\">Властелин боя</b>.",
+            "sell": true,
+            "drop": true,
+            "repair": true,
+            "use": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3662581105\" repair_price=\"141.66666666667\" price_type=\"1\" sell_price=\"30\"",
+            "icon_list": {
+                "1": "use",
+                "2": "info",
+                "3": "sell",
+                "4": "repair"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 1,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3662581105"
+        },
+        {
+            "id": "3409605099",
+            "title": "Топор «Заступник небес»",
+            "ord": "40",
+            "kind_id": "10",
+            "storage_type": "0",
+            "profession": "0",
+            "color": "#3300ff",
+            "quality": "2",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/topor_tank_blue_16-20_pvp.gif",
+            "picture": "/images/data/artifacts/topor_tank_blue_16-20_pvp.gif",
+            "kind": "Основное",
+            "type_id": "3",
+            "price": "<span title=\"Золотой\"><img src=\"/images/m_game3.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;57",
+            "dur": "48",
             "dur_max": "48",
             "lev": {
                 "title": " Уровень ",
@@ -8862,27 +11306,19 @@ let items = {
             "skills": [
                 {
                     "title": "Защита",
-                    "value": "<b>+73</b><b style=\"color:#339900\"> (3)</b>"
-                },
-                {
-                    "title": "Инициатива",
-                    "value": "<b>+23</b><b style=\"color:#990099\"> (20)</b>"
-                },
-                {
-                    "title": "Интуиция",
-                    "value": "<b>+14</b><b style=\"color:#339900\"> (3)</b>"
+                    "value": "<b>+81</b><b style=\"color:#990099\"> (11)</b>"
                 },
                 {
                     "title": "Интеллект",
-                    "value": "<b>+75</b>"
+                    "value": "<b>+93</b><b style=\"color:#990099\"> (18)</b>"
                 },
                 {
                     "title": "Максимальный магический урон",
-                    "value": "<b>+9.6</b>"
+                    "value": "<b>+8.0</b>"
                 },
                 {
                     "title": "Минимальный магический урон",
-                    "value": "<b>+6.4</b>"
+                    "value": "<b>+5.4</b>"
                 },
                 {
                     "title": "Максимальный урон",
@@ -8902,19 +11338,41 @@ let items = {
                 },
                 {
                     "title": "Живучесть",
-                    "value": "<b>+192</b>"
-                },
-                {
-                    "title": "Ловкость",
-                    "value": "<b>+3</b><b style=\"color:#339900\"> (3)</b>"
+                    "value": "<b>+228</b><b style=\"color:#990099\"> (36)</b>"
                 },
                 {
                     "title": "Подавление",
-                    "value": "<b>+11</b><b style=\"color:#990099\"> (11)</b>"
+                    "value": "<b>+13</b><b style=\"color:#3300ff\"> (13)</b>"
                 }
             ],
-            "skills_e": [],
-            "enchant_icon": "<span class=\"enchants\">\n\t\t<img src=\"/images/enchants/oprava.png\" alt=\"\" class=\"enchant2_png\"><img src=\"/images/enchants/no_rune.png\" alt=\"\" class=\"enchant_png\">\n\t\t</span>",
+            "skills_e": [
+                {
+                    "title": "Интуиция",
+                    "value": "<b>+7</b><b style=\"color:#990099\"> (7)</b>"
+                },
+                {
+                    "title": "Сила",
+                    "value": "<b>+7</b><b style=\"color:#990099\"> (7)</b>"
+                },
+                {
+                    "title": "Мудрость",
+                    "value": "<b>+8</b><b style=\"color:#990099\"> (8)</b>"
+                },
+                {
+                    "title": "Инициатива",
+                    "value": "<b>+20</b><b style=\"color:#990099\"> (20)</b>"
+                }
+            ],
+            "enchant_icon": "<span class=\"enchants\">\n\t\t<img src=\"/images/enchants/oprava.png\" alt=\"\" class=\"enchant2_png\"><img src=\"/images/enchants/6_3.png\" alt=\"\" class=\"enchant_png\">\n\t\t</span>",
+            "enchant": {
+                "title": "Руна",
+                "value": "<b style=\"color:#990099\">Руна рассудка Фав VI</b>"
+            },
+            "enchant_class": "enchant-6_3",
+            "enchant_mod": {
+                "title": "Встроено",
+                "value": "<b style=\"color:#3300ff\">Чары краткой невидимости (5)</b>"
+            },
             "enchant3": {
                 "title": "Оправа",
                 "value": "<b style=\"color:#990099;\">Серебристая оправа скалы IV</b>"
@@ -8922,45 +11380,45 @@ let items = {
             "symbols": [
                 {
                     "title": "Символ",
-                    "value": "<b style=\"color:#339900;\">Символ баланса Либр</b>"
+                    "value": "<b style=\"color:#3300ff;\">Символ смягчения Моллир</b>"
                 },
                 {
                     "title": "Символ",
-                    "value": "<b style=\"color:#990099;\">Символ смягчения Моллир</b>"
+                    "value": "<b style=\"color:#339900;\">Символ смягчения Моллир</b>"
                 }
             ],
             "set": {
                 "title": "Комплект",
-                "value": "<b style=\"color:#990099\">Доспехи «Заступник небес»</b>"
+                "value": "<b style=\"color:#3300ff\">Доспехи «Заступник небес»</b>"
             },
             "nogive": "Предмет нельзя передать",
             "flags2": {
-                "can_crashproof": "Предмет можно укрепить смолой"
+                "crashproof": "Неломаемый предмет"
             },
             "rank_min": "Для приобретения или использования вещи необходимо звание <b class=\"redd\"><img src=\"/images/ranks/rank16.gif\" width=\"13\" height=\"13\" border=\"0\" alt=\"\" align=\"absmiddle\">Властелин боя</b>.",
             "sell": true,
             "drop": true,
-            "repair": true,
+            "use": true,
             "equip": true,
-            "add_attrs": " artifact_id=\"3734460703\" repair_price=\"141.66666666667\" price_type=\"1\" sell_price=\"30\"",
+            "add_attrs": " artifact_id=\"3409605099\" price_type=\"1\" sell_price=\"30\"",
             "icon_list": {
-                "1": "info",
-                "2": "sell",
-                "3": "repair"
+                "1": "use",
+                "2": "info",
+                "3": "sell"
             },
             "action": "equip",
             "_act1": 2,
             "_act2": 3,
-            "_act3": 0,
+            "_act3": 1,
             "_act4": 0,
-            "artifact_alt_id": "AA_3734460703"
+            "artifact_alt_id": "AA_3409605099"
         }
     ],
     "offhand_weapons": [
         {
-            "id": "3155305939",
+            "id": "3662581106",
             "title": "Мудрёный кинжал «Зов отваги»",
-            "ord": "51",
+            "ord": "30",
             "kind_id": "44",
             "storage_type": "0",
             "profession": "0",
@@ -8972,7 +11430,7 @@ let items = {
             "kind": "Левая рука",
             "type_id": "3",
             "price": "<span title=\"Золотой\"><img src=\"/images/m_game3.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;68",
-            "dur": "32",
+            "dur": "25",
             "dur_max": "47",
             "lev": {
                 "title": " Уровень ",
@@ -8986,11 +11444,11 @@ let items = {
             "skills": [
                 {
                     "title": "Ловкость",
-                    "value": "<b>+70</b><b style=\"color:#3300ff\"> (11)</b>"
+                    "value": "<b>+64</b><b style=\"color:#990099\"> (5)</b>"
                 },
                 {
                     "title": "Защита",
-                    "value": "<b>+12</b><b style=\"color:#3300ff\"> (2)</b>"
+                    "value": "<b>+10</b><b style=\"color:#990099\"> ()</b>"
                 },
                 {
                     "title": "Инициатива",
@@ -9022,41 +11480,41 @@ let items = {
                 },
                 {
                     "title": "Защита земля-вода",
-                    "value": "<b>+40</b><b style=\"color:#339900\"> (20)</b>"
+                    "value": "<b>+20</b>"
                 },
                 {
                     "title": "Уровень жизни",
                     "value": "<b>+76</b>"
+                },
+                {
+                    "title": "Сила",
+                    "value": "<b>+55</b><b style=\"color:#990099\"> (55)</b>"
                 }
             ],
             "skills_e": [
                 {
-                    "title": "Сила",
-                    "value": "<b>+32</b><b style=\"color:#3300ff\"> (32)</b>"
-                },
-                {
                     "title": "Живучесть",
-                    "value": "<b>+4</b><b style=\"color:#3300ff\"> (4)</b>"
+                    "value": "<b>+7</b><b style=\"color:#990099\"> (7)</b>"
                 },
                 {
                     "title": "Мудрость",
-                    "value": "<b>+45</b><b style=\"color:#3300ff\"> (45)</b>"
+                    "value": "<b>+49</b><b style=\"color:#990099\"> (49)</b>"
                 }
             ],
-            "enchant_icon": "<span class=\"enchants\">\n\t\t<img src=\"/images/enchants/3_2.png\" alt=\"\" class=\"enchant_png\">\n\t\t</span>",
+            "enchant_icon": "<span class=\"enchants\">\n\t\t<img src=\"/images/enchants/6_3.png\" alt=\"\" class=\"enchant_png\">\n\t\t</span>",
             "enchant": {
                 "title": "Руна",
-                "value": "<b style=\"color:#3300ff\">Руна преломления Гар III (&#9650;13.9%)</b>"
+                "value": "<b style=\"color:#990099\">Руна преломления Гар VI</b>"
             },
-            "enchant_class": "enchant-3_2",
+            "enchant_class": "enchant-6_3",
             "enchant_mod": {
                 "title": "Встроено",
-                "value": "<b style=\"color:#339900\">Чары сытости «Рагу из птицы» (895)</b>"
+                "value": "<b style=\"color:#666666\">Чары нападения (25)</b>"
             },
             "symbols": [
                 {
                     "title": "Символ",
-                    "value": "<b style=\"color:#339900;\">Символ защиты Атмалеф-Мар</b>"
+                    "value": "<b style=\"color:#990099;\">Символ агрессии Инкур</b>"
                 },
                 {
                     "title": "Символ",
@@ -9069,7 +11527,7 @@ let items = {
             },
             "nogive": "Предмет нельзя передать",
             "flags2": {
-                "crashproof": "Неломаемый предмет"
+                "can_crashproof": "Предмет можно укрепить смолой"
             },
             "rank_min": "Для приобретения или использования вещи необходимо звание <b class=\"redd\"><img src=\"/images/ranks/rank16.gif\" width=\"13\" height=\"13\" border=\"0\" alt=\"\" align=\"absmiddle\">Властелин боя</b>.",
             "sell": true,
@@ -9077,7 +11535,7 @@ let items = {
             "repair": true,
             "use": true,
             "equip": true,
-            "add_attrs": " artifact_id=\"3155305939\" repair_price=\"141.66666666667\" price_type=\"1\" sell_price=\"30\"",
+            "add_attrs": " artifact_id=\"3662581106\" repair_price=\"141.66666666667\" price_type=\"1\" sell_price=\"30\"",
             "icon_list": {
                 "1": "use",
                 "2": "info",
@@ -9089,24 +11547,24 @@ let items = {
             "_act2": 3,
             "_act3": 1,
             "_act4": 0,
-            "artifact_alt_id": "AA_3155305939"
+            "artifact_alt_id": "AA_3662581106"
         },
         {
-            "id": "3734460704",
-            "title": "Мудрёный щит «Заступник небес»",
-            "ord": "73",
+            "id": "3409605100",
+            "title": "Щит «Заступник небес»",
+            "ord": "42",
             "kind_id": "17",
             "storage_type": "0",
             "profession": "0",
-            "color": "#990099",
-            "quality": "3",
+            "color": "#3300ff",
+            "quality": "2",
             "time_expire": "0",
-            "image": "/images/data/artifacts/tank_left_viol_16-20pvp.gif",
-            "picture": "/images/data/artifacts/tank_left_viol_16-20pvp.gif",
+            "image": "/images/data/artifacts/LLIut_tank_blue_16-20_pvp.gif",
+            "picture": "/images/data/artifacts/LLIut_tank_blue_16-20_pvp.gif",
             "kind": "Легкий щит",
             "type_id": "3",
-            "price": "<span title=\"Золотой\"><img src=\"/images/m_game3.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;68",
-            "dur": "44",
+            "price": "<span title=\"Золотой\"><img src=\"/images/m_game3.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;57",
+            "dur": "48",
             "dur_max": "48",
             "lev": {
                 "title": " Уровень ",
@@ -9120,19 +11578,11 @@ let items = {
             "skills": [
                 {
                     "title": "Защита",
-                    "value": "<b>+59</b>"
-                },
-                {
-                    "title": "Инициатива",
-                    "value": "<b>+3</b>"
-                },
-                {
-                    "title": "Интуиция",
-                    "value": "<b>+10</b>"
+                    "value": "<b>+70</b><b style=\"color:#990099\"> (11)</b>"
                 },
                 {
                     "title": "Интеллект",
-                    "value": "<b>+57</b>"
+                    "value": "<b>+67</b><b style=\"color:#990099\"> (10)</b>"
                 },
                 {
                     "title": "Защита огонь-воздух",
@@ -9144,102 +11594,117 @@ let items = {
                 },
                 {
                     "title": "Сила",
-                    "value": "<b>+129</b>"
+                    "value": "<b>+119</b><b style=\"color:#990099\"> (5)</b>"
                 },
                 {
                     "title": "Мудрость",
-                    "value": "<b>+51</b>"
+                    "value": "<b>+53</b><b style=\"color:#990099\"> (6)</b>"
                 },
                 {
                     "title": "Уровень жизни",
                     "value": "<b>+145</b>"
                 }
             ],
-            "skills_e": [],
+            "skills_e": [
+                {
+                    "title": "Интуиция",
+                    "value": "<b>+6</b><b style=\"color:#990099\"> (6)</b>"
+                },
+                {
+                    "title": "Живучесть",
+                    "value": "<b>+20</b><b style=\"color:#990099\"> (20)</b>"
+                }
+            ],
+            "enchant_icon": "<span class=\"enchants\">\n\t\t<img src=\"/images/enchants/6_3.png\" alt=\"\" class=\"enchant_png\">\n\t\t</span>",
+            "enchant": {
+                "title": "Руна",
+                "value": "<b style=\"color:#990099\">Руна величия Гар VI</b>"
+            },
+            "enchant_class": "enchant-6_3",
+            "enchant_mod": {
+                "title": "Встроено",
+                "value": "<b style=\"color:#339900\">Чары мимолетной невидимости (4)</b>"
+            },
             "symbols": [
                 {
                     "title": "Символ",
-                    "value": "<b style=\"color:#990099;\">Символ защиты Фен-Мал</b>"
-                },
-                {
-                    "title": "Символ",
-                    "value": "<b style=\"color:#990099;\">Символ защиты Фен-Кор</b>"
+                    "value": "<b style=\"color:#ff0000;\">Символ прочного щита Скут-Тум</b>"
                 }
             ],
             "set": {
                 "title": "Комплект",
-                "value": "<b style=\"color:#990099\">Доспехи «Заступник небес»</b>"
+                "value": "<b style=\"color:#3300ff\">Доспехи «Заступник небес»</b>"
             },
             "nogive": "Предмет нельзя передать",
             "flags2": {
-                "can_crashproof": "Предмет можно укрепить смолой"
+                "crashproof": "Неломаемый предмет"
             },
             "rank_min": "Для приобретения или использования вещи необходимо звание <b class=\"redd\"><img src=\"/images/ranks/rank16.gif\" width=\"13\" height=\"13\" border=\"0\" alt=\"\" align=\"absmiddle\">Властелин боя</b>.",
             "sell": true,
             "drop": true,
-            "repair": true,
+            "use": true,
             "equip": true,
-            "add_attrs": " artifact_id=\"3734460704\" repair_price=\"141.66666666667\" price_type=\"1\" sell_price=\"30\"",
+            "add_attrs": " artifact_id=\"3409605100\" price_type=\"1\" sell_price=\"30\"",
             "icon_list": {
-                "1": "info",
-                "2": "sell",
-                "3": "repair"
+                "1": "use",
+                "2": "info",
+                "3": "sell"
             },
             "action": "equip",
             "_act1": 2,
             "_act2": 3,
-            "_act3": 0,
+            "_act3": 1,
             "_act4": 0,
-            "artifact_alt_id": "AA_3734460704"
+            "artifact_alt_id": "AA_3409605100"
         }
     ],
     "cuirasses": [
         {
-            "id": "3155305948",
-            "title": "Нагрудник «Зов отваги»",
-            "ord": "48",
+            "id": "3103676973",
+            "title": "Кираса «Коварство зверя»",
+            "ord": "1",
             "kind_id": "20",
             "storage_type": "0",
             "profession": "0",
             "color": "#3300ff",
             "quality": "2",
             "time_expire": "0",
-            "image": "/images/data/artifacts/uv_bron_blue_16-20pvp.gif",
-            "picture": "/images/data/artifacts/uv_bron_blue_16-20pvp.gif",
+            "image": "/images/data/artifacts/krit_bron_blue_16-20pvp.gif",
+            "picture": "/images/data/artifacts/krit_bron_blue_16-20pvp.gif",
             "kind": "Кираса",
             "type_id": "3",
             "price": "<span title=\"Золотой\"><img src=\"/images/m_game3.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;70",
-            "dur": "27",
+            "dur": "2",
             "dur_max": "46",
             "lev": {
                 "title": " Уровень ",
                 "value": "16"
             },
             "cls": [
-                "<img src=\"/images/elements/light.gif\" width=\"11\" height=\"10\" align=\"absmiddle\">&nbsp;Свет",
-                "<img src=\"/images/elements/shadow.gif\" width=\"11\" height=\"10\" align=\"absmiddle\">&nbsp;Тень"
+                "<img src=\"/images/elements/wind.gif\" width=\"11\" height=\"10\" align=\"absmiddle\">&nbsp;Воздух",
+                "<img src=\"/images/elements/fire.gif\" width=\"11\" height=\"10\" align=\"absmiddle\">&nbsp;Огонь"
             ],
-            "trend": "Ловкач",
+            "trend": "Костолом",
             "skills": [
                 {
-                    "title": "Ловкость",
+                    "title": "Интуиция",
                     "value": "<b>+127</b><b style=\"color:#990099\"> (10)</b>"
                 },
                 {
-                    "title": "Защита огонь-воздух",
-                    "value": "<b>+100</b>"
-                },
-                {
-                    "title": "Защита земля-вода",
+                    "title": "Защита свет-тьма",
                     "value": "<b>+30</b>"
                 },
                 {
+                    "title": "Защита земля-вода",
+                    "value": "<b>+100</b>"
+                },
+                {
                     "title": "Сила",
-                    "value": "<b>+318</b><b style=\"color:#990099\"> (29)</b>"
+                    "value": "<b>+358</b><b style=\"color:#990099\"> (69)</b>"
                 },
                 {
                     "title": "Живучесть",
-                    "value": "<b>+113</b>"
+                    "value": "<b>+93</b><b style=\"color:#990099\"> (-20)</b>"
                 },
                 {
                     "title": "Мудрость",
@@ -9247,11 +11712,7 @@ let items = {
                 },
                 {
                     "title": "Уровень маны",
-                    "value": "<b>+86</b>"
-                },
-                {
-                    "title": "Антитравматизм",
-                    "value": "<b>+5</b><b style=\"color:#666666\"> (5)</b>"
+                    "value": "<b>+58</b>"
                 }
             ],
             "skills_e": [
@@ -9263,7 +11724,7 @@ let items = {
             "enchant_icon": "<span class=\"enchants\">\n\t\t<img src=\"/images/enchants/oprava.png\" alt=\"\" class=\"enchant2_png\"><img src=\"/images/enchants/1_2.png\" alt=\"\" class=\"enchant_png\">\n\t\t</span>",
             "enchant": {
                 "title": "Руна",
-                "value": "<b style=\"color:#3300ff\">Руна преломления Бьял</b>"
+                "value": "<b style=\"color:#3300ff\">Руна неотвратимости Бьял</b>"
             },
             "enchant_class": "enchant-1_2",
             "enchant3": {
@@ -9273,16 +11734,12 @@ let items = {
             "symbols": [
                 {
                     "title": "Символ",
-                    "value": "<b style=\"color:#666666;\">Символ неуязвимости Атвол</b>"
-                },
-                {
-                    "title": "Символ",
-                    "value": "<b style=\"color:#ff0000;\">Символ прочного щита Скут-Тум</b>"
+                    "value": "<b style=\"color:#990099;\">Символ жертвенной мощи Криф-Тарс</b>"
                 }
             ],
             "set": {
                 "title": "Комплект",
-                "value": "<b style=\"color:#3300ff\">Доспехи «Зов отваги»</b>"
+                "value": "<b style=\"color:#3300ff\">Доспехи «Коварство зверя»</b>"
             },
             "nogive": "Предмет нельзя передать",
             "flags2": {
@@ -9293,7 +11750,7 @@ let items = {
             "drop": true,
             "repair": true,
             "equip": true,
-            "add_attrs": " artifact_id=\"3155305948\" repair_price=\"152.17391304348\" price_type=\"1\" sell_price=\"30\"",
+            "add_attrs": " artifact_id=\"3103676973\" repair_price=\"152.17391304348\" price_type=\"1\" sell_price=\"30\"",
             "icon_list": {
                 "1": "info",
                 "2": "sell",
@@ -9304,12 +11761,12 @@ let items = {
             "_act2": 3,
             "_act3": 0,
             "_act4": 0,
-            "artifact_alt_id": "AA_3155305948"
+            "artifact_alt_id": "AA_3103676973"
         },
         {
-            "id": "3155305672",
+            "id": "2197610286",
             "title": "Подводный нагрудник",
-            "ord": "60",
+            "ord": "17",
             "kind_id": "20",
             "storage_type": "0",
             "profession": "0",
@@ -9332,46 +11789,195 @@ let items = {
                 },
                 {
                     "title": "Сила",
-                    "value": "<b>+75</b>"
+                    "value": "<b>+88</b><b style=\"color:#3300ff\"> (13)</b>"
                 },
                 {
                     "title": "Живучесть",
                     "value": "<b>+78</b>"
                 }
             ],
-            "skills_e": [],
+            "skills_e": [
+                {
+                    "title": "Интуиция",
+                    "value": "<b>+10</b><b style=\"color:#3300ff\"> (10)</b>"
+                }
+            ],
+            "enchant_icon": "<span class=\"enchants\">\n\t\t<img src=\"/images/enchants/1_2.png\" alt=\"\" class=\"enchant_png\">\n\t\t</span>",
+            "enchant": {
+                "title": "Руна",
+                "value": "<b style=\"color:#3300ff\">Руна силы Бьял</b>"
+            },
+            "enchant_class": "enchant-1_2",
+            "enchant_mod": {
+                "title": "Встроено",
+                "value": "<b style=\"color:#666666\">Чары возврата в Дартронг (200)</b>"
+            },
+            "symbols": [
+                {
+                    "title": "Символ",
+                    "value": "<b style=\"color:#666666;\">Символ мощи Тарс</b>"
+                }
+            ],
             "nogive": "Предмет нельзя передать",
             "noweight": "Предмет не занимает места в рюкзаке",
             "nosell": "Предмет нельзя сдать в скупку",
+            "use": true,
             "equip": true,
-            "add_attrs": " artifact_id=\"3155305672\"",
+            "add_attrs": " artifact_id=\"2197610286\"",
             "icon_list": [
+                "use",
                 "info"
             ],
             "action": "equip",
             "_act1": 2,
             "_act2": 0,
-            "_act3": 0,
+            "_act3": 1,
             "_act4": 0,
-            "artifact_alt_id": "AA_3155305672"
+            "artifact_alt_id": "AA_2197610286"
         },
         {
-            "id": "4319555330",
-            "title": "Нагрудник «Заступник небес»",
-            "ord": "70",
+            "id": "3103675848",
+            "title": "Нагрудник «Зов отваги»",
+            "ord": "27",
             "kind_id": "20",
             "storage_type": "0",
             "profession": "0",
             "color": "#3300ff",
             "quality": "2",
             "time_expire": "0",
-            "image": "/images/data/artifacts/tank_bron_blue_16-20pvp.gif",
-            "picture": "/images/data/artifacts/tank_bron_blue_16-20pvp.gif",
+            "image": "/images/data/artifacts/uv_bron_blue_16-20pvp.gif",
+            "picture": "/images/data/artifacts/uv_bron_blue_16-20pvp.gif",
             "kind": "Кираса",
             "type_id": "3",
             "price": "<span title=\"Золотой\"><img src=\"/images/m_game3.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;70",
-            "dur": "38",
+            "dur": "41",
             "dur_max": "46",
+            "lev": {
+                "title": " Уровень ",
+                "value": "16"
+            },
+            "cls": [
+                "<img src=\"/images/elements/light.gif\" width=\"11\" height=\"10\" align=\"absmiddle\">&nbsp;Свет",
+                "<img src=\"/images/elements/shadow.gif\" width=\"11\" height=\"10\" align=\"absmiddle\">&nbsp;Тень"
+            ],
+            "trend": "Ловкач",
+            "skills": [
+                {
+                    "title": "Ловкость",
+                    "value": "<b>+127</b><b style=\"color:#990099\"> (10)</b>"
+                },
+                {
+                    "title": "Защита огонь-воздух",
+                    "value": "<b>+100</b>"
+                },
+                {
+                    "title": "Защита земля-вода",
+                    "value": "<b>+30</b>"
+                },
+                {
+                    "title": "Сила",
+                    "value": "<b>+311</b><b style=\"color:#990099\"> (22)</b>"
+                },
+                {
+                    "title": "Живучесть",
+                    "value": "<b>+127</b><b style=\"color:#990099\"> (14)</b>"
+                },
+                {
+                    "title": "Мудрость",
+                    "value": "<b>+335</b><b style=\"color:#990099\"> (31)</b>"
+                },
+                {
+                    "title": "Уровень маны",
+                    "value": "<b>+86</b>"
+                },
+                {
+                    "title": "Антитравматизм",
+                    "value": "<b>+5</b><b style=\"color:#666666\"> (5)</b>"
+                }
+            ],
+            "skills_e": [
+                {
+                    "title": "Защита",
+                    "value": "<b>+18</b><b style=\"color:#990099\"> (18)</b>"
+                },
+                {
+                    "title": "Стойкость",
+                    "value": "<b>+1360</b><b style=\"color:#990099\"> (1360)</b>"
+                }
+            ],
+            "enchant_icon": "<span class=\"enchants\">\n\t\t<img src=\"/images/enchants/oprava.png\" alt=\"\" class=\"enchant2_png\"><img src=\"/images/enchants/6_3.png\" alt=\"\" class=\"enchant_png\">\n\t\t</span>",
+            "enchant": {
+                "title": "Руна",
+                "value": "<b style=\"color:#990099\">Руна превосходства Бьял VI</b>"
+            },
+            "enchant_class": "enchant-6_3",
+            "enchant_mod": {
+                "title": "Встроено",
+                "value": "<b style=\"color:#339900\">Чары мимолетной невидимости (2)</b>"
+            },
+            "enchant3": {
+                "title": "Оправа",
+                "value": "<b style=\"color:#990099;\">Оправа ограды Бьял V</b>"
+            },
+            "symbols": [
+                {
+                    "title": "Символ",
+                    "value": "<b style=\"color:#339900;\">Символ жизни Вит</b>"
+                },
+                {
+                    "title": "Символ",
+                    "value": "<b style=\"color:#666666;\">Символ неуязвимости Атвол</b>"
+                },
+                {
+                    "title": "Символ",
+                    "value": "<b style=\"color:#ff0000;\">Символ прочного щита Скут-Тум</b>"
+                }
+            ],
+            "set": {
+                "title": "Комплект",
+                "value": "<b style=\"color:#3300ff\">Доспехи «Зов отваги»</b>"
+            },
+            "nogive": "Предмет нельзя передать",
+            "flags2": {
+                "crashproof": "Неломаемый предмет"
+            },
+            "rank_min": "Для приобретения или использования вещи необходимо звание <b class=\"redd\"><img src=\"/images/ranks/rank18.gif\" width=\"13\" height=\"13\" border=\"0\" alt=\"\" align=\"absmiddle\">Триумфатор </b>.",
+            "sell": true,
+            "drop": true,
+            "repair": true,
+            "use": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3103675848\" repair_price=\"152.17391304348\" price_type=\"1\" sell_price=\"30\"",
+            "icon_list": {
+                "1": "use",
+                "2": "info",
+                "3": "sell",
+                "4": "repair"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 1,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3103675848"
+        },
+        {
+            "id": "4342679826",
+            "title": "Мудрёный нагрудник «Заступник небес»",
+            "ord": "38",
+            "kind_id": "20",
+            "storage_type": "0",
+            "profession": "0",
+            "color": "#990099",
+            "quality": "3",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/tank_bron_viol_16-20pvp.gif",
+            "picture": "/images/data/artifacts/tank_bron_viol_16-20pvp.gif",
+            "kind": "Кираса",
+            "type_id": "3",
+            "price": "<span title=\"Золотой\"><img src=\"/images/m_game3.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;64",
+            "dur": "67",
+            "dur_max": "70",
             "lev": {
                 "title": " Уровень ",
                 "value": "16"
@@ -9387,46 +11993,58 @@ let items = {
                     "value": "<b>+127</b><b style=\"color:#990099\"> (10)</b>"
                 },
                 {
+                    "title": "Инициатива",
+                    "value": "<b>+3</b>"
+                },
+                {
+                    "title": "Интуиция",
+                    "value": "<b>+37</b><b style=\"color:#990099\"> (18)</b>"
+                },
+                {
                     "title": "Защита огонь-воздух",
-                    "value": "<b>+30</b>"
+                    "value": "<b>+50</b><b style=\"color:#ff0000\"> (20)</b>"
                 },
                 {
                     "title": "Защита свет-тьма",
-                    "value": "<b>+100</b>"
+                    "value": "<b>+140</b><b style=\"color:#ff0000\"> (40)</b>"
                 },
                 {
                     "title": "Сила",
-                    "value": "<b>+151</b><b style=\"color:#339900\"> (6)</b>"
+                    "value": "<b>+181</b><b style=\"color:#990099\"> (13)</b>"
                 },
                 {
                     "title": "Живучесть",
-                    "value": "<b>+276</b><b style=\"color:#990099\"> (14)</b>"
+                    "value": "<b>+300</b><b style=\"color:#990099\"> (38)</b>"
                 },
                 {
                     "title": "Мудрость",
-                    "value": "<b>+85</b>"
+                    "value": "<b>+105</b><b style=\"color:#990099\"> (14)</b>"
                 },
                 {
                     "title": "Уровень маны",
                     "value": "<b>+86</b>"
+                },
+                {
+                    "title": "Защита земля-вода",
+                    "value": "<b>+20</b><b style=\"color:#ff0000\"> (20)</b>"
                 }
             ],
             "skills_e": [
                 {
                     "title": "Интеллект",
-                    "value": "<b>+7</b><b style=\"color:#3300ff\"> (7)</b>"
+                    "value": "<b>+19</b><b style=\"color:#990099\"> (19)</b>"
                 },
                 {
                     "title": "Стойкость",
                     "value": "<b>+1360</b><b style=\"color:#990099\"> (1360)</b>"
                 }
             ],
-            "enchant_icon": "<span class=\"enchants\">\n\t\t<img src=\"/images/enchants/oprava.png\" alt=\"\" class=\"enchant2_png\"><img src=\"/images/enchants/1_2.png\" alt=\"\" class=\"enchant_png\">\n\t\t</span>",
+            "enchant_icon": "<span class=\"enchants\">\n\t\t<img src=\"/images/enchants/oprava.png\" alt=\"\" class=\"enchant2_png\"><img src=\"/images/enchants/6_3.png\" alt=\"\" class=\"enchant_png\">\n\t\t</span>",
             "enchant": {
                 "title": "Руна",
-                "value": "<b style=\"color:#3300ff\">Руна величия Бьял</b>"
+                "value": "<b style=\"color:#990099\">Руна рассудка Бьял VI</b>"
             },
-            "enchant_class": "enchant-1_2",
+            "enchant_class": "enchant-6_3",
             "enchant3": {
                 "title": "Оправа",
                 "value": "<b style=\"color:#990099;\">Оправа ограды Бьял V</b>"
@@ -9438,12 +12056,16 @@ let items = {
                 },
                 {
                     "title": "Символ",
-                    "value": "<b style=\"color:#339900;\">Символ мощи Тарс</b>"
+                    "value": "<b style=\"color:#ff0000;\">Символ защиты Атмалеф-Вид</b>"
+                },
+                {
+                    "title": "Символ",
+                    "value": "<b style=\"color:#339900;\">Символ защиты Атмалеф-Умбр</b>"
                 }
             ],
             "set": {
                 "title": "Комплект",
-                "value": "<b style=\"color:#3300ff\">Доспехи «Заступник небес»</b>"
+                "value": "<b style=\"color:#990099\">Доспехи «Заступник небес»</b>"
             },
             "nogive": "Предмет нельзя передать",
             "flags2": {
@@ -9454,7 +12076,7 @@ let items = {
             "drop": true,
             "repair": true,
             "equip": true,
-            "add_attrs": " artifact_id=\"4319555330\" repair_price=\"152.17391304348\" price_type=\"1\" sell_price=\"30\"",
+            "add_attrs": " artifact_id=\"4342679826\" repair_price=\"91.428571428571\" price_type=\"1\" sell_price=\"30\"",
             "icon_list": {
                 "1": "info",
                 "2": "sell",
@@ -9465,14 +12087,203 @@ let items = {
             "_act2": 3,
             "_act3": 0,
             "_act4": 0,
-            "artifact_alt_id": "AA_4319555330"
+            "artifact_alt_id": "AA_4342679826"
         }
     ],
     "leggings": [
         {
-            "id": "3155306042",
+            "id": "3103676974",
+            "title": "Поножи «Коварство зверя»",
+            "ord": "2",
+            "kind_id": "6",
+            "storage_type": "0",
+            "profession": "0",
+            "color": "#3300ff",
+            "quality": "2",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/krit_ponoz_blue_16-20pvp.gif",
+            "picture": "/images/data/artifacts/krit_ponoz_blue_16-20pvp.gif",
+            "kind": "Поножи",
+            "type_id": "3",
+            "price": "<span title=\"Золотой\"><img src=\"/images/m_game3.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;70",
+            "dur": "44",
+            "dur_max": "45",
+            "lev": {
+                "title": " Уровень ",
+                "value": "16"
+            },
+            "cls": [
+                "<img src=\"/images/elements/wind.gif\" width=\"11\" height=\"10\" align=\"absmiddle\">&nbsp;Воздух",
+                "<img src=\"/images/elements/fire.gif\" width=\"11\" height=\"10\" align=\"absmiddle\">&nbsp;Огонь"
+            ],
+            "trend": "Костолом",
+            "skills": [
+                {
+                    "title": "Интуиция",
+                    "value": "<b>+100</b><b style=\"color:#3300ff\"> (12)</b>"
+                },
+                {
+                    "title": "Защита свет-тьма",
+                    "value": "<b>+20</b>"
+                },
+                {
+                    "title": "Защита земля-вода",
+                    "value": "<b>+70</b>"
+                },
+                {
+                    "title": "Сила",
+                    "value": "<b>+240</b><b style=\"color:#3300ff\"> (32)</b>"
+                },
+                {
+                    "title": "Мудрость",
+                    "value": "<b>+275</b><b style=\"color:#3300ff\"> (46)</b>"
+                },
+                {
+                    "title": "Уровень жизни",
+                    "value": "<b>+85</b>"
+                },
+                {
+                    "title": "Уровень маны",
+                    "value": "<b>+44</b>"
+                },
+                {
+                    "title": "Концентрация",
+                    "value": "<b>+6</b><b style=\"color:#ff0000\"> (6)</b>"
+                },
+                {
+                    "title": "Воля",
+                    "value": "<b>+15</b><b style=\"color:#ff0000\"> (15)</b>"
+                }
+            ],
+            "skills_e": [
+                {
+                    "title": "Ловкость",
+                    "value": "<b>+2</b><b style=\"color:#3300ff\"> (2)</b>"
+                },
+                {
+                    "title": "Антитравматизм",
+                    "value": "<b>+160</b><b style=\"color:#3300ff\"> (160)</b>"
+                }
+            ],
+            "enchant_icon": "<span class=\"enchants\">\n\t\t<img src=\"/images/enchants/oprava.png\" alt=\"\" class=\"enchant2_png\"><img src=\"/images/enchants/2_2.png\" alt=\"\" class=\"enchant_png\">\n\t\t</span>",
+            "enchant": {
+                "title": "Руна",
+                "value": "<b style=\"color:#3300ff\">Руна неотвратимости Геб II</b>"
+            },
+            "enchant_class": "enchant-2_2",
+            "enchant_mod": {
+                "title": "Встроено",
+                "value": "<b style=\"color:#3300ff\">Чары зверского палача (50)</b>"
+            },
+            "enchant3": {
+                "title": "Оправа",
+                "value": "<b style=\"color:#3300ff;\">Оправа отрицания XIV</b>"
+            },
+            "symbols": [
+                {
+                    "title": "Символ",
+                    "value": "<b style=\"color:#ff0000;\">Символ пробивания Гиткар</b>"
+                }
+            ],
+            "set": {
+                "title": "Комплект",
+                "value": "<b style=\"color:#3300ff\">Доспехи «Коварство зверя»</b>"
+            },
+            "nogive": "Предмет нельзя передать",
+            "flags2": {
+                "crashproof": "Неломаемый предмет"
+            },
+            "rank_min": "Для приобретения или использования вещи необходимо звание <b class=\"redd\"><img src=\"/images/ranks/rank15.gif\" width=\"13\" height=\"13\" border=\"0\" alt=\"\" align=\"absmiddle\">Легендарный завоеватель</b>.",
+            "sell": true,
+            "drop": true,
+            "repair": true,
+            "use": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3103676974\" repair_price=\"152.17391304348\" price_type=\"1\" sell_price=\"30\"",
+            "icon_list": {
+                "1": "use",
+                "2": "info",
+                "3": "sell",
+                "4": "repair"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 1,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3103676974"
+        },
+        {
+            "id": "2197610285",
+            "title": "Подводные поножи",
+            "ord": "18",
+            "kind_id": "6",
+            "storage_type": "0",
+            "profession": "0",
+            "color": "#666666",
+            "quality": "0",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/podvod_ponozhi.gif",
+            "picture": "/images/data/artifacts/podvod_ponozhi.gif",
+            "kind": "Поножи",
+            "type_id": "3",
+            "lev": {
+                "title": " Уровень ",
+                "value": "6"
+            },
+            "trend": "Универсал",
+            "skills": [
+                {
+                    "title": "Интуиция",
+                    "value": "<b>+43</b><b style=\"color:#3300ff\"> (7)</b>"
+                },
+                {
+                    "title": "Сила",
+                    "value": "<b>+85</b><b style=\"color:#3300ff\"> (7)</b>"
+                },
+                {
+                    "title": "Живучесть",
+                    "value": "<b>+78</b><b style=\"color:#666666\"> (3)</b>"
+                }
+            ],
+            "skills_e": [],
+            "enchant_icon": "<span class=\"enchants\">\n\t\t<img src=\"/images/enchants/1_2.png\" alt=\"\" class=\"enchant_png\">\n\t\t</span>",
+            "enchant": {
+                "title": "Руна",
+                "value": "<b style=\"color:#3300ff\">Руна силы Геб</b>"
+            },
+            "enchant_class": "enchant-1_2",
+            "enchant_mod": {
+                "title": "Встроено",
+                "value": "<b style=\"color:#3300ff\">Чары зверского палача (50)</b>"
+            },
+            "symbols": [
+                {
+                    "title": "Символ",
+                    "value": "<b style=\"color:#666666;\">Символ жизни Вит</b>"
+                }
+            ],
+            "nogive": "Предмет нельзя передать",
+            "noweight": "Предмет не занимает места в рюкзаке",
+            "nosell": "Предмет нельзя сдать в скупку",
+            "use": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"2197610285\"",
+            "icon_list": [
+                "use",
+                "info"
+            ],
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 0,
+            "_act3": 1,
+            "_act4": 0,
+            "artifact_alt_id": "AA_2197610285"
+        },
+        {
+            "id": "3103675850",
             "title": "Поножи «Зов отваги»",
-            "ord": "49",
+            "ord": "28",
             "kind_id": "6",
             "storage_type": "0",
             "profession": "0",
@@ -9484,7 +12295,7 @@ let items = {
             "kind": "Поножи",
             "type_id": "3",
             "price": "<span title=\"Золотой\"><img src=\"/images/m_game3.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;70",
-            "dur": "29",
+            "dur": "45",
             "dur_max": "46",
             "lev": {
                 "title": " Уровень ",
@@ -9498,7 +12309,7 @@ let items = {
             "skills": [
                 {
                     "title": "Ловкость",
-                    "value": "<b>+100</b><b style=\"color:#3300ff\"> (12)</b>"
+                    "value": "<b>+100</b><b style=\"color:#990099\"> (12)</b>"
                 },
                 {
                     "title": "Защита огонь-воздух",
@@ -9510,11 +12321,11 @@ let items = {
                 },
                 {
                     "title": "Сила",
-                    "value": "<b>+239</b><b style=\"color:#3300ff\"> (31)</b>"
+                    "value": "<b>+228</b><b style=\"color:#990099\"> (20)</b>"
                 },
                 {
                     "title": "Мудрость",
-                    "value": "<b>+274</b><b style=\"color:#3300ff\"> (45)</b>"
+                    "value": "<b>+260</b><b style=\"color:#990099\"> (31)</b>"
                 },
                 {
                     "title": "Уровень жизни",
@@ -9527,19 +12338,27 @@ let items = {
             ],
             "skills_e": [
                 {
+                    "title": "Защита",
+                    "value": "<b>+6</b><b style=\"color:#990099\"> (6)</b>"
+                },
+                {
+                    "title": "Живучесть",
+                    "value": "<b>+4</b><b style=\"color:#990099\"> (4)</b>"
+                },
+                {
                     "title": "Антитравматизм",
                     "value": "<b>+170</b><b style=\"color:#3300ff\"> (170)</b>"
                 }
             ],
-            "enchant_icon": "<span class=\"enchants\">\n\t\t<img src=\"/images/enchants/oprava.png\" alt=\"\" class=\"enchant2_png\"><img src=\"/images/enchants/1_2.png\" alt=\"\" class=\"enchant_png\">\n\t\t</span>",
+            "enchant_icon": "<span class=\"enchants\">\n\t\t<img src=\"/images/enchants/oprava.png\" alt=\"\" class=\"enchant2_png\"><img src=\"/images/enchants/6_3.png\" alt=\"\" class=\"enchant_png\">\n\t\t</span>",
             "enchant": {
                 "title": "Руна",
-                "value": "<b style=\"color:#3300ff\">Руна преломления Геб</b>"
+                "value": "<b style=\"color:#990099\">Руна превосходства Геб VI</b>"
             },
-            "enchant_class": "enchant-1_2",
+            "enchant_class": "enchant-6_3",
             "enchant_mod": {
                 "title": "Встроено",
-                "value": "<b style=\"color:#666666\">Чары возврата в О'Дельвайс (190)</b>"
+                "value": "<b style=\"color:#339900\">Чары головоломки (29)</b>"
             },
             "enchant3": {
                 "title": "Оправа",
@@ -9565,7 +12384,7 @@ let items = {
             "repair": true,
             "use": true,
             "equip": true,
-            "add_attrs": " artifact_id=\"3155306042\" repair_price=\"152.17391304348\" price_type=\"1\" sell_price=\"30\"",
+            "add_attrs": " artifact_id=\"3103675850\" repair_price=\"152.17391304348\" price_type=\"1\" sell_price=\"30\"",
             "icon_list": {
                 "1": "use",
                 "2": "info",
@@ -9577,80 +12396,25 @@ let items = {
             "_act2": 3,
             "_act3": 1,
             "_act4": 0,
-            "artifact_alt_id": "AA_3155306042"
+            "artifact_alt_id": "AA_3103675850"
         },
         {
-            "id": "3155305683",
-            "title": "Подводные поножи",
-            "ord": "66",
+            "id": "4342679825",
+            "title": "Мудрёные поножи «Заступник небес»",
+            "ord": "39",
             "kind_id": "6",
             "storage_type": "0",
             "profession": "0",
-            "color": "#666666",
-            "quality": "0",
+            "color": "#990099",
+            "quality": "3",
             "time_expire": "0",
-            "image": "/images/data/artifacts/podvod_ponozhi.gif",
-            "picture": "/images/data/artifacts/podvod_ponozhi.gif",
+            "image": "/images/data/artifacts/tank_ponoz_viol_16-20pvp.gif",
+            "picture": "/images/data/artifacts/tank_ponoz_viol_16-20pvp.gif",
             "kind": "Поножи",
             "type_id": "3",
-            "lev": {
-                "title": " Уровень ",
-                "value": "6"
-            },
-            "trend": "Универсал",
-            "skills": [
-                {
-                    "title": "Интуиция",
-                    "value": "<b>+36</b>"
-                },
-                {
-                    "title": "Сила",
-                    "value": "<b>+78</b>"
-                },
-                {
-                    "title": "Живучесть",
-                    "value": "<b>+75</b>"
-                }
-            ],
-            "skills_e": [],
-            "enchant_mod": {
-                "title": "Встроено",
-                "value": "<b style=\"color:#666666\">Чары защиты от ядер (78)</b>"
-            },
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "nosell": "Предмет нельзя сдать в скупку",
-            "use": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3155305683\"",
-            "icon_list": [
-                "use",
-                "info"
-            ],
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 0,
-            "_act3": 1,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3155305683"
-        },
-        {
-            "id": "4319555331",
-            "title": "Поножи «Заступник небес»",
-            "ord": "71",
-            "kind_id": "6",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#3300ff",
-            "quality": "2",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/tank_ponoz_blue_16-20pvp.gif",
-            "picture": "/images/data/artifacts/tank_ponoz_blue_16-20pvp.gif",
-            "kind": "Поножи",
-            "type_id": "3",
-            "price": "<span title=\"Золотой\"><img src=\"/images/m_game3.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;70",
-            "dur": "31",
-            "dur_max": "46",
+            "price": "<span title=\"Золотой\"><img src=\"/images/m_game3.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;64",
+            "dur": "68",
+            "dur_max": "70",
             "lev": {
                 "title": " Уровень ",
                 "value": "16"
@@ -9663,7 +12427,15 @@ let items = {
             "skills": [
                 {
                     "title": "Защита",
-                    "value": "<b>+100</b><b style=\"color:#3300ff\"> (12)</b>"
+                    "value": "<b>+100</b><b style=\"color:#990099\"> (12)</b>"
+                },
+                {
+                    "title": "Инициатива",
+                    "value": "<b>+3</b>"
+                },
+                {
+                    "title": "Интуиция",
+                    "value": "<b>+23</b><b style=\"color:#990099\"> (6)</b>"
                 },
                 {
                     "title": "Защита огонь-воздух",
@@ -9675,11 +12447,11 @@ let items = {
                 },
                 {
                     "title": "Сила",
-                    "value": "<b>+110</b>"
+                    "value": "<b>+133</b><b style=\"color:#990099\"> (7)</b>"
                 },
                 {
                     "title": "Мудрость",
-                    "value": "<b>+64</b>"
+                    "value": "<b>+77</b><b style=\"color:#990099\"> (8)</b>"
                 },
                 {
                     "title": "Уровень жизни",
@@ -9690,34 +12462,34 @@ let items = {
                     "value": "<b>+65</b>"
                 },
                 {
-                    "title": "Ловкость",
-                    "value": "<b>+12</b><b style=\"color:#3300ff\"> (12)</b>"
+                    "title": "Защита земля-вода",
+                    "value": "<b>+20</b><b style=\"color:#339900\"> (20)</b>"
+                },
+                {
+                    "title": "Стойкость",
+                    "value": "<b>+25</b><b style=\"color:#666666\"> (25)</b>"
                 }
             ],
             "skills_e": [
                 {
                     "title": "Интеллект",
-                    "value": "<b>+8</b><b style=\"color:#3300ff\"> (8)</b>"
+                    "value": "<b>+18</b><b style=\"color:#990099\"> (18)</b>"
                 },
                 {
                     "title": "Живучесть",
-                    "value": "<b>+17</b><b style=\"color:#3300ff\"> (17)</b>"
+                    "value": "<b>+37</b><b style=\"color:#990099\"> (37)</b>"
                 },
                 {
                     "title": "Антитравматизм",
                     "value": "<b>+200</b><b style=\"color:#3300ff\"> (200)</b>"
                 }
             ],
-            "enchant_icon": "<span class=\"enchants\">\n\t\t<img src=\"/images/enchants/oprava.png\" alt=\"\" class=\"enchant2_png\"><img src=\"/images/enchants/1_2.png\" alt=\"\" class=\"enchant_png\">\n\t\t</span>",
+            "enchant_icon": "<span class=\"enchants\">\n\t\t<img src=\"/images/enchants/oprava.png\" alt=\"\" class=\"enchant2_png\"><img src=\"/images/enchants/6_3.png\" alt=\"\" class=\"enchant_png\">\n\t\t</span>",
             "enchant": {
                 "title": "Руна",
-                "value": "<b style=\"color:#3300ff\">Руна величия Геб</b>"
+                "value": "<b style=\"color:#990099\">Руна рассудка Геб VI</b>"
             },
-            "enchant_class": "enchant-1_2",
-            "enchant_mod": {
-                "title": "Встроено",
-                "value": "<b style=\"color:#339900\">Чары сытости «Рагу из птицы» (781)</b>"
-            },
+            "enchant_class": "enchant-6_3",
             "enchant3": {
                 "title": "Оправа",
                 "value": "<b style=\"color:#3300ff;\">Оправа отрицания XVIII</b>"
@@ -9725,16 +12497,20 @@ let items = {
             "symbols": [
                 {
                     "title": "Символ",
-                    "value": "<b style=\"color:#3300ff;\">Символ уклонения Кос</b>"
+                    "value": "<b style=\"color:#339900;\">Символ защиты Атмалеф-Мар</b>"
                 },
                 {
                     "title": "Символ",
                     "value": "<b style=\"color:#ff0000;\">Символ прочного щита Скут-Тум</b>"
+                },
+                {
+                    "title": "Символ",
+                    "value": "<b style=\"color:#666666;\">Символ сопротивления Буст</b>"
                 }
             ],
             "set": {
                 "title": "Комплект",
-                "value": "<b style=\"color:#3300ff\">Доспехи «Заступник небес»</b>"
+                "value": "<b style=\"color:#990099\">Доспехи «Заступник небес»</b>"
             },
             "nogive": "Предмет нельзя передать",
             "flags2": {
@@ -9744,41 +12520,39 @@ let items = {
             "sell": true,
             "drop": true,
             "repair": true,
-            "use": true,
             "equip": true,
-            "add_attrs": " artifact_id=\"4319555331\" repair_price=\"152.17391304348\" price_type=\"1\" sell_price=\"30\"",
+            "add_attrs": " artifact_id=\"4342679825\" repair_price=\"91.428571428571\" price_type=\"1\" sell_price=\"30\"",
             "icon_list": {
-                "1": "use",
-                "2": "info",
-                "3": "sell",
-                "4": "repair"
+                "1": "info",
+                "2": "sell",
+                "3": "repair"
             },
             "action": "equip",
             "_act1": 2,
             "_act2": 3,
-            "_act3": 1,
+            "_act3": 0,
             "_act4": 0,
-            "artifact_alt_id": "AA_4319555331"
+            "artifact_alt_id": "AA_4342679825"
         }
     ],
     "chainmails": [
         {
-            "id": "3175980423",
-            "title": "Кольчуга «Коварство зверя»",
-            "ord": "23",
+            "id": "3539205289",
+            "title": "Мудрёная кольчуга «Коварство зверя»",
+            "ord": "5",
             "kind_id": "21",
             "storage_type": "0",
             "profession": "0",
-            "color": "#3300ff",
-            "quality": "2",
+            "color": "#990099",
+            "quality": "3",
             "time_expire": "0",
-            "image": "/images/data/artifacts/kol4_blue_16-20_pvp.gif",
-            "picture": "/images/data/artifacts/kol4_blue_16-20_pvp.gif",
+            "image": "/images/data/artifacts/krit_kol4_viol_16-20pvp.gif",
+            "picture": "/images/data/artifacts/krit_kol4_viol_16-20pvp.gif",
             "kind": "Кольчуга",
             "type_id": "3",
-            "price": "<span title=\"Золотой\"><img src=\"/images/m_game3.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;61",
-            "dur": "49",
-            "dur_max": "49",
+            "price": "<span title=\"Золотой\"><img src=\"/images/m_game3.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;76",
+            "dur": "47",
+            "dur_max": "50",
             "lev": {
                 "title": " Уровень ",
                 "value": "18"
@@ -9790,8 +12564,16 @@ let items = {
             "trend": "Костолом",
             "skills": [
                 {
+                    "title": "Ловкость",
+                    "value": "<b>+18</b><b style=\"color:#990099\"> (6)</b>"
+                },
+                {
+                    "title": "Инициатива",
+                    "value": "<b>+3</b>"
+                },
+                {
                     "title": "Интуиция",
-                    "value": "<b>+66</b><b style=\"color:#990099\"> (15)</b>"
+                    "value": "<b>+63</b><b style=\"color:#990099\"> (12)</b>"
                 },
                 {
                     "title": "Защита свет-тьма",
@@ -9803,27 +12585,19 @@ let items = {
                 },
                 {
                     "title": "Сила",
-                    "value": "<b>+244</b><b style=\"color:#990099\"> (52)</b>"
+                    "value": "<b>+228</b><b style=\"color:#990099\"> (36)</b>"
                 },
                 {
                     "title": "Живучесть",
-                    "value": "<b>+82</b>"
+                    "value": "<b>+111</b><b style=\"color:#990099\"> (12)</b>"
                 },
                 {
                     "title": "Мудрость",
-                    "value": "<b>+158</b><b style=\"color:#990099\"> (45)</b>"
+                    "value": "<b>+164</b><b style=\"color:#990099\"> (51)</b>"
                 },
                 {
                     "title": "Уровень маны",
                     "value": "<b>+49</b>"
-                },
-                {
-                    "title": "Ловкость",
-                    "value": "<b>+3</b><b style=\"color:#339900\"> (3)</b>"
-                },
-                {
-                    "title": "Защита",
-                    "value": "<b>+3</b><b style=\"color:#339900\"> (3)</b>"
                 }
             ],
             "skills_e": [
@@ -9832,12 +12606,12 @@ let items = {
                     "value": "<b>+1600</b><b style=\"color:#990099\"> (1600)</b>"
                 }
             ],
-            "enchant_icon": "<span class=\"enchants\">\n\t\t<img src=\"/images/enchants/oprava.png\" alt=\"\" class=\"enchant2_png\"><img src=\"/images/enchants/1_2.png\" alt=\"\" class=\"enchant_png\">\n\t\t</span>",
+            "enchant_icon": "<span class=\"enchants\">\n\t\t<img src=\"/images/enchants/oprava.png\" alt=\"\" class=\"enchant2_png\"><img src=\"/images/enchants/6_3.png\" alt=\"\" class=\"enchant_png\">\n\t\t</span>",
             "enchant": {
                 "title": "Руна",
-                "value": "<b style=\"color:#3300ff\">Руна неотвратимости Инг</b>"
+                "value": "<b style=\"color:#990099\">Руна неотвратимости Инг VI</b>"
             },
-            "enchant_class": "enchant-1_2",
+            "enchant_class": "enchant-6_3",
             "enchant3": {
                 "title": "Оправа",
                 "value": "<b style=\"color:#990099;\">Оправа ограды Инг V</b>"
@@ -9845,121 +12619,7 @@ let items = {
             "symbols": [
                 {
                     "title": "Символ",
-                    "value": "<b style=\"color:#990099;\">Символ мощи Тарс</b>"
-                },
-                {
-                    "title": "Символ",
-                    "value": "<b style=\"color:#339900;\">Символ баланса Либр</b>"
-                }
-            ],
-            "set": {
-                "title": "Комплект",
-                "value": "<b style=\"color:#3300ff\">Доспехи «Коварство зверя»</b>"
-            },
-            "nogive": "Предмет нельзя передать",
-            "flags2": {
-                "crashproof": "Неломаемый предмет"
-            },
-            "rank_min": "Для приобретения или использования вещи необходимо звание <b class=\"redd\"><img src=\"/images/ranks/rank19.gif\" width=\"13\" height=\"13\" border=\"0\" alt=\"\" align=\"absmiddle\">Избранник богов</b>.",
-            "sell": true,
-            "drop": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3175980423\" price_type=\"1\" sell_price=\"30\"",
-            "icon_list": {
-                "1": "info",
-                "2": "sell"
-            },
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3175980423"
-        },
-        {
-            "id": "3155306286",
-            "title": "Кольчуга «Зов отваги»",
-            "ord": "52",
-            "kind_id": "21",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#3300ff",
-            "quality": "2",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/kol4_blue_16-20_pvp.gif",
-            "picture": "/images/data/artifacts/kol4_blue_16-20_pvp.gif",
-            "kind": "Кольчуга",
-            "type_id": "3",
-            "price": "<span title=\"Золотой\"><img src=\"/images/m_game3.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;61",
-            "dur": "49",
-            "dur_max": "49",
-            "lev": {
-                "title": " Уровень ",
-                "value": "18"
-            },
-            "cls": [
-                "<img src=\"/images/elements/light.gif\" width=\"11\" height=\"10\" align=\"absmiddle\">&nbsp;Свет",
-                "<img src=\"/images/elements/shadow.gif\" width=\"11\" height=\"10\" align=\"absmiddle\">&nbsp;Тень"
-            ],
-            "trend": "Ловкач",
-            "skills": [
-                {
-                    "title": "Ловкость",
-                    "value": "<b>+63</b><b style=\"color:#990099\"> (12)</b>"
-                },
-                {
-                    "title": "Защита огонь-воздух",
-                    "value": "<b>+70</b>"
-                },
-                {
-                    "title": "Защита земля-вода",
-                    "value": "<b>+20</b>"
-                },
-                {
-                    "title": "Сила",
-                    "value": "<b>+229</b><b style=\"color:#990099\"> (37)</b>"
-                },
-                {
-                    "title": "Живучесть",
-                    "value": "<b>+86</b><b style=\"color:#990099\"> (4)</b>"
-                },
-                {
-                    "title": "Мудрость",
-                    "value": "<b>+161</b><b style=\"color:#990099\"> (48)</b>"
-                },
-                {
-                    "title": "Уровень маны",
-                    "value": "<b>+73</b>"
-                }
-            ],
-            "skills_e": [
-                {
-                    "title": "Защита",
-                    "value": "<b>+4</b><b style=\"color:#990099\"> (4)</b>"
-                },
-                {
-                    "title": "Стойкость",
-                    "value": "<b>+1600</b><b style=\"color:#990099\"> (1600)</b>"
-                }
-            ],
-            "enchant_icon": "<span class=\"enchants\">\n\t\t<img src=\"/images/enchants/oprava.png\" alt=\"\" class=\"enchant2_png\"><img src=\"/images/enchants/4_3.png\" alt=\"\" class=\"enchant_png\">\n\t\t</span>",
-            "enchant": {
-                "title": "Руна",
-                "value": "<b style=\"color:#990099\">Руна преломления Инг IV (&#9650;37.46%)</b>"
-            },
-            "enchant_class": "enchant-4_3",
-            "enchant_mod": {
-                "title": "Встроено",
-                "value": "<b style=\"color:#339900\">Чары сытости «Рагу из птицы» (30)</b>"
-            },
-            "enchant3": {
-                "title": "Оправа",
-                "value": "<b style=\"color:#990099;\">Оправа ограды Инг V</b>"
-            },
-            "symbols": [
-                {
-                    "title": "Символ",
-                    "value": "<b style=\"color:#666666;\">Символ мощи Тарс</b>"
+                    "value": "<b style=\"color:#339900;\">Символ жизни Вит</b>"
                 },
                 {
                     "title": "Символ",
@@ -9968,34 +12628,35 @@ let items = {
             ],
             "set": {
                 "title": "Комплект",
-                "value": "<b style=\"color:#3300ff\">Доспехи «Зов отваги»</b>"
+                "value": "<b style=\"color:#990099\">Доспехи «Коварство зверя»</b>"
             },
             "nogive": "Предмет нельзя передать",
             "flags2": {
                 "crashproof": "Неломаемый предмет"
             },
             "rank_min": "Для приобретения или использования вещи необходимо звание <b class=\"redd\"><img src=\"/images/ranks/rank19.gif\" width=\"13\" height=\"13\" border=\"0\" alt=\"\" align=\"absmiddle\">Избранник богов</b>.",
+            "desc": "Для покупки данной вещи необходимо иметь <b class=\"redd\">320000</b> репутации <b class=\"redd\"><a href=\"info/library/index.php?obj=cat&id=145\" target=_blank>Охотников за трофеями</a></b>.",
             "sell": true,
             "drop": true,
-            "use": true,
+            "repair": true,
             "equip": true,
-            "add_attrs": " artifact_id=\"3155306286\" price_type=\"1\" sell_price=\"30\"",
+            "add_attrs": " artifact_id=\"3539205289\" repair_price=\"152\" price_type=\"1\" sell_price=\"30\"",
             "icon_list": {
-                "1": "use",
-                "2": "info",
-                "3": "sell"
+                "1": "info",
+                "2": "sell",
+                "3": "repair"
             },
             "action": "equip",
             "_act1": 2,
             "_act2": 3,
-            "_act3": 1,
+            "_act3": 0,
             "_act4": 0,
-            "artifact_alt_id": "AA_3155306286"
+            "artifact_alt_id": "AA_3539205289"
         },
         {
-            "id": "3155306216",
+            "id": "2197610290",
             "title": "Подводная кольчуга",
-            "ord": "59",
+            "ord": "20",
             "kind_id": "21",
             "storage_type": "0",
             "profession": "0",
@@ -10018,33 +12679,179 @@ let items = {
                 },
                 {
                     "title": "Сила",
-                    "value": "<b>+24</b>"
+                    "value": "<b>+34</b><b style=\"color:#3300ff\"> (10)</b>"
                 },
                 {
                     "title": "Живучесть",
                     "value": "<b>+24</b>"
                 }
             ],
-            "skills_e": [],
+            "skills_e": [
+                {
+                    "title": "Интуиция",
+                    "value": "<b>+7</b><b style=\"color:#3300ff\"> (7)</b>"
+                }
+            ],
+            "enchant_icon": "<span class=\"enchants\">\n\t\t<img src=\"/images/enchants/1_2.png\" alt=\"\" class=\"enchant_png\">\n\t\t</span>",
+            "enchant": {
+                "title": "Руна",
+                "value": "<b style=\"color:#3300ff\">Руна силы Инг</b>"
+            },
+            "enchant_class": "enchant-1_2",
+            "enchant_mod": {
+                "title": "Встроено",
+                "value": "<b style=\"color:#3300ff\">Чары зверского палача (50)</b>"
+            },
+            "symbols": [
+                {
+                    "title": "Символ",
+                    "value": "<b style=\"color:#666666;\">Символ мощи Тарс</b>"
+                }
+            ],
             "nogive": "Предмет нельзя передать",
             "noweight": "Предмет не занимает места в рюкзаке",
             "nosell": "Предмет нельзя сдать в скупку",
+            "use": true,
             "equip": true,
-            "add_attrs": " artifact_id=\"3155306216\"",
+            "add_attrs": " artifact_id=\"2197610290\"",
             "icon_list": [
+                "use",
                 "info"
             ],
             "action": "equip",
             "_act1": 2,
             "_act2": 0,
-            "_act3": 0,
+            "_act3": 1,
             "_act4": 0,
-            "artifact_alt_id": "AA_3155306216"
+            "artifact_alt_id": "AA_2197610290"
         },
         {
-            "id": "4319557613",
+            "id": "3539204783",
+            "title": "Мудрёная кольчуга «Зов отваги»",
+            "ord": "31",
+            "kind_id": "21",
+            "storage_type": "0",
+            "profession": "0",
+            "color": "#990099",
+            "quality": "3",
+            "time_expire": "0",
+            "image": "/images/data/artifacts/uv_kol4_viol_16-20pvp.gif",
+            "picture": "/images/data/artifacts/uv_kol4_viol_16-20pvp.gif",
+            "kind": "Кольчуга",
+            "type_id": "3",
+            "price": "<span title=\"Золотой\"><img src=\"/images/m_game3.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;76",
+            "dur": "46",
+            "dur_max": "50",
+            "lev": {
+                "title": " Уровень ",
+                "value": "18"
+            },
+            "cls": [
+                "<img src=\"/images/elements/light.gif\" width=\"11\" height=\"10\" align=\"absmiddle\">&nbsp;Свет",
+                "<img src=\"/images/elements/shadow.gif\" width=\"11\" height=\"10\" align=\"absmiddle\">&nbsp;Тень"
+            ],
+            "trend": "Ловкач",
+            "skills": [
+                {
+                    "title": "Ловкость",
+                    "value": "<b>+63</b><b style=\"color:#990099\"> (12)</b>"
+                },
+                {
+                    "title": "Защита",
+                    "value": "<b>+18</b><b style=\"color:#990099\"> (6)</b>"
+                },
+                {
+                    "title": "Инициатива",
+                    "value": "<b>+3</b>"
+                },
+                {
+                    "title": "Защита огонь-воздух",
+                    "value": "<b>+70</b>"
+                },
+                {
+                    "title": "Защита земля-вода",
+                    "value": "<b>+20</b>"
+                },
+                {
+                    "title": "Сила",
+                    "value": "<b>+228</b><b style=\"color:#990099\"> (36)</b>"
+                },
+                {
+                    "title": "Живучесть",
+                    "value": "<b>+111</b><b style=\"color:#990099\"> (12)</b>"
+                },
+                {
+                    "title": "Мудрость",
+                    "value": "<b>+164</b><b style=\"color:#990099\"> (51)</b>"
+                },
+                {
+                    "title": "Уровень маны",
+                    "value": "<b>+73</b>"
+                }
+            ],
+            "skills_e": [
+                {
+                    "title": "Стойкость",
+                    "value": "<b>+1600</b><b style=\"color:#990099\"> (1600)</b>"
+                }
+            ],
+            "enchant_icon": "<span class=\"enchants\">\n\t\t<img src=\"/images/enchants/oprava.png\" alt=\"\" class=\"enchant2_png\"><img src=\"/images/enchants/6_3.png\" alt=\"\" class=\"enchant_png\">\n\t\t</span>",
+            "enchant": {
+                "title": "Руна",
+                "value": "<b style=\"color:#990099\">Руна преломления Инг VI</b>"
+            },
+            "enchant_class": "enchant-6_3",
+            "enchant_mod": {
+                "title": "Встроено",
+                "value": "<b style=\"color:#3300ff\">Чары зверского палача (50)</b>"
+            },
+            "enchant3": {
+                "title": "Оправа",
+                "value": "<b style=\"color:#990099;\">Оправа ограды Инг V</b>"
+            },
+            "symbols": [
+                {
+                    "title": "Символ",
+                    "value": "<b style=\"color:#339900;\">Символ жизни Вит</b>"
+                },
+                {
+                    "title": "Символ",
+                    "value": "<b style=\"color:#ff0000;\">Символ непреклонности Тубар-Дан</b>"
+                }
+            ],
+            "set": {
+                "title": "Комплект",
+                "value": "<b style=\"color:#990099\">Доспехи «Зов отваги»</b>"
+            },
+            "nogive": "Предмет нельзя передать",
+            "flags2": {
+                "crashproof": "Неломаемый предмет"
+            },
+            "rank_min": "Для приобретения или использования вещи необходимо звание <b class=\"redd\"><img src=\"/images/ranks/rank19.gif\" width=\"13\" height=\"13\" border=\"0\" alt=\"\" align=\"absmiddle\">Избранник богов</b>.",
+            "desc": "Для покупки данной вещи необходимо иметь <b class=\"redd\">320000</b> репутации <b class=\"redd\"><a href=\"info/library/index.php?obj=cat&id=145\" target=_blank>Охотников за трофеями</a></b>.",
+            "sell": true,
+            "drop": true,
+            "repair": true,
+            "use": true,
+            "equip": true,
+            "add_attrs": " artifact_id=\"3539204783\" repair_price=\"152\" price_type=\"1\" sell_price=\"30\"",
+            "icon_list": {
+                "1": "use",
+                "2": "info",
+                "3": "sell",
+                "4": "repair"
+            },
+            "action": "equip",
+            "_act1": 2,
+            "_act2": 3,
+            "_act3": 1,
+            "_act4": 0,
+            "artifact_alt_id": "AA_3539204783"
+        },
+        {
+            "id": "3539382943",
             "title": "Мудрёный панцирь «Заступник небес»",
-            "ord": "74",
+            "ord": "44",
             "kind_id": "21",
             "storage_type": "0",
             "profession": "0",
@@ -10056,7 +12863,7 @@ let items = {
             "kind": "Кольчуга",
             "type_id": "3",
             "price": "<span title=\"Золотой\"><img src=\"/images/m_game3.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;76",
-            "dur": "34",
+            "dur": "49",
             "dur_max": "50",
             "lev": {
                 "title": " Уровень ",
@@ -10078,7 +12885,7 @@ let items = {
                 },
                 {
                     "title": "Интуиция",
-                    "value": "<b>+12</b>"
+                    "value": "<b>+18</b><b style=\"color:#990099\"> (6)</b>"
                 },
                 {
                     "title": "Защита огонь-воздух",
@@ -10090,15 +12897,15 @@ let items = {
                 },
                 {
                     "title": "Сила",
-                    "value": "<b>+159</b>"
+                    "value": "<b>+166</b><b style=\"color:#990099\"> (7)</b>"
                 },
                 {
                     "title": "Живучесть",
-                    "value": "<b>+188</b><b style=\"color:#990099\"> (17)</b>"
+                    "value": "<b>+208</b><b style=\"color:#990099\"> (37)</b>"
                 },
                 {
                     "title": "Мудрость",
-                    "value": "<b>+66</b>"
+                    "value": "<b>+74</b><b style=\"color:#990099\"> (8)</b>"
                 },
                 {
                     "title": "Уровень маны",
@@ -10108,24 +12915,32 @@ let items = {
             "skills_e": [
                 {
                     "title": "Интеллект",
-                    "value": "<b>+8</b><b style=\"color:#3300ff\"> (8)</b>"
+                    "value": "<b>+18</b><b style=\"color:#990099\"> (18)</b>"
                 },
                 {
                     "title": "Стойкость",
                     "value": "<b>+1600</b><b style=\"color:#990099\"> (1600)</b>"
                 }
             ],
-            "enchant_icon": "<span class=\"enchants\">\n\t\t<img src=\"/images/enchants/oprava.png\" alt=\"\" class=\"enchant2_png\"><img src=\"/images/enchants/1_2.png\" alt=\"\" class=\"enchant_png\">\n\t\t</span>",
+            "enchant_icon": "<span class=\"enchants\">\n\t\t<img src=\"/images/enchants/oprava.png\" alt=\"\" class=\"enchant2_png\"><img src=\"/images/enchants/6_3.png\" alt=\"\" class=\"enchant_png\">\n\t\t</span>",
             "enchant": {
                 "title": "Руна",
-                "value": "<b style=\"color:#3300ff\">Руна величия Инг</b>"
+                "value": "<b style=\"color:#990099\">Руна рассудка Инг VI</b>"
             },
-            "enchant_class": "enchant-1_2",
+            "enchant_class": "enchant-6_3",
+            "enchant_mod": {
+                "title": "Встроено",
+                "value": "<b style=\"color:#666666\">Чары защиты от ядер (64)</b>"
+            },
             "enchant3": {
                 "title": "Оправа",
                 "value": "<b style=\"color:#990099;\">Оправа ограды Инг V</b>"
             },
             "symbols": [
+                {
+                    "title": "Символ",
+                    "value": "<b style=\"color:#990099;\">Символ защиты Фен-Кор</b>"
+                },
                 {
                     "title": "Символ",
                     "value": "<b style=\"color:#ff0000;\">Символ непреклонности Тубар-Дан</b>"
@@ -10137,333 +12952,195 @@ let items = {
             },
             "nogive": "Предмет нельзя передать",
             "flags2": {
-                "can_crashproof": "Предмет можно укрепить смолой"
+                "crashproof": "Неломаемый предмет"
             },
             "rank_min": "Для приобретения или использования вещи необходимо звание <b class=\"redd\"><img src=\"/images/ranks/rank19.gif\" width=\"13\" height=\"13\" border=\"0\" alt=\"\" align=\"absmiddle\">Избранник богов</b>.",
             "desc": "Для покупки данной вещи необходимо иметь <b class=\"redd\">320000</b> репутации <b class=\"redd\"><a href=\"info/library/index.php?obj=cat&id=145\" target=_blank>Охотников за трофеями</a></b>.",
             "sell": true,
             "drop": true,
             "repair": true,
+            "use": true,
             "equip": true,
-            "add_attrs": " artifact_id=\"4319557613\" repair_price=\"152\" price_type=\"1\" sell_price=\"30\"",
+            "add_attrs": " artifact_id=\"3539382943\" repair_price=\"152\" price_type=\"1\" sell_price=\"30\"",
             "icon_list": {
-                "1": "info",
-                "2": "sell",
-                "3": "repair"
+                "1": "use",
+                "2": "info",
+                "3": "sell",
+                "4": "repair"
             },
             "action": "equip",
             "_act1": 2,
             "_act2": 3,
-            "_act3": 0,
+            "_act3": 1,
             "_act4": 0,
-            "artifact_alt_id": "AA_4319557613"
+            "artifact_alt_id": "AA_3539382943"
         }
     ],
     "boots": [
         {
-            "id": "4075823975",
-            "title": "Дырявые быстроходные сапоги",
-            "ord": "14",
+            "id": "3496620716",
+            "title": "Мудрёные сапоги «Коварство зверя»",
+            "ord": "7",
             "kind_id": "2",
             "storage_type": "0",
             "profession": "0",
-            "color": "#339900",
-            "quality": "1",
+            "color": "#990099",
+            "quality": "3",
             "time_expire": "0",
-            "image": "/images/data/artifacts/bad_skor_sapog.gif",
-            "picture": "/images/data/artifacts/bad_skor_sapog.gif",
+            "image": "/images/data/artifacts/krit_bot_viol_16-20pvp.gif",
+            "picture": "/images/data/artifacts/krit_bot_viol_16-20pvp.gif",
             "kind": "Обувь",
             "type_id": "3",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;10",
+            "price": "<span title=\"Золотой\"><img src=\"/images/m_game3.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;73",
+            "dur": "24",
+            "dur_max": "38",
             "lev": {
                 "title": " Уровень ",
-                "value": "3"
+                "value": "18"
             },
-            "trend": "Универсал",
+            "cls": [
+                "<img src=\"/images/elements/wind.gif\" width=\"11\" height=\"10\" align=\"absmiddle\">&nbsp;Воздух",
+                "<img src=\"/images/elements/fire.gif\" width=\"11\" height=\"10\" align=\"absmiddle\">&nbsp;Огонь"
+            ],
+            "trend": "Костолом",
             "skills": [
                 {
-                    "title": "Защита",
-                    "value": "<b>+1</b>"
+                    "title": "Ловкость",
+                    "value": "<b>+15</b><b style=\"color:#990099\"> (4)</b>"
                 },
                 {
-                    "title": "Скорость",
-                    "value": "<b>+5</b>"
+                    "title": "Инициатива",
+                    "value": "<b>+38</b><b style=\"color:#3300ff\"> (35)</b>"
+                },
+                {
+                    "title": "Интуиция",
+                    "value": "<b>+47</b><b style=\"color:#990099\"> (4)</b>"
+                },
+                {
+                    "title": "Защита свет-тьма",
+                    "value": "<b>+10</b>"
+                },
+                {
+                    "title": "Защита земля-вода",
+                    "value": "<b>+60</b>"
                 },
                 {
                     "title": "Сила",
-                    "value": "<b>+5</b>"
+                    "value": "<b>+172</b><b style=\"color:#990099\"> (5)</b>"
+                },
+                {
+                    "title": "Мудрость",
+                    "value": "<b>+115</b><b style=\"color:#990099\"> (5)</b>"
                 },
                 {
                     "title": "Уровень жизни",
-                    "value": "<b>+6</b>"
+                    "value": "<b>+75</b>"
+                },
+                {
+                    "title": "Уровень маны",
+                    "value": "<b>+34</b>"
+                },
+                {
+                    "title": "Антитравматизм",
+                    "value": "<b>+5</b><b style=\"color:#666666\"> (5)</b>"
                 }
             ],
-            "skills_e": [],
+            "skills_e": [
+                {
+                    "title": "Скорость",
+                    "value": "<b>+20</b><b style=\"color:#990099\"> (20)</b>"
+                },
+                {
+                    "title": "Живучесть",
+                    "value": "<b>+5</b><b style=\"color:#990099\"> (5)</b>"
+                }
+            ],
+            "enchant_icon": "<span class=\"enchants\">\n\t\t<img src=\"/images/enchants/oprava.png\" alt=\"\" class=\"enchant2_png\"><img src=\"/images/enchants/6_3.png\" alt=\"\" class=\"enchant_png\">\n\t\t</span>",
+            "enchant": {
+                "title": "Руна",
+                "value": "<b style=\"color:#990099\">Руна скорости Сид VI</b>"
+            },
+            "enchant_class": "enchant-6_3",
             "enchant_mod": {
                 "title": "Встроено",
-                "value": "<b style=\"color:#3300ff\">Чары зверского палача (50)</b>"
+                "value": "<b style=\"color:#990099\">Чары сытости «Запеченное мясо» (8)</b>"
             },
+            "enchant3": {
+                "title": "Оправа",
+                "value": "<b style=\"color:#3300ff;\">Оправа решительности IV</b>"
+            },
+            "symbols": [
+                {
+                    "title": "Символ",
+                    "value": "<b style=\"color:#666666;\">Символ неуязвимости Атвол</b>"
+                },
+                {
+                    "title": "Символ",
+                    "value": "<b style=\"color:#990099;\">Символ воли к победе Пер-Флар</b>"
+                }
+            ],
             "set": {
                 "title": "Комплект",
-                "value": "<b style=\"color:#339900\">Головореза</b>"
+                "value": "<b style=\"color:#990099\">Доспехи «Коварство зверя»</b>"
             },
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "Несмотря на изрядную поношенность и потрепанный вид, надетые сапоги способны увеличить скорость своего владельца на 5 единиц.",
-            "nosell": "Предмет нельзя сдать в скупку",
+            "flags2": {
+                "can_crashproof": "Предмет можно укрепить смолой"
+            },
+            "rank_min": "Для приобретения или использования вещи необходимо звание <b class=\"redd\"><img src=\"/images/ranks/rank17.gif\" width=\"13\" height=\"13\" border=\"0\" alt=\"\" align=\"absmiddle\">Победоносец</b>.",
+            "sell": true,
             "drop": true,
+            "repair": true,
             "use": true,
             "equip": true,
-            "add_attrs": " artifact_id=\"4075823975\"",
-            "icon_list": [
-                "drop",
-                "use",
-                "info"
-            ],
+            "add_attrs": " artifact_id=\"3496620716\" repair_price=\"146\" price_type=\"1\" sell_price=\"30\"",
+            "icon_list": {
+                "1": "use",
+                "2": "info",
+                "3": "sell",
+                "4": "repair"
+            },
             "action": "equip",
             "_act1": 2,
             "_act2": 3,
             "_act3": 1,
             "_act4": 0,
-            "artifact_alt_id": "AA_4075823975"
+            "artifact_alt_id": "AA_3496620716"
         },
         {
-            "id": "3833492429",
-            "title": "Дырявые быстроходные сапоги",
-            "ord": "16",
-            "kind_id": "2",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#339900",
-            "quality": "1",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/bad_skor_sapog.gif",
-            "picture": "/images/data/artifacts/bad_skor_sapog.gif",
-            "kind": "Обувь",
-            "type_id": "3",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;10",
-            "lev": {
-                "title": " Уровень ",
-                "value": "3"
-            },
-            "trend": "Универсал",
-            "skills": [
-                {
-                    "title": "Защита",
-                    "value": "<b>+1</b>"
-                },
-                {
-                    "title": "Скорость",
-                    "value": "<b>+5</b>"
-                },
-                {
-                    "title": "Сила",
-                    "value": "<b>+5</b>"
-                },
-                {
-                    "title": "Уровень жизни",
-                    "value": "<b>+6</b>"
-                }
-            ],
-            "skills_e": [],
-            "enchant_mod": {
-                "title": "Встроено",
-                "value": "<b style=\"color:#3300ff\">Чары зверского палача (50)</b>"
-            },
-            "set": {
-                "title": "Комплект",
-                "value": "<b style=\"color:#339900\">Головореза</b>"
-            },
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "Несмотря на изрядную поношенность и потрепанный вид, надетые сапоги способны увеличить скорость своего владельца на 5 единиц.",
-            "nosell": "Предмет нельзя сдать в скупку",
-            "drop": true,
-            "use": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3833492429\"",
-            "icon_list": [
-                "drop",
-                "use",
-                "info"
-            ],
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 1,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3833492429"
-        },
-        {
-            "id": "4170119501",
-            "title": "Дырявые быстроходные сапоги",
-            "ord": "17",
-            "kind_id": "2",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#339900",
-            "quality": "1",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/bad_skor_sapog.gif",
-            "picture": "/images/data/artifacts/bad_skor_sapog.gif",
-            "kind": "Обувь",
-            "type_id": "3",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;10",
-            "lev": {
-                "title": " Уровень ",
-                "value": "3"
-            },
-            "trend": "Универсал",
-            "skills": [
-                {
-                    "title": "Защита",
-                    "value": "<b>+1</b>"
-                },
-                {
-                    "title": "Скорость",
-                    "value": "<b>+5</b>"
-                },
-                {
-                    "title": "Сила",
-                    "value": "<b>+5</b>"
-                },
-                {
-                    "title": "Уровень жизни",
-                    "value": "<b>+6</b>"
-                }
-            ],
-            "skills_e": [],
-            "enchant_mod": {
-                "title": "Встроено",
-                "value": "<b style=\"color:#3300ff\">Чары зверского палача (50)</b>"
-            },
-            "set": {
-                "title": "Комплект",
-                "value": "<b style=\"color:#339900\">Головореза</b>"
-            },
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "Несмотря на изрядную поношенность и потрепанный вид, надетые сапоги способны увеличить скорость своего владельца на 5 единиц.",
-            "nosell": "Предмет нельзя сдать в скупку",
-            "drop": true,
-            "use": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"4170119501\"",
-            "icon_list": [
-                "drop",
-                "use",
-                "info"
-            ],
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 1,
-            "_act4": 0,
-            "artifact_alt_id": "AA_4170119501"
-        },
-        {
-            "id": "3861304954",
-            "title": "Дырявые быстроходные сапоги",
-            "ord": "19",
-            "kind_id": "2",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#339900",
-            "quality": "1",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/bad_skor_sapog.gif",
-            "picture": "/images/data/artifacts/bad_skor_sapog.gif",
-            "kind": "Обувь",
-            "type_id": "3",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;10",
-            "lev": {
-                "title": " Уровень ",
-                "value": "3"
-            },
-            "trend": "Универсал",
-            "skills": [
-                {
-                    "title": "Защита",
-                    "value": "<b>+1</b>"
-                },
-                {
-                    "title": "Скорость",
-                    "value": "<b>+5</b>"
-                },
-                {
-                    "title": "Сила",
-                    "value": "<b>+5</b>"
-                },
-                {
-                    "title": "Уровень жизни",
-                    "value": "<b>+6</b>"
-                }
-            ],
-            "skills_e": [],
-            "enchant_mod": {
-                "title": "Встроено",
-                "value": "<b style=\"color:#3300ff\">Чары зверского палача (21)</b>"
-            },
-            "set": {
-                "title": "Комплект",
-                "value": "<b style=\"color:#339900\">Головореза</b>"
-            },
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "Несмотря на изрядную поношенность и потрепанный вид, надетые сапоги способны увеличить скорость своего владельца на 5 единиц.",
-            "nosell": "Предмет нельзя сдать в скупку",
-            "drop": true,
-            "use": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3861304954\"",
-            "icon_list": [
-                "drop",
-                "use",
-                "info"
-            ],
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 1,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3861304954"
-        },
-        {
-            "id": "3850355960",
-            "title": "Дырявые быстроходные сапоги",
+            "id": "2197610287",
+            "title": "Подводные сапоги",
             "ord": "21",
             "kind_id": "2",
             "storage_type": "0",
             "profession": "0",
-            "color": "#339900",
-            "quality": "1",
+            "color": "#666666",
+            "quality": "0",
             "time_expire": "0",
-            "image": "/images/data/artifacts/bad_skor_sapog.gif",
-            "picture": "/images/data/artifacts/bad_skor_sapog.gif",
+            "image": "/images/data/artifacts/podvod_sapog.gif",
+            "picture": "/images/data/artifacts/podvod_sapog.gif",
             "kind": "Обувь",
             "type_id": "3",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;10",
             "lev": {
                 "title": " Уровень ",
-                "value": "3"
+                "value": "6"
             },
             "trend": "Универсал",
             "skills": [
                 {
-                    "title": "Защита",
-                    "value": "<b>+1</b>"
-                },
-                {
-                    "title": "Скорость",
-                    "value": "<b>+5</b>"
+                    "title": "Ловкость",
+                    "value": "<b>+9</b>"
                 },
                 {
                     "title": "Сила",
-                    "value": "<b>+5</b>"
+                    "value": "<b>+27</b>"
                 },
                 {
-                    "title": "Уровень жизни",
-                    "value": "<b>+6</b>"
+                    "title": "Живучесть",
+                    "value": "<b>+27</b>"
+                },
+                {
+                    "title": "Инициатива",
+                    "value": "<b>+3</b><b style=\"color:#339900\"> (3)</b>"
                 }
             ],
             "skills_e": [],
@@ -10471,166 +13148,31 @@ let items = {
                 "title": "Встроено",
                 "value": "<b style=\"color:#3300ff\">Чары зверского палача (50)</b>"
             },
-            "set": {
-                "title": "Комплект",
-                "value": "<b style=\"color:#339900\">Головореза</b>"
-            },
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "Несмотря на изрядную поношенность и потрепанный вид, надетые сапоги способны увеличить скорость своего владельца на 5 единиц.",
-            "nosell": "Предмет нельзя сдать в скупку",
-            "drop": true,
-            "use": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3850355960\"",
-            "icon_list": [
-                "drop",
-                "use",
-                "info"
-            ],
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 1,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3850355960"
-        },
-        {
-            "id": "3833492221",
-            "title": "Дырявые быстроходные сапоги",
-            "ord": "24",
-            "kind_id": "2",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#339900",
-            "quality": "1",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/bad_skor_sapog.gif",
-            "picture": "/images/data/artifacts/bad_skor_sapog.gif",
-            "kind": "Обувь",
-            "type_id": "3",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;10",
-            "lev": {
-                "title": " Уровень ",
-                "value": "3"
-            },
-            "trend": "Универсал",
-            "skills": [
+            "symbols": [
                 {
-                    "title": "Защита",
-                    "value": "<b>+1</b>"
-                },
-                {
-                    "title": "Скорость",
-                    "value": "<b>+5</b>"
-                },
-                {
-                    "title": "Сила",
-                    "value": "<b>+5</b>"
-                },
-                {
-                    "title": "Уровень жизни",
-                    "value": "<b>+6</b>"
+                    "title": "Символ",
+                    "value": "<b style=\"color:#339900;\">Символ начала Орсус</b>"
                 }
             ],
-            "skills_e": [],
-            "enchant_mod": {
-                "title": "Встроено",
-                "value": "<b style=\"color:#3300ff\">Чары зверского палача (50)</b>"
-            },
-            "set": {
-                "title": "Комплект",
-                "value": "<b style=\"color:#339900\">Головореза</b>"
-            },
             "nogive": "Предмет нельзя передать",
             "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "Несмотря на изрядную поношенность и потрепанный вид, надетые сапоги способны увеличить скорость своего владельца на 5 единиц.",
             "nosell": "Предмет нельзя сдать в скупку",
-            "drop": true,
             "use": true,
             "equip": true,
-            "add_attrs": " artifact_id=\"3833492221\"",
+            "add_attrs": " artifact_id=\"2197610287\"",
             "icon_list": [
-                "drop",
                 "use",
                 "info"
             ],
             "action": "equip",
             "_act1": 2,
-            "_act2": 3,
+            "_act2": 0,
             "_act3": 1,
             "_act4": 0,
-            "artifact_alt_id": "AA_3833492221"
+            "artifact_alt_id": "AA_2197610287"
         },
         {
-            "id": "3907037270",
-            "title": "Дырявые быстроходные сапоги",
-            "ord": "25",
-            "kind_id": "2",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#339900",
-            "quality": "1",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/bad_skor_sapog.gif",
-            "picture": "/images/data/artifacts/bad_skor_sapog.gif",
-            "kind": "Обувь",
-            "type_id": "3",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;10",
-            "lev": {
-                "title": " Уровень ",
-                "value": "3"
-            },
-            "trend": "Универсал",
-            "skills": [
-                {
-                    "title": "Защита",
-                    "value": "<b>+1</b>"
-                },
-                {
-                    "title": "Скорость",
-                    "value": "<b>+5</b>"
-                },
-                {
-                    "title": "Сила",
-                    "value": "<b>+5</b>"
-                },
-                {
-                    "title": "Уровень жизни",
-                    "value": "<b>+6</b>"
-                }
-            ],
-            "skills_e": [],
-            "enchant_mod": {
-                "title": "Встроено",
-                "value": "<b style=\"color:#3300ff\">Чары зверского палача (50)</b>"
-            },
-            "set": {
-                "title": "Комплект",
-                "value": "<b style=\"color:#339900\">Головореза</b>"
-            },
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "Несмотря на изрядную поношенность и потрепанный вид, надетые сапоги способны увеличить скорость своего владельца на 5 единиц.",
-            "nosell": "Предмет нельзя сдать в скупку",
-            "drop": true,
-            "use": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3907037270\"",
-            "icon_list": [
-                "drop",
-                "use",
-                "info"
-            ],
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 1,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3907037270"
-        },
-        {
-            "id": "4075824012",
+            "id": "2125898429",
             "title": "Дырявые быстроходные сапоги",
             "ord": "26",
             "kind_id": "2",
@@ -10670,7 +13212,7 @@ let items = {
             "skills_e": [],
             "enchant_mod": {
                 "title": "Встроено",
-                "value": "<b style=\"color:#3300ff\">Чары зверского палача (50)</b>"
+                "value": "<b style=\"color:#666666\">Чары нападения (25)</b>"
             },
             "set": {
                 "title": "Комплект",
@@ -10683,7 +13225,7 @@ let items = {
             "drop": true,
             "use": true,
             "equip": true,
-            "add_attrs": " artifact_id=\"4075824012\"",
+            "add_attrs": " artifact_id=\"2125898429\"",
             "icon_list": [
                 "drop",
                 "use",
@@ -10694,1432 +13236,25 @@ let items = {
             "_act2": 3,
             "_act3": 1,
             "_act4": 0,
-            "artifact_alt_id": "AA_4075824012"
+            "artifact_alt_id": "AA_2125898429"
         },
         {
-            "id": "4233896160",
-            "title": "Дырявые быстроходные сапоги",
-            "ord": "27",
-            "kind_id": "2",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#339900",
-            "quality": "1",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/bad_skor_sapog.gif",
-            "picture": "/images/data/artifacts/bad_skor_sapog.gif",
-            "kind": "Обувь",
-            "type_id": "3",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;10",
-            "lev": {
-                "title": " Уровень ",
-                "value": "3"
-            },
-            "trend": "Универсал",
-            "skills": [
-                {
-                    "title": "Защита",
-                    "value": "<b>+1</b>"
-                },
-                {
-                    "title": "Скорость",
-                    "value": "<b>+5</b>"
-                },
-                {
-                    "title": "Сила",
-                    "value": "<b>+5</b>"
-                },
-                {
-                    "title": "Уровень жизни",
-                    "value": "<b>+6</b>"
-                }
-            ],
-            "skills_e": [],
-            "enchant_mod": {
-                "title": "Встроено",
-                "value": "<b style=\"color:#3300ff\">Чары зверского палача (34)</b>"
-            },
-            "set": {
-                "title": "Комплект",
-                "value": "<b style=\"color:#339900\">Головореза</b>"
-            },
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "Несмотря на изрядную поношенность и потрепанный вид, надетые сапоги способны увеличить скорость своего владельца на 5 единиц.",
-            "nosell": "Предмет нельзя сдать в скупку",
-            "drop": true,
-            "use": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"4233896160\"",
-            "icon_list": [
-                "drop",
-                "use",
-                "info"
-            ],
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 1,
-            "_act4": 0,
-            "artifact_alt_id": "AA_4233896160"
-        },
-        {
-            "id": "3866864575",
-            "title": "Дырявые быстроходные сапоги",
-            "ord": "28",
-            "kind_id": "2",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#339900",
-            "quality": "1",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/bad_skor_sapog.gif",
-            "picture": "/images/data/artifacts/bad_skor_sapog.gif",
-            "kind": "Обувь",
-            "type_id": "3",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;10",
-            "lev": {
-                "title": " Уровень ",
-                "value": "3"
-            },
-            "trend": "Универсал",
-            "skills": [
-                {
-                    "title": "Защита",
-                    "value": "<b>+1</b>"
-                },
-                {
-                    "title": "Скорость",
-                    "value": "<b>+5</b>"
-                },
-                {
-                    "title": "Сила",
-                    "value": "<b>+5</b>"
-                },
-                {
-                    "title": "Уровень жизни",
-                    "value": "<b>+6</b>"
-                }
-            ],
-            "skills_e": [],
-            "enchant_mod": {
-                "title": "Встроено",
-                "value": "<b style=\"color:#3300ff\">Чары зверского палача (50)</b>"
-            },
-            "set": {
-                "title": "Комплект",
-                "value": "<b style=\"color:#339900\">Головореза</b>"
-            },
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "Несмотря на изрядную поношенность и потрепанный вид, надетые сапоги способны увеличить скорость своего владельца на 5 единиц.",
-            "nosell": "Предмет нельзя сдать в скупку",
-            "drop": true,
-            "use": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3866864575\"",
-            "icon_list": [
-                "drop",
-                "use",
-                "info"
-            ],
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 1,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3866864575"
-        },
-        {
-            "id": "3886377538",
-            "title": "Дырявые быстроходные сапоги",
-            "ord": "29",
-            "kind_id": "2",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#339900",
-            "quality": "1",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/bad_skor_sapog.gif",
-            "picture": "/images/data/artifacts/bad_skor_sapog.gif",
-            "kind": "Обувь",
-            "type_id": "3",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;10",
-            "lev": {
-                "title": " Уровень ",
-                "value": "3"
-            },
-            "trend": "Универсал",
-            "skills": [
-                {
-                    "title": "Защита",
-                    "value": "<b>+1</b>"
-                },
-                {
-                    "title": "Скорость",
-                    "value": "<b>+5</b>"
-                },
-                {
-                    "title": "Сила",
-                    "value": "<b>+5</b>"
-                },
-                {
-                    "title": "Уровень жизни",
-                    "value": "<b>+6</b>"
-                }
-            ],
-            "skills_e": [],
-            "enchant_mod": {
-                "title": "Встроено",
-                "value": "<b style=\"color:#3300ff\">Чары зверского палача (50)</b>"
-            },
-            "set": {
-                "title": "Комплект",
-                "value": "<b style=\"color:#339900\">Головореза</b>"
-            },
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "Несмотря на изрядную поношенность и потрепанный вид, надетые сапоги способны увеличить скорость своего владельца на 5 единиц.",
-            "nosell": "Предмет нельзя сдать в скупку",
-            "drop": true,
-            "use": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3886377538\"",
-            "icon_list": [
-                "drop",
-                "use",
-                "info"
-            ],
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 1,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3886377538"
-        },
-        {
-            "id": "3861304939",
-            "title": "Дырявые быстроходные сапоги",
-            "ord": "30",
-            "kind_id": "2",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#339900",
-            "quality": "1",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/bad_skor_sapog.gif",
-            "picture": "/images/data/artifacts/bad_skor_sapog.gif",
-            "kind": "Обувь",
-            "type_id": "3",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;10",
-            "lev": {
-                "title": " Уровень ",
-                "value": "3"
-            },
-            "trend": "Универсал",
-            "skills": [
-                {
-                    "title": "Защита",
-                    "value": "<b>+1</b>"
-                },
-                {
-                    "title": "Скорость",
-                    "value": "<b>+5</b>"
-                },
-                {
-                    "title": "Сила",
-                    "value": "<b>+5</b>"
-                },
-                {
-                    "title": "Уровень жизни",
-                    "value": "<b>+6</b>"
-                }
-            ],
-            "skills_e": [],
-            "enchant_mod": {
-                "title": "Встроено",
-                "value": "<b style=\"color:#3300ff\">Чары зверского палача (50)</b>"
-            },
-            "set": {
-                "title": "Комплект",
-                "value": "<b style=\"color:#339900\">Головореза</b>"
-            },
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "Несмотря на изрядную поношенность и потрепанный вид, надетые сапоги способны увеличить скорость своего владельца на 5 единиц.",
-            "nosell": "Предмет нельзя сдать в скупку",
-            "drop": true,
-            "use": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3861304939\"",
-            "icon_list": [
-                "drop",
-                "use",
-                "info"
-            ],
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 1,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3861304939"
-        },
-        {
-            "id": "3850355923",
-            "title": "Дырявые быстроходные сапоги",
-            "ord": "31",
-            "kind_id": "2",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#339900",
-            "quality": "1",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/bad_skor_sapog.gif",
-            "picture": "/images/data/artifacts/bad_skor_sapog.gif",
-            "kind": "Обувь",
-            "type_id": "3",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;10",
-            "lev": {
-                "title": " Уровень ",
-                "value": "3"
-            },
-            "trend": "Универсал",
-            "skills": [
-                {
-                    "title": "Защита",
-                    "value": "<b>+1</b>"
-                },
-                {
-                    "title": "Скорость",
-                    "value": "<b>+5</b>"
-                },
-                {
-                    "title": "Сила",
-                    "value": "<b>+5</b>"
-                },
-                {
-                    "title": "Уровень жизни",
-                    "value": "<b>+6</b>"
-                }
-            ],
-            "skills_e": [],
-            "enchant_mod": {
-                "title": "Встроено",
-                "value": "<b style=\"color:#3300ff\">Чары зверского палача (50)</b>"
-            },
-            "set": {
-                "title": "Комплект",
-                "value": "<b style=\"color:#339900\">Головореза</b>"
-            },
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "Несмотря на изрядную поношенность и потрепанный вид, надетые сапоги способны увеличить скорость своего владельца на 5 единиц.",
-            "nosell": "Предмет нельзя сдать в скупку",
-            "drop": true,
-            "use": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3850355923\"",
-            "icon_list": [
-                "drop",
-                "use",
-                "info"
-            ],
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 1,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3850355923"
-        },
-        {
-            "id": "3869728214",
-            "title": "Дырявые быстроходные сапоги",
+            "id": "3496620715",
+            "title": "Мудрёные сапоги «Зов отваги»",
             "ord": "32",
             "kind_id": "2",
             "storage_type": "0",
             "profession": "0",
-            "color": "#339900",
-            "quality": "1",
+            "color": "#990099",
+            "quality": "3",
             "time_expire": "0",
-            "image": "/images/data/artifacts/bad_skor_sapog.gif",
-            "picture": "/images/data/artifacts/bad_skor_sapog.gif",
+            "image": "/images/data/artifacts/uv_bot_viol_16-20pvp.gif",
+            "picture": "/images/data/artifacts/uv_bot_viol_16-20pvp.gif",
             "kind": "Обувь",
             "type_id": "3",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;10",
-            "lev": {
-                "title": " Уровень ",
-                "value": "3"
-            },
-            "trend": "Универсал",
-            "skills": [
-                {
-                    "title": "Защита",
-                    "value": "<b>+1</b>"
-                },
-                {
-                    "title": "Скорость",
-                    "value": "<b>+5</b>"
-                },
-                {
-                    "title": "Сила",
-                    "value": "<b>+5</b>"
-                },
-                {
-                    "title": "Уровень жизни",
-                    "value": "<b>+6</b>"
-                }
-            ],
-            "skills_e": [],
-            "enchant_mod": {
-                "title": "Встроено",
-                "value": "<b style=\"color:#3300ff\">Чары зверского палача (50)</b>"
-            },
-            "set": {
-                "title": "Комплект",
-                "value": "<b style=\"color:#339900\">Головореза</b>"
-            },
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "Несмотря на изрядную поношенность и потрепанный вид, надетые сапоги способны увеличить скорость своего владельца на 5 единиц.",
-            "nosell": "Предмет нельзя сдать в скупку",
-            "drop": true,
-            "use": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3869728214\"",
-            "icon_list": [
-                "drop",
-                "use",
-                "info"
-            ],
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 1,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3869728214"
-        },
-        {
-            "id": "3887596089",
-            "title": "Дырявые быстроходные сапоги",
-            "ord": "33",
-            "kind_id": "2",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#339900",
-            "quality": "1",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/bad_skor_sapog.gif",
-            "picture": "/images/data/artifacts/bad_skor_sapog.gif",
-            "kind": "Обувь",
-            "type_id": "3",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;10",
-            "lev": {
-                "title": " Уровень ",
-                "value": "3"
-            },
-            "trend": "Универсал",
-            "skills": [
-                {
-                    "title": "Защита",
-                    "value": "<b>+1</b>"
-                },
-                {
-                    "title": "Скорость",
-                    "value": "<b>+5</b>"
-                },
-                {
-                    "title": "Сила",
-                    "value": "<b>+5</b>"
-                },
-                {
-                    "title": "Уровень жизни",
-                    "value": "<b>+6</b>"
-                }
-            ],
-            "skills_e": [],
-            "enchant_mod": {
-                "title": "Встроено",
-                "value": "<b style=\"color:#3300ff\">Чары зверского палача (32)</b>"
-            },
-            "set": {
-                "title": "Комплект",
-                "value": "<b style=\"color:#339900\">Головореза</b>"
-            },
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "Несмотря на изрядную поношенность и потрепанный вид, надетые сапоги способны увеличить скорость своего владельца на 5 единиц.",
-            "nosell": "Предмет нельзя сдать в скупку",
-            "drop": true,
-            "use": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3887596089\"",
-            "icon_list": [
-                "drop",
-                "use",
-                "info"
-            ],
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 1,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3887596089"
-        },
-        {
-            "id": "3888639815",
-            "title": "Дырявые быстроходные сапоги",
-            "ord": "34",
-            "kind_id": "2",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#339900",
-            "quality": "1",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/bad_skor_sapog.gif",
-            "picture": "/images/data/artifacts/bad_skor_sapog.gif",
-            "kind": "Обувь",
-            "type_id": "3",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;10",
-            "lev": {
-                "title": " Уровень ",
-                "value": "3"
-            },
-            "trend": "Универсал",
-            "skills": [
-                {
-                    "title": "Защита",
-                    "value": "<b>+1</b>"
-                },
-                {
-                    "title": "Скорость",
-                    "value": "<b>+5</b>"
-                },
-                {
-                    "title": "Сила",
-                    "value": "<b>+5</b>"
-                },
-                {
-                    "title": "Уровень жизни",
-                    "value": "<b>+6</b>"
-                }
-            ],
-            "skills_e": [],
-            "enchant_mod": {
-                "title": "Встроено",
-                "value": "<b style=\"color:#3300ff\">Чары зверского палача (50)</b>"
-            },
-            "set": {
-                "title": "Комплект",
-                "value": "<b style=\"color:#339900\">Головореза</b>"
-            },
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "Несмотря на изрядную поношенность и потрепанный вид, надетые сапоги способны увеличить скорость своего владельца на 5 единиц.",
-            "nosell": "Предмет нельзя сдать в скупку",
-            "drop": true,
-            "use": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3888639815\"",
-            "icon_list": [
-                "drop",
-                "use",
-                "info"
-            ],
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 1,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3888639815"
-        },
-        {
-            "id": "3887827815",
-            "title": "Дырявые быстроходные сапоги",
-            "ord": "35",
-            "kind_id": "2",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#339900",
-            "quality": "1",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/bad_skor_sapog.gif",
-            "picture": "/images/data/artifacts/bad_skor_sapog.gif",
-            "kind": "Обувь",
-            "type_id": "3",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;10",
-            "lev": {
-                "title": " Уровень ",
-                "value": "3"
-            },
-            "trend": "Универсал",
-            "skills": [
-                {
-                    "title": "Защита",
-                    "value": "<b>+1</b>"
-                },
-                {
-                    "title": "Скорость",
-                    "value": "<b>+5</b>"
-                },
-                {
-                    "title": "Сила",
-                    "value": "<b>+5</b>"
-                },
-                {
-                    "title": "Уровень жизни",
-                    "value": "<b>+6</b>"
-                }
-            ],
-            "skills_e": [],
-            "enchant_mod": {
-                "title": "Встроено",
-                "value": "<b style=\"color:#3300ff\">Чары зверского палача (50)</b>"
-            },
-            "set": {
-                "title": "Комплект",
-                "value": "<b style=\"color:#339900\">Головореза</b>"
-            },
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "Несмотря на изрядную поношенность и потрепанный вид, надетые сапоги способны увеличить скорость своего владельца на 5 единиц.",
-            "nosell": "Предмет нельзя сдать в скупку",
-            "drop": true,
-            "use": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3887827815\"",
-            "icon_list": [
-                "drop",
-                "use",
-                "info"
-            ],
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 1,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3887827815"
-        },
-        {
-            "id": "3887827771",
-            "title": "Дырявые быстроходные сапоги",
-            "ord": "36",
-            "kind_id": "2",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#339900",
-            "quality": "1",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/bad_skor_sapog.gif",
-            "picture": "/images/data/artifacts/bad_skor_sapog.gif",
-            "kind": "Обувь",
-            "type_id": "3",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;10",
-            "lev": {
-                "title": " Уровень ",
-                "value": "3"
-            },
-            "trend": "Универсал",
-            "skills": [
-                {
-                    "title": "Защита",
-                    "value": "<b>+1</b>"
-                },
-                {
-                    "title": "Скорость",
-                    "value": "<b>+5</b>"
-                },
-                {
-                    "title": "Сила",
-                    "value": "<b>+5</b>"
-                },
-                {
-                    "title": "Уровень жизни",
-                    "value": "<b>+6</b>"
-                }
-            ],
-            "skills_e": [],
-            "enchant_mod": {
-                "title": "Встроено",
-                "value": "<b style=\"color:#3300ff\">Чары зверского палача (50)</b>"
-            },
-            "set": {
-                "title": "Комплект",
-                "value": "<b style=\"color:#339900\">Головореза</b>"
-            },
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "Несмотря на изрядную поношенность и потрепанный вид, надетые сапоги способны увеличить скорость своего владельца на 5 единиц.",
-            "nosell": "Предмет нельзя сдать в скупку",
-            "drop": true,
-            "use": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3887827771\"",
-            "icon_list": [
-                "drop",
-                "use",
-                "info"
-            ],
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 1,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3887827771"
-        },
-        {
-            "id": "3889237310",
-            "title": "Дырявые быстроходные сапоги",
-            "ord": "37",
-            "kind_id": "2",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#339900",
-            "quality": "1",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/bad_skor_sapog.gif",
-            "picture": "/images/data/artifacts/bad_skor_sapog.gif",
-            "kind": "Обувь",
-            "type_id": "3",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;10",
-            "lev": {
-                "title": " Уровень ",
-                "value": "3"
-            },
-            "trend": "Универсал",
-            "skills": [
-                {
-                    "title": "Защита",
-                    "value": "<b>+1</b>"
-                },
-                {
-                    "title": "Скорость",
-                    "value": "<b>+5</b>"
-                },
-                {
-                    "title": "Сила",
-                    "value": "<b>+5</b>"
-                },
-                {
-                    "title": "Уровень жизни",
-                    "value": "<b>+6</b>"
-                }
-            ],
-            "skills_e": [],
-            "enchant_mod": {
-                "title": "Встроено",
-                "value": "<b style=\"color:#3300ff\">Чары зверского палача (50)</b>"
-            },
-            "set": {
-                "title": "Комплект",
-                "value": "<b style=\"color:#339900\">Головореза</b>"
-            },
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "Несмотря на изрядную поношенность и потрепанный вид, надетые сапоги способны увеличить скорость своего владельца на 5 единиц.",
-            "nosell": "Предмет нельзя сдать в скупку",
-            "drop": true,
-            "use": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3889237310\"",
-            "icon_list": [
-                "drop",
-                "use",
-                "info"
-            ],
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 1,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3889237310"
-        },
-        {
-            "id": "3907037249",
-            "title": "Дырявые быстроходные сапоги",
-            "ord": "38",
-            "kind_id": "2",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#339900",
-            "quality": "1",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/bad_skor_sapog.gif",
-            "picture": "/images/data/artifacts/bad_skor_sapog.gif",
-            "kind": "Обувь",
-            "type_id": "3",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;10",
-            "lev": {
-                "title": " Уровень ",
-                "value": "3"
-            },
-            "trend": "Универсал",
-            "skills": [
-                {
-                    "title": "Защита",
-                    "value": "<b>+1</b>"
-                },
-                {
-                    "title": "Скорость",
-                    "value": "<b>+5</b>"
-                },
-                {
-                    "title": "Сила",
-                    "value": "<b>+5</b>"
-                },
-                {
-                    "title": "Уровень жизни",
-                    "value": "<b>+6</b>"
-                }
-            ],
-            "skills_e": [],
-            "enchant_mod": {
-                "title": "Встроено",
-                "value": "<b style=\"color:#3300ff\">Чары зверского палача (50)</b>"
-            },
-            "set": {
-                "title": "Комплект",
-                "value": "<b style=\"color:#339900\">Головореза</b>"
-            },
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "Несмотря на изрядную поношенность и потрепанный вид, надетые сапоги способны увеличить скорость своего владельца на 5 единиц.",
-            "nosell": "Предмет нельзя сдать в скупку",
-            "drop": true,
-            "use": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3907037249\"",
-            "icon_list": [
-                "drop",
-                "use",
-                "info"
-            ],
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 1,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3907037249"
-        },
-        {
-            "id": "3972078195",
-            "title": "Дырявые быстроходные сапоги",
-            "ord": "39",
-            "kind_id": "2",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#339900",
-            "quality": "1",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/bad_skor_sapog.gif",
-            "picture": "/images/data/artifacts/bad_skor_sapog.gif",
-            "kind": "Обувь",
-            "type_id": "3",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;10",
-            "lev": {
-                "title": " Уровень ",
-                "value": "3"
-            },
-            "trend": "Универсал",
-            "skills": [
-                {
-                    "title": "Защита",
-                    "value": "<b>+1</b>"
-                },
-                {
-                    "title": "Скорость",
-                    "value": "<b>+5</b>"
-                },
-                {
-                    "title": "Сила",
-                    "value": "<b>+5</b>"
-                },
-                {
-                    "title": "Уровень жизни",
-                    "value": "<b>+6</b>"
-                }
-            ],
-            "skills_e": [],
-            "enchant_mod": {
-                "title": "Встроено",
-                "value": "<b style=\"color:#3300ff\">Чары зверского палача (50)</b>"
-            },
-            "set": {
-                "title": "Комплект",
-                "value": "<b style=\"color:#339900\">Головореза</b>"
-            },
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "Несмотря на изрядную поношенность и потрепанный вид, надетые сапоги способны увеличить скорость своего владельца на 5 единиц.",
-            "nosell": "Предмет нельзя сдать в скупку",
-            "drop": true,
-            "use": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3972078195\"",
-            "icon_list": [
-                "drop",
-                "use",
-                "info"
-            ],
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 1,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3972078195"
-        },
-        {
-            "id": "3972078272",
-            "title": "Дырявые быстроходные сапоги",
-            "ord": "40",
-            "kind_id": "2",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#339900",
-            "quality": "1",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/bad_skor_sapog.gif",
-            "picture": "/images/data/artifacts/bad_skor_sapog.gif",
-            "kind": "Обувь",
-            "type_id": "3",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;10",
-            "lev": {
-                "title": " Уровень ",
-                "value": "3"
-            },
-            "trend": "Универсал",
-            "skills": [
-                {
-                    "title": "Защита",
-                    "value": "<b>+1</b>"
-                },
-                {
-                    "title": "Скорость",
-                    "value": "<b>+5</b>"
-                },
-                {
-                    "title": "Сила",
-                    "value": "<b>+5</b>"
-                },
-                {
-                    "title": "Уровень жизни",
-                    "value": "<b>+6</b>"
-                }
-            ],
-            "skills_e": [],
-            "enchant_mod": {
-                "title": "Встроено",
-                "value": "<b style=\"color:#3300ff\">Чары зверского палача (50)</b>"
-            },
-            "set": {
-                "title": "Комплект",
-                "value": "<b style=\"color:#339900\">Головореза</b>"
-            },
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "Несмотря на изрядную поношенность и потрепанный вид, надетые сапоги способны увеличить скорость своего владельца на 5 единиц.",
-            "nosell": "Предмет нельзя сдать в скупку",
-            "drop": true,
-            "use": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3972078272\"",
-            "icon_list": [
-                "drop",
-                "use",
-                "info"
-            ],
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 1,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3972078272"
-        },
-        {
-            "id": "4004325845",
-            "title": "Дырявые быстроходные сапоги",
-            "ord": "41",
-            "kind_id": "2",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#339900",
-            "quality": "1",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/bad_skor_sapog.gif",
-            "picture": "/images/data/artifacts/bad_skor_sapog.gif",
-            "kind": "Обувь",
-            "type_id": "3",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;10",
-            "lev": {
-                "title": " Уровень ",
-                "value": "3"
-            },
-            "trend": "Универсал",
-            "skills": [
-                {
-                    "title": "Защита",
-                    "value": "<b>+1</b>"
-                },
-                {
-                    "title": "Скорость",
-                    "value": "<b>+5</b>"
-                },
-                {
-                    "title": "Сила",
-                    "value": "<b>+5</b>"
-                },
-                {
-                    "title": "Уровень жизни",
-                    "value": "<b>+6</b>"
-                }
-            ],
-            "skills_e": [],
-            "enchant_mod": {
-                "title": "Встроено",
-                "value": "<b style=\"color:#3300ff\">Чары зверского палача (50)</b>"
-            },
-            "set": {
-                "title": "Комплект",
-                "value": "<b style=\"color:#339900\">Головореза</b>"
-            },
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "Несмотря на изрядную поношенность и потрепанный вид, надетые сапоги способны увеличить скорость своего владельца на 5 единиц.",
-            "nosell": "Предмет нельзя сдать в скупку",
-            "drop": true,
-            "use": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"4004325845\"",
-            "icon_list": [
-                "drop",
-                "use",
-                "info"
-            ],
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 1,
-            "_act4": 0,
-            "artifact_alt_id": "AA_4004325845"
-        },
-        {
-            "id": "3894362979",
-            "title": "Дырявые быстроходные сапоги",
-            "ord": "42",
-            "kind_id": "2",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#339900",
-            "quality": "1",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/bad_skor_sapog.gif",
-            "picture": "/images/data/artifacts/bad_skor_sapog.gif",
-            "kind": "Обувь",
-            "type_id": "3",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;10",
-            "lev": {
-                "title": " Уровень ",
-                "value": "3"
-            },
-            "trend": "Универсал",
-            "skills": [
-                {
-                    "title": "Защита",
-                    "value": "<b>+1</b>"
-                },
-                {
-                    "title": "Скорость",
-                    "value": "<b>+5</b>"
-                },
-                {
-                    "title": "Сила",
-                    "value": "<b>+5</b>"
-                },
-                {
-                    "title": "Уровень жизни",
-                    "value": "<b>+6</b>"
-                }
-            ],
-            "skills_e": [],
-            "enchant_mod": {
-                "title": "Встроено",
-                "value": "<b style=\"color:#3300ff\">Чары зверского палача (50)</b>"
-            },
-            "set": {
-                "title": "Комплект",
-                "value": "<b style=\"color:#339900\">Головореза</b>"
-            },
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "Несмотря на изрядную поношенность и потрепанный вид, надетые сапоги способны увеличить скорость своего владельца на 5 единиц.",
-            "nosell": "Предмет нельзя сдать в скупку",
-            "drop": true,
-            "use": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"3894362979\"",
-            "icon_list": [
-                "drop",
-                "use",
-                "info"
-            ],
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 1,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3894362979"
-        },
-        {
-            "id": "4218139269",
-            "title": "Дырявые быстроходные сапоги",
-            "ord": "43",
-            "kind_id": "2",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#339900",
-            "quality": "1",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/bad_skor_sapog.gif",
-            "picture": "/images/data/artifacts/bad_skor_sapog.gif",
-            "kind": "Обувь",
-            "type_id": "3",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;10",
-            "lev": {
-                "title": " Уровень ",
-                "value": "3"
-            },
-            "trend": "Универсал",
-            "skills": [
-                {
-                    "title": "Защита",
-                    "value": "<b>+1</b>"
-                },
-                {
-                    "title": "Скорость",
-                    "value": "<b>+5</b>"
-                },
-                {
-                    "title": "Сила",
-                    "value": "<b>+5</b>"
-                },
-                {
-                    "title": "Уровень жизни",
-                    "value": "<b>+6</b>"
-                }
-            ],
-            "skills_e": [],
-            "enchant_mod": {
-                "title": "Встроено",
-                "value": "<b style=\"color:#3300ff\">Чары зверского палача (50)</b>"
-            },
-            "set": {
-                "title": "Комплект",
-                "value": "<b style=\"color:#339900\">Головореза</b>"
-            },
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "Несмотря на изрядную поношенность и потрепанный вид, надетые сапоги способны увеличить скорость своего владельца на 5 единиц.",
-            "nosell": "Предмет нельзя сдать в скупку",
-            "drop": true,
-            "use": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"4218139269\"",
-            "icon_list": [
-                "drop",
-                "use",
-                "info"
-            ],
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 1,
-            "_act4": 0,
-            "artifact_alt_id": "AA_4218139269"
-        },
-        {
-            "id": "4218139413",
-            "title": "Дырявые быстроходные сапоги",
-            "ord": "44",
-            "kind_id": "2",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#339900",
-            "quality": "1",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/bad_skor_sapog.gif",
-            "picture": "/images/data/artifacts/bad_skor_sapog.gif",
-            "kind": "Обувь",
-            "type_id": "3",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;10",
-            "lev": {
-                "title": " Уровень ",
-                "value": "3"
-            },
-            "trend": "Универсал",
-            "skills": [
-                {
-                    "title": "Защита",
-                    "value": "<b>+1</b>"
-                },
-                {
-                    "title": "Скорость",
-                    "value": "<b>+5</b>"
-                },
-                {
-                    "title": "Сила",
-                    "value": "<b>+5</b>"
-                },
-                {
-                    "title": "Уровень жизни",
-                    "value": "<b>+6</b>"
-                }
-            ],
-            "skills_e": [],
-            "enchant_mod": {
-                "title": "Встроено",
-                "value": "<b style=\"color:#3300ff\">Чары зверского палача (50)</b>"
-            },
-            "set": {
-                "title": "Комплект",
-                "value": "<b style=\"color:#339900\">Головореза</b>"
-            },
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "Несмотря на изрядную поношенность и потрепанный вид, надетые сапоги способны увеличить скорость своего владельца на 5 единиц.",
-            "nosell": "Предмет нельзя сдать в скупку",
-            "drop": true,
-            "use": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"4218139413\"",
-            "icon_list": [
-                "drop",
-                "use",
-                "info"
-            ],
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 1,
-            "_act4": 0,
-            "artifact_alt_id": "AA_4218139413"
-        },
-        {
-            "id": "4218141262",
-            "title": "Дырявые быстроходные сапоги",
-            "ord": "45",
-            "kind_id": "2",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#339900",
-            "quality": "1",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/bad_skor_sapog.gif",
-            "picture": "/images/data/artifacts/bad_skor_sapog.gif",
-            "kind": "Обувь",
-            "type_id": "3",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;10",
-            "lev": {
-                "title": " Уровень ",
-                "value": "3"
-            },
-            "trend": "Универсал",
-            "skills": [
-                {
-                    "title": "Защита",
-                    "value": "<b>+1</b>"
-                },
-                {
-                    "title": "Скорость",
-                    "value": "<b>+5</b>"
-                },
-                {
-                    "title": "Сила",
-                    "value": "<b>+5</b>"
-                },
-                {
-                    "title": "Уровень жизни",
-                    "value": "<b>+6</b>"
-                }
-            ],
-            "skills_e": [],
-            "enchant_mod": {
-                "title": "Встроено",
-                "value": "<b style=\"color:#3300ff\">Чары зверского палача (50)</b>"
-            },
-            "set": {
-                "title": "Комплект",
-                "value": "<b style=\"color:#339900\">Головореза</b>"
-            },
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "Несмотря на изрядную поношенность и потрепанный вид, надетые сапоги способны увеличить скорость своего владельца на 5 единиц.",
-            "nosell": "Предмет нельзя сдать в скупку",
-            "drop": true,
-            "use": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"4218141262\"",
-            "icon_list": [
-                "drop",
-                "use",
-                "info"
-            ],
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 1,
-            "_act4": 0,
-            "artifact_alt_id": "AA_4218141262"
-        },
-        {
-            "id": "4218141861",
-            "title": "Дырявые быстроходные сапоги",
-            "ord": "46",
-            "kind_id": "2",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#339900",
-            "quality": "1",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/bad_skor_sapog.gif",
-            "picture": "/images/data/artifacts/bad_skor_sapog.gif",
-            "kind": "Обувь",
-            "type_id": "3",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;10",
-            "lev": {
-                "title": " Уровень ",
-                "value": "3"
-            },
-            "trend": "Универсал",
-            "skills": [
-                {
-                    "title": "Защита",
-                    "value": "<b>+1</b>"
-                },
-                {
-                    "title": "Скорость",
-                    "value": "<b>+5</b>"
-                },
-                {
-                    "title": "Сила",
-                    "value": "<b>+5</b>"
-                },
-                {
-                    "title": "Уровень жизни",
-                    "value": "<b>+6</b>"
-                }
-            ],
-            "skills_e": [],
-            "enchant_mod": {
-                "title": "Встроено",
-                "value": "<b style=\"color:#3300ff\">Чары зверского палача (50)</b>"
-            },
-            "set": {
-                "title": "Комплект",
-                "value": "<b style=\"color:#339900\">Головореза</b>"
-            },
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "Несмотря на изрядную поношенность и потрепанный вид, надетые сапоги способны увеличить скорость своего владельца на 5 единиц.",
-            "nosell": "Предмет нельзя сдать в скупку",
-            "drop": true,
-            "use": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"4218141861\"",
-            "icon_list": [
-                "drop",
-                "use",
-                "info"
-            ],
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 1,
-            "_act4": 0,
-            "artifact_alt_id": "AA_4218141861"
-        },
-        {
-            "id": "4218140600",
-            "title": "Дырявые быстроходные сапоги",
-            "ord": "47",
-            "kind_id": "2",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#339900",
-            "quality": "1",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/bad_skor_sapog.gif",
-            "picture": "/images/data/artifacts/bad_skor_sapog.gif",
-            "kind": "Обувь",
-            "type_id": "3",
-            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;10",
-            "lev": {
-                "title": " Уровень ",
-                "value": "3"
-            },
-            "trend": "Универсал",
-            "skills": [
-                {
-                    "title": "Защита",
-                    "value": "<b>+1</b>"
-                },
-                {
-                    "title": "Скорость",
-                    "value": "<b>+5</b>"
-                },
-                {
-                    "title": "Сила",
-                    "value": "<b>+5</b>"
-                },
-                {
-                    "title": "Уровень жизни",
-                    "value": "<b>+6</b>"
-                }
-            ],
-            "skills_e": [],
-            "enchant_mod": {
-                "title": "Встроено",
-                "value": "<b style=\"color:#3300ff\">Чары зверского палача (50)</b>"
-            },
-            "set": {
-                "title": "Комплект",
-                "value": "<b style=\"color:#339900\">Головореза</b>"
-            },
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "Несмотря на изрядную поношенность и потрепанный вид, надетые сапоги способны увеличить скорость своего владельца на 5 единиц.",
-            "nosell": "Предмет нельзя сдать в скупку",
-            "drop": true,
-            "use": true,
-            "equip": true,
-            "add_attrs": " artifact_id=\"4218140600\"",
-            "icon_list": [
-                "drop",
-                "use",
-                "info"
-            ],
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 3,
-            "_act3": 1,
-            "_act4": 0,
-            "artifact_alt_id": "AA_4218140600"
-        },
-        {
-            "id": "3155305898",
-            "title": "Сапоги «Зов отваги»",
-            "ord": "53",
-            "kind_id": "2",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#3300ff",
-            "quality": "2",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/uv_bot_blue_16-20pvp.gif",
-            "picture": "/images/data/artifacts/uv_bot_blue_16-20pvp.gif",
-            "kind": "Обувь",
-            "type_id": "3",
-            "price": "<span title=\"Золотой\"><img src=\"/images/m_game3.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;61",
-            "dur": "5",
-            "dur_max": "50",
+            "price": "<span title=\"Золотой\"><img src=\"/images/m_game3.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;73",
+            "dur": "7",
+            "dur_max": "49",
             "lev": {
                 "title": " Уровень ",
                 "value": "18"
@@ -12132,7 +13267,15 @@ let items = {
             "skills": [
                 {
                     "title": "Ловкость",
-                    "value": "<b>+43</b>"
+                    "value": "<b>+47</b><b style=\"color:#990099\"> (4)</b>"
+                },
+                {
+                    "title": "Защита",
+                    "value": "<b>+11</b>"
+                },
+                {
+                    "title": "Инициатива",
+                    "value": "<b>+38</b><b style=\"color:#3300ff\"> (35)</b>"
                 },
                 {
                     "title": "Защита огонь-воздух",
@@ -12144,49 +13287,45 @@ let items = {
                 },
                 {
                     "title": "Сила",
-                    "value": "<b>+168</b><b style=\"color:#990099\"> (1)</b>"
+                    "value": "<b>+172</b><b style=\"color:#990099\"> (5)</b>"
                 },
                 {
                     "title": "Мудрость",
-                    "value": "<b>+111</b><b style=\"color:#990099\"> (1)</b>"
+                    "value": "<b>+115</b><b style=\"color:#990099\"> (5)</b>"
                 },
                 {
                     "title": "Уровень жизни",
-                    "value": "<b>+62</b>"
+                    "value": "<b>+75</b>"
                 },
                 {
                     "title": "Уровень маны",
                     "value": "<b>+55</b>"
                 },
                 {
-                    "title": "Защита",
-                    "value": "<b>+3</b><b style=\"color:#666666\"> (3)</b>"
+                    "title": "Интуиция",
+                    "value": "<b>+16</b><b style=\"color:#990099\"> (16)</b>"
                 }
             ],
             "skills_e": [
-                {
-                    "title": "Интуиция",
-                    "value": "<b>+1</b><b style=\"color:#990099\"> (1)</b>"
-                },
                 {
                     "title": "Скорость",
                     "value": "<b>+20</b><b style=\"color:#990099\"> (20)</b>"
                 },
                 {
                     "title": "Живучесть",
-                    "value": "<b>+1</b><b style=\"color:#990099\"> (1)</b>"
-                },
-                {
-                    "title": "Инициатива",
-                    "value": "<b>+35</b><b style=\"color:#3300ff\"> (35)</b>"
+                    "value": "<b>+5</b><b style=\"color:#990099\"> (5)</b>"
                 }
             ],
-            "enchant_icon": "<span class=\"enchants\">\n\t\t<img src=\"/images/enchants/oprava.png\" alt=\"\" class=\"enchant2_png\"><img src=\"/images/enchants/2_3.png\" alt=\"\" class=\"enchant_png\">\n\t\t</span>",
+            "enchant_icon": "<span class=\"enchants\">\n\t\t<img src=\"/images/enchants/oprava.png\" alt=\"\" class=\"enchant2_png\"><img src=\"/images/enchants/6_3.png\" alt=\"\" class=\"enchant_png\">\n\t\t</span>",
             "enchant": {
                 "title": "Руна",
-                "value": "<b style=\"color:#990099\">Руна скорости Сид II</b>"
+                "value": "<b style=\"color:#990099\">Руна скорости Сид VI</b>"
             },
-            "enchant_class": "enchant-2_3",
+            "enchant_class": "enchant-6_3",
+            "enchant_mod": {
+                "title": "Встроено",
+                "value": "<b style=\"color:#3300ff\">Чары зверского палача (50)</b>"
+            },
             "enchant3": {
                 "title": "Оправа",
                 "value": "<b style=\"color:#3300ff;\">Оправа решительности IV</b>"
@@ -12198,88 +13337,40 @@ let items = {
                 },
                 {
                     "title": "Символ",
-                    "value": "<b style=\"color:#666666;\">Символ обороны Фен</b>"
+                    "value": "<b style=\"color:#3300ff;\">Символ предчувствия Сент</b>"
                 }
             ],
             "set": {
                 "title": "Комплект",
-                "value": "<b style=\"color:#3300ff\">Доспехи «Зов отваги»</b>"
+                "value": "<b style=\"color:#990099\">Доспехи «Зов отваги»</b>"
             },
-            "nogive": "Предмет нельзя передать",
             "flags2": {
-                "crashproof": "Неломаемый предмет"
+                "can_crashproof": "Предмет можно укрепить смолой"
             },
             "rank_min": "Для приобретения или использования вещи необходимо звание <b class=\"redd\"><img src=\"/images/ranks/rank17.gif\" width=\"13\" height=\"13\" border=\"0\" alt=\"\" align=\"absmiddle\">Победоносец</b>.",
             "sell": true,
             "drop": true,
             "repair": true,
+            "use": true,
             "equip": true,
-            "add_attrs": " artifact_id=\"3155305898\" repair_price=\"122\" price_type=\"1\" sell_price=\"30\"",
+            "add_attrs": " artifact_id=\"3496620715\" repair_price=\"146\" price_type=\"1\" sell_price=\"30\"",
             "icon_list": {
-                "1": "info",
-                "2": "sell",
-                "3": "repair"
+                "1": "use",
+                "2": "info",
+                "3": "sell",
+                "4": "repair"
             },
             "action": "equip",
             "_act1": 2,
             "_act2": 3,
-            "_act3": 0,
+            "_act3": 1,
             "_act4": 0,
-            "artifact_alt_id": "AA_3155305898"
+            "artifact_alt_id": "AA_3496620715"
         },
         {
-            "id": "3155306142",
-            "title": "Подводные сапоги",
-            "ord": "62",
-            "kind_id": "2",
-            "storage_type": "0",
-            "profession": "0",
-            "color": "#666666",
-            "quality": "0",
-            "time_expire": "0",
-            "image": "/images/data/artifacts/podvod_sapog.gif",
-            "picture": "/images/data/artifacts/podvod_sapog.gif",
-            "kind": "Обувь",
-            "type_id": "3",
-            "lev": {
-                "title": " Уровень ",
-                "value": "6"
-            },
-            "trend": "Универсал",
-            "skills": [
-                {
-                    "title": "Ловкость",
-                    "value": "<b>+9</b>"
-                },
-                {
-                    "title": "Сила",
-                    "value": "<b>+27</b>"
-                },
-                {
-                    "title": "Живучесть",
-                    "value": "<b>+27</b>"
-                }
-            ],
-            "skills_e": [],
-            "nogive": "Предмет нельзя передать",
-            "noweight": "Предмет не занимает места в рюкзаке",
-            "nosell": "Предмет нельзя сдать в скупку",
-            "equip": true,
-            "add_attrs": " artifact_id=\"3155306142\"",
-            "icon_list": [
-                "info"
-            ],
-            "action": "equip",
-            "_act1": 2,
-            "_act2": 0,
-            "_act3": 0,
-            "_act4": 0,
-            "artifact_alt_id": "AA_3155306142"
-        },
-        {
-            "id": "4323352238",
+            "id": "3547900616",
             "title": "Мудрёные сапоги «Заступник небес»",
-            "ord": "75",
+            "ord": "44",
             "kind_id": "2",
             "storage_type": "0",
             "profession": "0",
@@ -12291,8 +13382,8 @@ let items = {
             "kind": "Обувь",
             "type_id": "3",
             "price": "<span title=\"Золотой\"><img src=\"/images/m_game3.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;73",
-            "dur": "42",
-            "dur_max": "50",
+            "dur": "27",
+            "dur_max": "49",
             "lev": {
                 "title": " Уровень ",
                 "value": "18"
@@ -12305,7 +13396,7 @@ let items = {
             "skills": [
                 {
                     "title": "Защита",
-                    "value": "<b>+43</b>"
+                    "value": "<b>+46</b><b style=\"color:#666666\"> (3)</b>"
                 },
                 {
                     "title": "Инициатива",
@@ -12313,7 +13404,7 @@ let items = {
                 },
                 {
                     "title": "Интуиция",
-                    "value": "<b>+11</b>"
+                    "value": "<b>+15</b><b style=\"color:#990099\"> (4)</b>"
                 },
                 {
                     "title": "Защита огонь-воздух",
@@ -12325,11 +13416,11 @@ let items = {
                 },
                 {
                     "title": "Сила",
-                    "value": "<b>+154</b>"
+                    "value": "<b>+159</b><b style=\"color:#990099\"> (5)</b>"
                 },
                 {
                     "title": "Мудрость",
-                    "value": "<b>+50</b>"
+                    "value": "<b>+55</b><b style=\"color:#990099\"> (5)</b>"
                 },
                 {
                     "title": "Уровень жизни",
@@ -12340,22 +13431,34 @@ let items = {
                     "value": "<b>+55</b>"
                 },
                 {
-                    "title": "Ловкость",
-                    "value": "<b>+3</b><b style=\"color:#666666\"> (3)</b>"
+                    "title": "Стойкость",
+                    "value": "<b>+100</b><b style=\"color:#3300ff\"> (100)</b>"
+                },
+                {
+                    "title": "Скорость",
+                    "value": "<b>+25</b><b style=\"color:#990099\"> (25)</b>"
                 }
             ],
             "skills_e": [
                 {
-                    "title": "Скорость",
-                    "value": "<b>+20</b><b style=\"color:#990099\"> (20)</b>"
+                    "title": "Ловкость",
+                    "value": "<b>+4</b><b style=\"color:#990099\"> (4)</b>"
+                },
+                {
+                    "title": "Живучесть",
+                    "value": "<b>+5</b><b style=\"color:#990099\"> (5)</b>"
                 }
             ],
-            "enchant_icon": "<span class=\"enchants\">\n\t\t<img src=\"/images/enchants/oprava.png\" alt=\"\" class=\"enchant2_png\"><img src=\"/images/enchants/1_3.png\" alt=\"\" class=\"enchant_png\">\n\t\t</span>",
+            "enchant_icon": "<span class=\"enchants\">\n\t\t<img src=\"/images/enchants/oprava.png\" alt=\"\" class=\"enchant2_png\"><img src=\"/images/enchants/6_3.png\" alt=\"\" class=\"enchant_png\">\n\t\t</span>",
             "enchant": {
                 "title": "Руна",
-                "value": "<b style=\"color:#990099\">Руна скорости Сид</b>"
+                "value": "<b style=\"color:#990099\">Руна скорости Сид VI</b>"
             },
-            "enchant_class": "enchant-1_3",
+            "enchant_class": "enchant-6_3",
+            "enchant_mod": {
+                "title": "Встроено",
+                "value": "<b style=\"color:#666666\">Чары нападения (25)</b>"
+            },
             "enchant3": {
                 "title": "Оправа",
                 "value": "<b style=\"color:#3300ff;\">Оправа решительности IV</b>"
@@ -12363,11 +13466,19 @@ let items = {
             "symbols": [
                 {
                     "title": "Символ",
+                    "value": "<b style=\"color:#3300ff;\">Символ сопротивления Буст</b>"
+                },
+                {
+                    "title": "Символ",
+                    "value": "<b style=\"color:#666666;\">Символ обороны Фен</b>"
+                },
+                {
+                    "title": "Символ",
                     "value": "<b style=\"color:#ff0000;\">Символ прочного щита Скут-Тум</b>"
                 },
                 {
                     "title": "Символ",
-                    "value": "<b style=\"color:#666666;\">Символ уклонения Кос</b>"
+                    "value": "<b style=\"color:#3300ff;\">Символ движения Го</b>"
                 }
             ],
             "set": {
@@ -12381,61 +13492,91 @@ let items = {
             "sell": true,
             "drop": true,
             "repair": true,
+            "use": true,
             "equip": true,
-            "add_attrs": " artifact_id=\"4323352238\" repair_price=\"146\" price_type=\"1\" sell_price=\"30\"",
+            "add_attrs": " artifact_id=\"3547900616\" repair_price=\"146\" price_type=\"1\" sell_price=\"30\"",
             "icon_list": {
-                "1": "info",
-                "2": "sell",
-                "3": "repair"
+                "1": "use",
+                "2": "info",
+                "3": "sell",
+                "4": "repair"
             },
             "action": "equip",
             "_act1": 2,
             "_act2": 3,
-            "_act3": 0,
+            "_act3": 1,
             "_act4": 0,
-            "artifact_alt_id": "AA_4323352238"
-        }
-    ],
-    "banners": [
+            "artifact_alt_id": "AA_3547900616"
+        },
         {
-            "id": "3467787644",
-            "title": "Знамя вершителя подземелий ",
-            "ord": "66",
-            "kind_id": "96",
+            "id": "4181352284",
+            "title": "Дырявые быстроходные сапоги",
+            "ord": "51",
+            "kind_id": "2",
             "storage_type": "0",
             "profession": "0",
-            "color": "#990099",
-            "quality": "3",
+            "color": "#339900",
+            "quality": "1",
             "time_expire": "0",
-            "image": "/images/data/artifacts/npaflag-4.gif",
-            "picture": "/images/data/artifacts/npaflag-4.gif",
-            "kind": "Знамена",
-            "type_id": "71",
-            "price": "<span title=\"Золотой\"><img src=\"/images/m_game3.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;25",
+            "image": "/images/data/artifacts/bad_skor_sapog.gif",
+            "picture": "/images/data/artifacts/bad_skor_sapog.gif",
+            "kind": "Обувь",
+            "type_id": "3",
+            "price": "<span title=\"Серебряный\"><img src=\"/images/m_game2.gif\" border=0 width=11 height=11 align=absmiddle></span>&nbsp;10",
             "lev": {
                 "title": " Уровень ",
-                "value": "7"
+                "value": "3"
             },
             "trend": "Универсал",
-            "skills": [],
+            "skills": [
+                {
+                    "title": "Защита",
+                    "value": "<b>+1</b>"
+                },
+                {
+                    "title": "Скорость",
+                    "value": "<b>+5</b>"
+                },
+                {
+                    "title": "Сила",
+                    "value": "<b>+5</b>"
+                },
+                {
+                    "title": "Уровень жизни",
+                    "value": "<b>+6</b>"
+                }
+            ],
             "skills_e": [],
+            "enchant_mod": {
+                "title": "Встроено",
+                "value": "<b style=\"color:#666666\">Чары нападения (25)</b>"
+            },
+            "set": {
+                "title": "Комплект",
+                "value": "<b style=\"color:#339900\">Головореза</b>"
+            },
             "nogive": "Предмет нельзя передать",
             "noweight": "Предмет не занимает места в рюкзаке",
-            "desc": "Знамя подземного рыцаря, прославившегося на весь Фэо своими подвигами. Когда такое полотнище бьётся над сомкнутыми рядами, враг в ужасе возносит молитвы всем известным богам. <br><SPAN style=\"color:indigo\">При использовании в бою на <STRONG><SPAN style=\"color:indigo\">8 минут</SPAN></STRONG> увеличивает текущую и максимальную жизнь на <STRONG><SPAN style=\"color:indigo\">60%</SPAN></STRONG> (складывается с эликсирами гиганта). Интервал использования - <STRONG><SPAN style=\"color:indigo\">1 раз в 6 часов</SPAN></STRONG>. </SPAN>\r\n<br><SPAN style=\"color:darkred\">Можно получить, повторив четыре свершения древних героев.</SPAN>",
+            "desc": "Несмотря на изрядную поношенность и потрепанный вид, надетые сапоги способны увеличить скорость своего владельца на 5 единиц.",
             "nosell": "Предмет нельзя сдать в скупку",
+            "drop": true,
+            "use": true,
             "equip": true,
-            "add_attrs": " artifact_id=\"3467787644\"",
+            "add_attrs": " artifact_id=\"4181352284\"",
             "icon_list": [
+                "drop",
+                "use",
                 "info"
             ],
             "action": "equip",
             "_act1": 2,
-            "_act2": 0,
-            "_act3": 0,
+            "_act2": 3,
+            "_act3": 1,
             "_act4": 0,
-            "artifact_alt_id": "AA_3467787644"
+            "artifact_alt_id": "AA_4181352284"
         }
     ],
+    "banners": [],
     "other": []
 }
 
