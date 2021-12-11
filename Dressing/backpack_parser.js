@@ -120,5 +120,3 @@ function parse(art_alt, filterEquip) {
     }
     return summary
 }
-
-module.exports.parse = parse

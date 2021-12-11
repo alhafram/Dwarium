@@ -187,11 +187,3 @@ class SetManager {
         }
     }
 }
-
-let setManager = new SetManager()
-
-document.addEventListener("LoadSets", event => {
-    setManager.loadSets()
-    setManager.fillSets()
-    setManager.setupListeners()
-})

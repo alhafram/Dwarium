@@ -1,15 +1,28 @@
-document.addEventListener("AttachDND", event => {
-    let eventItems = event.detail.items
+let setManager = new SetManager()
+
+document.addEventListener("DOMContentLoaded", async () => {
+    let result = await window.myAPI.loadData()
+    let parsedAllItems = parse(result.allItems)
+    setupAllItems(parsedAllItems)
+    let parsedWearedItems = parse(result.wearedItems)
+    setupWearedItems(parsedWearedItems)
+    var setsEvt = new Event("LoadSets")
+    setManager.loadSets()
+    setManager.fillSets()
+    setManager.setupListeners()
+})
+
+function setupAllItems(allItems) {
     let arr = []
-    arr = arr.concat(convertItemIntoDiv(eventItems.helmets))
-    arr = arr.concat(convertItemIntoDiv(eventItems.shoulders))
-    arr = arr.concat(convertItemIntoDiv(eventItems.bracers))
-    arr = arr.concat(convertItemIntoDiv(eventItems.main_weapons))
-    arr = arr.concat(convertItemIntoDiv(eventItems.offhand_weapons))
-    arr = arr.concat(convertItemIntoDiv(eventItems.cuirasses))
-    arr = arr.concat(convertItemIntoDiv(eventItems.leggings))
-    arr = arr.concat(convertItemIntoDiv(eventItems.chainmails))
-    arr = arr.concat(convertItemIntoDiv(eventItems.boots))
+    arr = arr.concat(convertItemIntoDiv(allItems.helmets))
+    arr = arr.concat(convertItemIntoDiv(allItems.shoulders))
+    arr = arr.concat(convertItemIntoDiv(allItems.bracers))
+    arr = arr.concat(convertItemIntoDiv(allItems.main_weapons))
+    arr = arr.concat(convertItemIntoDiv(allItems.offhand_weapons))
+    arr = arr.concat(convertItemIntoDiv(allItems.cuirasses))
+    arr = arr.concat(convertItemIntoDiv(allItems.leggings))
+    arr = arr.concat(convertItemIntoDiv(allItems.chainmails))
+    arr = arr.concat(convertItemIntoDiv(allItems.boots))
     arr.flatMap(i => i).forEach(item => {
         let parent = document.querySelector('.current_items')
         parent.appendChild(item)
@@ -97,20 +110,19 @@ document.addEventListener("AttachDND", event => {
             return items.map(i => i.item).filter(i => i != null)
         }
     }
-})
+}
 
-document.addEventListener("PutOnItems", event => {
-    let items = event.detail.items
+function setupWearedItems(wearedItems) {
     let arr = []
-    arr = arr.concat(convertItemIntoDiv(items.helmets))
-    arr = arr.concat(convertItemIntoDiv(items.shoulders))
-    arr = arr.concat(convertItemIntoDiv(items.bracers))
-    arr = arr.concat(convertItemIntoDiv(items.main_weapons))
-    arr = arr.concat(convertItemIntoDiv(items.offhand_weapons))
-    arr = arr.concat(convertItemIntoDiv(items.cuirasses))
-    arr = arr.concat(convertItemIntoDiv(items.leggings))
-    arr = arr.concat(convertItemIntoDiv(items.chainmails))
-    arr = arr.concat(convertItemIntoDiv(items.boots))
+    arr = arr.concat(convertItemIntoDiv(wearedItems.helmets))
+    arr = arr.concat(convertItemIntoDiv(wearedItems.shoulders))
+    arr = arr.concat(convertItemIntoDiv(wearedItems.bracers))
+    arr = arr.concat(convertItemIntoDiv(wearedItems.main_weapons))
+    arr = arr.concat(convertItemIntoDiv(wearedItems.offhand_weapons))
+    arr = arr.concat(convertItemIntoDiv(wearedItems.cuirasses))
+    arr = arr.concat(convertItemIntoDiv(wearedItems.leggings))
+    arr = arr.concat(convertItemIntoDiv(wearedItems.chainmails))
+    arr = arr.concat(convertItemIntoDiv(wearedItems.boots))
 
     setManager.equipedCurrentItemIds = arr.map(i => i.attributes.itemid.value)
 
@@ -123,7 +135,7 @@ document.addEventListener("PutOnItems", event => {
         putOnItem(item, true)
         state.currentElement = null
     })
-})
+}
 
 function convertItemIntoDiv(items) {
     return items.map(item => {

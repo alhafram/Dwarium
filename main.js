@@ -12,10 +12,6 @@ const {
     MainWindow
 } = require('./components/MainWindow')
 
-const {
-    parse
-} = require('./Dressing/backpack_parser')
-
 let mainWindow
 let current_server = null
 
@@ -25,9 +21,10 @@ function createMainBrowserView() {
     })
     browserView.setBounds(mainWindow.getControlBounds())
     browserView.setAutoResize({
-        width: true
-    })
-    browserView.webContents.openDevTools()
+            width: true,
+            height: true
+        })
+        // browserView.webContents.openDevTools()
     return browserView
 }
 
@@ -50,45 +47,35 @@ function createWindow() {
         TabsController.currentTab().webContents.reload()
     })
 
+    let dressingWindow = null
     ipcMain.on('open_dressing_room', (evt) => {
-        let child = new BrowserWindow({
-                parent: mainWindow,
-                width: 900,
-                height: 700,
-                minWidth: 900,
-                minHeight: 700,
-                useContentSize: true,
-                show: false,
-                webPreferences: {
-                    preload: path.join(__dirname, "Dressing/preload.js")
-                },
-            })
-            // child.loadURL('app://Dressing/index.html')
-        child.loadFile(`${path.join(app.getAppPath(), './Dressing/index.html')}`)
+        dressingWindow = new BrowserWindow({
+            parent: mainWindow,
+            width: 900,
+            height: 700,
+            minWidth: 900,
+            minHeight: 700,
+            useContentSize: true,
+            show: true,
+            webPreferences: {
+                preload: path.join(__dirname, "Dressing/preload.js")
+            }
+        })
+
+        dressingWindow.loadFile(`${path.join(app.getAppPath(), './Dressing/index.html')}`)
 
         let dressingItemsBrowserView = new BrowserView({
             enablePreferredSizeMode: true,
         })
         dressingItemsBrowserView.webContents.loadURL(`http://${current_server}.dwar.ru/user_iframe.php?group=2`)
             // dressingItemsBrowserView.webContents.openDevTools()
-        child.addBrowserView(dressingItemsBrowserView)
+        dressingWindow.addBrowserView(dressingItemsBrowserView)
         let wearedItemsBrowserView = new BrowserView({
             enablePreferredSizeMode: true,
         })
         wearedItemsBrowserView.webContents.loadURL(`http://${current_server}.dwar.ru/user.php`)
             // wearedItemsBrowserView.webContents.openDevTools()
-        child.addBrowserView(wearedItemsBrowserView)
-
-        child.webContents.on('did-finish-load', async() => {
-            let allItems = await dressingItemsBrowserView.webContents.executeJavaScript('art_alt')
-            let allItemsSummary = parse(allItems)
-            let wearedItems = await wearedItemsBrowserView.webContents.executeJavaScript('art_alt')
-            let wearedItemsSummary = parse(wearedItems)
-
-            child.webContents.send('getAllItems', allItemsSummary)
-            child.webContents.send('getWearedItems', wearedItemsSummary)
-            child.show()
-        })
+        dressingWindow.addBrowserView(wearedItemsBrowserView)
     })
 
     ipcMain.on('new_tab', (evt, id) => {
@@ -124,6 +111,17 @@ function createWindow() {
         return {
             result: result,
             req: req
+        }
+    })
+
+    ipcMain.handle('LoadSetItems', async(evt) => {
+        let browserViews = dressingWindow.getBrowserViews()
+        let allItems = await browserViews[0].webContents.executeJavaScript('art_alt')
+        let wearedItems = await browserViews[1].webContents.executeJavaScript('art_alt')
+        dressingWindow.show()
+        return {
+            allItems: allItems,
+            wearedItems: wearedItems
         }
     })
 }
