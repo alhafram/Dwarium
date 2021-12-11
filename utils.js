@@ -29,3 +29,7 @@ Array.prototype.first = function() {
 Array.prototype.unique = function () {
     return Array.from(new Set(this))
 };
+
+function generateRandomId() {
+    return (Math.random() + 1).toString(36).substring(2)
+}

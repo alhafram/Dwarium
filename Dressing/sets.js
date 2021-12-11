@@ -9,6 +9,14 @@ class SetManager {
         return document.querySelector(".sets")
     }
 
+    get setTitleBox() {
+        return document.querySelector("#currentSetTitle")
+    }
+
+    get allCurrentItems() {
+        return document.querySelector(".current_items").children.toArray()
+    }
+
     pushSet(newSet) {
         let set = this.sets.find(e => e.id == newSet.id)
         if(!isExists(set)) {
@@ -21,24 +29,7 @@ class SetManager {
     setupListeners() {
         let self = this
         document.querySelector("#addSetButton").addEventListener('click', e => {
-            this.deselectOtherArticles()
-            self.unequip()
-            let randomId = (Math.random() + 1).toString(36).substring(2)
-            let id = "set_" + randomId
-            let newSet = {
-                id: id,
-                title: "Default set",
-                ids: []
-            }
-            let article = this.createSetArticleElement(null, true)
-            document.querySelector("#currentSetTitle").value = "Default set"
-            this.setsBox.insertBefore(article, this.setsBox.firstElementChild.nextSibling)
-            self.currentSet = newSet
-            self.pushSet(newSet)
-        })
-
-        document.querySelector("#currentSetTitle").addEventListener('change', e => {
-            // TODO
+            self.addNewSet()
         })
         document.querySelector("#saveSet").addEventListener('click', e => {
             self.saveSet()
@@ -46,6 +37,23 @@ class SetManager {
         document.querySelector("#unequip").addEventListener('click', e => {
             self.unequip()
         })
+    }
+
+    addNewSet() {
+        this.deselectOtherArticles()
+        this.unequip()
+        let id = this.#generateSetId()
+        let newSet = {
+            id: id,
+            title: "Default set",
+            ids: []
+        }
+        let article = this.createSetArticleElement(newSet, true)
+        this.setTitleBox.value = "Default set"
+        this.setsBox.insertBefore(article, this.setsBox.firstElementChild.nextSibling)
+        this.currentSet = newSet
+        this.pushSet(newSet)
+        this.saveSet()
     }
 
     loadSets() {
@@ -65,7 +73,7 @@ class SetManager {
 
     createSetArticleElement(set, active) {
         let article = document.createElement('article')
-        article.id = isExists(set) ? set.id : "SOME RANDOM ID"
+        article.id = set.id
         let className = active ? this.#activeArticle : this.#article
         article.className = className
         var self = this
@@ -80,7 +88,7 @@ class SetManager {
 
         let span = document.createElement("span")
         span.className = "leaderboard__name"
-        span.textContent = isExists(set) ? set.title : "Default set"
+        span.textContent = set.title
         article.appendChild(span)
         return article
     }
@@ -93,19 +101,14 @@ class SetManager {
         this.unequip()
         element.className = this.#activeArticle
         let selectedSet = this.sets.find(obj => obj.id == element.id)
-        if(isExists(selectedSet)) {
-            this.currentSet = selectedSet
-            this.equipFromSet(selectedSet.ids)
-            document.querySelector("#currentSetTitle").value = selectedSet.title
-        } else {
-            document.querySelector("#currentSetTitle").value = "Default set"
-            this.unequip()
-        }
+        this.currentSet = selectedSet
+        this.equipFromSet(selectedSet.ids)
+        this.setTitleBox.value = selectedSet.title
     }
 
     saveSet() {
         let items = state.getEquipedItems()
-        let title = document.querySelector("#currentSetTitle").value
+        let title = this.setTitleBox.value
         let ids = items.map(i => i.attributes.itemid.value)
 
         let setArticles = setManager.setsBox.children.toArray()
@@ -117,15 +120,13 @@ class SetManager {
             isNew = false
             activeSet.lastElementChild.textContent = title
         } else {
-            let randomId = (Math.random() + 1).toString(36).substring(2)
-            id = "set_" + randomId
+            id = this.#generateSetId()
         }
         let newSet = {
             id: id,
             title: title,
             ids: ids.unique()
         }
-        activeSet.id = id
         localStorage.setItem(id, JSON.stringify(newSet))
         this.pushSet(newSet)
         this.currentSet = newSet
@@ -144,20 +145,14 @@ class SetManager {
 
     unequip() {
         let items = state.getEquipedItems()
-        console.log(items)
         for(var item of items) {
-            putOffItem(item.parentElement, false, true)
-            let copys = Array.from(document.querySelector(".current_items").children).filter(i => i.attributes.copy)
-            for(var copy of copys) {
-                copy.parentElement.removeChild(copy)
-            }
+            putOffItem(item.parentElement, isExists(item.attributes.copy), true)
         }
     }
 
     equipFromSet(ids) {
         for(var id of ids) {
-            let items = Array.from(document.querySelector(".current_items").children)
-            let item = items.filter(element => element.attributes.itemid.value == id)[0]
+            let item = this.allCurrentItems.filter(element => element.attributes.itemid.value == id).first()
             if(item) {
                 state.currentElement = item
                 putOnItem(item)
@@ -167,6 +162,10 @@ class SetManager {
                 return
             }
         }
+    }
+
+    #generateSetId() {
+        return "set_" + generateRandomId()
     }
 }
 
