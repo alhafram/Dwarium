@@ -1,28 +1,28 @@
-let setManager = new SetManager()
+let setManager = null
 
 document.addEventListener("DOMContentLoaded", async () => {
+    setManager = new SetManager()
     let result = await window.myAPI.loadData()
     let parsedAllItems = parse(result.allItems)
     setupAllItems(parsedAllItems)
     let parsedWearedItems = parse(result.wearedItems)
     setupWearedItems(parsedWearedItems)
-    var setsEvt = new Event("LoadSets")
+    setupSetManager()
+})
+
+function setupSetManager() {
     setManager.loadSets()
     setManager.fillSets()
     setManager.setupListeners()
-})
+}
+
+const parsingItemTypes = ['helmets', 'shoulders', 'bracers', 'mainWeapons', 'offhandWeapons', 'cuirasses', 'leggings', 'chainmails', 'boots']
 
 function setupAllItems(allItems) {
     let arr = []
-    arr = arr.concat(convertItemIntoDiv(allItems.helmets))
-    arr = arr.concat(convertItemIntoDiv(allItems.shoulders))
-    arr = arr.concat(convertItemIntoDiv(allItems.bracers))
-    arr = arr.concat(convertItemIntoDiv(allItems.main_weapons))
-    arr = arr.concat(convertItemIntoDiv(allItems.offhand_weapons))
-    arr = arr.concat(convertItemIntoDiv(allItems.cuirasses))
-    arr = arr.concat(convertItemIntoDiv(allItems.leggings))
-    arr = arr.concat(convertItemIntoDiv(allItems.chainmails))
-    arr = arr.concat(convertItemIntoDiv(allItems.boots))
+    for(const type of parsingItemTypes) {
+        arr = arr.concat(convertItemIntoDiv(allItems[type]))
+    }
     arr.flatMap(i => i).forEach(item => {
         let parent = document.querySelector('.current_items')
         parent.appendChild(item)
@@ -114,16 +114,9 @@ function setupAllItems(allItems) {
 
 function setupWearedItems(wearedItems) {
     let arr = []
-    arr = arr.concat(convertItemIntoDiv(wearedItems.helmets))
-    arr = arr.concat(convertItemIntoDiv(wearedItems.shoulders))
-    arr = arr.concat(convertItemIntoDiv(wearedItems.bracers))
-    arr = arr.concat(convertItemIntoDiv(wearedItems.main_weapons))
-    arr = arr.concat(convertItemIntoDiv(wearedItems.offhand_weapons))
-    arr = arr.concat(convertItemIntoDiv(wearedItems.cuirasses))
-    arr = arr.concat(convertItemIntoDiv(wearedItems.leggings))
-    arr = arr.concat(convertItemIntoDiv(wearedItems.chainmails))
-    arr = arr.concat(convertItemIntoDiv(wearedItems.boots))
-
+    for(const type of parsingItemTypes) {
+        arr = arr.concat(convertItemIntoDiv(wearedItems[type]))
+    }
     setManager.equipedCurrentItemIds = arr.map(i => i.attributes.itemid.value)
 
     arr.forEach(function(item) {
