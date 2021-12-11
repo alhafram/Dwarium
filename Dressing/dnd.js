@@ -13,7 +13,7 @@ document.addEventListener("AttachDND", event => {
     arr.flatMap(i => i).forEach(item => {
         let parent = document.querySelector('.current_items')
         parent.appendChild(item)
-    });
+    })
 
     let items = document.querySelectorAll(".current_items .box")
     items.forEach(function(item) {
@@ -112,14 +112,17 @@ document.addEventListener("PutOnItems", event => {
     arr = arr.concat(convertItemIntoDiv(items.chainmails))
     arr = arr.concat(convertItemIntoDiv(items.boots))
 
+    setManager.equipedCurrentItemIds = arr.map(i => i.attributes.itemid.value)
+
     arr.forEach(function(item) {
         setupEquipableItemEvents(item)
     })
+
     arr.forEach(item => {
         state.currentElement = item
         putOnItem(item, true)
         state.currentElement = null
-    });
+    })
 })
 
 function convertItemIntoDiv(items) {
@@ -143,7 +146,7 @@ function convertItemIntoDiv(items) {
             divItem.setAttribute('weapon', "off")
         }
         return divItem
-    });
+    })
 }
 
 function getType(kind_id) {
@@ -289,26 +292,6 @@ function putOffItem(element, remove, fake) {
         } else {
             document.querySelectorAll(".current_items")[0].appendChild(item)
         }
-        if(!fake) {
-            var rnd_url = '&_=' + (new Date().getTime() + Math.random());
-            let req = `fetch("http://w1.dwar.ru/action_run.php?code=PUT_OFF&url_success=user_iframe.php%3Fgroup%3D1%26update_swf%3D1&url_error=user_iframe.php%3Fgroup%3D1%26update_swf%3D1&artifact_id=${item.attributes.itemId.value}&ajax=1${rnd_url}", {
-                  "headers": {
-                    "accept": "*/*",
-                    "accept-language": "en-GB,en-US;q=0.9,en;q=0.8,ru;q=0.7",
-                    "cache-control": "no-cache",
-                    "pragma": "no-cache"
-                  },
-                  "referrer": "http://w1.dwar.ru/user_iframe.php?group=2",
-                  "referrerPolicy": "no-referrer-when-downgrade",
-                  "body": null,
-                  "method": "GET",
-                  "mode": "cors",
-                  "credentials": "include"
-                })`
-                document.dispatchEvent(new CustomEvent('MakeRequest', {
-                    detail: req
-                }))
-        }
     }
 }
 
@@ -335,27 +318,6 @@ function putOnItem(item, fake) {
     state[item.attributes.type.value].box.children[0].style.visibility = "visible"
     item.attributes.equiped.value = true
     filterWithResettingArmorType()
-
-    if(!item.attributes.copy && !fake) {
-        var rnd_url = '&_=' + (new Date().getTime() + Math.random());
-        let req = `fetch("http://w1.dwar.ru/action_run.php?code=PUT_ON&url_success=user_iframe.php%3Fgroup%3D2%26update_swf%3D1&url_error=user_iframe.php%3Fgroup%3D2%26update_swf%3D1&artifact_id=${item.attributes.itemId.value}&in[slot_num]=0&in[variant_effect]=0&ajax=1${rnd_url}", {
-          "headers": {
-            "accept": "*/*",
-            "accept-language": "en-GB,en-US;q=0.9,en;q=0.8,ru;q=0.7",
-            "cache-control": "no-cache",
-            "pragma": "no-cache"
-          },
-          "referrer": "http://w1.dwar.ru/user_iframe.php?group=2",
-          "referrerPolicy": "no-referrer-when-downgrade",
-          "body": null,
-          "method": "GET",
-          "mode": "cors",
-          "credentials": "include"
-        })`
-        document.dispatchEvent(new CustomEvent('MakeRequest', {
-            detail: req
-        }))
-    }
 }
 
 function putOffWeapon(item, fake) {

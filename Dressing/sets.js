@@ -1,6 +1,7 @@
 class SetManager {
     sets = []
     currentSet = null
+    equipedCurrentItemIds = []
 
     #article = "leaderboard__profile"
     #activeArticle = "leaderboard__profile active"
@@ -36,6 +37,9 @@ class SetManager {
         })
         document.querySelector("#unequip").addEventListener('click', e => {
             self.unequip()
+        })
+        document.querySelector("#equipSet").addEventListener('click', e => {
+            self.equipSelectedSet()
         })
     }
 
@@ -166,6 +170,21 @@ class SetManager {
 
     #generateSetId() {
         return "set_" + generateRandomId()
+    }
+
+    async equipSelectedSet() {
+        if(!isExists(this.currentSet)) {
+            return
+        }
+        while(!this.equipedCurrentItemIds.isEmpty()) {
+            let id = this.equipedCurrentItemIds.first()
+            await unequipRequest(id)
+            this.equipedCurrentItemIds.removeItem(id)
+        }
+        for(var id of this.currentSet.ids) {
+            await equipRequest(id)
+            this.equipedCurrentItemIds.push(id)
+        }
     }
 }
 

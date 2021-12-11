@@ -1,5 +1,5 @@
 document.addEventListener("AttachDND", event => {
-    
+
     document.querySelector("#i_gray").onchange = function(e) {
         let items = Array.from(document.querySelector(".current_items").children).filter(e => e.attributes.quality.value == 0)
         if(this.checked) {
@@ -77,4 +77,4 @@ document.addEventListener("AttachDND", event => {
             })
         }
     }
-});
+})

@@ -26,7 +26,7 @@ function createMainBrowserView() {
     browserView.setBounds(mainWindow.getControlBounds())
     browserView.setAutoResize({
         width: true
-    });
+    })
     browserView.webContents.openDevTools()
     return browserView
 }
@@ -44,7 +44,7 @@ function createWindow() {
         TabsController.currentTab().webContents.loadURL(`http://${current_server}.dwar.ru/`)
         mainWindow.webContents.send('url', `http://${current_server}.dwar.ru`, TabsController.current_tab_id)
         configService.writeData('server', server)
-    });
+    })
 
     ipcMain.on('reload', (evt) => {
         TabsController.currentTab().webContents.reload()
@@ -52,19 +52,19 @@ function createWindow() {
 
     ipcMain.on('open_dressing_room', (evt) => {
         let child = new BrowserWindow({
-            parent: mainWindow,
-            width: 900,
-            height: 700,
-            minWidth: 900,
-            minHeight: 700,
-            useContentSize: true,
-            show: false,
-            webPreferences: {
-                preload: path.join(__dirname, "preloadDressroom.js")
-            },
-        });
-        // child.loadURL('app://Dressing/index.html');
-        child.loadFile(`${path.join(app.getAppPath(), './Dressing/index.html')}`);
+                parent: mainWindow,
+                width: 900,
+                height: 700,
+                minWidth: 900,
+                minHeight: 700,
+                useContentSize: true,
+                show: false,
+                webPreferences: {
+                    preload: path.join(__dirname, "Dressing/preload.js")
+                },
+            })
+            // child.loadURL('app://Dressing/index.html')
+        child.loadFile(`${path.join(app.getAppPath(), './Dressing/index.html')}`)
 
         let dressingItemsBrowserView = new BrowserView({
             enablePreferredSizeMode: true,
@@ -87,7 +87,7 @@ function createWindow() {
 
             child.webContents.send('getAllItems', allItemsSummary)
             child.webContents.send('getWearedItems', wearedItemsSummary)
-            child.show();
+            child.show()
         })
     })
 
@@ -102,7 +102,7 @@ function createWindow() {
         browserView.setBounds(mainWindow.getControlBounds())
         browserView.setAutoResize({
             width: true
-        });
+        })
         mainWindow.setContentBounds(TabsController.currentTab())
         browserView.webContents.loadURL('https://google.com')
         mainWindow.webContents.send('url', 'https://google.com', id)
@@ -119,8 +119,12 @@ function createWindow() {
         TabsController.deleteTab(id)
     })
 
-    ipcMain.on('MakeRequest', async (evt, req) => {
-        await browserView.webContents.executeJavaScript(req)
+    ipcMain.handle('MakeRequest', async(evt, req) => {
+        let result = await browserView.webContents.executeJavaScript(req.req)
+        return {
+            result: result,
+            req: req
+        }
     })
 }
 
