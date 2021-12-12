@@ -5,7 +5,7 @@ const {
 const {
     Requests
 } = require('../services/RequestManager')
-
+const configService = require('../services/ConfigService')
 require('./utils')
 
 contextBridge.exposeInMainWorld('myAPI', {
@@ -24,8 +24,36 @@ contextBridge.exposeInMainWorld('myAPI', {
     },
     saveSet: (set) => {
         console.log("Save set to config: ", set)
+    },
+    setStyleHelper: () => {
+        return SetStyleHelper
     }
 })
+
+const SetStyleHelper = {
+    magmarSchools: ['Огонь', 'Земля', 'Тень'],
+    humanSchools: ['Воздух', 'Свет', 'Вода'],
+    getStyleId(name) {
+        if(name == 'Огонь') {
+            return 8
+        }
+        if(name == 'Воздух') {
+            return 1
+        }
+        if(name == 'Земля') {
+            return 16
+        }
+        if(name == 'Вода') {
+            return 2
+        }
+        if(name == 'Тень') {
+            return 32
+        }
+        if(name == 'Свет') {
+            return 4
+        }
+    }
+}
 
 function difference(setA, setB) {
     let _difference = new Set(setA)
@@ -43,9 +71,9 @@ async function getCurrentMagicSchool(zikkuratId) {
     })
     let doc = result.toDocument()
     let schools = Array.from(doc.querySelector("body > table > tbody > tr:nth-child(2) > td.bgg > table > tbody > tr:nth-child(1) > td:nth-child(2) > select").children).map(e => e.textContent)
-    let currentStyle = difference(magmarSchools, schools)
+    let currentStyle = difference(SetStyleHelper.magmarSchools, schools)
     if(currentStyle == 0) {
-        currentStyle = difference(humanSchools, schools)
+        currentStyle = difference(SetStyleHelper.humanSchools, schools)
     }
     return currentStyle
 }
