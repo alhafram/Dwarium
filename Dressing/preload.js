@@ -52,6 +52,31 @@ const SetStyleHelper = {
         if(name == 'Свет') {
             return 4
         }
+    },
+    getSchool(style, currentSchool) {
+        if(SetStyleHelper.magmarSchools.includes(currentSchool)) {
+            if(style == 'Костолом') {
+                return 'Огонь'
+            }
+            if(style == 'Тяжеловес') {
+                return 'Земля'
+            }
+            if(style == 'Ловкач') {
+                return 'Тень'
+            }
+        }
+        if(SetStyleHelper.humanSchools.includes(currentSchool)) {
+            if(style == 'Костолом') {
+                return 'Воздух'
+            }
+            if(style == 'Тяжеловес') {
+                return 'Вода'
+            }
+            if(style == 'Ловкач') {
+                return 'Свет'
+            }
+        }
+        return null
     }
 }
 

@@ -50,8 +50,7 @@ class SetManager {
         let newSet = {
             id: id,
             title: "Default set",
-            ids: [],
-            style: currentMagicSchool
+            ids: []
         }
         let article = this.createSetArticleElement(newSet, true)
         this.setTitleBox.value = "Default set"
@@ -107,6 +106,8 @@ class SetManager {
         element.className = this.#activeArticle
         let selectedSet = this.sets.find(obj => obj.id == element.id)
         this.currentSet = selectedSet
+        currentStyle = selectedSet.style
+        filterCurrentItems()
         this.equipFromSet(selectedSet.ids)
         this.setTitleBox.value = selectedSet.title
     }
@@ -131,7 +132,8 @@ class SetManager {
             id: id,
             title: title,
             ids: ids.unique(),
-            style: currentMagicSchool
+            style: currentStyle,
+            magicSchool: window.myAPI.setStyleHelper().getSchool(currentStyle, currentMagicSchool)
         }
         localStorage.setItem(id, JSON.stringify(newSet))
         this.pushSet(newSet)
@@ -178,10 +180,10 @@ class SetManager {
         if(!isExists(this.currentSet)) {
             return
         }
-        if(currentMagicSchool != this.currentSet.style) {
-            let styleId = window.myAPI.setStyleHelper().getStyleId(this.currentSet.style)
+        if(this.currentSet.magicSchool && currentMagicSchool != this.currentSet.magicSchool) {
+            let styleId = window.myAPI.setStyleHelper().getStyleId(this.currentSet.magicSchool)
             await changeStyle(zikkuratId, styleId)
-            currentMagicSchool = this.currentSet.style
+            currentMagicSchool = this.currentSet.magicSchool
             this.equipedCurrentItemIds = []
         }
         while(!this.equipedCurrentItemIds.isEmpty()) {

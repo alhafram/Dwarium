@@ -148,6 +148,7 @@ function convertItemIntoDiv(items) {
         divItem.setAttribute('type', getType(item.kind_id))
         divItem.setAttribute('quality', item.quality)
         divItem.setAttribute('itemId', item.id)
+        divItem.setAttribute('trend', item.trend)
         if(item.kind_id == 12) {
             divItem.setAttribute('weapon', "2h")
         }
@@ -290,6 +291,13 @@ function filterCurrentItems() {
         } else {
             i.style.display = 'inline-block'
         }
+        if(currentStyle) {
+            if(i.attributes.trend.value == 'Универсал' && i.style.display == 'inline-block' || currentStyle == i.attributes.trend.value && i.style.display == 'inline-block') {
+                i.style.display = 'inline-block'
+            } else {
+                i.style.display = 'none'
+            }
+        }
     })
 }
 
@@ -304,10 +312,21 @@ function putOffItem(element, remove, fake) {
         } else {
             document.querySelectorAll(".current_items")[0].appendChild(item)
         }
+        let equipedStyles = state.getEquipedItems().map(i => i.attributes.trend.value)
+        let uniqueStyles = new Set(equipedStyles)
+        if(equipedStyles.size == 0 || uniqueStyles.size == 1 && uniqueStyles.has('Универсал')) {
+            currentStyle = null
+            filterCurrentItems()
+        }
     }
 }
 
+var currentStyle = null
+
 function putOnItem(item, fake) {
+    if(item.attributes.trend.value != 'Универсал') {
+        currentStyle = item.attributes.trend.value
+    }
     if(state.currentElement.attributes.weapon && !item.attributes.copy) {
         if(state.currentElement.attributes.weapon.value == "2h") {
             putOffWeapon(state.currentElement)
@@ -330,6 +349,7 @@ function putOnItem(item, fake) {
     state[item.attributes.type.value].box.children[0].style.visibility = "visible"
     item.attributes.equiped.value = true
     filterWithResettingArmorType()
+    filterCurrentItems()
 }
 
 function putOffWeapon(item, fake) {
