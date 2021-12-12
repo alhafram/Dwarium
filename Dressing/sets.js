@@ -110,6 +110,7 @@ class SetManager {
         filterCurrentItems()
         this.equipFromSet(selectedSet.ids)
         this.setTitleBox.value = selectedSet.title
+        state.getEquipedItems().map(i => i.style.display = 'inline-block')
     }
 
     saveSet() {

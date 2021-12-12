@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     let parsedWearedItems = parse(result.wearedItems)
     setupWearedItems(parsedWearedItems)
     setupSetManager()
+    setupFilters()
 })
 
 function setupSetManager() {
@@ -297,6 +298,12 @@ function filterCurrentItems() {
             } else {
                 i.style.display = 'none'
             }
+        }
+        for(var filter of filters) {
+            let items = Array.from(document.querySelector(".current_items").children).filter(e => e.attributes.quality.value == filter)
+            items.forEach(item => {
+                item.style.display = 'none'
+            })
         }
     })
 }

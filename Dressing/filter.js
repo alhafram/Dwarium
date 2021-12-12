@@ -1,80 +1,49 @@
-document.addEventListener("AttachDND", event => {
+let filters = new Set()
+
+function setupFilters() {
 
     document.querySelector("#i_gray").onchange = function(e) {
-        let items = Array.from(document.querySelector(".current_items").children).filter(e => e.attributes.quality.value == 0)
-        if(this.checked) {
-            items.forEach(item => {
-                item.style.display = 'inline-block'
-            })
+        if(!this.checked) {
+            filters.add(0)
         } else {
-            items.forEach(item => {
-                item.style.display = 'none'
-            })
+            filters.delete(0)
         }
-    }
-
-    document.querySelector("#i_gray").onchange = function(e) {
-        let items = Array.from(document.querySelector(".current_items").children).filter(e => e.attributes.quality.value == 0)
-        if(this.checked) {
-            items.forEach(item => {
-                item.style.display = 'inline-block'
-            })
-        } else {
-            items.forEach(item => {
-                item.style.display = 'none'
-            })
-        }
+        filterCurrentItems()
     }
 
     document.querySelector("#i_green").onchange = function(e) {
-        let items = Array.from(document.querySelector(".current_items").children).filter(e => e.attributes.quality.value == 1)
-        if(this.checked) {
-            items.forEach(item => {
-                item.style.display = 'inline-block'
-            })
+        if(!this.checked) {
+            filters.add(1)
         } else {
-            items.forEach(item => {
-                item.style.display = 'none'
-            })
+            filters.delete(1)
         }
+        filterCurrentItems()
     }
 
     document.querySelector("#i_blue").onchange = function(e) {
-        let items = Array.from(document.querySelector(".current_items").children).filter(e => e.attributes.quality.value == 2)
-        if(this.checked) {
-            items.forEach(item => {
-                item.style.display = 'inline-block'
-            })
+        if(!this.checked) {
+            filters.add(2)
         } else {
-            items.forEach(item => {
-                item.style.display = 'none'
-            })
+            filters.delete(2)
         }
+        filterCurrentItems()
     }
 
     document.querySelector("#i_purple").onchange = function(e) {
-        let items = Array.from(document.querySelector(".current_items").children).filter(e => e.attributes.quality.value == 3)
-        if(this.checked) {
-            items.forEach(item => {
-                item.style.display = 'inline-block'
-            })
+        if(!this.checked) {
+            filters.add(3)
         } else {
-            items.forEach(item => {
-                item.style.display = 'none'
-            })
+            filters.delete(3)
         }
+        filterCurrentItems()
     }
 
     document.querySelector("#i_red").onchange = function(e) {
-        let items = Array.from(document.querySelector(".current_items").children).filter(e => e.attributes.quality.value == 4)
-        if(this.checked) {
-            items.forEach(item => {
-                item.style.display = 'inline-block'
-            })
+        if(!this.checked) {
+            filters.add(4)
         } else {
-            items.forEach(item => {
-                item.style.display = 'none'
-            })
+            filters.delete(4)
         }
+        filterCurrentItems()
     }
-})
+}
