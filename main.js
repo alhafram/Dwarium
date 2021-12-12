@@ -6,6 +6,7 @@ const BrowserView = electron.BrowserView
 const path = require('path')
 const ipcMain = electron.ipcMain
 
+const requestManager = require('./services/RequestManager')
 const configService = require('./services/ConfigService')
 const TabsController = require('./services/TabsController')
 const {
@@ -61,21 +62,7 @@ function createWindow() {
                 preload: path.join(__dirname, "Dressing/preload.js")
             }
         })
-
         dressingWindow.loadFile(`${path.join(app.getAppPath(), './Dressing/index.html')}`)
-
-        let dressingItemsBrowserView = new BrowserView({
-            enablePreferredSizeMode: true,
-        })
-        dressingItemsBrowserView.webContents.loadURL(`http://${current_server}.dwar.ru/user_iframe.php?group=2`)
-            // dressingItemsBrowserView.webContents.openDevTools()
-        dressingWindow.addBrowserView(dressingItemsBrowserView)
-        let wearedItemsBrowserView = new BrowserView({
-            enablePreferredSizeMode: true,
-        })
-        wearedItemsBrowserView.webContents.loadURL(`http://${current_server}.dwar.ru/user.php`)
-            // wearedItemsBrowserView.webContents.openDevTools()
-        dressingWindow.addBrowserView(wearedItemsBrowserView)
     })
 
     ipcMain.on('new_tab', (evt, id) => {
@@ -96,7 +83,6 @@ function createWindow() {
     })
 
     ipcMain.on('make_active', (evt, id) => {
-        console.log("MAKE ACTIVE")
         TabsController.setupCurrent(id)
         mainWindow.setBrowserView(TabsController.currentTab())
         mainWindow.webContents.send('url', TabsController.currentTab().webContents.getURL(), id)
@@ -106,7 +92,7 @@ function createWindow() {
         TabsController.deleteTab(id)
     })
 
-    ipcMain.handle('MakeRequest', async(evt, req) => {
+    ipcMain.handle('MakeWebRequest', async(evt, req) => {
         let result = await browserView.webContents.executeJavaScript(req.req)
         return {
             result: result,
@@ -114,10 +100,17 @@ function createWindow() {
         }
     })
 
+    ipcMain.handle('Fetch', async (evt, type, params) => {
+        let resp = await requestManager.makeRequest(type, params)
+        return resp
+    })
+
     ipcMain.handle('LoadSetItems', async(evt) => {
-        let browserViews = dressingWindow.getBrowserViews()
-        let allItems = await browserViews[0].webContents.executeJavaScript('art_alt')
-        let wearedItems = await browserViews[1].webContents.executeJavaScript('art_alt')
+        let dressingBrowserView = new BrowserView()
+        await dressingBrowserView.webContents.loadURL(`http://${current_server}.dwar.ru/user_iframe.php?group=2`)
+        let allItems = await dressingBrowserView.webContents.executeJavaScript('art_alt')
+        await dressingBrowserView.webContents.loadURL(`http://${current_server}.dwar.ru/user.php`)
+        let wearedItems = await dressingBrowserView.webContents.executeJavaScript('art_alt')
         dressingWindow.show()
         return {
             allItems: allItems,

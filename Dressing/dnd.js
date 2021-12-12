@@ -1,10 +1,17 @@
 let setManager = null
 
+let currentMagicSchool = null
+let zikkuratId = null
+
 document.addEventListener("DOMContentLoaded", async () => {
     setManager = new SetManager()
-    let result = await window.myAPI.loadData()
+    let result = await window.myAPI.loadItemsData()
     let parsedAllItems = parse(result.allItems)
     setupAllItems(parsedAllItems)
+    if(!parsedAllItems.zikkurat.isEmpty()) {
+        zikkuratId = parsedAllItems.zikkurat.first().id
+        currentMagicSchool = await window.myAPI.loadCurrentMagicSchool(zikkuratId)
+    }
     let parsedWearedItems = parse(result.wearedItems)
     setupWearedItems(parsedWearedItems)
     setupSetManager()

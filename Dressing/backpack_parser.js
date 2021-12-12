@@ -1,27 +1,24 @@
-function parse(art_alt, filterEquip) {
-    let objects = Array.from(Object.keys(art_alt).map(k => art_alt[k]))
-    let items = null
+function parse(art_alt) {
+    let items = Array.from(Object.keys(art_alt).map(k => art_alt[k]))
 
-    if(filterEquip) {
-        items = objects.filter(o => o.action == 'equip') // All items you can equip
-    } else {
-        items = objects
-    }
+    let zikkurat = items.filter(i => i.kind_id == '25' && i.type_id == '12')
+    items = items.removeItems(zikkurat)
+
 
     let arcats = items.filter(i => i.kind_id == '161') // Arcats
-    items = items.filter(i => i.kind_id != '161')
+    items = items.removeItems(arcats)
 
     let quivers = items.filter(i => i.kind_id == '131') // Quivers
-    items = items.filter(i => i.kind_id != '131')
+    items = items.removeItems(quivers)
 
     let amulets = items.filter(i => i.kind_id == '25') // Amulets
-    items = items.filter(i => i.kind_id != '25')
+    items = items.removeItems(amulets)
 
     let rings = items.filter(i => i.kind_id == '76' && i.type_id == '18') // Rings
-    items = items.filter(i => i.kind_id != '76' || i.type_id != '18')
+    items = items.removeItems(rings)
 
     let bags = items.filter(i => i.kind_id == '30') // Bags
-    items = items.filter(i => i.kind_id != '30')
+    items = items.removeItems(bags)
 
     let decorKindIds = [{
         kind_id: '12',
@@ -42,58 +39,57 @@ function parse(art_alt, filterEquip) {
 
     // Decor items
     let commonDecorItems = items.filter(i => i.type_id == '111')
-    items = items.filter(i => i.type_id != '111')
     let decorItems = items.filter(i => decorKindIds.some(d => d.kind_id == i.kind_id && d.type_id == i.type_id))
     decorItems = decorItems.concat(commonDecorItems)
-    items = items.filter(i => !decorKindIds.some(d => d.kind_id == i.kind_id && d.type_id == i.type_id))
+    items = items.removeItems(decorItems)
 
     let profWeapons = items.filter(i => i.kind_id == '42') // Profession weapons
-    items = items.filter(i => i.kind_id != '42')
+    items = items.removeItems(profWeapons)
 
     let belts = items.filter(i => i.kind_id == '31') // Belts
-    items = items.filter(i => i.kind_id != '31')
+    items = items.removeItems(belts)
 
     let bracelets = items.filter(i => i.kind_id == '137') // Bracelets
-    items = items.filter(i => i.kind_id != '137')
+    items = items.removeItems(bracelets)
 
     let bows = items.filter(i => i.kind_id == '116') // Bows
-    items = items.filter(i => i.kind_id != '116')
+    items = items.removeItems(bows)
 
     let helmets = items.filter(i => i.kind_id == '1') // Helmets
-    items = items.filter(i => i.kind_id != '1')
+    items = items.removeItems(helmets)
 
     let shoulders = items.filter(i => i.kind_id == '7') // Shoulders
-    items = items.filter(i => i.kind_id != '7')
+    items = items.removeItems(shoulders)
 
     let bracersIds = ['5', '77', '120']
     let bracers = items.filter(i => bracersIds.includes(i.kind_id)) // Bracers
-    items = items.filter(i => !bracersIds.includes(i.kind_id))
+    items = items.removeItems(bracers)
 
     let mainWeaponsKindIds = ['10', '12'] // 10 - 1h --- 12 - 2h
     let mainWeapons = items.filter(i => mainWeaponsKindIds.includes(i.kind_id)) // Main weapons
-    items = items.filter(i => !mainWeaponsKindIds.includes(i.kind_id))
+    items = items.removeItems(mainWeapons)
 
     let offhandWeaponsKindIds = ['44', '17'] // 44 - weapon --- 17 - shield
     let offhandWeapons = items.filter(i => offhandWeaponsKindIds.includes(i.kind_id)) // Offhand weapons
-    items = items.filter(i => !offhandWeaponsKindIds.includes(i.kind_id))
+    items = items.removeItems(offhandWeapons)
 
     let cuirassesIds = ['20', '3']
     let cuirasses = items.filter(i => cuirassesIds.includes(i.kind_id)) // Cuirasses
-    items = items.filter(i => !cuirassesIds.includes(i.kind_id))
+    items = items.removeItems(cuirasses)
 
     let leggings = items.filter(i => i.kind_id == '6') // Leggingses
-    items = items.filter(i => i.kind_id != '6')
+    items = items.removeItems(leggings)
 
     let chainmailsIds = ['21', '4']
     let chainmails = items.filter(i => chainmailsIds.includes(i.kind_id)) // Chainmails
-    items = items.filter(i => !chainmailsIds.includes(i.kind_id))
+    items = items.removeItems(chainmails)
 
     let boots = items.filter(i => i.kind_id == '2') // Boots
-    items = items.filter(i => i.kind_id != '2')
+    items = items.removeItems(boots)
 
     let bannersIds = ['96']
     let banners = items.filter(i => bannersIds.includes(i.kind_id)) // Banners
-    items = items.filter(i => !bannersIds.includes(i.kind_id))
+    items = items.removeItems(banners)
 
     let summary = {
         arcats: arcats,
@@ -116,7 +112,8 @@ function parse(art_alt, filterEquip) {
         chainmails: chainmails,
         boots: boots,
         banners: banners,
-        other: items
+        other: items,
+        zikkurat: zikkurat
     }
     return summary
 }

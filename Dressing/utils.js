@@ -14,6 +14,11 @@ String.prototype.hashCode = function(seed = 0){
     return 4294967296 * (2097151 & h2) + (h1>>>0)
 }
 
+String.prototype.toDocument = function() {
+    var parser = new DOMParser();
+    return parser.parseFromString(this, "text/html");
+}
+
 function isExists(element) {
     return element !== null && element !== undefined
 }
@@ -34,6 +39,16 @@ Array.prototype.removeItem = function(element) {
     var index = this.indexOf(element)
     if(index != -1) {
         this.splice(index, 1)
+    }
+    return this
+}
+
+Array.prototype.removeItems = function(elements) {
+    for(var element of elements) {
+        var index = this.indexOf(element)
+        if(index != -1) {
+            this.splice(index, 1)
+        }
     }
     return this
 }

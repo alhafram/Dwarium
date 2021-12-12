@@ -222,7 +222,6 @@
         if (evt.currentTarget.className.includes('active')) {
             return
         }
-        console.log("Active")
         let buttons = Array.from(document.querySelector("body > div.tab").children)
         buttons.filter(b => b.className.includes("ab"))
         buttons.forEach(b => b.className = "ab")
