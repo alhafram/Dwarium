@@ -2,48 +2,21 @@ let filters = new Set()
 
 function setupFilters() {
 
-    document.querySelector("#i_gray").onchange = function(e) {
-        if(!this.checked) {
-            filters.add(0)
-        } else {
-            filters.delete(0)
-        }
-        filterCurrentItems()
+    let filterTypes = {
+        'i_gray': 0,
+        'i_green': 1,
+        'i_blue': 2,
+        'i_purple': 3,
+        'i_red': 4
     }
-
-    document.querySelector("#i_green").onchange = function(e) {
-        if(!this.checked) {
-            filters.add(1)
-        } else {
-            filters.delete(1)
+    for (const key in filterTypes) {
+        document.querySelector(`#${key}`).onchange = function(e) {
+            if(!this.checked) {
+                filters.add(filterTypes[key])
+            } else {
+                filters.delete(filterTypes[key])
+            }
+            filterCurrentItems()
         }
-        filterCurrentItems()
-    }
-
-    document.querySelector("#i_blue").onchange = function(e) {
-        if(!this.checked) {
-            filters.add(2)
-        } else {
-            filters.delete(2)
-        }
-        filterCurrentItems()
-    }
-
-    document.querySelector("#i_purple").onchange = function(e) {
-        if(!this.checked) {
-            filters.add(3)
-        } else {
-            filters.delete(3)
-        }
-        filterCurrentItems()
-    }
-
-    document.querySelector("#i_red").onchange = function(e) {
-        if(!this.checked) {
-            filters.add(4)
-        } else {
-            filters.delete(4)
-        }
-        filterCurrentItems()
     }
 }

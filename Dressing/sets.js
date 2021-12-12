@@ -44,6 +44,7 @@ class SetManager {
     }
 
     addNewSet() {
+        currentStyle = null
         this.deselectOtherArticles()
         this.unequip()
         let id = this.#generateSetId()
@@ -133,8 +134,8 @@ class SetManager {
             id: id,
             title: title,
             ids: ids.unique(),
-            style: currentStyle,
-            magicSchool: window.myAPI.setStyleHelper().getSchool(currentStyle, currentMagicSchool)
+            style: ids.isEmpty() ? null : currentStyle,
+            magicSchool: ids.isEmpty() ? null : window.myAPI.setStyleHelper().getSchool(currentStyle, currentMagicSchool)
         }
         localStorage.setItem(id, JSON.stringify(newSet))
         this.pushSet(newSet)
