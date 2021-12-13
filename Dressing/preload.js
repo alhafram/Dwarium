@@ -9,16 +9,16 @@ const configService = require('../services/ConfigService')
 require('./utils')
 
 contextBridge.exposeInMainWorld('myAPI', {
-    makeRequest: async(req) => {
+    makeRequest: async (req) => {
         return await ipcRenderer.invoke("MakeWebRequest", req)
     },
     server: () => {
         return configService.server
     },
-    loadItemsData: async() => {
+    loadItemsData: async () => {
         return await ipcRenderer.invoke("LoadSetItems")
     },
-    loadCurrentMagicSchool: async(zikkuratId) => {
+    loadCurrentMagicSchool: async (zikkuratId) => {
         let currentMagicSchool = await getCurrentMagicSchool(zikkuratId)
         return Array.from(currentMagicSchool)[0]
     },
