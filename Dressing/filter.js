@@ -9,7 +9,7 @@ function setupFilters() {
         'i_purple': 3,
         'i_red': 4
     }
-    for (const key in filterTypes) {
+    for(const key in filterTypes) {
         document.querySelector(`#${key}`).onchange = function(e) {
             if(!this.checked) {
                 filters.add(filterTypes[key])

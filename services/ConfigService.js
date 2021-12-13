@@ -19,9 +19,14 @@ function parseData(filePath) {
     const defaultData = {}
     try {
         return JSON.parse(fs.readFileSync(filePath));
-    } catch(error) {
+    } catch (error) {
         return defaultData;
     }
 }
 
-module.exports = { server, writeData, readData, parseData }
+module.exports = {
+    server,
+    writeData,
+    readData,
+    parseData
+}

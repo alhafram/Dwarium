@@ -22,10 +22,10 @@ function createMainBrowserView() {
     })
     browserView.setBounds(mainWindow.getControlBounds())
     browserView.setAutoResize({
-            width: true,
-            height: true
-        })
-        // browserView.webContents.openDevTools()
+        width: true,
+        height: true
+    })
+    // browserView.webContents.openDevTools()
     return browserView
 }
 
@@ -92,7 +92,7 @@ function createWindow() {
         TabsController.deleteTab(id)
     })
 
-    ipcMain.handle('MakeWebRequest', async(evt, req) => {
+    ipcMain.handle('MakeWebRequest', async (evt, req) => {
         let result = await browserView.webContents.executeJavaScript(req.req)
         return {
             result: result,
@@ -105,7 +105,7 @@ function createWindow() {
         return resp
     })
 
-    ipcMain.handle('LoadSetItems', async(evt) => {
+    ipcMain.handle('LoadSetItems', async (evt) => {
         let dressingBrowserView = new BrowserView()
         await dressingBrowserView.webContents.loadURL(`http://${current_server}.dwar.ru/user_iframe.php?group=2`)
         let allItems = await dressingBrowserView.webContents.executeJavaScript('art_alt')

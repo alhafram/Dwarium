@@ -29,7 +29,7 @@ function parse(art_alt) {
     }, {
         kind_id: '44',
         type_id: '2'
-    },{
+    }, {
         kind_id: '17',
         type_id: '4'
     }, {

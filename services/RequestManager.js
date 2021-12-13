@@ -31,5 +31,6 @@ async function makeRequest(type, params) {
 }
 
 module.exports = {
-    Requests, makeRequest
+    Requests,
+    makeRequest
 }
