@@ -65,3 +65,27 @@ async function changeStyle(zikkuratId, styleId) {
     })
     return res
 }
+
+async function getMagicSchools(zikkuratId) {
+    let req = `fetch(
+      "http://${window.myAPI.server()}.dwar.ru/action_form.php?${Math.random()}&artifact_id=${zikkuratId}&in[param_success][url_close]=user.php%3Fmode%3Dpersonage%26group%3D2%26update_swf%3D1", {
+          "headers": {
+              "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
+              "accept-language": "en-GB,en-US;q=0.9,en;q=0.8,ru;q=0.7",
+              "cache-control": "max-age=0",
+              "upgrade-insecure-requests": "1"
+          },
+          "referrer": "http://${window.myAPI.server()}.dwar.ru/user_iframe.php?group=2",
+          "referrerPolicy": "no-referrer-when-downgrade",
+          "body": null,
+          "method": "GET",
+          "mode": "cors",
+          "credentials": "include"
+      }).then(resp => resp.text())
+`
+    let res = await window.myAPI.makeRequest({
+        id: generateRandomId(),
+        req: req
+    })
+    return res
+}

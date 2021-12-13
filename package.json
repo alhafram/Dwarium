@@ -20,7 +20,6 @@
     "electron": "^16.0.2"
   },
   "dependencies": {
-    "electron-fetch": "^1.7.4",
     "electron-squirrel-startup": "^1.0.0"
   },
   "config": {

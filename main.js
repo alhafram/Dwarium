@@ -6,7 +6,6 @@ const BrowserView = electron.BrowserView
 const path = require('path')
 const ipcMain = electron.ipcMain
 
-const requestManager = require('./services/RequestManager')
 const configService = require('./services/ConfigService')
 const TabsController = require('./services/TabsController')
 const {
@@ -18,7 +17,7 @@ let current_server = null
 
 function createMainBrowserView() {
     let browserView = new BrowserView({
-        enablePreferredSizeMode: true,
+        enablePreferredSizeMode: true
     })
     browserView.setBounds(mainWindow.getControlBounds())
     browserView.setAutoResize({
@@ -98,11 +97,6 @@ function createWindow() {
             result: result,
             req: req
         }
-    })
-
-    ipcMain.handle('Fetch', async (evt, type, params) => {
-        let resp = await requestManager.makeRequest(type, params)
-        return resp
     })
 
     ipcMain.handle('LoadSetItems', async (evt) => {

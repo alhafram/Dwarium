@@ -135,7 +135,7 @@ class SetManager {
             title: title,
             ids: ids.unique(),
             style: ids.isEmpty() ? null : currentStyle,
-            magicSchool: ids.isEmpty() ? null : window.myAPI.setStyleHelper().getSchool(currentStyle, currentMagicSchool)
+            magicSchool: ids.isEmpty() ? null : SetStyleHelper.getSchool(currentStyle, currentMagicSchool)
         }
         localStorage.setItem(id, JSON.stringify(newSet))
         this.pushSet(newSet)
@@ -183,7 +183,7 @@ class SetManager {
             return
         }
         if(this.currentSet.magicSchool && currentMagicSchool != this.currentSet.magicSchool) {
-            let styleId = window.myAPI.setStyleHelper().getStyleId(this.currentSet.magicSchool)
+            let styleId = SetStyleHelper.getStyleId(this.currentSet.magicSchool)
             await changeStyle(zikkuratId, styleId)
             currentMagicSchool = this.currentSet.magicSchool
             this.equipedCurrentItemIds = []
