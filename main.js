@@ -41,6 +41,7 @@ function createWindow() {
         TabsController.currentTab().webContents.loadURL(`http://${current_server}.dwar.ru/`)
         mainWindow.webContents.send('url', `http://${current_server}.dwar.ru`, TabsController.current_tab_id)
         configService.writeData('server', server)
+        mainWindow.webContents.setZoomFactor(0.9)
     })
 
     ipcMain.on('reload', (evt) => {
