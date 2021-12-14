@@ -8,24 +8,10 @@ const {
 let mainWindow
 let current_server = null
 
-function createMainBrowserView() {
-    let browserView = new electron.BrowserView({
-        enablePreferredSizeMode: true
-    })
-    browserView.setBounds(mainWindow.getControlBounds())
-    browserView.setAutoResize({
-        width: true,
-        height: true
-    })
-    browserView.webContents.openDevTools()
-    return browserView
-}
-
 function createWindow() {
     mainWindow = new MainWindow()
-    let browserView = createMainBrowserView()
-    mainWindow.setup(browserView)
-    TabsController.setupMain(browserView)
+    mainWindow.setup()
+    TabsController.setupMain(mainWindow.browserView)
     mainWindow.setContentBounds(TabsController.currentTab())
     mainWindow.start()
 
@@ -87,7 +73,7 @@ function createWindow() {
     })
 
     electron.ipcMain.handle('MakeWebRequest', async (evt, req) => {
-        let result = await browserView.webContents.executeJavaScript(req.req)
+        let result = await mainWindow.browserView.webContents.executeJavaScript(req.req)
         return {
             result: result,
             req: req

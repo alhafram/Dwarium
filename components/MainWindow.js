@@ -6,6 +6,8 @@ const configService = require('../services/ConfigService')
 
 class MainWindow extends BrowserWindow {
 
+    browserView = null
+
     constructor() {
         super({
             width: 1400,
@@ -34,8 +36,9 @@ class MainWindow extends BrowserWindow {
         })
     }
 
-    setup(main_browser_view) {
-        this.setBrowserView(main_browser_view)
+    setup() {
+        this.browserView = this.createMainBrowserView()
+        this.setBrowserView(this.browserView)
         let current_server = configService.server
         this.webContents.send('server', current_server)
     }
@@ -67,6 +70,19 @@ class MainWindow extends BrowserWindow {
         this.show();
         // mainWindow.maximize();
         this.loadFile(`${path.join(app.getAppPath(), 'index.html')}`);
+    }
+
+    createMainBrowserView() {
+        let browserView = new electron.BrowserView({
+            enablePreferredSizeMode: true
+        })
+        browserView.setBounds(this.getControlBounds())
+        browserView.setAutoResize({
+            width: true,
+            height: true
+        })
+        browserView.webContents.openDevTools()
+        return browserView
     }
 }
 

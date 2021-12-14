@@ -26,7 +26,5 @@ function parseData(filePath) {
 
 module.exports = {
     server,
-    writeData,
-    readData,
-    parseData
+    writeData
 }
