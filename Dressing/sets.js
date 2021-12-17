@@ -2,6 +2,7 @@ class SetManager {
     sets = []
     currentSet = null
     equipedCurrentItemIds = []
+    curDragSet = null
 
     #article = "leaderboard__profile"
     #activeArticle = "leaderboard__profile active"
@@ -41,6 +42,25 @@ class SetManager {
         document.querySelector("#equipSet").addEventListener('click', e => {
             self.equipSelectedSet()
         })
+        let dropSetButton = document.querySelector('#dropSetButton')
+        dropSetButton.addEventListener("drop", function(e) {
+            e.preventDefault();
+            self.deleteSet()
+        }, false)
+        dropSetButton.addEventListener("dragover", function(e) {
+            e.preventDefault()
+        }, false)
+    }
+
+    deleteSet() {
+        let id = this.curDragSet.id
+        let removedItem = this.sets.filter(set => set.id == id).first()
+        this.sets = this.sets.removeItem(removedItem)
+        this.curDragSet.parentElement.removeChild(this.curDragSet)
+        localStorage.removeItem(id)
+        if(this.currentSet == removedItem) {
+            this.unequip()
+        }
     }
 
     addNewSet() {
@@ -55,7 +75,7 @@ class SetManager {
         }
         let article = this.createSetArticleElement(newSet, true)
         this.setTitleBox.value = "Default set"
-        this.setsBox.insertBefore(article, this.setsBox.firstElementChild.nextSibling)
+        this.setsBox.insertBefore(article, this.setsBox.firstElementChild.nextElementSibling)
         this.currentSet = newSet
         this.pushSet(newSet)
         this.saveSet()
@@ -79,11 +99,30 @@ class SetManager {
     createSetArticleElement(set, active) {
         let article = document.createElement('article')
         article.id = set.id
+        article.draggable = true
         let className = active ? this.#activeArticle : this.#article
         article.className = className
         var self = this
         article.onclick = function(e) {
             self.selectSet(this)
+        }
+
+        if(article.id != "addSetButton") {
+            const self = this
+            article.addEventListener("dragstart", function(e) {
+                self.curDragSet = article
+                article.style.opacity = "0.4"
+            }, false)
+            article.addEventListener("dragend", function() {
+                self.curDragSet = null
+                article.style.opacity = "1"
+            }, false)
+            article.addEventListener('dragover', function(e) {
+                if(e.preventDefault) {
+                    e.preventDefault()
+                }
+                return false
+            })
         }
 
         let img = document.createElement("img")
@@ -149,7 +188,9 @@ class SetManager {
     deselectOtherArticles() {
         let self = this
         this.setsBox.children.toArray().forEach(e => {
-            e.className = self.#article
+            if(e.tagName == 'ARTICLE') {
+                e.className = self.#article
+            }
         })
     }
 

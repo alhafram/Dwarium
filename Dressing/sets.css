@@ -8,6 +8,16 @@
     overflow: scroll;
 }
 
+
+.leaderboard__profile_remove_button {
+    margin: 10px;
+    display: flex;
+    overflow: hidden;
+    border-radius: 10px;
+    background-color: rgb(241, 134, 134);
+    padding: 10px 10px 10px 10px;
+}
+
 .leaderboard__profile {
     border-radius: 12px;
     margin: 10px;
@@ -21,7 +31,7 @@
     background-color: #fff;
 }
 
-.leaderboard__profile+.active {
+.leaderboard__profile.active {
     background-color: #222;
 }
 
