@@ -15,7 +15,9 @@ function createWindow() {
     mainWindow.setContentBounds(TabsController.currentTab())
     mainWindow.start()
 
-    mainWindow.browserView.webContents.setWindowOpenHandler(({ url }) => {
+    mainWindow.browserView.webContents.setWindowOpenHandler(({
+        url
+    }) => {
         if(TabsController.currentTab() == TabsController.getMain()) {
             mainWindow.send('new_tab', url)
             return {
@@ -63,6 +65,7 @@ function createWindow() {
     })
 
     function createNewTab(url, id) {
+        url = url ?? "https://google.com"
         let browserView = new electron.BrowserView({
             enablePreferredSizeMode: true
         })
@@ -114,6 +117,12 @@ function createWindow() {
         return {
             allItems: allItems,
             wearedItems: wearedItems
+        }
+    })
+
+    electron.globalShortcut.register('CommandOrControl+W', () => {
+        if(TabsController.currentTab() != TabsController.getMain()) {
+            mainWindow.webContents.send('close_tab', TabsController.current_tab_id)
         }
     })
 }
