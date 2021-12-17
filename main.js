@@ -15,6 +15,19 @@ function createWindow() {
     mainWindow.setContentBounds(TabsController.currentTab())
     mainWindow.start()
 
+    mainWindow.browserView.webContents.setWindowOpenHandler(({ url }) => {
+        if(TabsController.currentTab() == TabsController.getMain()) {
+            mainWindow.send('new_tab', url)
+            return {
+                action: 'deny'
+            }
+        } else {
+            return {
+                action: 'allow'
+            }
+        }
+    })
+
     electron.ipcMain.on("load_url", (evt, server) => {
         current_server = server
         TabsController.currentTab().webContents.loadURL(`http://${current_server}.dwar.ru/`)
@@ -45,9 +58,16 @@ function createWindow() {
         dressingWindow.loadFile(`${path.join(electron.app.getAppPath(), './Dressing/index.html')}`)
     })
 
-    electron.ipcMain.on('new_tab', (evt, id) => {
+    electron.ipcMain.on('new_tab', (evt, id, url) => {
+        createNewTab(url, id)
+    })
+
+    function createNewTab(url, id) {
         let browserView = new electron.BrowserView({
             enablePreferredSizeMode: true
+        })
+        browserView.webContents.on('will-navigate', (evt, url) => {
+            mainWindow.webContents.send('url', url, TabsController.current_tab_id)
         })
         TabsController.addTab(id, browserView)
         TabsController.setupCurrent(id)
@@ -58,9 +78,9 @@ function createWindow() {
             width: true
         })
         mainWindow.setContentBounds(TabsController.currentTab())
-        browserView.webContents.loadURL('https://google.com')
-        mainWindow.webContents.send('url', 'https://google.com', id)
-    })
+        browserView.webContents.loadURL(url)
+        mainWindow.webContents.send('url', url, id)
+    }
 
     electron.ipcMain.on('make_active', (evt, id) => {
         TabsController.setupCurrent(id)
@@ -78,6 +98,10 @@ function createWindow() {
             result: result,
             req: req
         }
+    })
+
+    electron.ipcMain.on('goUrl', (evt, url) => {
+        TabsController.currentTab().webContents.loadURL(url)
     })
 
     electron.ipcMain.handle('LoadSetItems', async (evt) => {

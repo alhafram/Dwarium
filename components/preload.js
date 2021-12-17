@@ -24,7 +24,38 @@ window.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('make_active', (evt) => {
         ipcRenderer.send("make_active", evt.detail.id)
     })
-});
+    document.addEventListener('goUrl', (evt) => {
+        ipcRenderer.send("goUrl", evt.detail)
+    })
+})
+
+function generateRandomId() {
+    return (Math.random() + 1).toString(36).substring(2)
+}
+
+function createNewTab() {
+    let buttons = Array.from(document.querySelector("body > div.tab").children)
+    buttons.filter(b => b.className.includes("ab"))
+    buttons.forEach(b => b.className = "ab")
+    const new_tab = document.createElement("a")
+    new_tab.textContent = "New tab"
+    new_tab.id = generateRandomId()
+    new_tab.className += "ab active"
+    new_tab.onclick = makeActive
+    document.querySelector("body > div.tab").insertBefore(new_tab, document.querySelector("#new_tab"))
+    return new_tab
+}
+
+function makeActive(evt) {
+    if(evt.currentTarget.className.includes('active')) {
+        return
+    }
+    let buttons = Array.from(document.querySelector("body > div.tab").children)
+    buttons.filter(b => b.className.includes("ab"))
+    buttons.forEach(b => b.className = "ab")
+    evt.currentTarget.className += " active";
+    ipcRenderer.send("make_active", evt.currentTarget.id)
+}
 
 ipcRenderer.on('server', (event, server) => {
     if(!server) {
@@ -44,6 +75,11 @@ ipcRenderer.on('server', (event, server) => {
 ipcRenderer.on('url', (event, url, id) => {
     document.querySelector(".effect-10").disabled = id == 'main'
     document.querySelector(".effect-10").value = url
+})
+
+ipcRenderer.on('new_tab', (event, url) => {
+    const tab = createNewTab()
+    ipcRenderer.send("new_tab", tab.id, url)
 })
 
 ipcRenderer.on('close_tab', (evt, id) => {

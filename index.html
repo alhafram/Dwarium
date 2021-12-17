@@ -238,7 +238,6 @@ function addTab() {
     let buttons = Array.from(document.querySelector("body > div.tab").children)
     buttons.filter(b => b.className.includes("ab"))
     buttons.forEach(b => b.className = "ab")
-    //
     const new_tab = document.createElement("a")
     const id = "tab_" + (buttons.length - 1)
     new_tab.textContent = "New tab"
@@ -252,6 +251,17 @@ function addTab() {
         }
     }))
 }
+
+window.addEventListener('DOMContentLoaded', () => {
+    const urlBar = document.querySelector('.effect-10')
+    urlBar.addEventListener('keyup', (e) => {
+        if (e.keyCode == 13) {
+            document.dispatchEvent(new CustomEvent('goUrl', {
+                detail: urlBar.value
+            }))
+        }
+    })
+})
 
 </script>
 
