@@ -5,22 +5,15 @@
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "electron-forge start",
-    "package": "electron-forge package",
-    "make": "electron-forge make"
+    "start": "electron .",
+    "win": "electron-packager ./ Dwarium --platform=win32 --arch=x64",
+    "mac": "electron-packager ./ Dwarium --platform=darwin --arch=x64",
+    "linux": "electron-packager ./ Dwarium --platform=linux --arch=x64"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@electron-forge/cli": "^6.0.0-beta.61",
-    "@electron-forge/maker-deb": "^6.0.0-beta.61",
-    "@electron-forge/maker-rpm": "^6.0.0-beta.61",
-    "@electron-forge/maker-squirrel": "^6.0.0-beta.61",
-    "@electron-forge/maker-zip": "^6.0.0-beta.61",
-    "electron": "^16.0.2"
-  },
-  "dependencies": {
-    "electron-squirrel-startup": "^1.0.0"
+    "electron": "^16.0.5"
   },
   "config": {
     "forge": {
