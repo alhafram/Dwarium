@@ -76,6 +76,7 @@ class MainWindow extends BrowserWindow {
         let browserView = new electron.BrowserView({
             enablePreferredSizeMode: true
         })
+        browserView.webContents.setZoomFactor(0.9)
         browserView.setBounds(this.getControlBounds())
         browserView.setAutoResize({
             width: true,
