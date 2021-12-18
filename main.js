@@ -108,17 +108,29 @@ function createWindow() {
     })
 
     electron.ipcMain.handle('LoadSetItems', async (evt) => {
-        let dressingBrowserView = new electron.BrowserView()
-        await dressingBrowserView.webContents.loadURL(`http://${current_server}.dwar.ru/user_iframe.php?group=2`)
-        let allItems = await dressingBrowserView.webContents.executeJavaScript('art_alt')
-        await dressingBrowserView.webContents.loadURL(`http://${current_server}.dwar.ru/user.php`)
-        let wearedItems = await dressingBrowserView.webContents.executeJavaScript('art_alt')
+        const SetRequests = {
+            allItems: {
+                url: `http://${current_server}.dwar.ru/user_iframe.php?group=2`,
+                script: 'art_alt'
+            },
+            wearedItems: {
+                url: `http://${current_server}.dwar.ru/user.php`,
+                script: 'art_alt'
+            }
+        }
+        let [allItems, wearedItems] = await Promise.all([fetch(SetRequests.allItems), fetch(SetRequests.wearedItems)])
         dressingWindow.show()
         return {
             allItems: allItems,
             wearedItems: wearedItems
         }
     })
+
+    async function fetch(request) {
+        const bw = new electron.BrowserView()
+        await bw.webContents.loadURL(request.url)
+        return await bw.webContents.executeJavaScript(request.script)
+    }
 
     electron.globalShortcut.register('CommandOrControl+W', () => {
         if(TabsController.currentTab() != TabsController.getMain()) {
