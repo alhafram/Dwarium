@@ -125,7 +125,7 @@ class SetManager {
         }
 
         let img = document.createElement("img")
-        img.src = "https://cdn-icons-png.flaticon.com/512/599/599502.png"
+        img.src = './images/magic/' + SetStyleHelper.getMagicIcon(set.magicSchool) + '.webp'
         img.className = "leaderboard__picture"
         article.appendChild(img)
 
@@ -176,6 +176,9 @@ class SetManager {
             magicSchool: ids.isEmpty() ? null : SetStyleHelper.getSchool(currentStyle, currentMagicSchool)
         }
         window.myAPI.saveSet(newSet)
+        if(activeSet) {
+            activeSet.firstElementChild.src = './images/magic/' + SetStyleHelper.getMagicIcon(newSet.magicSchool) + '.webp'
+        }
         this.pushSet(newSet)
         this.currentSet = newSet
         if(isNew) {
