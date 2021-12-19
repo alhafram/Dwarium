@@ -94,7 +94,7 @@ function setupSetManager() {
     setManager.setupListeners()
 }
 
-const parsingItemTypes = ['helmets', 'shoulders', 'bracers', 'mainWeapons', 'offhandWeapons', 'cuirasses', 'leggings', 'chainmails', 'boots']
+const parsingItemTypes = ['helmets', 'shoulders', 'bracers', 'mainWeapons', 'offhandWeapons', 'cuirasses', 'leggings', 'chainmails', 'boots', 'bows', 'quivers']
 
 function setupAllItems(allItems) {
     let arr = []
@@ -123,7 +123,7 @@ function setupAllItems(allItems) {
         item.addEventListener("dragover", handleDragOver, false)
     })
 
-    let armor_types = ['helmet', 'shoulders', 'bracers', 'main_weapon', 'offhand_weapon', 'cuirass', 'leggings', 'chain_mail', 'boots']
+    let armor_types = ['helmet', 'shoulders', 'bracers', 'main_weapon', 'offhand_weapon', 'cuirass', 'leggings', 'chain_mail', 'boots', 'bow', 'quiver']
     armor_types.forEach(t => {
         document.getElementById(t + "_box").addEventListener('click', (e) => {
             if(document.getElementById(t + "_box").childElementCount == 1) {
@@ -177,6 +177,14 @@ function setupAllItems(allItems) {
         },
         boots: {
             box: document.querySelector("#boots_box"),
+            item: null
+        },
+        bow: {
+            box: document.querySelector("#bow_box"),
+            item: null
+        },
+        quiver: {
+            box: document.querySelector("#quiver_box"),
             item: null
         },
         currentElement: null,
@@ -260,6 +268,12 @@ function getType(kind_id) {
     }
     if(kind_id == '2') {
         return 'boots'
+    }
+    if(kind_id == '131') {
+        return 'quiver'
+    }
+    if(kind_id == '116') {
+        return 'bow'
     }
     return 'other'
 }
