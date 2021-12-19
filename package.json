@@ -7,7 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "electron-forge start",
     "package": "electron-forge package",
-    "make": "electron-forge make"
+    "make": "electron-forge make",
+    "win": "electron-packager ./ Dwarium --platform=win32 --arch=x64",
+    "linux": "electron-packager ./ Dwarium --platform=linux --arch=x64"
   },
   "author": "",
   "license": "ISC",
