@@ -3,6 +3,7 @@ const app = electron.app
 const BrowserWindow = electron.BrowserWindow
 const path = require('path')
 const configService = require('../services/ConfigService')
+const TabsController = require('../services/TabsController')
 
 class MainWindow extends BrowserWindow {
 
@@ -41,6 +42,21 @@ class MainWindow extends BrowserWindow {
         this.setBrowserView(this.browserView)
         let current_server = configService.server
         this.webContents.send('server', current_server)
+
+        this.browserView.webContents.setWindowOpenHandler(({
+            url
+        }) => {
+            if(TabsController.currentTab() == TabsController.getMain()) {
+                this.send('new_tab', url)
+                return {
+                    action: 'deny'
+                }
+            } else {
+                return {
+                    action: 'allow'
+                }
+            }
+        })
     }
 
     getControlBounds() {
