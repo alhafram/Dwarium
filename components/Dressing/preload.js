@@ -16,6 +16,12 @@ contextBridge.exposeInMainWorld('myAPI', {
         return await ipcRenderer.invoke("LoadSetItems")
     },
     saveSet: (set) => {
-        console.log("Save set to config: ", set)
+        configService.writeData(set.id, JSON.stringify(set))
+    },
+    removeSet: (id) => {
+        configService.writeData(id, null)
+    },
+    loadSets: () => {
+        return configService.sets()
     }
 })

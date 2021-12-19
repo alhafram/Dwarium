@@ -78,8 +78,6 @@ function difference(setA, setB) {
 }
 
 async function parseMagicSchools(result) {
-    let magmarSchools = ['Огонь', 'Земля', 'Тень']
-    let humanSchools = ['Воздух', 'Свет', 'Вода']
     let doc = result.toDocument()
     let schools = Array.from(doc.querySelector("body > table > tbody > tr:nth-child(2) > td.bgg > table > tbody > tr:nth-child(1) > td:nth-child(2) > select").children).map(e => e.textContent)
     let currentStyle = difference(SetStyleHelper.magmarSchools, schools)

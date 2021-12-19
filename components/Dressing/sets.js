@@ -44,7 +44,7 @@ class SetManager {
         })
         let dropSetButton = document.querySelector('#dropSetButton')
         dropSetButton.addEventListener("drop", function(e) {
-            e.preventDefault();
+            e.preventDefault()
             self.deleteSet()
         }, false)
         dropSetButton.addEventListener("dragover", function(e) {
@@ -57,10 +57,10 @@ class SetManager {
         let removedItem = this.sets.filter(set => set.id == id).first()
         this.sets = this.sets.removeItem(removedItem)
         this.curDragSet.parentElement.removeChild(this.curDragSet)
-        localStorage.removeItem(id)
         if(this.currentSet == removedItem) {
             this.unequip()
         }
+        window.myAPI.removeSet(id)
     }
 
     addNewSet() {
@@ -79,12 +79,11 @@ class SetManager {
         this.currentSet = newSet
         this.pushSet(newSet)
         this.saveSet()
+        filterCurrentItems()
     }
 
     loadSets() {
-        const setKeys = Object.keys(localStorage).filter(key => key.startsWith("set_"))
-        let sets = setKeys.map(key => JSON.parse(localStorage[key]))
-        this.sets = sets
+        this.sets = window.myAPI.loadSets()
     }
 
     fillSets() {
@@ -147,10 +146,10 @@ class SetManager {
         let selectedSet = this.sets.find(obj => obj.id == element.id)
         this.currentSet = selectedSet
         currentStyle = selectedSet.style
-        filterCurrentItems()
         this.equipFromSet(selectedSet.ids)
         this.setTitleBox.value = selectedSet.title
         state.getEquipedItems().map(i => i.style.display = 'inline-block')
+        filterCurrentItems()
     }
 
     saveSet() {
@@ -176,7 +175,7 @@ class SetManager {
             style: ids.isEmpty() ? null : currentStyle,
             magicSchool: ids.isEmpty() ? null : SetStyleHelper.getSchool(currentStyle, currentMagicSchool)
         }
-        localStorage.setItem(id, JSON.stringify(newSet))
+        window.myAPI.saveSet(newSet)
         this.pushSet(newSet)
         this.currentSet = newSet
         if(isNew) {
