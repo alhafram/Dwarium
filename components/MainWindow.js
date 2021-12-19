@@ -24,10 +24,6 @@ class MainWindow extends BrowserWindow {
             show: false
         })
 
-        this.on('page-title-updated', (evt) => {
-            evt.preventDefault();
-        });
-
         this.on('resized', (evt) => {
             this.setContentBounds()
         })
