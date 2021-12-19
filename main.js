@@ -1,4 +1,10 @@
-const electron = require('electron')
+const {
+    app,
+    ipcMain,
+    BrowserWindow,
+    BrowserView,
+    globalShortcut
+} = require('electron')
 const configService = require('./services/ConfigService')
 const TabsController = require('./services/TabsController')
 const {
@@ -15,7 +21,7 @@ function createWindow() {
     mainWindow.setContentBounds(TabsController.currentTab())
     mainWindow.start()
 
-    electron.ipcMain.on("load_url", (evt, server) => {
+    ipcMain.on("load_url", (evt, server) => {
         current_server = server
         TabsController.currentTab().webContents.loadURL(`http://${current_server}.dwar.ru/`)
         mainWindow.webContents.send('url', `http://${current_server}.dwar.ru`, TabsController.current_tab_id)
@@ -23,14 +29,14 @@ function createWindow() {
         mainWindow.webContents.setZoomFactor(0.9)
     })
 
-    electron.ipcMain.on('reload', (evt) => {
+    ipcMain.on('reload', (evt) => {
         TabsController.currentTab().webContents.reload()
     })
 
     let dressingWindow = null
-    electron.ipcMain.on('open_dressing_room', (evt) => {
+    ipcMain.on('open_dressing_room', (evt) => {
         const path = require('path')
-        dressingWindow = new electron.BrowserWindow({
+        dressingWindow = new BrowserWindow({
             parent: mainWindow,
             width: 900,
             height: 700,
@@ -42,16 +48,16 @@ function createWindow() {
                 preload: path.join(__dirname, "Dressing/preload.js")
             }
         })
-        dressingWindow.loadFile(`${path.join(electron.app.getAppPath(), './Dressing/index.html')}`)
+        dressingWindow.loadFile(`${path.join(app.getAppPath(), './Dressing/index.html')}`)
     })
 
-    electron.ipcMain.on('new_tab', (evt, id, url) => {
+    ipcMain.on('new_tab', (evt, id, url) => {
         createNewTab(url, id)
     })
 
     function createNewTab(url, id) {
         url = url ?? "https://google.com"
-        let browserView = new electron.BrowserView({
+        let browserView = new BrowserView({
             enablePreferredSizeMode: true
         })
         browserView.webContents.on('will-navigate', (evt, url) => {
@@ -70,17 +76,17 @@ function createWindow() {
         mainWindow.webContents.send('url', url, id)
     }
 
-    electron.ipcMain.on('make_active', (evt, id) => {
+    ipcMain.on('make_active', (evt, id) => {
         TabsController.setupCurrent(id)
         mainWindow.setBrowserView(TabsController.currentTab())
         mainWindow.webContents.send('url', TabsController.currentTab().webContents.getURL(), id)
     })
 
-    electron.ipcMain.on('remove_view', (evt, id) => {
+    ipcMain.on('remove_view', (evt, id) => {
         TabsController.deleteTab(id)
     })
 
-    electron.ipcMain.handle('MakeWebRequest', async (evt, req) => {
+    ipcMain.handle('MakeWebRequest', async (evt, req) => {
         let result = await mainWindow.browserView.webContents.executeJavaScript(req.req)
         return {
             result: result,
@@ -88,11 +94,11 @@ function createWindow() {
         }
     })
 
-    electron.ipcMain.on('goUrl', (evt, url) => {
+    ipcMain.on('goUrl', (evt, url) => {
         TabsController.currentTab().webContents.loadURL(url)
     })
 
-    electron.ipcMain.handle('LoadSetItems', async (evt) => {
+    ipcMain.handle('LoadSetItems', async (evt) => {
         const SetRequests = {
             allItems: {
                 url: `http://${current_server}.dwar.ru/user_iframe.php?group=2`,
@@ -112,27 +118,27 @@ function createWindow() {
     })
 
     async function fetch(request) {
-        const bw = new electron.BrowserView()
+        const bw = new BrowserView()
         await bw.webContents.loadURL(request.url)
         return await bw.webContents.executeJavaScript(request.script)
     }
 
-    electron.globalShortcut.register('CommandOrControl+W', () => {
+    globalShortcut.register('CommandOrControl+W', () => {
         if(TabsController.currentTab() != TabsController.getMain()) {
             mainWindow.webContents.send('close_tab', TabsController.current_tab_id)
         }
     })
 }
 
-electron.app.on('ready', createWindow)
+app.on('ready', createWindow)
 
-electron.app.on('window-all-closed', function() {
+app.on('window-all-closed', function() {
     if(process.platform !== 'darwin') {
         app.quit()
     }
 })
 
-electron.app.on('activate', function() {
+app.on('activate', function() {
     if(mainWindow === null) {
         createWindow()
     }
