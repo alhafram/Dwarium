@@ -15,21 +15,6 @@ function createWindow() {
     mainWindow.setContentBounds(TabsController.currentTab())
     mainWindow.start()
 
-    mainWindow.browserView.webContents.setWindowOpenHandler(({
-        url
-    }) => {
-        if(TabsController.currentTab() == TabsController.getMain()) {
-            mainWindow.send('new_tab', url)
-            return {
-                action: 'deny'
-            }
-        } else {
-            return {
-                action: 'allow'
-            }
-        }
-    })
-
     electron.ipcMain.on("load_url", (evt, server) => {
         current_server = server
         TabsController.currentTab().webContents.loadURL(`http://${current_server}.dwar.ru/`)
