@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>HTML 5 Boilerplate</title>
+    <link rel="stylesheet" href="./index.css" />
+    <script src="./index.js"></script>
+</head>
+
+<body>
+    <div class="row">
+        <div class="button-cover">
+            <div class="button r" id="button-1">
+                <input type="checkbox" class="checkbox">
+                <div class="knobs" server="W1"></div>
+                <div class="layer"></div>
+            </div>
+        </div>
+
+        <div class="col-3">
+            <input class="effect-10" disabled="disabled" type="text" placeholder="">
+            <span class="focus-bg"></span>
+        </div>
+
+        <button style="margin-left: 10px;" id="reload_button">Reload</button>
+        <button style="margin-left: 10px;" id="dressing_room_button">Open dressing</button>
+    </div>
+
+
+    <div class="tab">
+        <a id="main" onclick="makeActive(event)" class="ab active">Main</a>
+        <button onclick="addTab()" id="new_tab">+</button>
+    </div>
+</body>
+
+</html>

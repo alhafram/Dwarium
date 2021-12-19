@@ -1,9 +1,10 @@
-const electron = require('electron')
-const app = electron.app
-const BrowserWindow = electron.BrowserWindow
+const {
+    BrowserView,
+    BrowserWindow
+} = require('electron')
 const path = require('path')
-const configService = require('../services/ConfigService')
-const TabsController = require('../services/TabsController')
+const configService = require('../../services/ConfigService')
+const TabsController = require('../../services/TabsController')
 
 class MainWindow extends BrowserWindow {
 
@@ -81,11 +82,11 @@ class MainWindow extends BrowserWindow {
     start() {
         this.show();
         // mainWindow.maximize();
-        this.loadFile(`${path.join(app.getAppPath(), 'index.html')}`);
+        this.loadFile(`${path.join(__dirname, 'index.html')}`);
     }
 
     createMainBrowserView() {
-        let browserView = new electron.BrowserView({
+        let browserView = new BrowserView({
             enablePreferredSizeMode: true
         })
         browserView.webContents.setZoomFactor(0.9)

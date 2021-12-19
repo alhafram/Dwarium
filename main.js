@@ -9,7 +9,7 @@ const configService = require('./services/ConfigService')
 const TabsController = require('./services/TabsController')
 const {
     MainWindow
-} = require('./components/MainWindow')
+} = require('./components//MainWindow/MainWindow')
 
 let mainWindow
 let current_server = null
@@ -45,10 +45,10 @@ function createWindow() {
             useContentSize: true,
             show: true,
             webPreferences: {
-                preload: path.join(__dirname, "Dressing/preload.js")
+                preload: path.join(__dirname, "./components/Dressing/preload.js")
             }
         })
-        dressingWindow.loadFile(`${path.join(app.getAppPath(), './Dressing/index.html')}`)
+        dressingWindow.loadFile(`${path.join(__dirname, './components/Dressing/index.html')}`)
     })
 
     ipcMain.on('new_tab', (evt, id, url) => {

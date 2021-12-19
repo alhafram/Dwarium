@@ -2,7 +2,7 @@ const {
     ipcRenderer,
     contextBridge
 } = require("electron")
-const configService = require('../services/ConfigService')
+const configService = require('../../services/ConfigService')
 require('./utils')
 
 contextBridge.exposeInMainWorld('myAPI', {
