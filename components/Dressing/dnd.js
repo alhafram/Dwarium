@@ -17,7 +17,27 @@ document.addEventListener("DOMContentLoaded", async () => {
     setupWearedItems(parsedWearedItems)
     setupSetManager()
     setupFilters()
+
+    let arcatsCount = parsedWearedItems.bracelets[0]?.skills.find(s => s.title == "Слоты для аркатов").value.slice(4, 5) // TODO: - Find better solution
+    if(arcatsCount) {
+        for(var i = 0; i < arcatsCount; i++) {
+            createArcatSlot()
+        }
+    }
+    console.log(arcatsCount)
 })
+
+function createArcatSlot() {
+    let parent = document.querySelector("#arcats")
+    let arcatElement = document.createElement('div')
+    arcatElement.id = "arcat"
+    let slotElement = document.createElement('div')
+    slotElement.type = "arcat"
+    slotElement.id = "arcat_box"
+    slotElement.className = "box_static small"
+    arcatElement.appendChild(slotElement)
+    parent.appendChild(arcatElement)
+}
 
 function difference(setA, setB) {
     let _difference = new Set(setA)
