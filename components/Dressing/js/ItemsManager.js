@@ -16,7 +16,7 @@ class ItemsManager {
         let self = this
         arr.forEach(item => {
             state.currentElement = item
-            self.putOnItem(item, true)
+            self.putOnItem(item)
             state.currentElement = null
         })
         let loadedSet = setManager.sets.filter(set => difference(setManager.equipedCurrentItemIds, set.ids).size == 0 && difference(set.ids, setManager.equipedCurrentItemIds).size == 0).first()
@@ -147,13 +147,13 @@ class ItemsManager {
         parent.appendChild(arcatElement)
     }
 
-    putOffItem(element, remove, fake) {
+    putOffItem(element) {
         if(element.childElementCount > 0) {
             let item = element.children[0]
             element.style.visibility = 'visible'
             item.setAttribute('equiped', false)
             state[item.getAttribute('type')].item = null
-            if(remove) {
+            if(item.getAttribute('copy')) {
                 element.removeChild(item)
             } else {
                 document.querySelectorAll('.currentItems')[0].appendChild(item)
@@ -167,7 +167,7 @@ class ItemsManager {
         }
     }
 
-    putOnItem(item, fake) {
+    putOnItem(item) {
         if(item.getAttribute('trend') != 'Универсал') {
             state.currentStyle = item.getAttribute('trend')
         }
@@ -179,13 +179,13 @@ class ItemsManager {
                 mainWeaponCopy.setAttribute('copy', true)
                 mainWeaponCopy.style.opacity = '0.4'
                 setupEquipableItemEvents(mainWeaponCopy)
-                this.putOnItem(mainWeaponCopy, true)
+                this.putOnItem(mainWeaponCopy)
             } else {
                 this.putOffWeapon(state.currentElement)
             }
         } else {
             let itemBox = document.querySelector(`#${state.currentElement.getAttribute('type')}Box`)
-            this.putOffItem(itemBox, false, true)
+            this.putOffItem(itemBox)
         }
         state[item.getAttribute('type')].item = item
         state[item.getAttribute('type')].box.appendChild(item)
@@ -196,21 +196,17 @@ class ItemsManager {
         filterCurrentItems()
     }
 
-    putOffWeapon(item, fake) {
-        if(fake == undefined) {
-            fake = true
-        }
+    putOffWeapon(item) {
         if(item.getAttribute('weapon') == '2h') {
-            let isFakeWeapon = state.offhandWeapon.item && state.offhandWeapon.item.getAttribute('copy') && state.offhandWeapon.item.getAttribute('copy') == 'true'
-            this.putOffItem(state.offhandWeapon.box, isFakeWeapon, isFakeWeapon)
-            this.putOffItem(state.mainWeapon.box, false, fake)
+            this.putOffItem(state.offhandWeapon.box)
+            this.putOffItem(state.mainWeapon.box)
         }
         if(item.getAttribute('weapon') == '1h') {
             if(state.mainWeapon.item) {
                 if(state.mainWeapon.item.getAttribute('weapon') == '2h') {
                     this.putOffWeapon(state.mainWeapon.item)
                 } else {
-                    this.putOffItem(state.mainWeapon.box, false, fake)
+                    this.putOffItem(state.mainWeapon.box)
                 }
             }
         }
@@ -219,7 +215,7 @@ class ItemsManager {
                 if(state.offhandWeapon.item.getAttribute('weapon') == '2h') {
                     this.putOffWeapon(state.offhandWeapon.item)
                 } else {
-                    this.putOffItem(state.offhandWeapon.box, false, fake)
+                    this.putOffItem(state.offhandWeapon.box)
                 }
             }
         }

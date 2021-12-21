@@ -199,7 +199,7 @@ class SetManager {
     unequip() {
         let items = state.getEquipedItems()
         for(var item of items) {
-            itemsManager.putOffItem(item.parentElement, isExists(item.getAttribute('copy')), true)
+            itemsManager.putOffItem(item.parentElement)
         }
     }
 
