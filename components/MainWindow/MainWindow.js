@@ -18,7 +18,7 @@ class MainWindow extends BrowserWindow {
             icon: __dirname + '/icon.icns',
             webPreferences: {
                 sandbox: true,
-                preload: path.join(__dirname, "preload.js"),
+                preload: path.join(__dirname, 'preload.js'),
                 backgroundThrottling: false
             },
             useContentSize: true,

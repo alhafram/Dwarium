@@ -6,7 +6,7 @@ let server = readData('server')
 
 function sets() {
     let contents = parseData(filePath)
-    let keys = Object.keys(contents).filter(key => key.startsWith("set_"))
+    let keys = Object.keys(contents).filter(key => key.startsWith('set_'))
     return keys.map(key => JSON.parse(contents[key]))
 }
 

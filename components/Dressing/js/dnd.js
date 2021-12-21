@@ -1,10 +1,10 @@
 function handleDragStartEquipableItem(e) {
-    this.style.opacity = "0.4"
+    this.style.opacity = '0.4'
     state.currentElement = this
 }
 
 function handleDragEndEquipableItem(e) {
-    this.style.opacity = "1"
+    this.style.opacity = '1'
 }
 
 function handleDragOver(e) {
@@ -47,13 +47,13 @@ function handleClickEquipableItem(e) {
     if(e.detail == 1) {
         return
     }
-    if(this.attributes.equiped.value != "true" && e.detail == 2) {
+    if(this.attributes.equiped.value != 'true' && e.detail == 2) {
         let itemBox = document.querySelector(`#${this.attributes.type.value}Box`)
         state.currentElement = this
         itemsManager.putOnItem(this, false)
         return
     }
-    if(this.attributes.equiped.value == "true" && e.detail == 2) {
+    if(this.attributes.equiped.value == 'true' && e.detail == 2) {
         let itemBox = document.querySelector(`#${this.attributes.type.value}Box`)
         if(this.attributes.weapon) {
             itemsManager.putOffWeapon(this, false)
@@ -66,7 +66,7 @@ function handleClickEquipableItem(e) {
 }
 
 function setupEquipableItemEvents(item) {
-    item.addEventListener("dragstart", handleDragStartEquipableItem, false)
-    item.addEventListener("dragend", handleDragEndEquipableItem, false)
-    item.addEventListener("click", handleClickEquipableItem, false)
+    item.addEventListener('dragstart', handleDragStartEquipableItem, false)
+    item.addEventListener('dragend', handleDragEndEquipableItem, false)
+    item.addEventListener('click', handleClickEquipableItem, false)
 }

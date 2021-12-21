@@ -4,19 +4,19 @@ class SetManager {
     equipedCurrentItemIds = []
     curDragSet = null
 
-    #article = "leaderboard__profile"
-    #activeArticle = "leaderboard__profile active"
+    #article = 'leaderboard__profile'
+    #activeArticle = 'leaderboard__profile active'
 
     get setsBox() {
-        return document.querySelector(".sets")
+        return document.querySelector('.sets')
     }
 
     get setTitleBox() {
-        return document.querySelector("#currentSetTitle")
+        return document.querySelector('#currentSetTitle')
     }
 
     get allCurrentItems() {
-        return document.querySelector(".currentItems").children.toArray()
+        return document.querySelector('.currentItems').children.toArray()
     }
 
     pushSet(newSet) {
@@ -30,24 +30,24 @@ class SetManager {
 
     setupListeners() {
         let self = this
-        document.querySelector("#addSetButton").addEventListener('click', e => {
+        document.querySelector('#addSetButton').addEventListener('click', e => {
             self.addNewSet()
         })
-        document.querySelector("#saveSet").addEventListener('click', e => {
+        document.querySelector('#saveSet').addEventListener('click', e => {
             self.saveSet()
         })
-        document.querySelector("#unequip").addEventListener('click', e => {
+        document.querySelector('#unequip').addEventListener('click', e => {
             self.unequip()
         })
-        document.querySelector("#equipSet").addEventListener('click', e => {
+        document.querySelector('#equipSet').addEventListener('click', e => {
             self.equipSelectedSet()
         })
         let dropSetButton = document.querySelector('#dropSetButton')
-        dropSetButton.addEventListener("drop", function(e) {
+        dropSetButton.addEventListener('drop', function(e) {
             e.preventDefault()
             self.deleteSet()
         }, false)
-        dropSetButton.addEventListener("dragover", function(e) {
+        dropSetButton.addEventListener('dragover', function(e) {
             e.preventDefault()
         }, false)
     }
@@ -70,11 +70,11 @@ class SetManager {
         let id = this.#generateSetId()
         let newSet = {
             id: id,
-            title: "Default set",
+            title: 'Default set',
             ids: []
         }
         let article = this.createSetArticleElement(newSet, true)
-        this.setTitleBox.value = "Default set"
+        this.setTitleBox.value = 'Default set'
         this.setsBox.insertBefore(article, this.setsBox.firstElementChild.nextElementSibling)
         this.currentSet = newSet
         this.pushSet(newSet)
@@ -106,15 +106,15 @@ class SetManager {
             self.selectSet(this)
         }
 
-        if(article.id != "addSetButton") {
+        if(article.id != 'addSetButton') {
             const self = this
-            article.addEventListener("dragstart", function(e) {
+            article.addEventListener('dragstart', function(e) {
                 self.curDragSet = article
-                article.style.opacity = "0.4"
+                article.style.opacity = '0.4'
             }, false)
-            article.addEventListener("dragend", function() {
+            article.addEventListener('dragend', function() {
                 self.curDragSet = null
-                article.style.opacity = "1"
+                article.style.opacity = '1'
             }, false)
             article.addEventListener('dragover', function(e) {
                 if(e.preventDefault) {
@@ -124,13 +124,13 @@ class SetManager {
             })
         }
 
-        let img = document.createElement("img")
+        let img = document.createElement('img')
         img.src = './images/magic/' + SetStyleHelper.getMagicIcon(set.magicSchool) + '.webp'
-        img.className = "leaderboard__picture"
+        img.className = 'leaderboard__picture'
         article.appendChild(img)
 
-        let span = document.createElement("span")
-        span.className = "leaderboard__name"
+        let span = document.createElement('span')
+        span.className = 'leaderboard__name'
         span.textContent = set.title
         article.appendChild(span)
         return article
@@ -158,7 +158,7 @@ class SetManager {
         let ids = items.map(i => i.attributes.itemid.value)
 
         let setArticles = setManager.setsBox.children.toArray()
-        let activeSet = setArticles.filter(e => e.id != "addSetButton" && e.className == this.#activeArticle).first()
+        let activeSet = setArticles.filter(e => e.id != 'addSetButton' && e.className == this.#activeArticle).first()
         let id = null
         var isNew = true
         if(isExists(activeSet) && isExists(this.currentSet)) {
@@ -211,14 +211,14 @@ class SetManager {
                 itemsManager.putOnItem(item)
                 state.currentElement = null
             } else {
-                console.log("SOMETHING WRONG", id)
+                console.log('SOMETHING WRONG', id)
                 return
             }
         }
     }
 
     #generateSetId() {
-        return "set_" + generateRandomId()
+        return 'set_' + generateRandomId()
     }
 
     async equipSelectedSet() {

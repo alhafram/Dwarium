@@ -21,7 +21,7 @@ function createWindow() {
     mainWindow.setContentBounds(TabsController.currentTab())
     mainWindow.start()
 
-    ipcMain.on("load_url", (evt, server) => {
+    ipcMain.on('load_url', (evt, server) => {
         current_server = server
         TabsController.currentTab().webContents.loadURL(`http://${current_server}.dwar.ru/`)
         mainWindow.webContents.send('url', `http://${current_server}.dwar.ru`, TabsController.current_tab_id)
@@ -45,7 +45,7 @@ function createWindow() {
             useContentSize: true,
             show: true,
             webPreferences: {
-                preload: path.join(__dirname, "./components/Dressing/preload.js")
+                preload: path.join(__dirname, './components/Dressing/preload.js')
             }
         })
         dressingWindow.loadFile(`${path.join(__dirname, './components/Dressing/index.html')}`)
@@ -56,7 +56,7 @@ function createWindow() {
     })
 
     function createNewTab(url, id) {
-        url = url ?? "https://google.com"
+        url = url ?? 'https://google.com'
         let browserView = new BrowserView({
             enablePreferredSizeMode: true
         })
@@ -123,11 +123,11 @@ function createWindow() {
         return await bw.webContents.executeJavaScript(request.script)
     }
 
-    globalShortcut.register('CommandOrControl+W', () => {
-        if(TabsController.currentTab() != TabsController.getMain()) {
-            mainWindow.webContents.send('close_tab', TabsController.current_tab_id)
-        }
-    })
+    // globalShortcut.register('CommandOrControl+W', () => {
+    //     if(TabsController.currentTab() != TabsController.getMain()) {
+    //         mainWindow.webContents.send('close_tab', TabsController.current_tab_id)
+    //     }
+    // })
 }
 
 app.on('ready', createWindow)

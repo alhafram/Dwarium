@@ -23,7 +23,7 @@ function setupFilters() {
 
 function filterWithResettingArmorType() {
     if(armorTypeSelected) {
-        document.getElementById(armorTypeSelected + "Box").style.border = ""
+        document.getElementById(armorTypeSelected + 'Box').style.border = ''
         armorTypeSelected = null
         filterCurrentItems()
     }
@@ -49,7 +49,7 @@ function filterCurrentItems() {
             }
         }
         for(var filter of filters) {
-            let items = Array.from(document.querySelector(".currentItems").children).filter(e => e.attributes.quality.value == filter)
+            let items = Array.from(document.querySelector('.currentItems').children).filter(e => e.attributes.quality.value == filter)
             items.forEach(item => {
                 item.style.display = 'none'
             })

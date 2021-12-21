@@ -31,34 +31,34 @@ class ItemsManager {
             parent.appendChild(item)
         })
 
-        let items = document.querySelectorAll(".currentItems .box")
+        let items = document.querySelectorAll('.currentItems .box')
         items.forEach(function(item) {
             setupEquipableItemEvents(item)
         })
 
-        let equip_items = document.querySelectorAll(".equippedItems .boxStatic")
+        let equip_items = document.querySelectorAll('.equippedItems .boxStatic')
         equip_items.forEach(function(item) {
-            item.addEventListener("dragover", handleDragOver, false)
-            item.addEventListener("drop", handleDropEquipableItemOnStaticItemBox, false)
+            item.addEventListener('dragover', handleDragOver, false)
+            item.addEventListener('drop', handleDropEquipableItemOnStaticItemBox, false)
         })
 
-        let all_items = document.querySelectorAll(".currentItems")
+        let all_items = document.querySelectorAll('.currentItems')
         all_items.forEach(function(item) {
-            item.addEventListener("drop", handleDropEquipableItemIntoAllItems, false)
-            item.addEventListener("dragover", handleDragOver, false)
+            item.addEventListener('drop', handleDropEquipableItemIntoAllItems, false)
+            item.addEventListener('dragover', handleDragOver, false)
         })
 
         this.armorTypes.forEach(t => {
-            document.getElementById(t + "Box").addEventListener('click', (e) => {
-                if(document.getElementById(t + "Box").childElementCount == 1) {
+            document.getElementById(t + 'Box').addEventListener('click', (e) => {
+                if(document.getElementById(t + 'Box').childElementCount == 1) {
                     return
                 }
-                if(document.getElementById(t + "Box").style.border == "" && document.getElementById(t + "Box").childElementCount == 0) {
+                if(document.getElementById(t + 'Box').style.border == '' && document.getElementById(t + 'Box').childElementCount == 0) {
                     if(armorTypeSelected != null) {
                         filterWithResettingArmorType()
                     }
                     armorTypeSelected = t
-                    document.getElementById(t + "Box").style.border = '3px dotted #666'
+                    document.getElementById(t + 'Box').style.border = '3px dotted #666'
                     filterCurrentItems()
                 } else {
                     filterWithResettingArmorType()
@@ -80,13 +80,13 @@ class ItemsManager {
             divItem.setAttribute('itemId', item.id)
             divItem.setAttribute('trend', item.trend)
             if(item.kind_id == 12) {
-                divItem.setAttribute('weapon', "2h")
+                divItem.setAttribute('weapon', '2h')
             }
             if(item.kind_id == 10) {
-                divItem.setAttribute('weapon', "1h")
+                divItem.setAttribute('weapon', '1h')
             }
             if(item.kind_id == 44 || item.kind_id == 17) {
-                divItem.setAttribute('weapon', "off")
+                divItem.setAttribute('weapon', 'off')
             }
             return divItem
         })
@@ -130,13 +130,13 @@ class ItemsManager {
     }
 
     createArcatSlot() {
-        let parent = document.querySelector("#arcats")
+        let parent = document.querySelector('#arcats')
         let arcatElement = document.createElement('div')
-        arcatElement.id = "arcat"
+        arcatElement.id = 'arcat'
         let slotElement = document.createElement('div')
-        slotElement.type = "arcat"
-        slotElement.id = "arcatBox"
-        slotElement.className = "boxStatic small"
+        slotElement.type = 'arcat'
+        slotElement.id = 'arcatBox'
+        slotElement.className = 'boxStatic small'
         arcatElement.appendChild(slotElement)
         parent.appendChild(arcatElement)
     }
@@ -144,13 +144,13 @@ class ItemsManager {
     putOffItem(element, remove, fake) {
         if(element.childElementCount > 0) {
             let item = element.children[0]
-            element.style.visibility = "visible"
+            element.style.visibility = 'visible'
             item.attributes.equiped.value = false
             state[item.attributes.type.value].item = null
             if(remove) {
                 element.removeChild(item)
             } else {
-                document.querySelectorAll(".currentItems")[0].appendChild(item)
+                document.querySelectorAll('.currentItems')[0].appendChild(item)
             }
             let equipedStyles = state.getEquipedItems().map(i => i.attributes.trend.value)
             let uniqueStyles = new Set(equipedStyles)
@@ -166,12 +166,12 @@ class ItemsManager {
             currentStyle = item.attributes.trend.value
         }
         if(state.currentElement.attributes.weapon && !item.attributes.copy) {
-            if(state.currentElement.attributes.weapon.value == "2h") {
+            if(state.currentElement.attributes.weapon.value == '2h') {
                 this.putOffWeapon(state.currentElement)
                 let mainWeaponCopy = state.currentElement.cloneNode(true)
                 mainWeaponCopy.attributes.type.value = 'offhandWeapon'
                 mainWeaponCopy.setAttribute('copy', true)
-                mainWeaponCopy.style.opacity = "0.4"
+                mainWeaponCopy.style.opacity = '0.4'
                 setupEquipableItemEvents(mainWeaponCopy)
                 this.putOnItem(mainWeaponCopy, true)
             } else {
@@ -183,8 +183,8 @@ class ItemsManager {
         }
         state[item.attributes.type.value].item = item
         state[item.attributes.type.value].box.appendChild(item)
-        state[item.attributes.type.value].box.style.visibility = "hidden"
-        state[item.attributes.type.value].box.children[0].style.visibility = "visible"
+        state[item.attributes.type.value].box.style.visibility = 'hidden'
+        state[item.attributes.type.value].box.children[0].style.visibility = 'visible'
         item.attributes.equiped.value = true
         filterWithResettingArmorType()
         filterCurrentItems()
@@ -194,23 +194,23 @@ class ItemsManager {
         if(fake == undefined) {
             fake = true
         }
-        if(item.attributes.weapon.value == "2h") {
-            let isFakeWeapon = state.offhandWeapon.item && state.offhandWeapon.item.attributes.copy && state.offhandWeapon.item.attributes.copy.value == "true"
+        if(item.attributes.weapon.value == '2h') {
+            let isFakeWeapon = state.offhandWeapon.item && state.offhandWeapon.item.attributes.copy && state.offhandWeapon.item.attributes.copy.value == 'true'
             this.putOffItem(state.offhandWeapon.box, isFakeWeapon, isFakeWeapon)
             this.putOffItem(state.mainWeapon.box, false, fake)
         }
-        if(item.attributes.weapon.value == "1h") {
+        if(item.attributes.weapon.value == '1h') {
             if(state.mainWeapon.item) {
-                if(state.mainWeapon.item.attributes.weapon.value == "2h") {
+                if(state.mainWeapon.item.attributes.weapon.value == '2h') {
                     this.putOffWeapon(state.mainWeapon.item)
                 } else {
                     this.putOffItem(state.mainWeapon.box, false, fake)
                 }
             }
         }
-        if(item.attributes.weapon.value == "off") {
+        if(item.attributes.weapon.value == 'off') {
             if(state.offhandWeapon.item) {
-                if(state.offhandWeapon.item.attributes.weapon.value == "2h") {
+                if(state.offhandWeapon.item.attributes.weapon.value == '2h') {
                     this.putOffWeapon(state.offhandWeapon.item)
                 } else {
                     this.putOffItem(state.offhandWeapon.box, false, fake)
