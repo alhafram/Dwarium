@@ -98,7 +98,7 @@ function createWindow() {
         TabsController.currentTab().webContents.loadURL(url)
     })
 
-    ipcMain.handle('LoadSetItems', async (evt) => {
+    ipcMain.handle('LoadSetItems', async (evt, args) => {
         const SetRequests = {
             allItems: {
                 url: `http://${current_server}.dwar.ru/user_iframe.php?group=2`,
@@ -109,12 +109,14 @@ function createWindow() {
                 script: 'art_alt'
             }
         }
-        let [allItems, wearedItems] = await Promise.all([fetch(SetRequests.allItems), fetch(SetRequests.wearedItems)])
+        let requests = args.map(arg => fetch(SetRequests[arg]))
+        let results = await Promise.all(requests)
+        let res = {}
+        args.forEach((arg, index) => {
+            res[arg] = results[index]
+        })
         dressingWindow.show()
-        return {
-            allItems: allItems,
-            wearedItems: wearedItems
-        }
+        return res
     })
 
     async function fetch(request) {

@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     setManager = new SetManager()
     itemsManager = new ItemsManager()
     setupState()
-    const result = await window.myAPI.loadItemsData()
+    const result = await window.myAPI.loadItemsData(['allItems', 'wearedItems'])
     const parsedAllItems = parse(result.allItems)
     itemsManager.setupAllItems(parsedAllItems)
     if(!parsedAllItems.zikkurat.isEmpty()) {
