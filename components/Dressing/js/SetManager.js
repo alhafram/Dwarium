@@ -155,7 +155,7 @@ class SetManager {
     saveSet() {
         let items = state.getEquipedItems()
         let title = this.setTitleBox.value
-        let ids = items.map(i => i.attributes.itemid.value)
+        let ids = items.map(i => i.getAttribute('itemid'))
 
         let setArticles = setManager.setsBox.children.toArray()
         let activeSet = setArticles.filter(e => e.id != 'addSetButton' && e.className == this.#activeArticle).first()
@@ -199,13 +199,13 @@ class SetManager {
     unequip() {
         let items = state.getEquipedItems()
         for(var item of items) {
-            itemsManager.putOffItem(item.parentElement, isExists(item.attributes.copy), true)
+            itemsManager.putOffItem(item.parentElement, isExists(item.getAttribute('copy')), true)
         }
     }
 
     equipFromSet(ids) {
         for(var id of ids) {
-            let item = this.allCurrentItems.filter(element => element.attributes.itemid.value == id).first()
+            let item = this.allCurrentItems.filter(element => element.getAttribute('itemid') == id).first()
             if(item) {
                 state.currentElement = item
                 itemsManager.putOnItem(item)

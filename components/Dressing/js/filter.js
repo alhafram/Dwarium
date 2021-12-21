@@ -33,7 +33,7 @@ function filterCurrentItems() {
     let items = Array.from(document.querySelector('.currentItems').children)
     items.forEach(i => {
         if(state.armorTypeSelected) {
-            if(i.attributes.type.value == state.armorTypeSelected) {
+            if(i.getAttribute('type') == state.armorTypeSelected) {
                 i.style.display = 'inline-block'
             } else {
                 i.style.display = 'none'
@@ -42,14 +42,14 @@ function filterCurrentItems() {
             i.style.display = 'inline-block'
         }
         if(state.currentStyle) {
-            if(i.attributes.trend.value == 'Универсал' && i.style.display == 'inline-block' || state.currentStyle == i.attributes.trend.value && i.style.display == 'inline-block') {
+            if(i.getAttribute('trend') == 'Универсал' && i.style.display == 'inline-block' || state.currentStyle == i.getAttribute('trend') && i.style.display == 'inline-block') {
                 i.style.display = 'inline-block'
             } else {
                 i.style.display = 'none'
             }
         }
         for(var filter of filters) {
-            let items = Array.from(document.querySelector('.currentItems').children).filter(e => e.attributes.quality.value == filter)
+            let items = Array.from(document.querySelector('.currentItems').children).filter(e => e.getAttribute('quality') == filter)
             items.forEach(item => {
                 item.style.display = 'none'
             })

@@ -23,7 +23,7 @@ function handleDropEquipableItemOnStaticItemBox(e) {
     }
     if(state.currentElement != this &&
         this.childElementCount == 0 &&
-        state.currentElement.attributes.type.value == this.attributes.type.value) {
+        state.currentElement.getAttribute('type') == this.getAttribute('type')) {
         itemsManager.putOnItem(state.currentElement, false)
     }
     return false
@@ -34,7 +34,7 @@ function handleDropEquipableItemIntoAllItems(e) {
         e.stopPropagation()
     }
 
-    if(state.currentElement.attributes.weapon) {
+    if(state.currentElement.getAttribute('weapon')) {
         itemsManager.putOffWeapon(state.currentElement, false)
     } else {
         itemsManager.putOffItem(state.currentElement.parentElement, false, false)
@@ -47,15 +47,15 @@ function handleClickEquipableItem(e) {
     if(e.detail == 1) {
         return
     }
-    if(this.attributes.equiped.value != 'true' && e.detail == 2) {
-        let itemBox = document.querySelector(`#${this.attributes.type.value}Box`)
+    if(this.getAttribute('equiped') != 'true' && e.detail == 2) {
+        let itemBox = document.querySelector(`#${this.getAttribute('type')}Box`)
         state.currentElement = this
         itemsManager.putOnItem(this, false)
         return
     }
-    if(this.attributes.equiped.value == 'true' && e.detail == 2) {
-        let itemBox = document.querySelector(`#${this.attributes.type.value}Box`)
-        if(this.attributes.weapon) {
+    if(this.getAttribute('equiped') == 'true' && e.detail == 2) {
+        let itemBox = document.querySelector(`#${this.getAttribute('type')}Box`)
+        if(this.getAttribute('weapon')) {
             itemsManager.putOffWeapon(this, false)
         } else {
             itemsManager.putOffItem(itemBox, false, false)
