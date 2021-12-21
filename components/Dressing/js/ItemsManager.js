@@ -75,7 +75,6 @@ class ItemsManager {
 
     convertItemIntoDiv(items) {
         return items.map(item => {
-            let parent = document.querySelector('.currentItems')
             let divItem = document.createElement('div')
             divItem.className = 'box'
             divItem.draggable = 'true'
@@ -148,15 +147,15 @@ class ItemsManager {
     }
 
     putOffItem(element) {
-        if(element.childElementCount > 0) {
-            let item = element.children[0]
+        let item = element.firstElementChild
+        if(item) {
             element.style.visibility = 'visible'
             item.setAttribute('equiped', false)
             state[item.getAttribute('type')].item = null
             if(item.getAttribute('copy')) {
                 element.removeChild(item)
             } else {
-                document.querySelectorAll('.currentItems')[0].appendChild(item)
+                document.querySelector('.currentItems').appendChild(item)
             }
             let equipedStyles = state.getEquipedItems().map(i => i.getAttribute('trend'))
             let uniqueStyles = new Set(equipedStyles)
@@ -190,7 +189,7 @@ class ItemsManager {
         state[item.getAttribute('type')].item = item
         state[item.getAttribute('type')].box.appendChild(item)
         state[item.getAttribute('type')].box.style.visibility = 'hidden'
-        state[item.getAttribute('type')].box.children[0].style.visibility = 'visible'
+        state[item.getAttribute('type')].box.firstElementChild.style.visibility = 'visible'
         item.setAttribute('equiped', true)
         filterWithResettingArmorType()
         filterCurrentItems()

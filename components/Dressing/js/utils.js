@@ -66,7 +66,7 @@ function parseMagicSchools(result) {
     if(currentStyle == 0) {
         currentStyle = difference(SetStyleHelper.humanSchools, schools)
     }
-    return Array.from(currentStyle)[0]
+    return Array.from(currentStyle).first()
 }
 
 function difference(setA, setB) {

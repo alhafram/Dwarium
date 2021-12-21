@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     setupFilters()
 
     // TODO: - Find better solution
-    const arcatsCount = parsedWearedItems.bracelets[0]?.skills.find(s => s.title === 'Слоты для аркатов').value.slice(4, 5)
+    const arcatsCount = parsedWearedItems.bracelets.first()?.skills.find(s => s.title === 'Слоты для аркатов').value.slice(4, 5)
     if(arcatsCount) {
         for(let i = 0; i < arcatsCount; i++) {
             itemsManager.createArcatSlot()
