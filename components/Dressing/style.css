@@ -10,7 +10,7 @@ body {
     width: 100%;
 }
 
-.current_items {
+.currentItems {
     border: 3px dotted #666;
     height: 50%;
     width: 80%;
@@ -27,7 +27,7 @@ body {
     flex-shrink: 0;
 }
 
-.equipped_items {
+.equippedItems {
     height: 400px;
     width: 350px;
     flex-shrink: 0;
@@ -53,7 +53,7 @@ body {
     margin-top: 75px;
 }
 
-.current_items div {
+.currentItems div {
     margin: 5px;
 }
 
@@ -66,14 +66,14 @@ body {
     display: inline-block;
 }
 
-.box_static {
+.boxStatic {
     border: 2px solid #666;
     border-radius: 0.5em;
     height: 70px;
     width: 70px;
 }
 
-.box_static.small {
+.boxStatic.small {
     height: 25px;
     width: 25px;
     margin-left: 5px;

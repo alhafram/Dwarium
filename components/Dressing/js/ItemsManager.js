@@ -27,22 +27,22 @@ class ItemsManager {
             arr = arr.concat(this.convertItemIntoDiv(allItems[type]))
         }
         arr.flatMap(i => i).forEach(item => {
-            let parent = document.querySelector('.current_items')
+            let parent = document.querySelector('.currentItems')
             parent.appendChild(item)
         })
 
-        let items = document.querySelectorAll(".current_items .box")
+        let items = document.querySelectorAll(".currentItems .box")
         items.forEach(function(item) {
             setupEquipableItemEvents(item)
         })
 
-        let equip_items = document.querySelectorAll(".equipped_items .box_static")
+        let equip_items = document.querySelectorAll(".equippedItems .boxStatic")
         equip_items.forEach(function(item) {
             item.addEventListener("dragover", handleDragOver, false)
             item.addEventListener("drop", handleDropEquipableItemOnStaticItemBox, false)
         })
 
-        let all_items = document.querySelectorAll(".current_items")
+        let all_items = document.querySelectorAll(".currentItems")
         all_items.forEach(function(item) {
             item.addEventListener("drop", handleDropEquipableItemIntoAllItems, false)
             item.addEventListener("dragover", handleDragOver, false)
@@ -69,7 +69,7 @@ class ItemsManager {
 
     convertItemIntoDiv(items) {
         return items.map(item => {
-            let parent = document.querySelector('.current_items')
+            let parent = document.querySelector('.currentItems')
             let divItem = document.createElement('div')
             divItem.className = 'box'
             divItem.draggable = 'true'
@@ -136,7 +136,7 @@ class ItemsManager {
         let slotElement = document.createElement('div')
         slotElement.type = "arcat"
         slotElement.id = "arcatBox"
-        slotElement.className = "box_static small"
+        slotElement.className = "boxStatic small"
         arcatElement.appendChild(slotElement)
         parent.appendChild(arcatElement)
     }
@@ -150,7 +150,7 @@ class ItemsManager {
             if(remove) {
                 element.removeChild(item)
             } else {
-                document.querySelectorAll(".current_items")[0].appendChild(item)
+                document.querySelectorAll(".currentItems")[0].appendChild(item)
             }
             let equipedStyles = state.getEquipedItems().map(i => i.attributes.trend.value)
             let uniqueStyles = new Set(equipedStyles)

@@ -30,7 +30,7 @@ function filterWithResettingArmorType() {
 }
 
 function filterCurrentItems() {
-    let items = Array.from(document.querySelector('.current_items').children)
+    let items = Array.from(document.querySelector('.currentItems').children)
     items.forEach(i => {
         if(armorTypeSelected) {
             if(i.attributes.type.value == armorTypeSelected) {
@@ -49,7 +49,7 @@ function filterCurrentItems() {
             }
         }
         for(var filter of filters) {
-            let items = Array.from(document.querySelector(".current_items").children).filter(e => e.attributes.quality.value == filter)
+            let items = Array.from(document.querySelector(".currentItems").children).filter(e => e.attributes.quality.value == filter)
             items.forEach(item => {
                 item.style.display = 'none'
             })

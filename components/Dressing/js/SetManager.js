@@ -16,7 +16,7 @@ class SetManager {
     }
 
     get allCurrentItems() {
-        return document.querySelector(".current_items").children.toArray()
+        return document.querySelector(".currentItems").children.toArray()
     }
 
     pushSet(newSet) {
