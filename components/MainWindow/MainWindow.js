@@ -41,9 +41,9 @@ class MainWindow extends BrowserWindow {
         this.webContents.send('server', current_server)
 
         this.browserView.webContents.setWindowOpenHandler(({
-            url
+            url, features
         }) => {
-            if(TabsController.currentTab() == TabsController.getMain()) {
+            if(TabsController.currentTab() == TabsController.getMain() && !features) {
                 this.send('new_tab', url)
                 return {
                     action: 'deny'
