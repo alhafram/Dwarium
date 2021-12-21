@@ -11,8 +11,8 @@ contextBridge.exposeInMainWorld('myAPI', {
     server: () => {
         return configService.server
     },
-    loadItemsData: async () => {
-        return await ipcRenderer.invoke('LoadSetItems')
+    loadItemsData: async (types) => {
+        return await ipcRenderer.invoke('LoadSetItems', types)
     },
     saveSet: (set) => {
         configService.writeData(set.id, JSON.stringify(set))
