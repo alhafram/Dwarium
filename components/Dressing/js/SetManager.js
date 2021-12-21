@@ -225,18 +225,30 @@ class SetManager {
         if(!isExists(this.currentSet)) {
             return
         }
+        let styleChanged = false
         if(this.currentSet.magicSchool && state.currentMagicSchool != this.currentSet.magicSchool) {
             let styleId = SetStyleHelper.getStyleId(this.currentSet.magicSchool)
             await changeStyle(state.zikkuratId, styleId)
             state.currentMagicSchool = this.currentSet.magicSchool
-            this.equipedCurrentItemIds = []
+            styleChanged = true
         }
-        while(!this.equipedCurrentItemIds.isEmpty()) {
-            let id = this.equipedCurrentItemIds.first()
+        if(styleChanged) {
+            const result = await window.myAPI.loadItemsData(['wearedItems'])
+            const parsedWearedItems = parse(result.wearedItems)
+            let arr = []
+            for(const type of itemsManager.parsingItemTypes) {
+                arr = arr.concat(parsedWearedItems[type])
+            }
+            this.equipedCurrentItemIds = arr.map(i => i.id)
+        }
+        const needToPutOn = difference(this.currentSet.ids, this.equipedCurrentItemIds)
+        const needToPutOff = difference(this.equipedCurrentItemIds, this.currentSet.ids)
+
+        for(var id of needToPutOff) {
             await unequipRequest(id)
             this.equipedCurrentItemIds.removeItem(id)
         }
-        for(var id of this.currentSet.ids) {
+        for(var id of needToPutOn) {
             await equipRequest(id)
             this.equipedCurrentItemIds.push(id)
         }
