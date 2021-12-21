@@ -19,6 +19,12 @@ class ItemsManager {
             self.putOnItem(item, true)
             state.currentElement = null
         })
+        let loadedSet = setManager.sets.filter(set => difference(setManager.equipedCurrentItemIds, set.ids).size == 0 && difference(set.ids, setManager.equipedCurrentItemIds).size == 0).first()
+        if(loadedSet) {
+            setManager.currentSet = loadedSet
+            let article = setManager.setsBox.children.toArray().filter(box => box.id == loadedSet.id).first()
+            article.click()
+        }
     }
 
     setupAllItems(allItems) {

@@ -14,9 +14,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         const res = await getMagicSchools(state.zikkuratId)
         state.currentMagicSchool = parseMagicSchools(res.result)
     }
+    setManager.setup()
     const parsedWearedItems = parse(result.wearedItems)
     itemsManager.setupWearedItems(parsedWearedItems)
-    setManager.setup()
     setupFilters()
 
     // TODO: - Find better solution
