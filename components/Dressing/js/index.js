@@ -40,6 +40,7 @@ function setupState() {
         },
         currentStyle: null,
         armorTypeSelected: null,
+        armorTypeSlotSelected: null,
         currentMagicSchool: null,
         zikkuratId: null
     }

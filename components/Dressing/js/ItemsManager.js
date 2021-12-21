@@ -1,7 +1,7 @@
 class ItemsManager {
 
-    parsingItemTypes = ['helmets', 'shoulders', 'bracers', 'mainWeapons', 'offhandWeapons', 'cuirasses', 'leggings', 'chainmails', 'boots', 'bows', 'quivers']
-    armorTypes = ['helmet', 'shoulders', 'bracers', 'mainWeapon', 'offhandWeapon', 'cuirass', 'leggings', 'chainmail', 'boots', 'bow', 'quiver']
+    parsingItemTypes = ['helmets', 'shoulders', 'bracers', 'mainWeapons', 'offhandWeapons', 'cuirasses', 'leggings', 'chainmails', 'boots', 'bows', 'quivers', 'rings', 'amulets']
+    armorTypes = ['helmet', 'shoulders', 'bracers', 'mainWeapon', 'offhandWeapon', 'cuirass', 'leggings', 'chainmail', 'boots', 'bow', 'quiver', 'ring1', 'ring2', 'amulet1', 'amulet2']
 
     setupWearedItems(wearedItems) {
         let arr = []
@@ -55,7 +55,7 @@ class ItemsManager {
         })
 
         this.armorTypes.forEach(t => {
-            document.getElementById(t + 'Box').addEventListener('click', (e) => {
+            document.getElementById(t + 'Box').addEventListener('click', () => {
                 if(document.getElementById(t + 'Box').childElementCount == 1) {
                     return
                 }
@@ -63,9 +63,14 @@ class ItemsManager {
                     if(state.armorTypeSelected != null) {
                         filterWithResettingArmorType()
                     }
-                    state.armorTypeSelected = t
                     document.getElementById(t + 'Box').style.border = '3px dotted #666'
+                    if(t.includes('ring') || t.includes('amulet')) {
+                        state.armorTypeSlotSelected = t.slice(t.length - 1, t.length)
+                        t = t.slice(0, t.length - 1)
+                    }
+                    state.armorTypeSelected = t
                     filterCurrentItems()
+                    t = t + state.armorTypeSlotSelected
                 } else {
                     filterWithResettingArmorType()
                 }
@@ -131,6 +136,12 @@ class ItemsManager {
         if(kind_id == '116') {
             return 'bow'
         }
+        if(kind_id == '76' || kind_id == '18') {
+            return 'ring'
+        }
+        if(kind_id == '25') {
+            return 'amulet'
+        }
         return 'other'
     }
 
@@ -151,10 +162,19 @@ class ItemsManager {
         if(item) {
             element.style.visibility = 'visible'
             item.setAttribute('equiped', false)
-            state[item.getAttribute('type')].item = null
+            if(item.getAttribute('type') == 'ring' || item.getAttribute('type') == 'amulet') {
+                let number = item.parentElement.id.slice(item.getAttribute('type').length, item.getAttribute('type').length + 1)
+                state[item.getAttribute('type') + number].item = null
+            } else {
+                state[item.getAttribute('type')].item = null
+            }
             if(item.getAttribute('copy')) {
                 element.removeChild(item)
             } else {
+                if(item.getAttribute('type')) {
+                    item.style.width = '70px'
+                    item.style.height = '70px'
+                }
                 document.querySelector('.currentItems').appendChild(item)
             }
             let equipedStyles = state.getEquipedItems().map(i => i.getAttribute('trend'))
@@ -170,6 +190,7 @@ class ItemsManager {
         if(item.getAttribute('trend') != 'Универсал') {
             state.currentStyle = item.getAttribute('trend')
         }
+        let type = item.getAttribute('type')
         if(state.currentElement.getAttribute('weapon') && !item.getAttribute('copy')) {
             if(state.currentElement.getAttribute('weapon') == '2h') {
                 this.putOffWeapon(state.currentElement)
@@ -183,13 +204,24 @@ class ItemsManager {
                 this.putOffWeapon(state.currentElement)
             }
         } else {
-            let itemBox = document.querySelector(`#${state.currentElement.getAttribute('type')}Box`)
-            this.putOffItem(itemBox)
+            if(item.getAttribute('type') == 'ring' || item.getAttribute('type') == 'amulet') {
+                type = item.getAttribute('type') + 1
+                if(document.querySelector(`#${type}Box`).childElementCount == 1) {
+                    type = item.getAttribute('type') + 2
+                }
+                let itemBox = document.querySelector(`#${type}Box`)
+                this.putOffItem(itemBox)
+                item.style.height = '25px';
+                item.style.width = '25px';
+            } else {
+                let itemBox = document.querySelector(`#${type}Box`)
+                this.putOffItem(itemBox)
+            }
         }
-        state[item.getAttribute('type')].item = item
-        state[item.getAttribute('type')].box.appendChild(item)
-        state[item.getAttribute('type')].box.style.visibility = 'hidden'
-        state[item.getAttribute('type')].box.firstElementChild.style.visibility = 'visible'
+        state[type].item = item
+        state[type].box.appendChild(item)
+        state[type].box.style.visibility = 'hidden'
+        state[type].box.firstElementChild.style.visibility = 'visible'
         item.setAttribute('equiped', true)
         filterWithResettingArmorType()
         filterCurrentItems()

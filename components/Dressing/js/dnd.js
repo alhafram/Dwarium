@@ -54,11 +54,10 @@ function handleClickEquipableItem(e) {
         return
     }
     if(this.getAttribute('equiped') == 'true' && e.detail == 2) {
-        let itemBox = document.querySelector(`#${this.getAttribute('type')}Box`)
         if(this.getAttribute('weapon')) {
             itemsManager.putOffWeapon(this)
         } else {
-            itemsManager.putOffItem(itemBox)
+            itemsManager.putOffItem(this.parentElement)
         }
         filterWithResettingArmorType()
         e.stopPropagation()

@@ -198,11 +198,11 @@ body {
     margin-left: 85px
 }
 
-#ringBox {
+#ring1Box,#ring2Box {
     background-image: url('./images/ring.svg');
 }
 
-#amuletBox {
+#amulet1Box,#amulet2Box {
     background-image: url('./images/amulet.svg');
 }
 

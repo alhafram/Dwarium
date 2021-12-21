@@ -23,8 +23,9 @@ function setupFilters() {
 
 function filterWithResettingArmorType() {
     if(state.armorTypeSelected) {
-        document.getElementById(`${state.armorTypeSelected}Box`).style.border = ''
+        document.getElementById(`${state.armorTypeSelected}${state.armorTypeSlotSelected ?? ""}Box`).style.border = ''
         state.armorTypeSelected = null
+        state.armorTypeSlotSelected = null
         filterCurrentItems()
     }
 }

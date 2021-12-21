@@ -11,9 +11,6 @@ function parse(art_alt) {
     let quivers = items.filter(i => i.kind_id == '131') // Quivers
     items = items.removeItems(quivers)
 
-    let amulets = items.filter(i => i.kind_id == '25') // Amulets
-    items = items.removeItems(amulets)
-
     let rings = items.filter(i => i.kind_id == '76' && i.type_id == '18') // Rings
     items = items.removeItems(rings)
 
@@ -42,6 +39,9 @@ function parse(art_alt) {
     let decorItems = items.filter(i => decorKindIds.some(d => d.kind_id == i.kind_id && d.type_id == i.type_id))
     decorItems = decorItems.concat(commonDecorItems)
     items = items.removeItems(decorItems)
+
+    let amulets = items.filter(i => i.kind_id == '25') // Amulets
+    items = items.removeItems(amulets)
 
     let profWeapons = items.filter(i => i.kind_id == '42') // Profession weapons
     items = items.removeItems(profWeapons)
