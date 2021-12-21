@@ -2,8 +2,7 @@ const {
     app,
     ipcMain,
     BrowserWindow,
-    BrowserView,
-    globalShortcut
+    BrowserView
 } = require('electron')
 const configService = require('./services/ConfigService')
 const TabsController = require('./services/TabsController')
@@ -124,12 +123,6 @@ function createWindow() {
         await bw.webContents.loadURL(request.url)
         return await bw.webContents.executeJavaScript(request.script)
     }
-
-    // globalShortcut.register('CommandOrControl+W', () => {
-    //     if(TabsController.currentTab() != TabsController.getMain()) {
-    //         mainWindow.webContents.send('close_tab', TabsController.current_tab_id)
-    //     }
-    // })
 }
 
 app.on('ready', createWindow)

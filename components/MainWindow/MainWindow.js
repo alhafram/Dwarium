@@ -1,6 +1,7 @@
 const {
     BrowserView,
-    BrowserWindow
+    BrowserWindow,
+    globalShortcut
 } = require('electron')
 const path = require('path')
 const configService = require('../../services/ConfigService')
@@ -32,16 +33,28 @@ class MainWindow extends BrowserWindow {
         this.on('closed', function() {
             win = null
         })
+        this.webContents.on('did-finish-load', () => {
+            let current_server = configService.server
+            this.webContents.send('server', current_server)
+        })
+        this.on('focus', () => {
+            globalShortcut.register('CommandOrControl+W', () => {
+                if(TabsController.currentTab() != TabsController.getMain()) {
+                    win.webContents.send('close_tab', TabsController.current_tab_id)
+                }
+            })
+        })
+        this.on('blur', () => {
+            globalShortcut.unregister('CommandOrControl+W')
+        })
     }
 
     setup() {
         this.browserView = this.createMainBrowserView()
         this.setBrowserView(this.browserView)
-        let current_server = configService.server
-        this.webContents.send('server', current_server)
-
         this.browserView.webContents.setWindowOpenHandler(({
-            url, features
+            url,
+            features
         }) => {
             if(TabsController.currentTab() == TabsController.getMain() && !features) {
                 this.send('new_tab', url)
