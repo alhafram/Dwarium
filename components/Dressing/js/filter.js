@@ -22,9 +22,9 @@ function setupFilters() {
 }
 
 function filterWithResettingArmorType() {
-    if(armorTypeSelected) {
-        document.getElementById(armorTypeSelected + 'Box').style.border = ''
-        armorTypeSelected = null
+    if(state.armorTypeSelected) {
+        document.getElementById(`${state.armorTypeSelected}Box`).style.border = ''
+        state.armorTypeSelected = null
         filterCurrentItems()
     }
 }
@@ -32,8 +32,8 @@ function filterWithResettingArmorType() {
 function filterCurrentItems() {
     let items = Array.from(document.querySelector('.currentItems').children)
     items.forEach(i => {
-        if(armorTypeSelected) {
-            if(i.attributes.type.value == armorTypeSelected) {
+        if(state.armorTypeSelected) {
+            if(i.attributes.type.value == state.armorTypeSelected) {
                 i.style.display = 'inline-block'
             } else {
                 i.style.display = 'none'

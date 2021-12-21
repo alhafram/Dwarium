@@ -54,10 +54,10 @@ class ItemsManager {
                     return
                 }
                 if(document.getElementById(t + 'Box').style.border == '' && document.getElementById(t + 'Box').childElementCount == 0) {
-                    if(armorTypeSelected != null) {
+                    if(state.armorTypeSelected != null) {
                         filterWithResettingArmorType()
                     }
-                    armorTypeSelected = t
+                    state.armorTypeSelected = t
                     document.getElementById(t + 'Box').style.border = '3px dotted #666'
                     filterCurrentItems()
                 } else {

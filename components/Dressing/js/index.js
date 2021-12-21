@@ -2,7 +2,6 @@ let setManager = null
 let itemsManager = null
 let currentMagicSchool = null
 let zikkuratId = null
-var armorTypeSelected = null
 var state = null
 
 document.addEventListener('DOMContentLoaded', async () => {
@@ -41,7 +40,8 @@ function setupState() {
             let items = Object.keys(state).map(key => state[key]).filter(obj => obj != null && Object.keys(obj) != 0)
             return items.map(i => i.item).filter(i => i != null)
         },
-        currentStyle: null
+        currentStyle: null,
+        armorTypeSelected: null
     }
     itemsManager.armorTypes.forEach(type => {
         state[type] = {
