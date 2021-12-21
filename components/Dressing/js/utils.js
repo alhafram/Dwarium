@@ -1,3 +1,4 @@
+// TODO: - ???? REFACTOR OR LODASH
 Array.prototype.isEmpty = function() {
     return this.length == 0
 }
@@ -17,7 +18,7 @@ String.prototype.hashCode = function(seed = 0) {
 
 String.prototype.toDocument = function() {
     var parser = new DOMParser();
-    return parser.parseFromString(this, "text/html");
+    return parser.parseFromString(this, 'text/html');
 }
 
 function isExists(element) {
@@ -56,4 +57,22 @@ Array.prototype.removeItems = function(elements) {
 
 function generateRandomId() {
     return (Math.random() + 1).toString(36).substring(2)
+}
+
+function parseMagicSchools(result) {
+    let doc = result.toDocument()
+    let schools = Array.from(doc.querySelector('body > table > tbody > tr:nth-child(2) > td.bgg > table > tbody > tr:nth-child(1) > td:nth-child(2) > select').children).map(e => e.textContent)
+    let currentStyle = difference(SetStyleHelper.magmarSchools, schools)
+    if(currentStyle == 0) {
+        currentStyle = difference(SetStyleHelper.humanSchools, schools)
+    }
+    return Array.from(currentStyle)[0]
+}
+
+function difference(setA, setB) {
+    let _difference = new Set(setA)
+    for(let elem of setB) {
+        _difference.delete(elem)
+    }
+    return _difference
 }

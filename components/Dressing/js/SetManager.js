@@ -199,7 +199,7 @@ class SetManager {
     unequip() {
         let items = state.getEquipedItems()
         for(var item of items) {
-            putOffItem(item.parentElement, isExists(item.attributes.copy), true)
+            itemsManager.putOffItem(item.parentElement, isExists(item.attributes.copy), true)
         }
     }
 
@@ -208,7 +208,7 @@ class SetManager {
             let item = this.allCurrentItems.filter(element => element.attributes.itemid.value == id).first()
             if(item) {
                 state.currentElement = item
-                putOnItem(item)
+                itemsManager.putOnItem(item)
                 state.currentElement = null
             } else {
                 console.log("SOMETHING WRONG", id)
@@ -240,5 +240,11 @@ class SetManager {
             await equipRequest(id)
             this.equipedCurrentItemIds.push(id)
         }
+    }
+
+    setup() {
+        this.loadSets()
+        this.fillSets()
+        this.setupListeners()
     }
 }

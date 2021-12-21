@@ -65,6 +65,6 @@ const SetStyleHelper = {
         if(magic == 'Свет') {
             return 'Light'
         }
-        return "Default"
+        return 'Default'
     }
 }

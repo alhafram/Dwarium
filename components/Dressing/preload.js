@@ -3,7 +3,6 @@ const {
     contextBridge
 } = require("electron")
 const configService = require('../../services/ConfigService')
-require('./utils')
 
 contextBridge.exposeInMainWorld('myAPI', {
     makeRequest: async (req) => {
