@@ -74,7 +74,7 @@ class ItemsManager {
             divItem.className = 'box'
             divItem.draggable = 'true'
             divItem.setAttribute('equiped', 'false')
-            divItem.style = `background-image: url('http://w1.dwar.ru/${item.image}');background-repeat: no-repeat;background-size: cover;`
+            divItem.style = `background-image: url('http://${window.myAPI.server()}.dwar.ru/${item.image}');background-repeat: no-repeat;background-size: cover;`
             divItem.setAttribute('type', this.getType(item.kind_id))
             divItem.setAttribute('quality', item.quality)
             divItem.setAttribute('itemId', item.id)
@@ -155,7 +155,7 @@ class ItemsManager {
             let equipedStyles = state.getEquipedItems().map(i => i.attributes.trend.value)
             let uniqueStyles = new Set(equipedStyles)
             if(equipedStyles.size == 0 || uniqueStyles.size == 0 || uniqueStyles.size == 1 && uniqueStyles.has('Универсал')) {
-                currentStyle = null
+                state.currentStyle = null
                 filterCurrentItems()
             }
         }
@@ -163,7 +163,7 @@ class ItemsManager {
 
     putOnItem(item, fake) {
         if(item.attributes.trend.value != 'Универсал') {
-            currentStyle = item.attributes.trend.value
+            state.currentStyle = item.attributes.trend.value
         }
         if(state.currentElement.attributes.weapon && !item.attributes.copy) {
             if(state.currentElement.attributes.weapon.value == '2h') {

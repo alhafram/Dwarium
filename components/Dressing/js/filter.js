@@ -41,8 +41,8 @@ function filterCurrentItems() {
         } else {
             i.style.display = 'inline-block'
         }
-        if(currentStyle) {
-            if(i.attributes.trend.value == 'Универсал' && i.style.display == 'inline-block' || currentStyle == i.attributes.trend.value && i.style.display == 'inline-block') {
+        if(state.currentStyle) {
+            if(i.attributes.trend.value == 'Универсал' && i.style.display == 'inline-block' || state.currentStyle == i.attributes.trend.value && i.style.display == 'inline-block') {
                 i.style.display = 'inline-block'
             } else {
                 i.style.display = 'none'

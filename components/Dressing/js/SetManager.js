@@ -64,7 +64,7 @@ class SetManager {
     }
 
     addNewSet() {
-        currentStyle = null
+        state.currentStyle = null
         this.deselectOtherArticles()
         this.unequip()
         let id = this.#generateSetId()
@@ -145,7 +145,7 @@ class SetManager {
         element.className = this.#activeArticle
         let selectedSet = this.sets.find(obj => obj.id == element.id)
         this.currentSet = selectedSet
-        currentStyle = selectedSet.style
+        state.currentStyle = selectedSet.style
         this.equipFromSet(selectedSet.ids)
         this.setTitleBox.value = selectedSet.title
         state.getEquipedItems().map(i => i.style.display = 'inline-block')
@@ -172,8 +172,8 @@ class SetManager {
             id: id,
             title: title,
             ids: ids.unique(),
-            style: ids.isEmpty() ? null : currentStyle,
-            magicSchool: ids.isEmpty() ? null : SetStyleHelper.getSchool(currentStyle, currentMagicSchool)
+            style: ids.isEmpty() ? null : state.currentStyle,
+            magicSchool: ids.isEmpty() ? null : SetStyleHelper.getSchool(state.currentStyle, currentMagicSchool)
         }
         window.myAPI.saveSet(newSet)
         if(activeSet) {
