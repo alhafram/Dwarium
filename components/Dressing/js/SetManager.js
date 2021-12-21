@@ -173,7 +173,7 @@ class SetManager {
             title: title,
             ids: ids.unique(),
             style: ids.isEmpty() ? null : state.currentStyle,
-            magicSchool: ids.isEmpty() ? null : SetStyleHelper.getSchool(state.currentStyle, currentMagicSchool)
+            magicSchool: ids.isEmpty() ? null : SetStyleHelper.getSchool(state.currentStyle, state.currentMagicSchool)
         }
         window.myAPI.saveSet(newSet)
         if(activeSet) {
@@ -225,10 +225,10 @@ class SetManager {
         if(!isExists(this.currentSet)) {
             return
         }
-        if(this.currentSet.magicSchool && currentMagicSchool != this.currentSet.magicSchool) {
+        if(this.currentSet.magicSchool && state.currentMagicSchool != this.currentSet.magicSchool) {
             let styleId = SetStyleHelper.getStyleId(this.currentSet.magicSchool)
             await changeStyle(zikkuratId, styleId)
-            currentMagicSchool = this.currentSet.magicSchool
+            state.currentMagicSchool = this.currentSet.magicSchool
             this.equipedCurrentItemIds = []
         }
         while(!this.equipedCurrentItemIds.isEmpty()) {

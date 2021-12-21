@@ -1,6 +1,5 @@
 let setManager = null
 let itemsManager = null
-let currentMagicSchool = null
 let zikkuratId = null
 var state = null
 
@@ -14,7 +13,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     if(!parsedAllItems.zikkurat.isEmpty()) {
         zikkuratId = parsedAllItems.zikkurat.first().id
         const res = await getMagicSchools(zikkuratId)
-        currentMagicSchool = parseMagicSchools(res.result)
+        state.currentMagicSchool = parseMagicSchools(res.result)
     }
     const parsedWearedItems = parse(result.wearedItems)
     itemsManager.setupWearedItems(parsedWearedItems)
@@ -41,7 +40,8 @@ function setupState() {
             return items.map(i => i.item).filter(i => i != null)
         },
         currentStyle: null,
-        armorTypeSelected: null
+        armorTypeSelected: null,
+        currentMagicSchool: null
     }
     itemsManager.armorTypes.forEach(type => {
         state[type] = {
