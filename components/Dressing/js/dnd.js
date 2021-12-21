@@ -48,13 +48,13 @@ function handleClickEquipableItem(e) {
         return
     }
     if(this.attributes.equiped.value != "true" && e.detail == 2) {
-        let itemBox = document.querySelector(`#${this.attributes.type.value}_box`)
+        let itemBox = document.querySelector(`#${this.attributes.type.value}Box`)
         state.currentElement = this
         itemsManager.putOnItem(this, false)
         return
     }
     if(this.attributes.equiped.value == "true" && e.detail == 2) {
-        let itemBox = document.querySelector(`#${this.attributes.type.value}_box`)
+        let itemBox = document.querySelector(`#${this.attributes.type.value}Box`)
         if(this.attributes.weapon) {
             itemsManager.putOffWeapon(this, false)
         } else {

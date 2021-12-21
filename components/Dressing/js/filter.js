@@ -23,7 +23,7 @@ function setupFilters() {
 
 function filterWithResettingArmorType() {
     if(armorTypeSelected) {
-        document.getElementById(armorTypeSelected + "_box").style.border = ""
+        document.getElementById(armorTypeSelected + "Box").style.border = ""
         armorTypeSelected = null
         filterCurrentItems()
     }

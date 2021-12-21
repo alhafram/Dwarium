@@ -84,7 +84,7 @@ body {
     position: absolute;
 }
 
-#helmet_box {
+#helmetBox {
     background-image: url('./images/light-helm.svg');
 }
 
@@ -94,7 +94,7 @@ body {
     position: absolute;
 }
 
-#shoulders_box {
+#shouldersBox {
     background-image: url('./images/spiked-shoulder-armor.svg');
 }
 
@@ -104,27 +104,27 @@ body {
     position: absolute;
 }
 
-#bracers_box {
+#bracersBox {
     background-image: url('./images/gloves.svg');
 }
 
-#main_weapon {
+#mainWeapon {
     margin-left: var(--leftItemsLeftMargin);
     margin-top: calc(var(--topDefaultMargin) + var(--topDefaultAdditionalMargin));
     position: absolute;
 }
 
-#main_weapon_box {
+#mainWeaponBox {
     background-image: url('./images/axe-sword.svg');
 }
 
-#offhand_weapon {
+#offhandWeapon {
     margin-left: var(--rightItemsLeftMaring);
     margin-top: calc(var(--topDefaultMargin) + var(--topDefaultAdditionalMargin));
     position: absolute;
 }
 
-#offhand_weapon_box {
+#offhandWeaponBox {
     background-image: url('./images/swords-emblem.svg');
 }
 
@@ -134,7 +134,7 @@ body {
     position: absolute;
 }
 
-#cuirass_box {
+#cuirassBox {
     background-image: url('./images/chest-armor.svg');
 }
 
@@ -144,7 +144,7 @@ body {
     position: absolute;
 }
 
-#leggings_box {
+#leggingsBox {
     background-image: url('./images/metal-skirt.svg');
 }
 
@@ -154,7 +154,7 @@ body {
     position: absolute;
 }
 
-#chain_mail_box {
+#chainmailBox {
     background-image: url('./images/shoulder-armor.svg');
 }
 
@@ -164,7 +164,7 @@ body {
     position: absolute;
 }
 
-#boots_box {
+#bootsBox {
     background-image: url('./images/leg-armor.svg');
 }
 
@@ -175,7 +175,7 @@ body {
     position: absolute;
 }
 
-#bow_box {
+#bowBox {
     background-image: url('./images/high-shot.png');
     background-size: cover;
 }
@@ -186,7 +186,7 @@ body {
     position: absolute;
 }
 
-#quiver_box {
+#quiverBox {
     background-image: url('./images/quiver.png');
     background-size: cover;
 }
@@ -198,11 +198,11 @@ body {
     margin-left: 85px
 }
 
-#ring_box {
+#ringBox {
     background-image: url('./images/ring.svg');
 }
 
-#amulet_box {
+#amuletBox {
     background-image: url('./images/amulet.svg');
 }
 
@@ -213,7 +213,7 @@ body {
     margin-left: 85px
 }
 
-#arcat_box {
+#arcatBox {
     background-image: url('./images/arcat.svg');
 }
 
