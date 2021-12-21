@@ -1,6 +1,5 @@
 let setManager = null
 let itemsManager = null
-let zikkuratId = null
 var state = null
 
 document.addEventListener('DOMContentLoaded', async () => {
@@ -11,8 +10,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     const parsedAllItems = parse(result.allItems)
     itemsManager.setupAllItems(parsedAllItems)
     if(!parsedAllItems.zikkurat.isEmpty()) {
-        zikkuratId = parsedAllItems.zikkurat.first().id
-        const res = await getMagicSchools(zikkuratId)
+        state.zikkuratId = parsedAllItems.zikkurat.first().id
+        const res = await getMagicSchools(state.zikkuratId)
         state.currentMagicSchool = parseMagicSchools(res.result)
     }
     const parsedWearedItems = parse(result.wearedItems)
@@ -41,7 +40,8 @@ function setupState() {
         },
         currentStyle: null,
         armorTypeSelected: null,
-        currentMagicSchool: null
+        currentMagicSchool: null,
+        zikkuratId: null
     }
     itemsManager.armorTypes.forEach(type => {
         state[type] = {

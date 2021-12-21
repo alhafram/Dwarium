@@ -227,7 +227,7 @@ class SetManager {
         }
         if(this.currentSet.magicSchool && state.currentMagicSchool != this.currentSet.magicSchool) {
             let styleId = SetStyleHelper.getStyleId(this.currentSet.magicSchool)
-            await changeStyle(zikkuratId, styleId)
+            await changeStyle(state.zikkuratId, styleId)
             state.currentMagicSchool = this.currentSet.magicSchool
             this.equipedCurrentItemIds = []
         }
