@@ -24,6 +24,9 @@ window.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('make_active', (evt) => {
         ipcRenderer.send('make_active', evt.detail.id)
     })
+    document.addEventListener('close_tab', (evt) => {
+        ipcRenderer.send('close_tab', evt.detail.id)
+    })
     document.addEventListener('goUrl', (evt) => {
         ipcRenderer.send('goUrl', evt.detail)
     })
@@ -34,15 +37,27 @@ function generateRandomId() {
 }
 
 function createNewTab() {
-    let buttons = Array.from(document.querySelector('body > div.tab').children)
-    buttons.filter(b => b.className.includes('ab'))
+    let buttons = Array.from(document.querySelector('body > div.tabs').children)
+    buttons = buttons.filter(b => b.className.includes('ab'))
     buttons.forEach(b => b.className = 'ab')
-    const new_tab = document.createElement('a')
-    new_tab.textContent = 'New tab'
-    new_tab.id = generateRandomId()
+
+    const new_tab = document.createElement('div')
     new_tab.className += 'ab active'
+    const id = 'tab_' + (buttons.length - 1)
+    new_tab.id = id
     new_tab.onclick = makeActive
-    document.querySelector('body > div.tab').insertBefore(new_tab, document.querySelector('#new_tab'))
+
+    const mainA = document.createElement('a')
+    mainA.textContent = 'New tab'
+    mainA.className = 'test'
+    
+    const closeA = document.createElement('a')
+    closeA.className = 'close'
+    closeA.onclick = closeTab
+
+    new_tab.appendChild(mainA)
+    new_tab.appendChild(closeA)
+    document.querySelector('body > div.tabs').insertBefore(new_tab, document.querySelector('#new_tab'))
     return new_tab
 }
 
@@ -50,11 +65,13 @@ function makeActive(evt) {
     if(evt.currentTarget.className.includes('active')) {
         return
     }
-    let buttons = Array.from(document.querySelector('body > div.tab').children)
-    buttons.filter(b => b.className.includes('ab'))
+    let buttons = Array.from(document.querySelector('body > div.tabs').children)
+    buttons = buttons.filter(b => b.className.includes('ab'))
     buttons.forEach(b => b.className = 'ab')
-    evt.currentTarget.className += ' active';
-    ipcRenderer.send('make_active', evt.currentTarget.id)
+    let id = evt.currentTarget.id
+    evt.currentTarget.className += ' active'
+    ipcRenderer.send('make_active', id)
+    evt.stopPropagation()
 }
 
 ipcRenderer.on('server', (event, server) => {
@@ -72,6 +89,11 @@ ipcRenderer.on('server', (event, server) => {
     }
 })
 
+function closeTab(evt) {
+    ipcRenderer.send('close_tab', evt.currentTarget.parentElement.id)
+    evt.stopPropagation()
+}
+
 ipcRenderer.on('url', (event, url, id) => {
     document.querySelector('.effect-10').disabled = id == 'main'
     document.querySelector('.effect-10').value = url
@@ -83,10 +105,11 @@ ipcRenderer.on('new_tab', (event, url) => {
 })
 
 ipcRenderer.on('close_tab', (evt, id) => {
-    let tabs = Array.from(document.querySelector('body > div.tab').children).filter(t => t.tagName == 'A')
+    let tabs = Array.from(document.querySelector('body > div.tabs').children)
+    tabs.pop()
     let current_tab = tabs.filter(t => t.id == id)[0]
     if(current_tab) {
-        document.querySelector('body > div.tab').removeChild(current_tab)
+        document.querySelector('body > div.tabs').removeChild(current_tab)
         ipcRenderer.send('remove_view', id)
         tabs[0].click()
     }

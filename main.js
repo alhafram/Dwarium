@@ -2,7 +2,8 @@ const {
     app,
     ipcMain,
     BrowserWindow,
-    BrowserView
+    BrowserView,
+    session
 } = require('electron')
 const configService = require('./services/ConfigService')
 const TabsController = require('./services/TabsController')
@@ -14,6 +15,7 @@ let mainWindow
 let current_server = null
 
 function createWindow() {
+    // session.defaultSession.clearStorageData([], (data) => {})
     mainWindow = new MainWindow()
     mainWindow.setup()
     TabsController.setupMain(mainWindow.browserView)
@@ -83,6 +85,10 @@ function createWindow() {
 
     ipcMain.on('remove_view', (evt, id) => {
         TabsController.deleteTab(id)
+    })
+
+    ipcMain.on('close_tab', (evt, id) => {
+        mainWindow.webContents.send('close_tab', id)
     })
 
     ipcMain.handle('MakeWebRequest', async (evt, req) => {

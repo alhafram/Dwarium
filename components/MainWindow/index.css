@@ -164,7 +164,7 @@ input[type="text"] {
 
 
 /* Style the tab */
-.tab {
+.tabs {
     overflow: scroll;
     border: 1px solid #ccc;
     background-color: #f1f1f1;
@@ -175,7 +175,7 @@ input[type="text"] {
 }
 
 /* Style the buttons inside the tab */
-.tab button {
+.tabs button {
     background-color: inherit;
     float: left;
     border: none;
@@ -187,12 +187,12 @@ input[type="text"] {
 }
 
 /* Change background color of buttons on hover */
-.tab button:hover {
+.tabs button:hover {
     background-color: #ddd;
 }
 
 /* Create an active/current tablink class */
-.tab button.active {
+.tabs button.active {
     background-color: #ccc;
 }
 
@@ -211,4 +211,35 @@ input[type="text"] {
 
 .ab.active {
     background-color: #ccc;
+}
+
+.close {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    opacity: 0.4;
+    margin-top: 2px;
+    margin-left: 7px;
+}
+
+.close:hover {
+    opacity: 1;
+}
+
+.close::before,
+.close::after {
+    position: absolute;
+    content: ' ';
+    height: 15px;
+    width: 2px;
+    background-color: #000;
+    margin-left: 7.5px;
+}
+
+.close::before {
+    transform: rotate(45deg);
+}
+
+.close::after {
+    transform: rotate(-45deg);
 }
