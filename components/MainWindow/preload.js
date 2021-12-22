@@ -19,9 +19,11 @@ window.addEventListener('DOMContentLoaded', () => {
         ipcRenderer.send('open_dressing_room')
     })
     document.addEventListener('new_tab', (evt) => {
-        ipcRenderer.send('new_tab', evt.detail.id)
+        const tab = createNewTab()
+        ipcRenderer.send('new_tab', tab.id)
     })
     document.addEventListener('make_active', (evt) => {
+        makeActive(evt)
         ipcRenderer.send('make_active', evt.detail.id)
     })
     document.addEventListener('close_tab', (evt) => {
@@ -30,41 +32,39 @@ window.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('goUrl', (evt) => {
         ipcRenderer.send('goUrl', evt.detail)
     })
+    document.addEventListener('setupMain', () => {
+        createNewTab('main', 'Main')
+    })
 })
 
-function generateRandomId() {
-    return (Math.random() + 1).toString(36).substring(2)
-}
-
-function createNewTab() {
+function createNewTab(id, title) {
     let buttons = Array.from(document.querySelector('body > div.tabs').children)
     buttons = buttons.filter(b => b.className.includes('ab'))
     buttons.forEach(b => b.className = 'ab')
 
     const new_tab = document.createElement('div')
     new_tab.className += 'ab active'
-    const id = 'tab_' + (buttons.length - 1)
+    if(!id) {
+        id = 'tab_' + (buttons.length - 1)
+    }
     new_tab.id = id
     new_tab.onclick = makeActive
 
     const mainA = document.createElement('a')
-    mainA.textContent = 'New tab'
-    mainA.className = 'test'
-    
-    const closeA = document.createElement('a')
-    closeA.className = 'close'
-    closeA.onclick = closeTab
-
+    mainA.textContent = title ?? 'New tab'
     new_tab.appendChild(mainA)
-    new_tab.appendChild(closeA)
+
+    if(id != 'main') {
+        const closeA = document.createElement('a')
+        closeA.className = 'close'
+        closeA.onclick = closeTab
+        new_tab.appendChild(closeA)
+    }
     document.querySelector('body > div.tabs').insertBefore(new_tab, document.querySelector('#new_tab'))
     return new_tab
 }
 
 function makeActive(evt) {
-    if(evt.currentTarget.className.includes('active')) {
-        return
-    }
     let buttons = Array.from(document.querySelector('body > div.tabs').children)
     buttons = buttons.filter(b => b.className.includes('ab'))
     buttons.forEach(b => b.className = 'ab')

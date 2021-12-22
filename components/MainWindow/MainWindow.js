@@ -108,7 +108,7 @@ class MainWindow extends BrowserWindow {
             width: true,
             height: true
         })
-        // browserView.webContents.openDevTools()
+        browserView.webContents.openDevTools()
         return browserView
     }
 }
