@@ -68,4 +68,10 @@ function setupEquipableItemEvents(item) {
     item.addEventListener('dragstart', handleDragStartEquipableItem, false)
     item.addEventListener('dragend', handleDragEndEquipableItem, false)
     item.addEventListener('click', handleClickEquipableItem, false)
+    item.addEventListener('mouseover', function() {
+        artifactAltSimple(this.getAttribute('itemid'), 2)
+    }, false)
+    item.addEventListener('mouseout', function() {
+        artifactAltSimple(this.getAttribute('itemid'), 0)
+    }, false)
 }

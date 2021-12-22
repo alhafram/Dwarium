@@ -1,6 +1,7 @@
 let setManager = null
 let itemsManager = null
 var state = null
+var art_alt = null
 
 document.addEventListener('DOMContentLoaded', async () => {
     setManager = new SetManager()
@@ -28,6 +29,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     itemsManager.setupAllItems(parsedAllItems)
     itemsManager.setupWearedItems(parsedWearedItems)
     setupFilters()
+
+    let allItemsAlt = result.allItems
+    for(const key of Object.keys(result.wearedItems)) {
+        allItemsAlt[key] = result.wearedItems[key]
+    }
+    art_alt = allItemsAlt
 })
 
 function setupState() {

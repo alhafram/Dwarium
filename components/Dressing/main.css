@@ -1,0 +1,123 @@
+* {
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 11px;
+}
+
+/* Artifact Alt */
+.aa-table * {
+	font-size: 11px;
+}
+.aa-t {
+	background: url('http://w2.dwar.ru/images/tbl-pop_top.gif');
+	height: 24px;
+}
+.aa-t.aa-t-n {
+	background: url('http://w2.dwar.ru/images/tbl-pop_top-n.gif');
+	height: auto;
+}
+.aa-t-h-c {
+	background: url('http://w2.dwar.ru/images/tbl-pop_head_center.gif');
+	height: 4px;
+}
+.aa-tl {
+	background: url('http://w2.dwar.ru/images/tbl-pop_corner-top-left.gif') no-repeat;
+	width: 14px;
+	height: 24px;
+}
+.aa-tl.aa-tl-n {
+	background: url('http://w2.dwar.ru/images/tbl-pop_corner-top-left-n.gif') no-repeat;
+	height: auto;
+}
+.aa-tl-h-l {
+	background: url('http://w2.dwar.ru/images/tbl-pop_head_left.gif') no-repeat;
+	width: 14px;
+	height: 4px;
+}
+.aa-tr {
+	background: url('http://w2.dwar.ru/images/tbl-pop_corner-top-right.gif') no-repeat;
+	width: 14px;
+	height: 24px;
+}
+.aa-tr.aa-tr-n {
+	background: url('http://w2.dwar.ru/images/tbl-pop_corner-top-right-n.gif') no-repeat;
+	width: 14px;
+	height: auto;
+}
+.aa-tr-h-r {
+	background: url('http://w2.dwar.ru/images/tbl-pop_head_right.gif') no-repeat;
+	width: 14px;
+	height: 4px;
+}
+.aa-b {
+	background: url('http://w2.dwar.ru/images/tbl-pop_bottom.gif') repeat-x;
+	height: 5px;
+}
+.aa-bl {
+	background: url('http://w2.dwar.ru/images/tbl-pop_corner-bottom-left.gif') no-repeat;
+	width: 14px;
+	height: 5px;
+}
+.aa-br {
+	background: url('http://w2.dwar.ru/images/tbl-pop_corner-bottom-right.gif') no-repeat;
+	width: 14px;
+	height: 5px;
+}
+.aa-l {
+	background: url('http://w2.dwar.ru/images/tbl-pop_left.gif') repeat-y;
+	width: 14px;
+}
+.aa-r {
+	background: url('http://w2.dwar.ru/images/tbl-pop_right.gif') repeat-y;
+	width: 14px;
+}
+
+.bpdig {
+	border: solid 1px #6f4a24 !important;
+	background-color: #6e534c !important;
+	width: 32px !important;
+	height: 14px !important;
+	color: #f6d9a6 !important;
+	font-weight: bold !important;
+	margin: 2px !important;
+	text-align: center !important;
+}
+
+.b {
+	font-weight: bold;
+}
+
+.red, .red * {
+	color: #d00000;
+}
+
+.list_dark {
+	background-color: #F4BB8A;
+}
+.skill_list td {
+	padding: 0 7px;
+}
+.skill_list td td {
+	padding: 0;
+}
+
+.grnn, .grnn * {
+	color: #114d01 !important;
+}
+.lgrnn, .lgrnn * {
+	color: #2e8507 !important;
+}
+
+.redd2, .redd2 * {
+	color: #8a0108 !important;
+}
+.dredd, .dredd * {
+	color: #8B0000 !important;
+}
+
+.violet, .violet * {
+	color: #3615ac !important;
+}
+
+.enchants {position: relative; height: 20px; width: 20px; overflow: hidden; display: block;}
+.enchant_png { behavior: url(http://w2.dwar.ru/js/iepngfix.htc); _display: block; margin: 3px 0 0 2px; position: absolute; left: 0; top: 0;}
+.enchant2_png { behavior: url(http://w2.dwar.ru/js/iepngfix.htc); _display: block; position: absolute; left: 0; top: 0; }
