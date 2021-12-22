@@ -1,12 +1,16 @@
 function parse(art_alt) {
     let items = Array.from(Object.keys(art_alt).map(k => art_alt[k]))
 
+    let delimiters = items.filter(item => item.title == 'Разделитель')
+    items = items.removeItems(delimiters)
+
     let zikkurat = items.filter(i => i.kind_id == '25' && i.type_id == '12')
     items = items.removeItems(zikkurat)
 
-
     let arcats = items.filter(i => i.kind_id == '161') // Arcats
     items = items.removeItems(arcats)
+    arcats = Object.values(filterArcats(arcats))
+    arcats = arcats.filter(a => a)
 
     let quivers = items.filter(i => i.kind_id == '131') // Quivers
     items = items.removeItems(quivers)
@@ -92,28 +96,28 @@ function parse(art_alt) {
     items = items.removeItems(banners)
 
     let summary = {
-        arcats: arcats,
-        quivers: quivers,
-        amulets: amulets,
-        rings: rings,
-        bags: bags,
-        decor: decorItems,
-        profWeapons: profWeapons,
-        belts: belts,
-        bracelets: bracelets,
-        bows: bows,
-        helmets: helmets,
-        shoulders: shoulders,
-        bracers: bracers,
-        mainWeapons: mainWeapons,
-        offhandWeapons: offhandWeapons,
-        cuirasses: cuirasses,
-        leggings: leggings,
-        chainmails: chainmails,
-        boots: boots,
-        banners: banners,
-        other: items,
-        zikkurat: zikkurat
+        arcats,
+        quivers,
+        amulets,
+        rings,
+        bags,
+        decorItems,
+        profWeapons,
+        belts,
+        bracelets,
+        bows,
+        helmets,
+        shoulders,
+        bracers,
+        mainWeapons,
+        offhandWeapons,
+        cuirasses,
+        leggings,
+        chainmails,
+        boots,
+        banners,
+        items,
+        zikkurat
     }
     return summary
 }

@@ -213,7 +213,7 @@ body {
     margin-left: 85px
 }
 
-#arcatBox {
+#arcat1Box,#arcat2Box,#arcat3Box,#arcat4Box {
     background-image: url('./images/arcat.svg');
 }
 

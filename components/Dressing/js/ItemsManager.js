@@ -1,6 +1,6 @@
 class ItemsManager {
 
-    parsingItemTypes = ['helmets', 'shoulders', 'bracers', 'mainWeapons', 'offhandWeapons', 'cuirasses', 'leggings', 'chainmails', 'boots', 'bows', 'quivers', 'rings', 'amulets']
+    parsingItemTypes = ['helmets', 'shoulders', 'bracers', 'mainWeapons', 'offhandWeapons', 'cuirasses', 'leggings', 'chainmails', 'boots', 'bows', 'quivers', 'rings', 'amulets', 'arcats']
     armorTypes = ['helmet', 'shoulders', 'bracers', 'mainWeapon', 'offhandWeapon', 'cuirass', 'leggings', 'chainmail', 'boots', 'bow', 'quiver', 'ring1', 'ring2', 'amulet1', 'amulet2']
 
     setupWearedItems(wearedItems) {
@@ -64,7 +64,7 @@ class ItemsManager {
                         filterWithResettingArmorType()
                     }
                     document.getElementById(t + 'Box').style.border = '3px dotted #666'
-                    if(t.includes('ring') || t.includes('amulet')) {
+                    if(t.includes('ring') || t.includes('amulet') || t.includes('arcat')) {
                         state.armorTypeSlotSelected = t.slice(t.length - 1, t.length)
                         t = t.slice(0, t.length - 1)
                     }
@@ -88,7 +88,7 @@ class ItemsManager {
             divItem.setAttribute('type', this.getType(item.kind_id))
             divItem.setAttribute('quality', item.quality)
             divItem.setAttribute('itemId', item.id)
-            divItem.setAttribute('trend', item.trend)
+            divItem.setAttribute('trend', item.trend ?? "Универсал")
             if(item.kind_id == 12) {
                 divItem.setAttribute('weapon', '2h')
             }
@@ -142,16 +142,18 @@ class ItemsManager {
         if(kind_id == '25') {
             return 'amulet'
         }
+        if(kind_id == '161') {
+            return 'arcat'
+        }
         return 'other'
     }
 
-    createArcatSlot() {
+    createArcatSlot(id) {
         let parent = document.querySelector('#arcats')
         let arcatElement = document.createElement('div')
-        arcatElement.id = 'arcat'
         let slotElement = document.createElement('div')
-        slotElement.type = 'arcat'
-        slotElement.id = 'arcatBox'
+        slotElement.setAttribute('type', 'arcat')
+        slotElement.id = `arcat${id + 1}Box`
         slotElement.className = 'boxStatic small'
         arcatElement.appendChild(slotElement)
         parent.appendChild(arcatElement)
@@ -162,7 +164,7 @@ class ItemsManager {
         if(item) {
             element.style.visibility = 'visible'
             item.setAttribute('equiped', false)
-            if(item.getAttribute('type') == 'ring' || item.getAttribute('type') == 'amulet') {
+            if(item.getAttribute('type') == 'ring' || item.getAttribute('type') == 'amulet' || item.getAttribute('type') == 'arcat') {
                 let number = item.parentElement.id.slice(item.getAttribute('type').length, item.getAttribute('type').length + 1)
                 state[item.getAttribute('type') + number].item = null
             } else {
@@ -213,12 +215,30 @@ class ItemsManager {
                 this.putOffItem(itemBox)
                 item.style.height = '25px';
                 item.style.width = '25px';
+            } else if(item.getAttribute('type') == 'arcat') {
+                const defType = type
+                for(var i = 1; i <= state.arcatsCount; i++) {
+                    type = defType + i
+                    if(document.querySelector(`#${type}Box`).childElementCount == 1) {
+                        continue
+                    } else {
+                        break
+                    }
+                }
+                let itemBox = document.querySelector(`#${type}Box`)
+                this.putOffItem(itemBox)
+                item.style.height = '25px';
+                item.style.width = '25px';
             } else {
                 let itemBox = document.querySelector(`#${type}Box`)
                 this.putOffItem(itemBox)
             }
         }
         state[type].item = item
+        if(item.parentElement?.childElementCount == 1) {
+            let par = item.parentElement
+            par.style.visibility = 'visible'
+        }
         state[type].box.appendChild(item)
         state[type].box.style.visibility = 'hidden'
         state[type].box.firstElementChild.style.visibility = 'visible'

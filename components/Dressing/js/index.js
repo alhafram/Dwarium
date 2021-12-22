@@ -5,27 +5,29 @@ var state = null
 document.addEventListener('DOMContentLoaded', async () => {
     setManager = new SetManager()
     itemsManager = new ItemsManager()
-    setupState()
     const result = await window.myAPI.loadItemsData(['allItems', 'wearedItems'])
     const parsedAllItems = parse(result.allItems)
-    itemsManager.setupAllItems(parsedAllItems)
+    const parsedWearedItems = parse(result.wearedItems)
+    setManager.setup()
+    const arcatsCount = parsedWearedItems.bracelets.first()?.skills.find(s => s.title === 'Слоты для аркатов').value.slice(4, 5)
+    if(arcatsCount) {
+        for(let i = 0; i < arcatsCount; i++) {
+            itemsManager.createArcatSlot(i)
+            itemsManager.armorTypes.push(`arcat${i + 1}`)
+        }
+    }
+    setupState()
+    state.arcatsCount = arcatsCount ?? 0
     if(!parsedAllItems.zikkurat.isEmpty()) {
         state.zikkuratId = parsedAllItems.zikkurat.first().id
         const res = await getMagicSchools(state.zikkuratId)
         state.currentMagicSchool = parseMagicSchools(res.result)
     }
-    setManager.setup()
-    const parsedWearedItems = parse(result.wearedItems)
+    const allArcats = Array.from(difference(parsedAllItems.arcats.map(a => a.type_id), parsedWearedItems.arcats.map(a => a.type_id)))
+    parsedAllItems.arcats = parsedAllItems.arcats.filter(a => allArcats.includes(a.type_id))
+    itemsManager.setupAllItems(parsedAllItems)
     itemsManager.setupWearedItems(parsedWearedItems)
     setupFilters()
-
-    // TODO: - Find better solution
-    const arcatsCount = parsedWearedItems.bracelets.first()?.skills.find(s => s.title === 'Слоты для аркатов').value.slice(4, 5)
-    if(arcatsCount) {
-        for(let i = 0; i < arcatsCount; i++) {
-            itemsManager.createArcatSlot()
-        }
-    }
 })
 
 function setupState() {
@@ -42,7 +44,8 @@ function setupState() {
         armorTypeSelected: null,
         armorTypeSlotSelected: null,
         currentMagicSchool: null,
-        zikkuratId: null
+        zikkuratId: null,
+        arcatsCount: 0
     }
     itemsManager.armorTypes.forEach(type => {
         state[type] = {
