@@ -23,8 +23,8 @@ function createWindow() {
 
     ipcMain.on('load_url', (evt, server) => {
         configService.writeData('server', server)
-        TabsController.currentTab().webContents.loadURL(`${configService.baseUrl}`)
-        mainWindow.webContents.send('url', `${configService.baseUrl}`, TabsController.current_tab_id)
+        TabsController.currentTab().webContents.loadURL(`${configService.baseUrl()}`)
+        mainWindow.webContents.send('url', `${configService.baseUrl()}`, TabsController.current_tab_id)
         mainWindow.webContents.setZoomFactor(0.9)
     })
 
@@ -104,11 +104,11 @@ function createWindow() {
     ipcMain.handle('LoadSetItems', async (evt, args) => {
         const SetRequests = {
             allItems: {
-                url: `${configService.baseUrl}/user_iframe.php?group=2`,
+                url: `${configService.baseUrl()}/user_iframe.php?group=2`,
                 script: 'art_alt'
             },
             wearedItems: {
-                url: `${configService.baseUrl}/user.php`,
+                url: `${configService.baseUrl()}/user.php`,
                 script: 'art_alt'
             }
         }

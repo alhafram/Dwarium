@@ -96,6 +96,15 @@ class MainWindow extends BrowserWindow {
         this.show();
         // mainWindow.maximize();
         this.loadFile(`${path.join(__dirname, 'index.html')}`);
+        const self = this
+        setInterval(async function() {
+            let resp = await self.browserView.webContents.executeJavaScript('window.myId')
+            if(resp) {
+                self.send('auth', true)
+            } else {
+                self.send('auth', false)
+            }
+        }, 1000)
     }
 
     createMainBrowserView() {

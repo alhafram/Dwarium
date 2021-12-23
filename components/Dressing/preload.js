@@ -9,7 +9,7 @@ contextBridge.exposeInMainWorld('myAPI', {
         return await ipcRenderer.invoke('MakeWebRequest', req)
     },
     baseUrl: () => {
-        return configService.baseUrl
+        return configService.baseUrl()
     },
     loadItemsData: async (types) => {
         return await ipcRenderer.invoke('LoadSetItems', types)

@@ -2,8 +2,9 @@ const fs = require('fs')
 const path = require('path')
 const filePath = path.join(__dirname, 'config.json')
 
-let server = readData('server')
-let baseUrl = `https://${server}.dwar.ru`
+function baseUrl() {
+    return `https://${readData('server')}.dwar.ru`
+}
 
 function sets() {
     let contents = parseData(filePath)

@@ -114,3 +114,7 @@ ipcRenderer.on('close_tab', (evt, id) => {
         tabs[0].click()
     }
 })
+
+ipcRenderer.on('auth', (evt, auth) => {
+    document.querySelector("#dressing_room_button").style.display = auth ? 'block' : 'none'
+})
