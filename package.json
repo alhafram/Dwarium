@@ -8,8 +8,9 @@
     "start": "electron-forge start",
     "package": "electron-forge package",
     "make": "electron-forge make",
-    "win": "electron-packager ./ Dwarium --platform=win32 --arch=x64",
-    "linux": "electron-packager ./ Dwarium --platform=linux --arch=x64"
+    "win": "electron-packager ./ Dwarium --platform=win32 --arch=x64 --icon=icon.ico",
+    "linux": "electron-packager ./ Dwarium --platform=linux --arch=x64",
+    "mac": "electron-packager ./ Dwarium --platform=darwin --arch=x64 --icon=icon.icns"
   },
   "author": "",
   "license": "ISC",
