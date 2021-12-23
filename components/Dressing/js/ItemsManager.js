@@ -70,7 +70,9 @@ class ItemsManager {
                     }
                     state.armorTypeSelected = t
                     filterCurrentItems()
-                    t = t + state.armorTypeSlotSelected
+                    if(state.armorTypeSlotSelected) {
+                        t = t + state.armorTypeSlotSelected
+                    }
                 } else {
                     filterWithResettingArmorType()
                 }
@@ -84,7 +86,7 @@ class ItemsManager {
             divItem.className = 'box'
             divItem.draggable = 'true'
             divItem.setAttribute('equiped', 'false')
-            divItem.style = `background-image: url('http://${window.myAPI.server()}.dwar.ru/${item.image}');background-repeat: no-repeat;background-size: cover;`
+            divItem.style = `background-image: url('${window.myAPI.baseUrl()}/${item.image}');background-repeat: no-repeat;background-size: cover;`
             divItem.setAttribute('type', this.getType(item.kind_id))
             divItem.setAttribute('quality', item.quality)
             divItem.setAttribute('itemId', item.id)

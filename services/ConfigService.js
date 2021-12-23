@@ -3,6 +3,7 @@ const path = require('path')
 const filePath = path.join(__dirname, 'config.json')
 
 let server = readData('server')
+let baseUrl = `https://${server}.dwar.ru`
 
 function sets() {
     let contents = parseData(filePath)
@@ -36,7 +37,7 @@ function parseData(filePath) {
 }
 
 module.exports = {
-    server,
+    baseUrl,
     writeData,
     sets
 }

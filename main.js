@@ -12,7 +12,6 @@ const {
 } = require('./components//MainWindow/MainWindow')
 
 let mainWindow
-let current_server = null
 
 function createWindow() {
     // session.defaultSession.clearStorageData([], (data) => {})
@@ -23,10 +22,9 @@ function createWindow() {
     mainWindow.start()
 
     ipcMain.on('load_url', (evt, server) => {
-        current_server = server
-        TabsController.currentTab().webContents.loadURL(`http://${current_server}.dwar.ru/`)
-        mainWindow.webContents.send('url', `http://${current_server}.dwar.ru`, TabsController.current_tab_id)
         configService.writeData('server', server)
+        TabsController.currentTab().webContents.loadURL(`${configService.baseUrl}`)
+        mainWindow.webContents.send('url', `${configService.baseUrl}`, TabsController.current_tab_id)
         mainWindow.webContents.setZoomFactor(0.9)
     })
 
@@ -106,11 +104,11 @@ function createWindow() {
     ipcMain.handle('LoadSetItems', async (evt, args) => {
         const SetRequests = {
             allItems: {
-                url: `http://${current_server}.dwar.ru/user_iframe.php?group=2`,
+                url: `${configService.baseUrl}/user_iframe.php?group=2`,
                 script: 'art_alt'
             },
             wearedItems: {
-                url: `http://${current_server}.dwar.ru/user.php`,
+                url: `${configService.baseUrl}/user.php`,
                 script: 'art_alt'
             }
         }
