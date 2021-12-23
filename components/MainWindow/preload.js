@@ -18,6 +18,9 @@ window.addEventListener('DOMContentLoaded', () => {
     document.querySelector('#dressing_room_button').addEventListener('click', () => {
         ipcRenderer.send('open_dressing_room')
     })
+    document.querySelector('#belt_button').addEventListener('click', () => {
+        ipcRenderer.send('open_belt_room')
+    })
     document.addEventListener('new_tab', (evt) => {
         const tab = createNewTab()
         ipcRenderer.send('new_tab', tab.id)

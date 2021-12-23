@@ -33,7 +33,7 @@ function createWindow() {
     })
 
     let dressingWindow = null
-    ipcMain.on('open_dressing_room', (evt) => {
+    ipcMain.on('open_dressing_room', () => {
         const path = require('path')
         dressingWindow = new BrowserWindow({
             parent: mainWindow,
@@ -48,6 +48,24 @@ function createWindow() {
             }
         })
         dressingWindow.loadFile(`${path.join(__dirname, './components/Dressing/index.html')}`)
+    })
+
+    let beltWindow = null
+    ipcMain.on('open_belt_room', () => {
+        const path = require('path')
+        beltWindow = new BrowserWindow({
+            parent: mainWindow,
+            width: 900,
+            height: 700,
+            minWidth: 900,
+            minHeight: 700,
+            useContentSize: true,
+            show: true,
+            webPreferences: {
+                preload: path.join(__dirname, './components/Belt/preload.js')
+            }
+        })
+        beltWindow.loadFile(`${path.join(__dirname, './components/Belt/index.html')}`)
     })
 
     ipcMain.on('new_tab', (evt, id, url) => {
@@ -110,6 +128,10 @@ function createWindow() {
             wearedItems: {
                 url: `${configService.baseUrl()}/user.php`,
                 script: 'art_alt'
+            },
+            allPotions: {
+                url: `${configService.baseUrl()}/user_iframe.php?group=1`,
+                script: 'art_alt'
             }
         }
         let requests = args.map(arg => fetch(SetRequests[arg]))
@@ -118,7 +140,6 @@ function createWindow() {
         args.forEach((arg, index) => {
             res[arg] = results[index]
         })
-        dressingWindow.show()
         return res
     })
 
