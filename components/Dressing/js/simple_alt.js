@@ -240,6 +240,9 @@ function renderArtifactAlt(id) {
         bg = !bg;
     }
     if(a.desc && a.desc != undefined) {
+        if(!a.desc.includes(window.myAPI.baseUrl())) {
+			a.desc = a.desc.replaceAll('/images/', `${window.myAPI.baseUrl()}/images/`)
+		}
         content += '<tr class="skill_list ' + (bg ? 'list_dark' : '') + '"><td colspan="2">' + a.desc.replace(/&quot;/g, '"') + '</td></tr>';
         bg = !bg;
     }

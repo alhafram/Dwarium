@@ -112,7 +112,7 @@ body {
 
 
 .box {
-    border: 2px solid #666;
+    border: 1px solid #666;
     border-radius: 0.5em;
     cursor: move;
     height: 50px;
