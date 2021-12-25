@@ -9,18 +9,19 @@ SPDX-License-Identifier: Apache-2.0 -->
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <link rel="stylesheet" href="./style.css" />
-    <link rel="stylesheet" href="../Dressing/sets.css" />
-    <link rel="stylesheet" href="../Dressing/main.css" />
-
     <script src="./index.js"></script>
     <script src="./dnd.js"></script>
+    <script src="./ItemsManager.js"></script>
+
+    <link rel="stylesheet" href="../Dressing/sets.css" />
+    <link rel="stylesheet" href="../Dressing/main.css" />
     <script src="../Dressing/js/simple_alt.js"></script>
     <script src="../Dressing/js/utils.js"></script>
     <script src="../Dressing/js/filter.js"></script>
 </head>
 
 <body>
-    <div id="artifact_alt" style="width: 300px; display: none; position: fixed; z-index: 1001; left: 440px; top: 358px;" onmouseover="this.style.display='none';"></div>
+    <div id="artifact_alt" style="width: 300px; display: none; position: fixed; z-index: 1001; left: 440px; top: 358px;"></div>
     <div class="content">
         <div class="sets">
             <div style="display: flex;">
@@ -34,7 +35,13 @@ SPDX-License-Identifier: Apache-2.0 -->
             </div>
         </div>
 
-        <div class="equippedItems"></div>
+        <div class="equippedItems">
+            <div>
+                <button id="unequip">Unequip</button>
+                <button id="equip">Equip</button>
+                <button id="save">Save</button>
+            </div>
+        </div>
 
         <div class="filters">
             <input class="itemCheckbox" checked type="checkbox" id="i_gray">

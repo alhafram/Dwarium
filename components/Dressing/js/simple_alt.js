@@ -107,7 +107,17 @@ function renderArtifactAlt(id) {
             a.enchant_icon = a.enchant_icon.replaceAll("/images/", `${window.myAPI.baseUrl()}/images/`)
         }
         content += a.enchant_icon.replace(/&quot;/g, '"');
-    }
+    } else {
+		if (a.kind_id != 65) {
+			if (a.cnt != undefined && a.cnt > 1) {
+				content += '<div class="bpdig">' + a.cnt + '</div>';
+			}
+		} else if (a.kind_id == 65) { // BOT ability
+			if (a.cnt != undefined && (a.cnt > 1 && a.cnt <= 20)) {
+				content += '<div class="bpdig">' + a.cnt + '</div>';
+			}
+		}
+	}
 
     content += '</td></tr></table>';
     content += '</td><td>';

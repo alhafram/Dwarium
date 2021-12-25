@@ -23,43 +23,21 @@ function handleDropEquipableItemOnStaticItemBox(e) {
         e.stopPropagation()
     }
     if(state.currentElement != this &&
-        this.childElementCount == 0 &&
-        state.currentElement.getAttribute('type') == this.getAttribute('type')) {
+        this.childElementCount == 0) {
         itemsManager.putOnItem(state.currentElement, this)
     }
     return false
 }
 
-function handleDropEquipableItemIntoAllItems(e) {
-    if(e.stopPropagation) {
-        e.stopPropagation()
-    }
-
-    if(state.currentElement.getAttribute('weapon')) {
-        itemsManager.putOffWeapon(state.currentElement)
-    } else {
-        itemsManager.putOffItem(state.currentElement.parentElement)
-    }
-    filterWithResettingArmorType()
-    return false
-}
-
 function handleClickEquipableItem(e) {
-    if(e.detail == 1) {
-        return
-    }
-    if(this.getAttribute('equiped') != 'true' && e.detail == 2) {
+    if(this.getAttribute('equiped') != 'true') {
         let itemBox = document.querySelector(`#${this.getAttribute('type')}Box`)
         state.currentElement = this
         itemsManager.putOnItem(this)
         return
     }
-    if(this.getAttribute('equiped') == 'true' && e.detail == 2) {
-        if(this.getAttribute('weapon')) {
-            itemsManager.putOffWeapon(this)
-        } else {
-            itemsManager.putOffItem(this.parentElement)
-        }
+    if(this.getAttribute('equiped') == 'true') {
+        itemsManager.putOffItem(this.parentElement)
         filterWithResettingArmorType()
         e.stopPropagation()
     }
