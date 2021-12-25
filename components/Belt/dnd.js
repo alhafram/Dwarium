@@ -24,7 +24,7 @@ function handleDropEquipableItemOnStaticItemBox(e) {
     }
     if(state.currentElement != this &&
         this.childElementCount == 0) {
-        itemsManager.putOnItem(state.currentElement, this)
+        potionsManager.putOnItem(currentElement, this)
     }
     return false
 }
@@ -33,11 +33,11 @@ function handleClickEquipableItem(e) {
     if(this.getAttribute('equiped') != 'true') {
         let itemBox = document.querySelector(`#${this.getAttribute('type')}Box`)
         state.currentElement = this
-        itemsManager.putOnItem(this)
+        potionsManager.putOnItem(this)
         return
     }
     if(this.getAttribute('equiped') == 'true') {
-        itemsManager.putOffItem(this.parentElement)
+        potionsManager.putOffItem(this.parentElement)
         filterWithResettingArmorType()
         e.stopPropagation()
     }

@@ -1,6 +1,29 @@
-class ItemsManager {
+class PotionsManager {
 
-    putOnItem(item, box, fake) {
+    setupAllItems(items) {
+        let potions = Object.keys(items.allPotions).map(key => items.allPotions[key]).filter(item => item.type_id == 7 && item.kind_id != 65)
+        let divs = this.convertItemIntoDiv(potions)
+
+        divs.flatMap(i => i).forEach(item => {
+            let parent = document.querySelector('.currentItems')
+            parent.appendChild(item)
+        })
+    }
+
+    convertItemIntoDiv(items) {
+        return items.map(item => {
+            let divItem = document.createElement('div')
+            divItem.className = 'box'
+            divItem.draggable = 'true'
+            divItem.style = `background-image: url('${window.myAPI.baseUrl()}/${item.image}');background-repeat: no-repeat;background-size: cover;`
+            divItem.setAttribute('quality', item.quality)
+            divItem.setAttribute('itemId', item.id)
+            setupEquipableItemEvents(divItem)
+            return divItem
+        })
+    }
+
+    putOnItem(item, box) {
         let potionBoxes = Array.from(document.querySelectorAll('.potion'))
         let currentBox = box ?? potionBoxes.find(b => b.childElementCount == 0)
         if(!currentBox) {
@@ -21,6 +44,33 @@ class ItemsManager {
         box.style.visibility = 'visible'
         box.removeChild(box.firstElementChild)
         box.style.border = 'black 1px dotted'
+    }
+
+    async updateSlot(num, type) {
+        let req = `top[0].canvas.app.leftMenu.model.${type}[${num}] = null; top[0].canvas.app.leftMenu.model.main.view.update();`
+        let res = await window.myAPI.makeRequest({
+            id: generateRandomId(),
+            req: req
+        })
+        return res
+    }
+
+    async getSlots() {
+        let req = '[top[0].canvas.app.leftMenu.model.slotsCount, top[0].canvas.app.leftMenu.model.variantSlotsCount]'
+        let res = await window.myAPI.makeRequest({
+            id: generateRandomId(),
+            req: req
+        })
+        return res
+    }
+
+    async getCurrentPotions() {
+        let req = '[top[0].canvas.app.leftMenu.model.items, top[0].canvas.app.leftMenu.model.variantItems]'
+        let res = await window.myAPI.makeRequest({
+            id: generateRandomId(),
+            req: req
+        })
+        return res
     }
 
     // async setupWearedItems() {

@@ -13,5 +13,14 @@ contextBridge.exposeInMainWorld('myAPI', {
     },
     makeRequest: async (req) => {
         return await ipcRenderer.invoke('MakeWebRequest', req)
-    }
+    },
+    loadBeltSets: () => {
+        return configService.beltSets()
+    },
+    saveSet: (set) => {
+        configService.writeData(set.id, JSON.stringify(set))
+    },
+    removeSet: (id) => {
+        configService.writeData(id, null)
+    },
 })

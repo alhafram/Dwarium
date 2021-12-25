@@ -12,6 +12,12 @@ function sets() {
     return keys.map(key => JSON.parse(contents[key]))
 }
 
+function beltSets() {
+    let contents = parseData(filePath)
+    let keys = Object.keys(contents).filter(key => key.startsWith('belt_set_'))
+    return keys.map(key => JSON.parse(contents[key]))
+}
+
 function writeData(key, value) {
     let contents = parseData(filePath)
     contents[key] = value
@@ -40,5 +46,6 @@ function parseData(filePath) {
 module.exports = {
     baseUrl,
     writeData,
-    sets
+    sets,
+    beltSets
 }
