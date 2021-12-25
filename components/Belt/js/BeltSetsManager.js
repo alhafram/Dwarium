@@ -151,7 +151,14 @@ class BeltSetsManager {
 
         let arr = []
         for(const equipedPotionBox of equippedPotionBoxes) {
-            let title = Object.values(art_alt).find(o => o.id == equipedPotionBox.firstElementChild.getAttribute('itemid')).title
+            let allSets = {}
+            Object.keys(art_alt).forEach(key => {
+                allSets[key] = art_alt[key]
+            })
+            Object.keys(_top().items_alt).forEach(key => {
+                allSets[key] = _top().items_alt[key]
+            })
+            let title = Object.values(allSets).find(o => o.id == equipedPotionBox.firstElementChild.getAttribute('itemid')).title
             let obj = {
                 item: title,
                 slotNum: equipedPotionBox.getAttribute('num'),
@@ -203,8 +210,22 @@ class BeltSetsManager {
 
     equipFromSet(potions) {
         for(var potion of potions) {
-            let item = Object.values(art_alt).find(o => o.title == potion.item)
+            let item = Object.values(art_alt).find(o => o.title == potion.item) ?? Object.values(_top().items_alt).find(o => o.title == potion.item)
+            if(!item) {
+                continue
+            }
             let itemBox = this.allCurrentItems.find(a => a.getAttribute('itemid') == item.id)
+            if(!itemBox) {
+                let divItem = document.createElement('div')
+                divItem.className = 'box'
+                divItem.draggable = 'true'
+                let image = item.image.includes('https://') ? item.image : `${window.myAPI.baseUrl()}/${item.image}`
+                divItem.style = `background-image: url('${image}');background-repeat: no-repeat;background-size: cover;`
+                divItem.setAttribute('quality', item.quality)
+                divItem.setAttribute('itemId', item.id)
+                setupEquipableItemEvents(divItem)
+                itemBox = divItem
+            }
             let potBox = document.querySelectorAll('.potion').toArray().filter(pot => pot.getAttribute('num') == potion.slotNum).filter(pot => {
                 return potion.variant ? pot.getAttribute('variant') : pot.getAttribute('variant') == null
             })[0]
@@ -217,6 +238,15 @@ class BeltSetsManager {
                 return
             }
         }
+    }
+
+    async refreshLeftMenu() {
+        let req = 'top[0].window.location.reload()'
+        let res = await window.myAPI.makeRequest({
+            id: generateRandomId(),
+            req: req
+        })
+        return res
     }
 
     #generateSetId() {
@@ -268,6 +298,8 @@ class BeltSetsManager {
             await potionsManager.updateSlot(item.slotNum, item.variant ? 'variantItems' : 'items')
             needToEquip.removeItem(item)
         }
+        await this.refreshLeftMenu()
+        await loadAllItems()
     }
 
     setup() {

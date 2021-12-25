@@ -5,15 +5,17 @@ let state = null
 document.addEventListener('DOMContentLoaded', async () => {
     potionsManager = new PotionsManager()
     beltSetsManager = new BeltSetsManager()
-    let items = await window.myAPI.loadItemsData(['allPotions'])
-    art_alt = items.allPotions
+
+    await loadAllItems()
+
     let slots = await potionsManager.getSlots()
     slots = slots.result
-    potionsManager.setupAllItems(items)
 
     setupFilters()
     renderSlots(slots[0], slots[1])
     beltSetsManager.setup()
+
+    potionsManager.setupWearedItems()
 
     state = {
         currentElement: null,
@@ -26,6 +28,12 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     }
 })
+
+async function loadAllItems() {
+    let items = await window.myAPI.loadItemsData(['allPotions'])
+    art_alt = items.allPotions
+    potionsManager.setupAllItems(items)
+}
 
 function renderSlots(slotsCount, variantSlots) {
     var currentVariantSlot = 1
