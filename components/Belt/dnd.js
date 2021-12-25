@@ -24,7 +24,7 @@ function handleDropEquipableItemOnStaticItemBox(e) {
     }
     if(state.currentElement != this &&
         this.childElementCount == 0) {
-        potionsManager.putOnItem(currentElement, this)
+        potionsManager.putOnItem(state.currentElement, this)
     }
     return false
 }
