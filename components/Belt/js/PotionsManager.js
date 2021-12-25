@@ -1,7 +1,7 @@
 class PotionsManager {
 
     setupAllItems(items) {
-        let potions = Object.keys(items.allPotions).map(key => items.allPotions[key]).filter(item => item.type_id == 7 && item.kind_id != 65)
+        let potions = Object.values(items.allPotions).filter(item => item.type_id == 7 && item.kind_id != 65)
         let divs = this.convertItemIntoDiv(potions)
 
         divs.flatMap(i => i).forEach(item => {

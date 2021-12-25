@@ -1,5 +1,5 @@
 function parse(art_alt) {
-    let items = Array.from(Object.keys(art_alt).map(k => art_alt[k]))
+    let items = Object.values(art_alt)
 
     let delimiters = items.filter(item => item.title == 'Разделитель')
     items = items.removeItems(delimiters)

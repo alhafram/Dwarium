@@ -44,7 +44,7 @@ function setupState() {
             return this[itemType].item != null
         },
         getEquipedItems() {
-            let items = Object.keys(state).map(key => state[key]).filter(obj => obj != null && Object.keys(obj) != 0)
+            let items = Object.values(state).filter(obj => obj != null && Object.keys(obj) != 0)
             return items.map(i => i.item).filter(i => i != null)
         },
         currentStyle: null,

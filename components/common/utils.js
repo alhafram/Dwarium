@@ -29,6 +29,10 @@ HTMLCollection.prototype.toArray = function() {
     return Array.from(this)
 }
 
+NodeList.prototype.toArray = function() {
+    return Array.from(this)
+}
+
 Array.prototype.first = function() {
     return this[0]
 }

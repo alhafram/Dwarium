@@ -123,10 +123,6 @@ class BeltSetsManager {
             })
         }
 
-        let img = document.createElement('img')
-        img.className = 'leaderboard__picture'
-        article.appendChild(img)
-
         let span = document.createElement('span')
         span.className = 'leaderboard__name'
         span.textContent = set.title
@@ -150,9 +146,8 @@ class BeltSetsManager {
     }
 
     saveSet() {
-        let equippedPotionBoxes = state.getEquipedItems() //Array.from(document.querySelectorAll('.potion')).filter(a => a.firstElementChild != null)
+        let equippedPotionBoxes = state.getEquipedItems()
         let title = this.setTitleBox.value
-        // let ids = items.map(i => i.getAttribute('itemid'))
 
         let arr = []
         for(const equipedPotionBox of equippedPotionBoxes) {
@@ -209,8 +204,8 @@ class BeltSetsManager {
     equipFromSet(potions) {
         for(var potion of potions) {
             let item = Object.values(art_alt).find(o => o.title == potion.item)
-            let itemBox = Array.from(document.querySelector('.currentItems').children).find(a => a.getAttribute('itemid') == item.id)
-            let potBox = Array.from(document.querySelectorAll('.potion')).filter(pot => pot.getAttribute('num') == potion.slotNum).filter(pot => {
+            let itemBox = this.allCurrentItems.find(a => a.getAttribute('itemid') == item.id)
+            let potBox = document.querySelectorAll('.potion').toArray().filter(pot => pot.getAttribute('num') == potion.slotNum).filter(pot => {
                 return potion.variant ? pot.getAttribute('variant') : pot.getAttribute('variant') == null
             })[0]
             if(item) {
