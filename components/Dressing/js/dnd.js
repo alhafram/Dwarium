@@ -1,4 +1,5 @@
 function handleDragStartEquipableItem(e) {
+    artifactAltSimple(this.getAttribute('itemid'), 0)
     this.style.opacity = '0.4'
     state.currentElement = this
 }
