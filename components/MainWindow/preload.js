@@ -120,4 +120,5 @@ ipcRenderer.on('close_tab', (evt, id) => {
 
 ipcRenderer.on('auth', (evt, auth) => {
     document.querySelector("#dressing_room_button").style.display = auth ? 'block' : 'none'
+    document.querySelector("#belt_button").style.display = auth ? 'block' : 'none'
 })
