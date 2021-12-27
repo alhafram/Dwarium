@@ -2,7 +2,7 @@ async function processLineByLine() {
     const fs = require('fs');
     const path = require('path')
     const readline = require('readline')
-    const filePath = path.join(path.resolve(), 'logs', 'chat.log')
+    const filePath = path.join(__dirname, 'logs', 'chat.log')
 
     const fileStream = fs.createReadStream(filePath)
     const rl = readline.createInterface({
