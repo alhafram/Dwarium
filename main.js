@@ -135,6 +135,9 @@ function createWindow() {
     })
 
     ipcMain.on('goUrl', (evt, url) => {
+        if(!url.includes('http')) {
+            url = 'https://' + url
+        }
         TabsController.currentTab().webContents.loadURL(url)
     })
 
