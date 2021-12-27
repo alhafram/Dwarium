@@ -13,7 +13,7 @@ async function unequipRequest(id) {
           'method': 'GET',
           'mode': 'cors',
           'credentials': 'include'
-         })`
+         }).then(resp => resp.text())`
     let res = await window.myAPI.makeRequest({
         id: generateRandomId(),
         req: req
@@ -36,7 +36,7 @@ async function equipRequest(id) {
           'method': 'GET',
           'mode': 'cors',
           'credentials': 'include'
-        })`
+        }).then(resp => resp.text())`
     let res = await window.myAPI.makeRequest({
         id: generateRandomId(),
         req: req
@@ -56,7 +56,7 @@ async function changeStyle(zikkuratId, styleId) {
       'method': 'POST',
       'mode': 'cors',
       'credentials': 'include'
-    })`
+    }).then(resp => resp.text())`
     let res = await window.myAPI.makeRequest({
         id: generateRandomId(),
         req: req
@@ -102,7 +102,7 @@ async function equipPotionRequest(id, slotNum, variantNum) {
       'method': 'GET',
       'mode': 'cors',
       'credentials': 'include'
-      })`
+      }).then(resp => resp.text())`
     let res = await window.myAPI.makeRequest({
         id: generateRandomId(),
         req: req
