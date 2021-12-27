@@ -21,6 +21,9 @@ window.addEventListener('DOMContentLoaded', () => {
     document.querySelector('#belt_button').addEventListener('click', () => {
         ipcRenderer.send('open_belt_room')
     })
+    document.querySelector('#chat_log_button').addEventListener('click', () => {
+        ipcRenderer.send('chat_log')
+    })
     document.addEventListener('new_tab', (evt) => {
         const tab = createNewTab()
         ipcRenderer.send('new_tab', tab.id)
