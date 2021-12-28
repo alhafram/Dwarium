@@ -1,0 +1,40 @@
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href='./ChatLog.css' />
+    <link rel="stylesheet" href='./style.css' />
+    <script src="../common/utils.js"></script>
+    <script src="./index.js"></script>
+</head>
+
+<body style="overflow: hidden; margin-bottom: 35px;">
+    <div style="display: flex; background-color: #666666; height: 5%; margin: 10px;">
+        <div class="filterElement">
+            <input type="checkbox" id="private">
+            <label for="private">Private</label>
+        </div>
+        <div class="filterElement">
+            <input type="checkbox" id="common">
+            <label for="common">Common</label>
+        </div>
+        <div class="filterElement">
+            <input type="checkbox" id="system">
+            <label for="system">System</label>
+        </div>
+        <div class="filterElement">
+            <input type="checkbox" id="trade">
+            <label for="trade">Trade</label>
+        </div>
+        <div class="filterElement">
+            <input type="checkbox" disabled id="clan">
+            <label for="clan">Clan</label>
+        </div>
+        <div class="filterElement">
+            <input type="checkbox" disabled id="alliance">
+            <label for="alliance">Alliance</label>
+        </div>
+        <div class="filterElement">
+            <input type="text" placeholder="Search string" id="searchText" onkeyup="filterLog(this)" />
+        </div>
+    </div>
+    <div class="messageLogs" style="overflow: scroll; height: 95%; padding-bottom: 15px;"></div>
+</body>

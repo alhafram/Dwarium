@@ -68,6 +68,25 @@ function createWindow() {
         beltWindow.loadFile(`${path.join(__dirname, './components/Belt/index.html')}`)
     })
 
+    let chatLogWindow = null
+    ipcMain.on('chat_log', () => {
+        const path = require('path')
+        chatLogWindow = new BrowserWindow({
+            parent: mainWindow,
+            width: 900,
+            height: 700,
+            minWidth: 900,
+            minHeight: 700,
+            useContentSize: true,
+            show: true,
+            webPreferences: {
+                preload: path.join(__dirname, './components/Chat/preload.js'),
+                contextIsolation: false
+            }
+        })
+        chatLogWindow.loadFile(`${path.join(__dirname, './components/Chat/index.html')}`)
+    })
+
     ipcMain.on('new_tab', (evt, id, url) => {
         createNewTab(url, id)
     })
@@ -116,6 +135,9 @@ function createWindow() {
     })
 
     ipcMain.on('goUrl', (evt, url) => {
+        if(!url.includes('http')) {
+            url = 'https://' + url
+        }
         TabsController.currentTab().webContents.loadURL(url)
     })
 

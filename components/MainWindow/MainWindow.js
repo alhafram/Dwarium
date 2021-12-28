@@ -109,7 +109,12 @@ class MainWindow extends BrowserWindow {
 
     createMainBrowserView() {
         let browserView = new BrowserView({
-            enablePreferredSizeMode: true
+            enablePreferredSizeMode: true,
+            webPreferences: {
+                preload: path.join(__dirname, 'MainBrowserViewPreload.js'),
+                contextIsolation: false,
+                nativeWindowOpen: false
+            }
         })
         browserView.webContents.setZoomFactor(0.9)
         browserView.setBounds(this.getControlBounds())

@@ -21,6 +21,9 @@ window.addEventListener('DOMContentLoaded', () => {
     document.querySelector('#belt_button').addEventListener('click', () => {
         ipcRenderer.send('open_belt_room')
     })
+    document.querySelector('#chat_log_button').addEventListener('click', () => {
+        ipcRenderer.send('chat_log')
+    })
     document.addEventListener('new_tab', (evt) => {
         const tab = createNewTab()
         ipcRenderer.send('new_tab', tab.id)
@@ -120,4 +123,5 @@ ipcRenderer.on('close_tab', (evt, id) => {
 
 ipcRenderer.on('auth', (evt, auth) => {
     document.querySelector("#dressing_room_button").style.display = auth ? 'block' : 'none'
+    document.querySelector("#belt_button").style.display = auth ? 'block' : 'none'
 })
