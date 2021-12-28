@@ -17,11 +17,25 @@ function filterLog() {
     }
     let visibleSpans = document.querySelectorAll('.msgtxt').toArray().filter(span => span.parentElement.style.display == 'block')
     let searchText = document.querySelector('#searchText').value
-    visibleSpans.forEach(span => {
-        if(!span.innerText.toLocaleLowerCase().includes(searchText.toLocaleLowerCase())) {
-            span.parentElement.style.display = 'none'
+    if(searchText.startsWith('!')) {
+        let allCommand = searchText.slice(1, searchText.length)
+        let splittedCommand = allCommand.split('=')
+        let command = splittedCommand[0]
+        let value = splittedCommand[1] ?? ""
+        if(command == 'nick' && value.length > 0) {
+            visibleSpans.forEach(span => {
+                if(span.parentElement.getAttribute('nick').toLocaleLowerCase() != value.toLocaleLowerCase()) {
+                    span.parentElement.style.display = 'none'
+                }
+            })
         }
-    })
+    } else {
+        visibleSpans.forEach(span => {
+            if(!span.innerText.toLocaleLowerCase().includes(searchText.toLocaleLowerCase())) {
+                span.parentElement.style.display = 'none'
+            }
+        })
+    }
 }
 
 function scrollToBottom() {
