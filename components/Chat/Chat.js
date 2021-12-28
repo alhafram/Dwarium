@@ -4,6 +4,8 @@ const filePath = path.join(__dirname, 'logs', 'chat.log')
 const configService = require('../../services/ConfigService')
 var logStream = fs.createWriteStream(filePath, {flags: 'a'});
 
+const { powerMonitor } = require('@electron/remote')
+    
 var msg_max = 100
 
 var checkLmtsProxyReady = function() {
@@ -360,4 +362,10 @@ function setupReceiver() {
     }
 }
 
-module.exports = { checkLmtsProxyReady, setupChatTotalReconnect, setupChatInterval, setupReceiver }
+function setupAutoResponder() {
+    setInterval(() => {
+        console.log(powerMonitor.getSystemIdleTime())
+    }, 1000)
+}
+
+module.exports = { checkLmtsProxyReady, setupChatTotalReconnect, setupChatInterval, setupReceiver, setupAutoResponder }

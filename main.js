@@ -10,6 +10,14 @@ const TabsController = require('./services/TabsController')
 const {
     MainWindow
 } = require('./components//MainWindow/MainWindow')
+require('@electron/remote/main').initialize()
+const isDev = require('electron-is-dev')
+
+if(isDev) {
+    console.log('Running in development')
+} else {
+    console.log('Running in production')
+}
 
 let mainWindow
 
@@ -20,6 +28,7 @@ function createWindow() {
     TabsController.setupMain(mainWindow.browserView)
     mainWindow.setContentBounds(TabsController.currentTab())
     mainWindow.start()
+    require("@electron/remote/main").enable(mainWindow.browserView.webContents)
 
     ipcMain.on('load_url', (evt, server) => {
         configService.writeData('server', server)
