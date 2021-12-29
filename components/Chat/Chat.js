@@ -302,6 +302,11 @@ function setupReceiver() {
                 msg_dom.attr('original-msg-object', JSON.stringify(originalMsgObject));
             }
         }
+
+        if(originalMsgObject.to_user_nicks && Object.values(originalMsgObject.to_user_nicks).includes(top[0].canvas.app.avatar.model.login)) {
+            // const replyMessage = `prv[${originalMsgObject.user_nick}] I'm afk!!!`
+            // top[1].chatSendMessage(replyMessage)
+        }
     
         for(var i in top[1].chatOpts) {
             var opt = top[1].chatOpts[i];
@@ -362,9 +367,12 @@ function setupReceiver() {
     }
 }
 
+var isIdle = false
+
 function setupAutoResponder() {
     setInterval(() => {
-        console.log(powerMonitor.getSystemIdleTime())
+        let idleTime = powerMonitor.getSystemIdleTime()
+        isIdle = idleTime > 0 // TODO: - 
     }, 1000)
 }
 
