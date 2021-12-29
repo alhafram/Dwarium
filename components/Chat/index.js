@@ -5,7 +5,7 @@ function filterLog() {
     let messageDivs = document.querySelector('.messageLogs').children.toArray()
     for(let filter of filters) {
         if(filter != 'cml_spc') {
-            let filteredDivs = messageDivs.filter(a => a.firstElementChild.className == filter)
+            let filteredDivs = messageDivs.filter(a => a.firstElementChild?.className == filter)
             filteredDivs.forEach(a => a.style.display = 'block')
         } else {
             let filteredDivs = messageDivs.filter(a => a.className == filter)
