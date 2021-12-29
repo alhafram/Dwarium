@@ -2,10 +2,15 @@ const fs = require('fs')
 const path = require('path')
 const filePath = path.join(__dirname, 'logs', 'chat.log')
 const configService = require('../../services/ConfigService')
-var logStream = fs.createWriteStream(filePath, {flags: 'a'});
+var logStream = fs.createWriteStream(filePath, {
+    flags: 'a'
+});
 
-const { powerMonitor } = require('@electron/remote')
-    
+const {
+    powerMonitor,
+    globalShortcut
+} = require('@electron/remote')
+
 var msg_max = 100
 
 var checkLmtsProxyReady = function() {
@@ -154,10 +159,10 @@ function setupReceiver() {
         var originalMsgObject = jQuery.extend(true, {}, msg);
         top[1].lastMsgTime = time_current();
         top[1].reconnection_counter = 0;
-    
+
         var scrollCurrent = _top().frames['chat'].frames['chat_text'].scrollY ? _top().frames['chat'].frames['chat_text'].scrollY : _top().frames['chat'].frames['chat_text'].document.body.scrollTop;
         var scrollMax = getScrollMaxY(_top().frames['chat'].frames['chat_text']);
-    
+
         var mymsg = (msg.channel == top[1].channels.user || msg.user_id == top[1].session.id || (msg.to_user_ids && (msg.to_user_ids[top[1].session.id])));
         if(top[1].session.no_sys_msg && msg.type != top[1].msg_type.def && !msg.urgent && !mymsg && msg.type != top[1].msg_type.special && !msg.chaotic_request)
             return;
@@ -176,11 +181,11 @@ function setupReceiver() {
         if(parseInt(msg.wheel_msg) && parseInt(top[1].session.wf_msg_ok)) {
             return false;
         }
-    
+
         var can_hidden_view = msg.user_id == top[1].CHAT.my_id || top[1].CHAT.mentor || top[1].CHAT.admin;
         if(msg.hidden && !can_hidden_view)
             return false;
-    
+
         var no_fight_id = parseInt(msg.no_fight_id);
         if(no_fight_id && (no_fight_id == parseInt(top[1].session.fight_id))) {
             return false;
@@ -193,14 +198,14 @@ function setupReceiver() {
         }
         if(top[1].session.deaf && msg.type == top[1].msg_type.def)
             return false;
-    
+
         for(var i in top[1].chatOpts) {
             var data = top[1].chatOpts[i].data;
             if(data.children().length == msg_max) {
                 $(data.children()[0]).remove();
             }
         }
-    
+
         if(msg.translate) {
             msg.msg_text = msg.translate[top[1].session.lang]['text'];
             msg.macros_list = msg.translate[top[1].session.lang]['macros_list'];
@@ -214,13 +219,13 @@ function setupReceiver() {
             }
             delete msg.translate;
         }
-    
+
         if(msg.macros_list && msg.msg_text) {
             for(var macro_id in msg.macros_list) {
                 msg.msg_text = common_macro_resolve(macro_id, msg.macros_list[macro_id].name, msg.macros_list[macro_id].data, msg.msg_text);
             }
         }
-    
+
         var msg_dom = null;
         var client_text = msg.msg_text;
         if(msg.type == top[1].msg_type.special) {
@@ -261,20 +266,20 @@ function setupReceiver() {
             }
         } else {
             if(!msg.msg_text) return false;
-    
+
             for(var i in top[1].IGNORED) {
                 if(i == msg.user_nick && top[1].IGNORED[i]) return false;
             }
-    
+
             msg_dom = top[1].chatFormatMessage(msg);
-    
+
             if((jQuery.inArray(msg.type, [top[1].msg_type.report, top[1].msg_type.report_answer]) != -1) && !jQuery.isEmptyObject(msg.report_msg)) {
                 if(msg.report_msg.macros_list && msg.report_msg.msg_text) {
                     for(var macro_id in msg.report_msg.macros_list) {
                         msg.report_msg.msg_text = common_macro_resolve(macro_id, msg.report_msg.macros_list[macro_id].name, msg.report_msg.macros_list[macro_id].data, msg.report_msg.msg_text);
                     }
                 }
-    
+
                 // prepare complain message text for client
                 var date = new Date((parseInt(msg.report_msg.stime) + top[1].session.time_offset + new Date().getTimezoneOffset() * 60) * 1000);
                 var hours = date.getHours();
@@ -289,7 +294,7 @@ function setupReceiver() {
                 }
                 if(nicks.length) client_text += nicks.join(', ') + ': ';
                 client_text += msg.report_msg.msg_text;
-    
+
                 var report_msg = $(top[1].chatFormatMessage(msg.report_msg)).css('display', 'inline');
                 var original_msg = $(msg_dom).css('display', 'inline').attr('original-msg-object', JSON.stringify(msg.report_msg));
                 msg_dom = $('<div class="JS-MsgContainer"></div>').append(original_msg).append(report_msg);
@@ -307,7 +312,7 @@ function setupReceiver() {
             // const replyMessage = `prv[${originalMsgObject.user_nick}] I'm afk!!!`
             // top[1].chatSendMessage(replyMessage)
         }
-    
+
         for(var i in top[1].chatOpts) {
             var opt = top[1].chatOpts[i];
             for(var k in top[1].chatDependent) {
@@ -320,7 +325,7 @@ function setupReceiver() {
                 if(msg.channel != top[1].channels.user && msg.channel != top[1].channels.aux && !(opt.channel & top[1].channels.area) && !msg.command && (msg.type == top[1].msg_type.system && !(opt.system_msgs && (msg.channel & opt.channel))) && !msg.urgent)
                     continue;
                 if(msg.type == top[1].msg_type.system && msg.command && !(opt.channel & msg.channel)) continue;
-    
+
                 if(top[1].chatButtonState['priv_btn'] && msg.chaotic_request || !top[1].chatButtonState['priv_btn'] || (msg.channel == top[1].channels.user) || !top[1].chatButtonState['priv_btn'] && (msg.type == top[1].msg_type.system) || (msg.user_id == top[1].session.id) ||
                     (msg.to_user_ids && inarray(msg.to_user_ids, top[1].session.id)) || msg.type == top[1].msg_type.broadcast || (msg.type == top[1].msg_type.system && msg.event_notify)) {
                     opt.data.append($(msg_dom).clone());
@@ -341,7 +346,7 @@ function setupReceiver() {
         html = html.replaceAll('src="images/', `src="${configService.baseUrl()}/images/`).replaceAll('src="/images/', `src="${configService.baseUrl()}/images/`)
         html = html.replaceAll('href="/artifact_info.php', `href="${configService.baseUrl()}/artifact_info.php`)
         logStream.write(html + '\n');
-    
+
         client_msg = {};
         client_msg.data = {};
         client_msg.data.msg = client_text.split('"').join('\\"');
@@ -376,4 +381,29 @@ function setupAutoResponder() {
     }, 1000)
 }
 
-module.exports = { checkLmtsProxyReady, setupChatTotalReconnect, setupChatInterval, setupReceiver, setupAutoResponder }
+var chatHidden = false
+function setupShortcut() {
+    globalShortcut.unregister('F7')
+    globalShortcut.register('F7', () => {
+        if(chatHidden) {
+            _top().gebi('chat_TD').height = '30%'
+            _top().gebi('main_frame_TD').height = '70%'
+            _top().gebi('chat_TD').style.display = 'block'
+            _top().gebi('chat_TD').style.display = ''
+        } else {
+            _top().gebi('chat_TD').height = '0%'
+            _top().gebi('main_frame_TD').height = '100%'
+            _top().gebi('chat_TD').style.display = 'none'
+        }
+        chatHidden = !chatHidden
+    })
+}
+
+module.exports = {
+    checkLmtsProxyReady,
+    setupChatTotalReconnect,
+    setupChatInterval,
+    setupReceiver,
+    setupAutoResponder,
+    setupShortcut
+}
