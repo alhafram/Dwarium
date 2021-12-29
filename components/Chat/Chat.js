@@ -4,6 +4,8 @@ const filePath = path.join(__dirname, 'logs', 'chat.log')
 const configService = require('../../services/ConfigService')
 var logStream = fs.createWriteStream(filePath, {flags: 'a'});
 
+const { powerMonitor } = require('@electron/remote')
+    
 var msg_max = 100
 
 var checkLmtsProxyReady = function() {
@@ -300,6 +302,11 @@ function setupReceiver() {
                 msg_dom.attr('original-msg-object', JSON.stringify(originalMsgObject));
             }
         }
+
+        if(originalMsgObject.to_user_nicks && Object.values(originalMsgObject.to_user_nicks).includes(top[0].canvas.app.avatar.model.login)) {
+            // const replyMessage = `prv[${originalMsgObject.user_nick}] I'm afk!!!`
+            // top[1].chatSendMessage(replyMessage)
+        }
     
         for(var i in top[1].chatOpts) {
             var opt = top[1].chatOpts[i];
@@ -360,4 +367,13 @@ function setupReceiver() {
     }
 }
 
-module.exports = { checkLmtsProxyReady, setupChatTotalReconnect, setupChatInterval, setupReceiver }
+var isIdle = false
+
+function setupAutoResponder() {
+    setInterval(() => {
+        let idleTime = powerMonitor.getSystemIdleTime()
+        isIdle = idleTime > 0 // TODO: - 
+    }, 1000)
+}
+
+module.exports = { checkLmtsProxyReady, setupChatTotalReconnect, setupChatInterval, setupReceiver, setupAutoResponder }

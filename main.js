@@ -10,6 +10,14 @@ const TabsController = require('./services/TabsController')
 const {
     MainWindow
 } = require('./components//MainWindow/MainWindow')
+require('@electron/remote/main').initialize()
+const isDev = require('electron-is-dev')
+
+if(isDev) {
+    console.log('Running in development')
+} else {
+    console.log('Running in production')
+}
 
 let mainWindow
 
@@ -20,6 +28,7 @@ function createWindow() {
     TabsController.setupMain(mainWindow.browserView)
     mainWindow.setContentBounds(TabsController.currentTab())
     mainWindow.start()
+    require("@electron/remote/main").enable(mainWindow.browserView.webContents)
 
     ipcMain.on('load_url', (evt, server) => {
         configService.writeData('server', server)
@@ -34,6 +43,10 @@ function createWindow() {
 
     let dressingWindow = null
     ipcMain.on('open_dressing_room', () => {
+        if(dressingWindow) {
+            dressingWindow.show()
+            return
+        }
         const path = require('path')
         dressingWindow = new BrowserWindow({
             parent: mainWindow,
@@ -47,11 +60,19 @@ function createWindow() {
                 preload: path.join(__dirname, './components/Dressing/preload.js')
             }
         })
+        dressingWindow.on('close', () => {
+            dressingWindow.destroy()
+            dressingWindow = null
+        })
         dressingWindow.loadFile(`${path.join(__dirname, './components/Dressing/index.html')}`)
     })
 
     let beltWindow = null
     ipcMain.on('open_belt_room', () => {
+        if(beltWindow) {
+            beltWindow.show()
+            return
+        }
         const path = require('path')
         beltWindow = new BrowserWindow({
             parent: mainWindow,
@@ -65,11 +86,19 @@ function createWindow() {
                 preload: path.join(__dirname, './components/Belt/preload.js')
             }
         })
+        beltWindow.on('close', () => {
+            beltWindow.destroy()
+            beltWindow = null
+        })
         beltWindow.loadFile(`${path.join(__dirname, './components/Belt/index.html')}`)
     })
 
     let chatLogWindow = null
     ipcMain.on('chat_log', () => {
+        if(chatLogWindow) {
+            chatLogWindow.show()
+            return
+        }
         const path = require('path')
         chatLogWindow = new BrowserWindow({
             parent: mainWindow,
@@ -84,7 +113,37 @@ function createWindow() {
                 contextIsolation: false
             }
         })
+        chatLogWindow.on('close', () => {
+            chatLogWindow.destroy()
+            chatLogWindow = null
+        })
         chatLogWindow.loadFile(`${path.join(__dirname, './components/Chat/index.html')}`)
+    })
+
+    let chatSettingsWindow = null
+    ipcMain.on('chat_settings', () => {
+        if(chatSettingsWindow) {
+            chatSettingsWindow.show()
+            return
+        }
+        const path = require('path')
+        chatSettingsWindow = new BrowserWindow({
+            parent: mainWindow,
+            width: 900,
+            height: 700,
+            minWidth: 900,
+            minHeight: 700,
+            useContentSize: true,
+            show: true,
+            webPreferences: {
+                contextIsolation: false
+            }
+        })
+        chatSettingsWindow.on('close', () => {
+            chatSettingsWindow.destroy()
+            chatSettingsWindow = null
+        })
+        chatSettingsWindow.loadFile(`${path.join(__dirname, './components/ChatSettings/index.html')}`)
     })
 
     ipcMain.on('new_tab', (evt, id, url) => {

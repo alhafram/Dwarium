@@ -24,6 +24,9 @@ window.addEventListener('DOMContentLoaded', () => {
     document.querySelector('#chat_log_button').addEventListener('click', () => {
         ipcRenderer.send('chat_log')
     })
+    document.querySelector('#chat_settings_button').addEventListener('click', () => {
+        ipcRenderer.send('chat_settings')
+    })
     document.addEventListener('new_tab', (evt) => {
         const tab = createNewTab()
         ipcRenderer.send('new_tab', tab.id)

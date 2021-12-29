@@ -1,4 +1,4 @@
-const { checkLmtsProxyReady, setupChatTotalReconnect, setupChatInterval, setupReceiver } = require('../Chat/Chat')
+const { checkLmtsProxyReady, setupChatTotalReconnect, setupChatInterval, setupReceiver, setupAutoResponder } = require('../Chat/Chat')
 
 window.addEventListener('DOMContentLoaded', async () => {
 
@@ -13,6 +13,7 @@ window.addEventListener('DOMContentLoaded', async () => {
             console.log(new Date(), "DONE 2")
             setupChatTotalReconnect()
             setupChatInterval()
+            setupAutoResponder()
         }
     }, 100)
 
