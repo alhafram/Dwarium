@@ -74,16 +74,16 @@ class MainWindow extends BrowserWindow {
                 }
             } else {
                 return {
-                    action: 'allow'
+                    action: 'allow',
+                    overrideBrowserWindowOptions: {
+                        enablePreferredSizeMode: true,
+                        webPreferences: {
+                            contextIsolation: false,
+                            nativeWindowOpen: true,
+                            nodeIntegrationInSubFrames: true,
+                        }
+                    }
                 }
-            }
-        })
-
-        this.browserView.webContents.on('did-create-window', (window, details) => {
-            if(details.url.includes('https://account.my.games/oauth2')) {
-                window.on('closed', function() {
-                    win.browserView.webContents.send('AuthComplete')
-                })
             }
         })
     }
@@ -132,7 +132,7 @@ class MainWindow extends BrowserWindow {
             webPreferences: {
                 preload: path.join(__dirname, 'MainBrowserViewPreload.js'),
                 contextIsolation: false,
-                nativeWindowOpen: false
+                nativeWindowOpen: true
             }
         })
         browserView.webContents.setZoomFactor(0.9)
@@ -141,7 +141,6 @@ class MainWindow extends BrowserWindow {
             width: true,
             height: true
         })
-        browserView.webContents.openDevTools()
         return browserView
     }
 }
