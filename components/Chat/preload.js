@@ -1,9 +1,19 @@
 async function processLineByLine() {
-    const { app } = require('@electron/remote')
+    const {
+        app
+    } = require('@electron/remote')
     const fs = require('fs');
     const path = require('path')
     const readline = require('readline')
-    const filePath = path.join(app.getAppPath(), 'logs', 'chat.log')
+    const logsFolderPath = path.join(app.getAppPath(), 'logs')
+    const filePath = path.join(logsFolderPath, 'chat.log')
+    console.log(logsFolderPath)
+    if(!fs.existsSync(logsFolderPath)) {
+        fs.mkdirSync(logsFolderPath)
+        fs.openSync(filePath, 'w')
+    } else if(!fs.existsSync(filePath)) {
+        fs.openSync(filePath, 'w')
+    }
 
     const fileStream = fs.createReadStream(filePath)
     const rl = readline.createInterface({
@@ -11,7 +21,6 @@ async function processLineByLine() {
         crlfDelay: Infinity
     });
     for await (const line of rl) {
-        // Each line in input.txt will be successively available here as `line`.
         let elem = document.createElementFromString(line)
         document.querySelector("body > div.messageLogs").appendChild(elem)
     }

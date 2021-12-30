@@ -5,8 +5,16 @@ const {
 } = require('@electron/remote')
 const fs = require('fs')
 const path = require('path')
-const filePath = path.join(app.getAppPath(), 'logs', 'chat.log')
-console.log(filePath)
+const logsFolderPath = path.join(app.getAppPath(), 'logs')
+const filePath = path.join(logsFolderPath, 'chat.log')
+console.log(logsFolderPath)
+if(!fs.existsSync(logsFolderPath)) {
+    fs.mkdirSync(logsFolderPath)
+    fs.openSync(filePath, 'w')
+} else if(!fs.existsSync(filePath)) {
+    fs.openSync(filePath, 'w')
+}
+
 const configService = require('../../services/ConfigService')
 var logStream = fs.createWriteStream(filePath, {
     flags: 'a'
@@ -383,6 +391,7 @@ function setupAutoResponder() {
 }
 
 var chatHidden = false
+
 function setupShortcut() {
     globalShortcut.unregister('F7')
     globalShortcut.register('F7', () => {
