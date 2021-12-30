@@ -229,6 +229,14 @@ function createWindow() {
         await bw.webContents.loadURL(request.url)
         return await bw.webContents.executeJavaScript(request.script)
     }
+
+    session.defaultSession.webRequest.onBeforeSendHeaders((details, callback) => {
+        details.requestHeaders['User-Agent'] = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36';
+        callback({
+            cancel: false,
+            requestHeaders: details.requestHeaders
+        });
+    });
 }
 
 app.on('ready', createWindow)
