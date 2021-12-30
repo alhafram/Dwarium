@@ -67,7 +67,7 @@ function parseMagicSchools(result) {
     let doc = result.toDocument()
     let schools = Array.from(doc.querySelector('body > table > tbody > tr:nth-child(2) > td.bgg > table > tbody > tr:nth-child(1) > td:nth-child(2) > select').children).map(e => e.textContent)
     let currentStyle = difference(SetStyleHelper.magmarSchools, schools)
-    if(currentStyle == 0) {
+    if(currentStyle == 0 || currentStyle.size  == SetStyleHelper.magmarSchools.length) {
         currentStyle = difference(SetStyleHelper.humanSchools, schools)
     }
     return Array.from(currentStyle).first()
