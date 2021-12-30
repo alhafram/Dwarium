@@ -293,7 +293,11 @@ class BeltSetsManager {
         }
         while(needToEquip.length != 0) {
             let item = needToEquip[0]
-            let id = Object.values(art_alt).find(o => o.title == item.item).id
+            let id = Object.values(art_alt).find(o => o.title == item.item)?.id
+            if(!id) {
+                needToEquip.removeItem(item)
+                continue
+            }
             await equipPotionRequest(id, item.slotNum, item.variant ? '1' : '0')
             await potionsManager.updateSlot(item.slotNum, item.variant ? 'variantItems' : 'items')
             needToEquip.removeItem(item)

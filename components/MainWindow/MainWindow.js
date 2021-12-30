@@ -1,7 +1,8 @@
 const {
     BrowserView,
     BrowserWindow,
-    globalShortcut
+    globalShortcut,
+    session
 } = require('electron')
 const path = require('path')
 const configService = require('../../services/ConfigService')
@@ -43,15 +44,25 @@ class MainWindow extends BrowserWindow {
                     win.webContents.send('close_tab', TabsController.current_tab_id)
                 }
             })
+            globalShortcut.register('CommandOrControl+O', () => {
+                TabsController.currentTab().webContents.openDevTools()
+            })
+            globalShortcut.register('CommandOrControl+Shift+K', () => {
+                session.defaultSession.clearStorageData([], (data) => {})
+                TabsController.currentTab().webContents.reload()
+            })
         })
         this.on('blur', () => {
             globalShortcut.unregister('CommandOrControl+W')
+            globalShortcut.unregister('CommandOrControl+O')
+            globalShortcut.unregister('CommandOrControl+Shift+K')
         })
     }
 
     setup() {
         this.browserView = this.createMainBrowserView()
         this.setBrowserView(this.browserView)
+        let win = this
         this.browserView.webContents.setWindowOpenHandler(({
             url,
             features
@@ -65,6 +76,14 @@ class MainWindow extends BrowserWindow {
                 return {
                     action: 'allow'
                 }
+            }
+        })
+
+        this.browserView.webContents.on('did-create-window', (window, details) => {
+            if(details.url.includes('https://account.my.games/oauth2')) {
+                window.on('closed', function() {
+                    win.browserView.webContents.send('AuthComplete')
+                })
             }
         })
     }
