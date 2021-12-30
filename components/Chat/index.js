@@ -60,4 +60,16 @@ window.addEventListener('DOMContentLoaded', () => {
         this.checked ? filters.push('cml_trd') : filters.removeItem('cml_trd')
         filterLog()
     }
+    document.querySelector('#clan').onchange = function(e) {
+        this.checked ? filters.push('cml_cln') : filters.removeItem('cml_cln')
+        filterLog()
+    }
+    document.querySelector('#alliance').onchange = function(e) {
+        this.checked ? filters.push('cml_all') : filters.removeItem('cml_all')
+        filterLog()
+    }
+    document.querySelector('#group').onchange = function(e) {
+        this.checked ? filters.push('cml_pty') : filters.removeItem('cml_pty')
+        filterLog()
+    }
 })
