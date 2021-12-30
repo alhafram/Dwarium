@@ -1,12 +1,14 @@
+const {
+    app
+} = require('@electron/remote')
+const fs = require('fs');
+const path = require('path')
+const readline = require('readline')
+const logsFolderPath = path.join(app.getAppPath(), 'logs')
+const filePath = path.join(logsFolderPath, 'chat.log')
+
 async function processLineByLine() {
-    const {
-        app
-    } = require('@electron/remote')
-    const fs = require('fs');
-    const path = require('path')
-    const readline = require('readline')
-    const logsFolderPath = path.join(app.getAppPath(), 'logs')
-    const filePath = path.join(logsFolderPath, 'chat.log')
+
     console.log(logsFolderPath)
     if(!fs.existsSync(logsFolderPath)) {
         fs.mkdirSync(logsFolderPath)
@@ -36,6 +38,14 @@ async function processLineByLine() {
             currentLine = line;
         });
         fileStream1.on('end', function() {
+            if(!currentLine) {
+                let parent = document.querySelector("body > div.messageLogs")
+                let logMessages = parent.children.toArray()
+                for(let logMessage of logMessages) {
+                    parent.removeChild(logMessage)
+                }
+                return
+            }
             let elem = document.createElementFromString(currentLine)
             document.querySelector("body > div.messageLogs").appendChild(elem)
             filterLog()
@@ -47,6 +57,10 @@ async function processLineByLine() {
 window.addEventListener('DOMContentLoaded', async () => {
     await processLineByLine()
     filterLog()
+
+    document.querySelector('#cleanLogs').addEventListener('click', () => {
+        fs.truncateSync(filePath, 0)
+    })
 })
 
 Document.prototype.createElementFromString = function(str) {
