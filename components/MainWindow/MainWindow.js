@@ -1,7 +1,8 @@
 const {
     BrowserView,
     BrowserWindow,
-    globalShortcut
+    globalShortcut,
+    session
 } = require('electron')
 const path = require('path')
 const configService = require('../../services/ConfigService')
@@ -43,9 +44,18 @@ class MainWindow extends BrowserWindow {
                     win.webContents.send('close_tab', TabsController.current_tab_id)
                 }
             })
+            globalShortcut.register('CommandOrControl+O', () => {
+                TabsController.currentTab().webContents.openDevTools()
+            })
+            globalShortcut.register('CommandOrControl+Shift+K', () => {
+                session.defaultSession.clearStorageData([], (data) => {})
+                TabsController.currentTab().webContents.reload()
+            })
         })
         this.on('blur', () => {
             globalShortcut.unregister('CommandOrControl+W')
+            globalShortcut.unregister('CommandOrControl+O')
+            globalShortcut.unregister('CommandOrControl+Shift+K')
         })
     }
 

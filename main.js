@@ -22,7 +22,6 @@ if(isDev) {
 let mainWindow
 
 function createWindow() {
-    // session.defaultSession.clearStorageData([], (data) => {})
     mainWindow = new MainWindow()
     mainWindow.setup()
     TabsController.setupMain(mainWindow.browserView)
@@ -236,7 +235,7 @@ function createWindow() {
             cancel: false,
             requestHeaders: details.requestHeaders
         });
-    });
+    })
 }
 
 app.on('ready', createWindow)
