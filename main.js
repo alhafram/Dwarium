@@ -13,6 +13,7 @@ const {
 require('@electron/remote/main').initialize()
 const isDev = require('electron-is-dev')
 
+// export ELECTRON_IS_DEV=0
 if(isDev) {
     console.log('Running in development')
 } else {
@@ -117,6 +118,7 @@ function createWindow() {
             chatLogWindow = null
         })
         chatLogWindow.loadFile(`${path.join(__dirname, './components/Chat/index.html')}`)
+        require("@electron/remote/main").enable(chatLogWindow.webContents)
     })
 
     let chatSettingsWindow = null

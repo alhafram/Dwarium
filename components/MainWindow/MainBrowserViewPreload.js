@@ -20,7 +20,7 @@ window.addEventListener('DOMContentLoaded', async () => {
             console.log(new Date(), "DONE 2")
             setupChatTotalReconnect()
             setupChatInterval()
-            setupAutoResponder()
+            // setupAutoResponder() // TODO: - 1.1.0
             setupShortcut()
         }
     }, 100)

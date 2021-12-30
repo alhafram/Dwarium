@@ -1,8 +1,9 @@
 async function processLineByLine() {
+    const { app } = require('@electron/remote')
     const fs = require('fs');
     const path = require('path')
     const readline = require('readline')
-    const filePath = path.join(__dirname, 'logs', 'chat.log')
+    const filePath = path.join(app.getAppPath(), 'logs', 'chat.log')
 
     const fileStream = fs.createReadStream(filePath)
     const rl = readline.createInterface({

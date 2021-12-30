@@ -1,15 +1,16 @@
+const {
+    app,
+    powerMonitor,
+    globalShortcut
+} = require('@electron/remote')
 const fs = require('fs')
 const path = require('path')
-const filePath = path.join(__dirname, 'logs', 'chat.log')
+const filePath = path.join(app.getAppPath(), 'logs', 'chat.log')
+console.log(filePath)
 const configService = require('../../services/ConfigService')
 var logStream = fs.createWriteStream(filePath, {
     flags: 'a'
 });
-
-const {
-    powerMonitor,
-    globalShortcut
-} = require('@electron/remote')
 
 var msg_max = 100
 
