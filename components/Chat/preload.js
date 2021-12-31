@@ -9,7 +9,6 @@ const filePath = path.join(logsFolderPath, 'chat.log')
 
 async function processLineByLine() {
 
-    console.log(logsFolderPath)
     if(!fs.existsSync(logsFolderPath)) {
         fs.mkdirSync(logsFolderPath)
         fs.openSync(filePath, 'w')

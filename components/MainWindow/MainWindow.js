@@ -47,6 +47,9 @@ class MainWindow extends BrowserWindow {
                 if(TabsController.currentTab() != TabsController.getMain()) {
                     this.webContents.send('close_tab', TabsController.current_tab_id)
                 }
+                if(TabsController.onlyMain()) {
+                    this.close()
+                }
             })
             globalShortcut.register('CommandOrControl+O', () => {
                 TabsController.currentTab().webContents.openDevTools()

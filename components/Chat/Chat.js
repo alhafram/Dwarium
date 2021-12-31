@@ -7,7 +7,7 @@ const fs = require('fs')
 const path = require('path')
 const logsFolderPath = path.join(app.getAppPath(), 'logs')
 const filePath = path.join(logsFolderPath, 'chat.log')
-console.log(logsFolderPath)
+
 if(!fs.existsSync(logsFolderPath)) {
     fs.mkdirSync(logsFolderPath)
     fs.openSync(filePath, 'w')
@@ -374,7 +374,6 @@ function setupReceiver() {
             client_msg.data.recipient_list.push(msg.to_user_nicks[key]);
         }
         _top().clientExchangePut(vardump(client_msg).replace(/<\/?[^>]+>/gi, ''));
-        console.log(client_msg.data)
         top[1].chatScrollToBottom();
         if(top[1].msie7) top[1].chatUpdateDataAttach();
         return true;
