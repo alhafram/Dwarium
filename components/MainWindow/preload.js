@@ -44,6 +44,9 @@ window.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('setupMain', () => {
         createNewTab('main', 'Main')
     })
+    document.getElementById('updateApplicationButton').addEventListener('click', () => {
+        ipcRenderer.send('updateApplication')
+    })
 })
 
 function createNewTab(id, title) {
@@ -127,4 +130,8 @@ ipcRenderer.on('close_tab', (evt, id) => {
 ipcRenderer.on('auth', (evt, auth) => {
     document.querySelector("#dressing_room_button").style.display = auth ? 'block' : 'none'
     document.querySelector("#belt_button").style.display = auth ? 'block' : 'none'
+})
+
+ipcRenderer.on('updateApplicationAvailable', () => {
+    document.getElementById('updateApplicationButton').style.display = 'block'
 })
