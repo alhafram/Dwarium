@@ -12,6 +12,9 @@ const {
 } = require('./components//MainWindow/MainWindow')
 require('@electron/remote/main').initialize()
 require('v8-compile-cache')
+const { autoUpdater } = require("electron-updater")
+
+autoUpdater.checkForUpdatesAndNotify()
 
 let mainWindow
 
