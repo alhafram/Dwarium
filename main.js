@@ -11,14 +11,7 @@ const {
     MainWindow
 } = require('./components//MainWindow/MainWindow')
 require('@electron/remote/main').initialize()
-const isDev = require('electron-is-dev')
-
-// export ELECTRON_IS_DEV=0
-if(isDev) {
-    console.log('Running in development')
-} else {
-    console.log('Running in production')
-}
+require('v8-compile-cache')
 
 let mainWindow
 

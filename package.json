@@ -1,59 +1,38 @@
 {
-  "name": "Dwarium",
-  "version": "1.0.0",
-  "description": "",
-  "main": "main.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "electron-forge start",
-    "package": "electron-forge package",
-    "make": "electron-forge make",
-    "win": "electron-packager ./ Dwarium --platform=win32 --arch=x64 --icon=icon.ico --ignore=^/logs",
-    "linux": "electron-packager ./ Dwarium --platform=linux --arch=x64 --ignore=^/logs",
-    "mac": "electron-packager ./ Dwarium --platform=darwin --arch=x64 --icon=icon.icns --ignore=^/logs"
-  },
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "@electron-forge/cli": "^6.0.0-beta.61",
-    "@electron-forge/maker-deb": "^6.0.0-beta.61",
-    "@electron-forge/maker-rpm": "^6.0.0-beta.61",
-    "@electron-forge/maker-squirrel": "^6.0.0-beta.61",
-    "@electron-forge/maker-zip": "^6.0.0-beta.61",
-    "electron": "^16.0.2"
-  },
-  "dependencies": {
-    "@electron/remote": "^2.0.1",
-    "electron-is-dev": "^2.0.0",
-    "electron-log": "^4.4.4",
-    "electron-squirrel-startup": "^1.0.0",
-    "update-electron-app": "^2.0.1"
-  },
-  "config": {
-    "forge": {
-      "packagerConfig": {},
-      "makers": [
-        {
-          "name": "@electron-forge/maker-squirrel",
-          "config": {
-            "name": "my_electron_app"
-          }
+    "name": "Dwarium",
+    "version": "1.0.0",
+    "description": "",
+    "main": "main.js",
+    "scripts": {
+        "start": "electron .",
+        "macM1": "electron-builder -mw --arm64 --x64"
+    },
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "electron": "^16.0.2",
+        "electron-builder": "^22.14.5"
+    },
+    "dependencies": {
+        "@electron/remote": "^2.0.1",
+        "v8-compile-cache": "^2.3.0"
+    },
+    "build": {
+        "appId": "com.dwarium.ru",
+        "productName": "Dwarium",
+        "copyright": "Copyright 2022 ©. Деды воевали!",
+        "mac": {
+            "category": "public.app-category.games",
+            "asar": false,
+            "icon": "build/icon.icns",
+            "identity": "Developer ID Application"
         },
-        {
-          "name": "@electron-forge/maker-zip",
-          "platforms": [
-            "darwin"
-          ]
+        "win": {
+            "asar": false,
+            "icon": "build/icon.png"
         },
-        {
-          "name": "@electron-forge/maker-deb",
-          "config": {}
-        },
-        {
-          "name": "@electron-forge/maker-rpm",
-          "config": {}
-        }
-      ]
+        "files": [
+            "!logs"
+        ]
     }
-  }
 }
