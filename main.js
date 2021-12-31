@@ -16,6 +16,11 @@ const { autoUpdater } = require("electron-updater")
 
 autoUpdater.checkForUpdatesAndNotify()
 
+autoUpdater.signals.updateDownloaded(info => {
+    console.log("DOWNLOADED", info)
+    mainWindow.webContents.send('updateApplicationAvailable')
+})
+
 let mainWindow
 
 function createWindow() {
@@ -195,6 +200,10 @@ function createWindow() {
             url = 'https://' + url
         }
         TabsController.currentTab().webContents.loadURL(url)
+    })
+
+    ipcMain.on('updateApplication', () => {
+        autoUpdater.quitAndInstall(false, true)
     })
 
     ipcMain.handle('LoadSetItems', async (evt, args) => {

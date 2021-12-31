@@ -5,7 +5,10 @@
     "main": "main.js",
     "scripts": {
         "start": "electron .",
-        "macM1": "electron-builder -mw --arm64 --x64"
+        "all": "electron-builder -mw --arm64 --x64",
+        "mac": "electron-builder -m --arm64 --x64",
+        "win": "electron-builder -w",
+        "publish": "electron-builder -mw --arm64 --x64 --publish always"
     },
     "author": "",
     "license": "ISC",
