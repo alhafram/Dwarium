@@ -18,7 +18,8 @@ const TabsController = {
     },
     currentTab() {
         return this.tabs[this.current_tab_id]
-    }
+    },
+    mainWindow: null
 }
 
 module.exports = TabsController

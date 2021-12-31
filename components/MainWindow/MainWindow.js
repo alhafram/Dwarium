@@ -30,18 +30,22 @@ class MainWindow extends BrowserWindow {
         this.on('resized', (evt) => {
             this.setContentBounds()
         })
-        let win = this
+
         this.on('closed', function() {
-            win = null
+            this.unregisterShortcuts()
+            clearInterval(this.sessionCheckInterval)
+            this.sessionCheckInterval = null
         })
+
         this.webContents.on('did-finish-load', () => {
             let current_server = configService.server
             this.webContents.send('server', current_server)
         })
+
         this.on('focus', () => {
             globalShortcut.register('CommandOrControl+W', () => {
                 if(TabsController.currentTab() != TabsController.getMain()) {
-                    win.webContents.send('close_tab', TabsController.current_tab_id)
+                    this.webContents.send('close_tab', TabsController.current_tab_id)
                 }
             })
             globalShortcut.register('CommandOrControl+O', () => {
@@ -52,17 +56,21 @@ class MainWindow extends BrowserWindow {
                 TabsController.currentTab().webContents.reload()
             })
         })
+
         this.on('blur', () => {
-            globalShortcut.unregister('CommandOrControl+W')
-            globalShortcut.unregister('CommandOrControl+O')
-            globalShortcut.unregister('CommandOrControl+Shift+K')
+            this.unregisterShortcuts()
         })
+    }
+
+    unregisterShortcuts() {
+        globalShortcut.unregister('CommandOrControl+W')
+        globalShortcut.unregister('CommandOrControl+O')
+        globalShortcut.unregister('CommandOrControl+Shift+K')
     }
 
     setup() {
         this.browserView = this.createMainBrowserView()
         this.setBrowserView(this.browserView)
-        let win = this
         this.browserView.webContents.setWindowOpenHandler(({
             url,
             features
@@ -111,12 +119,13 @@ class MainWindow extends BrowserWindow {
         }
     }
 
+    sessionCheckInterval = null
     start() {
         this.show();
         // mainWindow.maximize();
         this.loadFile(`${path.join(__dirname, 'index.html')}`);
         const self = this
-        setInterval(async function() {
+        this.sessionCheckInterval = setInterval(async function() {
             let resp = await self.browserView.webContents.executeJavaScript('window.myId')
             if(resp) {
                 self.send('auth', true)
