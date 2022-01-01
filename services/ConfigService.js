@@ -3,6 +3,10 @@ const fs = require('fs')
 const path = require('path')
 const filePath = path.join(app.getPath('userData'), 'config.json')
 
+function server() {
+    return readData('server')
+}
+
 function baseUrl() {
     return `https://${readData('server')}.dwar.ru`
 }
@@ -45,6 +49,7 @@ function parseData(filePath) {
 }
 
 module.exports = {
+    server,
     baseUrl,
     writeData,
     sets,

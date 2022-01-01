@@ -38,8 +38,8 @@ class MainWindow extends BrowserWindow {
         })
 
         this.webContents.on('did-finish-load', () => {
-            let current_server = configService.server
-            this.webContents.send('server', current_server)
+            let currentServer = configService.server()
+            this.webContents.send('server', currentServer)
         })
 
         this.on('focus', () => {
