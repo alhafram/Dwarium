@@ -45,6 +45,7 @@ ipcMain.on('openDressingRoom', () => {
             preload: path.join(__dirname, './components/Dressing/preload.js')
         }
     })
+    require("@electron/remote/main").enable(dressingWindow.webContents)
     dressingWindow.on('close', () => {
         dressingWindow.destroy()
         dressingWindow = null
@@ -72,6 +73,7 @@ ipcMain.on('openBeltPotionRoom', () => {
             preload: path.join(__dirname, './components/Belt/preload.js')
         }
     })
+    require("@electron/remote/main").enable(beltWindow.webContents)
     beltWindow.on('close', () => {
         TabsController.mainWindow.webContents.send('openWindow', 'beltPotionRoom', false)
         beltWindow.destroy()

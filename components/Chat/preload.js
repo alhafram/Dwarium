@@ -4,7 +4,7 @@ const {
 const fs = require('fs');
 const path = require('path')
 const readline = require('readline')
-const logsFolderPath = path.join(app.getAppPath(), 'logs')
+const logsFolderPath = path.join(app.getPath ('userData'), 'logs')
 const filePath = path.join(logsFolderPath, 'chat.log')
 
 async function processLineByLine() {

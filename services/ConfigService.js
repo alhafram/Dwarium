@@ -1,6 +1,7 @@
+const { app } = process.type === 'browser' ? require('electron') : require('@electron/remote')
 const fs = require('fs')
 const path = require('path')
-const filePath = path.join(__dirname, 'config.json')
+const filePath = path.join(app.getPath('userData'), 'config.json')
 
 function baseUrl() {
     return `https://${readData('server')}.dwar.ru`
