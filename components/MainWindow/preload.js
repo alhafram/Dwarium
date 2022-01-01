@@ -12,7 +12,7 @@ window.addEventListener('DOMContentLoaded', () => {
             ipcRenderer.send('load_url', 'w1')
         }
     })
-    document.querySelector('#reload_button').addEventListener('click', () => {
+    document.getElementById('reloadButton').addEventListener('click', () => {
         ipcRenderer.send('reload')
     })
     document.querySelector('#dressing_room_button').addEventListener('click', () => {

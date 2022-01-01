@@ -97,20 +97,6 @@ body {
     transition: 0.3s ease all;
 }
 
-@import url('https://fonts.googleapis.com/css?family=Damion|Muli:400,600');
-
-/* necessary to give position: relative to parent. */
-input[type="text"] {
-    font: 15px/24px 'Muli', sans-serif;
-    color: #333;
-    width: 100%;
-    box-sizing: border-box;
-    letter-spacing: 1px;
-}
-
-:focus {
-    outline: none;
-}
 
 .col-3 {
     float: right;
@@ -133,7 +119,7 @@ input[type="text"] {
 
 .effect-10 {
     border: 0;
-    padding: 7px 15px;
+    padding: 7px 30px 7px 15px;
     border: 1px solid #ccc;
     position: relative;
     background: transparent;
@@ -242,4 +228,19 @@ input[type="text"] {
 
 .close::after {
     transform: rotate(-45deg);
+}
+
+
+/* Refactored */
+#reloadButton {
+    margin-left: -30px;
+    margin-top: auto;
+    z-index: 100;
+    margin-bottom: auto;
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border: none;
+    background-size: cover;
+    background-image: url('./reload.png');
 }
