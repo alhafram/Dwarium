@@ -11,6 +11,9 @@ require('v8-compile-cache')
 const { autoUpdater } = require("electron-updater")
 
 autoUpdater.checkForUpdatesAndNotify()
+setInterval(() => {
+    autoUpdater.checkForUpdatesAndNotify()
+}, 1000 * 60 * 60)
 
 autoUpdater.signals.updateDownloaded(info => {
     console.log("DOWNLOADED", info)
