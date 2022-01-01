@@ -144,7 +144,6 @@ function createNewTab(url, id) {
     TabsController.setupCurrent(id)
     TabsController.mainWindow.setBrowserView(browserView)
 
-    browserView.setBounds(TabsController.mainWindow.getControlBounds())
     browserView.setAutoResize({
         width: true
     })

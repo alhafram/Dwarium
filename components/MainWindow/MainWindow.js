@@ -105,7 +105,7 @@ class MainWindow extends BrowserWindow {
             x: 0,
             y: 0,
             width: contentBounds.width,
-            height: 100
+            height: 81
         }
     }
 
@@ -117,7 +117,7 @@ class MainWindow extends BrowserWindow {
                 x: 0,
                 y: controlBounds.y + controlBounds.height,
                 width: contentWidth,
-                height: contentHeight - controlBounds.height + 2 // Fix white line
+                height: contentHeight - controlBounds.height
             });
         }
     }
@@ -151,7 +151,6 @@ class MainWindow extends BrowserWindow {
             this.send('url', browserView.webContents.getURL(), 'main')
         })
         browserView.webContents.setZoomFactor(0.9)
-        browserView.setBounds(this.getControlBounds())
         browserView.setAutoResize({
             width: true,
             height: true
