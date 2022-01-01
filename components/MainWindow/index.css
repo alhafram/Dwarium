@@ -187,7 +187,7 @@ body {
     background-color: white;
     border: none;
     background-size: cover;
-    background-image: url('./images/reload.png');
+    background-image: url('./images/Reload.png');
 }
 
 #backButton {
@@ -197,7 +197,7 @@ body {
     background-color: white;
     background-size: contain;
     background-position: center;
-    background-image: url('./images/back.png');
+    background-image: url('./images/Back.png');
     background-repeat: no-repeat;
     border: none;
 }
@@ -213,11 +213,79 @@ body {
     background-color: white;
     background-size: contain;
     background-position: center;
-    background-image: url('./images/forward.png');
+    background-image: url('./images/Forward.png');
     background-repeat: no-repeat;
     border: none;
 }
 
 #forwardButton:hover {
     background-color: rgba(153, 153, 153, 0.3);
+}
+
+
+/* Plugins and other buttons */
+
+#plugins {
+    display: flex; 
+    float: right; 
+    right: 30px; 
+    position: absolute
+}
+
+#dressingRoom {
+    margin-left: 10px; 
+    height: 40px;
+    width: 40px;
+    border: none;
+    display: none;
+    background-color: white;
+    border-radius: 3px;
+    background-size: contain;
+    background-image: url('./images/DressingRoomIcon.svg');
+}
+
+#beltPotionRoom {
+    margin-left: 10px; 
+    height: 40px;
+    width: 40px;
+    border: none;
+    display: none;
+    background-color: white;
+    border-radius: 3px;
+    background-size: contain;
+    background-image: url('./images/BeltPotionRoom.svg');
+}
+
+#chatLog {
+    margin-left: 10px; 
+    height: 40px;
+    width: 40px;
+    border: none;
+    background-color: white;
+    border-radius: 3px;
+    background-size: contain;
+    background-image: url('./images/ChatLog.png');
+}
+
+#chatSettings {
+    margin-left: 10px; 
+    height: 40px;
+    width: 40px;
+    border: none;
+    background-color: white;
+    border-radius: 3px;
+    background-size: contain;
+    background-image: url('./images/ChatSettings.png');
+}
+
+#updateApplication {
+    margin-left: 100px; 
+    height: 40px;
+    width: 40px;
+    border: none;
+    display: none;
+    background-color: white;
+    border-radius: 3px;
+    background-size: contain;
+    background-image: url('./images/UpdateApp.png');
 }

@@ -21,17 +21,17 @@ window.addEventListener('DOMContentLoaded', () => {
     document.getElementById('forwardButton').addEventListener('click', () => {
         ipcRenderer.send('forward')
     })
-    document.querySelector('#dressing_room_button').addEventListener('click', () => {
-        ipcRenderer.send('open_dressing_room')
+    document.getElementById('dressingRoom').addEventListener('click', () => {
+        ipcRenderer.send('openDressingRoom')
     })
-    document.querySelector('#belt_button').addEventListener('click', () => {
-        ipcRenderer.send('open_belt_room')
+    document.getElementById('beltPotionRoom').addEventListener('click', () => {
+        ipcRenderer.send('openBeltPotionRoom')
     })
-    document.querySelector('#chat_log_button').addEventListener('click', () => {
-        ipcRenderer.send('chat_log')
+    document.getElementById('chatLog').addEventListener('click', () => {
+        ipcRenderer.send('openChatLog')
     })
-    document.querySelector('#chat_settings_button').addEventListener('click', () => {
-        ipcRenderer.send('chat_settings')
+    document.getElementById('chatSettings').addEventListener('click', () => {
+        ipcRenderer.send('openChatSettings')
     })
     document.addEventListener('new_tab', (evt) => {
         const tab = createNewTab()
@@ -50,7 +50,7 @@ window.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('setupMain', () => {
         createNewTab('main', 'Main')
     })
-    document.getElementById('updateApplicationButton').addEventListener('click', () => {
+    document.getElementById('updateApplication').addEventListener('click', () => {
         ipcRenderer.send('updateApplication')
     })
 })
@@ -134,10 +134,14 @@ ipcRenderer.on('close_tab', (evt, id) => {
 })
 
 ipcRenderer.on('auth', (evt, auth) => {
-    document.querySelector("#dressing_room_button").style.display = auth ? 'block' : 'none'
-    document.querySelector("#belt_button").style.display = auth ? 'block' : 'none'
+    document.getElementById("dressingRoom").style.display = auth ? 'block' : 'none'
+    document.getElementById("beltPotionRoom").style.display = auth ? 'block' : 'none'
 })
 
 ipcRenderer.on('updateApplicationAvailable', () => {
-    document.getElementById('updateApplicationButton').style.display = 'block'
+    document.getElementById('updateApplication').style.display = 'block'
+})
+
+ipcRenderer.on('openWindow', (_evt, id, active) => {
+    document.getElementById(id).style.backgroundColor = active ? '#999' : 'white'
 })

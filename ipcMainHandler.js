@@ -6,6 +6,7 @@ const {
 } = require('electron')
 const configService = require('./services/ConfigService')
 const TabsController = require('./services/TabsController')
+const { autoUpdater } = require("electron-updater")
 
 ipcMain.on('load_url', (evt, server) => {
     configService.writeData('server', server)
@@ -27,7 +28,7 @@ ipcMain.on('forward', () => {
 })
 
 let dressingWindow = null
-ipcMain.on('open_dressing_room', () => {
+ipcMain.on('openDressingRoom', () => {
     if(dressingWindow) {
         dressingWindow.show()
         return
@@ -47,12 +48,14 @@ ipcMain.on('open_dressing_room', () => {
     dressingWindow.on('close', () => {
         dressingWindow.destroy()
         dressingWindow = null
+        TabsController.mainWindow.webContents.send('openWindow', 'dressingRoom', false)
     })
     dressingWindow.loadFile(`${path.join(__dirname, './components/Dressing/index.html')}`)
+    TabsController.mainWindow.webContents.send('openWindow', 'dressingRoom', true)
 })
 
 let beltWindow = null
-ipcMain.on('open_belt_room', () => {
+ipcMain.on('openBeltPotionRoom', () => {
     if(beltWindow) {
         beltWindow.show()
         return
@@ -70,14 +73,16 @@ ipcMain.on('open_belt_room', () => {
         }
     })
     beltWindow.on('close', () => {
+        TabsController.mainWindow.webContents.send('openWindow', 'beltPotionRoom', false)
         beltWindow.destroy()
         beltWindow = null
     })
     beltWindow.loadFile(`${path.join(__dirname, './components/Belt/index.html')}`)
+    TabsController.mainWindow.webContents.send('openWindow', 'beltPotionRoom', true)
 })
 
 let chatLogWindow = null
-ipcMain.on('chat_log', () => {
+ipcMain.on('openChatLog', () => {
     if(chatLogWindow) {
         chatLogWindow.show()
         return
@@ -96,15 +101,17 @@ ipcMain.on('chat_log', () => {
         }
     })
     chatLogWindow.on('close', () => {
+        TabsController.mainWindow.webContents.send('openWindow', 'chatLog', false)
         chatLogWindow.destroy()
         chatLogWindow = null
     })
     chatLogWindow.loadFile(`${path.join(__dirname, './components/Chat/index.html')}`)
     require("@electron/remote/main").enable(chatLogWindow.webContents)
+    TabsController.mainWindow.webContents.send('openWindow', 'chatLog', true)
 })
 
 let chatSettingsWindow = null
-ipcMain.on('chat_settings', () => {
+ipcMain.on('openChatSettings', () => {
     if(chatSettingsWindow) {
         chatSettingsWindow.show()
         return
@@ -122,10 +129,12 @@ ipcMain.on('chat_settings', () => {
         }
     })
     chatSettingsWindow.on('close', () => {
+        TabsController.mainWindow.webContents.send('openWindow', 'chatSettings', false)
         chatSettingsWindow.destroy()
         chatSettingsWindow = null
     })
     chatSettingsWindow.loadFile(`${path.join(__dirname, './components/ChatSettings/index.html')}`)
+    TabsController.mainWindow.webContents.send('openWindow', 'chatSettings', true)
 })
 
 ipcMain.on('new_tab', (evt, id, url) => {
