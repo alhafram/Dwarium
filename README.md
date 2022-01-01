@@ -1,7 +1,7 @@
 # Dwarium
-WIP - Work In Progress(В работе)
->
-TODO - Будет в будущем
+
+
+![](https://i.ibb.co/wrpfdqp/slide-1-1.jpg)
 
 ## Основное окно игры 
 - Создание вкладки
