@@ -14,8 +14,16 @@ ipcMain.on('load_url', (evt, server) => {
     TabsController.mainWindow.webContents.setZoomFactor(0.9)
 })
 
-ipcMain.on('reload', (evt) => {
+ipcMain.on('reload', () => {
     TabsController.currentTab().webContents.reload()
+})
+
+ipcMain.on('back', () => {
+    TabsController.currentTab().webContents.goBack()
+})
+
+ipcMain.on('forward', () => {
+    TabsController.currentTab().webContents.goForward()
 })
 
 let dressingWindow = null

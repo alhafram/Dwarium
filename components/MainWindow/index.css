@@ -161,6 +161,7 @@ body {
 
 /* Browser url bar */
 .urlBar {
+    margin-left: 5px;
     width: 30%;
     display: flex;
     background-color: white;
@@ -202,6 +203,10 @@ body {
     border: none;
 }
 
+#backButton:hover {
+    background-color: rgba(153, 153, 153, 0.3);
+}
+
 #forwardButton {
     margin-left: 5px;
     width: 30px;
@@ -212,4 +217,8 @@ body {
     background-image: url('./forward.png');
     background-repeat: no-repeat;
     border: none;
+}
+
+#forwardButton:hover {
+    background-color: rgba(153, 153, 153, 0.3);
 }

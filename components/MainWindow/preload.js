@@ -15,6 +15,12 @@ window.addEventListener('DOMContentLoaded', () => {
     document.getElementById('reloadButton').addEventListener('click', () => {
         ipcRenderer.send('reload')
     })
+    document.getElementById('backButton').addEventListener('click', () => {
+        ipcRenderer.send('back')
+    })
+    document.getElementById('forwardButton').addEventListener('click', () => {
+        ipcRenderer.send('forward')
+    })
     document.querySelector('#dressing_room_button').addEventListener('click', () => {
         ipcRenderer.send('open_dressing_room')
     })

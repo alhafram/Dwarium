@@ -147,6 +147,9 @@ class MainWindow extends BrowserWindow {
                 nativeWindowOpen: true
             }
         })
+        browserView.webContents.on('did-finish-load', (e) => {
+            this.send('url', browserView.webContents.getURL(), 'main')
+        })
         browserView.webContents.setZoomFactor(0.9)
         browserView.setBounds(this.getControlBounds())
         browserView.setAutoResize({
