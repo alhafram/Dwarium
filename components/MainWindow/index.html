@@ -10,18 +10,18 @@
 </head>
 
 <body>
-    <div class="row">
-        <div class="button-cover">
-            <div class="button r" id="button-1">
-                <input type="checkbox" class="checkbox">
-                <div class="knobs" server="W1"></div>
-                <div class="layer"></div>
-            </div>
+    <div style="display: flex;">
+        <div class="serverSwitcher" id="switcher">
+            <input type="checkbox" class="checkbox">
+            <div class="knob" server="W1"></div>
+            <div class="layer"></div>
         </div>
 
-        <div class="col-3">
-            <input class="effect-10" disabled="disabled" type="text" placeholder="">
-            <span class="focus-bg"></span>
+        <button id="backButton"></button>
+        <button id="forwardButton"></button>
+
+        <div class="urlBar">
+            <input class="urlBarField" disabled="disabled" type="text" placeholder="">
             <button id="reloadButton"></button>
         </div>
 
@@ -31,9 +31,7 @@
         <button style="margin-left: 10px;" id="chat_settings_button">Chat settings</button>
 
         <button style="margin-left: 10px; background-color: green; color: white; display: none;" id="updateApplicationButton">Обновить</button>
-
     </div>
-
 
     <div class="tabs">
         <div id="new_tab">

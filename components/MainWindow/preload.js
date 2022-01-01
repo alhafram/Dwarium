@@ -3,12 +3,12 @@ const {
 } = require('electron')
 
 window.addEventListener('DOMContentLoaded', () => {
-    document.querySelector('#button-1').addEventListener('click', () => {
-        if(document.querySelector('#button-1 > div.knobs').getAttribute('server') == 'W1') {
-            document.querySelector('#button-1 > div.knobs').setAttribute('server','W2')
+    document.querySelector('#switcher').addEventListener('click', () => {
+        if(document.querySelector('#switcher > div.knob').getAttribute('server') == 'W1') {
+            document.querySelector('#switcher > div.knob').setAttribute('server','W2')
             ipcRenderer.send('load_url', 'w2')
         } else {
-            document.querySelector('#button-1 > div.knobs').setAttribute('server', 'W1')
+            document.querySelector('#switcher > div.knob').setAttribute('server', 'W1')
             ipcRenderer.send('load_url', 'w1')
         }
     })
@@ -89,14 +89,14 @@ function makeActive(evt) {
 ipcRenderer.on('server', (event, server) => {
     if(!server) {
         // Default - W2
-        document.querySelector('#button-1 .checkbox').checked = true
-        document.querySelector('#button-1').click()
+        document.querySelector('#switcher .checkbox').checked = true
+        document.querySelector('#switcher').click()
         ipcRenderer.send('load_url', 'w2')
     } else {
         ipcRenderer.send('load_url', server)
         if(server == 'w2') {
-            document.querySelector('#button-1 .checkbox').checked = true
-            document.querySelector('#button-1').click()
+            document.querySelector('#switcher .checkbox').checked = true
+            document.querySelector('#switcher').click()
         }
     }
 })
@@ -107,8 +107,8 @@ function closeTab(evt) {
 }
 
 ipcRenderer.on('url', (event, url, id) => {
-    document.querySelector('.effect-10').disabled = id == 'main'
-    document.querySelector('.effect-10').value = url
+    document.querySelector('.urlBarField').disabled = id == 'main'
+    document.querySelector('.urlBarField').value = url
 })
 
 ipcRenderer.on('new_tab', (event, url) => {

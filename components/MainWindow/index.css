@@ -3,153 +3,6 @@ body {
     background-color: #fff;
 }
 
-.button-cover {
-    height: 50px;
-    /* background-color: #fff; */
-    border-radius: 4px;
-    width: 100px;
-}
-
-.button-cover:before {
-    color: #d7e3e3;
-    font-size: 12px;
-    padding: 5px;
-}
-
-.button-cover,
-.knobs,
-.layer {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-}
-
-.button {
-    position: relative;
-    top: 10px;
-    left: 10px;
-    width: 74px;
-    height: 36px;
-    overflow: hidden;
-}
-
-.button.r,
-.button.r .layer {
-    border-radius: 100px;
-}
-
-.checkbox {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    padding: 0;
-    margin: 0;
-    opacity: 0;
-    cursor: pointer;
-    z-index: 3;
-}
-
-.knobs {
-    z-index: 2;
-}
-
-.layer {
-    width: 100%;
-    background-color: #d7e3e3;
-    transition: 0.3s ease all;
-    z-index: 1;
-}
-
-/* Button 1 */
-#button-1 .knobs:before {
-    content: attr(server);
-    position: absolute;
-    top: 4px;
-    left: 4px;
-    width: 20px;
-    height: 10px;
-    color: #fff;
-    font-size: 10px;
-    font-weight: bold;
-    text-align: center;
-    line-height: 1;
-    padding: 9px 4px;
-    background-color: #03A9F4;
-    border-radius: 50%;
-    transition: 0.3s cubic-bezier(0.18, 0.89, 0.35, 1.15) all;
-}
-
-#button-1 .checkbox:checked+.knobs:before {
-    content: attr(server);
-    left: 42px;
-    background-color: #03A9F4;
-}
-
-#button-1 .checkbox:checked~.layer {
-    background-color: #d7e3e3;
-}
-
-#button-1 .knobs,
-#button-1 .knobs:before,
-#button-1 .layer {
-    transition: 0.3s ease all;
-}
-
-
-.col-3 {
-    float: right;
-    width: 27.33%;
-    margin: 0 0 0 100px;
-    display: flex;
-    flex-direction: row;
-    position: relative;
-    background-color: white;
-}
-
-/* necessary to give position: relative to parent. */
-input[type="text"] {
-    font: 15px/24px "Lato", Arial, sans-serif;
-    color: #333;
-    width: 100%;
-    box-sizing: border-box;
-    letter-spacing: 1px;
-}
-
-.effect-10 {
-    border: 0;
-    padding: 7px 30px 7px 15px;
-    border: 1px solid #ccc;
-    position: relative;
-    background: transparent;
-}
-
-.effect-10~.focus-bg {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #ededed;
-    opacity: 0;
-    transition: 0.5s;
-    z-index: -1;
-}
-
-.effect-10:focus~.focus-bg {
-    transition: 0.5s;
-    opacity: 1;
-}
-
-.row {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-}
-
-
-/* Style the tab */
 .tabs {
     overflow: scroll;
     border: 1px solid #ccc;
@@ -232,6 +85,98 @@ input[type="text"] {
 
 
 /* Refactored */
+
+/* Server switcher */
+.knob,
+.layer {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.serverSwitcher {
+    position: relative;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 74px;
+    height: 36px;
+}
+
+.checkbox {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 3;
+}
+
+.knob {
+    z-index: 2;
+}
+
+.layer {
+    width: 100%;
+    background-color: #d7e3e3;
+    transition: 0.3s ease all;
+    z-index: 1;
+    border-radius: 100px;
+}
+
+#switcher .knob:before {
+    content: attr(server);
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 20px;
+    height: 10px;
+    color: #fff;
+    font-size: 10px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1;
+    padding: 9px 4px;
+    background-color: #03A9F4;
+    border-radius: 50%;
+    transition: 0.3s cubic-bezier(0.18, 0.89, 0.35, 1.15) all;
+}
+
+#switcher .checkbox:checked+.knob:before {
+    content: attr(server);
+    left: 42px;
+    background-color: #03A9F4;
+}
+
+#switcher .checkbox:checked~.layer {
+    background-color: #d7e3e3;
+}
+
+#switcher .knob,
+#switcher .knob:before,
+#switcher .layer {
+    transition: 0.3s ease all;
+}
+
+/* Browser url bar */
+.urlBar {
+    width: 30%;
+    display: flex;
+    background-color: white;
+}
+
+.urlBarField {
+    padding: 7px 30px 7px 15px;
+    border: 1px solid #ccc;
+    background: transparent;
+    font: 15px/24px "Lato", Arial, sans-serif;
+    width: 100%;
+    box-sizing: border-box;
+    letter-spacing: 1px;
+}
+
+/* Browser buttons */
 #reloadButton {
     margin-left: -30px;
     margin-top: auto;
@@ -243,4 +188,28 @@ input[type="text"] {
     border: none;
     background-size: cover;
     background-image: url('./reload.png');
+}
+
+#backButton {
+    margin-left: 5px;
+    width: 30px;
+    height: 40px;
+    background-color: white;
+    background-size: contain;
+    background-position: center;
+    background-image: url('./back.png');
+    background-repeat: no-repeat;
+    border: none;
+}
+
+#forwardButton {
+    margin-left: 5px;
+    width: 30px;
+    height: 40px;
+    background-color: white;
+    background-size: contain;
+    background-position: center;
+    background-image: url('./forward.png');
+    background-repeat: no-repeat;
+    border: none;
 }

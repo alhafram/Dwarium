@@ -1,5 +1,5 @@
 window.addEventListener('DOMContentLoaded', () => {
-    const urlBar = document.querySelector('.effect-10')
+    const urlBar = document.querySelector('.urlBarField')
     urlBar.addEventListener('keyup', (e) => {
         if(e.keyCode == 13) {
             document.dispatchEvent(new CustomEvent('goUrl', {
