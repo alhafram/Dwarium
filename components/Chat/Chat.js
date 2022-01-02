@@ -373,10 +373,12 @@ function setupReceiver() {
         for(var key in msg.to_user_nicks) {
             client_msg.data.recipient_list.push(msg.to_user_nicks[key]);
         }
-        _top().clientExchangePut(vardump(client_msg).replace(/<\/?[^>]+>/gi, ''));
-        top[1].chatScrollToBottom();
-        if(top[1].msie7) top[1].chatUpdateDataAttach();
-        return true;
+        _top().clientExchangePut(vardump(client_msg).replace(/<\/?[^>]+>/gi, ''))
+        if (scrollCurrent + 10 >= scrollMax) {
+            top[1].chatScrollToBottom()
+        }
+        if(top[1].msie7) top[1].chatUpdateDataAttach()
+        return true
     }
 }
 

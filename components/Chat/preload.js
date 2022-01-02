@@ -23,7 +23,9 @@ async function processLineByLine() {
     })
     for await (const line of rl) {
         let elem = document.createElementFromString(line)
-        document.querySelector("body > div.messageLogs").appendChild(elem)
+        if(elem) {
+            document.querySelector("body > div.messageLogs").appendChild(elem)
+        }
     }
     scrollToBottom()
     fs.watch(filePath, function(eventName, filename) {
