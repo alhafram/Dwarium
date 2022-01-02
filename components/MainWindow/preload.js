@@ -53,6 +53,12 @@ window.addEventListener('DOMContentLoaded', () => {
     document.getElementById('updateApplication').addEventListener('click', () => {
         ipcRenderer.send('updateApplication')
     })
+    document.getElementById('findCharacter').addEventListener('click', () => {
+        const nick = document.getElementById('username').value
+        if(nick.length != 0) {
+            ipcRenderer.send('findCharacter', nick)
+        }
+    })
 })
 
 function createNewTab(id, title) {

@@ -220,6 +220,16 @@ ipcMain.handle('LoadSetItems', async (evt, args) => {
     return res
 })
 
+ipcMain.on('findCharacter', (event, nick) => {
+    const userInfoBrowserWindow = new BrowserWindow({
+        width: 900,
+        height: 700,
+        useContentSize: true,
+        show: true
+    })
+    userInfoBrowserWindow.webContents.loadURL(`${configService.baseUrl()}/user_info.php?nick=${nick}`)
+})
+
 async function fetch(request) {
     const bw = new BrowserView()
     await bw.webContents.loadURL(request.url)
