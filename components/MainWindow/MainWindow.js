@@ -2,7 +2,8 @@ const {
     BrowserView,
     BrowserWindow,
     globalShortcut,
-    session
+    session,
+    clipboard
 } = require('electron')
 const path = require('path')
 const configService = require('../../services/ConfigService')
@@ -58,6 +59,15 @@ class MainWindow extends BrowserWindow {
                 session.defaultSession.clearStorageData([], (data) => {})
                 TabsController.currentTab().webContents.reload()
             })
+            globalShortcut.register('CommandOrControl+Shift+C', () => {
+                let url = BrowserWindow.getFocusedWindow()?.webContents.getURL()
+                if(url) {
+                    clipboard.writeText(url)
+                }
+            })
+            globalShortcut.register('CommandOrControl+T', () => {
+                this.send('new_tab')
+            })
         })
 
         this.on('blur', () => {
@@ -69,6 +79,7 @@ class MainWindow extends BrowserWindow {
         globalShortcut.unregister('CommandOrControl+W')
         globalShortcut.unregister('CommandOrControl+O')
         globalShortcut.unregister('CommandOrControl+Shift+K')
+        globalShortcut.unregister('CommandOrControl+T')
     }
 
     setup() {
