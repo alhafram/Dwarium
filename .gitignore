@@ -1,7 +1,4 @@
 .DS_Store
 .jsbeautifyrc
-config.json
 **/node_modules
-**/draft
-**/logs
 .vscode
