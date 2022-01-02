@@ -1,10 +1,10 @@
 const {
     app
 } = require('@electron/remote')
-const fs = require('fs');
+const fs = require('fs')
 const path = require('path')
 const readline = require('readline')
-const logsFolderPath = path.join(app.getPath ('userData'), 'logs')
+const logsFolderPath = path.join(app.getPath('userData'), 'logs')
 const filePath = path.join(logsFolderPath, 'chat.log')
 
 async function processLineByLine() {
@@ -20,7 +20,7 @@ async function processLineByLine() {
     const rl = readline.createInterface({
         input: fileStream,
         crlfDelay: Infinity
-    });
+    })
     for await (const line of rl) {
         let elem = document.createElementFromString(line)
         document.querySelector("body > div.messageLogs").appendChild(elem)
@@ -31,11 +31,11 @@ async function processLineByLine() {
         const rl1 = readline.createInterface({
             input: fileStream1,
             crlfDelay: Infinity
-        });
+        })
         let currentLine = null
         rl1.on('line', function(line) {
-            currentLine = line;
-        });
+            currentLine = line
+        })
         fileStream1.on('end', function() {
             if(!currentLine) {
                 let parent = document.querySelector("body > div.messageLogs")
@@ -48,8 +48,8 @@ async function processLineByLine() {
             let elem = document.createElementFromString(currentLine)
             document.querySelector("body > div.messageLogs").appendChild(elem)
             filterLog()
-        });
-    });
+        })
+    })
 }
 
 
@@ -63,7 +63,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 })
 
 Document.prototype.createElementFromString = function(str) {
-    const element = new DOMParser().parseFromString(str, 'text/html');
-    const child = element.documentElement.querySelector('body').firstChild;
-    return child;
-};
+    const element = new DOMParser().parseFromString(str, 'text/html')
+    const child = element.documentElement.querySelector('body').firstChild
+    return child
+}

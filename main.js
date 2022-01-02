@@ -38,7 +38,7 @@ function createWindow() {
         callback({
             cancel: false,
             requestHeaders: details.requestHeaders
-        });
+        })
     })
     TabsController.mainWindow = mainWindow
     require('./ipcMainHandler')
