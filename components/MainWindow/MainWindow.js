@@ -30,18 +30,25 @@ class MainWindow extends BrowserWindow {
         this.on('resized', (evt) => {
             this.setContentBounds()
         })
-        let win = this
+
         this.on('closed', function() {
-            win = null
+            this.unregisterShortcuts()
+            clearInterval(this.sessionCheckInterval)
+            this.sessionCheckInterval = null
         })
+
         this.webContents.on('did-finish-load', () => {
-            let current_server = configService.server
-            this.webContents.send('server', current_server)
+            let currentServer = configService.server()
+            this.webContents.send('server', currentServer)
         })
+
         this.on('focus', () => {
             globalShortcut.register('CommandOrControl+W', () => {
                 if(TabsController.currentTab() != TabsController.getMain()) {
-                    win.webContents.send('close_tab', TabsController.current_tab_id)
+                    this.webContents.send('close_tab', TabsController.current_tab_id)
+                }
+                if(TabsController.onlyMain()) {
+                    this.close()
                 }
             })
             globalShortcut.register('CommandOrControl+O', () => {
@@ -52,17 +59,21 @@ class MainWindow extends BrowserWindow {
                 TabsController.currentTab().webContents.reload()
             })
         })
+
         this.on('blur', () => {
-            globalShortcut.unregister('CommandOrControl+W')
-            globalShortcut.unregister('CommandOrControl+O')
-            globalShortcut.unregister('CommandOrControl+Shift+K')
+            this.unregisterShortcuts()
         })
+    }
+
+    unregisterShortcuts() {
+        globalShortcut.unregister('CommandOrControl+W')
+        globalShortcut.unregister('CommandOrControl+O')
+        globalShortcut.unregister('CommandOrControl+Shift+K')
     }
 
     setup() {
         this.browserView = this.createMainBrowserView()
         this.setBrowserView(this.browserView)
-        let win = this
         this.browserView.webContents.setWindowOpenHandler(({
             url,
             features
@@ -94,7 +105,7 @@ class MainWindow extends BrowserWindow {
             x: 0,
             y: 0,
             width: contentBounds.width,
-            height: 100
+            height: 81
         }
     }
 
@@ -106,17 +117,18 @@ class MainWindow extends BrowserWindow {
                 x: 0,
                 y: controlBounds.y + controlBounds.height,
                 width: contentWidth,
-                height: contentHeight - controlBounds.height + 2 // Fix white line
+                height: contentHeight - controlBounds.height
             });
         }
     }
 
+    sessionCheckInterval = null
     start() {
         this.show();
         // mainWindow.maximize();
         this.loadFile(`${path.join(__dirname, 'index.html')}`);
         const self = this
-        setInterval(async function() {
+        this.sessionCheckInterval = setInterval(async function() {
             let resp = await self.browserView.webContents.executeJavaScript('window.myId')
             if(resp) {
                 self.send('auth', true)
@@ -135,8 +147,10 @@ class MainWindow extends BrowserWindow {
                 nativeWindowOpen: true
             }
         })
+        browserView.webContents.on('did-finish-load', (e) => {
+            this.send('url', browserView.webContents.getURL(), 'main')
+        })
         browserView.webContents.setZoomFactor(0.9)
-        browserView.setBounds(this.getControlBounds())
         browserView.setAutoResize({
             width: true,
             height: true

@@ -10,34 +10,33 @@
 </head>
 
 <body>
-    <div class="row">
-        <div class="button-cover">
-            <div class="button r" id="button-1">
-                <input type="checkbox" class="checkbox">
-                <div class="knobs" server="W1"></div>
-                <div class="layer"></div>
-            </div>
+    <div style="display: flex;">
+        <div class="serverSwitcher" id="switcher">
+            <input type="checkbox" class="checkbox">
+            <div class="knob" server="W1"></div>
+            <div class="layer"></div>
         </div>
 
-        <div class="col-3">
-            <input class="effect-10" disabled="disabled" type="text" placeholder="">
-            <span class="focus-bg"></span>
+        <button title="Назад" id="backButton"></button>
+        <button title="Вперед" id="forwardButton"></button>
+
+        <div class="urlBar">
+            <input class="urlBarField" disabled="disabled" type="text" placeholder="">
+            <button title="Обновить" id="reloadButton"></button>
         </div>
 
-        <button style="margin-left: 10px;" id="reload_button">Reload</button>
-        <button style="margin-left: 10px; display: none;" id="dressing_room_button">Open dressing</button>
-        <button style="margin-left: 10px; display: none;" id="belt_button">Open belts</button>
-        <button style="margin-left: 10px;" id="chat_log_button">Chat log</button>
-        <button style="margin-left: 10px;" id="chat_settings_button">Chat settings</button>
-
-        <button style="margin-left: 10px; background-color: green; color: white; display: none;" id="updateApplicationButton">Обновить</button>
-
+        <div id="plugins">
+            <button title="Наборы комплектов" id="dressingRoom"></button>
+            <button title="Наборы поясов" id="beltPotionRoom"></button>
+            <button title="Лог чата" id="chatLog"></button>
+            <button title="Настройки чата" id="chatSettings"></button>
+            <button id="updateApplication"></button>
+        </div>
     </div>
-
 
     <div class="tabs">
         <div id="new_tab">
-            <button onclick="addTab()">+</button>
+            <button title="Создать вкладку" onclick="addTab()">+</button>
         </div>
     </div>
 </body>

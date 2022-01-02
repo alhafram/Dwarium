@@ -5,9 +5,9 @@ const {
 } = require('@electron/remote')
 const fs = require('fs')
 const path = require('path')
-const logsFolderPath = path.join(app.getAppPath(), 'logs')
+const logsFolderPath = path.join(app.getPath ('userData'), 'logs')
 const filePath = path.join(logsFolderPath, 'chat.log')
-console.log(logsFolderPath)
+
 if(!fs.existsSync(logsFolderPath)) {
     fs.mkdirSync(logsFolderPath)
     fs.openSync(filePath, 'w')
@@ -373,11 +373,12 @@ function setupReceiver() {
         for(var key in msg.to_user_nicks) {
             client_msg.data.recipient_list.push(msg.to_user_nicks[key]);
         }
-        _top().clientExchangePut(vardump(client_msg).replace(/<\/?[^>]+>/gi, ''));
-        console.log(client_msg.data)
-        top[1].chatScrollToBottom();
-        if(top[1].msie7) top[1].chatUpdateDataAttach();
-        return true;
+        _top().clientExchangePut(vardump(client_msg).replace(/<\/?[^>]+>/gi, ''))
+        if (scrollCurrent + 10 >= scrollMax) {
+            top[1].chatScrollToBottom()
+        }
+        if(top[1].msie7) top[1].chatUpdateDataAttach()
+        return true
     }
 }
 

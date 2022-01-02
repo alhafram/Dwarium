@@ -27,16 +27,11 @@
         "copyright": "Copyright 2022 ©. Деды воевали!",
         "mac": {
             "category": "public.app-category.games",
-            "asar": false,
             "icon": "build/icon.icns",
             "identity": "Developer ID Application"
         },
         "win": {
-            "asar": false,
             "icon": "build/icon.png"
-        },
-        "files": [
-            "!logs"
-        ]
+        }
     }
 }

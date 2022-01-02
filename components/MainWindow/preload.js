@@ -3,29 +3,35 @@ const {
 } = require('electron')
 
 window.addEventListener('DOMContentLoaded', () => {
-    document.querySelector('#button-1').addEventListener('click', () => {
-        if(document.querySelector('#button-1 > div.knobs').getAttribute('server') == 'W1') {
-            document.querySelector('#button-1 > div.knobs').setAttribute('server','W2')
+    document.querySelector('#switcher').addEventListener('click', () => {
+        if(document.querySelector('#switcher > div.knob').getAttribute('server') == 'W1') {
+            document.querySelector('#switcher > div.knob').setAttribute('server','W2')
             ipcRenderer.send('load_url', 'w2')
         } else {
-            document.querySelector('#button-1 > div.knobs').setAttribute('server', 'W1')
+            document.querySelector('#switcher > div.knob').setAttribute('server', 'W1')
             ipcRenderer.send('load_url', 'w1')
         }
     })
-    document.querySelector('#reload_button').addEventListener('click', () => {
+    document.getElementById('reloadButton').addEventListener('click', () => {
         ipcRenderer.send('reload')
     })
-    document.querySelector('#dressing_room_button').addEventListener('click', () => {
-        ipcRenderer.send('open_dressing_room')
+    document.getElementById('backButton').addEventListener('click', () => {
+        ipcRenderer.send('back')
     })
-    document.querySelector('#belt_button').addEventListener('click', () => {
-        ipcRenderer.send('open_belt_room')
+    document.getElementById('forwardButton').addEventListener('click', () => {
+        ipcRenderer.send('forward')
     })
-    document.querySelector('#chat_log_button').addEventListener('click', () => {
-        ipcRenderer.send('chat_log')
+    document.getElementById('dressingRoom').addEventListener('click', () => {
+        ipcRenderer.send('openDressingRoom')
     })
-    document.querySelector('#chat_settings_button').addEventListener('click', () => {
-        ipcRenderer.send('chat_settings')
+    document.getElementById('beltPotionRoom').addEventListener('click', () => {
+        ipcRenderer.send('openBeltPotionRoom')
+    })
+    document.getElementById('chatLog').addEventListener('click', () => {
+        ipcRenderer.send('openChatLog')
+    })
+    document.getElementById('chatSettings').addEventListener('click', () => {
+        ipcRenderer.send('openChatSettings')
     })
     document.addEventListener('new_tab', (evt) => {
         const tab = createNewTab()
@@ -44,7 +50,7 @@ window.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('setupMain', () => {
         createNewTab('main', 'Main')
     })
-    document.getElementById('updateApplicationButton').addEventListener('click', () => {
+    document.getElementById('updateApplication').addEventListener('click', () => {
         ipcRenderer.send('updateApplication')
     })
 })
@@ -89,14 +95,14 @@ function makeActive(evt) {
 ipcRenderer.on('server', (event, server) => {
     if(!server) {
         // Default - W2
-        document.querySelector('#button-1 .checkbox').checked = true
-        document.querySelector('#button-1').click()
+        document.querySelector('#switcher .checkbox').checked = true
+        document.querySelector('#switcher').click()
         ipcRenderer.send('load_url', 'w2')
     } else {
         ipcRenderer.send('load_url', server)
         if(server == 'w2') {
-            document.querySelector('#button-1 .checkbox').checked = true
-            document.querySelector('#button-1').click()
+            document.querySelector('#switcher .checkbox').checked = true
+            document.querySelector('#switcher').click()
         }
     }
 })
@@ -107,8 +113,8 @@ function closeTab(evt) {
 }
 
 ipcRenderer.on('url', (event, url, id) => {
-    document.querySelector('.effect-10').disabled = id == 'main'
-    document.querySelector('.effect-10').value = url
+    document.querySelector('.urlBarField').disabled = id == 'main'
+    document.querySelector('.urlBarField').value = url
 })
 
 ipcRenderer.on('new_tab', (event, url) => {
@@ -128,10 +134,14 @@ ipcRenderer.on('close_tab', (evt, id) => {
 })
 
 ipcRenderer.on('auth', (evt, auth) => {
-    document.querySelector("#dressing_room_button").style.display = auth ? 'block' : 'none'
-    document.querySelector("#belt_button").style.display = auth ? 'block' : 'none'
+    document.getElementById("dressingRoom").style.display = auth ? 'block' : 'none'
+    document.getElementById("beltPotionRoom").style.display = auth ? 'block' : 'none'
 })
 
 ipcRenderer.on('updateApplicationAvailable', () => {
-    document.getElementById('updateApplicationButton').style.display = 'block'
+    document.getElementById('updateApplication').style.display = 'block'
+})
+
+ipcRenderer.on('openWindow', (_evt, id, active) => {
+    document.getElementById(id).style.backgroundColor = active ? '#999' : 'white'
 })
