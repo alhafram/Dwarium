@@ -59,6 +59,11 @@ window.addEventListener('DOMContentLoaded', () => {
             ipcRenderer.send('findCharacter', nick)
         }
     })
+    document.getElementById('username').addEventListener('keyup', (e) => {
+        if(e.key == 'Enter') {
+            document.getElementById('findCharacter').click()
+        }
+    })
 })
 
 function createNewTab(id, title) {
