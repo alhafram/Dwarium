@@ -20,11 +20,15 @@ ipcMain.on('reload', () => {
 })
 
 ipcMain.on('back', () => {
-    TabsController.currentTab().webContents.goBack()
+    if(TabsController.currentTab().webContents.canGoBack()) {
+        TabsController.currentTab().webContents.goBack()
+    }
 })
 
 ipcMain.on('forward', () => {
-    TabsController.currentTab().webContents.goForward()
+    if(TabsController.currentTab().webContents.canGoForward()) {
+        TabsController.currentTab().webContents.goForward()
+    }
 })
 
 let dressingWindow = null
@@ -148,8 +152,8 @@ function createNewTab(url, id) {
     let browserView = new BrowserView({
         enablePreferredSizeMode: true
     })
-    browserView.webContents.on('will-navigate', (evt, url) => {
-        TabsController.mainWindow.webContents.send('url', url, TabsController.current_tab_id)
+    browserView.webContents.on('did-finish-load', () => {
+        TabsController.mainWindow.webContents.send('url', browserView.webContents.getURL(), TabsController.current_tab_id)
     })
     TabsController.addTab(id, browserView)
     TabsController.setupCurrent(id)
