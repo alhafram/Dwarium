@@ -10,7 +10,7 @@ const { autoUpdater } = require("electron-updater")
 
 ipcMain.on('load_url', (evt, server) => {
     configService.writeData('server', server)
-    TabsController.currentTab().webContents.loadURL(`${configService.baseUrl()}`)
+    TabsController.currentTab().webContents.loadURL(`${configService.baseUrl()}/main.php`)
     TabsController.mainWindow.webContents.send('url', `${configService.baseUrl()}`, TabsController.current_tab_id)
     TabsController.mainWindow.webContents.setZoomFactor(0.9)
 })
