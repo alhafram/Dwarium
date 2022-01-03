@@ -152,8 +152,15 @@ function createNewTab(url, id) {
     let browserView = new BrowserView({
         enablePreferredSizeMode: true
     })
+    const tabId = id
     browserView.webContents.on('did-finish-load', () => {
-        TabsController.mainWindow.webContents.send('url', browserView.webContents.getURL(), TabsController.current_tab_id)
+        let originalTitle = browserView.webContents.getTitle()
+        let title = originalTitle.slice(0, 13)
+        if(originalTitle.length > 15) {
+            title = title.concat(' ...')
+        }
+        TabsController.mainWindow.webContents.send('finishLoadUrl', tabId, title)
+        TabsController.mainWindow.webContents.send('url', browserView.webContents.getURL(), tabId)
     })
     TabsController.addTab(id, browserView)
     TabsController.setupCurrent(id)
@@ -226,8 +233,8 @@ ipcMain.handle('LoadSetItems', async (evt, args) => {
 
 ipcMain.on('findCharacter', (event, nick) => {
     const userInfoBrowserWindow = new BrowserWindow({
-        width: 900,
-        height: 700,
+        width: 1200,
+        height: 900,
         useContentSize: true,
         show: true
     })
