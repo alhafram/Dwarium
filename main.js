@@ -9,6 +9,7 @@ const {
 require('@electron/remote/main').initialize()
 require('v8-compile-cache')
 const { autoUpdater } = require("electron-updater")
+const configService = require('./services/ConfigService')
 
 autoUpdater.checkForUpdatesAndNotify()
 setInterval(() => {
@@ -35,7 +36,7 @@ function createWindow() {
     require("@electron/remote/main").enable(mainWindow.browserView.webContents)
 
     session.defaultSession.webRequest.onBeforeSendHeaders((details, callback) => {
-        details.requestHeaders['User-Agent'] = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36';
+        details.requestHeaders['User-Agent'] = configService.userAgent()
         callback({
             cancel: false,
             requestHeaders: details.requestHeaders

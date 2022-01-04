@@ -93,7 +93,8 @@ class MainWindow extends BrowserWindow {
             url,
             features
         }) => {
-            if(TabsController.currentTab() == TabsController.getMain() && !features) {
+            // TODO: - May be there is a better solution. Hack for login window
+            if(configService.windowOpenNewTab() && !features.includes('location=no') || TabsController.currentTab() == TabsController.getMain() && !features) {
                 this.send('new_tab', url)
                 return {
                     action: 'deny'
@@ -103,6 +104,7 @@ class MainWindow extends BrowserWindow {
                     action: 'allow',
                     overrideBrowserWindowOptions: {
                         enablePreferredSizeMode: true,
+                        parent: configService.windowsAboveApp() ? TabsController.mainWindow : null,
                         webPreferences: {
                             contextIsolation: false,
                             nativeWindowOpen: true,

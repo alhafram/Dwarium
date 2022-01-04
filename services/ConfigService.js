@@ -11,6 +11,37 @@ function baseUrl() {
     return `https://${readData('server')}.dwar.ru`
 }
 
+function loadSettings() {
+    return readData('settings')
+}
+
+function windowOpenNewTab() {
+    let settings = readData('settings')
+    if(settings) {
+        settings = JSON.parse(settings)
+        return settings.windowOpenNewTab
+    }
+    return false
+}
+
+function windowsAboveApp() {
+    let settings = readData('settings')
+    if(settings) {
+        settings = JSON.parse(settings)
+        return settings.windowsAboveApp
+    }
+    return false
+}
+
+function userAgent() {
+    let settings = readData('settings')
+    if(settings) {
+        settings = JSON.parse(settings)
+        return settings.userAgentText
+    }
+    return 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36'
+}
+
 function sets() {
     let contents = parseData(filePath)
     let keys = Object.keys(contents).filter(key => key.startsWith('set_'))
@@ -51,6 +82,10 @@ function parseData(filePath) {
 module.exports = {
     server,
     baseUrl,
+    loadSettings,
+    windowOpenNewTab,
+    windowsAboveApp,
+    userAgent,
     writeData,
     sets,
     beltSets

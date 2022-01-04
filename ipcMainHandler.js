@@ -45,6 +45,7 @@ ipcMain.on('openDressingRoom', () => {
         minHeight: 700,
         useContentSize: true,
         show: true,
+        parent: configService.windowsAboveApp() ? TabsController.mainWindow : null,
         webPreferences: {
             preload: path.join(__dirname, './components/Dressing/preload.js')
         }
@@ -72,6 +73,7 @@ ipcMain.on('openBeltPotionRoom', () => {
         minHeight: 700,
         useContentSize: true,
         show: true,
+        parent: configService.windowsAboveApp() ? TabsController.mainWindow : null,
         webPreferences: {
             preload: path.join(__dirname, './components/Belt/preload.js')
         }
@@ -99,6 +101,7 @@ ipcMain.on('openChatLog', () => {
         minHeight: 700,
         useContentSize: true,
         show: true,
+        parent: configService.windowsAboveApp() ? TabsController.mainWindow : null,
         webPreferences: {
             preload: path.join(__dirname, './components/Chat/preload.js'),
             contextIsolation: false
@@ -127,6 +130,7 @@ ipcMain.on('openChatSettings', () => {
         minHeight: 700,
         useContentSize: true,
         show: true,
+        parent: configService.windowsAboveApp() ? TabsController.mainWindow : null,
         webPreferences: {
             contextIsolation: false
         }
@@ -158,8 +162,19 @@ function createNewTab(url, id) {
         TabsController.mainWindow.webContents.send('finishLoadUrl', tabId, title)
         TabsController.mainWindow.webContents.send('url', browserView.webContents.getURL(), tabId)
     })
-    TabsController.addTab(id, browserView)
-    TabsController.setupCurrent(id)
+    if(configService.windowOpenNewTab()) {
+        browserView.webContents.setWindowOpenHandler(({
+            url,
+            features
+        }) => {
+            TabsController.mainWindow.webContents.send('new_tab', url)
+            return {
+                action: 'deny'
+            }
+        })
+    }
+    TabsController.addTab(tabId, browserView)
+    TabsController.setupCurrent(tabId)
     TabsController.mainWindow.setBrowserView(browserView)
 
     browserView.setAutoResize({
@@ -167,7 +182,7 @@ function createNewTab(url, id) {
     })
     TabsController.mainWindow.setContentBounds(TabsController.currentTab())
     browserView.webContents.loadURL(url)
-    TabsController.mainWindow.webContents.send('url', url, id)
+    TabsController.mainWindow.webContents.send('url', url, tabId)
 }
 
 ipcMain.on('make_active', (evt, id) => {
@@ -233,7 +248,8 @@ ipcMain.on('findCharacter', (event, nick) => {
         width: 1200,
         height: 900,
         useContentSize: true,
-        show: true
+        show: true,
+        parent: configService.windowsAboveApp() ? TabsController.mainWindow : null
     })
     userInfoBrowserWindow.webContents.loadURL(`${configService.baseUrl()}/user_info.php?nick=${nick}`)
 })
@@ -245,3 +261,32 @@ async function fetch(request) {
     bw.webContents.destroy()
     return result
 }
+
+
+let settingsWindow = null
+ipcMain.on('openSettings', () => {
+    if(settingsWindow) {
+        settingsWindow.show()
+        return
+    }
+    const path = require('path')
+    settingsWindow = new BrowserWindow({
+        width: 900,
+        height: 700,
+        minWidth: 900,
+        minHeight: 700,
+        useContentSize: true,
+        show: true,
+        parent: configService.windowsAboveApp() ? TabsController.mainWindow : null,
+        webPreferences: {
+            preload: path.join(__dirname, './components/Settings/preload.js')
+        }
+    })
+    settingsWindow.on('closed', () => {
+        settingsWindow = null
+        TabsController.mainWindow.webContents.send('openWindow', 'settings', false)
+    })
+    require("@electron/remote/main").enable(settingsWindow.webContents)
+    settingsWindow.loadFile(`${path.join(__dirname, './components/Settings/index.html')}`)
+    TabsController.mainWindow.webContents.send('openWindow', 'settings', true)
+})
