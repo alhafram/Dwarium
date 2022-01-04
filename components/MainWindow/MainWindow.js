@@ -32,6 +32,10 @@ class MainWindow extends BrowserWindow {
             this.setContentBounds(TabsController.currentTab(), this.getBounds())
         })
 
+        this.on('leave-full-screen', () => {
+            this.setContentBounds(TabsController.currentTab(), this.getBounds())
+        })
+
         this.on('closed', function() {
             this.unregisterShortcuts()
             clearInterval(this.sessionCheckInterval)
@@ -121,15 +125,15 @@ class MainWindow extends BrowserWindow {
     }
 
     setContentBounds(tab, size) {
-        const [contentWidth, contentHeight] = this.getContentSize();
-        const controlBounds = this.getControlBounds();
+        const [contentWidth, contentHeight] = this.getContentSize()
+        const controlBounds = this.getControlBounds()
         if(tab) {
             tab.setBounds({
                 x: 0,
                 y: controlBounds.y + controlBounds.height,
-                width: size ? size.width : contentWidth,
-                height: size ? size.height : contentHeight - controlBounds.height
-            });
+                width: size && process.platform == 'win32' ? size.width : contentWidth,
+                height: size && process.platform == 'win32' ? size.height : contentHeight - controlBounds.height
+            })
         }
     }
 
