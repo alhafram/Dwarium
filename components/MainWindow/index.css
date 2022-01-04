@@ -289,3 +289,14 @@ body {
     background-size: contain;
     background-image: url('./images/UpdateApp.png');
 }
+
+#settings {
+    margin-left: 100px; 
+    height: 40px;
+    width: 40px;
+    border: none;
+    background-color: white;
+    border-radius: 3px;
+    background-size: contain;
+    background-image: url('./images/Settings.png');
+}

@@ -28,8 +28,12 @@ class MainWindow extends BrowserWindow {
             show: false
         })
 
-        this.on('resized', (evt) => {
-            this.setContentBounds()
+        this.on('enter-full-screen', () => {
+            this.setContentBounds(TabsController.currentTab(), this.getBounds())
+        })
+
+        this.on('leave-full-screen', () => {
+            this.setContentBounds(TabsController.currentTab(), this.getBounds())
         })
 
         this.on('closed', function() {
@@ -89,7 +93,8 @@ class MainWindow extends BrowserWindow {
             url,
             features
         }) => {
-            if(TabsController.currentTab() == TabsController.getMain() && !features) {
+            // TODO: - May be there is a better solution. Hack for login window
+            if(configService.windowOpenNewTab() && !features.includes('location=no') || TabsController.currentTab() == TabsController.getMain() && !features) {
                 this.send('new_tab', url)
                 return {
                     action: 'deny'
@@ -99,6 +104,7 @@ class MainWindow extends BrowserWindow {
                     action: 'allow',
                     overrideBrowserWindowOptions: {
                         enablePreferredSizeMode: true,
+                        parent: configService.windowsAboveApp() ? TabsController.mainWindow : null,
                         webPreferences: {
                             contextIsolation: false,
                             nativeWindowOpen: true,
@@ -120,23 +126,25 @@ class MainWindow extends BrowserWindow {
         }
     }
 
-    setContentBounds(tab) {
-        const [contentWidth, contentHeight] = this.getContentSize();
-        const controlBounds = this.getControlBounds();
+    setContentBounds(tab, size) {
+        const [contentWidth, contentHeight] = this.getContentSize()
+        const controlBounds = this.getControlBounds()
         if(tab) {
             tab.setBounds({
                 x: 0,
                 y: controlBounds.y + controlBounds.height,
-                width: contentWidth,
-                height: contentHeight - controlBounds.height
-            });
+                width: size && process.platform == 'win32' ? size.width : contentWidth,
+                height: size && process.platform == 'win32' ? size.height : contentHeight - controlBounds.height
+            })
         }
     }
 
     sessionCheckInterval = null
     start() {
         this.show();
-        // mainWindow.maximize();
+        if(configService.maximizeOnStart()) {
+            this.maximize()
+        }
         this.loadFile(`${path.join(__dirname, 'index.html')}`);
         const self = this
         this.sessionCheckInterval = setInterval(async function() {

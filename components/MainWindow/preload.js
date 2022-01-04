@@ -33,6 +33,9 @@ window.addEventListener('DOMContentLoaded', () => {
     document.getElementById('chatSettings').addEventListener('click', () => {
         ipcRenderer.send('openChatSettings')
     })
+    document.getElementById('settings').addEventListener('click', () => {
+        ipcRenderer.send('openSettings')
+    })
     document.addEventListener('new_tab', (evt) => {
         const tab = createNewTab()
         ipcRenderer.send('new_tab', tab.id)
