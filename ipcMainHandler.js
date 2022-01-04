@@ -53,7 +53,7 @@ ipcMain.on('openDressingRoom', () => {
     require("@electron/remote/main").enable(dressingWindow.webContents)
     dressingWindow.on('closed', () => {
         dressingWindow = null
-        if(!TabsController.mainWindow.isDestroyed()) {
+        if(!TabsController.mainWindow?.isDestroyed()) {
             TabsController.mainWindow?.webContents.send('openWindow', 'dressingRoom', false)
         }
     })
@@ -83,7 +83,7 @@ ipcMain.on('openBeltPotionRoom', () => {
     require("@electron/remote/main").enable(beltWindow.webContents)
     beltWindow.on('closed', () => {
         beltWindow = null
-        if(!TabsController.mainWindow.isDestroyed()) {
+        if(!TabsController.mainWindow?.isDestroyed()) {
             TabsController.mainWindow?.webContents.send('openWindow', 'beltPotionRoom', false)
         }
     })
@@ -113,7 +113,7 @@ ipcMain.on('openChatLog', () => {
     })
     chatLogWindow.on('closed', () => {
         chatLogWindow = null
-        if(!TabsController.mainWindow.isDestroyed()) {
+        if(!TabsController.mainWindow?.isDestroyed()) {
             TabsController.mainWindow?.webContents.send('openWindow', 'chatLog', false)
         }
     })
@@ -143,7 +143,7 @@ ipcMain.on('openChatSettings', () => {
     })
     chatSettingsWindow.on('closed', () => {
         chatSettingsWindow = null
-        if(!TabsController.mainWindow.isDestroyed()) {
+        if(!TabsController.mainWindow?.isDestroyed()) {
             TabsController.mainWindow?.webContents.send('openWindow', 'chatSettings', false)
         }
     })
@@ -292,7 +292,7 @@ ipcMain.on('openSettings', () => {
     })
     settingsWindow.on('closed', () => {
         settingsWindow = null
-        if(!TabsController.mainWindow.isDestroyed()) {
+        if(!TabsController.mainWindow?.isDestroyed()) {
             TabsController.mainWindow?.webContents.send('openWindow', 'settings', false)
         }
     })
