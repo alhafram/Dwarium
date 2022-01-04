@@ -28,8 +28,8 @@ class MainWindow extends BrowserWindow {
             show: false
         })
 
-        this.on('resized', (evt) => {
-            this.setContentBounds()
+        this.on('enter-full-screen', () => {
+            this.setContentBounds(TabsController.currentTab(), this.getBounds())
         })
 
         this.on('closed', function() {
@@ -120,15 +120,15 @@ class MainWindow extends BrowserWindow {
         }
     }
 
-    setContentBounds(tab) {
+    setContentBounds(tab, size) {
         const [contentWidth, contentHeight] = this.getContentSize();
         const controlBounds = this.getControlBounds();
         if(tab) {
             tab.setBounds({
                 x: 0,
                 y: controlBounds.y + controlBounds.height,
-                width: contentWidth + (process.platform == 'win32' ? 50 : 0),
-                height: contentHeight - (process.platform == 'win32' ? 0 : controlBounds.height)
+                width: size ? size.width : contentWidth,
+                height: size ? size.height : contentHeight - controlBounds.height
             });
         }
     }

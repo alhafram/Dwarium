@@ -173,6 +173,7 @@ function createNewTab(url, id) {
 ipcMain.on('make_active', (evt, id) => {
     TabsController.setupCurrent(id)
     TabsController.mainWindow.setBrowserView(TabsController.currentTab())
+    TabsController.mainWindow.setContentBounds(TabsController.currentTab(), TabsController.mainWindow.getBounds())
     TabsController.mainWindow.webContents.send('url', TabsController.currentTab().webContents.getURL(), id)
 })
 
