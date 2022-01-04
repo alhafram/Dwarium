@@ -33,12 +33,14 @@ function setupListeners() {
         const userAgentType = document.getElementById('userAgents').value
         const windowOpenNewTab = document.getElementById('windowOpenNewTab').checked
         const windowsAboveApp = document.getElementById('windowsAboveApp').checked
+        const maximizeOnStart = document.getElementById('maximizeOnStart').checked
 
         const settings = {
             userAgentType,
             windowOpenNewTab,
             windowsAboveApp,
-            userAgentText
+            userAgentText,
+            maximizeOnStart
         }
         window.myAPI.saveSettings(settings)
         if(confirm('Для того что бы настройки вступили в силу, необходимо перезапустить клиент!')) {
@@ -57,6 +59,7 @@ function setupView() {
 function setupCheckboxes() {
     document.getElementById('windowsAboveApp').checked = loadedSettings?.windowsAboveApp
     document.getElementById('windowOpenNewTab').checked = loadedSettings?.windowOpenNewTab
+    document.getElementById('maximizeOnStart').checked = loadedSettings?.maximizeOnStart
 }
 
 function setupUserAgent() {

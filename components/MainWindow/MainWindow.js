@@ -142,7 +142,9 @@ class MainWindow extends BrowserWindow {
     sessionCheckInterval = null
     start() {
         this.show();
-        // mainWindow.maximize();
+        if(configService.maximizeOnStart()) {
+            this.maximize()
+        }
         this.loadFile(`${path.join(__dirname, 'index.html')}`);
         const self = this
         this.sessionCheckInterval = setInterval(async function() {
