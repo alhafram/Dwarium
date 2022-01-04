@@ -25,6 +25,7 @@ let mainWindow
 function createWindow() {
     mainWindow = new MainWindow()
     mainWindow.on('closed', () => {
+        mainWindow.browserView.webContents.destroy()
         mainWindow = null
     })
     mainWindow.setup()
