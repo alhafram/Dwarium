@@ -53,7 +53,9 @@ ipcMain.on('openDressingRoom', () => {
     require("@electron/remote/main").enable(dressingWindow.webContents)
     dressingWindow.on('closed', () => {
         dressingWindow = null
-        TabsController.mainWindow.webContents.send('openWindow', 'dressingRoom', false)
+        if(!TabsController.mainWindow.isDestroyed()) {
+            TabsController.mainWindow.webContents.send('openWindow', 'dressingRoom', false)
+        }
     })
     dressingWindow.loadFile(`${path.join(__dirname, './components/Dressing/index.html')}`)
     TabsController.mainWindow.webContents.send('openWindow', 'dressingRoom', true)
@@ -81,7 +83,9 @@ ipcMain.on('openBeltPotionRoom', () => {
     require("@electron/remote/main").enable(beltWindow.webContents)
     beltWindow.on('closed', () => {
         beltWindow = null
-        TabsController.mainWindow.webContents.send('openWindow', 'beltPotionRoom', false)
+        if(!TabsController.mainWindow.isDestroyed()) {
+            TabsController.mainWindow.webContents.send('openWindow', 'beltPotionRoom', false)
+        }
     })
     beltWindow.loadFile(`${path.join(__dirname, './components/Belt/index.html')}`)
     TabsController.mainWindow.webContents.send('openWindow', 'beltPotionRoom', true)
@@ -109,7 +113,9 @@ ipcMain.on('openChatLog', () => {
     })
     chatLogWindow.on('closed', () => {
         chatLogWindow = null
-        TabsController.mainWindow.webContents.send('openWindow', 'chatLog', false)
+        if(!TabsController.mainWindow.isDestroyed()) {
+            TabsController.mainWindow.webContents.send('openWindow', 'chatLog', false)
+        }
     })
     chatLogWindow.loadFile(`${path.join(__dirname, './components/Chat/index.html')}`)
     require("@electron/remote/main").enable(chatLogWindow.webContents)
@@ -137,7 +143,9 @@ ipcMain.on('openChatSettings', () => {
     })
     chatSettingsWindow.on('closed', () => {
         chatSettingsWindow = null
-        TabsController.mainWindow.webContents.send('openWindow', 'chatSettings', false)
+        if(!TabsController.mainWindow.isDestroyed()) {
+            TabsController.mainWindow.webContents.send('openWindow', 'chatSettings', false)
+        }
     })
     chatSettingsWindow.loadFile(`${path.join(__dirname, './components/ChatSettings/index.html')}`)
     TabsController.mainWindow.webContents.send('openWindow', 'chatSettings', true)
@@ -284,7 +292,9 @@ ipcMain.on('openSettings', () => {
     })
     settingsWindow.on('closed', () => {
         settingsWindow = null
-        TabsController.mainWindow.webContents.send('openWindow', 'settings', false)
+        if(!TabsController.mainWindow.isDestroyed()) {
+            TabsController.mainWindow.webContents.send('openWindow', 'settings', false)
+        }
     })
     require("@electron/remote/main").enable(settingsWindow.webContents)
     settingsWindow.loadFile(`${path.join(__dirname, './components/Settings/index.html')}`)
