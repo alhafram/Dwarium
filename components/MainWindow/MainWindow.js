@@ -127,8 +127,8 @@ class MainWindow extends BrowserWindow {
             tab.setBounds({
                 x: 0,
                 y: controlBounds.y + controlBounds.height,
-                width: contentWidth,
-                height: contentHeight - controlBounds.height
+                width: contentWidth + (process.platform == 'win32' ? 50 : 0),
+                height: contentHeight - (process.platform == 'win32' ? 0 : controlBounds.height)
             });
         }
     }
