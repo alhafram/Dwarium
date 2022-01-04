@@ -50,8 +50,7 @@ ipcMain.on('openDressingRoom', () => {
         }
     })
     require("@electron/remote/main").enable(dressingWindow.webContents)
-    dressingWindow.on('close', () => {
-        dressingWindow.destroy()
+    dressingWindow.on('closed', () => {
         dressingWindow = null
         TabsController.mainWindow.webContents.send('openWindow', 'dressingRoom', false)
     })
@@ -78,10 +77,9 @@ ipcMain.on('openBeltPotionRoom', () => {
         }
     })
     require("@electron/remote/main").enable(beltWindow.webContents)
-    beltWindow.on('close', () => {
-        TabsController.mainWindow.webContents.send('openWindow', 'beltPotionRoom', false)
-        beltWindow.destroy()
+    beltWindow.on('closed', () => {
         beltWindow = null
+        TabsController.mainWindow.webContents.send('openWindow', 'beltPotionRoom', false)
     })
     beltWindow.loadFile(`${path.join(__dirname, './components/Belt/index.html')}`)
     TabsController.mainWindow.webContents.send('openWindow', 'beltPotionRoom', true)
@@ -106,10 +104,9 @@ ipcMain.on('openChatLog', () => {
             contextIsolation: false
         }
     })
-    chatLogWindow.on('close', () => {
-        TabsController.mainWindow.webContents.send('openWindow', 'chatLog', false)
-        chatLogWindow.destroy()
+    chatLogWindow.on('closed', () => {
         chatLogWindow = null
+        TabsController.mainWindow.webContents.send('openWindow', 'chatLog', false)
     })
     chatLogWindow.loadFile(`${path.join(__dirname, './components/Chat/index.html')}`)
     require("@electron/remote/main").enable(chatLogWindow.webContents)
@@ -134,10 +131,9 @@ ipcMain.on('openChatSettings', () => {
             contextIsolation: false
         }
     })
-    chatSettingsWindow.on('close', () => {
-        TabsController.mainWindow.webContents.send('openWindow', 'chatSettings', false)
-        chatSettingsWindow.destroy()
+    chatSettingsWindow.on('closed', () => {
         chatSettingsWindow = null
+        TabsController.mainWindow.webContents.send('openWindow', 'chatSettings', false)
     })
     chatSettingsWindow.loadFile(`${path.join(__dirname, './components/ChatSettings/index.html')}`)
     TabsController.mainWindow.webContents.send('openWindow', 'chatSettings', true)
@@ -244,5 +240,7 @@ ipcMain.on('findCharacter', (event, nick) => {
 async function fetch(request) {
     const bw = new BrowserView()
     await bw.webContents.loadURL(request.url)
-    return await bw.webContents.executeJavaScript(request.script)
+    let result = await bw.webContents.executeJavaScript(request.script)
+    bw.webContents.destroy()
+    return result
 }
