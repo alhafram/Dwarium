@@ -28,6 +28,7 @@ function createWindow() {
     mainWindow.on('closed', () => {
         mainWindow.browserView.webContents.destroy()
         mainWindow = null
+        TabsController.mainWindow = null
     })
     mainWindow.setup()
     TabsController.setupMain(mainWindow.browserView)

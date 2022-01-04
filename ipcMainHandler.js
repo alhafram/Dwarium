@@ -54,7 +54,7 @@ ipcMain.on('openDressingRoom', () => {
     dressingWindow.on('closed', () => {
         dressingWindow = null
         if(!TabsController.mainWindow.isDestroyed()) {
-            TabsController.mainWindow.webContents.send('openWindow', 'dressingRoom', false)
+            TabsController.mainWindow?.webContents.send('openWindow', 'dressingRoom', false)
         }
     })
     dressingWindow.loadFile(`${path.join(__dirname, './components/Dressing/index.html')}`)
@@ -84,7 +84,7 @@ ipcMain.on('openBeltPotionRoom', () => {
     beltWindow.on('closed', () => {
         beltWindow = null
         if(!TabsController.mainWindow.isDestroyed()) {
-            TabsController.mainWindow.webContents.send('openWindow', 'beltPotionRoom', false)
+            TabsController.mainWindow?.webContents.send('openWindow', 'beltPotionRoom', false)
         }
     })
     beltWindow.loadFile(`${path.join(__dirname, './components/Belt/index.html')}`)
@@ -114,7 +114,7 @@ ipcMain.on('openChatLog', () => {
     chatLogWindow.on('closed', () => {
         chatLogWindow = null
         if(!TabsController.mainWindow.isDestroyed()) {
-            TabsController.mainWindow.webContents.send('openWindow', 'chatLog', false)
+            TabsController.mainWindow?.webContents.send('openWindow', 'chatLog', false)
         }
     })
     chatLogWindow.loadFile(`${path.join(__dirname, './components/Chat/index.html')}`)
@@ -144,7 +144,7 @@ ipcMain.on('openChatSettings', () => {
     chatSettingsWindow.on('closed', () => {
         chatSettingsWindow = null
         if(!TabsController.mainWindow.isDestroyed()) {
-            TabsController.mainWindow.webContents.send('openWindow', 'chatSettings', false)
+            TabsController.mainWindow?.webContents.send('openWindow', 'chatSettings', false)
         }
     })
     chatSettingsWindow.loadFile(`${path.join(__dirname, './components/ChatSettings/index.html')}`)
@@ -293,7 +293,7 @@ ipcMain.on('openSettings', () => {
     settingsWindow.on('closed', () => {
         settingsWindow = null
         if(!TabsController.mainWindow.isDestroyed()) {
-            TabsController.mainWindow.webContents.send('openWindow', 'settings', false)
+            TabsController.mainWindow?.webContents.send('openWindow', 'settings', false)
         }
     })
     require("@electron/remote/main").enable(settingsWindow.webContents)
