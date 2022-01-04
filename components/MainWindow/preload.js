@@ -128,6 +128,10 @@ ipcRenderer.on('url', (event, url, id) => {
     document.querySelector('.urlBarField').value = url
 })
 
+ipcRenderer.on('finishLoadUrl', (event, id, title) => {
+    document.getElementById(id).firstElementChild.text = title
+})
+
 ipcRenderer.on('new_tab', (event, url) => {
     const tab = createNewTab()
     ipcRenderer.send('new_tab', tab.id, url)
@@ -139,8 +143,8 @@ ipcRenderer.on('close_tab', (evt, id) => {
     let current_tab = tabs.filter(t => t.id == id)[0]
     if(current_tab) {
         document.querySelector('body > div.tabs').removeChild(current_tab)
-        ipcRenderer.send('remove_view', id)
         tabs[0].click()
+        ipcRenderer.send('remove_view', id)
     }
 })
 

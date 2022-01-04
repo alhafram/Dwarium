@@ -10,7 +10,7 @@ const { autoUpdater } = require("electron-updater")
 
 ipcMain.on('load_url', (evt, server) => {
     configService.writeData('server', server)
-    TabsController.currentTab().webContents.loadURL(`${configService.baseUrl()}`)
+    TabsController.currentTab().webContents.loadURL(`${configService.baseUrl()}/main.php`)
     TabsController.mainWindow.webContents.send('url', `${configService.baseUrl()}`, TabsController.current_tab_id)
     TabsController.mainWindow.webContents.setZoomFactor(0.9)
 })
@@ -20,11 +20,15 @@ ipcMain.on('reload', () => {
 })
 
 ipcMain.on('back', () => {
-    TabsController.currentTab().webContents.goBack()
+    if(TabsController.currentTab().webContents.canGoBack()) {
+        TabsController.currentTab().webContents.goBack()
+    }
 })
 
 ipcMain.on('forward', () => {
-    TabsController.currentTab().webContents.goForward()
+    if(TabsController.currentTab().webContents.canGoForward()) {
+        TabsController.currentTab().webContents.goForward()
+    }
 })
 
 let dressingWindow = null
@@ -46,8 +50,7 @@ ipcMain.on('openDressingRoom', () => {
         }
     })
     require("@electron/remote/main").enable(dressingWindow.webContents)
-    dressingWindow.on('close', () => {
-        dressingWindow.destroy()
+    dressingWindow.on('closed', () => {
         dressingWindow = null
         TabsController.mainWindow.webContents.send('openWindow', 'dressingRoom', false)
     })
@@ -74,10 +77,9 @@ ipcMain.on('openBeltPotionRoom', () => {
         }
     })
     require("@electron/remote/main").enable(beltWindow.webContents)
-    beltWindow.on('close', () => {
-        TabsController.mainWindow.webContents.send('openWindow', 'beltPotionRoom', false)
-        beltWindow.destroy()
+    beltWindow.on('closed', () => {
         beltWindow = null
+        TabsController.mainWindow.webContents.send('openWindow', 'beltPotionRoom', false)
     })
     beltWindow.loadFile(`${path.join(__dirname, './components/Belt/index.html')}`)
     TabsController.mainWindow.webContents.send('openWindow', 'beltPotionRoom', true)
@@ -102,10 +104,9 @@ ipcMain.on('openChatLog', () => {
             contextIsolation: false
         }
     })
-    chatLogWindow.on('close', () => {
-        TabsController.mainWindow.webContents.send('openWindow', 'chatLog', false)
-        chatLogWindow.destroy()
+    chatLogWindow.on('closed', () => {
         chatLogWindow = null
+        TabsController.mainWindow.webContents.send('openWindow', 'chatLog', false)
     })
     chatLogWindow.loadFile(`${path.join(__dirname, './components/Chat/index.html')}`)
     require("@electron/remote/main").enable(chatLogWindow.webContents)
@@ -130,10 +131,9 @@ ipcMain.on('openChatSettings', () => {
             contextIsolation: false
         }
     })
-    chatSettingsWindow.on('close', () => {
-        TabsController.mainWindow.webContents.send('openWindow', 'chatSettings', false)
-        chatSettingsWindow.destroy()
+    chatSettingsWindow.on('closed', () => {
         chatSettingsWindow = null
+        TabsController.mainWindow.webContents.send('openWindow', 'chatSettings', false)
     })
     chatSettingsWindow.loadFile(`${path.join(__dirname, './components/ChatSettings/index.html')}`)
     TabsController.mainWindow.webContents.send('openWindow', 'chatSettings', true)
@@ -148,8 +148,15 @@ function createNewTab(url, id) {
     let browserView = new BrowserView({
         enablePreferredSizeMode: true
     })
-    browserView.webContents.on('will-navigate', (evt, url) => {
-        TabsController.mainWindow.webContents.send('url', url, TabsController.current_tab_id)
+    const tabId = id
+    browserView.webContents.on('did-finish-load', () => {
+        let originalTitle = browserView.webContents.getTitle()
+        let title = originalTitle.slice(0, 13)
+        if(originalTitle.length > 15) {
+            title = title.concat(' ...')
+        }
+        TabsController.mainWindow.webContents.send('finishLoadUrl', tabId, title)
+        TabsController.mainWindow.webContents.send('url', browserView.webContents.getURL(), tabId)
     })
     TabsController.addTab(id, browserView)
     TabsController.setupCurrent(id)
@@ -222,8 +229,8 @@ ipcMain.handle('LoadSetItems', async (evt, args) => {
 
 ipcMain.on('findCharacter', (event, nick) => {
     const userInfoBrowserWindow = new BrowserWindow({
-        width: 900,
-        height: 700,
+        width: 1200,
+        height: 900,
         useContentSize: true,
         show: true
     })
@@ -233,5 +240,7 @@ ipcMain.on('findCharacter', (event, nick) => {
 async function fetch(request) {
     const bw = new BrowserView()
     await bw.webContents.loadURL(request.url)
-    return await bw.webContents.executeJavaScript(request.script)
+    let result = await bw.webContents.executeJavaScript(request.script)
+    bw.webContents.destroy()
+    return result
 }

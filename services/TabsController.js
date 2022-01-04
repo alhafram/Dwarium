@@ -6,6 +6,7 @@ const TabsController = {
         this.tabs[id] = tab
     },
     deleteTab(id) {
+        this.tabs[id].webContents.destroy()
         delete this.tabs[id]
     },
     setupMain(tab) {
