@@ -112,7 +112,7 @@ ipcMain.on('openChatLog', () => {
             TabsController.mainWindow?.webContents.send('openWindow', 'chatLog', false)
         }
     })
-    chatLogWindow.loadFile(`${path.join(__dirname, './components/Chat/index.html')}`)
+    chatLogWindow.loadFile(`${path.join(__dirname, '../gui/Chat/index.html')}`)
     require("@electron/remote/main").enable(chatLogWindow.webContents)
     TabsController.mainWindow?.webContents.send('openWindow', 'chatLog', true)
 })

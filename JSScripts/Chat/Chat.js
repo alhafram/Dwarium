@@ -15,7 +15,7 @@ if(!fs.existsSync(logsFolderPath)) {
     fs.openSync(filePath, 'w')
 }
 
-const configService = require('../../services/ConfigService')
+const configService = require('../../src/services/ConfigService')
 var logStream = fs.createWriteStream(filePath, {
     flags: 'a'
 });
