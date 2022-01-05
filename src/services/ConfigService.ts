@@ -1,7 +1,7 @@
-const { app } = process.type === 'browser' ? require('electron') : require('@electron/remote')
-const fs = require('fs')
-const path = require('path')
-const filePath = path.join(app.getPath('userData'), 'config.json')
+import { app } from 'electron';
+import fs from 'fs';
+import path from 'path';
+const configPath = path.join(app.getPath('userData'), 'config.json')
 
 function server() {
     return readData('server')
@@ -52,43 +52,43 @@ function maximizeOnStart() {
 }
 
 function sets() {
-    let contents = parseData(filePath)
+    let contents = parseData(configPath)
     let keys = Object.keys(contents).filter(key => key.startsWith('set_'))
     return keys.map(key => JSON.parse(contents[key]))
 }
 
 function beltSets() {
-    let contents = parseData(filePath)
+    let contents = parseData(configPath)
     let keys = Object.keys(contents).filter(key => key.startsWith('belt_set_'))
     return keys.map(key => JSON.parse(contents[key]))
 }
 
-function writeData(key, value) {
-    let contents = parseData(filePath)
+function writeData(key: string, value: any) {
+    let contents = parseData(configPath)
     contents[key] = value
     Object.keys(contents).forEach(key => {
         if(contents[key] === null) {
             delete contents[key]
         }
     })
-    fs.writeFileSync(filePath, JSON.stringify(contents))
+    fs.writeFileSync(configPath, JSON.stringify(contents))
 }
 
-function readData(key) {
-    let contents = parseData(filePath)
+function readData(key: string) {
+    let contents = parseData(configPath)
     return contents[key]
 }
 
-function parseData(filePath) {
+function parseData(filePath: fs.PathLike) {
     const defaultData = {}
     try {
-        return JSON.parse(fs.readFileSync(filePath))
+        return JSON.parse(fs.readFileSync(filePath, 'utf-8'))
     } catch (error) {
         return defaultData
     }
 }
 
-module.exports = {
+export default {
     server,
     baseUrl,
     loadSettings,

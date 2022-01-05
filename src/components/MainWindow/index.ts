@@ -1,7 +1,7 @@
 window.addEventListener('DOMContentLoaded', () => {
-    const urlBar = document.querySelector('.urlBarField')
-    urlBar.addEventListener('keyup', (e) => {
-        if(e.keyCode == 13) {
+    const urlBar = document.querySelector('.urlBarField') as HTMLInputElement
+    urlBar.addEventListener('keyup', (e: KeyboardEvent) => {
+        if(e.key == 'Enter') {
             document.dispatchEvent(new CustomEvent('goUrl', {
                 detail: urlBar.value
             }))

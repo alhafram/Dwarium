@@ -1,18 +1,13 @@
-const {
-    BrowserWindow,
-    BrowserView,
-    ipcMain,
-    app
-} = require('electron')
-const configService = require('./services/ConfigService')
-const TabsController = require('./services/TabsController')
-const { autoUpdater } = require("electron-updater")
+import { BrowserWindow, BrowserView, ipcMain, app } from 'electron'
+import configService from './services/ConfigService'
+import { TabsController } from './services/TabsController'
+import { autoUpdater } from "electron-updater"
 
 ipcMain.on('load_url', (evt, server) => {
     configService.writeData('server', server)
     TabsController.currentTab().webContents.loadURL(`${configService.baseUrl()}/main.php`)
-    TabsController.mainWindow.webContents.send('url', `${configService.baseUrl()}`, TabsController.current_tab_id)
-    TabsController.mainWindow.webContents.setZoomFactor(0.9)
+    TabsController.mainWindow?.webContents.send('url', `${configService.baseUrl()}`, TabsController.current_tab_id)
+    TabsController.mainWindow?.webContents.setZoomFactor(0.9)
 })
 
 ipcMain.on('reload', () => {
@@ -31,7 +26,7 @@ ipcMain.on('forward', () => {
     }
 })
 
-let dressingWindow = null
+let dressingWindow: BrowserWindow | null
 ipcMain.on('openDressingRoom', () => {
     if(dressingWindow) {
         dressingWindow.show()
@@ -45,7 +40,7 @@ ipcMain.on('openDressingRoom', () => {
         minHeight: 700,
         useContentSize: true,
         show: true,
-        parent: configService.windowsAboveApp() ? TabsController.mainWindow : null,
+        parent: configService.windowsAboveApp() ? TabsController.mainWindow! : undefined,
         webPreferences: {
             preload: path.join(__dirname, './components/Dressing/preload.js')
         }
@@ -58,10 +53,10 @@ ipcMain.on('openDressingRoom', () => {
         }
     })
     dressingWindow.loadFile(`${path.join(__dirname, './components/Dressing/index.html')}`)
-    TabsController.mainWindow.webContents.send('openWindow', 'dressingRoom', true)
+    TabsController.mainWindow?.webContents.send('openWindow', 'dressingRoom', true)
 })
 
-let beltWindow = null
+let beltWindow: BrowserWindow | null
 ipcMain.on('openBeltPotionRoom', () => {
     if(beltWindow) {
         beltWindow.show()
@@ -75,7 +70,7 @@ ipcMain.on('openBeltPotionRoom', () => {
         minHeight: 700,
         useContentSize: true,
         show: true,
-        parent: configService.windowsAboveApp() ? TabsController.mainWindow : null,
+        parent: configService.windowsAboveApp() ? TabsController.mainWindow! : undefined,
         webPreferences: {
             preload: path.join(__dirname, './components/Belt/preload.js')
         }
@@ -88,10 +83,10 @@ ipcMain.on('openBeltPotionRoom', () => {
         }
     })
     beltWindow.loadFile(`${path.join(__dirname, './components/Belt/index.html')}`)
-    TabsController.mainWindow.webContents.send('openWindow', 'beltPotionRoom', true)
+    TabsController.mainWindow?.webContents.send('openWindow', 'beltPotionRoom', true)
 })
 
-let chatLogWindow = null
+let chatLogWindow: BrowserWindow | null
 ipcMain.on('openChatLog', () => {
     if(chatLogWindow) {
         chatLogWindow.show()
@@ -105,7 +100,7 @@ ipcMain.on('openChatLog', () => {
         minHeight: 700,
         useContentSize: true,
         show: true,
-        parent: configService.windowsAboveApp() ? TabsController.mainWindow : null,
+        parent: configService.windowsAboveApp() ? TabsController.mainWindow! : undefined,
         webPreferences: {
             preload: path.join(__dirname, './components/Chat/preload.js'),
             contextIsolation: false
@@ -119,10 +114,10 @@ ipcMain.on('openChatLog', () => {
     })
     chatLogWindow.loadFile(`${path.join(__dirname, './components/Chat/index.html')}`)
     require("@electron/remote/main").enable(chatLogWindow.webContents)
-    TabsController.mainWindow.webContents.send('openWindow', 'chatLog', true)
+    TabsController.mainWindow?.webContents.send('openWindow', 'chatLog', true)
 })
 
-let chatSettingsWindow = null
+let chatSettingsWindow: BrowserWindow | null
 ipcMain.on('openChatSettings', () => {
     if(chatSettingsWindow) {
         chatSettingsWindow.show()
@@ -136,7 +131,7 @@ ipcMain.on('openChatSettings', () => {
         minHeight: 700,
         useContentSize: true,
         show: true,
-        parent: configService.windowsAboveApp() ? TabsController.mainWindow : null,
+        parent: configService.windowsAboveApp() ? TabsController.mainWindow! : undefined,
         webPreferences: {
             contextIsolation: false
         }
@@ -148,17 +143,19 @@ ipcMain.on('openChatSettings', () => {
         }
     })
     chatSettingsWindow.loadFile(`${path.join(__dirname, './components/ChatSettings/index.html')}`)
-    TabsController.mainWindow.webContents.send('openWindow', 'chatSettings', true)
+    TabsController.mainWindow?.webContents.send('openWindow', 'chatSettings', true)
 })
 
 ipcMain.on('new_tab', (evt, id, url) => {
     createNewTab(url, id)
 })
 
-function createNewTab(url, id) {
+function createNewTab(url: string, id: string) {
     url = url ?? 'https://google.com'
     let browserView = new BrowserView({
-        enablePreferredSizeMode: true
+        webPreferences: {
+            enablePreferredSizeMode: true
+        }
     })
     const tabId = id
     browserView.webContents.on('did-finish-load', () => {
@@ -167,15 +164,15 @@ function createNewTab(url, id) {
         if(originalTitle.length > 15) {
             title = title.concat(' ...')
         }
-        TabsController.mainWindow.webContents.send('finishLoadUrl', tabId, title)
-        TabsController.mainWindow.webContents.send('url', browserView.webContents.getURL(), tabId)
+        TabsController.mainWindow?.webContents.send('finishLoadUrl', tabId, title)
+        TabsController.mainWindow?.webContents.send('url', browserView.webContents.getURL(), tabId)
     })
     if(configService.windowOpenNewTab()) {
         browserView.webContents.setWindowOpenHandler(({
             url,
             features
         }) => {
-            TabsController.mainWindow.webContents.send('new_tab', url)
+            TabsController.mainWindow?.webContents.send('new_tab', url)
             return {
                 action: 'deny'
             }
@@ -183,21 +180,21 @@ function createNewTab(url, id) {
     }
     TabsController.addTab(tabId, browserView)
     TabsController.setupCurrent(tabId)
-    TabsController.mainWindow.setBrowserView(browserView)
+    TabsController.mainWindow?.setBrowserView(browserView)
 
     browserView.setAutoResize({
         width: true
     })
-    TabsController.mainWindow.setContentBounds(TabsController.currentTab())
+    TabsController.mainWindowContainer?.setViewContentBounds(TabsController.currentTab())
     browserView.webContents.loadURL(url)
-    TabsController.mainWindow.webContents.send('url', url, tabId)
+    TabsController.mainWindow?.webContents.send('url', url, tabId)
 }
 
 ipcMain.on('make_active', (evt, id) => {
     TabsController.setupCurrent(id)
-    TabsController.mainWindow.setBrowserView(TabsController.currentTab())
-    TabsController.mainWindow.setContentBounds(TabsController.currentTab(), TabsController.mainWindow.getBounds())
-    TabsController.mainWindow.webContents.send('url', TabsController.currentTab().webContents.getURL(), id)
+    TabsController.mainWindow?.setBrowserView(TabsController.currentTab())
+    TabsController.mainWindowContainer?.setViewContentBounds(TabsController.currentTab(), TabsController.mainWindow?.getBounds())
+    TabsController.mainWindow?.webContents.send('url', TabsController.currentTab().webContents.getURL(), id)
 })
 
 ipcMain.on('remove_view', (evt, id) => {
@@ -205,11 +202,11 @@ ipcMain.on('remove_view', (evt, id) => {
 })
 
 ipcMain.on('close_tab', (evt, id) => {
-    TabsController.mainWindow.webContents.send('close_tab', id)
+    TabsController.mainWindow?.webContents.send('close_tab', id)
 })
 
 ipcMain.handle('MakeWebRequest', async (evt, req) => {
-    let result = await TabsController.mainWindow.browserView.webContents.executeJavaScript(req.req)
+    let result = await TabsController.mainWindowContainer?.browserView?.webContents.executeJavaScript(req.req)
     return {
         result: result,
         req: req
@@ -227,7 +224,7 @@ ipcMain.on('updateApplication', () => {
     autoUpdater.quitAndInstall(false, true)
 })
 
-ipcMain.handle('LoadSetItems', async (evt, args) => {
+ipcMain.handle('LoadSetItems', async (evt, args: [string]) => {
     const SetRequests = {
         allItems: {
             url: `${configService.baseUrl()}/user_iframe.php?group=2`,
@@ -242,10 +239,12 @@ ipcMain.handle('LoadSetItems', async (evt, args) => {
             script: 'art_alt'
         }
     }
-    let requests = args.map(arg => fetch(SetRequests[arg]))
+    // @ts-ignore
+    let requests = args.map((arg: string) => fetch(SetRequests[arg]))
     let results = await Promise.all(requests)
     let res = {}
     args.forEach((arg, index) => {
+        // @ts-ignore
         res[arg] = results[index]
     })
     return res
@@ -257,21 +256,21 @@ ipcMain.on('findCharacter', (event, nick) => {
         height: 900,
         useContentSize: true,
         show: true,
-        parent: configService.windowsAboveApp() ? TabsController.mainWindow : null
+        parent: configService.windowsAboveApp() ? TabsController.mainWindow! : undefined
     })
     userInfoBrowserWindow.webContents.loadURL(`${configService.baseUrl()}/user_info.php?nick=${nick}`)
 })
 
-async function fetch(request) {
+async function fetch(request: { url: string; script: string }) {
     const bw = new BrowserView()
     await bw.webContents.loadURL(request.url)
-    let result = await bw.webContents.executeJavaScript(request.script)
-    bw.webContents.destroy()
+    let result = await bw.webContents.executeJavaScript(request.script);
+    (bw.webContents as any).destroy()
     return result
 }
 
 
-let settingsWindow = null
+let settingsWindow: BrowserWindow | null
 ipcMain.on('openSettings', () => {
     if(settingsWindow) {
         settingsWindow.show()
@@ -285,7 +284,7 @@ ipcMain.on('openSettings', () => {
         minHeight: 700,
         useContentSize: true,
         show: true,
-        parent: configService.windowsAboveApp() ? TabsController.mainWindow : null,
+        parent: configService.windowsAboveApp() ? TabsController.mainWindow! : undefined,
         webPreferences: {
             preload: path.join(__dirname, './components/Settings/preload.js')
         }
@@ -298,5 +297,5 @@ ipcMain.on('openSettings', () => {
     })
     require("@electron/remote/main").enable(settingsWindow.webContents)
     settingsWindow.loadFile(`${path.join(__dirname, './components/Settings/index.html')}`)
-    TabsController.mainWindow.webContents.send('openWindow', 'settings', true)
+    TabsController.mainWindow?.webContents.send('openWindow', 'settings', true)
 })

@@ -1,20 +1,15 @@
-const {
-    BrowserView,
-    BrowserWindow,
-    globalShortcut,
-    session,
-    clipboard
-} = require('electron')
-const path = require('path')
-const configService = require('../../services/ConfigService')
-const TabsController = require('../../services/TabsController')
+import { BrowserView, BrowserWindow, globalShortcut, session, clipboard, Rectangle, app } from 'electron'
+import path from 'path'
+import configService from '../../services/ConfigService'
+import { TabsController } from '../../services/TabsController'
 
-class MainWindow extends BrowserWindow {
+export default class MainWindowContainer {
 
-    browserView = null
+    browserView: BrowserView | null | undefined
+    mainWindow: BrowserWindow
 
     constructor() {
-        super({
+        this.mainWindow = new BrowserWindow({
             width: 1400,
             height: 900,
             title: 'Dwarium',
@@ -28,39 +23,42 @@ class MainWindow extends BrowserWindow {
             show: false
         })
 
-        this.on('enter-full-screen', () => {
-            this.setContentBounds(TabsController.currentTab(), this.getBounds())
+        this.mainWindow.on('enter-full-screen', () => {
+            this.setViewContentBounds(TabsController.currentTab(), this.mainWindow.getBounds())
         })
 
-        this.on('leave-full-screen', () => {
-            this.setContentBounds(TabsController.currentTab(), this.getBounds())
+        this.mainWindow.on('leave-full-screen', () => {
+            this.setViewContentBounds(TabsController.currentTab(), this.mainWindow.getBounds())
         })
 
-        this.on('closed', function() {
+        this.mainWindow.on('closed', () => {
+            (this.browserView?.webContents as any).destroy()
+            this.browserView = null
             this.unregisterShortcuts()
-            clearInterval(this.sessionCheckInterval)
-            this.sessionCheckInterval = null
+            this.sessionCheckInterval
+            global.clearInterval(this.sessionCheckInterval as NodeJS.Timeout)
+            this.sessionCheckInterval = undefined
         })
 
-        this.webContents.on('did-finish-load', () => {
+        this.mainWindow.webContents.on('did-finish-load', () => {
             let currentServer = configService.server()
-            this.webContents.send('server', currentServer)
+            this.mainWindow.webContents.send('server', currentServer)
         })
 
-        this.on('focus', () => {
+        this.mainWindow.on('focus', () => {
             globalShortcut.register('CommandOrControl+W', () => {
                 if(TabsController.currentTab() != TabsController.getMain()) {
-                    this.webContents.send('close_tab', TabsController.current_tab_id)
+                    this.mainWindow.webContents.send('close_tab', TabsController.current_tab_id)
                 }
                 if(TabsController.onlyMain()) {
-                    this.close()
+                    this.mainWindow.close()
                 }
             })
             globalShortcut.register('CommandOrControl+O', () => {
                 TabsController.currentTab().webContents.openDevTools()
             })
             globalShortcut.register('CommandOrControl+Shift+K', () => {
-                session.defaultSession.clearStorageData([], (data) => {})
+                session.defaultSession.clearStorageData()
                 TabsController.currentTab().webContents.reload()
             })
             globalShortcut.register('CommandOrControl+Shift+C', () => {
@@ -70,11 +68,11 @@ class MainWindow extends BrowserWindow {
                 }
             })
             globalShortcut.register('CommandOrControl+T', () => {
-                this.send('new_tab')
+                this.mainWindow.webContents.send('new_tab')
             })
         })
 
-        this.on('blur', () => {
+        this.mainWindow.on('blur', () => {
             this.unregisterShortcuts()
         })
     }
@@ -88,14 +86,12 @@ class MainWindow extends BrowserWindow {
 
     setup() {
         this.browserView = this.createMainBrowserView()
-        this.setBrowserView(this.browserView)
-        this.browserView.webContents.setWindowOpenHandler(({
-            url,
-            features
-        }) => {
-            // TODO: - May be there is a better solution. Hack for login window
+        this.mainWindow.setBrowserView(this.browserView)
+
+        // @ts-ignore - TS - FIX
+        this.browserView.webContents.setWindowOpenHandler(({ url, features }) => {
             if(configService.windowOpenNewTab() && !features.includes('location=no') || TabsController.currentTab() == TabsController.getMain() && !features) {
-                this.send('new_tab', url)
+                this.mainWindow.webContents.send('new_tab', url)
                 return {
                     action: 'deny'
                 }
@@ -117,7 +113,7 @@ class MainWindow extends BrowserWindow {
     }
 
     getControlBounds() {
-        const contentBounds = this.getContentBounds();
+        const contentBounds = this.mainWindow.getContentBounds();
         return {
             x: 0,
             y: 0,
@@ -126,8 +122,8 @@ class MainWindow extends BrowserWindow {
         }
     }
 
-    setContentBounds(tab, size) {
-        const [contentWidth, contentHeight] = this.getContentSize()
+    setViewContentBounds(tab: BrowserView, size?: Rectangle) {
+        const [contentWidth, contentHeight] = this.mainWindow.getContentSize()
         const controlBounds = this.getControlBounds()
         if(tab) {
             tab.setBounds({
@@ -139,35 +135,35 @@ class MainWindow extends BrowserWindow {
         }
     }
 
-    sessionCheckInterval = null
+    sessionCheckInterval: NodeJS.Timeout | undefined
     start() {
-        this.show();
+        this.mainWindow.show();
         if(configService.maximizeOnStart()) {
-            this.maximize()
+            this.mainWindow.maximize()
         }
-        this.loadFile(`${path.join(__dirname, 'index.html')}`);
+        this.mainWindow.loadFile(`${path.join(app.getAppPath(), 'gui', 'MainWindow', 'index.html')}`);
         const self = this
         this.sessionCheckInterval = setInterval(async function() {
-            let resp = await self.browserView.webContents.executeJavaScript('window.myId')
+            let resp = await self.browserView?.webContents.executeJavaScript('window.myId')
             if(resp) {
-                self.send('auth', true)
+                self.mainWindow.webContents.send('auth', true)
             } else {
-                self.send('auth', false)
+                self.mainWindow.webContents.send('auth', false)
             }
         }, 1000)
     }
 
     createMainBrowserView() {
         let browserView = new BrowserView({
-            enablePreferredSizeMode: true,
             webPreferences: {
+                enablePreferredSizeMode: true,
                 preload: path.join(__dirname, 'MainBrowserViewPreload.js'),
                 contextIsolation: false,
                 nativeWindowOpen: true
             }
         })
-        browserView.webContents.on('did-finish-load', (e) => {
-            this.send('url', browserView.webContents.getURL(), 'main')
+        browserView.webContents.on('did-finish-load', () => {
+            this.mainWindow.webContents.send('url', browserView.webContents.getURL(), 'main')
         })
         browserView.webContents.setZoomFactor(0.9)
         browserView.setAutoResize({
@@ -177,5 +173,3 @@ class MainWindow extends BrowserWindow {
         return browserView
     }
 }
-
-module.exports.MainWindow = MainWindow
