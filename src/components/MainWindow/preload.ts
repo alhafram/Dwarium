@@ -151,13 +151,11 @@ ipcRenderer.on('new_tab', (event, url) => {
 })
 
 ipcRenderer.on('close_tab', (evt, id) => {
-    console.log("NEED TO CLOSE")
     let currentTabs = Array.from(tabs!.children)
     currentTabs.pop()
     let current_tab = currentTabs.filter(t => t.id == id)[0]
     if(current_tab) {
         tabs?.removeChild(current_tab);
-        console.log(tabs);
         (currentTabs[0] as HTMLElement).click()
         ipcRenderer.send('remove_view', id)
     }

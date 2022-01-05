@@ -1,13 +1,9 @@
-const {
-    contextBridge
-} = require('electron')
-const {
-    app
-} = require('@electron/remote')
-const configService = require('../../services/ConfigService')
+import { contextBridge, ipcRenderer } from 'electron'
+import { app } from '@electron/remote'
+import configService from '../../services/ConfigService'
 
 contextBridge.exposeInMainWorld('myAPI', {
-    saveSettings: (settings) => {
+    saveSettings: (settings: JSON) => {
         configService.writeData('settings', JSON.stringify(settings))
     },
     loadSettings: () => {
@@ -22,3 +18,15 @@ contextBridge.exposeInMainWorld('myAPI', {
         app.quit()
     }
 })
+
+export interface IMyAPI {
+    saveSettings: (settings: {}) => void,
+    loadSettings: () => any,
+    restart: () => void
+}
+
+declare global {
+    interface Window {
+        myAPI: IMyAPI
+    }
+}

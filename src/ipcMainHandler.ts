@@ -296,6 +296,6 @@ ipcMain.on('openSettings', () => {
         }
     })
     require("@electron/remote/main").enable(settingsWindow.webContents)
-    settingsWindow.loadFile(`${path.join(__dirname, './components/Settings/index.html')}`)
+    settingsWindow.loadFile(`${path.join(__dirname, '../gui/Settings/index.html')}`)
     TabsController.mainWindow?.webContents.send('openWindow', 'settings', true)
 })

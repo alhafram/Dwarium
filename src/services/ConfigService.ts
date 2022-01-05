@@ -1,4 +1,5 @@
-import { app } from 'electron';
+const { app } = process.type === 'browser' ? require('electron') : require('@electron/remote')
+
 import fs from 'fs';
 import path from 'path';
 const configPath = path.join(app.getPath('userData'), 'config.json')
