@@ -142,7 +142,7 @@ ipcMain.on('openChatSettings', () => {
             TabsController.mainWindow?.webContents.send('openWindow', 'chatSettings', false)
         }
     })
-    chatSettingsWindow.loadFile(`${path.join(__dirname, './components/ChatSettings/index.html')}`)
+    chatSettingsWindow.loadFile(`${path.join(__dirname, '../gui/ChatSettings/index.html')}`)
     TabsController.mainWindow?.webContents.send('openWindow', 'chatSettings', true)
 })
 
