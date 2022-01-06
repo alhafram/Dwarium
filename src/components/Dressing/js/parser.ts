@@ -1,4 +1,7 @@
-function parse(art_alt) {
+import { InventoryItem } from './arcats'
+// import filterArcats from './arcats'
+
+export default function parse(art_alt: InventoryItem[]) {
     let items = Object.values(art_alt)
 
     let delimiters = items.filter(item => item.title == 'Разделитель')
@@ -9,6 +12,7 @@ function parse(art_alt) {
 
     let arcats = items.filter(i => i.kind_id == '161') // Arcats
     items = items.removeItems(arcats)
+    // @ts-ignore
     arcats = Object.values(filterArcats(arcats))
     arcats = arcats.filter(a => a)
 

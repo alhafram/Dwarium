@@ -52,7 +52,6 @@ async function processLineByLine() {
     })
 }
 
-
 window.addEventListener('DOMContentLoaded', async () => {
     await processLineByLine()
     filterLog()
@@ -66,7 +65,8 @@ declare global {
         createElementFromString(str: string): ChildNode
     }
     export interface Array<T> {
-        removeItem(elem: T): T
+        removeItem(elem: T): T[]
+        removeItems(arr: T[]): T[]
     }
 }
 
@@ -79,6 +79,16 @@ Array.prototype.removeItem = function(element) {
     var index = this.indexOf(element)
     if(index != -1) {
         this.splice(index, 1)
+    }
+    return this
+}
+
+Array.prototype.removeItems = function(elements) {
+    for(var element of elements) {
+        var index = this.indexOf(element)
+        if(index != -1) {
+            this.splice(index, 1)
+        }
     }
     return this
 }

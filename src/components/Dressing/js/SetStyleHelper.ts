@@ -1,7 +1,7 @@
 const SetStyleHelper = {
     magmarSchools: ['Огонь', 'Земля', 'Тень'],
     humanSchools: ['Воздух', 'Свет', 'Вода'],
-    getStyleId(name) {
+    getStyleId(name: string): number {
         if(name == 'Огонь') {
             return 8
         }
@@ -20,8 +20,9 @@ const SetStyleHelper = {
         if(name == 'Свет') {
             return 4
         }
+        return 0
     },
-    getSchool(style, currentSchool) {
+    getSchool(style: string, currentSchool: string): string | null {
         if(SetStyleHelper.magmarSchools.includes(currentSchool)) {
             if(style == 'Костолом') {
                 return 'Огонь'
@@ -46,7 +47,7 @@ const SetStyleHelper = {
         }
         return null
     },
-    getMagicIcon(magic) {
+    getMagicIcon(magic: string): string {
         if(magic == 'Огонь') {
             return 'Fire'
         }

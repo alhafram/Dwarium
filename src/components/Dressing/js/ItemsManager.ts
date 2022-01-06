@@ -1,3 +1,4 @@
+// @ts-nocheck
 class ItemsManager {
 
     parsingItemTypes = ['helmets', 'shoulders', 'bracers', 'mainWeapons', 'offhandWeapons', 'cuirasses', 'leggings', 'chainmails', 'boots', 'bows', 'quivers', 'rings', 'amulets', 'arcats']
@@ -86,7 +87,7 @@ class ItemsManager {
             divItem.className = 'box'
             divItem.draggable = 'true'
             divItem.setAttribute('equiped', 'false')
-            divItem.style = `background-image: url('${window.myAPI.baseUrl()}/${item.image}');background-repeat: no-repeat;background-size: cover;`
+            divItem.style = `background-image: url('${window.dressingAPI.baseUrl()}/${item.image}');background-repeat: no-repeat;background-size: cover;`
             divItem.setAttribute('type', this.getType(item.kind_id))
             divItem.setAttribute('quality', item.quality)
             divItem.setAttribute('itemId', item.id)

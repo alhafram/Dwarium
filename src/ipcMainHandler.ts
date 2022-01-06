@@ -42,7 +42,8 @@ ipcMain.on('openDressingRoom', () => {
         show: true,
         parent: configService.windowsAboveApp() ? TabsController.mainWindow! : undefined,
         webPreferences: {
-            preload: path.join(__dirname, './components/Dressing/preload.js')
+            preload: path.join(__dirname, './components/Dressing/preload.js'),
+            nodeIntegration: true
         }
     })
     require("@electron/remote/main").enable(dressingWindow.webContents)
@@ -52,7 +53,7 @@ ipcMain.on('openDressingRoom', () => {
             TabsController.mainWindow?.webContents.send('openWindow', 'dressingRoom', false)
         }
     })
-    dressingWindow.loadFile(`${path.join(__dirname, './components/Dressing/index.html')}`)
+    dressingWindow.loadFile(`${path.join(__dirname, '../gui/Dressing/index.html')}`)
     TabsController.mainWindow?.webContents.send('openWindow', 'dressingRoom', true)
 })
 

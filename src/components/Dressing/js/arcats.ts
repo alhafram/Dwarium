@@ -1,4 +1,9 @@
-function filterArcats(arcats) {
+export interface InventoryItem {
+    id: string | undefined
+    title: string, desc: any, kind_id: string, type_id: string, skills: [{ value: any, title: string }]
+}
+
+export default function filterArcats(arcats: InventoryItem[]) {
     let antiInfury = arcats.filter(a => a.title.includes('антитравматизма')).sort((a, b) => a.skills[0].value - b.skills[0].value)[0]
     arcats = arcats.removeItems(arcats.filter(a => a.title.includes('антитравматизма')))
     let barrier = arcats.filter(a => a.title.includes('барьера')).sort((a, b) => a.skills[0].value - b.skills[0].value)[0]
