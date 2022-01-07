@@ -83,7 +83,7 @@ ipcMain.on('openBeltPotionRoom', () => {
             TabsController.mainWindow?.webContents.send('openWindow', 'beltPotionRoom', false)
         }
     })
-    beltWindow.loadFile(`${path.join(__dirname, './components/Belt/index.html')}`)
+    beltWindow.loadFile(`${path.join(__dirname, '../gui/Belt/index.html')}`)
     TabsController.mainWindow?.webContents.send('openWindow', 'beltPotionRoom', true)
 })
 

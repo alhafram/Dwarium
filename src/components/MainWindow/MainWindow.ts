@@ -144,7 +144,7 @@ export default class MainWindowContainer {
         this.mainWindow.loadFile(`${path.join(app.getAppPath(), 'gui', 'MainWindow', 'index.html')}`);
         const self = this
         this.sessionCheckInterval = setInterval(async function() {
-            let resp = await self.browserView?.webContents.executeJavaScript('window.myId')
+            let resp = await TabsController.getMain().webContents.executeJavaScript('window.myId')
             if(resp) {
                 self.mainWindow.webContents.send('auth', true)
             } else {
