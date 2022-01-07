@@ -59,7 +59,7 @@ let initialState: SettingsWindowState = {
     userAgents: Object.keys(UserAgentType).map(key => {
         return {
             id: key,
-            value: getTitle(UserAgentType[key as keyof typeof UserAgentType] as UserAgentType)
+            value: getTitle(UserAgentType[key as keyof typeof UserAgentType])
         }
     }),
     selectedUserAgentType: UserAgentType.DEFAULT,
@@ -106,7 +106,7 @@ function reduce(state: SettingsWindowState = initialState, action: SettingsWindo
             }
         case SettingsWindowActions.CHANGE_USER_AGENT:
             const newValue = Elements.userAgentsSelect().value
-            let userAgentType = UserAgentType[newValue as keyof typeof UserAgentType] as UserAgentType
+            let userAgentType = UserAgentType[newValue as keyof typeof UserAgentType]
             let userAgentValue = userAgentType.toString()
             if(UserAgentType[newValue as keyof typeof UserAgentType].toString() == UserAgentType.OWN.toString()) {
                 userAgentType = UserAgentType.OWN
