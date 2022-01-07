@@ -174,6 +174,6 @@ ipcRenderer.on('updateApplicationAvailable', () => {
 })
 
 ipcRenderer.on('openWindow', (_evt, id, active) => {
-    const element = document.getElementById(id)?.style
-    element?.setProperty('backgroundColor',  active ? '#999' : 'white')
+    const element = document.getElementById(id)
+    element!.style.backgroundColor = active ? '#999' : 'white'
 })
