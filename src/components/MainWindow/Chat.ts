@@ -1,10 +1,7 @@
-const {
-    app,
-    powerMonitor,
-    globalShortcut
-} = require('@electron/remote')
-const fs = require('fs')
-const path = require('path')
+// @ts-nocheck
+import { app, powerMonitor, globalShortcut } from '@electron/remote'
+import fs from 'fs'
+import path from 'path'
 const logsFolderPath = path.join(app.getPath ('userData'), 'logs')
 const filePath = path.join(logsFolderPath, 'chat.log')
 
@@ -15,7 +12,7 @@ if(!fs.existsSync(logsFolderPath)) {
     fs.openSync(filePath, 'w')
 }
 
-const configService = require('../../src/services/ConfigService')
+import configService from '../../services/ConfigService'
 var logStream = fs.createWriteStream(filePath, {
     flags: 'a'
 });
@@ -23,11 +20,11 @@ var logStream = fs.createWriteStream(filePath, {
 var msg_max = 100
 
 var checkLmtsProxyReady = function() {
-    lastMsgTime = time_current();
+    top[1].lastMsgTime = time_current();
     var proxyRef = top[1].document.lmts_proxy;
     if(proxyRef && typeof proxyRef.connect !== 'undefined') {
         top[1].debugLog('lmts proxy ready');
-        lastMsgTime = time_current();
+        top[1].lastMsgTime = time_current();
         top[1].LMTS = top[1].esrv(proxyRef);
 
         top[1].LMTS.onError = function(code, msg) {
@@ -356,7 +353,7 @@ function setupReceiver() {
         html = html.replaceAll('href="/artifact_info.php', `href="${configService.baseUrl()}/artifact_info.php`)
         logStream.write(html + '\n');
 
-        client_msg = {};
+        var client_msg = {};
         client_msg.data = {};
         client_msg.data.msg = client_text.split('"').join('\\"');
         client_msg.data.ctime = parseInt(msg.stime + top[1].session.time_offset + new Date().getTimezoneOffset() * 60);
