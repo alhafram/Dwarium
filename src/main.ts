@@ -5,6 +5,9 @@ import { autoUpdater } from "electron-updater"
 import configService from './services/ConfigService'
 require('@electron/remote/main').initialize()
 require('v8-compile-cache')
+import electronReload from "electron-reload";
+electronReload(__dirname, {});
+
 
 autoUpdater.checkForUpdatesAndNotify()
 setInterval(() => {
