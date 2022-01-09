@@ -141,8 +141,8 @@ ipcRenderer.on('url', (event, url, id) => {
 })
 
 ipcRenderer.on('finishLoadUrl', (event, id, title) => {
-    let element = document.getElementById(id)?.firstElementChild as HTMLInputElement
-    element.value = title
+    let element = document.getElementById(id)?.firstElementChild as HTMLLinkElement
+    element.textContent = title
 })
 
 ipcRenderer.on('new_tab', (event, url) => {
