@@ -1,24 +1,19 @@
 var art_alt = null
 
 // @ts-ignore Temporary solution for hack in simple_alt.js
-// window.myAPI = {}
+window.myAPI = {}
 // @ts-ignore Temporary solution for hack in simple_alt.js
-// window.myAPI.baseUrl = function() {
-//     return window.dressingAPI.baseUrl()
-// }
-
-interface ArcatSpotState {
-    number: number,
-    enabled: boolean,
-    arcat: HTMLDivElement | null
+window.myAPI.baseUrl = function() {
+    return window.dressingAPI.baseUrl()
 }
 
 interface DressingSet {
     id: string,
     title: string,
     ids: string[],
-    style: string,
-    magicSchool: string | null
+    style: string | null,
+    magicSchool: string | null,
+    isNew: boolean
 }
 
 enum DressingFilterColor {
@@ -69,7 +64,7 @@ interface InventoryItem {
     skills: [{ value: any, title: string }],
     quality: string,
     image: string,
-    trend: string
+    trend: string | undefined
 }
 
 interface Inventory {
@@ -98,36 +93,20 @@ interface Inventory {
     zikkurat: InventoryItem[]
 }
 
-
-interface WearedItemState {
-    box(): HTMLElement,
-    item?: HTMLElement | null
-}
-
 export interface DressingWindowState {
-    currentDraggableItem: HTMLDivElement | null,
-    selectedStaticItemBox: {
-        box: HTMLDivElement,
-        type: string
-    } | null,
-    needToDeselect: HTMLDivElement | null,
-    needToEquip: HTMLDivElement | null,
-    needToPutOff: HTMLDivElement | null | undefined,
-
-    arcats: ArcatSpotState[],
-
+    selectedStaticItemId: string | null,
+    currentEquipedItems: InventoryItem[],
+    allItems: InventoryItem[],
+    arcats: InventoryItem[],
+    rings: InventoryItem[],
+    amulets: InventoryItem[],
     activeFilters: DressingFilterColor[],
     sets: DressingSet[],
-    currentSet?: DressingSet | null,
+    currentSet: DressingSet | null,
     currentStyle: string | null,
     currentMagicSchool: string | null,
-
-    allItems: HTMLDivElement[],
-    deafultWearedItems: HTMLDivElement[],
     arcatsCount: number,
-    itemsRendered: boolean,
-    needToRender: boolean,
-    currentEquipedItems: HTMLDivElement[]
+    zikkuratId: string | null
 }
 
 const Elements = {
@@ -229,48 +208,50 @@ const Elements = {
     },
     arcat4Box(): HTMLDivElement {
         return document.getElementById('arcat4Box') as HTMLDivElement
+    },
+    setsBox(): HTMLDivElement {
+        return document.getElementsByClassName('sets')[0] as HTMLDivElement
+    },
+    setTitleBox(): HTMLInputElement {
+        return document.getElementById('currentSetTitle') as HTMLInputElement
+    },
+    saveSetBox(): HTMLInputElement {
+        return document.getElementById('saveSet') as HTMLInputElement
     }
 }
 
 var initialState: DressingWindowState = {
-    currentDraggableItem: null,
-    selectedStaticItemBox: null,
-    needToDeselect: null,
-    needToEquip: null,
-    needToPutOff: null,
+    selectedStaticItemId: null,
+    currentEquipedItems: [],
     arcats: [],
+    rings: [],
+    amulets: [],
     activeFilters: [],
     sets: [],
     currentSet: null,
     allItems: [],
     currentStyle: null,
     currentMagicSchool: null,
-    deafultWearedItems: [],
     arcatsCount: 0,
-    itemsRendered: false,
-    needToRender: false,
-    currentEquipedItems: []
+    zikkuratId: null
 }
 
 enum DressingWindowActions {
-    LOAD_ITEMS,
-    INVENTORY_RENDERED,
+    LOAD_CONTENT,
+    CREATE_NEW_SET,
+    SAVE_SET,
+    REMOVE_SET,
+    SELECT_SET,
 
-    // LOAD_SETS,
-    // ADD_SET,
-    // REMOVE_SET,
-    // SELECT_SET,
+    START_DRAGGING_SET,
+    END_DRAGGING_SET,
 
     SELECT_PLACEHOLDER,
     DESELECT_PLACEHOLDER,
 
-    START_DRAGGING_ITEM,
-    END_DRAGGING_ITEM,
-
     UNEQUIP_ITEM,
-    UNEQUIP_ITEM_DONE,
     EQUIP,
-    EQUIP_DONE,
+    EQUIP_FROM_SET,
 
     ADD_FILTER,
     REMOVE_FILTER
@@ -424,7 +405,14 @@ function convertItemIntoDiv(item: InventoryItem): HTMLDivElement {
     divItem.className = 'box'
     divItem.draggable = true
     divItem.setAttribute('equiped', 'false')
-    divItem.style.backgroundImage = `url('${window.dressingAPI.baseUrl()}/${item.image}')`
+    console.log(divItem.style.backgroundImage)
+    if(item.image.includes(window.dressingAPI.baseUrl())) {
+        divItem.style.backgroundImage = `url('${item.image}')`
+    } else {
+        const url = `${window.dressingAPI.baseUrl()}/${item.image}`
+        item.image = url
+        divItem.style.backgroundImage = `url('${url}')`
+    }
     divItem.style.backgroundRepeat = 'no-repeat'
     divItem.style.backgroundSize = 'cover'
     divItem.setAttribute('type', getType(item.kind_id))
@@ -489,33 +477,39 @@ function getType(kind_id: string): InventoryItemType {
     return InventoryItemType.OTHER
 }
 
-function getStyle(items: HTMLDivElement[]): string | null {
-    const styles = items.map(item => item.getAttribute('trend') ?? '')
+function getStyle(items: InventoryItem[]): string | null {
+    const styles = items.map(item => item.trend)
     const uniqueStyles = new Set(styles)
     uniqueStyles.delete('Универсал')
-    return uniqueStyles.size == 0 ? null : Array.from(uniqueStyles)[0]
+    uniqueStyles.delete(undefined)
+    return uniqueStyles.size == 0 ? null : Array.from(uniqueStyles as Set<string>)[0]
 }
+
+// ???? BETTER SOLUTION
+let dragableItem: HTMLDivElement | null = null
 
 function handleDragStartEquipableItem(this: any) {
-    dispatch(DressingWindowActions.START_DRAGGING_ITEM, this)
+    dragableItem = this
 }
 
-function handleDragEndEquipableItem() {
-    dispatch(DressingWindowActions.END_DRAGGING_ITEM)
+function handleDragEndEquipableItem(this: any) {
+    dragableItem = null
 }
 
 function handleDragOver(e: Event) {
     e.preventDefault()
 }
 
-function handleDropEquipableItemOnStaticItemBox(this: any, e: Event) {
+function handleDropEquipableItemOnStaticItemBox(this: HTMLDivElement, e: Event) {
     e.stopPropagation()
-    dispatch(DressingWindowActions.END_DRAGGING_ITEM, this)
+    if(dragableItem?.getAttribute('equiped') == 'false' && this.getAttribute('type') == dragableItem?.getAttribute('type')) {
+        dispatch(DressingWindowActions.EQUIP, dragableItem)
+    }
 }
 
 function handleDropEquipableItemIntoAllItems(this: any, e: Event) {
     e.stopPropagation()
-    dispatch(DressingWindowActions.UNEQUIP_ITEM)
+    dispatch(DressingWindowActions.UNEQUIP_ITEM, dragableItem)
 }
 
 function handleClickEquipableItem(this: any, e: MouseEvent) {
@@ -533,41 +527,40 @@ function handleClickEquipableItem(this: any, e: MouseEvent) {
 
 function setupEquipableItemEvents(item: HTMLElement) {
     item.addEventListener('dragstart', handleDragStartEquipableItem, false)
+    item.addEventListener('dragover', handleDragOver, false)
     item.addEventListener('dragend', handleDragEndEquipableItem, false)
     item.addEventListener('click', handleClickEquipableItem, false)
     item.addEventListener('mouseover', function() {
         // @ts-ignore
-        // artifactAltSimple(this.getAttribute('itemid'), 2)
+        artifactAltSimple(this.getAttribute('itemid'), 2)
     }, false)
     item.addEventListener('mouseout', function() {
         // @ts-ignore
-        // artifactAltSimple(this.getAttribute('itemid'), 0)
+        artifactAltSimple(this.getAttribute('itemid'), 0)
     }, false)
 }
 
 function setupFilters() {
     for(const key of Object.values(DressingFilterColor)) {
         const element = document.getElementById(key) as HTMLInputElement
-        element.onchange = function(e) {
+        element.onchange = function() {
             dispatch(element.checked ? DressingWindowActions.REMOVE_FILTER : DressingWindowActions.ADD_FILTER, key)
         }
     }
 }
 
-function createArcatSlot(id: number) {
-    let parent = document.getElementById('arcats')
+function createArcatSlot(id: number): HTMLDivElement {
     let slotElement = document.createElement('div')
     slotElement.setAttribute('type', 'arcat')
     slotElement.id = `arcat${id + 1}Box`
     slotElement.className = 'boxStatic small'
-    setupPlaceholderForRepeatableItems(slotElement)
-    parent?.appendChild(slotElement)
+    return slotElement
 }
 
 function setupPlaceholderForRepeatableItems(item: HTMLElement) {
     item.addEventListener('click', () => {
-        if(initialState.selectedStaticItemBox && initialState.selectedStaticItemBox.box == item) {
-            dispatch(DressingWindowActions.DESELECT_PLACEHOLDER, initialState.selectedStaticItemBox.box)
+        if(initialState.selectedStaticItemId && initialState.selectedStaticItemId == item.id) {
+            dispatch(DressingWindowActions.DESELECT_PLACEHOLDER)
         } else {
             dispatch(DressingWindowActions.SELECT_PLACEHOLDER, item)
         }
@@ -624,10 +617,65 @@ function filterArcats(arcats: InventoryItem[]): Arcats {
     }
 }
 
+// ???? BETTER SOLUTION
+let dragableSet: any = null
+function createSetElement(set: DressingSet, active: boolean = false) {
+    let article = document.createElement('article')
+    article.id = set.id
+    article.draggable = true
+    let className = active ? 'leaderboard__profile active' : 'leaderboard__profile'
+    article.className = className
+    article.onclick = function(e) {
+        dispatch(DressingWindowActions.SELECT_SET, set)
+    }
+    article.addEventListener('dragstart', function(e) {
+        article.style.opacity = '0.4'
+        dragableSet = article
+    }, false)
+    article.addEventListener('dragend', function() {
+        article.style.opacity = '1'
+        dragableSet = null
+    }, false)
+    article.addEventListener('dragover', function(e) {
+        e.preventDefault()
+    })
+    let img = document.createElement('img')
+    img.src = './images/magic/' + SetStyleHelper.getMagicIcon(set.magicSchool) + '.webp'
+    img.className = 'leaderboard__picture'
+    article.appendChild(img)
+
+    let span = document.createElement('span')
+    span.className = 'leaderboard__name'
+    span.textContent = set.title
+    article.appendChild(span)
+    return article
+}
+
+function generateSetId() {
+    return 'set_' + generateRandomId()
+}
+
+function generateRandomId() {
+    return (Math.random() + 1).toString(36).substring(2)
+}
+
+function addNewSet(): DressingSet {
+    let id = generateSetId()
+    let newSet: DressingSet = {
+        id: id,
+        title: 'Default set',
+        ids: [],
+        style: null,
+        magicSchool: null,
+        isNew: true
+    }
+    return newSet
+}
+
 const SetStyleHelper = {
     magmarSchools: ['Огонь', 'Земля', 'Тень'],
     humanSchools: ['Воздух', 'Свет', 'Вода'],
-    getStyleId(name: string): number {
+    getStyleId(name: string | null): number {
         if(name == 'Огонь') {
             return 8
         }
@@ -648,7 +696,10 @@ const SetStyleHelper = {
         }
         return 0
     },
-    getSchool(style: string, currentSchool: string): string | null {
+    getSchool(style: string | null, currentSchool: string | null): string | null {
+        if(!style || !currentSchool) {
+            return null
+        }
         if(SetStyleHelper.magmarSchools.includes(currentSchool)) {
             if(style == 'Костолом') {
                 return 'Огонь'
@@ -673,7 +724,7 @@ const SetStyleHelper = {
         }
         return null
     },
-    getMagicIcon(magic: string): string {
+    getMagicIcon(magic: string | null): string {
         if(magic == 'Огонь') {
             return 'Fire'
         }
@@ -697,22 +748,42 @@ const SetStyleHelper = {
 }
 
 async function reduce(state: DressingWindowState = initialState, action: DressingWindowActions, data?: any): Promise<DressingWindowState> {
-    let needToEquip = null
     let newFilters: DressingFilterColor[] = []
-    let equipedItems = initialState.currentEquipedItems
+    let sets = state.sets
+    let currentEquipedItems = state.currentEquipedItems
+    let arcats = state.arcats
+    let rings = state.rings
+    let amulets = state.amulets
+    const parsedItemTypes = ['helmets', 'shoulders', 'bracers', 'mainWeapons', 'offhandWeapons', 'cuirasses', 'leggings', 'chainmails', 'boots', 'bows', 'quivers', 'rings', 'amulets', 'arcats']
     switch(action) {
-        case DressingWindowActions.LOAD_ITEMS:
+        case DressingWindowActions.LOAD_CONTENT:
             let result = await window.dressingAPI.loadItemsData(['allItems', 'wearedItems'])
             let parsedAllItems = parse(result.allItems)
             let parsedWearedItems = parse(result.wearedItems)
-            const parsedItemTypes = ['helmets', 'shoulders', 'bracers', 'mainWeapons', 'offhandWeapons', 'cuirasses', 'leggings', 'chainmails', 'boots', 'bows', 'quivers', 'rings', 'amulets', 'arcats']
             let allItems = Object.keys(parsedAllItems).filter(key => parsedItemTypes.includes(key)).map(key => parsedAllItems[key]).flat() as InventoryItem[]
-            let wearedItems = Object.keys(parsedWearedItems).filter(key => parsedItemTypes.includes(key)).map(key => parsedWearedItems[key]).flat() as InventoryItem[]
-            const allItemDivs = allItems.map(item => convertItemIntoDiv(item))
-            const wearedItemDivs = wearedItems.map(item => convertItemIntoDiv(item))
-            let currentMagicSchool = null
+            currentEquipedItems = Object.keys(parsedWearedItems).filter(key => parsedItemTypes.includes(key)).map(key => parsedWearedItems[key]).flat() as InventoryItem[]
+            currentEquipedItems.forEach(item => {
+                const type = getType(item.kind_id)
+                switch(type) {
+                    case InventoryItemType.ARCAT:
+                        arcats.push(item)
+                        break
+                    case InventoryItemType.RING:
+                        rings.push(item)
+                        break
+                    case InventoryItemType.AMULET:
+                        amulets.push(item)
+                        break
+                    default:
+                        break
+                }
+            })
+            // @ts-ignore
+            allItems = allItems.concat(currentEquipedItems).sort((a, b) => a.kind_id - b.kind_id)
+            let currentMagicSchool: string | null = null
+            let zikkuratId = null
             if(parsedAllItems.zikkurat.length != 0) {
-                const zikkuratId = parsedAllItems.zikkurat[0].id
+                zikkuratId = parsedAllItems.zikkurat[0].id
                 const res = await window.dressingAPI.getMagicSchools(zikkuratId)
                 currentMagicSchool = parseMagicSchools(res.result)
             }
@@ -721,111 +792,220 @@ async function reduce(state: DressingWindowState = initialState, action: Dressin
             if(bracelet) {
                 arcatsCount = bracelet.skills.find(s => s.title === 'Слоты для аркатов')!.value.slice(4, 5) as number
             }
+            const loadedSets = window.dressingAPI.loadSets() as DressingSet[]
+            let preselectSet = loadedSets.find(set => difference(currentEquipedItems.map(item => item.id), set.ids).size == 0 && difference(set.ids, currentEquipedItems.map(item => item.id)).size == 0) || null
+            art_alt = Object.assign(result.allItems, result.wearedItems)
             return {
                 ...state,
-                allItems: allItemDivs,
-                deafultWearedItems: wearedItemDivs,
-                needToRender: true,
+                allItems: allItems,
+                currentEquipedItems: currentEquipedItems,
                 currentMagicSchool: currentMagicSchool,
-                arcatsCount: arcatsCount
-            }
-        case DressingWindowActions.INVENTORY_RENDERED:
-            return {
-                ...state,
-                itemsRendered: true,
-                needToRender: true
+                arcatsCount: arcatsCount,
+                sets: loadedSets,
+                currentStyle: getStyle(currentEquipedItems),
+                zikkuratId: zikkuratId,
+                currentSet: preselectSet
             }
         case DressingWindowActions.SELECT_PLACEHOLDER:
             let selectedBox = data as HTMLDivElement
             return {
                 ...state,
-                needToDeselect: initialState.selectedStaticItemBox?.box ?? null,
-                selectedStaticItemBox: {
-                    box: selectedBox,
-                    type: selectedBox.getAttribute('type') ?? ''
-                },
-                needToRender: true
+                selectedStaticItemId: selectedBox.id
             }
         case DressingWindowActions.DESELECT_PLACEHOLDER:
-            let needToDeselect = data as HTMLDivElement
             return {
                 ...state,
-                needToDeselect: needToDeselect,
-                selectedStaticItemBox: null,
-                needToRender: true
-            }
-        case DressingWindowActions.START_DRAGGING_ITEM:
-            return {
-                ...state,
-                currentDraggableItem: data as HTMLDivElement,
-                needToRender: false
-            }
-        case DressingWindowActions.END_DRAGGING_ITEM:
-            needToEquip = null
-            let staticBox = data as HTMLDivElement | null
-            if(state.currentDraggableItem?.getAttribute('equiped') != 'true' && staticBox?.childElementCount == 0 && state.currentDraggableItem?.getAttribute('type') == staticBox.getAttribute('type')) {
-                needToEquip = state.currentDraggableItem
-            }
-            return {
-                ...state,
-                needToEquip: needToEquip,
-                needToRender: true,
-                needToDeselect: initialState.selectedStaticItemBox?.box ?? null,
-                selectedStaticItemBox: null,
-                currentDraggableItem: null
-            }
-        case DressingWindowActions.UNEQUIP_ITEM:
-            return {
-                ...state,
-                needToPutOff: initialState.currentDraggableItem ?? data as HTMLDivElement,
-                needToRender: true,
-                currentDraggableItem: null
-            }
-        case DressingWindowActions.UNEQUIP_ITEM_DONE:
-            const unequipedItem = data as HTMLDivElement
-            equipedItems = equipedItems.removeItem(unequipedItem)
-            return {
-                ...state,
-                needToPutOff: null,
-                needToRender: true,
-                currentEquipedItems: equipedItems,
-                currentStyle: getStyle(equipedItems)
+                selectedStaticItemId: null
             }
         case DressingWindowActions.EQUIP:
-            needToEquip = data as HTMLDivElement
-            return {
-                ...state,
-                needToEquip: needToEquip,
-                needToRender: true,
-                selectedStaticItemBox: null,
-                needToDeselect: state.selectedStaticItemBox?.box ?? null
+            const itemId = (data as HTMLDivElement).getAttribute('itemid')
+            let equipedItem = state.allItems.find(item => item.id == itemId)
+            if(!equipedItem) {
+                console.error("HELLO YOU FUCKED UP!!!!!")
             }
-        case DressingWindowActions.EQUIP_DONE:
-            const equipedItem = data as HTMLDivElement
-            equipedItems.push(equipedItem)
+            const type = getType(equipedItem!.kind_id)
+            switch(type) {
+                case InventoryItemType.ARCAT:
+                    if(arcats.length >= state.arcatsCount) {
+                        currentEquipedItems = currentEquipedItems.removeItem(arcats.pop()!)
+                    }
+                    arcats.push(equipedItem!)
+                    break
+                case InventoryItemType.RING:
+                    if(rings.length >= 2) {
+                        currentEquipedItems = currentEquipedItems.removeItem(rings.pop()!) 
+                    }
+                    rings.push(equipedItem!)
+                    break
+                case InventoryItemType.AMULET:
+                    if(amulets.length >= 2) {
+                        currentEquipedItems = currentEquipedItems.removeItem(amulets.pop()!)
+                    }
+                    amulets.push(equipedItem!)
+                    break
+                default:
+                    const alreadyEquipedItem = currentEquipedItems.find(item => getType(item.kind_id) == type)
+                    if(alreadyEquipedItem) {
+                        currentEquipedItems = currentEquipedItems.removeItem(alreadyEquipedItem)
+                    }
+                    break
+            }
+            currentEquipedItems.push(equipedItem!)
             return {
                 ...state,
-                needToEquip: null,
-                needToRender: true,
-                currentEquipedItems: equipedItems,
-                currentStyle: getStyle(equipedItems)
+                currentEquipedItems: currentEquipedItems,
+                currentStyle: getStyle(currentEquipedItems),
+                selectedStaticItemId: null,
+                arcats: arcats,
+                rings: rings,
+                amulets: amulets
+            }
+        case DressingWindowActions.UNEQUIP_ITEM:
+            let unequipedElement = data as HTMLDivElement
+            let unequipedItem = state.allItems.find(item => item.id == unequipedElement.getAttribute('itemid'))
+            if(!unequipedItem) {
+                console.error("HELLO YOU FUCKED UP!!!!!")
+            }
+            const type1 = getType(unequipedItem!.kind_id)
+            switch(type1) {
+                case InventoryItemType.ARCAT:
+                    arcats.removeItem(unequipedItem!)
+                    break
+                case InventoryItemType.RING:
+                    rings.removeItem(unequipedItem!)
+                    break
+                case InventoryItemType.AMULET:
+                    amulets.removeItem(unequipedItem!)
+                    break
+                default:
+                    break
+            }
+            currentEquipedItems = currentEquipedItems.removeItem(unequipedItem!)
+            return {
+                ...state,
+                currentEquipedItems: currentEquipedItems,
+                currentStyle: getStyle(currentEquipedItems),
+                selectedStaticItemId: null,
+                arcats: arcats,
+                rings: rings,
+                amulets: amulets
             }
         case DressingWindowActions.ADD_FILTER:
-            newFilters = initialState.activeFilters
+            newFilters = state.activeFilters
             newFilters.push(data)
             return {
                 ...state,
-                activeFilters: newFilters,
-                needToRender: true
+                activeFilters: newFilters
             }
         case DressingWindowActions.REMOVE_FILTER:
-            newFilters = initialState.activeFilters
+            newFilters = state.activeFilters
             newFilters = newFilters.removeItem(data)
             return {
                 ...state,
-                activeFilters: newFilters,
-                needToRender: true
+                activeFilters: newFilters
             }
+        case DressingWindowActions.CREATE_NEW_SET:
+            const newSet = data as DressingSet
+            window.dressingAPI.saveSet(newSet)
+            sets.push(newSet)
+            return {
+                ...state,
+                currentSet: newSet,
+                sets: sets,
+                currentEquipedItems: [],
+                currentStyle: null
+            }
+        case DressingWindowActions.SAVE_SET:
+            let set = state.currentSet
+            const equipmentItemIds = state.currentEquipedItems.map(item => item.id)
+            const setMagicSchool = SetStyleHelper.getSchool(state.currentStyle, state.currentMagicSchool)
+            if(set) {
+                set.title = Elements.setTitleBox().value
+                set.ids = equipmentItemIds
+                set.style = state.currentStyle
+                set.magicSchool = setMagicSchool
+                sets[sets.indexOf(set)] = set
+                set.isNew = false
+            } else {
+                set = {
+                    id: generateSetId(),
+                    title: Elements.setTitleBox().value,
+                    ids: equipmentItemIds,
+                    style: state.currentStyle,
+                    magicSchool: setMagicSchool,
+                    isNew: true
+                }
+                sets.push(set)
+            }
+            window.dressingAPI.saveSet(set)
+            return {
+                ...state,
+                currentSet: set,
+                sets: sets
+            }
+        case DressingWindowActions.REMOVE_SET:
+            let deletedSetBox = data as HTMLDivElement | null
+            const deletedSet = sets.find(set => set.id == deletedSetBox?.id)
+            if(deletedSet) {
+                const isCurrentSet = deletedSet == state.currentSet
+                const deletedSetId = deletedSet?.id
+                sets = sets.removeItem(deletedSet)
+                window.dressingAPI.removeSet(deletedSetId)
+                currentEquipedItems = isCurrentSet ? [] : state.currentEquipedItems
+                const currentSet = isCurrentSet ? null : state.currentSet
+                return {
+                    ...state,
+                    sets: sets,
+                    currentEquipedItems: currentEquipedItems,
+                    currentStyle: getStyle(currentEquipedItems),
+                    currentSet: currentSet
+                }
+            } else {
+                return {
+                    ...state
+                }
+            }
+        case DressingWindowActions.SELECT_SET:
+            const selectedSet = data as DressingSet
+            let items = selectedSet.ids.map(id => state.allItems.find(item => item.id == id)).filter(item => item != undefined) as InventoryItem[]
+            return {
+                ...state,
+                currentSet: selectedSet,
+                currentEquipedItems: items,
+                currentStyle: getStyle(items)
+            }
+        case DressingWindowActions.EQUIP_FROM_SET:
+            if(!state.currentSet) {
+                return state
+            }
+            console.log("EQUIP FROM SET", state.currentSet)
+            let currentSet = state.currentSet
+            if(state.currentMagicSchool && state.currentMagicSchool != currentSet.magicSchool) {
+                let styleId = SetStyleHelper.getStyleId(currentSet.magicSchool)
+                await window.dressingAPI.changeStyle(state.zikkuratId!, styleId)
+                state.currentMagicSchool = currentSet.magicSchool
+            }
+            const res = await window.dressingAPI.loadItemsData(['wearedItems'])
+            let parsedRes = parse(res.wearedItems)
+            let arr: InventoryItem[] = []
+            for(const type of parsedItemTypes) {
+                arr = arr.concat(parsedRes[type])
+            }
+            const needToPutOn = difference(currentSet.ids, arr.map(item => item.id))
+            const needToPutOff = difference(arr.map(item => item.id), currentSet.ids)
+
+            for(var id of needToPutOff) {
+                await window.dressingAPI.unequipRequest(id)
+            }
+            for(var id of needToPutOn) {
+                await window.dressingAPI.equipRequest(id)
+            }
+            return {
+                ...state
+            }
+        return {
+            ...state
+        }
         default:
             return state
     }
@@ -833,126 +1013,85 @@ async function reduce(state: DressingWindowState = initialState, action: Dressin
 
 async function dispatch(action: DressingWindowActions, data?: any) {
     initialState = await reduce(initialState, action, data)
-    if(initialState.needToRender) {
-        render()
-    }
+    console.log(initialState, DressingWindowActions[action])
+    render()
 }
 
 function render(): void {
-    if(initialState.selectedStaticItemBox) {
-        initialState.selectedStaticItemBox.box!.style.border = '3px dotted #666'
-    } 
-    if(initialState.needToDeselect) {
-        initialState.needToDeselect.style.border = ''
-    }
-    if(!initialState.itemsRendered) {
-        const allItemDivs = initialState.allItems
-        allItemDivs.forEach(item => {
-            let parent = document.querySelector('.currentItems')
-            setupEquipableItemEvents(item as HTMLElement)
-            parent?.appendChild(item)
-        })
-        if(initialState.arcatsCount != 0) {
-            for(let i = 0; i < initialState.arcatsCount; i++) {
-                createArcatSlot(i)
+    [Elements.helmetBox(), Elements.shouldersBox(), Elements.bracersBox(), Elements.mainWeaponBox(),
+     Elements.offhandWeaponBox(), Elements.cuirassBox(), Elements.leggingsBox(), Elements.chainmailBox(), 
+     Elements.bootsBox(), Elements.bowBox(), Elements.quiverBox(), Elements.ring1Box(), Elements.ring2Box(), 
+     Elements.amulet1Box(), Elements.amulet2Box(),Elements.arcat1Box(), Elements.arcat2Box(), Elements.arcat3Box(), Elements.arcat4Box()]
+     .forEach(box => {
+        if(box != null) {
+            box.style.border = ''
+            if(box.firstElementChild) {
+                box.removeChild(box.firstElementChild)
             }
+            box.style.visibility = 'visible'
         }
-        let equip_items = document.querySelectorAll('.equippedItems .boxStatic')
-        equip_items.forEach(function(item) {
-            item.addEventListener('dragover', handleDragOver, false)
-            item.addEventListener('drop', handleDropEquipableItemOnStaticItemBox, false)
-        })
-        const armorTypes = ['helmet', 'shoulders', 'bracers', 'mainWeapon', 'offhandWeapon', 'cuirass', 'leggings', 'chainmail', 'boots', 'bow', 'quiver', 'ring1', 'ring2', 'amulet1', 'amulet2']
-        armorTypes.forEach(t => {
-            let itemBox = document.getElementById(t + 'Box') as HTMLElement
-            if(['ring1', 'ring2', 'amulet1', 'amulet2'].includes(t)) {
-                setupPlaceholderForRepeatableItems(itemBox)
-            } else {
-                let itemBox = document.getElementById(t + 'Box') as HTMLElement
-                itemBox.addEventListener('click', () => {
-                    if(initialState.selectedStaticItemBox && itemBox.getAttribute('type') == initialState.selectedStaticItemBox.type) {
-                        dispatch(DressingWindowActions.DESELECT_PLACEHOLDER, itemBox)
-                    } else {
-                        dispatch(DressingWindowActions.SELECT_PLACEHOLDER, itemBox)
-                    }
-                })
-            }
-            itemBox.addEventListener('dragover', handleDragOver, false)
-            itemBox.addEventListener('drop', handleDropEquipableItemOnStaticItemBox, false)
-        })
-        Elements.inventoryBox().addEventListener('dragover', handleDragOver, false)
-        Elements.inventoryBox().addEventListener('drop', handleDropEquipableItemIntoAllItems, false)
-        dispatch(DressingWindowActions.INVENTORY_RENDERED)
-        setupFilters()
-        return
-    }
-    for(const item of initialState.deafultWearedItems) {
-        const box = eval(`Elements.${item.getAttribute('type')}Box()`) as HTMLDivElement
-        setupEquipableItemEvents(item)
-        dispatch(DressingWindowActions.EQUIP, item)
-        initialState.deafultWearedItems.removeItem(item)
-    }
-    let needToPutOff = initialState.needToPutOff
-    if(needToPutOff) {
-        const isCopy = needToPutOff.getAttribute('copy') ?? false
-        if(isCopy) {
-            Elements.offhandWeaponBox().removeChild(needToPutOff)
-            Elements.offhandWeaponBox().style.visibility = 'visible'
-            const mainWeapon = Elements.mainWeaponBox().firstElementChild as HTMLDivElement
-            mainWeapon.setAttribute('equiped', 'false')
-            Elements.inventoryBox().appendChild(mainWeapon)
-            Elements.mainWeaponBox().style.visibility = 'visible'
-            needToPutOff = mainWeapon
-        } else {
-            const weapon = needToPutOff.getAttribute('weapon')
-            if(weapon) {
-                if(weapon == '2h') {
-                    const copyWeapon = Elements.offhandWeaponBox().firstElementChild as HTMLElement
-                    Elements.offhandWeaponBox().removeChild(copyWeapon)
-                    Elements.offhandWeaponBox().style.visibility = 'visible'
+    })
+    Array.from(document.querySelector('.currentItems')?.children ?? []).forEach(item => document.querySelector('.currentItems')?.removeChild(item))
+    const allItemDivs = initialState.allItems.map(item => {
+        const element = convertItemIntoDiv(item)
+        element.style.display = 'block'
+        let parent = document.querySelector('.currentItems')
+        setupEquipableItemEvents(element)
+        parent?.appendChild(element)
+        return element
+    })
+    Array.from(document.getElementById('arcats')?.children ?? []).forEach(item => document.getElementById('arcats')?.removeChild(item))
+    if(initialState.arcatsCount != 0) {
+        for(let i = 0; i < initialState.arcatsCount; i++) {
+            const arcatSlot = createArcatSlot(i)
+            const parent = document.getElementById('arcats')
+            parent?.appendChild(arcatSlot)
+            arcatSlot.onclick = function() {
+                if(initialState.selectedStaticItemId && initialState.selectedStaticItemId == arcatSlot.id) {
+                    dispatch(DressingWindowActions.DESELECT_PLACEHOLDER)
+                } else {
+                    dispatch(DressingWindowActions.SELECT_PLACEHOLDER, arcatSlot)
                 }
             }
-            const parent = initialState.needToPutOff!.parentElement!
-            parent.style.visibility = 'visible'
-            needToPutOff.setAttribute('equiped', 'false')
-            needToPutOff.className = 'box'
-            Elements.inventoryBox().appendChild(needToPutOff)
         }
-        dispatch(DressingWindowActions.UNEQUIP_ITEM_DONE, needToPutOff)
-        return
     }
-    if(initialState.needToEquip) {
-        const item = initialState.needToEquip
-        const itemBox = eval(`Elements.${item.getAttribute('type')}Box()`) as HTMLDivElement
-        const isWeapon = item.getAttribute('weapon')
-        if(itemBox.firstElementChild == item) {
-            // HACK: - Dont know where is error
-            initialState.needToEquip = null
-            return
+    const equipedItemsIds = initialState.currentEquipedItems.map(item => item.id)
+    if(initialState.selectedStaticItemId) {
+        const box = eval(`Elements.${initialState.selectedStaticItemId}()`) as HTMLDivElement
+        box.style.border = '3px dotted #666'
+        const visibleItems = allItemDivs.filter(item => item.style.display != 'none' && !equipedItemsIds.includes(item.getAttribute('itemid') ?? ''))
+        visibleItems.forEach(item => item.style.display = item.getAttribute('type') == box.getAttribute('type') ? 'block' : 'none')
+    }
+    let visibleItems = allItemDivs.filter(item => item.style.display != 'none' && !equipedItemsIds.includes(item.getAttribute('itemid') ?? ''))
+    for(const filter of initialState.activeFilters) {
+        const filterQuality = getQuality(filter)
+        let items = visibleItems.filter(e => e.getAttribute('quality') == filterQuality)
+        items.forEach(item => item.style.display = 'none')
+    }
+    if(initialState.currentStyle) {
+        visibleItems = visibleItems.filter(item => item.style.display == 'block' && !equipedItemsIds.includes(item.getAttribute('itemid') ?? ''))
+        visibleItems.forEach(item => item.style.display = (item.getAttribute('trend') == initialState.currentStyle || item.getAttribute('trend') == 'Универсал') ? 'block' : 'none')
+    }
+    for(const equipedItem of initialState.currentEquipedItems) {
+        let equipedDiv = Array.from(document.querySelector('.currentItems')?.children ?? []).find(item => item.getAttribute('itemid') == equipedItem.id)
+        if(!equipedDiv) {
+            console.error("HELLO YOU FUCKED UP!!!!!!")
+            return 
         }
-        if(itemBox.childElementCount != 0) {
-            dispatch(DressingWindowActions.UNEQUIP_ITEM, itemBox.firstChild)
-            if(item.getAttribute('weapon') && item.getAttribute('weapon') == '2h') {
-                dispatch(DressingWindowActions.UNEQUIP_ITEM, Elements.offhandWeaponBox().firstElementChild)
-            }
-            return
-        }
-        if(isWeapon && isWeapon == '2h') {
-            const equipedOffhandItem = Elements.offhandWeaponBox().firstElementChild
-            if(equipedOffhandItem && !equipedOffhandItem.getAttribute('copy')) {
-                dispatch(DressingWindowActions.UNEQUIP_ITEM, equipedOffhandItem)
-                return
-            }
-        }
-        itemBox.appendChild(item)
+        const element = equipedDiv
+        const itemBox = eval(`Elements.${element.getAttribute('type')}Box()`) as HTMLDivElement
+        
+        const isWeapon = element.getAttribute('weapon')
+        itemBox.appendChild(element)
+        element.setAttribute('equiped', 'true')
         if(itemBox.getAttribute('type') == 'ring' || itemBox.getAttribute('type') == 'amulet' || itemBox.getAttribute('type') == 'arcat') {
-            item.className = 'box small'
+            element.className = 'box small'
         }
         itemBox.style.visibility = 'hidden';
         (itemBox.firstElementChild as HTMLElement).style.visibility = 'visible'
         if(isWeapon) {
             if(isWeapon == "2h") {
-                const copyWeapon = item.cloneNode(true) as HTMLElement
+                const copyWeapon = element.cloneNode(true) as HTMLElement
                 copyWeapon.style.opacity = '0.6'
                 copyWeapon.setAttribute('copy', 'true')
                 copyWeapon.setAttribute('equiped', 'true')
@@ -961,35 +1100,71 @@ function render(): void {
                 Elements.offhandWeaponBox().appendChild(copyWeapon)
             }
         }
-        item.setAttribute('equiped', 'true')
-        dispatch(DressingWindowActions.EQUIP_DONE, item)
-        return
     }
-    const allItems = Array.from(document.querySelector('.currentItems')!.children) as HTMLDivElement[]
-    allItems.forEach(item => item.style.display = 'block')
-    if(initialState.activeFilters.length != 0) {
-        for(const filter of initialState.activeFilters) {
-            const filterQuality = getQuality(filter)
-            let items = allItems.filter(e => e.getAttribute('quality') == filterQuality)
-            items.forEach(item => {
-                (item as HTMLElement).style.display = 'none'
-            })
+    Elements.inventoryBox().addEventListener('dragover', handleDragOver, false)
+    Elements.inventoryBox().addEventListener('drop', handleDropEquipableItemIntoAllItems, false)
+
+    Array.from(Elements.setsBox().children).filter(element => element.id.startsWith('set_')).forEach(element => Elements.setsBox().removeChild(element))
+    for(const set of initialState.sets) {
+        const isActive = initialState.currentSet == set
+        let setDiv = createSetElement(set, isActive)
+        if(isActive) {
+            Elements.setTitleBox().value = set.title
         }
-    }
-    if(initialState.selectedStaticItemBox) {
-        const visibleItems = allItems.filter(item => item.style.display == 'block')
-        visibleItems.forEach(item => {
-             item.style.display = item.getAttribute('type') == initialState.selectedStaticItemBox?.type ? 'block' : 'none'
-        })
-    }
-    if(initialState.currentStyle) {
-        const visibleItems = allItems.filter(item => item.style.display == 'block')
-        visibleItems.forEach(item => {
-            item.style.display = (item.getAttribute('trend') == initialState.currentStyle || item.getAttribute('trend') == 'Универсал') ? 'block' : 'none'
-        })
+        if(set.isNew) {
+            Elements.setsBox().insertBefore(setDiv, Elements.setsBox().firstElementChild?.nextElementSibling!)
+        } else {
+            Elements.setsBox().appendChild(setDiv)
+        }
     }
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
-    dispatch(DressingWindowActions.LOAD_ITEMS)
+    dispatch(DressingWindowActions.LOAD_CONTENT)
+    let itemsStaticBoxes = document.querySelectorAll('.equippedItems .boxStatic')
+    itemsStaticBoxes.forEach(function(item) {
+        item.addEventListener('dragover', handleDragOver, false)
+        item.addEventListener('drop', handleDropEquipableItemOnStaticItemBox, false)
+    })
+    const armorTypes = ['helmet', 'shoulders', 'bracers', 'mainWeapon', 'offhandWeapon', 'cuirass', 'leggings', 'chainmail', 'boots', 'bow', 'quiver', 'ring1', 'ring2', 'amulet1', 'amulet2']
+    armorTypes.forEach(t => {
+        let itemBox = document.getElementById(t + 'Box') as HTMLElement
+        if(['ring1', 'ring2', 'amulet1', 'amulet2'].includes(t)) {
+            setupPlaceholderForRepeatableItems(itemBox)
+        } else {
+            let itemBox = document.getElementById(t + 'Box') as HTMLElement
+            itemBox.addEventListener('click', () => {
+                if(initialState.selectedStaticItemId && itemBox.id == initialState.selectedStaticItemId) {
+                    dispatch(DressingWindowActions.DESELECT_PLACEHOLDER, itemBox)
+                } else {
+                    dispatch(DressingWindowActions.SELECT_PLACEHOLDER, itemBox)
+                }
+            })
+        }
+        itemBox.addEventListener('dragover', handleDragOver, false)
+        itemBox.addEventListener('drop', handleDropEquipableItemOnStaticItemBox, false)
+    })
+    setupFilters()
+
+    document.getElementById('addSetButton')?.addEventListener('click', e => {
+        const newSet = addNewSet()
+        dispatch(DressingWindowActions.CREATE_NEW_SET, newSet)
+    })
+    let dropSetButton = document.querySelector('#dropSetButton') as HTMLButtonElement
+    dropSetButton.addEventListener('drop', function(e) {
+        e.preventDefault()
+        dispatch(DressingWindowActions.REMOVE_SET, dragableSet)
+    }, false)
+    dropSetButton.addEventListener('dragover', function(e) {
+        e.preventDefault()
+    }, false)
+    document.querySelector('#unequip')!.addEventListener('click', e => {
+        // self.unequip()
+    })
+    document.querySelector('#equipSet')!.addEventListener('click', e => {
+        dispatch(DressingWindowActions.EQUIP_FROM_SET)
+    })
+    Elements.saveSetBox().onclick = function() {
+        dispatch(DressingWindowActions.SAVE_SET)
+    }
 })
