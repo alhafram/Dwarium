@@ -7,7 +7,7 @@ window.myAPI.baseUrl = function() {
     return window.dressingAPI.baseUrl()
 }
 
-interface DressingSet {
+type DressingSet = {
     id: string,
     title: string,
     ids: string[],
@@ -39,7 +39,7 @@ function getQuality(filter: DressingFilterColor): string {
     }
 }
 
-interface Arcats {
+type Arcats = {
     antiInfury: InventoryItem
     barrier: InventoryItem
     vampirism: InventoryItem
@@ -55,7 +55,7 @@ interface Arcats {
     injury: InventoryItem
 }
 
-interface InventoryItem {
+type InventoryItem = {
     id: string
     title: string, 
     desc: any, 
@@ -67,7 +67,7 @@ interface InventoryItem {
     trend: string | undefined
 }
 
-interface Inventory {
+type Inventory = {
     [key: string]: InventoryItem[]
     arcats: InventoryItem[]
     quivers: InventoryItem[]
@@ -93,7 +93,7 @@ interface Inventory {
     zikkurat: InventoryItem[]
 }
 
-export interface DressingWindowState {
+type DressingWindowState = {
     selectedStaticItemId: string | null,
     currentEquipedItems: InventoryItem[],
     allItems: InventoryItem[],
@@ -263,9 +263,6 @@ enum DressingWindowActions {
     SAVE_SET,
     REMOVE_SET,
     SELECT_SET,
-
-    START_DRAGGING_SET,
-    END_DRAGGING_SET,
 
     SELECT_PLACEHOLDER,
     DESELECT_PLACEHOLDER,
@@ -530,7 +527,7 @@ function handleDropEquipableItemOnStaticItemBox(this: HTMLDivElement, e: Event) 
     }
 }
 
-function handleDropEquipableItemIntoAllItems(this: any, e: Event) {
+function handleDropEquipableItemIntoAllItems(e: Event) {
     e.stopPropagation()
     dispatch(DressingWindowActions.UNEQUIP_ITEM, dragableItem)
 }
@@ -578,16 +575,6 @@ function createArcatSlot(id: number): HTMLDivElement {
     slotElement.id = `arcat${id + 1}Box`
     slotElement.className = 'boxStatic small'
     return slotElement
-}
-
-function setupPlaceholderForRepeatableItems(item: HTMLElement) {
-    item.onclick = function() {
-        if(initialState.selectedStaticItemId && initialState.selectedStaticItemId == item.id) {
-            dispatch(DressingWindowActions.DESELECT_PLACEHOLDER)
-        } else {
-            dispatch(DressingWindowActions.SELECT_PLACEHOLDER, item)
-        }
-    }
 }
 
 function difference(setA: string[], setB: string[]): Set<string> {
@@ -841,7 +828,8 @@ async function reduce(state: DressingWindowState = initialState, action: Dressin
                 selectedStaticItemId: null
             }
         case DressingWindowActions.EQUIP:
-            const itemId = (data as HTMLDivElement).getAttribute('itemid')
+            const equipedItemBox = data as HTMLDivElement
+            const itemId = equipedItemBox.getAttribute('itemid')
             let equipedItem = state.allItems.find(item => item.id == itemId)
             if(!equipedItem) {
                 alert("ШО ТО НЕ ТАК!!! Напиши в группу")
@@ -873,6 +861,25 @@ async function reduce(state: DressingWindowState = initialState, action: Dressin
                     const alreadyEquipedItem = currentEquipedItems.find(item => getType(item.kind_id) == type)
                     if(alreadyEquipedItem) {
                         currentEquipedItems = currentEquipedItems.removeItem(alreadyEquipedItem)
+                    }
+                    const weapon = equipedItemBox.getAttribute('weapon')
+                    if(weapon) {
+                        if(weapon == '2h') {
+                            const offhandWeaponBox = Elements.offhandWeaponBox().firstElementChild
+                            const offhandWeaponId = offhandWeaponBox?.getAttribute('itemid')
+                            const offhandWeaponItem = currentEquipedItems.find(item => item.id == offhandWeaponId)
+                            if(offhandWeaponItem) {
+                                currentEquipedItems = currentEquipedItems.removeItem(offhandWeaponItem)
+                            }
+                        }
+                        const mainWeapon = Elements.mainWeaponBox().firstElementChild
+                        if(weapon == 'off' && mainWeapon) {
+                            const mainWeaponId = mainWeapon.getAttribute('itemid')
+                            const mainWeaponItem = currentEquipedItems.find(item => item.id == mainWeaponId)
+                            if(mainWeaponItem) {
+                                currentEquipedItems = currentEquipedItems.removeItem(mainWeaponItem)
+                            }
+                        }
                     }
                     break
             }
@@ -1188,7 +1195,7 @@ function render(): void {
         }
     }
     Elements.inventoryBox().ondragover = handleDragOver
-    Elements.inventoryBox().addEventListener('drop', handleDropEquipableItemIntoAllItems, false)
+    Elements.inventoryBox().ondrop = handleDropEquipableItemIntoAllItems
 
     Array.from(Elements.setsBox().children).filter(element => element.id.startsWith('set_')).forEach(element => Elements.setsBox().removeChild(element))
     for(const set of initialState.sets) {
@@ -1248,3 +1255,5 @@ document.addEventListener('DOMContentLoaded', async () => {
         dispatch(DressingWindowActions.SAVE_SET)
     }
 })
+
+export {}
