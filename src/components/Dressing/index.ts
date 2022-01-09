@@ -69,7 +69,7 @@ interface InventoryItem {
 
 interface Inventory {
     [key: string]: InventoryItem[]
-    // arcats: InventoryItem[]
+    arcats: InventoryItem[]
     quivers: InventoryItem[]
     amulets: InventoryItem[]
     rings: InventoryItem[]
@@ -217,6 +217,27 @@ const Elements = {
     },
     saveSetBox(): HTMLInputElement {
         return document.getElementById('saveSet') as HTMLInputElement
+    },
+    addSetBox(): HTMLInputElement {
+        return document.getElementById('addSetButton') as HTMLInputElement
+    },
+    dropSetBox(): HTMLButtonElement {
+        return document.getElementById('dropSetButton') as HTMLButtonElement
+    },
+    equipSetBox(): HTMLButtonElement {
+        return document.getElementById('equipSet') as HTMLButtonElement
+    },
+    unequipBox(): HTMLButtonElement {
+        return document.getElementById('unequip') as HTMLButtonElement
+    },
+    currentItemsBox(): HTMLDivElement {
+        return document.getElementsByClassName('currentItems')[0] as HTMLDivElement
+    },
+    arcatsBox(): HTMLDivElement {
+        return document.getElementById('arcats') as HTMLDivElement
+    },
+    staticBoxes(): HTMLCollection {
+        return document.getElementsByClassName('boxStatic')
     }
 }
 
@@ -250,6 +271,7 @@ enum DressingWindowActions {
     DESELECT_PLACEHOLDER,
 
     UNEQUIP_ITEM,
+    UNEQUIP_ALL,
     EQUIP,
     EQUIP_FROM_SET,
 
@@ -284,19 +306,19 @@ function parse(art_alt: InventoryItem[]): Inventory {
     let zikkurat = items.filter(i => i.kind_id == '25' && i.type_id == '12')
     items = items.removeItems(zikkurat)
 
-    let arcats = items.filter(i => i.kind_id == '161') // Arcats
+    let arcats = items.filter(i => i.kind_id == '161')
     items = items.removeItems(arcats)
     
     arcats = Object.values(filterArcats(arcats))
     arcats = arcats.filter(a => a)
 
-    let quivers = items.filter(i => i.kind_id == '131') // Quivers
+    let quivers = items.filter(i => i.kind_id == '131')
     items = items.removeItems(quivers)
 
-    let rings = items.filter(i => i.kind_id == '76' && i.type_id == '18') // Rings
+    let rings = items.filter(i => i.kind_id == '76' && i.type_id == '18')
     items = items.removeItems(rings)
 
-    let bags = items.filter(i => i.kind_id == '30') // Bags
+    let bags = items.filter(i => i.kind_id == '30')
     items = items.removeItems(bags)
 
     let decorKindIds = [{
@@ -322,55 +344,55 @@ function parse(art_alt: InventoryItem[]): Inventory {
     decorItems = decorItems.concat(commonDecorItems)
     items = items.removeItems(decorItems)
 
-    let amulets = items.filter(i => i.kind_id == '25') // Amulets
+    let amulets = items.filter(i => i.kind_id == '25')
     items = items.removeItems(amulets)
 
-    let profWeapons = items.filter(i => i.kind_id == '42') // Profession weapons
+    let profWeapons = items.filter(i => i.kind_id == '42')
     items = items.removeItems(profWeapons)
 
-    let belts = items.filter(i => i.kind_id == '31') // Belts
+    let belts = items.filter(i => i.kind_id == '31')
     items = items.removeItems(belts)
 
-    let bracelets = items.filter(i => i.kind_id == '137') // Bracelets
+    let bracelets = items.filter(i => i.kind_id == '137')
     items = items.removeItems(bracelets)
 
-    let bows = items.filter(i => i.kind_id == '116') // Bows
+    let bows = items.filter(i => i.kind_id == '116')
     items = items.removeItems(bows)
 
-    let helmets = items.filter(i => i.kind_id == '1') // Helmets
+    let helmets = items.filter(i => i.kind_id == '1')
     items = items.removeItems(helmets)
 
-    let shoulders = items.filter(i => i.kind_id == '7') // Shoulders
+    let shoulders = items.filter(i => i.kind_id == '7')
     items = items.removeItems(shoulders)
 
     let bracersIds = ['5', '77', '120']
-    let bracers = items.filter(i => bracersIds.includes(i.kind_id)) // Bracers
+    let bracers = items.filter(i => bracersIds.includes(i.kind_id))
     items = items.removeItems(bracers)
 
     let mainWeaponsKindIds = ['10', '12'] // 10 - 1h --- 12 - 2h
-    let mainWeapons = items.filter(i => mainWeaponsKindIds.includes(i.kind_id)) // Main weapons
+    let mainWeapons = items.filter(i => mainWeaponsKindIds.includes(i.kind_id))
     items = items.removeItems(mainWeapons)
 
     let offhandWeaponsKindIds = ['44', '17'] // 44 - weapon --- 17 - shield
-    let offhandWeapons = items.filter(i => offhandWeaponsKindIds.includes(i.kind_id)) // Offhand weapons
+    let offhandWeapons = items.filter(i => offhandWeaponsKindIds.includes(i.kind_id))
     items = items.removeItems(offhandWeapons)
 
     let cuirassesIds = ['20', '3']
-    let cuirasses = items.filter(i => cuirassesIds.includes(i.kind_id)) // Cuirasses
+    let cuirasses = items.filter(i => cuirassesIds.includes(i.kind_id))
     items = items.removeItems(cuirasses)
 
-    let leggings = items.filter(i => i.kind_id == '6') // Leggingses
+    let leggings = items.filter(i => i.kind_id == '6')
     items = items.removeItems(leggings)
 
     let chainmailsIds = ['21', '4']
-    let chainmails = items.filter(i => chainmailsIds.includes(i.kind_id)) // Chainmails
+    let chainmails = items.filter(i => chainmailsIds.includes(i.kind_id))
     items = items.removeItems(chainmails)
 
-    let boots = items.filter(i => i.kind_id == '2') // Boots
+    let boots = items.filter(i => i.kind_id == '2')
     items = items.removeItems(boots)
 
     let bannersIds = ['96']
-    let banners = items.filter(i => bannersIds.includes(i.kind_id)) // Banners
+    let banners = items.filter(i => bannersIds.includes(i.kind_id))
     items = items.removeItems(banners)
 
     let summary = {
@@ -405,7 +427,6 @@ function convertItemIntoDiv(item: InventoryItem): HTMLDivElement {
     divItem.className = 'box'
     divItem.draggable = true
     divItem.setAttribute('equiped', 'false')
-    console.log(divItem.style.backgroundImage)
     if(item.image.includes(window.dressingAPI.baseUrl())) {
         divItem.style.backgroundImage = `url('${item.image}')`
     } else {
@@ -490,6 +511,8 @@ let dragableItem: HTMLDivElement | null = null
 
 function handleDragStartEquipableItem(this: any) {
     dragableItem = this
+    // @ts-ignore
+    artifactAltSimple(this.getAttribute('itemid'), 0)
 }
 
 function handleDragEndEquipableItem(this: any) {
@@ -527,9 +550,9 @@ function handleClickEquipableItem(this: any, e: MouseEvent) {
 
 function setupEquipableItemEvents(item: HTMLElement) {
     item.addEventListener('dragstart', handleDragStartEquipableItem, false)
-    item.addEventListener('dragover', handleDragOver, false)
+    item.ondragover = handleDragOver
     item.addEventListener('dragend', handleDragEndEquipableItem, false)
-    item.addEventListener('click', handleClickEquipableItem, false)
+    item.onclick = handleClickEquipableItem
     item.addEventListener('mouseover', function() {
         // @ts-ignore
         artifactAltSimple(this.getAttribute('itemid'), 2)
@@ -558,13 +581,13 @@ function createArcatSlot(id: number): HTMLDivElement {
 }
 
 function setupPlaceholderForRepeatableItems(item: HTMLElement) {
-    item.addEventListener('click', () => {
+    item.onclick = function() {
         if(initialState.selectedStaticItemId && initialState.selectedStaticItemId == item.id) {
             dispatch(DressingWindowActions.DESELECT_PLACEHOLDER)
         } else {
             dispatch(DressingWindowActions.SELECT_PLACEHOLDER, item)
         }
-    })
+    }
 }
 
 function difference(setA: string[], setB: string[]): Set<string> {
@@ -628,17 +651,17 @@ function createSetElement(set: DressingSet, active: boolean = false) {
     article.onclick = function(e) {
         dispatch(DressingWindowActions.SELECT_SET, set)
     }
-    article.addEventListener('dragstart', function(e) {
+    article.ondragstart = function() {
         article.style.opacity = '0.4'
         dragableSet = article
-    }, false)
-    article.addEventListener('dragend', function() {
+    }
+    article.ondragend = function() {
         article.style.opacity = '1'
         dragableSet = null
-    }, false)
-    article.addEventListener('dragover', function(e) {
+    }
+    article.ondragover = function(e) {
         e.preventDefault()
-    })
+    }
     let img = document.createElement('img')
     img.src = './images/magic/' + SetStyleHelper.getMagicIcon(set.magicSchool) + '.webp'
     img.className = 'leaderboard__picture'
@@ -978,7 +1001,6 @@ async function reduce(state: DressingWindowState = initialState, action: Dressin
             if(!state.currentSet) {
                 return state
             }
-            console.log("EQUIP FROM SET", state.currentSet)
             let currentSet = state.currentSet
             if(state.currentMagicSchool && state.currentMagicSchool != currentSet.magicSchool) {
                 let styleId = SetStyleHelper.getStyleId(currentSet.magicSchool)
@@ -1000,12 +1022,40 @@ async function reduce(state: DressingWindowState = initialState, action: Dressin
             for(var id of needToPutOn) {
                 await window.dressingAPI.equipRequest(id)
             }
+            arcats = []
+            rings = []
+            amulets = []
+            currentEquipedItems.forEach(item => {
+                const type = getType(item.kind_id)
+                switch(type) {
+                    case InventoryItemType.ARCAT:
+                        arcats.push(item)
+                        break
+                    case InventoryItemType.RING:
+                        rings.push(item)
+                        break
+                    case InventoryItemType.AMULET:
+                        amulets.push(item)
+                        break
+                    default:
+                        break
+                }
+            })
             return {
-                ...state
+                ...state,
+                arcats: arcats,
+                rings: rings,
+                amulets: amulets
             }
-        return {
-            ...state
-        }
+        case DressingWindowActions.UNEQUIP_ALL:
+            return {
+                ...state,
+                currentStyle: null,
+                currentEquipedItems: [],
+                arcats: [],
+                rings: [],
+                amulets: []
+            }
         default:
             return state
     }
@@ -1013,7 +1063,6 @@ async function reduce(state: DressingWindowState = initialState, action: Dressin
 
 async function dispatch(action: DressingWindowActions, data?: any) {
     initialState = await reduce(initialState, action, data)
-    console.log(initialState, DressingWindowActions[action])
     render()
 }
 
@@ -1031,20 +1080,20 @@ function render(): void {
             box.style.visibility = 'visible'
         }
     })
-    Array.from(document.querySelector('.currentItems')?.children ?? []).forEach(item => document.querySelector('.currentItems')?.removeChild(item))
+    Array.from(Elements.currentItemsBox().children ?? []).forEach(item => Elements.currentItemsBox().removeChild(item))
     const allItemDivs = initialState.allItems.map(item => {
         const element = convertItemIntoDiv(item)
         element.style.display = 'block'
-        let parent = document.querySelector('.currentItems')
+        let parent = Elements.currentItemsBox()
         setupEquipableItemEvents(element)
         parent?.appendChild(element)
         return element
     })
-    Array.from(document.getElementById('arcats')?.children ?? []).forEach(item => document.getElementById('arcats')?.removeChild(item))
+    Array.from(Elements.arcatsBox().children ?? []).forEach(item => Elements.arcatsBox().removeChild(item))
     if(initialState.arcatsCount != 0) {
         for(let i = 0; i < initialState.arcatsCount; i++) {
             const arcatSlot = createArcatSlot(i)
-            const parent = document.getElementById('arcats')
+            const parent = Elements.arcatsBox()
             parent?.appendChild(arcatSlot)
             arcatSlot.onclick = function() {
                 if(initialState.selectedStaticItemId && initialState.selectedStaticItemId == arcatSlot.id) {
@@ -1073,7 +1122,7 @@ function render(): void {
         visibleItems.forEach(item => item.style.display = (item.getAttribute('trend') == initialState.currentStyle || item.getAttribute('trend') == 'Универсал') ? 'block' : 'none')
     }
     for(const equipedItem of initialState.currentEquipedItems) {
-        let equipedDiv = Array.from(document.querySelector('.currentItems')?.children ?? []).find(item => item.getAttribute('itemid') == equipedItem.id)
+        let equipedDiv = Array.from(Elements.currentItemsBox().children ?? []).find(item => item.getAttribute('itemid') == equipedItem.id)
         if(!equipedDiv) {
             console.error("HELLO YOU FUCKED UP!!!!!!")
             return 
@@ -1101,7 +1150,7 @@ function render(): void {
             }
         }
     }
-    Elements.inventoryBox().addEventListener('dragover', handleDragOver, false)
+    Elements.inventoryBox().ondragover = handleDragOver
     Elements.inventoryBox().addEventListener('drop', handleDropEquipableItemIntoAllItems, false)
 
     Array.from(Elements.setsBox().children).filter(element => element.id.startsWith('set_')).forEach(element => Elements.setsBox().removeChild(element))
@@ -1121,49 +1170,43 @@ function render(): void {
 
 document.addEventListener('DOMContentLoaded', async () => {
     dispatch(DressingWindowActions.LOAD_CONTENT)
-    let itemsStaticBoxes = document.querySelectorAll('.equippedItems .boxStatic')
+    let itemsStaticBoxes = Array.from(Elements.staticBoxes()) as HTMLDivElement[]
     itemsStaticBoxes.forEach(function(item) {
-        item.addEventListener('dragover', handleDragOver, false)
+        item.ondragover = handleDragOver
         item.addEventListener('drop', handleDropEquipableItemOnStaticItemBox, false)
     })
     const armorTypes = ['helmet', 'shoulders', 'bracers', 'mainWeapon', 'offhandWeapon', 'cuirass', 'leggings', 'chainmail', 'boots', 'bow', 'quiver', 'ring1', 'ring2', 'amulet1', 'amulet2']
     armorTypes.forEach(t => {
-        let itemBox = document.getElementById(t + 'Box') as HTMLElement
-        if(['ring1', 'ring2', 'amulet1', 'amulet2'].includes(t)) {
-            setupPlaceholderForRepeatableItems(itemBox)
-        } else {
-            let itemBox = document.getElementById(t + 'Box') as HTMLElement
-            itemBox.addEventListener('click', () => {
-                if(initialState.selectedStaticItemId && itemBox.id == initialState.selectedStaticItemId) {
-                    dispatch(DressingWindowActions.DESELECT_PLACEHOLDER, itemBox)
-                } else {
-                    dispatch(DressingWindowActions.SELECT_PLACEHOLDER, itemBox)
-                }
-            })
+        let itemBox = eval(`Elements.${t}Box()`) as HTMLElement
+        itemBox.onclick = function() {
+            if(initialState.selectedStaticItemId && itemBox.id == initialState.selectedStaticItemId) {
+                dispatch(DressingWindowActions.DESELECT_PLACEHOLDER, itemBox)
+            } else {
+                dispatch(DressingWindowActions.SELECT_PLACEHOLDER, itemBox)
+            }
         }
-        itemBox.addEventListener('dragover', handleDragOver, false)
+        itemBox.ondragover = handleDragOver
         itemBox.addEventListener('drop', handleDropEquipableItemOnStaticItemBox, false)
     })
     setupFilters()
 
-    document.getElementById('addSetButton')?.addEventListener('click', e => {
+    Elements.addSetBox().onclick = function() {
         const newSet = addNewSet()
         dispatch(DressingWindowActions.CREATE_NEW_SET, newSet)
-    })
-    let dropSetButton = document.querySelector('#dropSetButton') as HTMLButtonElement
-    dropSetButton.addEventListener('drop', function(e) {
+    }
+    Elements.dropSetBox().ondrop = function(e) {
         e.preventDefault()
         dispatch(DressingWindowActions.REMOVE_SET, dragableSet)
-    }, false)
-    dropSetButton.addEventListener('dragover', function(e) {
+    }
+    Elements.dropSetBox().ondragover = function(e) {
         e.preventDefault()
-    }, false)
-    document.querySelector('#unequip')!.addEventListener('click', e => {
-        // self.unequip()
-    })
-    document.querySelector('#equipSet')!.addEventListener('click', e => {
+    }
+    Elements.unequipBox().onclick = function() {
+        dispatch(DressingWindowActions.UNEQUIP_ALL)
+    }
+    Elements.equipSetBox().onclick = function() {
         dispatch(DressingWindowActions.EQUIP_FROM_SET)
-    })
+    }
     Elements.saveSetBox().onclick = function() {
         dispatch(DressingWindowActions.SAVE_SET)
     }
