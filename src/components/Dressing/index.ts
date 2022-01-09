@@ -991,11 +991,33 @@ async function reduce(state: DressingWindowState = initialState, action: Dressin
         case DressingWindowActions.SELECT_SET:
             const selectedSet = data as DressingSet
             let items = selectedSet.ids.map(id => state.allItems.find(item => item.id == id)).filter(item => item != undefined) as InventoryItem[]
+            arcats = []
+            rings = []
+            amulets = []
+            items.forEach(item => {
+                const type = getType(item.kind_id)
+                switch(type) {
+                    case InventoryItemType.ARCAT:
+                        arcats.push(item)
+                        break
+                    case InventoryItemType.RING:
+                        rings.push(item)
+                        break
+                    case InventoryItemType.AMULET:
+                        amulets.push(item)
+                        break
+                    default:
+                        break
+                }
+            })
             return {
                 ...state,
                 currentSet: selectedSet,
                 currentEquipedItems: items,
-                currentStyle: getStyle(items)
+                currentStyle: getStyle(items),
+                arcats: arcats,
+                rings: rings,
+                amulets: amulets
             }
         case DressingWindowActions.EQUIP_FROM_SET:
             if(!state.currentSet) {

@@ -149,9 +149,6 @@ declare global {
     export interface String {
         toDocument(): Document
     }
-    export interface Array < T > {
-        unique(): Array < T >
-    }
 }
 
 function generateRandomId() {
@@ -160,10 +157,5 @@ function generateRandomId() {
 
 String.prototype.toDocument = function() {
     var parser = new DOMParser();
-    const str = this as string
-    return parser.parseFromString(str, 'text/html');
-}
-
-Array.prototype.unique = function() {
-    return Array.from(new Set(this))
+    return parser.parseFromString(this as string, 'text/html');
 }
