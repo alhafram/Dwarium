@@ -844,7 +844,10 @@ async function reduce(state: DressingWindowState = initialState, action: Dressin
             const itemId = (data as HTMLDivElement).getAttribute('itemid')
             let equipedItem = state.allItems.find(item => item.id == itemId)
             if(!equipedItem) {
-                console.error("HELLO YOU FUCKED UP!!!!!")
+                alert("ШО ТО НЕ ТАК!!! Напиши в группу")
+                return {
+                    ...state
+                }
             }
             const type = getType(equipedItem!.kind_id)
             switch(type) {
@@ -887,7 +890,10 @@ async function reduce(state: DressingWindowState = initialState, action: Dressin
             let unequipedElement = data as HTMLDivElement
             let unequipedItem = state.allItems.find(item => item.id == unequipedElement.getAttribute('itemid'))
             if(!unequipedItem) {
-                console.error("HELLO YOU FUCKED UP!!!!!")
+                alert("ШО ТО НЕ ТАК!!! Напиши в группу")
+                return {
+                    ...state
+                }
             }
             const type1 = getType(unequipedItem!.kind_id)
             switch(type1) {
@@ -936,7 +942,10 @@ async function reduce(state: DressingWindowState = initialState, action: Dressin
                 currentSet: newSet,
                 sets: sets,
                 currentEquipedItems: [],
-                currentStyle: null
+                currentStyle: null,
+                arcats: [],
+                rings: [],
+                amulets: []
             }
         case DressingWindowActions.SAVE_SET:
             let set = state.currentSet
@@ -1023,6 +1032,9 @@ async function reduce(state: DressingWindowState = initialState, action: Dressin
             if(!state.currentSet) {
                 return state
             }
+            Elements.saveSetBox().disabled = true
+            Elements.equipSetBox().disabled = true
+            Elements.unequipBox().disabled = true
             let currentSet = state.currentSet
             if(currentSet.magicSchool && state.currentMagicSchool && state.currentMagicSchool != currentSet.magicSchool) {
                 let styleId = SetStyleHelper.getStyleId(currentSet.magicSchool)
@@ -1063,6 +1075,9 @@ async function reduce(state: DressingWindowState = initialState, action: Dressin
                         break
                 }
             })
+            Elements.saveSetBox().disabled = false
+            Elements.equipSetBox().disabled = false
+            Elements.unequipBox().disabled = false
             return {
                 ...state,
                 arcats: arcats,
@@ -1146,7 +1161,7 @@ function render(): void {
     for(const equipedItem of initialState.currentEquipedItems) {
         let equipedDiv = Array.from(Elements.currentItemsBox().children ?? []).find(item => item.getAttribute('itemid') == equipedItem.id)
         if(!equipedDiv) {
-            console.error("HELLO YOU FUCKED UP!!!!!!")
+            alert("ШО ТО НЕ ТАК!!! Напиши в группу")
             return 
         }
         const element = equipedDiv
