@@ -53,6 +53,7 @@ type Arcats = {
     speed: InventoryItem
     resilience: InventoryItem
     injury: InventoryItem
+    intelligence: InventoryItem
 }
 
 type InventoryItem = {
@@ -610,6 +611,7 @@ function filterArcats(arcats: InventoryItem[]): Arcats {
     let speed = arcats.filter(a => a.title.includes('скорости')).sort((a, b) => a.skills[0].value - b.skills[0].value)[0]
     let resilience = arcats.filter(a => a.title.includes('стойкости')).sort((a, b) => a.skills[0].value - b.skills[0].value)[0]
     let injury = arcats.filter(a => a.title.includes('травматизма')).sort((a, b) => a.skills[0].value - b.skills[0].value)[0]
+    let intelligence = arcats.filter(a => a.title.includes('интеллекта')).sort((a, b) => a.skills[0].value - b.skills[0].value)[0]
     return {
         antiInfury,
         barrier,
@@ -623,7 +625,8 @@ function filterArcats(arcats: InventoryItem[]): Arcats {
         insight,
         speed,
         resilience,
-        injury
+        injury,
+        intelligence
     }
 }
 
@@ -757,6 +760,37 @@ const SetStyleHelper = {
     }
 }
 
+type RepeatableItems = {
+    arcats: InventoryItem[],
+    rings: InventoryItem[],
+    amulets: InventoryItem[]
+}
+
+function countRepeatableItems(items: InventoryItem[]): RepeatableItems {
+    let countedItems: RepeatableItems = {
+        arcats: [],
+        rings: [],
+        amulets: []
+    }
+    items.forEach(item => {
+        const type = getType(item.kind_id)
+        switch(type) {
+            case InventoryItemType.ARCAT:
+                countedItems.arcats.push(item)
+                break
+            case InventoryItemType.RING:
+                countedItems.rings.push(item)
+                break
+            case InventoryItemType.AMULET:
+                countedItems.amulets.push(item)
+                break
+            default:
+                break
+        }
+    })
+    return countedItems
+}
+
 async function reduce(state: DressingWindowState = initialState, action: DressingWindowActions, data?: any): Promise<DressingWindowState> {
     let newFilters: DressingFilterColor[] = []
     let sets = state.sets
@@ -772,22 +806,7 @@ async function reduce(state: DressingWindowState = initialState, action: Dressin
             let parsedWearedItems = parse(result.wearedItems)
             let allItems = Object.keys(parsedAllItems).filter(key => parsedItemTypes.includes(key)).map(key => parsedAllItems[key]).flat() as InventoryItem[]
             currentEquipedItems = Object.keys(parsedWearedItems).filter(key => parsedItemTypes.includes(key)).map(key => parsedWearedItems[key]).flat() as InventoryItem[]
-            currentEquipedItems.forEach(item => {
-                const type = getType(item.kind_id)
-                switch(type) {
-                    case InventoryItemType.ARCAT:
-                        arcats.push(item)
-                        break
-                    case InventoryItemType.RING:
-                        rings.push(item)
-                        break
-                    case InventoryItemType.AMULET:
-                        amulets.push(item)
-                        break
-                    default:
-                        break
-                }
-            })
+            let repeatableItems = countRepeatableItems(currentEquipedItems)
             // @ts-ignore
             allItems = allItems.concat(currentEquipedItems).sort((a, b) => a.kind_id - b.kind_id)
             let currentMagicSchool: string | null = null
@@ -814,7 +833,10 @@ async function reduce(state: DressingWindowState = initialState, action: Dressin
                 sets: loadedSets,
                 currentStyle: getStyle(currentEquipedItems),
                 zikkuratId: zikkuratId,
-                currentSet: preselectSet
+                currentSet: preselectSet,
+                arcats: repeatableItems.arcats,
+                rings: repeatableItems.rings,
+                amulets: repeatableItems.amulets
             }
         case DressingWindowActions.SELECT_PLACEHOLDER:
             let selectedBox = data as HTMLDivElement
@@ -873,7 +895,7 @@ async function reduce(state: DressingWindowState = initialState, action: Dressin
                             }
                         }
                         const mainWeapon = Elements.mainWeaponBox().firstElementChild
-                        if(weapon == 'off' && mainWeapon) {
+                        if(weapon == 'off' && mainWeapon?.getAttribute('weapon') == '2h') {
                             const mainWeaponId = mainWeapon.getAttribute('itemid')
                             const mainWeaponItem = currentEquipedItems.find(item => item.id == mainWeaponId)
                             if(mainWeaponItem) {
@@ -1007,33 +1029,15 @@ async function reduce(state: DressingWindowState = initialState, action: Dressin
         case DressingWindowActions.SELECT_SET:
             const selectedSet = data as DressingSet
             let items = selectedSet.ids.map(id => state.allItems.find(item => item.id == id)).filter(item => item != undefined) as InventoryItem[]
-            arcats = []
-            rings = []
-            amulets = []
-            items.forEach(item => {
-                const type = getType(item.kind_id)
-                switch(type) {
-                    case InventoryItemType.ARCAT:
-                        arcats.push(item)
-                        break
-                    case InventoryItemType.RING:
-                        rings.push(item)
-                        break
-                    case InventoryItemType.AMULET:
-                        amulets.push(item)
-                        break
-                    default:
-                        break
-                }
-            })
+            let repeatableItems1 = countRepeatableItems(items)
             return {
                 ...state,
                 currentSet: selectedSet,
                 currentEquipedItems: items,
                 currentStyle: getStyle(items),
-                arcats: arcats,
-                rings: rings,
-                amulets: amulets
+                arcats: repeatableItems1.arcats,
+                rings: repeatableItems1.rings,
+                amulets: repeatableItems1.amulets
             }
         case DressingWindowActions.EQUIP_FROM_SET:
             if(!state.currentSet) {
@@ -1063,33 +1067,15 @@ async function reduce(state: DressingWindowState = initialState, action: Dressin
             for(var id of needToPutOn) {
                 await window.dressingAPI.equipRequest(id)
             }
-            arcats = []
-            rings = []
-            amulets = []
-            currentEquipedItems.forEach(item => {
-                const type = getType(item.kind_id)
-                switch(type) {
-                    case InventoryItemType.ARCAT:
-                        arcats.push(item)
-                        break
-                    case InventoryItemType.RING:
-                        rings.push(item)
-                        break
-                    case InventoryItemType.AMULET:
-                        amulets.push(item)
-                        break
-                    default:
-                        break
-                }
-            })
+            let repeatableItems2 = countRepeatableItems(currentEquipedItems)
             Elements.saveSetBox().disabled = false
             Elements.equipSetBox().disabled = false
             Elements.unequipBox().disabled = false
             return {
                 ...state,
-                arcats: arcats,
-                rings: rings,
-                amulets: amulets
+                arcats: repeatableItems2.arcats,
+                rings: repeatableItems2.rings,
+                amulets: repeatableItems2.amulets
             }
         case DressingWindowActions.UNEQUIP_ALL:
             return {
