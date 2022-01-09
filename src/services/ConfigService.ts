@@ -1,22 +1,21 @@
 const { app } = process.type === 'browser' ? require('electron') : require('@electron/remote')
-
 import fs from 'fs';
 import path from 'path';
 const configPath = path.join(app.getPath('userData'), 'config.json')
 
-function server() {
+function server(): string {
     return readData('server')
 }
 
-function baseUrl() {
+function baseUrl(): string {
     return `https://${readData('server')}.dwar.ru`
 }
 
-function loadSettings() {
+function loadSettings(): any {
     return readData('settings')
 }
 
-function windowOpenNewTab() {
+function windowOpenNewTab(): boolean {
     let settings = readData('settings')
     if(settings) {
         settings = JSON.parse(settings)
@@ -25,7 +24,7 @@ function windowOpenNewTab() {
     return false
 }
 
-function windowsAboveApp() {
+function windowsAboveApp(): boolean {
     let settings = readData('settings')
     if(settings) {
         settings = JSON.parse(settings)
@@ -34,7 +33,7 @@ function windowsAboveApp() {
     return false
 }
 
-function userAgent() {
+function userAgent(): string {
     let settings = readData('settings')
     if(settings) {
         settings = JSON.parse(settings)
@@ -43,7 +42,7 @@ function userAgent() {
     return 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36'
 }
 
-function maximizeOnStart() {
+function maximizeOnStart(): boolean {
     let settings = readData('settings')
     if(settings) {
         settings = JSON.parse(settings)
@@ -52,19 +51,19 @@ function maximizeOnStart() {
     return false
 }
 
-function sets() {
+function sets(): any[] {
     let contents = parseData(configPath)
     let keys = Object.keys(contents).filter(key => key.startsWith('set_'))
     return keys.map(key => JSON.parse(contents[key]))
 }
 
-function beltSets() {
+function beltSets(): any[] {
     let contents = parseData(configPath)
     let keys = Object.keys(contents).filter(key => key.startsWith('belt_set_'))
     return keys.map(key => JSON.parse(contents[key]))
 }
 
-function writeData(key: string, value: any) {
+function writeData(key: string, value: any): void {
     let contents = parseData(configPath)
     contents[key] = value
     Object.keys(contents).forEach(key => {
@@ -75,12 +74,12 @@ function writeData(key: string, value: any) {
     fs.writeFileSync(configPath, JSON.stringify(contents))
 }
 
-function readData(key: string) {
+function readData(key: string): any {
     let contents = parseData(configPath)
     return contents[key]
 }
 
-function parseData(filePath: fs.PathLike) {
+function parseData(filePath: fs.PathLike): any {
     const defaultData = {}
     try {
         return JSON.parse(fs.readFileSync(filePath, 'utf-8'))

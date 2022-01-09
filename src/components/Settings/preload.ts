@@ -2,7 +2,7 @@ import { contextBridge, ipcRenderer } from 'electron'
 import { app } from '@electron/remote'
 import configService from '../../services/ConfigService'
 
-contextBridge.exposeInMainWorld('myAPI', {
+contextBridge.exposeInMainWorld('settingsAPI', {
     saveSettings: (settings: JSON) => {
         configService.writeData('settings', JSON.stringify(settings))
     },
@@ -19,7 +19,7 @@ contextBridge.exposeInMainWorld('myAPI', {
     }
 })
 
-export interface IMyAPI {
+export interface SettingsAPI {
     saveSettings: (settings: {}) => void,
     loadSettings: () => any,
     restart: () => void
@@ -27,6 +27,6 @@ export interface IMyAPI {
 
 declare global {
     interface Window {
-        myAPI: IMyAPI
+        settingsAPI: SettingsAPI
     }
 }
