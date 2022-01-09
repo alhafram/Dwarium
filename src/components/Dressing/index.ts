@@ -1024,7 +1024,7 @@ async function reduce(state: DressingWindowState = initialState, action: Dressin
                 return state
             }
             let currentSet = state.currentSet
-            if(state.currentMagicSchool && state.currentMagicSchool != currentSet.magicSchool) {
+            if(currentSet.magicSchool && state.currentMagicSchool && state.currentMagicSchool != currentSet.magicSchool) {
                 let styleId = SetStyleHelper.getStyleId(currentSet.magicSchool)
                 await window.dressingAPI.changeStyle(state.zikkuratId!, styleId)
                 state.currentMagicSchool = currentSet.magicSchool
