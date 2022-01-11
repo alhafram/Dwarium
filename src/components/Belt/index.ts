@@ -94,8 +94,8 @@ function renderSlots(slotsCount: number, variantSlots: number) {
     var currentVariantSlot = 1
     for(let i = 0; i < slotsCount; i++) {
         let divBox = document.createElement('div')
-        divBox.style.display = 'flex'
         let divPotion = document.createElement('div')
+        divBox.style.display = 'flex'
         divPotion.setAttribute('num', `${i + 1}`)
         divPotion.className = 'potion'
         setupPotionListeners(divPotion)
@@ -119,7 +119,7 @@ function renderSlots(slotsCount: number, variantSlots: number) {
 }
 
 function setupPotionListeners(item: HTMLElement) {
-    item.addEventListener('dragover', handleDragOver, false)
+    item.ondragover = handleDragOver
     item.addEventListener('drop', handleDropEquipableItemOnStaticItemBox, false)
 }
 
@@ -298,6 +298,12 @@ async function refreshLeftMenu() {
     return res
 }
 
+function disableButtons(disabled: boolean) {
+    Elements.saveSetBox().disabled = disabled
+    Elements.equipSetBox().disabled = disabled
+    Elements.unequipBox().disabled = disabled
+}
+
 async function reduce(state: BeltDressingWindowState = initialState, action: BeltDressingWindowActions, data?: any): Promise<BeltDressingWindowState> {
     let newFilters: DressingFilterColor[] = []
     let sets = state.sets
@@ -395,7 +401,6 @@ async function reduce(state: BeltDressingWindowState = initialState, action: Bel
             }
         case BeltDressingWindowActions.SAVE_SET:
             let set = state.currentSet
-            const equipmentItemIds = state.currentEquipedItems.map(item => item.id)
             if(set) {
                 set.title = Elements.setTitleBox().value
                 set.potions = state.currentEquipedItems.map(item => {
@@ -477,9 +482,7 @@ async function reduce(state: BeltDressingWindowState = initialState, action: Bel
             if(!state.currentSet) {
                 return state
             }
-            Elements.saveSetBox().disabled = true
-            Elements.equipSetBox().disabled = true
-            Elements.unequipBox().disabled = true
+            disableButtons(true)
 
             const equipedPotionsReq = await getEquipedPotions()
             let equipedPotions: EquipedPotion[] = equipedPotionsReq.result.flat().filter((potion: EquipedPotion) => potion)
@@ -515,6 +518,10 @@ async function reduce(state: BeltDressingWindowState = initialState, action: Bel
                 equipedPotions.removeItem(setPotionInEquipedPotions!)
             })
             needToUnequip = needToUnequip.concat(equipedPotions)
+            if(needToEquip.length == 0 && needToUnequip.length == 0) {
+                disableButtons(false)
+                return state
+            }
             while(needToUnequip.length != 0) {
                 let item = needToUnequip[0]
                 await window.beltPotionAPI.unequipRequest(item.id)
@@ -535,9 +542,7 @@ async function reduce(state: BeltDressingWindowState = initialState, action: Bel
             state.allItems = []
             await refreshLeftMenu()
             state = await reduce(state, BeltDressingWindowActions.LOAD_CONTENT)
-            Elements.saveSetBox().disabled = false
-            Elements.equipSetBox().disabled = false
-            Elements.unequipBox().disabled = false
+            disableButtons(false)
             return {
                 ...state
             }
@@ -616,10 +621,7 @@ function render(): void {
         box.parentElement?.removeChild(box)
     })
     renderSlots(initialState.slots, initialState.variants)
-    const allItemDivs = initialState.allItems.map(item => {
-        const element = convertItemIntoDiv(item)
-        return element
-    })
+    const allItemDivs = initialState.allItems.map(item => convertItemIntoDiv(item))
     allItemDivs.forEach(item => {
         let parent = document.querySelector('.currentItems')
         parent?.appendChild(item)
