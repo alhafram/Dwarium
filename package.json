@@ -6,10 +6,11 @@
     "scripts": {
         "compile": "tsc",
         "start": "yarn run compile && electron .",
-        "all": "electron-builder -mw --arm64 --x64",
+        "all": "electron-builder -mwl --arm64 --x64",
         "mac": "electron-builder -m --arm64 --x64",
         "win": "electron-builder -w",
-        "publish": "electron-builder -mw --arm64 --x64 --publish always",
+        "linux": "electron-builder -l",
+        "publish": "electron-builder -mwl --arm64 --x64 --publish always",
         "dev": "concurrently \"tsc -w\" \"electron .\""
     },
     "author": "",
@@ -33,11 +34,14 @@
         "copyright": "Copyright 2022 ©. Деды воевали!",
         "mac": {
             "category": "public.app-category.games",
-            "icon": "build/icon.icns",
+            "icon": "src/build/icon.icns",
             "identity": "Developer ID Application"
         },
         "win": {
-            "icon": "build/icon.png"
+            "icon": "src/build/icon.png"
+        },
+        "linux": {
+            "icon": "src/build/icon.png"
         }
     }
 }
