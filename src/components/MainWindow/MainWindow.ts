@@ -22,7 +22,7 @@ export default class MainWindowContainer {
             useContentSize: true,
             show: false
         })
-
+        this.mainWindow.setMenu(null)
         this.mainWindow.on('enter-full-screen', () => {
             this.setViewContentBounds(TabsController.currentTab(), this.mainWindow.getBounds())
         })
