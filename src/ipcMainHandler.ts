@@ -65,7 +65,7 @@ ipcMain.on('openBeltPotionRoom', () => {
     const path = require('path')
     beltWindow = new BrowserWindow({
         width: 900,
-        height: 700,
+        height: 900,
         minWidth: 900,
         minHeight: 700,
         useContentSize: true,

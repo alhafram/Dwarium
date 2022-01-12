@@ -50,7 +50,8 @@ type BeltDressingWindowState = {
     allItems: InventoryItem[],
     activeFilters: DressingFilterColor[],
     sets: BeltDressingSet[],
-    currentSet: BeltDressingSet | null
+    currentSet: BeltDressingSet | null,
+    warning: boolean
 }
 
 enum DressingFilterColor {
@@ -201,6 +202,9 @@ const Elements = {
     },
     staticBoxes(): HTMLCollection {
         return document.getElementsByClassName('potion')
+    },
+    warningBox(): HTMLSpanElement {
+        return document.getElementById('warning') as HTMLSpanElement
     }
 }
 
@@ -211,7 +215,8 @@ var initialState: BeltDressingWindowState = {
     activeFilters: [],
     sets: [],
     currentSet: null,
-    allItems: []
+    allItems: [],
+    warning: false
 }
 
 function generateRandomId() {
@@ -355,12 +360,15 @@ async function reduce(state: BeltDressingWindowState = initialState, action: Bel
             art_alt = Object.assign(art_alt, equipedPotionsAltRes.result)
             sets = window.beltPotionAPI.loadBeltSets()
 
+            let hasWarning = false
             if(!data) {
                 const equipedPotions = await parseEquipedPotions()
                 currentEquipedItems = equipedPotions.map(potion => {
                     let foundItem = allItems.find(item => item.title == potion.title && item.picture.includes(potion.image));
                     if(foundItem) {
                         return copyInventoryItemWithoutBox(foundItem, potion)
+                    } else {
+                        hasWarning = true
                     }
                 }).filter(item => item !== undefined) as InventoryItem[]
             }
@@ -371,7 +379,8 @@ async function reduce(state: BeltDressingWindowState = initialState, action: Bel
                 variants: variants,
                 allItems: allItems,
                 sets: sets,
-                currentEquipedItems: currentEquipedItems
+                currentEquipedItems: currentEquipedItems,
+                warning: hasWarning
             }
         case BeltDressingWindowActions.EQUIP:
             const equipedItemBox = data as HTMLDivElement
@@ -582,6 +591,23 @@ async function dispatch(action: BeltDressingWindowActions, data?: any) {
     render()
 }
 
+function convertNoExistsItemIntoDiv(item: EquipedPotion): HTMLDivElement {
+    let divItem = document.createElement('div')
+        divItem.className = 'box'
+        divItem.draggable = true
+        if(item.image.includes(window.beltPotionAPI.baseUrl())) {
+            divItem.style.backgroundImage = `url('${item.image}')`
+        } else {
+            const url = `${window.beltPotionAPI.baseUrl()}/${item.image}`
+            item.image = url
+            divItem.style.backgroundImage = `url('${url}')`
+        }
+        divItem.style.backgroundRepeat = 'no-repeat'
+        divItem.style.backgroundSize = 'cover'
+        setupEquipableItemEvents(divItem)
+        return divItem
+}
+
 function convertItemIntoDiv(item: InventoryItem): HTMLDivElement {
     let divItem = document.createElement('div')
         divItem.className = 'box'
@@ -689,6 +715,7 @@ function render(): void {
             Elements.setsBox().appendChild(setDiv)
         }
     }
+    Elements.warningBox().style.display = initialState.warning ? 'block' : 'false'
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
