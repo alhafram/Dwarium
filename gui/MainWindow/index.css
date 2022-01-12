@@ -7,10 +7,11 @@ body {
     overflow: scroll;
     border: 1px solid #ccc;
     background-color: #f1f1f1;
-    height: 30px;
+    height: 20px;
     display: flex;
     overflow-x: auto;
     margin-top: 8px;
+    user-select: none;
 }
 
 /* Style the buttons inside the tab */
@@ -20,7 +21,6 @@ body {
     border: none;
     outline: none;
     cursor: pointer;
-    padding: 6px 16px;
     transition: 0.3s;
     font-size: 17px;
 }
@@ -42,6 +42,14 @@ body {
     background-color: #f1f1f1;
     color: #000;
     cursor: pointer;
+    line-height: 0px;
+}
+
+.ab a {
+    text-align: center;
+    margin: auto;
+    height: 10px;
+    font-size: 12px;
 }
 
 .ab:hover {
@@ -54,10 +62,9 @@ body {
 
 .close {
     position: absolute;
-    width: 15px;
-    height: 15px;
+    width: 10px;
+    height: 10px;
     opacity: 0.4;
-    margin-left: 9px;
 }
 
 .close:hover {
@@ -68,10 +75,11 @@ body {
 .close::after {
     position: absolute;
     content: ' ';
-    height: 15px;
+    height: 10px;
     width: 2px;
     background-color: #000;
-    margin-left: 7.5px;
+    margin-left: 12px;
+    margin-top: -3px;
 }
 
 .close::before {
@@ -97,10 +105,8 @@ body {
 
 .serverSwitcher {
     position: relative;
-    margin-top: auto;
-    margin-bottom: auto;
-    width: 74px;
-    height: 36px;
+    width: 60px;
+    height: 30px;
 }
 
 .checkbox {
@@ -127,24 +133,24 @@ body {
 #switcher .knob:before {
     content: attr(server);
     position: absolute;
-    top: 4px;
-    left: 4px;
-    width: 20px;
-    height: 10px;
+    top: 3px;
+    left: 5px;
+    width: 23px;
+    height: 23px;
     color: #fff;
     font-size: 10px;
     font-weight: bold;
     text-align: center;
-    line-height: 1;
-    padding: 9px 4px;
+    line-height: 2.5;
     background-color: #03A9F4;
     border-radius: 50%;
     transition: 0.3s cubic-bezier(0.18, 0.89, 0.35, 1.15) all;
+
 }
 
 #switcher .checkbox:checked+.knob:before {
     content: attr(server);
-    left: 42px;
+    left: 30px;
     background-color: #03A9F4;
 }
 
@@ -174,6 +180,7 @@ body {
     width: 100%;
     box-sizing: border-box;
     letter-spacing: 1px;
+    height: 30px;
 }
 
 /* Browser buttons */
@@ -192,8 +199,8 @@ body {
 
 #backButton {
     margin-left: 5px;
-    width: 30px;
-    height: 40px;
+    width: 20px;
+    height: 30px;
     background-color: white;
     background-size: contain;
     background-position: center;
@@ -208,8 +215,8 @@ body {
 
 #forwardButton {
     margin-left: 5px;
-    width: 30px;
-    height: 40px;
+    width: 20px;
+    height: 30px;
     background-color: white;
     background-size: contain;
     background-position: center;
@@ -234,8 +241,8 @@ body {
 
 #dressingRoom {
     margin-left: 10px; 
-    height: 40px;
-    width: 40px;
+    height: 30px;
+    width: 30px;
     border: none;
     display: none;
     background-color: white;
@@ -246,8 +253,8 @@ body {
 
 #beltPotionRoom {
     margin-left: 10px; 
-    height: 40px;
-    width: 40px;
+    height: 30px;
+    width: 30px;
     border: none;
     display: none;
     background-color: white;
@@ -258,8 +265,8 @@ body {
 
 #chatLog {
     margin-left: 10px; 
-    height: 40px;
-    width: 40px;
+    height: 30px;
+    width: 30px;
     border: none;
     background-color: white;
     border-radius: 3px;
@@ -269,8 +276,8 @@ body {
 
 #chatSettings {
     margin-left: 10px; 
-    height: 40px;
-    width: 40px;
+    height: 30px;
+    width: 30px;
     border: none;
     background-color: white;
     border-radius: 3px;
@@ -280,8 +287,8 @@ body {
 
 #updateApplication {
     margin-left: 100px; 
-    height: 40px;
-    width: 40px;
+    height: 30px;
+    width: 30px;
     border: none;
     display: none;
     background-color: white;
@@ -292,8 +299,8 @@ body {
 
 #settings {
     margin-left: 100px; 
-    height: 40px;
-    width: 40px;
+    height: 30px;
+    width: 30px;
     border: none;
     background-color: white;
     border-radius: 3px;
