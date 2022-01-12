@@ -678,11 +678,9 @@ function render(): void {
         let parent = document.querySelector('.currentItems')
         parent?.appendChild(item)
     })
-    const equipedItemsIds = initialState.currentEquipedItems.map(item => item.id)
-    let visibleItems = allItemDivs.filter(item => item.style.display != 'none' && !equipedItemsIds.includes(item.getAttribute('itemid') ?? ''))
     for(const filter of initialState.activeFilters) {
         const filterQuality = getQuality(filter)
-        let items = visibleItems.filter(e => e.getAttribute('quality') == filterQuality)
+        let items = allItemDivs.filter(e => e.getAttribute('quality') == filterQuality)
         items.forEach(item => item.style.display = 'none')
     }
     for(let item of initialState.currentEquipedItems) {
@@ -715,7 +713,7 @@ function render(): void {
             Elements.setsBox().appendChild(setDiv)
         }
     }
-    Elements.warningBox().style.display = initialState.warning ? 'block' : 'false'
+    Elements.warningBox().style.display = initialState.warning ? 'block' : 'none'
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
