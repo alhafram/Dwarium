@@ -9,8 +9,9 @@ window.myAPI.baseUrl = function() {
 
 type BeltDressingSetPotion = {
     item: string,
-    slotNum: string,
-    variant: string | null
+    slot: string,
+    variant: string | null,
+    image: string
 }
 
 type BeltDressingSet = {
@@ -24,7 +25,8 @@ type EquipedPotion = {
     id: string,
     title: string,
     slot: number,
-    variant: Boolean
+    variant: Boolean,
+    image: string
 }
 
 type InventoryItem = {
@@ -36,8 +38,9 @@ type InventoryItem = {
     quality: string,
     image: string,
     cnt: string | null,
-    slotNum: string | null,
-    variant: string | null
+    slot: string | null,
+    variant: string | null,
+    picture: string
 }
 
 type BeltDressingWindowState = {
@@ -96,7 +99,7 @@ function renderSlots(slotsCount: number, variantSlots: number) {
         let divBox = document.createElement('div')
         let divPotion = document.createElement('div')
         divBox.style.display = 'flex'
-        divPotion.setAttribute('num', `${i + 1}`)
+        divPotion.setAttribute('slot', `${i + 1}`)
         divPotion.className = 'potion'
         setupPotionListeners(divPotion)
         divBox.appendChild(divPotion)
@@ -105,7 +108,7 @@ function renderSlots(slotsCount: number, variantSlots: number) {
                 let divPotion = document.createElement('div')
                 divPotion.setAttribute('variant', 'true')
                 divPotion.className = 'potion'
-                divPotion.setAttribute('num', `${currentVariantSlot}`)
+                divPotion.setAttribute('slot', `${currentVariantSlot}`)
                 setupPotionListeners(divPotion)
                 divBox.appendChild(divPotion)
                 currentVariantSlot += 1
@@ -283,8 +286,16 @@ async function getSlots(): Promise<number[]> {
 
 function copyInventoryItem(item?: InventoryItem, box?: Element): InventoryItem {
     const copyItem = Object.assign({}, item) as InventoryItem
-    copyItem.slotNum = box?.getAttribute('num') ?? null
+    copyItem.slot = box?.getAttribute('slot') ?? null
     copyItem.variant = box?.getAttribute('variant') ?? null
+    copyItem.cnt = null
+    return copyItem
+}
+
+function copyInventoryItemWithoutBox(item: InventoryItem, potion: EquipedPotion | BeltDressingSetPotion): InventoryItem {
+    const copyItem = Object.assign({}, item) as InventoryItem
+    copyItem.slot = potion.slot.toString()
+    copyItem.variant = potion.variant ? 'true' : null
     copyItem.cnt = null
     return copyItem
 }
@@ -304,6 +315,30 @@ function disableButtons(disabled: boolean) {
     Elements.unequipBox().disabled = disabled
 }
 
+async function parseEquipedPotions() {
+    const equipedPotionsReq = await getEquipedPotions()
+    let equipedPotions: EquipedPotion[] = equipedPotionsReq.result.flat().filter((potion: EquipedPotion) => potion)
+    for(let item of equipedPotions) {
+        let res = await window.beltPotionAPI.fetchItem(item.id!)
+        let doc = res.result.toDocument()
+        let title = doc.querySelector('body > table > tbody > tr > td > table > tbody > tr:nth-child(2) > td > div > div.bg-l > div > div > div > div > div > div > div > table:nth-child(1) > tbody > tr:nth-child(2) > td.tbl-usi_bg > table > tbody > tr:nth-child(1) > td:nth-child(3) > table > tbody > tr > td:nth-child(2) > h1 > b').textContent
+        item.title = title
+    }
+    return equipedPotions
+}
+
+function generateSetPotions(items: InventoryItem[]): BeltDressingSetPotion[] {
+    return items.map(item => {
+        return {
+            item: item.title,
+            slot: item.slot!,
+            variant: item.variant!,
+            quality: item.quality,
+            image: item.picture
+        }
+    })
+}
+
 async function reduce(state: BeltDressingWindowState = initialState, action: BeltDressingWindowActions, data?: any): Promise<BeltDressingWindowState> {
     let newFilters: DressingFilterColor[] = []
     let sets = state.sets
@@ -319,23 +354,38 @@ async function reduce(state: BeltDressingWindowState = initialState, action: Bel
             const equipedPotionsAltRes = await getEquipedPotionsAlt()
             art_alt = Object.assign(art_alt, equipedPotionsAltRes.result)
             sets = window.beltPotionAPI.loadBeltSets()
+
+            if(!data) {
+                const equipedPotions = await parseEquipedPotions()
+                currentEquipedItems = equipedPotions.map(potion => {
+                    let foundItem = allItems.find(item => item.title == potion.title && item.picture.includes(potion.image));
+                    if(foundItem) {
+                        return copyInventoryItemWithoutBox(foundItem, potion)
+                    }
+                }).filter(item => item !== undefined) as InventoryItem[]
+            }
+
             return {
                 ...state,
                 slots: slots,
                 variants: variants,
                 allItems: allItems,
-                sets: sets
+                sets: sets,
+                currentEquipedItems: currentEquipedItems
             }
         case BeltDressingWindowActions.EQUIP:
             const equipedItemBox = data as HTMLDivElement
             const itemId = equipedItemBox.getAttribute('itemid')
             let equipedItem = state.allItems.find(item => item.id == itemId)
             const emptyBox = Array.from(Elements.staticBoxes()).find(box => box.childElementCount == 0)
-            if(!equipedItem && !emptyBox) {
+            if(!equipedItem) {
                 alert("ШО ТО НЕ ТАК!!! Напиши в группу")
                 return {
                     ...state
                 }
+            }
+            if(!emptyBox) {
+                return state
             }
             equipedItem = copyInventoryItem(equipedItem, emptyBox)
             currentEquipedItems.push(equipedItem)
@@ -363,8 +413,8 @@ async function reduce(state: BeltDressingWindowState = initialState, action: Bel
         case BeltDressingWindowActions.UNEQUIP_ITEM:
             const unequipedItemBox = data as HTMLDivElement
             let variant = unequipedItemBox.getAttribute('variant')
-            let slotNum = unequipedItemBox.getAttribute('num')
-            const unequipedItem = currentEquipedItems.find(item => item.variant == variant && item.slotNum == slotNum)
+            let slot = unequipedItemBox.getAttribute('slot')
+            const unequipedItem = currentEquipedItems.find(item => item.variant == variant && item.slot == slot)
             if(!unequipedItem) {
                 return {
                     ...state
@@ -403,26 +453,14 @@ async function reduce(state: BeltDressingWindowState = initialState, action: Bel
             let set = state.currentSet
             if(set) {
                 set.title = Elements.setTitleBox().value
-                set.potions = state.currentEquipedItems.map(item => {
-                    return {
-                        item: item.title,
-                        slotNum: item.slotNum!,
-                        variant: item.variant!
-                    }
-                })
+                set.potions = generateSetPotions(state.currentEquipedItems)
                 sets[sets.indexOf(set)] = set
                 set.isNew = false
             } else {
                 set = {
                     id: generateSetId(),
                     title: Elements.setTitleBox().value,
-                    potions: state.currentEquipedItems.map(item => {
-                        return {
-                            item: item.title,
-                            slotNum: item.slotNum!,
-                            variant: item.variant!
-                        }
-                    }),
+                    potions: generateSetPotions(state.currentEquipedItems),
                     isNew: true
                 }
                 sets.push(set)
@@ -457,13 +495,10 @@ async function reduce(state: BeltDressingWindowState = initialState, action: Bel
         case BeltDressingWindowActions.SELECT_SET:
             const selectedSet = data as BeltDressingSet
             let items1 = selectedSet.potions.map(potion => {
-                let inventoryPotion = state.allItems.find(item => item.title == potion.item)
+                let inventoryPotion = state.allItems.find(item => item.title == potion.item && item.picture.includes(potion.image));
                 inventoryPotion = Object.assign({}, inventoryPotion)
                 if(inventoryPotion.title) {
-                    inventoryPotion.cnt = null
-                    inventoryPotion.variant = potion.variant
-                    inventoryPotion.slotNum = potion.slotNum
-                    return inventoryPotion
+                    return copyInventoryItemWithoutBox(inventoryPotion, potion)
                 } else {
                     return undefined
                 }
@@ -483,26 +518,17 @@ async function reduce(state: BeltDressingWindowState = initialState, action: Bel
                 return state
             }
             disableButtons(true)
-
-            const equipedPotionsReq = await getEquipedPotions()
-            let equipedPotions: EquipedPotion[] = equipedPotionsReq.result.flat().filter((potion: EquipedPotion) => potion)
-            
-            for(let item of equipedPotions) {
-                let res = await window.beltPotionAPI.fetchItem(item.id!)
-                let doc = res.result.toDocument()
-                let title = doc.querySelector('body > table > tbody > tr > td > table > tbody > tr:nth-child(2) > td > div > div.bg-l > div > div > div > div > div > div > div > table:nth-child(1) > tbody > tr:nth-child(2) > td.tbl-usi_bg > table > tbody > tr:nth-child(1) > td:nth-child(3) > table > tbody > tr > td:nth-child(2) > h1 > b').textContent
-                item.title = title
-            }
+            const equipedPotions = await parseEquipedPotions()
             let needToUnequip: EquipedPotion[] = []
             let needToEquip: InventoryItem[] = []
             state.currentSet.potions.forEach(setPotion => {
-                let setPotionInEquipedPotions = equipedPotions.find(a => a.slot.toString() == setPotion.slotNum && a.variant == ((setPotion.variant == null) ? false : true))
-                var needToEquipPotion = state.allItems.find(item => item.title == setPotion.item)
-                if(setPotionInEquipedPotions && setPotion.item != setPotionInEquipedPotions.title) {
+                let setPotionInEquipedPotions = equipedPotions.find(a => a.slot.toString() == setPotion.slot && a.variant == ((setPotion.variant == null) ? false : true))
+                var needToEquipPotion = state.allItems.find(item => item.title == setPotion.item && item.picture.includes(setPotion.image))
+                if(setPotionInEquipedPotions && (setPotion.item != setPotionInEquipedPotions.title || !needToEquipPotion?.picture.includes(setPotionInEquipedPotions.image))) {
                     needToUnequip.push(setPotionInEquipedPotions)
                     if(needToEquipPotion) {
                         needToEquipPotion = Object.assign({}, needToEquipPotion)
-                        needToEquipPotion.slotNum = setPotion.slotNum
+                        needToEquipPotion.slot = setPotion.slot
                         needToEquipPotion.variant = setPotion.variant
                         needToEquip.push(needToEquipPotion)
                     }
@@ -510,7 +536,7 @@ async function reduce(state: BeltDressingWindowState = initialState, action: Bel
                 if(!setPotionInEquipedPotions) {
                     if(needToEquipPotion) {
                         needToEquipPotion = Object.assign({}, needToEquipPotion)
-                        needToEquipPotion.slotNum = setPotion.slotNum
+                        needToEquipPotion.slot = setPotion.slot
                         needToEquipPotion.variant = setPotion.variant
                         needToEquip.push(needToEquipPotion)
                     }
@@ -530,18 +556,18 @@ async function reduce(state: BeltDressingWindowState = initialState, action: Bel
             }
             while(needToEquip.length != 0) {
                 let item = needToEquip[0]
-                let id = state.allItems.find(o => o.title == item.title)?.id
-                if(!id) {
-                    needToEquip.removeItem(item)
-                    continue
-                }
-                await window.beltPotionAPI.equipPotionRequest(id, item.slotNum!, item.variant ? '1' : '0')
-                await updateSlot(item.slotNum!, item.variant ? 'variantItems' : 'items')
+                await window.beltPotionAPI.equipPotionRequest(item.id, item.slot!, item.variant ? '1' : '0')
+                await updateSlot(item.slot!, item.variant ? 'variantItems' : 'items')
                 needToEquip.removeItem(item)
             }
             state.allItems = []
             await refreshLeftMenu()
-            state = await reduce(state, BeltDressingWindowActions.LOAD_CONTENT)
+            await new Promise<void>(resolve => {
+                setTimeout(() => {
+                    resolve()
+                }, 1000)
+            })
+            state = await reduce(state, BeltDressingWindowActions.LOAD_CONTENT, true)
             disableButtons(false)
             return {
                 ...state
@@ -635,13 +661,13 @@ function render(): void {
     }
     for(let item of initialState.currentEquipedItems) {
         let potionBoxes = Array.from(document.querySelectorAll('.potion'))
-        let emptyBox = potionBoxes.find(box => box.childElementCount == 0 && box.getAttribute('num') == item.slotNum && box.getAttribute('variant') == item.variant) as HTMLElement
+        let emptyBox = potionBoxes.find(box => box.childElementCount == 0 && box.getAttribute('slot') == item.slot && box.getAttribute('variant') == item.variant) as HTMLElement
         const potionDiv = convertItemIntoDiv(item)
         potionDiv.style.borderRadius = '25px'
         potionDiv.style.visibility = 'visible'
         potionDiv.setAttribute('equiped', 'true')
-        if(item.slotNum) {
-            potionDiv.setAttribute('num', item.slotNum)
+        if(item.slot) {
+            potionDiv.setAttribute('slot', item.slot)
         }
         if(item.variant) {
             potionDiv.setAttribute('variant', item.variant)
