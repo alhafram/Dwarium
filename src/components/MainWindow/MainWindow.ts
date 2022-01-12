@@ -57,8 +57,8 @@ export default class MainWindowContainer {
             globalShortcut.register('CommandOrControl+O', () => {
                 TabsController.currentTab().webContents.openDevTools()
             })
-            globalShortcut.register('CommandOrControl+Shift+K', () => {
-                session.defaultSession.clearStorageData()
+            globalShortcut.register('CommandOrControl+Shift+K', async () => {
+                await session.defaultSession.clearStorageData({  storages: ['appcache', 'filesystem', 'indexdb', 'shadercache', 'cachestorage'] })
                 TabsController.currentTab().webContents.reload()
             })
             globalShortcut.register('CommandOrControl+Shift+C', () => {
@@ -70,6 +70,11 @@ export default class MainWindowContainer {
             globalShortcut.register('CommandOrControl+T', () => {
                 this.mainWindow.webContents.send('new_tab')
             })
+            if(process.platform == 'win32' || process.platform == 'linux') {
+                globalShortcut.register('F11', () => {
+                    this.mainWindow.setFullScreen(!this.mainWindow.isFullScreen())
+                })
+            }
         })
 
         this.mainWindow.on('blur', () => {
@@ -82,6 +87,9 @@ export default class MainWindowContainer {
         globalShortcut.unregister('CommandOrControl+O')
         globalShortcut.unregister('CommandOrControl+Shift+K')
         globalShortcut.unregister('CommandOrControl+T')
+        if(process.platform == 'win32' || process.platform == 'linux') {
+            globalShortcut.unregister('F11')
+        }
     }
 
     setup() {
