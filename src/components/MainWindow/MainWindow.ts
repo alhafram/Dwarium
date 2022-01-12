@@ -110,6 +110,10 @@ export default class MainWindowContainer {
                 }
             }
         })
+
+        this.browserView.webContents.on('did-create-window', (window) => {
+            window.setMenu(null)
+        })
     }
 
     getControlBounds() {
