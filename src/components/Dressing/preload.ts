@@ -11,7 +11,7 @@ contextBridge.exposeInMainWorld('dressingAPI', {
     }) => {
         return await ipcRenderer.invoke('MakeWebRequest', req)
     },
-    getMagicSchools: async (zikkuratId ? : string) => {
+    getMagicSchools: async (zikkuratId: string) => {
         let req = `fetch(
             '${configService.baseUrl()}/action_form.php?${Math.random()}&artifact_id=${zikkuratId}&in[param_success][url_close]=user.php%3Fmode%3Dpersonage%26group%3D2%26update_swf%3D1', {
                 'headers': {
@@ -123,7 +123,7 @@ export interface IMyAPIDressing {
             id: string
         }) => void,
         removeSet: (id: string) => void,
-        loadSets: () => DressingItem[],
+        loadSets: () => any[],
         getMagicSchools: (zikkuratId ? : string) => Promise < {
             result: any,
             req: any
@@ -149,9 +149,6 @@ declare global {
     export interface String {
         toDocument(): Document
     }
-    export interface Array < T > {
-        unique(): Array < T >
-    }
 }
 
 function generateRandomId() {
@@ -160,10 +157,5 @@ function generateRandomId() {
 
 String.prototype.toDocument = function() {
     var parser = new DOMParser();
-    const str = this as string
-    return parser.parseFromString(str, 'text/html');
-}
-
-Array.prototype.unique = function() {
-    return Array.from(new Set(this))
+    return parser.parseFromString(this as string, 'text/html');
 }

@@ -66,6 +66,11 @@ body {
     display: inline-block;
 }
 
+.box.small {
+    height: 25px;
+    width: 25px;
+}
+
 .boxStatic {
     border: 2px solid #666;
     border-radius: 0.5em;
