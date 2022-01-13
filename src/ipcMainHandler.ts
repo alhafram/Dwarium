@@ -102,8 +102,7 @@ ipcMain.on('openChatLog', () => {
         show: true,
         parent: configService.windowsAboveApp() ? TabsController.mainWindow! : undefined,
         webPreferences: {
-            preload: path.join(__dirname, './components/Chat/preload.js'),
-            contextIsolation: false
+            preload: path.join(__dirname, './components/ChatLog/preload.js')
         }
     })
     chatLogWindow.on('closed', () => {
@@ -112,7 +111,7 @@ ipcMain.on('openChatLog', () => {
             TabsController.mainWindow?.webContents.send('openWindow', 'chatLog', false)
         }
     })
-    chatLogWindow.loadFile(`${path.join(__dirname, '../gui/Chat/index.html')}`)
+    chatLogWindow.loadFile(`${path.join(__dirname, '../gui/ChatLog/index.html')}`)
     require("@electron/remote/main").enable(chatLogWindow.webContents)
     TabsController.mainWindow?.webContents.send('openWindow', 'chatLog', true)
 })
