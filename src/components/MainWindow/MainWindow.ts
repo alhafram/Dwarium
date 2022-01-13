@@ -98,6 +98,17 @@ export default class MainWindowContainer {
 
         // @ts-ignore - TS - FIX
         this.browserView.webContents.setWindowOpenHandler(({ url, features }) => {
+            const excludedUrls = [
+                `https://${configService.server()}.dwar.ru/action_form.php`,
+                `https://${configService.server()}.dwar.ru/area_cube_recipes.php`
+            ]
+            for(const excludeUrl of excludedUrls) {
+                if(url.includes(excludeUrl)) {
+                    return {
+                        action: 'allow'
+                    }
+                }
+            }
             if(configService.windowOpenNewTab() && !features.includes('location=no') || TabsController.currentTab() == TabsController.getMain() && !features) {
                 this.mainWindow.webContents.send('new_tab', url)
                 return {

@@ -95,6 +95,7 @@ document.addEventListener('DOMContentLoaded', function() {
             this.drawHeader(o.innerHTML);
             if(this.selectedDay?.getTime() != selectedDay.getTime()) {
                 this.selectedDay = selectedDay
+                // @ts-ignore Function in index.js
                 filterLog()
             }
         }
