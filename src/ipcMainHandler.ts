@@ -215,7 +215,7 @@ ipcMain.handle('MakeWebRequest', async (evt, req) => {
 
 ipcMain.on('goUrl', (evt, url) => {
     if(!url.includes('http')) {
-        url = 'https://' + url
+        url = 'http://' + url
     }
     TabsController.currentTab().webContents.loadURL(url)
 })
