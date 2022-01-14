@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <script src="../../out/components/Settings/index.js"></script>
+    <style>
+        li {
+            margin-top: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div style="display: flex;">
+        <div style="width: 50%;">
+            <h3>Выберите User-Agent</h3>
+            <select id="userAgents" style="width: 200px;" id="useragents"></select>
+            <br><br>
+            <textarea id="userAgentText" rows="5" style="width: 95%; min-width: 95%; max-width: 95%;" type="text" disabled></textarea>
+
+            <input id="windowOpenNewTab" type="checkbox" />
+            <label for="windowOpenNewTab">Открывать окна в новых вкладках(По умолчанию в новом окне)</label>
+            <br>
+            <input id="windowsAboveApp" type="checkbox" />
+            <label for="windowsAboveApp">Диалоговые окна всегда поверх клиента</label>
+            <br>
+            <input id="maximizeOnStart" type="checkbox" />
+            <label for="maximizeOnStart">Открывать клиент в полный экран</label>
+            <br>
+            <br>
+            <button id="save">Сохранить</button>
+        </div>
+        <div style="width: 50%;">
+            <h3>Список shortcut-ов</h3>
+            <ul>
+                <li>F11 - Перейти в fullscreen</li>
+                <li>Ctrl(Cmd) + T - Открыть новый таб</li>
+                <li>Ctrl(Cmd) + W - Закрыть текущий таб</li>
+                <li>F7 - Открыть/Закрыть окно с чатом</li>
+                <li>Ctrl(Cmd) + Shift + C - Скопировать url страницы, открытой в диалоговом окне</li>
+                <li>Ctrl(Cmd) + Shift + K - Очистить кэш и остальные ресурсы(Сбрасывает логин)</li>
+            </ul>
+            <h3>Dev shortcuts</h3>
+            <ul>
+                <li>Ctrl(Cmd) + O - Открыть dev tools для webview</li>
+                <li>Ctrl(Cmd) + Alt + I - Открыть dev tools для window</li>
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,72 @@
+<!-- Copyright 2018 Google LLC.
+SPDX-License-Identifier: Apache-2.0 -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="../../common/sets.css" />
+    <link rel="stylesheet" href="../../common/main.css" />
+
+    <script>var exports = {}</script>
+    <script src="../../common/simple_alt.js"></script>
+    <script src="../../common/utils.js"></script>
+
+    <script src="../../out/components/Belt/index.js"></script>
+</head>
+
+<body>
+    <div id="artifact_alt" style="width: 300px; display: none; position: fixed; z-index: 1001; left: 440px; top: 358px;"></div>
+    <div class="content">
+        <div class="sets">
+            <div style="display: flex;">
+                <article id="addSetButton" class="leaderboard__profile">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1828/1828925.png" class="leaderboard__picture">
+                    <span class="leaderboard__name">Добавить набор</span>
+                </article>
+                <article id="dropSetButton" class="leaderboard__profile_remove_button">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1345/1345823.png" class="leaderboard__picture">
+                </article>
+            </div>
+        </div>
+
+        <div class="equippedItems">
+            <div style="display: flex; width: 200px">
+                <button id="unequip">Снять все</button>
+                <button id="equip">Надеть</button>
+                <button id="save">Сохранить</button>
+            </div>
+            <br>
+            <input id="currentSetTitle" style="width: 153px; padding: 7px 15px; border: 1px solid #ccc;" type="text" maxlength="15" value="Current set" placeholder="">
+            <br><br>
+            <span id="warning" style="display: none; font-weight: bold; font-size: 12px; color: darkred;">Похоже в текущей экипировке есть эликсиры, которых нет в рюкзаке!</span>
+            <div id="potionStaticBoxes">
+                
+            </div>
+        </div>
+
+        <div class="filters">
+            <input class="itemCheckbox" checked type="checkbox" id="i_gray">
+            <label class="itemsCheckboxFilter i_gray" for="i_gray"></label>
+
+            <input class="itemCheckbox" checked type="checkbox" id="i_green">
+            <label class="itemsCheckboxFilter i_green" for="i_green"></label>
+
+            <input class="itemCheckbox" checked type="checkbox" id="i_blue">
+            <label class="itemsCheckboxFilter i_blue" for="i_blue"></label>
+
+            <input class="itemCheckbox" checked type="checkbox" id="i_purple">
+            <label class="itemsCheckboxFilter i_purple" for="i_purple"></label>
+
+            <input class="itemCheckbox" checked type="checkbox" id="i_red">
+            <label class="itemsCheckboxFilter i_red" for="i_red"></label>
+        </div>
+        <div class="currentItems"></div>
+    </div>
+</body>
+
+</html>

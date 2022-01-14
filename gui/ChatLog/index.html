@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href='./ChatLog.css' />
+
+    <script>var exports = {}</script>
+    <script src="../../common/utils.js"></script>
+    <script src="../../out/components/ChatLog/main.js"></script>
+    <script src="../../out/components/ChatLog/index.js"></script>
+</head>
+
+<body style="margin-bottom: 35px">
+    <div style="height: 310px; float: right;">
+        <div class="elegant-calencar d-md-flex">
+            <div class="wrap-header d-flex align-items-center img">
+                <p id="reset">Today</p>
+                <div id="header" class="p-0">
+                    <div class="head-info">
+                        <div class="head-month"></div>
+                        <div class="head-day"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="calendar-wrap">
+                <div class="w-100 button-wrap">
+                    <div class="pre-button d-flex align-items-center justify-content-center">
+                        <img style="height: 25px;" src="./Back.png" />
+                    </div>
+                        <div class="next-button d-flex align-items-center justify-content-center">
+                            <img style="height: 25px;" src="./Forward.png" />
+                    </div>
+                        </div>
+                        <table id="calendar">
+                            <thead>
+                                <tr>
+                                    <th>Sun</th>
+                                    <th>Mon</th>
+                                    <th>Tue</th>
+                                    <th>Wed</th>
+                                    <th>Thu</th>
+                                    <th>Fri</th>
+                                    <th>Sat</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div style="margin: 10px;">
+
+                    <div class="filterElement input">
+                        <input type="text" placeholder="Search string" id="searchText" />
+                        <button onclick="filterLog()">Найти</button>
+                    </div>
+
+                    <div class="filterElement">
+                        <input type="checkbox" id="private">
+                        <label class="col-form-label" for="private">Приват</label>
+                    </div>
+                    <div class="filterElement">
+                        <input type="checkbox" id="common">
+                        <label class="col-form-label" for="common">Общий</label>
+                    </div>
+                    <div class="filterElement">
+                        <input type="checkbox" id="system">
+                        <label class="col-form-label" for="system">Системные</label>
+                    </div>
+                    <div class="filterElement">
+                        <input type="checkbox" id="trade">
+                        <label class="col-form-label" for="trade">Торговый</label>
+                    </div>
+                    <div class="filterElement">
+                        <input type="checkbox" id="clan">
+                        <label class="col-form-label" for="clan">Клан</label>
+                    </div>
+                    <div class="filterElement">
+                        <input type="checkbox" id="alliance">
+                        <label class="col-form-label" for="alliance">Альянс</label>
+                    </div>
+                    <div class="filterElement">
+                        <input type="checkbox" id="group">
+                        <label class="col-form-label" for="group">Группа</label>
+                    </div>
+                    <div class="filterElement">
+                        <button id="cleanLogs">Удалить логи чата</button>
+                    </div>
+                </div>
+            </div>
+</body>
+
+</html>

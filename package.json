@@ -2,22 +2,29 @@
     "name": "Dwarium",
     "version": "1.0.3",
     "description": "",
-    "main": "main.js",
+    "main": "out/main.js",
     "scripts": {
-        "start": "electron .",
-        "all": "electron-builder -mw --arm64 --x64",
+        "compile": "tsc",
+        "start": "yarn run compile && electron .",
+        "all": "electron-builder -mwl --arm64 --x64",
         "mac": "electron-builder -m --arm64 --x64",
         "win": "electron-builder -w",
-        "publish": "electron-builder -mw --arm64 --x64 --publish always"
+        "linux": "electron-builder -l",
+        "publish": "electron-builder -mwl --arm64 --x64 --publish always",
+        "dev": "concurrently \"tsc -w\" \"electron .\""
     },
     "author": "",
     "license": "ISC",
     "devDependencies": {
-        "electron": "^16.0.2",
-        "electron-builder": "^22.14.5"
+        "concurrently": "^7.0.0",
+        "electron": "^16.0.6",
+        "electron-builder": "^22.14.5",
+        "typescript": "^4.5.4"
     },
     "dependencies": {
         "@electron/remote": "^2.0.1",
+        "copyfiles": "^2.4.1",
+        "electron-reload": "^2.0.0-alpha.1",
         "electron-updater": "^4.6.1",
         "v8-compile-cache": "^2.3.0"
     },
@@ -27,11 +34,14 @@
         "copyright": "Copyright 2022 ©. Деды воевали!",
         "mac": {
             "category": "public.app-category.games",
-            "icon": "build/icon.icns",
+            "icon": "src/build/icon.icns",
             "identity": "Developer ID Application"
         },
         "win": {
-            "icon": "build/icon.png"
+            "icon": "src/build/icon.png"
+        },
+        "linux": {
+            "icon": "src/build/icon.png"
         }
     }
 }

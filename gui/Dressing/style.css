@@ -1,0 +1,293 @@
+body {
+    font-family: "Benton Sans", "Helvetica Neue", helvetica, arial, sans-serif;
+    margin: 2em;
+    font-size: 15px;
+    background-image: url('./images/bg_l.gif');
+}
+
+.content {
+    display: flex;
+    width: 100%;
+}
+
+.currentItems {
+    border: 3px dotted #666;
+    height: 50%;
+    width: 80%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+    grid-gap: 10px;
+    margin-left: 10px;
+    padding-right: 10px;
+}
+
+.filters {
+    width: 30px;
+    height: 30px;
+    flex-shrink: 0;
+}
+
+.equippedItems {
+    height: 400px;
+    width: 350px;
+    flex-shrink: 0;
+}
+
+:root {
+    --helmetLeftMargin: 120px;
+    --leftItemsLeftMargin: calc(var(--helmetLeftMargin) - 110px);
+    --rightItemsLeftMaring: calc(var(--helmetLeftMargin) + 110px);
+    --topDefaultMargin: 50px;
+    --topDefaultAdditionalMargin: 90px;
+}
+
+#person {
+    background-image: url('./images/person.png');
+    background-repeat: no-repeat;
+    width: 150px;
+    height: 320px;
+    position: absolute;
+    background-position: center;
+    background-size: cover;
+    margin-left: calc(var(--helmetLeftMargin) - 38px);
+    margin-top: 75px;
+}
+
+.currentItems div {
+    margin: 5px;
+}
+
+.box {
+    border: 2px solid #666;
+    border-radius: 0.5em;
+    cursor: move;
+    height: 70px;
+    width: 70px;
+    display: inline-block;
+}
+
+.box.small {
+    height: 25px;
+    width: 25px;
+}
+
+.boxStatic {
+    border: 2px solid #666;
+    border-radius: 0.5em;
+    height: 70px;
+    width: 70px;
+}
+
+.boxStatic.small {
+    height: 25px;
+    width: 25px;
+    margin-left: 5px;
+}
+
+#helmet {
+    margin-left: var(--helmetLeftMargin);
+    position: absolute;
+}
+
+#helmetBox {
+    background-image: url('./images/light-helm.svg');
+}
+
+#shoulders {
+    margin-left: var(--leftItemsLeftMargin);
+    margin-top: var(--topDefaultMargin);
+    position: absolute;
+}
+
+#shouldersBox {
+    background-image: url('./images/spiked-shoulder-armor.svg');
+}
+
+#bracers {
+    margin-left: var(--rightItemsLeftMaring);
+    margin-top: var(--topDefaultMargin);
+    position: absolute;
+}
+
+#bracersBox {
+    background-image: url('./images/gloves.svg');
+}
+
+#mainWeapon {
+    margin-left: var(--leftItemsLeftMargin);
+    margin-top: calc(var(--topDefaultMargin) + var(--topDefaultAdditionalMargin));
+    position: absolute;
+}
+
+#mainWeaponBox {
+    background-image: url('./images/axe-sword.svg');
+}
+
+#offhandWeapon {
+    margin-left: var(--rightItemsLeftMaring);
+    margin-top: calc(var(--topDefaultMargin) + var(--topDefaultAdditionalMargin));
+    position: absolute;
+}
+
+#offhandWeaponBox {
+    background-image: url('./images/swords-emblem.svg');
+}
+
+#cuirass {
+    margin-left: var(--leftItemsLeftMargin);
+    margin-top: calc(var(--topDefaultMargin) + var(--topDefaultAdditionalMargin) * 2);
+    position: absolute;
+}
+
+#cuirassBox {
+    background-image: url('./images/chest-armor.svg');
+}
+
+#leggings {
+    margin-left: var(--rightItemsLeftMaring);
+    margin-top: calc(var(--topDefaultMargin) + var(--topDefaultAdditionalMargin) * 2);
+    position: absolute;
+}
+
+#leggingsBox {
+    background-image: url('./images/metal-skirt.svg');
+}
+
+#chain_mail {
+    margin-left: var(--leftItemsLeftMargin);
+    margin-top: calc(var(--topDefaultMargin) + var(--topDefaultAdditionalMargin) * 3);
+    position: absolute;
+}
+
+#chainmailBox {
+    background-image: url('./images/shoulder-armor.svg');
+}
+
+#boots {
+    margin-left: var(--rightItemsLeftMaring);
+    margin-top: calc(var(--topDefaultMargin) + var(--topDefaultAdditionalMargin) * 3);
+    position: absolute;
+}
+
+#bootsBox {
+    background-image: url('./images/leg-armor.svg');
+}
+
+
+#bow {
+    margin-left: var(--leftItemsLeftMargin);
+    margin-top: calc(var(--topDefaultMargin) + var(--topDefaultAdditionalMargin) * 4);
+    position: absolute;
+}
+
+#bowBox {
+    background-image: url('./images/high-shot.png');
+    background-size: cover;
+}
+
+#quiver {
+    margin-left: var(--rightItemsLeftMaring);
+    margin-top: calc(var(--topDefaultMargin) + var(--topDefaultAdditionalMargin) * 4);
+    position: absolute;
+}
+
+#quiverBox {
+    background-image: url('./images/quiver.png');
+    background-size: cover;
+}
+
+#jewelery {
+    display: flex;
+    position: absolute;
+    margin-top: 410px;
+    margin-left: 85px
+}
+
+#ring1Box,#ring2Box {
+    background-image: url('./images/ring.svg');
+}
+
+#amulet1Box,#amulet2Box {
+    background-image: url('./images/amulet.svg');
+}
+
+#arcats {
+    display: flex;
+    position: absolute;
+    margin-top: 455px;
+    margin-left: 85px
+}
+
+#arcat1Box,#arcat2Box,#arcat3Box,#arcat4Box {
+    background-image: url('./images/arcat.svg');
+}
+
+[draggable] {
+    user-select: none;
+}
+
+.itemCheckbox {
+    display: none;
+}
+
+.itemsCheckboxFilter {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    margin: 0 auto;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.i_gray {
+    background-color: gray;
+}
+
+.i_green {
+    background-color: green;
+    margin-top: 40px;
+}
+
+.i_blue {
+    background-color: blue;
+    margin-top: 80px;
+}
+
+.i_purple {
+    background-color: purple;
+    margin-top: 120px;
+}
+
+.i_red {
+    background-color: red;
+    margin-top: 160px;
+}
+
+.itemsCheckboxFilter:before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 0;
+    left: 0;
+    width: 26px;
+    height: 26px;
+    margin: 0 auto;
+    background-color: #fff;
+    transform: translateY(-50%);
+    border-radius: 50%;
+    transition: 0.2s ease width, 0.2s ease height;
+}
+
+.itemsCheckboxFilter:hover:before {
+    width: 20px;
+    height: 20px;
+}
+
+#i_gray:checked+.itemsCheckboxFilter:before,
+#i_green:checked+.itemsCheckboxFilter:before,
+#i_blue:checked+.itemsCheckboxFilter:before,
+#i_purple:checked+.itemsCheckboxFilter:before,
+#i_red:checked+.itemsCheckboxFilter:before {
+    width: 0;
+    height: 0;
+}
