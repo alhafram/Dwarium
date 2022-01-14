@@ -8157,6 +8157,10 @@ h1, h2, h3, h4, h5,
   margin: 5px;
   position: relative;
   border-radius: 5px;
+  background-image: url(bg.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
   /* -webkit-box-shadow: 0px 19px 27px -20px rgba(0, 0, 0, 0.16);
   -moz-box-shadow: 0px 19px 27px -20px rgba(0, 0, 0, 0.16);
   box-shadow: 0px 19px 27px -20px rgba(0, 0, 0, 0.16);  */
@@ -8238,6 +8242,7 @@ h1, h2, h3, h4, h5,
   font-weight: 300; }
 
 .calendar-wrap {
+  opacity: 0.8;
   width: 70%;
   background: #fff;
   padding: 40px 20px 20px 20px; }
