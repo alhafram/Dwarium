@@ -14,8 +14,9 @@ export class TabsController {
         this.tabs[id] = tab
     }
     static deleteTab(id: string): void {
-        // TS - FIX
-        (this.tabs[id].webContents as any).destroy()
+        if(!this.tabs[id]?.webContents.isDestroyed()) {
+            (this.tabs[id].webContents as any).destroy()
+        }
         delete this.tabs[id]
     }
     static setupMain(tab: BrowserView): void {
