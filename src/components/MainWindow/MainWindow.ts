@@ -172,10 +172,12 @@ export default class MainWindowContainer {
                 return
             }
             let resp = await TabsController.getMain().webContents.executeJavaScript('window.myId')
-            if(resp) {
-                self.mainWindow.webContents.send('auth', true)
-            } else {
-                self.mainWindow.webContents.send('auth', false)
+            if(!self.mainWindow.webContents.isDestroyed()) {
+                if(resp) {
+                    self.mainWindow.webContents.send('auth', true)
+                } else {
+                    self.mainWindow.webContents.send('auth', false)
+                }
             }
         }, 1000)
     }
