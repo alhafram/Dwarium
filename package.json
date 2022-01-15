@@ -1,17 +1,19 @@
 {
     "name": "Dwarium",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "description": "",
     "main": "out/main.js",
     "scripts": {
         "compile": "tsc",
         "start": "yarn run compile && electron .",
-        "all": "electron-builder -mwl --arm64 --x64",
-        "mac": "electron-builder -m --arm64 --x64",
-        "win": "electron-builder -w",
-        "linux": "electron-builder -l",
-        "publish": "electron-builder -mwl --arm64 --x64 --publish always",
-        "dev": "concurrently \"tsc -w\" \"electron .\""
+        "all": "yarn run prod && electron-builder -mwl --arm64 --x64",
+        "mac": "yarn run prod && electron-builder -m --arm64 --x64",
+        "win": "yarn run prod && electron-builder -w",
+        "linux": "yarn run prod && electron-builder -l",
+        "publish": "yarn run prod && electron-builder -mw --arm64 --x64 --publish always",
+        "dev": "concurrently \"tsc -w\" \"electron .\"",
+        "clean": "rm -rf ./out rm -rf ./dist",
+        "prod": "yarn run clean && yarn run compile"
     },
     "author": "",
     "license": "ISC",
@@ -23,7 +25,6 @@
     },
     "dependencies": {
         "@electron/remote": "^2.0.1",
-        "copyfiles": "^2.4.1",
         "electron-reload": "^2.0.0-alpha.1",
         "electron-updater": "^4.6.1",
         "v8-compile-cache": "^2.3.0"
