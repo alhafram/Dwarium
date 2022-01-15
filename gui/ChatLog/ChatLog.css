@@ -13,16 +13,11 @@ a:active {
 
 body {
     background-color: #FFE4AA;
-    margin: 0px;
-    scrollbar-3dlight-color: #E2D9C3;
-    scrollbar-arrow-color: #760000;
-    scrollbar-base-color: #FFE2A8;
-    scrollbar-darkshadow-color: #4F3224;
-    scrollbar-face-color: #FFE2A8;
-    scrollbar-highlight-color: #FFFFFF;
-    scrollbar-shadow-color: #CF805F;
-    scrollbar-track-color: #FFFBD6;
     margin: 10px;
+}
+
+*::-webkit-scrollbar {
+    display: none;
 }
 
 .cml_prv,
