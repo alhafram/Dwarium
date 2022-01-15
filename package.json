@@ -6,11 +6,11 @@
     "scripts": {
         "compile": "tsc",
         "start": "yarn run compile && electron .",
-        "all": "yarn run prod && electron-builder -mwl",
+        "all": "yarn run prod && electron-builder -mwl --arm64 --x64",
         "mac": "yarn run prod && electron-builder -m --arm64 --x64",
         "win": "yarn run prod && electron-builder -w",
         "linux": "yarn run prod && electron-builder -l",
-        "publish": "yarn run prod && electron-builder -mwl --arm64 --x64 --publish always",
+        "publish": "yarn run prod && electron-builder -mw --arm64 --x64 --publish always",
         "dev": "concurrently \"tsc -w\" \"electron .\"",
         "clean": "rm -rf ./out rm -rf ./dist",
         "prod": "yarn run clean && yarn run compile"
@@ -36,25 +36,13 @@
         "mac": {
             "category": "public.app-category.games",
             "icon": "src/build/icon.icns",
-            "identity": "Developer ID Application",
-            "target": [{
-                "target": "dmg",
-                "arch": ["arm64", "x64"]
-            }]
+            "identity": "Developer ID Application"
         },
         "win": {
-            "icon": "src/build/icon.png",
-            "target": [{
-                "target": "nsis",
-                "arch": ["x64"]
-            }]
+            "icon": "src/build/icon.png"
         },
         "linux": {
-            "icon": "src/build/icon.png",
-            "target": [{
-                "target": "AppImage",
-                "arch": ["x64"]
-            }]
+            "icon": "src/build/icon.png"
         }
     }
 }
