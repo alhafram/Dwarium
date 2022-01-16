@@ -1,6 +1,6 @@
 {
     "name": "Dwarium",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "description": "",
     "main": "out/main.js",
     "scripts": {
@@ -58,7 +58,6 @@
                 "target": "nsis",
                 "arch": [
                     "x64", 
-                    "arm64",
                     "ia32"
                 ]
             }
