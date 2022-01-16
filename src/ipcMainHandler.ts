@@ -298,3 +298,7 @@ ipcMain.on('openSettings', () => {
     settingsWindow.loadFile(`${path.join(__dirname, '../gui/Settings/index.html')}`)
     TabsController.mainWindow?.webContents.send('openWindow', 'settings', true)
 })
+
+ipcMain.on('userPrv', (event, nick) => {
+    TabsController.mainWindowContainer?.browserView?.webContents.send('userPrv', nick)
+})

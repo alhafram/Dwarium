@@ -3,6 +3,12 @@ import { ipcRenderer } from 'electron'
 let switcher: HTMLElement | null
 let tabs: HTMLElement | null
 
+const Elements = {
+    usernameBox(): HTMLInputElement {
+        return document.getElementById('username') as HTMLInputElement
+    }
+}
+
 window.addEventListener('DOMContentLoaded', () => {
     switcher = document.querySelector('#switcher') as HTMLElement
     tabs = document.querySelector('body > div.tabs')
@@ -62,14 +68,20 @@ window.addEventListener('DOMContentLoaded', () => {
         ipcRenderer.send('updateApplication')
     })
     document.getElementById('findCharacter')?.addEventListener('click', () => {
-        const nick = (document.getElementById('username') as HTMLInputElement).value
+        const nick = Elements.usernameBox().value
         if(nick.length != 0) {
             ipcRenderer.send('findCharacter', nick)
         }
     })
-    document.getElementById('username')?.addEventListener('keyup', (e) => {
+    Elements.usernameBox().onkeyup = function(e) {
         if(e.key == 'Enter') {
             document.getElementById('findCharacter')?.click()
+        }
+    }
+    document.getElementById('prvUserButton')?.addEventListener('click', function() {
+        const nick = Elements.usernameBox().value
+        if(nick.length > 0) {
+            ipcRenderer.send('userPrv', nick)
         }
     })
 })

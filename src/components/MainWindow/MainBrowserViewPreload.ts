@@ -1,4 +1,6 @@
 // @ts-nocheck
+import { ipcRenderer } from "electron"
+
 const {
     checkLmtsProxyReady,
     setupChatTotalReconnect,
@@ -28,4 +30,8 @@ window.addEventListener('DOMContentLoaded', async () => {
     }, 100)
 
     console.log(new Date(), "DONE 1")
+})
+
+ipcRenderer.on('userPrv', function(event, nick) {
+    userPrvTag(nick)
 })
