@@ -105,7 +105,11 @@ export default class MainWindowContainer {
             for(const excludeUrl of excludedUrls) {
                 if(url.includes(excludeUrl)) {
                     return {
-                        action: 'allow'
+                        action: 'allow',
+                        overrideBrowserWindowOptions: {
+                            enablePreferredSizeMode: true,
+                            parent: configService.windowsAboveApp() ? TabsController.mainWindow : null
+                        }
                     }
                 }
             }
