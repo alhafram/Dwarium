@@ -298,3 +298,18 @@ ipcMain.on('openSettings', () => {
     settingsWindow.loadFile(`${path.join(__dirname, '../gui/Settings/index.html')}`)
     TabsController.mainWindow?.webContents.send('openWindow', 'settings', true)
 })
+
+ipcMain.on('userPrv', (event, nick) => {
+    TabsController.mainWindowContainer?.browserView?.webContents.send('userPrv', nick)
+})
+
+ipcMain.on('findEffects', (event, nick) => {
+    const effetsInfoBrowserWindow = new BrowserWindow({
+        width: 1200,
+        height: 900,
+        useContentSize: true,
+        show: true,
+        parent: configService.windowsAboveApp() ? TabsController.mainWindow! : undefined
+    })
+    effetsInfoBrowserWindow.webContents.loadURL(`${configService.baseUrl()}/effect_info.php?nick=${nick}`)
+})

@@ -7,6 +7,7 @@ export default class MainWindowContainer {
 
     browserView: BrowserView | null | undefined
     mainWindow: BrowserWindow
+    isFullscreen = false
 
     constructor() {
         this.mainWindow = new BrowserWindow({
@@ -24,10 +25,16 @@ export default class MainWindowContainer {
         })
         this.mainWindow.setMenu(null)
         this.mainWindow.on('enter-full-screen', () => {
-            this.setViewContentBounds(TabsController.currentTab(), this.mainWindow.getBounds())
+            const bounds = this.mainWindow.getBounds()
+            if(TabsController.currentTab() != TabsController.getMain()) {
+                bounds.y = 25
+            }
+            this.isFullscreen = true
+            this.setViewContentBounds(TabsController.currentTab(), bounds)
         })
 
         this.mainWindow.on('leave-full-screen', () => {
+            this.isFullscreen = false
             this.setViewContentBounds(TabsController.currentTab(), this.mainWindow.getBounds())
         })
 
@@ -105,7 +112,11 @@ export default class MainWindowContainer {
             for(const excludeUrl of excludedUrls) {
                 if(url.includes(excludeUrl)) {
                     return {
-                        action: 'allow'
+                        action: 'allow',
+                        overrideBrowserWindowOptions: {
+                            enablePreferredSizeMode: true,
+                            parent: configService.windowsAboveApp() ? TabsController.mainWindow : null
+                        }
                     }
                 }
             }
@@ -149,10 +160,15 @@ export default class MainWindowContainer {
     setViewContentBounds(tab: BrowserView, size?: Rectangle) {
         const [contentWidth, contentHeight] = this.mainWindow.getContentSize()
         const controlBounds = this.getControlBounds()
+        let y = controlBounds.y + controlBounds.height
+        if(configService.hideTopPanelInFullScreen() && TabsController.getMain() == TabsController.currentTab()) {
+            y = this.isFullscreen ? 0 : y
+            controlBounds.height = this.isFullscreen ? 0 : controlBounds.height
+        }
         if(tab) {
             tab.setBounds({
                 x: 0,
-                y: controlBounds.y + controlBounds.height,
+                y: y,
                 width: size && process.platform == 'win32' ? size.width : contentWidth,
                 height: size && process.platform == 'win32' ? size.height : contentHeight - controlBounds.height
             })
