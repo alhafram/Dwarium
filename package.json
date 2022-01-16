@@ -6,11 +6,11 @@
     "scripts": {
         "compile": "tsc",
         "start": "yarn run compile && electron .",
-        "all": "yarn run prod && electron-builder -mwl --arm64 --x64",
-        "mac": "yarn run prod && electron-builder -m --arm64 --x64",
+        "all": "yarn run prod && electron-builder -mwl",
+        "mac": "yarn run prod && electron-builder -m",
         "win": "yarn run prod && electron-builder -w",
         "linux": "yarn run prod && electron-builder -l",
-        "publish": "yarn run prod && electron-builder -mw --arm64 --x64 --publish always",
+        "publish": "yarn run prod && electron-builder -mwl --publish always",
         "dev": "concurrently \"tsc -w\" \"electron .\"",
         "clean": "rm -rf ./out rm -rf ./dist",
         "prod": "yarn run clean && yarn run compile"
@@ -33,16 +33,44 @@
         "appId": "com.dwarium.ru",
         "productName": "Dwarium",
         "copyright": "Copyright 2022 ©. Деды воевали!",
+        "publish": [
+            {
+              "provider": "github",
+              "owner": "alhafram",
+              "repo": "Dwarium"
+            }
+          ],
         "mac": {
             "category": "public.app-category.games",
             "icon": "src/build/icon.icns",
-            "identity": "Developer ID Application"
+            "identity": "Developer ID Application",
+            "target": {
+                "target": "default",
+                "arch": [
+                    "x64",
+                    "arm64"
+                ]
+            }
         },
         "win": {
-            "icon": "src/build/icon.png"
+            "icon": "src/build/icon.png",
+            "target": {
+                "target": "nsis",
+                "arch": [
+                    "x64", 
+                    "arm64",
+                    "ia32"
+                ]
+            }
         },
         "linux": {
-            "icon": "src/build/icon.png"
+            "icon": "src/build/icon.png",
+            "target": {
+                "target": "AppImage",
+                "arch": [
+                    "x64"
+                ]
+            }
         }
     }
 }
