@@ -14,10 +14,7 @@ a:active {
 body {
     background-color: #FFE4AA;
     margin: 10px;
-}
-
-*::-webkit-scrollbar {
-    display: none;
+    overflow-y: hidden;
 }
 
 .cml_prv,
