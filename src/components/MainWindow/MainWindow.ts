@@ -7,6 +7,7 @@ export default class MainWindowContainer {
 
     browserView: BrowserView | null | undefined
     mainWindow: BrowserWindow
+    isFullscreen = false
 
     constructor() {
         this.mainWindow = new BrowserWindow({
@@ -28,10 +29,12 @@ export default class MainWindowContainer {
             if(TabsController.currentTab() != TabsController.getMain()) {
                 bounds.y = 25
             }
+            this.isFullscreen = true
             this.setViewContentBounds(TabsController.currentTab(), bounds)
         })
 
         this.mainWindow.on('leave-full-screen', () => {
+            this.isFullscreen = false
             this.setViewContentBounds(TabsController.currentTab(), this.mainWindow.getBounds())
         })
 
@@ -157,13 +160,16 @@ export default class MainWindowContainer {
     setViewContentBounds(tab: BrowserView, size?: Rectangle) {
         const [contentWidth, contentHeight] = this.mainWindow.getContentSize()
         const controlBounds = this.getControlBounds()
-        const y = (size && size?.y <= 0) ? 0 : controlBounds.y + controlBounds.height
+        let y = controlBounds.y + controlBounds.height
+        if(TabsController.getMain() == TabsController.currentTab()) {
+            y = this.isFullscreen ? 0 : y
+        }
         if(tab) {
             tab.setBounds({
                 x: 0,
                 y: y,
                 width: size && process.platform == 'win32' ? size.width : contentWidth,
-                height: size && process.platform == 'win32' ? size.height : contentHeight - (y == 0 ? 0 : controlBounds.height)
+                height: size && process.platform == 'win32' ? size.height : contentHeight - controlBounds.height
             })
         }
     }
