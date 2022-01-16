@@ -163,6 +163,8 @@ export default class MainWindowContainer {
         let y = controlBounds.y + controlBounds.height
         if(TabsController.getMain() == TabsController.currentTab()) {
             y = this.isFullscreen ? 0 : y
+            console.log(controlBounds.height)
+            controlBounds.height = this.isFullscreen ? 0 : controlBounds.height
         }
         if(tab) {
             tab.setBounds({
