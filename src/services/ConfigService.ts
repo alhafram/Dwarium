@@ -35,18 +35,28 @@ function windowsAboveApp(): boolean {
 
 function userAgent(): string {
     let settings = readData('settings')
+    const defaultUA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36'
     if(settings) {
         settings = JSON.parse(settings)
-        return settings.selectedUserAgentValue
+        return settings.selectedUserAgentValue ?? defaultUA
     }
-    return 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36'
+    return defaultUA
 }
 
 function maximizeOnStart(): boolean {
     let settings = readData('settings')
     if(settings) {
         settings = JSON.parse(settings)
-        return settings.maximizeOnStart
+        return settings.maximizeOnStart ?? false
+    }
+    return false
+}
+
+function hideTopPanelInFullScreen(): boolean {
+    let settings = readData('settings')
+    if(settings) {
+        settings = JSON.parse(settings)
+        return settings.hideTopPanelInFullScreen ?? false
     }
     return false
 }
@@ -95,6 +105,7 @@ export default {
     windowOpenNewTab,
     windowsAboveApp,
     maximizeOnStart,
+    hideTopPanelInFullScreen,
     userAgent,
     writeData,
     sets,

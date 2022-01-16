@@ -161,9 +161,8 @@ export default class MainWindowContainer {
         const [contentWidth, contentHeight] = this.mainWindow.getContentSize()
         const controlBounds = this.getControlBounds()
         let y = controlBounds.y + controlBounds.height
-        if(TabsController.getMain() == TabsController.currentTab()) {
+        if(configService.hideTopPanelInFullScreen() && TabsController.getMain() == TabsController.currentTab()) {
             y = this.isFullscreen ? 0 : y
-            console.log(controlBounds.height)
             controlBounds.height = this.isFullscreen ? 0 : controlBounds.height
         }
         if(tab) {

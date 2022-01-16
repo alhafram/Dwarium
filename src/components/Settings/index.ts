@@ -8,6 +8,7 @@ interface SettingsWindowState {
     windowOpenNewTab: boolean,
     windowsAboveApp: boolean,
     maximizeOnStart: boolean,
+    hideTopPanelInFullScreen: boolean,
     userAgentTextFieldActive?: boolean
 }
 
@@ -29,7 +30,32 @@ enum SettingsWindowActions {
     CHANGE_USER_AGENT,
     CHANGE_WINDOW_OPEN_NEW_TAB,
     CHANGE_WINDOWS_ABOVE_APP,
-    CHANGE_MAXIMIZE_ON_START
+    CHANGE_MAXIMIZE_ON_START,
+    CHANGE_HIDE_TOP_PANEL_IN_FULL_SCREEN
+}
+
+const Elements = {
+    windowsAboveAppElement(): HTMLInputElement {
+        return document.getElementById('windowsAboveApp') as HTMLInputElement
+    },
+    windowOpenNewTab(): HTMLInputElement {
+        return document.getElementById('windowOpenNewTab') as HTMLInputElement
+    },
+    maximizeOnStart(): HTMLInputElement {
+        return document.getElementById('maximizeOnStart') as HTMLInputElement
+    },
+    userAgentsSelect(): HTMLSelectElement {
+        return document.getElementById('userAgents') as HTMLSelectElement
+    },
+    save(): HTMLButtonElement {
+        return document.getElementById('save') as HTMLButtonElement
+    },
+    userAgentTextValue(): HTMLInputElement {
+        return document.getElementById('userAgentText') as HTMLInputElement
+    },
+    hideTopPanelInFullScreenBox(): HTMLInputElement {
+        return document.getElementById('hideTopPanelInFullScreen') as HTMLInputElement
+    }
 }
 
 function getTitle(type: UserAgentType): string {
@@ -55,6 +81,27 @@ function getTitle(type: UserAgentType): string {
     }
 }
 
+function setupListeners() {
+    Elements.userAgentsSelect().onchange = () => {
+        dispatch(SettingsWindowActions.CHANGE_USER_AGENT)
+    }
+    Elements.save().onclick = () => {
+        dispatch(SettingsWindowActions.SAVE_SETTINGS)
+    }
+    Elements.windowOpenNewTab().onchange = () => {
+        dispatch(SettingsWindowActions.CHANGE_WINDOW_OPEN_NEW_TAB)
+    }
+    Elements.windowsAboveAppElement().onchange = () => {
+        dispatch(SettingsWindowActions.CHANGE_WINDOWS_ABOVE_APP)
+    }
+    Elements.maximizeOnStart().onchange = () => {
+        dispatch(SettingsWindowActions.CHANGE_MAXIMIZE_ON_START)
+    }
+    Elements.hideTopPanelInFullScreenBox().onchange = () => {
+        dispatch(SettingsWindowActions.CHANGE_HIDE_TOP_PANEL_IN_FULL_SCREEN)
+    }
+}
+
 let initialState: SettingsWindowState = {
     userAgents: Object.keys(UserAgentType).map(key => {
         return {
@@ -67,6 +114,7 @@ let initialState: SettingsWindowState = {
     windowOpenNewTab: false,
     windowsAboveApp: false,
     maximizeOnStart: false,
+    hideTopPanelInFullScreen: false,
     userAgentTextFieldActive: false
 }
 
@@ -84,6 +132,7 @@ function reduce(state: SettingsWindowState = initialState, action: SettingsWindo
                     userAgentTextFieldActive: loadedSettings.selectedUserAgentType == UserAgentType.OWN,
                     windowOpenNewTab: loadedSettings.windowOpenNewTab,
                     windowsAboveApp: loadedSettings.windowsAboveApp,
+                    hideTopPanelInFullScreen: loadedSettings.hideTopPanelInFullScreen,
                     maximizeOnStart: loadedSettings.maximizeOnStart
                 }
             }
@@ -132,28 +181,12 @@ function reduce(state: SettingsWindowState = initialState, action: SettingsWindo
             return {
                 ...state,
                 maximizeOnStart: Elements.maximizeOnStart().checked
-            }  
-    }
-}
-
-const Elements = {
-    windowsAboveAppElement(): HTMLInputElement {
-        return document.getElementById('windowsAboveApp') as HTMLInputElement
-    },
-    windowOpenNewTab(): HTMLInputElement {
-        return document.getElementById('windowOpenNewTab') as HTMLInputElement
-    },
-    maximizeOnStart(): HTMLInputElement {
-        return document.getElementById('maximizeOnStart') as HTMLInputElement
-    },
-    userAgentsSelect(): HTMLSelectElement {
-        return document.getElementById('userAgents') as HTMLSelectElement
-    },
-    save(): HTMLButtonElement {
-        return document.getElementById('save') as HTMLButtonElement
-    },
-    userAgentTextValue(): HTMLInputElement {
-        return document.getElementById('userAgentText') as HTMLInputElement
+            } 
+        case SettingsWindowActions.CHANGE_HIDE_TOP_PANEL_IN_FULL_SCREEN:
+            return {
+                ...state,
+                hideTopPanelInFullScreen: Elements.hideTopPanelInFullScreenBox().checked
+            } 
     }
 }
 
@@ -186,30 +219,13 @@ function render(): void {
         })
     }
     const userAgentTextInputElement = Elements.userAgentTextValue()
-    userAgentTextInputElement.value = initialState.selectedUserAgentValue;
-    userAgentTextInputElement.disabled = !initialState.userAgentTextFieldActive;
+    userAgentTextInputElement.value = initialState.selectedUserAgentValue
+    userAgentTextInputElement.disabled = !initialState.userAgentTextFieldActive
 
-    Elements.windowsAboveAppElement().checked = initialState.windowsAboveApp;
-    Elements.windowOpenNewTab().checked = initialState.windowOpenNewTab;
-    Elements.maximizeOnStart().checked = initialState.maximizeOnStart;
-}
-
-function setupListeners() {
-    Elements.userAgentsSelect().onchange = () => {
-        dispatch(SettingsWindowActions.CHANGE_USER_AGENT)
-    }
-    Elements.save().onclick = () => {
-        dispatch(SettingsWindowActions.SAVE_SETTINGS)
-    }
-    Elements.windowOpenNewTab().onchange = () => {
-        dispatch(SettingsWindowActions.CHANGE_WINDOW_OPEN_NEW_TAB)
-    }
-    Elements.windowsAboveAppElement().onchange = () => {
-        dispatch(SettingsWindowActions.CHANGE_WINDOWS_ABOVE_APP)
-    }
-    Elements.maximizeOnStart().onchange = () => {
-        dispatch(SettingsWindowActions.CHANGE_MAXIMIZE_ON_START)
-    }
+    Elements.windowsAboveAppElement().checked = initialState.windowsAboveApp
+    Elements.windowOpenNewTab().checked = initialState.windowOpenNewTab
+    Elements.maximizeOnStart().checked = initialState.maximizeOnStart
+    Elements.hideTopPanelInFullScreenBox().checked = initialState.hideTopPanelInFullScreen
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
