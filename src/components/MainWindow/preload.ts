@@ -6,6 +6,12 @@ let tabs: HTMLElement | null
 const Elements = {
     usernameBox(): HTMLInputElement {
         return document.getElementById('username') as HTMLInputElement
+    },
+    userPrvBox(): HTMLButtonElement {
+        return document.getElementById('prvUserButton') as HTMLButtonElement
+    },
+    findEffectsBox(): HTMLButtonElement {
+        return document.getElementById('findEffects') as HTMLButtonElement
     }
 }
 
@@ -78,12 +84,18 @@ window.addEventListener('DOMContentLoaded', () => {
             document.getElementById('findCharacter')?.click()
         }
     }
-    document.getElementById('prvUserButton')?.addEventListener('click', function() {
+    Elements.userPrvBox().onclick = function() {
         const nick = Elements.usernameBox().value
         if(nick.length > 0) {
             ipcRenderer.send('userPrv', nick)
         }
-    })
+    }
+    Elements.findEffectsBox().onclick = function() {
+        const nick = Elements.usernameBox().value
+        if(nick.length > 0) {
+            ipcRenderer.send('findEffects', nick)
+        }
+    }
 })
 
 function createNewTab(id?: string, title?: string) {
@@ -154,7 +166,9 @@ ipcRenderer.on('url', (event, url, id) => {
 
 ipcRenderer.on('finishLoadUrl', (event, id, title) => {
     let element = document.getElementById(id)?.firstElementChild as HTMLLinkElement
-    element.textContent = title
+    if(element) {
+        element.textContent = title
+    }
 })
 
 ipcRenderer.on('new_tab', (event, url) => {
