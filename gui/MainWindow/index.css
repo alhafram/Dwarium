@@ -189,12 +189,12 @@ body {
 
 /* Browser buttons */
 #reloadButton {
-    margin-left: -30px;
+    margin-left: -25px;
     margin-top: auto;
     z-index: 100;
     margin-bottom: auto;
-    width: 20px;
-    height: 20px;
+    width: 15px;
+    height: 15px;
     background-color: white;
     border: none;
     background-size: cover;
@@ -310,4 +310,28 @@ body {
     border-radius: 3px;
     background-size: contain;
     background-image: url('./images/Settings.png');
+}
+
+.nickUtilsButton {
+    height: 30px;
+    width: 40px;
+    border: none;
+    background-color: white;
+    border-radius: 3px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#prvUserButton {
+    margin-left: 10px;
+    background-image: url('./images/Private.png');
+}
+
+#findCharacter {
+    background-image: url('./images/Info.png');
+}
+
+#findEffects {
+    background-image: url('./images/Effects.png');
 }
