@@ -19,7 +19,6 @@ enum UserAgentType {
     MAC_CHROME = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36',
     MAC_SAFARI = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.1 Safari/605.1.15',
     MAC_FIREFOX = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:95.0) Gecko/20100101 Firefox/95.0',
-    CLIENT_V3 = 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.22 (KHTML, like Gecko) Chrome/25.0.1364.152 extopen/1 Client/3.0.105/AuthCheck Safari/537.22',
     CLIENT_V4 = 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.110 Client/4.0.53/AuthCheck Safari/537.36',
     OWN = ''
 }
@@ -72,8 +71,6 @@ function getTitle(type: UserAgentType): string {
             return 'MacOS - Safari'
         case UserAgentType.MAC_FIREFOX:
             return 'MacOS - Firefox'
-        case UserAgentType.CLIENT_V3:
-            return 'Client - v3'
         case UserAgentType.CLIENT_V4:
             return 'Client - v4'
         case UserAgentType.OWN:
