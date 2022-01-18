@@ -302,7 +302,7 @@ body {
 }
 
 #settings {
-    margin-left: 100px; 
+    margin-left: 10px; 
     height: 30px;
     width: 30px;
     border: none;
@@ -310,6 +310,17 @@ body {
     border-radius: 3px;
     background-size: contain;
     background-image: url('./images/Settings.png');
+}
+
+#notes {
+    margin-left: 10px; 
+    height: 30px;
+    width: 30px;
+    border: none;
+    background-color: white;
+    border-radius: 3px;
+    background-size: contain;
+    background-image: url('./images/Notes.svg');
 }
 
 .nickUtilsButton {

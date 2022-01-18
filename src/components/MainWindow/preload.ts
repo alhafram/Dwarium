@@ -12,6 +12,9 @@ const Elements = {
     },
     findEffectsBox(): HTMLButtonElement {
         return document.getElementById('findEffects') as HTMLButtonElement
+    },
+    notesBox(): HTMLButtonElement {
+        return document.getElementById('notes') as HTMLButtonElement
     }
 }
 
@@ -95,6 +98,9 @@ window.addEventListener('DOMContentLoaded', () => {
         if(nick.length > 0) {
             ipcRenderer.send('findEffects', nick)
         }
+    }
+    Elements.notesBox().onclick = function() {
+        ipcRenderer.send('openNotes')
     }
 })
 

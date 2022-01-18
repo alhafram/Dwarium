@@ -313,3 +313,33 @@ ipcMain.on('findEffects', (event, nick) => {
     })
     effetsInfoBrowserWindow.webContents.loadURL(`${configService.baseUrl()}/effect_info.php?nick=${nick}`)
 })
+
+let notesWindow: BrowserWindow | null
+ipcMain.on('openNotes', () => {
+    if(notesWindow) {
+        notesWindow.show()
+        return
+    }
+    const path = require('path')
+    notesWindow = new BrowserWindow({
+        width: 900,
+        height: 700,
+        minWidth: 300,
+        minHeight: 300,
+        useContentSize: true,
+        show: true,
+        parent: configService.windowsAboveApp() ? TabsController.mainWindow! : undefined,
+        webPreferences: {
+            preload: path.join(__dirname, './components/Notes/preload.js')
+        }
+    })
+    notesWindow.on('closed', () => {
+        notesWindow = null
+        if(!TabsController.mainWindow?.webContents.isDestroyed()) {
+            TabsController.mainWindow?.webContents.send('openWindow', 'notes', false)
+        }
+    })
+    notesWindow.loadFile(`${path.join(__dirname, '../gui/Notes/index.html')}`)
+    require("@electron/remote/main").enable(notesWindow.webContents)
+    TabsController.mainWindow?.webContents.send('openWindow', 'notes', true)
+})
