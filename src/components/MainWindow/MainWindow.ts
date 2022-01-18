@@ -83,6 +83,13 @@ export default class MainWindowContainer {
                 globalShortcut.register('F11', () => {
                     this.mainWindow.setFullScreen(!this.mainWindow.isFullScreen())
                 })
+                globalShortcut.register('F9', () => {
+                    this.mainWindow.webContents.send('takeScreenshot')
+                })
+            } else {
+                globalShortcut.register('CommandOrControl+F', () => {
+                    this.mainWindow.webContents.send('takeScreenshot')
+                })
             }
         })
 
@@ -98,6 +105,9 @@ export default class MainWindowContainer {
         globalShortcut.unregister('CommandOrControl+T')
         if(process.platform == 'win32' || process.platform == 'linux') {
             globalShortcut.unregister('F11')
+            globalShortcut.unregister('F9')
+        } else {
+            globalShortcut.unregister('CommandOrControl+F')
         }
     }
 

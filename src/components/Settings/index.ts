@@ -9,7 +9,8 @@ interface SettingsWindowState {
     windowsAboveApp: boolean,
     maximizeOnStart: boolean,
     hideTopPanelInFullScreen: boolean,
-    userAgentTextFieldActive?: boolean
+    userAgentTextFieldActive?: boolean,
+    screenshotsFolderPath: string
 }
 
 enum UserAgentType {
@@ -54,6 +55,12 @@ const Elements = {
     },
     hideTopPanelInFullScreenBox(): HTMLInputElement {
         return document.getElementById('hideTopPanelInFullScreen') as HTMLInputElement
+    },
+    screenshotsFolderPathBox(): HTMLTextAreaElement {
+        return document.getElementById('screenshotsFolderPath') as HTMLTextAreaElement
+    },
+    screenshotsFolderBox(): HTMLButtonElement {
+        return document.getElementById('screenshotsFolder') as HTMLButtonElement
     }
 }
 
@@ -97,6 +104,9 @@ function setupListeners() {
     Elements.hideTopPanelInFullScreenBox().onchange = () => {
         dispatch(SettingsWindowActions.CHANGE_HIDE_TOP_PANEL_IN_FULL_SCREEN)
     }
+    Elements.screenshotsFolderBox().onclick = function() {
+        window.settingsAPI.openScreenshotsFolder(initialState.screenshotsFolderPath)
+    }
 }
 
 let initialState: SettingsWindowState = {
@@ -112,7 +122,8 @@ let initialState: SettingsWindowState = {
     windowsAboveApp: false,
     maximizeOnStart: false,
     hideTopPanelInFullScreen: false,
-    userAgentTextFieldActive: false
+    userAgentTextFieldActive: false,
+    screenshotsFolderPath: ''
 }
 
 function reduce(state: SettingsWindowState = initialState, action: SettingsWindowActions): SettingsWindowState {
@@ -130,7 +141,8 @@ function reduce(state: SettingsWindowState = initialState, action: SettingsWindo
                     windowOpenNewTab: loadedSettings.windowOpenNewTab,
                     windowsAboveApp: loadedSettings.windowsAboveApp,
                     hideTopPanelInFullScreen: loadedSettings.hideTopPanelInFullScreen,
-                    maximizeOnStart: loadedSettings.maximizeOnStart
+                    maximizeOnStart: loadedSettings.maximizeOnStart,
+                    screenshotsFolderPath: window.settingsAPI.screenshotsFolder()
                 }
             }
         case SettingsWindowActions.SAVE_SETTINGS:
@@ -223,6 +235,8 @@ function render(): void {
     Elements.windowOpenNewTab().checked = initialState.windowOpenNewTab
     Elements.maximizeOnStart().checked = initialState.maximizeOnStart
     Elements.hideTopPanelInFullScreenBox().checked = initialState.hideTopPanelInFullScreen
+
+    Elements.screenshotsFolderPathBox().value = initialState.screenshotsFolderPath
 }
 
 document.addEventListener('DOMContentLoaded', async () => {

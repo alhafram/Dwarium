@@ -15,6 +15,9 @@ const Elements = {
     },
     notesBox(): HTMLButtonElement {
         return document.getElementById('notes') as HTMLButtonElement
+    },
+    screenshotBox(): HTMLButtonElement {
+        return document.getElementById('screenshot') as HTMLButtonElement
     }
 }
 
@@ -101,6 +104,9 @@ window.addEventListener('DOMContentLoaded', () => {
     }
     Elements.notesBox().onclick = function() {
         ipcRenderer.send('openNotes')
+    }
+    Elements.screenshotBox().onclick = function() {
+        ipcRenderer.send('takeScreenshot')
     }
 })
 
@@ -208,4 +214,8 @@ ipcRenderer.on('updateApplicationAvailable', () => {
 ipcRenderer.on('openWindow', (_evt, id, active) => {
     const element = document.getElementById(id)
     element!.style.backgroundColor = active ? '#999' : 'white'
+})
+
+ipcRenderer.on('takeScreenshot', () => {
+    ipcRenderer.send('takeScreenshot')
 })

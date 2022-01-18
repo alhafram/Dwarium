@@ -2,6 +2,7 @@ import { BrowserWindow, BrowserView, ipcMain, app } from 'electron'
 import configService from './services/ConfigService'
 import { TabsController } from './services/TabsController'
 import { autoUpdater } from "electron-updater"
+import fs from 'fs'
 
 ipcMain.on('load_url', (evt, server) => {
     configService.writeData('server', server)
@@ -301,6 +302,23 @@ ipcMain.on('openSettings', () => {
 
 ipcMain.on('userPrv', (event, nick) => {
     TabsController.mainWindowContainer?.browserView?.webContents.send('userPrv', nick)
+})
+
+ipcMain.on('takeScreenshot', async () => {
+    const basePath =  app.getPath('userData') + '/screens'
+    if(!fs.existsSync(basePath)) {
+        fs.mkdirSync(basePath)
+    }
+    let page = await TabsController.mainWindowContainer?.browserView?.webContents.capturePage()
+    if(!page) {
+        return
+    }
+    let resized = page.resize({ width: 1280, height: 1280 / page.getAspectRatio() })
+    let png = resized.toPNG()
+    let path = `${basePath}/${new Date().toLocaleString().replaceAll(' ', '').replaceAll('/', '.').replaceAll(':', '_')}.png`
+    fs.writeFile(path, png, (err: any) => {
+        console.log(err)
+    })
 })
 
 ipcMain.on('findEffects', (event, nick) => {
