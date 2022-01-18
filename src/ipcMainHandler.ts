@@ -304,20 +304,29 @@ ipcMain.on('userPrv', (event, nick) => {
     TabsController.mainWindowContainer?.browserView?.webContents.send('userPrv', nick)
 })
 
+let screenIsMaking = false
 ipcMain.on('takeScreenshot', async () => {
+    if(screenIsMaking) {
+        return
+    }
+    screenIsMaking = true
+    TabsController.mainWindow?.webContents.send('openWindow', 'screenshot', true)
     const basePath =  app.getPath('userData') + '/screens'
     if(!fs.existsSync(basePath)) {
         fs.mkdirSync(basePath)
     }
     let page = await TabsController.mainWindowContainer?.browserView?.webContents.capturePage()
     if(!page) {
+        TabsController.mainWindow?.webContents.send('openWindow', 'screenshot', false)
+        screenIsMaking = false
         return
     }
     let resized = page.resize({ width: 1280, height: 1280 / page.getAspectRatio() })
     let png = resized.toPNG()
     let path = `${basePath}/${new Date().toLocaleString().replaceAll(' ', '').replaceAll('/', '.').replaceAll(':', '_')}.png`
     fs.writeFile(path, png, (err: any) => {
-        console.log(err)
+        TabsController.mainWindow?.webContents.send('openWindow', 'screenshot', false)
+        screenIsMaking = false
     })
 })
 
