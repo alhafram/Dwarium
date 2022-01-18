@@ -1,5 +1,5 @@
 import { contextBridge, ipcRenderer } from 'electron'
-import { app } from '@electron/remote'
+import { app, shell } from '@electron/remote'
 import configService from '../../services/ConfigService'
 
 contextBridge.exposeInMainWorld('settingsAPI', {
@@ -16,13 +16,21 @@ contextBridge.exposeInMainWorld('settingsAPI', {
     restart: () => {
         app.relaunch()
         app.quit()
+    },
+    screenshotsFolder: () => {
+        return app.getPath('userData') + '/screens'
+    },
+    openScreenshotsFolder: (path: string) => {
+        shell.openPath(path)
     }
 })
 
 export interface SettingsAPI {
     saveSettings: (settings: {}) => void,
     loadSettings: () => any,
-    restart: () => void
+    restart: () => void,
+    screenshotsFolder(): string,
+    openScreenshotsFolder(path: string): void
 }
 
 declare global {

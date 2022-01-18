@@ -9,7 +9,8 @@ interface SettingsWindowState {
     windowsAboveApp: boolean,
     maximizeOnStart: boolean,
     hideTopPanelInFullScreen: boolean,
-    userAgentTextFieldActive?: boolean
+    userAgentTextFieldActive?: boolean,
+    screenshotsFolderPath: string
 }
 
 enum UserAgentType {
@@ -19,7 +20,6 @@ enum UserAgentType {
     MAC_CHROME = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36',
     MAC_SAFARI = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.1 Safari/605.1.15',
     MAC_FIREFOX = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:95.0) Gecko/20100101 Firefox/95.0',
-    CLIENT_V3 = 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.22 (KHTML, like Gecko) Chrome/25.0.1364.152 extopen/1 Client/3.0.105/AuthCheck Safari/537.22',
     CLIENT_V4 = 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.110 Client/4.0.53/AuthCheck Safari/537.36',
     OWN = ''
 }
@@ -55,6 +55,12 @@ const Elements = {
     },
     hideTopPanelInFullScreenBox(): HTMLInputElement {
         return document.getElementById('hideTopPanelInFullScreen') as HTMLInputElement
+    },
+    screenshotsFolderPathBox(): HTMLTextAreaElement {
+        return document.getElementById('screenshotsFolderPath') as HTMLTextAreaElement
+    },
+    screenshotsFolderBox(): HTMLButtonElement {
+        return document.getElementById('screenshotsFolder') as HTMLButtonElement
     }
 }
 
@@ -72,8 +78,6 @@ function getTitle(type: UserAgentType): string {
             return 'MacOS - Safari'
         case UserAgentType.MAC_FIREFOX:
             return 'MacOS - Firefox'
-        case UserAgentType.CLIENT_V3:
-            return 'Client - v3'
         case UserAgentType.CLIENT_V4:
             return 'Client - v4'
         case UserAgentType.OWN:
@@ -100,6 +104,9 @@ function setupListeners() {
     Elements.hideTopPanelInFullScreenBox().onchange = () => {
         dispatch(SettingsWindowActions.CHANGE_HIDE_TOP_PANEL_IN_FULL_SCREEN)
     }
+    Elements.screenshotsFolderBox().onclick = function() {
+        window.settingsAPI.openScreenshotsFolder(initialState.screenshotsFolderPath)
+    }
 }
 
 let initialState: SettingsWindowState = {
@@ -115,7 +122,8 @@ let initialState: SettingsWindowState = {
     windowsAboveApp: false,
     maximizeOnStart: false,
     hideTopPanelInFullScreen: false,
-    userAgentTextFieldActive: false
+    userAgentTextFieldActive: false,
+    screenshotsFolderPath: ''
 }
 
 function reduce(state: SettingsWindowState = initialState, action: SettingsWindowActions): SettingsWindowState {
@@ -133,7 +141,8 @@ function reduce(state: SettingsWindowState = initialState, action: SettingsWindo
                     windowOpenNewTab: loadedSettings.windowOpenNewTab,
                     windowsAboveApp: loadedSettings.windowsAboveApp,
                     hideTopPanelInFullScreen: loadedSettings.hideTopPanelInFullScreen,
-                    maximizeOnStart: loadedSettings.maximizeOnStart
+                    maximizeOnStart: loadedSettings.maximizeOnStart,
+                    screenshotsFolderPath: window.settingsAPI.screenshotsFolder()
                 }
             }
         case SettingsWindowActions.SAVE_SETTINGS:
@@ -226,6 +235,8 @@ function render(): void {
     Elements.windowOpenNewTab().checked = initialState.windowOpenNewTab
     Elements.maximizeOnStart().checked = initialState.maximizeOnStart
     Elements.hideTopPanelInFullScreenBox().checked = initialState.hideTopPanelInFullScreen
+
+    Elements.screenshotsFolderPathBox().value = initialState.screenshotsFolderPath
 }
 
 document.addEventListener('DOMContentLoaded', async () => {

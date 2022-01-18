@@ -2,6 +2,7 @@ import { BrowserWindow, BrowserView, ipcMain, app } from 'electron'
 import configService from './services/ConfigService'
 import { TabsController } from './services/TabsController'
 import { autoUpdater } from "electron-updater"
+import fs from 'fs'
 
 ipcMain.on('load_url', (evt, server) => {
     configService.writeData('server', server)
@@ -303,6 +304,32 @@ ipcMain.on('userPrv', (event, nick) => {
     TabsController.mainWindowContainer?.browserView?.webContents.send('userPrv', nick)
 })
 
+let screenIsMaking = false
+ipcMain.on('takeScreenshot', async () => {
+    if(screenIsMaking) {
+        return
+    }
+    screenIsMaking = true
+    TabsController.mainWindow?.webContents.send('openWindow', 'screenshot', true)
+    const basePath =  app.getPath('userData') + '/screens'
+    if(!fs.existsSync(basePath)) {
+        fs.mkdirSync(basePath)
+    }
+    let page = await TabsController.mainWindowContainer?.browserView?.webContents.capturePage()
+    if(!page) {
+        TabsController.mainWindow?.webContents.send('openWindow', 'screenshot', false)
+        screenIsMaking = false
+        return
+    }
+    let resized = page.resize({ width: 1280, height: 1280 / page.getAspectRatio() })
+    let png = resized.toPNG()
+    let path = `${basePath}/${new Date().toLocaleString().replaceAll(' ', '').replaceAll('/', '.').replaceAll(':', '_')}.png`
+    fs.writeFile(path, png, (err: any) => {
+        TabsController.mainWindow?.webContents.send('openWindow', 'screenshot', false)
+        screenIsMaking = false
+    })
+})
+
 ipcMain.on('findEffects', (event, nick) => {
     const effetsInfoBrowserWindow = new BrowserWindow({
         width: 1200,
@@ -312,4 +339,34 @@ ipcMain.on('findEffects', (event, nick) => {
         parent: configService.windowsAboveApp() ? TabsController.mainWindow! : undefined
     })
     effetsInfoBrowserWindow.webContents.loadURL(`${configService.baseUrl()}/effect_info.php?nick=${nick}`)
+})
+
+let notesWindow: BrowserWindow | null
+ipcMain.on('openNotes', () => {
+    if(notesWindow) {
+        notesWindow.show()
+        return
+    }
+    const path = require('path')
+    notesWindow = new BrowserWindow({
+        width: 900,
+        height: 700,
+        minWidth: 300,
+        minHeight: 300,
+        useContentSize: true,
+        show: true,
+        parent: configService.windowsAboveApp() ? TabsController.mainWindow! : undefined,
+        webPreferences: {
+            preload: path.join(__dirname, './components/Notes/preload.js')
+        }
+    })
+    notesWindow.on('closed', () => {
+        notesWindow = null
+        if(!TabsController.mainWindow?.webContents.isDestroyed()) {
+            TabsController.mainWindow?.webContents.send('openWindow', 'notes', false)
+        }
+    })
+    notesWindow.loadFile(`${path.join(__dirname, '../gui/Notes/index.html')}`)
+    require("@electron/remote/main").enable(notesWindow.webContents)
+    TabsController.mainWindow?.webContents.send('openWindow', 'notes', true)
 })

@@ -73,6 +73,12 @@ function beltSets(): any[] {
     return keys.map(key => JSON.parse(contents[key]))
 }
 
+function notes(): any[] {
+    let contents = parseData(configPath)
+    let keys = Object.keys(contents).filter(key => key.startsWith('note_'))
+    return keys.map(key => JSON.parse(contents[key]))
+}
+
 function writeData(key: string, value: any): void {
     let contents = parseData(configPath)
     contents[key] = value
@@ -109,5 +115,6 @@ export default {
     userAgent,
     writeData,
     sets,
-    beltSets
+    beltSets,
+    notes,
 }

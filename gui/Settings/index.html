@@ -34,16 +34,27 @@
             <br>
             <br>
             <button id="save">Сохранить</button>
+            <br>
+            <br>
+            <br>
+            <br>
+            <label for="screenshotsFolder">Папка со скриншотами</label>
+            <div style="display: flex;">
+                <textarea id="screenshotsFolderPath" rows="2" style="width: 85%; margin-right: 5px; resize: none;" type="text" disabled></textarea>
+                <button id="screenshotsFolder">Открыть</button>
+            </div>
+            <br>
         </div>
         <div style="width: 50%;">
             <h3>Список shortcut-ов</h3>
             <ul>
-                <li>F11 - Перейти в fullscreen</li>
+                <li>F11(Windows/Linux), Fn + F(macOS) - Перейти в fullscreen</li>
                 <li>Ctrl(Cmd) + T - Открыть новый таб</li>
                 <li>Ctrl(Cmd) + W - Закрыть текущий таб</li>
                 <li>F7 - Открыть/Закрыть окно с чатом</li>
                 <li>Ctrl(Cmd) + Shift + C - Скопировать url страницы, открытой в диалоговом окне</li>
                 <li>Ctrl(Cmd) + Shift + K - Очистить кэш и остальные ресурсы(Сбрасывает логин)</li>
+                <li>F9(Windows/Linux), Cmd + F(macOS) - Скриншот</li>
             </ul>
             <h3>Dev shortcuts</h3>
             <ul>
