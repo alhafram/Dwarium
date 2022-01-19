@@ -18,13 +18,13 @@ export default class MainWindowContainer {
             title: 'Dwarium',
             icon: __dirname + '/icon.icns',
             webPreferences: {
-                sandbox: true,
                 preload: path.join(__dirname, 'preload.js'),
                 backgroundThrottling: false
             },
             useContentSize: true,
             show: false
         })
+        require("@electron/remote/main").enable(this.mainWindow.webContents)
         this.mainWindow.setMenu(null)
         this.mainWindow.on('enter-full-screen', () => {
             const bounds = this.mainWindow.getBounds()

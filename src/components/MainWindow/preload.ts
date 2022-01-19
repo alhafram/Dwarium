@@ -1,4 +1,5 @@
 import { ipcRenderer } from 'electron'
+import configService from '../../services/ConfigService'
 
 let switcher: HTMLElement | null
 let tabs: HTMLElement | null
@@ -82,7 +83,12 @@ window.addEventListener('DOMContentLoaded', () => {
     document.getElementById('findCharacter')?.addEventListener('click', () => {
         const nick = Elements.usernameBox().value
         if(nick.length != 0) {
-            ipcRenderer.send('findCharacter', nick)
+            if(configService.windowOpenNewTab()) {
+                const tab = createNewTab()
+                ipcRenderer.send('new_tab', tab.id, `${configService.baseUrl()}/user_info.php?nick=${nick}`)
+            } else {
+                ipcRenderer.send('findCharacter', nick)
+            }
         }
     })
     Elements.usernameBox().onkeyup = function(e) {
@@ -99,7 +105,12 @@ window.addEventListener('DOMContentLoaded', () => {
     Elements.findEffectsBox().onclick = function() {
         const nick = Elements.usernameBox().value
         if(nick.length > 0) {
-            ipcRenderer.send('findEffects', nick)
+            if(configService.windowOpenNewTab()) {
+                const tab = createNewTab()
+                ipcRenderer.send('new_tab', tab.id, `${configService.baseUrl()}/effect_info.php?nick=${nick}`)
+            } else {
+                ipcRenderer.send('findEffects', nick)
+            }
         }
     }
     Elements.notesBox().onclick = function() {
