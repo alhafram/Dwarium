@@ -19,8 +19,8 @@ contextBridge.exposeInMainWorld('foodAPI', {
         return configService.mpFood() as FoodSettings
     },
     save: (hpFood: FoodSettings, mpFood: FoodSettings) => {
-        configService.writeData('hpFood', hpFood)
-        configService.writeData('mpFood', mpFood)
+        configService.writeData('hpFood', hpFood.id == null ? null : hpFood)
+        configService.writeData('mpFood', mpFood.id == null ? null : mpFood)
     }
 })
 

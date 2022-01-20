@@ -77,7 +77,9 @@ enum FoodWindowActions {
     LOAD_CONTENT,
     EQUIP,
     UNEQUIP,
-    SAVE
+    SAVE,
+    CHANGE_HP_PERCENTAGE,
+    CHANGE_MP_PERCENTAGE
 }
 
 function convertItemIntoDiv(item: InventoryItem): HTMLDivElement {
@@ -290,7 +292,16 @@ async function reduce(state: FoodWindowState = initialState, action: FoodWindowA
             }
             window.foodAPI.save(hp, mp)
             return state
-        return state
+        case FoodWindowActions.CHANGE_HP_PERCENTAGE:
+            return {
+                ...state,
+                hpPercentage: Elements.hpSelectBox().value
+            }
+        case FoodWindowActions.CHANGE_MP_PERCENTAGE:
+            return {
+                ...state,
+                mpPercentage: Elements.mpSelectBox().value
+            }
     }
 }
 
@@ -345,6 +356,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
     Elements.allFoodBox().ondrop = handleDropEquipableItemIntoAllItems;
     Elements.allFoodBox().ondragover = handleDragOver
+    Elements.hpSelectBox().onchange = function() {
+        dispatch(FoodWindowActions.CHANGE_HP_PERCENTAGE)
+    }
+    Elements.mpSelectBox().onchange = function() {
+        dispatch(FoodWindowActions.CHANGE_MP_PERCENTAGE)
+    }
 })
 
 export {}
