@@ -232,6 +232,11 @@ function setupReceiver() {
             }
         }
 
+        // Food logic
+        if(msg.channel == 2 && msg.msg_text && msg.msg_text.includes('Окончен бой')) {
+            document.dispatchEvent(new Event('eat'))
+        }
+
         var msg_dom = null;
         var client_text = msg.msg_text;
         if(msg.type == top[1].msg_type.special) {

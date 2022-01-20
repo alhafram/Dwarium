@@ -12,6 +12,12 @@ type EnchantMode = {
     value: string
 }
 
+enum FoodType {
+    HP = 'hp',
+    MP = 'mp',
+    BOTH = 'both'
+}
+
 type InventoryItem = {
     id: string
     title: string, 
@@ -23,7 +29,8 @@ type InventoryItem = {
     image: string,
     trend: string | undefined,
     enchant_mod?: EnchantMode,
-    cnt: string
+    cnt: string,
+    foodType: FoodType
 }
 
 const Elements = {
@@ -140,14 +147,26 @@ function setupEquipableItemEvents(item: HTMLElement) {
 }
 
 async function reduce(state: FoodWindowState = initialState, action: FoodWindowActions, data?: any): Promise<FoodWindowState> {
+    let allItems = state.allItems
     switch(action) {
         case FoodWindowActions.LOAD_CONTENT:
             let result = await window.foodAPI.loadItemsData(['allItems', 'allPotions'])
-            const allItems = Object.keys(result.allItems).map(key => result.allItems[key]) as InventoryItem[]
+            allItems = Object.keys(result.allItems).map(key => result.allItems[key]) as InventoryItem[]
             const allPotions = Object.keys(result.allPotions).map(key => result.allPotions[key]) as InventoryItem[]
             
-            const itemsWithFoodEnchant = allItems.filter(item => item.enchant_mod && item.enchant_mod.value.includes('сытости'))
-            const foodItems = allPotions.filter(item => item.kind_id == '48')
+            const itemsWithFoodEnchant = allItems.filter(item => item.enchant_mod && item.enchant_mod.value.includes('сытости')).map(item => {
+                item.foodType = FoodType.BOTH
+                return item
+            })
+            const foodItems = allPotions.filter(item => item.kind_id == '48').map(item => {
+                if(item.desc.includes('жизни')) {
+                    item.foodType = FoodType.HP
+                }
+                if(item.desc.includes('маны')) {
+                    item.foodType = FoodType.MP
+                }
+                return item
+            })
 
             const allFoodItems = itemsWithFoodEnchant.concat(foodItems)
 
@@ -161,14 +180,14 @@ async function reduce(state: FoodWindowState = initialState, action: FoodWindowA
             if(currentHpFoodSettings) {
                 currentHpFood = allFoodItems.find(item => item.id == currentHpFoodSettings.id) ?? null
                 currentHpPercentage = currentHpFoodSettings.percentage
-                if(currentHpFood) {
+                if(currentHpFood && currentHpFood.foodType != FoodType.BOTH) {
                     allFoodItems.removeItem(currentHpFood)
                 }
             }
             if(currentMpFoodSettings) {
                 currentMpFood = allFoodItems.find(item => item.id == currentMpFoodSettings.id) ?? null
                 currentMpPercentage = currentMpFoodSettings.percentage
-                if(currentMpFood) {
+                if(currentMpFood && currentMpFood.foodType != FoodType.BOTH) {
                     allFoodItems.removeItem(currentMpFood)
                 }
             }
@@ -186,37 +205,70 @@ async function reduce(state: FoodWindowState = initialState, action: FoodWindowA
             const equipedItemBox = data[0] as HTMLDivElement
             const equipedStaticItemBox = data[1] as HTMLDivElement
             const itemId = equipedItemBox.getAttribute('itemid')
-            let equipedItem = state.allItems.find(item => item.id == itemId)
+            let equipedItem = allItems.find(item => item.id == itemId)
+            
             if(!equipedItem) {
-                alert('Напиши в группу!!! Что то не так!!!!')
                 return state
             }
-            const isHp = equipedStaticItemBox.id == 'hp'
-            const newItems = state.allItems.removeItem(equipedItem)
-            if(isHp && state.hpItem) {
-                newItems.push(state.hpItem)
-            }
-            if(!isHp && state.mpItem) {
-                newItems.push(state.mpItem)
-            }
-            return {
-                ...state,
-                allItems: newItems,
-                hpItem: isHp ? equipedItem: state.hpItem,
-                mpItem: !isHp ? equipedItem : state.mpItem
+            switch(equipedItem.foodType) {
+                case FoodType.HP:
+                    if(equipedStaticItemBox.id == 'hp') {
+                        if(state.hpItem) {
+                            allItems.push(state.hpItem)
+                        }
+                        allItems = allItems.removeItem(equipedItem)
+                        return {
+                            ...state,
+                            hpItem: equipedItem,
+                            allItems: allItems
+                        }
+                    } else {
+                        return state
+                    }
+                case FoodType.MP:
+                    if(equipedStaticItemBox.id == 'mp') {
+                        if(state.mpItem) {
+                            allItems.push(state.mpItem)
+                        }
+                        allItems = allItems.removeItem(equipedItem)
+                        return {
+                            ...state,
+                            mpItem: equipedItem,
+                            allItems: allItems
+                        }
+                    } else {
+                        return state
+                    }
+                case FoodType.BOTH:
+                    if(equipedStaticItemBox.id == 'hp') {
+                        return {
+                            ...state,
+                            hpItem: equipedItem,
+                            allItems: allItems
+                        }
+                    } else {
+                        return {
+                            ...state,
+                            mpItem: equipedItem,
+                            allItems: allItems
+                        }
+                    }
             }
         case FoodWindowActions.UNEQUIP:
             let unequipedElement = data as HTMLDivElement
             const id = unequipedElement.getAttribute('itemid')!
             let hpItem = state.hpItem
             let mpItem = state.mpItem
-            let allItems1 = state.allItems
-            if(hpItem?.id == id) {
-                allItems1.push(hpItem)
+            if(hpItem?.id == id && unequipedElement?.parentElement?.id == 'hp') {
+                if(!allItems.includes(hpItem)) {
+                    allItems.push(hpItem)
+                }
                 hpItem = null
             }
-            if(mpItem?.id == id) {
-                allItems1.push(mpItem)
+            if(mpItem?.id == id && unequipedElement?.parentElement?.id == 'mp') {
+                if(!allItems.includes(mpItem)) {
+                    allItems.push(mpItem)
+                }
                 mpItem = null
             }
             return {
@@ -228,11 +280,11 @@ async function reduce(state: FoodWindowState = initialState, action: FoodWindowA
             const hpPercentage = Elements.hpSelectBox().value
             const mpPercentage = Elements.mpSelectBox().value
             const hp = {
-                id: state.hpItem?.id,
+                id: state.hpItem?.id ?? null,
                 percentage: hpPercentage
             }
             const mp = {
-                id: state.mpItem?.id,
+                id: state.mpItem?.id ?? null,
                 percentage: mpPercentage
             }
             window.foodAPI.save(hp, mp)
