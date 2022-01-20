@@ -216,13 +216,6 @@ ipcRenderer.on('close_tab', (evt, id) => {
     }
 })
 
-ipcRenderer.on('auth', (evt, auth) => {
-    const dressingRoomStyle = document.getElementById("dressingRoom")?.style
-    dressingRoomStyle?.setProperty('display', auth ? 'block' : 'none')
-    const beltPotionRoomStyle = document.getElementById("beltPotionRoom")?.style
-    beltPotionRoomStyle?.setProperty('display', auth ? 'block' : 'none')
-})
-
 ipcRenderer.on('updateApplicationAvailable', () => {
     const updateApplicationStyle = document.getElementById('updateApplication')?.style
     updateApplicationStyle?.setProperty('display', 'block')

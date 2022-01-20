@@ -44,9 +44,6 @@ export default class MainWindowContainer {
             (this.browserView?.webContents as any).destroy()
             this.browserView = null
             this.unregisterShortcuts()
-            this.sessionCheckInterval
-            global.clearInterval(this.sessionCheckInterval as NodeJS.Timeout)
-            this.sessionCheckInterval = undefined
         })
 
         this.mainWindow.webContents.on('did-finish-load', () => {
@@ -187,27 +184,12 @@ export default class MainWindowContainer {
         }
     }
 
-    sessionCheckInterval: NodeJS.Timeout | undefined
     start() {
         this.mainWindow.show();
         if(configService.maximizeOnStart()) {
             this.mainWindow.maximize()
         }
-        this.mainWindow.loadFile(`${path.join(app.getAppPath(), 'gui', 'MainWindow', 'index.html')}`);
-        const self = this
-        this.sessionCheckInterval = setInterval(async function() {
-            if(TabsController.getMain().webContents.isDestroyed() || self.mainWindow.webContents.isDestroyed()) {
-                return
-            }
-            let resp = await TabsController.getMain().webContents.executeJavaScript('window.myId')
-            if(!self.mainWindow.webContents.isDestroyed()) {
-                if(resp) {
-                    self.mainWindow.webContents.send('auth', true)
-                } else {
-                    self.mainWindow.webContents.send('auth', false)
-                }
-            }
-        }, 1000)
+        this.mainWindow.loadFile(`${path.join(app.getAppPath(), 'gui', 'MainWindow', 'index.html')}`)
     }
 
     createMainBrowserView() {

@@ -248,7 +248,6 @@ body {
     height: 30px;
     width: 30px;
     border: none;
-    display: none;
     background-color: white;
     border-radius: 3px;
     background-size: contain;
@@ -260,7 +259,6 @@ body {
     height: 30px;
     width: 30px;
     border: none;
-    display: none;
     background-color: white;
     border-radius: 3px;
     background-size: contain;
