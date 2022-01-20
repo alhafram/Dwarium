@@ -159,10 +159,11 @@ async function reduce(state: FoodWindowState = initialState, action: FoodWindowA
                 return item
             })
             const foodItems = allPotions.filter(item => item.kind_id == '48').map(item => {
-                if(item.desc.includes('жизни')) {
+                if(item.desc.includes('жизни') && item.desc.includes('маны')) {
+                    item.foodType = FoodType.BOTH
+                } else if(item.desc.includes('жизни')) {
                     item.foodType = FoodType.HP
-                }
-                if(item.desc.includes('маны')) {
+                } else if(item.desc.includes('маны')) {
                     item.foodType = FoodType.MP
                 }
                 return item
