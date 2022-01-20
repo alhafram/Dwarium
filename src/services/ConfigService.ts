@@ -1,6 +1,7 @@
 const { app } = process.type === 'browser' ? require('electron') : require('@electron/remote')
-import fs from 'fs';
-import path from 'path';
+import fs from 'fs'
+import path from 'path'
+import { FoodSettings } from '../Models/FoodSettings'
 const configPath = path.join(app.getPath('userData'), 'config.json')
 
 function server(): string {
@@ -61,6 +62,14 @@ function hideTopPanelInFullScreen(): boolean {
     return false
 }
 
+function hpFood(): FoodSettings | null {
+    return readData('hpFood') ?? null
+}
+
+function mpFood(): FoodSettings | null {
+    return readData('mpFood') ?? null
+}
+
 function sets(): any[] {
     let contents = parseData(configPath)
     let keys = Object.keys(contents).filter(key => key.startsWith('set_'))
@@ -117,4 +126,6 @@ export default {
     sets,
     beltSets,
     notes,
+    hpFood,
+    mpFood
 }

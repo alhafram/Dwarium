@@ -19,6 +19,9 @@ const Elements = {
     },
     screenshotBox(): HTMLButtonElement {
         return document.getElementById('screenshot') as HTMLButtonElement
+    },
+    foodBox(): HTMLButtonElement {
+        return document.getElementById('food') as HTMLButtonElement
     }
 }
 
@@ -118,6 +121,9 @@ window.addEventListener('DOMContentLoaded', () => {
     }
     Elements.screenshotBox().onclick = function() {
         ipcRenderer.send('takeScreenshot')
+    }
+    Elements.foodBox().onclick = function() {
+        ipcRenderer.send('openFood')
     }
 })
 
