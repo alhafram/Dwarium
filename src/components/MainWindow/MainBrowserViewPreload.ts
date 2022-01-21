@@ -48,6 +48,10 @@ async function useItem(id) {
 }
 
 document.addEventListener('eat', async () => {
+    await delay(400)
+    if(top[0].canvas.app.avatar.model.ghost) {
+        return
+    }
     const result = await ipcRenderer.invoke('LoadSetItems', ['allItems', 'allPotions'])
     const allItems = Object.keys(result.allItems).map(key => result.allItems[key]) as InventoryItem[]
     const allPotions = Object.keys(result.allPotions).map(key => result.allPotions[key]) as InventoryItem[]
@@ -85,6 +89,7 @@ document.addEventListener('eat', async () => {
                     return
                 }
                 await useItem(mpFood.id)
+                console.log("EAT MP")
                 mpEatCounter += 1
             }
         } else {
@@ -97,3 +102,7 @@ document.addEventListener('eat', async () => {
 ipcRenderer.on('userPrv', function(event, nick) {
     userPrvTag(nick)
 })
+
+function delay(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
