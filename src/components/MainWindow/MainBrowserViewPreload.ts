@@ -48,7 +48,6 @@ async function useItem(id) {
 }
 
 document.addEventListener('eat', async () => {
-    await delay(400)
     if(top[0].canvas.app.avatar.model.ghost) {
         return
     }
@@ -66,6 +65,9 @@ document.addEventListener('eat', async () => {
         const hpFoodInInventory = allFoodItems.find(item => item.id == hpFood.id)
         if(hpFoodInInventory) {
             while((top[0].canvas.app.avatar.model.hpCur / top[0].canvas.app.avatar.model.hpMax) * 100 < hpFood.percentage) {
+                if(top[0].canvas.app.avatar.model.ghost) {
+                    return
+                }
                 if(hpEatCounter > 9) {
                     alert("Еда на хп съелась 10 раз!! Возможно что то пошло не так! Напишите в группу!!!")
                     return
@@ -84,6 +86,9 @@ document.addEventListener('eat', async () => {
         const mpFoodInInventory = allFoodItems.find(item => item.id == mpFood.id)
         if(mpFoodInInventory) {
             if((top[0].canvas.app.avatar.model.mpCur / top[0].canvas.app.avatar.model.mpMax) * 100 < mpFood.percentage) {
+                if(top[0].canvas.app.avatar.model.ghost) {
+                    return
+                }
                 if(mpEatCounter > 9) {
                     alert("Еда на хп съелась 10 раз!! Возможно что то пошло не так! Напишите в группу!!!")
                     return
