@@ -9,7 +9,17 @@ function server(): string {
 }
 
 function baseUrl(): string {
-    return `https://${readData('server')}.dwar.ru`
+    return `https://${readData('server')}.dwar${mailServer()}.ru`
+}
+
+function mailServer(): string {
+    let settings = readData('settings')
+    if(settings) {
+        settings = JSON.parse(settings)
+        const isMailServer = settings.mailServer ?? false
+        return isMailServer ? ".mail" : ""
+    }
+    return ""
 }
 
 function loadSettings(): any {

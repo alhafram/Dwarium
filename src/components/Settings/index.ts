@@ -9,6 +9,7 @@ interface SettingsWindowState {
     windowsAboveApp: boolean,
     maximizeOnStart: boolean,
     hideTopPanelInFullScreen: boolean,
+    mailServer: boolean,
     userAgentTextFieldActive?: boolean,
     screenshotsFolderPath: string
 }
@@ -31,7 +32,8 @@ enum SettingsWindowActions {
     CHANGE_WINDOW_OPEN_NEW_TAB,
     CHANGE_WINDOWS_ABOVE_APP,
     CHANGE_MAXIMIZE_ON_START,
-    CHANGE_HIDE_TOP_PANEL_IN_FULL_SCREEN
+    CHANGE_HIDE_TOP_PANEL_IN_FULL_SCREEN,
+    CHANGE_MAIL_SERVER
 }
 
 const Elements = {
@@ -61,7 +63,10 @@ const Elements = {
     },
     screenshotsFolderBox(): HTMLButtonElement {
         return document.getElementById('screenshotsFolder') as HTMLButtonElement
-    }
+    },
+    mailServerBox(): HTMLInputElement {
+        return document.getElementById('mailServer') as HTMLInputElement
+    },
 }
 
 function getTitle(type: UserAgentType): string {
@@ -107,6 +112,9 @@ function setupListeners() {
     Elements.screenshotsFolderBox().onclick = function() {
         window.settingsAPI.openScreenshotsFolder(initialState.screenshotsFolderPath)
     }
+    Elements.mailServerBox().onclick = function() {
+        dispatch(SettingsWindowActions.CHANGE_MAIL_SERVER)
+    }
 }
 
 let initialState: SettingsWindowState = {
@@ -122,6 +130,7 @@ let initialState: SettingsWindowState = {
     windowsAboveApp: false,
     maximizeOnStart: false,
     hideTopPanelInFullScreen: false,
+    mailServer: false,
     userAgentTextFieldActive: false,
     screenshotsFolderPath: ''
 }
@@ -138,10 +147,11 @@ function reduce(state: SettingsWindowState = initialState, action: SettingsWindo
                     selectedUserAgentType: loadedSettings.selectedUserAgentType,
                     selectedUserAgentValue: loadedSettings.selectedUserAgentValue,
                     userAgentTextFieldActive: loadedSettings.selectedUserAgentType == UserAgentType.OWN,
-                    windowOpenNewTab: loadedSettings.windowOpenNewTab,
-                    windowsAboveApp: loadedSettings.windowsAboveApp,
-                    hideTopPanelInFullScreen: loadedSettings.hideTopPanelInFullScreen,
-                    maximizeOnStart: loadedSettings.maximizeOnStart,
+                    windowOpenNewTab: loadedSettings.windowOpenNewTab ?? false,
+                    windowsAboveApp: loadedSettings.windowsAboveApp ?? false,
+                    hideTopPanelInFullScreen: loadedSettings.hideTopPanelInFullScreen ?? false,
+                    mailServer: loadedSettings.mailServer ?? false,
+                    maximizeOnStart: loadedSettings.maximizeOnStart ?? false,
                     screenshotsFolderPath: window.settingsAPI.screenshotsFolder()
                 }
             }
@@ -195,7 +205,12 @@ function reduce(state: SettingsWindowState = initialState, action: SettingsWindo
             return {
                 ...state,
                 hideTopPanelInFullScreen: Elements.hideTopPanelInFullScreenBox().checked
-            } 
+            }
+        case SettingsWindowActions.CHANGE_MAIL_SERVER:
+            return {
+                ...state,
+                mailServer: Elements.mailServerBox().checked
+            }
     }
 }
 
@@ -235,6 +250,7 @@ function render(): void {
     Elements.windowOpenNewTab().checked = initialState.windowOpenNewTab
     Elements.maximizeOnStart().checked = initialState.maximizeOnStart
     Elements.hideTopPanelInFullScreenBox().checked = initialState.hideTopPanelInFullScreen
+    Elements.mailServerBox().checked = initialState.mailServer
 
     Elements.screenshotsFolderPathBox().value = initialState.screenshotsFolderPath
 }
