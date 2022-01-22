@@ -13,7 +13,7 @@ export default class MainWindowContainer {
         this.mainWindow = new BrowserWindow({
             width: 1400,
             height: 900,
-            minWidth: 900,
+            minWidth: 1100,
             minHeight: 500,
             title: 'Dwarium',
             icon: __dirname + '/icon.icns',
