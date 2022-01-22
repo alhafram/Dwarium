@@ -1,0 +1,35 @@
+.content {
+    display: flex;
+}
+
+.currentFood {
+    width: 50%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.allFood {
+    padding: 10px;
+    border: 3px dotted #666;
+    height: 50%;
+    width: 80%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+    grid-gap: 10px;
+    margin-left: 10px;
+    padding-right: 10px;
+}
+
+.staticBox {
+    width: 70px;
+    height: 70px;
+    border: 1px solid;
+    border-radius: 10px;
+}
+
+.box {
+    width: 70px;
+    height: 70px;
+    border: 1px solid;
+    border-radius: 10px;
+}

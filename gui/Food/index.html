@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../../common/main.css" />
+    <link rel="stylesheet" href="./style.css" />
+
+    <script>var exports = {}</script>
+    <script src="../../out/components/Food/index.js"></script>
+    <script src="../../common/simple_alt.js"></script>
+    <script src="../../common/utils.js"></script>
+</head>
+
+<body>
+    <div id="artifact_alt" style="width: 300px; display: none; position: fixed; z-index: 1001; left: 440px; top: 358px;"></div>
+    <div class="content">
+        <div class="currentFood">
+            <div>
+                <span>HP</span>
+                <div id="hp" class="staticBox"></div>
+                <br>
+                <snap>Когда есть:</snap>
+                <select id="hpSelect">
+                    <option value="20">20%</option>
+                    <option value="40">40%</option>
+                    <option value="60">60%</option>
+                    <option value="80">80%</option>
+                </select>
+            </div>
+            <div>
+                <span>MP</span>
+                <div id="mp" class="staticBox"></div>
+                <br>
+                <snap>Когда есть:</snap>
+                <select id="mpSelect">
+                    <option value="20">20%</option>
+                    <option value="40">40%</option>
+                    <option value="60">60%</option>
+                    <option value="80">80%</option>
+                </select>
+            </div>
+            <div>
+                <button id="save">Сохранить</button>
+            </div>
+        </div>
+        <div class="allFood">
+        </div>
+    </div>
+</body>
+
+</html>

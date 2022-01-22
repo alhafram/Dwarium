@@ -1,6 +1,7 @@
 const { app } = process.type === 'browser' ? require('electron') : require('@electron/remote')
-import fs from 'fs';
-import path from 'path';
+import fs from 'fs'
+import path from 'path'
+import { FoodSettings } from '../Models/FoodSettings'
 const configPath = path.join(app.getPath('userData'), 'config.json')
 
 function server(): string {
@@ -8,7 +9,17 @@ function server(): string {
 }
 
 function baseUrl(): string {
-    return `https://${readData('server')}.dwar.ru`
+    return `https://${readData('server')}.dwar${mailServer()}.ru`
+}
+
+function mailServer(): string {
+    let settings = readData('settings')
+    if(settings) {
+        settings = JSON.parse(settings)
+        const isMailServer = settings.mailServer ?? false
+        return isMailServer ? ".mail" : ""
+    }
+    return ""
 }
 
 function loadSettings(): any {
@@ -59,6 +70,14 @@ function hideTopPanelInFullScreen(): boolean {
         return settings.hideTopPanelInFullScreen ?? false
     }
     return false
+}
+
+function hpFood(): FoodSettings | null {
+    return readData('hpFood') ?? null
+}
+
+function mpFood(): FoodSettings | null {
+    return readData('mpFood') ?? null
 }
 
 function sets(): any[] {
@@ -117,4 +136,6 @@ export default {
     sets,
     beltSets,
     notes,
+    hpFood,
+    mpFood
 }

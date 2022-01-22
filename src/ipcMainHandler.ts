@@ -370,3 +370,33 @@ ipcMain.on('openNotes', () => {
     require("@electron/remote/main").enable(notesWindow.webContents)
     TabsController.mainWindow?.webContents.send('openWindow', 'notes', true)
 })
+
+let foodWindow: BrowserWindow | null
+ipcMain.on('openFood', () => {
+    if(foodWindow) {
+        foodWindow.show()
+        return
+    }
+    const path = require('path')
+    foodWindow = new BrowserWindow({
+        width: 900,
+        height: 700,
+        minWidth: 900,
+        minHeight: 700,
+        useContentSize: true,
+        show: true,
+        parent: configService.windowsAboveApp() ? TabsController.mainWindow! : undefined,
+        webPreferences: {
+            preload: path.join(__dirname, './components/Food/preload.js')
+        }
+    })
+    foodWindow.on('closed', () => {
+        foodWindow = null
+        if(!TabsController.mainWindow?.webContents.isDestroyed()) {
+            TabsController.mainWindow?.webContents?.send('openWindow', 'food', false)
+        }
+    })
+    require("@electron/remote/main").enable(foodWindow.webContents)
+    foodWindow.loadFile(`${path.join(__dirname, '../gui/Food/index.html')}`)
+    TabsController.mainWindow?.webContents.send('openWindow', 'food', true)
+})

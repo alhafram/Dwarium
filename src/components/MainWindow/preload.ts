@@ -1,4 +1,5 @@
 import { ipcRenderer } from 'electron'
+import configService from '../../services/ConfigService'
 
 let switcher: HTMLElement | null
 let tabs: HTMLElement | null
@@ -18,6 +19,9 @@ const Elements = {
     },
     screenshotBox(): HTMLButtonElement {
         return document.getElementById('screenshot') as HTMLButtonElement
+    },
+    foodBox(): HTMLButtonElement {
+        return document.getElementById('food') as HTMLButtonElement
     }
 }
 
@@ -82,7 +86,12 @@ window.addEventListener('DOMContentLoaded', () => {
     document.getElementById('findCharacter')?.addEventListener('click', () => {
         const nick = Elements.usernameBox().value
         if(nick.length != 0) {
-            ipcRenderer.send('findCharacter', nick)
+            if(configService.windowOpenNewTab()) {
+                const tab = createNewTab()
+                ipcRenderer.send('new_tab', tab.id, `${configService.baseUrl()}/user_info.php?nick=${nick}`)
+            } else {
+                ipcRenderer.send('findCharacter', nick)
+            }
         }
     })
     Elements.usernameBox().onkeyup = function(e) {
@@ -99,7 +108,12 @@ window.addEventListener('DOMContentLoaded', () => {
     Elements.findEffectsBox().onclick = function() {
         const nick = Elements.usernameBox().value
         if(nick.length > 0) {
-            ipcRenderer.send('findEffects', nick)
+            if(configService.windowOpenNewTab()) {
+                const tab = createNewTab()
+                ipcRenderer.send('new_tab', tab.id, `${configService.baseUrl()}/effect_info.php?nick=${nick}`)
+            } else {
+                ipcRenderer.send('findEffects', nick)
+            }
         }
     }
     Elements.notesBox().onclick = function() {
@@ -107,6 +121,9 @@ window.addEventListener('DOMContentLoaded', () => {
     }
     Elements.screenshotBox().onclick = function() {
         ipcRenderer.send('takeScreenshot')
+    }
+    Elements.foodBox().onclick = function() {
+        ipcRenderer.send('openFood')
     }
 })
 
@@ -197,13 +214,6 @@ ipcRenderer.on('close_tab', (evt, id) => {
         (currentTabs[0] as HTMLElement).click()
         ipcRenderer.send('remove_view', id)
     }
-})
-
-ipcRenderer.on('auth', (evt, auth) => {
-    const dressingRoomStyle = document.getElementById("dressingRoom")?.style
-    dressingRoomStyle?.setProperty('display', auth ? 'block' : 'none')
-    const beltPotionRoomStyle = document.getElementById("beltPotionRoom")?.style
-    beltPotionRoomStyle?.setProperty('display', auth ? 'block' : 'none')
 })
 
 ipcRenderer.on('updateApplicationAvailable', () => {
