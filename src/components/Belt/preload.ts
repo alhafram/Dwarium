@@ -3,6 +3,7 @@ import {
     contextBridge
 } from 'electron'
 import configService from '../../services/ConfigService'
+import '../BaseAPI'
 
 contextBridge.exposeInMainWorld('beltPotionAPI', {
     baseUrl: () => {

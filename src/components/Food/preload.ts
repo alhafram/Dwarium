@@ -4,6 +4,7 @@ import {
 } from 'electron'
 import configService from '../../services/ConfigService'
 import { FoodSettings } from '../../Models/FoodSettings'
+import '../BaseAPI'
 
 contextBridge.exposeInMainWorld('foodAPI', {
     baseUrl: () => {

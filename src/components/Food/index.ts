@@ -1,12 +1,5 @@
 let art_alt = null
 
-// @ts-ignore Temporary solution for hack in simple_alt.js
-window.myAPI = {}
-// @ts-ignore Temporary solution for hack in simple_alt.js
-window.myAPI.baseUrl = function() {
-    return window.foodAPI.baseUrl()
-}
-
 type EnchantMode = {
     title: string
     value: string

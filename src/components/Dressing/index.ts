@@ -1,11 +1,4 @@
-var art_alt = null
-
-// @ts-ignore Temporary solution for hack in simple_alt.js
-window.myAPI = {}
-// @ts-ignore Temporary solution for hack in simple_alt.js
-window.myAPI.baseUrl = function() {
-    return window.dressingAPI.baseUrl()
-}
+let art_alt = null
 
 type DressingSet = {
     id: string,

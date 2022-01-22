@@ -1,11 +1,4 @@
-var art_alt: { [x: string]: InventoryItem } | null = null
-
-// @ts-ignore Temporary solution for hack in simple_alt.js
-window.myAPI = {}
-// @ts-ignore Temporary solution for hack in simple_alt.js
-window.myAPI.baseUrl = function() {
-    return window.beltPotionAPI.baseUrl()
-}
+let art_alt = null
 
 type BeltDressingSetPotion = {
     item: string,
