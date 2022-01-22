@@ -4,6 +4,7 @@ import {
 } from 'electron'
 import configService from '../../services/ConfigService'
 import '../BaseAPI'
+import '../Utils'
 
 contextBridge.exposeInMainWorld('beltPotionAPI', {
     baseUrl: () => {
@@ -11,12 +12,6 @@ contextBridge.exposeInMainWorld('beltPotionAPI', {
     },
     loadItemsData: async (types: string[]) => {
         return await ipcRenderer.invoke('LoadSetItems', types)
-    },
-    makeRequest: async (req: {
-        id: string,
-        req: string
-    }) => {
-        return await ipcRenderer.invoke('MakeWebRequest', req)
     },
     loadBeltSets: () => {
         return configService.beltSets()
@@ -28,11 +23,28 @@ contextBridge.exposeInMainWorld('beltPotionAPI', {
         configService.writeData(id, null)
     },
     fetchItem: (id: string) => {
-        let reqUrl = `fetch('${configService.baseUrl()}/artifact_info.php?artifact_id=${id}').then(resp => resp.text())`
-        let req = {
-            id: generateRandomId(),
-            req: reqUrl
-        }
+        let req = `fetch('${configService.baseUrl()}/artifact_info.php?artifact_id=${id}').then(resp => resp.text())`
+        return ipcRenderer.invoke('MakeWebRequest', req)
+    },
+    getEquipedPotions: () => {
+        let req = '[top[0].canvas.app.leftMenu.model.items, top[0].canvas.app.leftMenu.model.variantItems]'
+        return ipcRenderer.invoke('MakeWebRequest', req)
+    },
+    getEquipedPotionsAlt() {
+        let req = 'top[0].art_alt'
+        return ipcRenderer.invoke('MakeWebRequest', req)
+    },
+    updateSlot(num: string, type: string) {
+        let req = `top[0].canvas.app.leftMenu.model.${type}[${num}] = null; top[0].canvas.app.leftMenu.model.main.view.update();`
+        return ipcRenderer.invoke('MakeWebRequest', req)
+    },
+    getSlots: async () => {
+        let req = '[top[0].canvas.app.leftMenu.model.slotsCount, top[0].canvas.app.leftMenu.model.variantSlotsCount]'
+        let res = await ipcRenderer.invoke('MakeWebRequest', req)
+        return [res[0], res[1]] as number[]
+    },
+    refreshLeftMenu: async () => {
+        let req = 'top[0].window.location.reload()'
         return ipcRenderer.invoke('MakeWebRequest', req)
     },
     unequipRequest: async (id: string) => {
@@ -51,10 +63,7 @@ contextBridge.exposeInMainWorld('beltPotionAPI', {
           'mode': 'cors',
           'credentials': 'include'
          }).then(resp => resp.text())`
-        return ipcRenderer.invoke('MakeWebRequest', {
-            id: generateRandomId(),
-            req: req
-        })
+        return ipcRenderer.invoke('MakeWebRequest', req)
     },
     equipPotionRequest: async (id: string, slotNum: string, variantNum: string) => {
         var rnd_url = '&_=' + (new Date().getTime() + Math.random())
@@ -71,41 +80,28 @@ contextBridge.exposeInMainWorld('beltPotionAPI', {
           'mode': 'cors',
           'credentials': 'include'
           }).then(resp => resp.text())`
-          return ipcRenderer.invoke('MakeWebRequest', {
-            id: generateRandomId(),
-            req: req
-        })
+          return ipcRenderer.invoke('MakeWebRequest', req)
     }
 })
 
-
 export interface BeltPotionAPI {
-    makeRequest: (req: {
-            id: string,
-            req: string
-        }) => Promise < any > ,
-        baseUrl: () => string,
-        loadItemsData: (types: string[]) => any,
-        loadBeltSets: () => any,
-        saveSet: (set: {}) => void,
-        removeSet: (id: string) => void,
-        fetchItem: (id: string) => Promise<any>,
-        unequipRequest: (id: string) => Promise < {
-            result: any,
-            req: any
-        } > ,
-        equipPotionRequest: (id: string, slotNum: string, variantNum: string) => Promise < {
-            result: any,
-            req: any
-        } > ,
+    baseUrl: () => string,
+    loadItemsData: (types: string[]) => any,
+    loadBeltSets: () => any,
+    saveSet: (set: {}) => void,
+    removeSet: (id: string) => void,
+    fetchItem: (id: string) => Promise<any>,
+    unequipRequest: (id: string) => Promise <any>,
+    equipPotionRequest: (id: string, slotNum: string, variantNum: string) => Promise<any>,
+    getEquipedPotions: () => Promise<any>,
+    getEquipedPotionsAlt: () => Promise<any>,
+    updateSlot: (num: string, type: string) => Promise<any>,
+    getSlots: () => Promise<number[]>,
+    refreshLeftMenu: () => Promise<any>
 }
 
 declare global {
     interface Window {
         beltPotionAPI: BeltPotionAPI
     }
-}
-
-function generateRandomId(): string {
-    return (Math.random() + 1).toString(36).substring(2)
 }

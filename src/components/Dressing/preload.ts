@@ -1,17 +1,9 @@
-import {
-    ipcRenderer,
-    contextBridge
-} from 'electron'
+import { ipcRenderer, contextBridge } from 'electron'
 import configService from '../../services/ConfigService'
 import '../BaseAPI'
+import '../Utils'
 
 contextBridge.exposeInMainWorld('dressingAPI', {
-    makeRequest: async (req: {
-        id: string,
-        req: string
-    }) => {
-        return await ipcRenderer.invoke('MakeWebRequest', req)
-    },
     getMagicSchools: async (zikkuratId: string) => {
         let req = `fetch(
             '${configService.baseUrl()}/action_form.php?${Math.random()}&artifact_id=${zikkuratId}&in[param_success][url_close]=user.php%3Fmode%3Dpersonage%26group%3D2%26update_swf%3D1', {
@@ -27,12 +19,8 @@ contextBridge.exposeInMainWorld('dressingAPI', {
                 'method': 'GET',
                 'mode': 'cors',
                 'credentials': 'include'
-            }).then(resp => resp.text())
-      `
-        return ipcRenderer.invoke('MakeWebRequest', {
-            id: generateRandomId(),
-            req: req
-        })
+            }).then(resp => resp.text())`
+        return ipcRenderer.invoke('MakeWebRequest', req)
     },
     changeStyle: async (zikkuratId: string, styleId: number) => {
         let req = `fetch('${configService.baseUrl()}/action_run.php', {
@@ -47,10 +35,7 @@ contextBridge.exposeInMainWorld('dressingAPI', {
             'mode': 'cors',
             'credentials': 'include'
           }).then(resp => resp.text())`
-        return ipcRenderer.invoke('MakeWebRequest', {
-            id: generateRandomId(),
-            req: req
-        })
+        return ipcRenderer.invoke('MakeWebRequest', req)
     },
     equipRequest: async (id: string) => {
         var rnd_url = '&_=' + (new Date().getTime() + Math.random())
@@ -68,10 +53,7 @@ contextBridge.exposeInMainWorld('dressingAPI', {
               'mode': 'cors',
               'credentials': 'include'
             }).then(resp => resp.text())`
-        return ipcRenderer.invoke('MakeWebRequest', {
-            id: generateRandomId(),
-            req: req
-        })
+        return ipcRenderer.invoke('MakeWebRequest', req)
     },
     unequipRequest: async (id: string) => {
         var rnd_url = '&_=' + (new Date().getTime() + Math.random())
@@ -89,10 +71,7 @@ contextBridge.exposeInMainWorld('dressingAPI', {
           'mode': 'cors',
           'credentials': 'include'
          }).then(resp => resp.text())`
-        return ipcRenderer.invoke('MakeWebRequest', {
-            id: generateRandomId(),
-            req: req
-        })
+        return ipcRenderer.invoke('MakeWebRequest', req)
     },
     baseUrl: () => {
         return configService.baseUrl()
@@ -100,9 +79,7 @@ contextBridge.exposeInMainWorld('dressingAPI', {
     loadItemsData: async (types: string[]) => {
         return await ipcRenderer.invoke('LoadSetItems', types)
     },
-    saveSet: (set: {
-        id: string
-    }) => {
+    saveSet: (set: { id: string }) => {
         configService.writeData(set.id, JSON.stringify(set))
     },
     removeSet: (id: string) => {
@@ -113,50 +90,20 @@ contextBridge.exposeInMainWorld('dressingAPI', {
     }
 })
 
-export interface IMyAPIDressing {
-    makeRequest: (req: {
-            id: string,
-            req: string
-        }) => Promise < any > ,
-        baseUrl: () => string,
-        loadItemsData: (types: string[]) => any,
-        saveSet: (set: {
-            id: string
-        }) => void,
-        removeSet: (id: string) => void,
-        loadSets: () => any[],
-        getMagicSchools: (zikkuratId ? : string) => Promise < {
-            result: any,
-            req: any
-        } > ,
-        unequipRequest: (id: string) => Promise < {
-            result: any,
-            req: any
-        } > ,
-        equipRequest: (id: string) => Promise < {
-            result: any,
-            req: any
-        } > ,
-        changeStyle: (zikkuratId: string, styleId: number) => (id: string) => Promise < {
-            result: any,
-            req: any
-        } >
+export interface DressingAPI {
+    baseUrl: () => string,
+    loadItemsData: (types: string[]) => any,
+    saveSet: (set: { id: string }) => void,
+    removeSet: (id: string) => void,
+    loadSets: () => any[],
+    getMagicSchools: (zikkuratId?: string) => Promise <any>,
+    unequipRequest: (id: string) => Promise <any> ,
+    equipRequest: (id: string) => Promise <any> ,
+    changeStyle: (zikkuratId: string, styleId: number) => Promise <any>
 }
 
 declare global {
     interface Window {
-        dressingAPI: IMyAPIDressing
+        dressingAPI: DressingAPI
     }
-    export interface String {
-        toDocument(): Document
-    }
-}
-
-function generateRandomId() {
-    return (Math.random() + 1).toString(36).substring(2)
-}
-
-String.prototype.toDocument = function() {
-    var parser = new DOMParser();
-    return parser.parseFromString(this as string, 'text/html');
 }

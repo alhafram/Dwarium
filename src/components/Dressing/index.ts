@@ -497,7 +497,6 @@ function getStyle(items: InventoryItem[]): string | null {
     return uniqueStyles.size == 0 ? null : Array.from(uniqueStyles as Set<string>)[0]
 }
 
-// ???? BETTER SOLUTION
 let dragableItem: HTMLDivElement | null = null
 
 function handleDragStartEquipableItem(this: any) {
@@ -623,7 +622,6 @@ function filterArcats(arcats: InventoryItem[]): Arcats {
     }
 }
 
-// ???? BETTER SOLUTION
 let dragableSet: any = null
 function createSetElement(set: DressingSet, active: boolean = false) {
     let article = document.createElement('article')
@@ -658,11 +656,7 @@ function createSetElement(set: DressingSet, active: boolean = false) {
 }
 
 function generateSetId() {
-    return 'set_' + generateRandomId()
-}
-
-function generateRandomId() {
-    return (Math.random() + 1).toString(36).substring(2)
+    return 'set_' + window.utilsAPI.generateRandomId()
 }
 
 function addNewSet(): DressingSet {
@@ -807,7 +801,7 @@ async function reduce(state: DressingWindowState = initialState, action: Dressin
             if(parsedAllItems.zikkurat.length != 0) {
                 zikkuratId = parsedAllItems.zikkurat[0].id
                 const res = await window.dressingAPI.getMagicSchools(zikkuratId)
-                currentMagicSchool = parseMagicSchools(res.result)
+                currentMagicSchool = parseMagicSchools(res)
             }
             const bracelet = parsedWearedItems.bracelets[0]
             var arcatsCount = 0

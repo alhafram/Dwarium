@@ -206,11 +206,8 @@ ipcMain.on('close_tab', (evt, id) => {
 })
 
 ipcMain.handle('MakeWebRequest', async (evt, req) => {
-    let result = await TabsController.mainWindowContainer?.browserView?.webContents.executeJavaScript(req.req)
-    return {
-        result: result,
-        req: req
-    }
+    let result = await TabsController.mainWindowContainer?.browserView?.webContents.executeJavaScript(req)
+    return result
 })
 
 ipcMain.on('goUrl', (evt, url) => {
