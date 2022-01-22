@@ -35,11 +35,11 @@
         "copyright": "Copyright 2022 ©. Деды воевали!",
         "publish": [
             {
-              "provider": "github",
-              "owner": "alhafram",
-              "repo": "Dwarium"
+                "provider": "github",
+                "owner": "alhafram",
+                "repo": "Dwarium"
             }
-          ],
+        ],
         "mac": {
             "category": "public.app-category.games",
             "icon": "src/build/icon.icns",
@@ -57,7 +57,7 @@
             "target": {
                 "target": "nsis",
                 "arch": [
-                    "x64", 
+                    "x64",
                     "ia32"
                 ]
             }
