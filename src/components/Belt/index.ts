@@ -268,9 +268,9 @@ async function parseEquipedPotions() {
     let equipedPotions: EquipedPotion[] = equipedPotionsReq.flat().filter((potion: EquipedPotion) => potion)
     for(let item of equipedPotions) {
         let res = await window.beltPotionAPI.fetchItem(item.id!)
-        let doc = res.toDocument()
-        let title = doc.querySelector('body > table > tbody > tr > td > table > tbody > tr:nth-child(2) > td > div > div.bg-l > div > div > div > div > div > div > div > table:nth-child(1) > tbody > tr:nth-child(2) > td.tbl-usi_bg > table > tbody > tr:nth-child(1) > td:nth-child(3) > table > tbody > tr > td:nth-child(2) > h1 > b').textContent
-        item.title = title
+        let doc = res.toDocument() as Document
+        let title = doc.querySelector('body > table > tbody > tr > td > table > tbody > tr:nth-child(2) > td > div > div.bg-l > div > div > div > div > div > div > div > table:nth-child(1) > tbody > tr:nth-child(2) > td.tbl-usi_bg > table > tbody > tr:nth-child(1) > td:nth-child(3) > table > tbody > tr > td:nth-child(2) > h1 > b')?.textContent
+        item.title = title ?? ''
     }
     return equipedPotions
 }

@@ -578,8 +578,8 @@ function difference(setA: string[], setB: string[]): Set<string> {
     return _difference
 }
 
-function parseMagicSchools(result: string): string {
-    let doc = result.toDocument()
+function parseMagicSchools(result: any): string {
+    let doc = result.toDocument() as Document
     let schools = Array.from(doc.querySelector('body > table > tbody > tr:nth-child(2) > td.bgg > table > tbody > tr:nth-child(1) > td:nth-child(2) > select')!.children).map(e => e.textContent!)
     let currentStyle = difference(SetStyleHelper.magmarSchools, schools)
     if(currentStyle.size  == SetStyleHelper.magmarSchools.length) {
