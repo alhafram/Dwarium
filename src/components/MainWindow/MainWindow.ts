@@ -114,7 +114,9 @@ export default class MainWindowContainer {
 
         // @ts-ignore - TS - FIX
         this.browserView.webContents.setWindowOpenHandler(({ url, features }) => {
-            console.log(url, features)
+            const splittedFeatures = features.split(',')
+            const left = parseInt(splittedFeatures.find(str => str.startsWith('left'))?.split('=').pop() ?? '')
+            const top = parseInt(splittedFeatures.find(str => str.startsWith('top'))?.split('=').pop() ?? '')
             const excludedUrls = [
                 `https://${configService.server()}.dwar.ru/action_form.php`,
                 `https://${configService.server()}.dwar.ru/area_cube_recipes.php`
@@ -125,6 +127,8 @@ export default class MainWindowContainer {
                         action: 'allow',
                         overrideBrowserWindowOptions: {
                             parent: configService.windowsAboveApp() ? TabsController.mainWindow : null,
+                            x: left > 0 ? left : 0,
+                            y: top > 0 ? top : 0,
                             webPreferences: {
                                 enablePreferredSizeMode: true
                             }
@@ -141,8 +145,9 @@ export default class MainWindowContainer {
                 return {
                     action: 'allow',
                     overrideBrowserWindowOptions: {
-                        enablePreferredSizeMode: true,
                         parent: configService.windowsAboveApp() ? TabsController.mainWindow : null,
+                        x: left > 0 ? left : 0,
+                        y: top > 0 ? top : 0,
                         webPreferences: {
                             contextIsolation: false,
                             nativeWindowOpen: true,
