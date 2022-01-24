@@ -119,8 +119,8 @@ export default class MainWindowContainer {
             const left = parseInt(splittedFeatures.find(str => str.startsWith('left'))?.split('=').pop() ?? '')
             const top = parseInt(splittedFeatures.find(str => str.startsWith('top'))?.split('=').pop() ?? '')
             const excludedUrls = [
-                `https://${configService.server()}.dwar.ru/action_form.php`,
-                `https://${configService.server()}.dwar.ru/area_cube_recipes.php`
+                `${configService.baseUrl()}/action_form.php`,
+                `${configService.baseUrl()}/area_cube_recipes.php`
             ]
             for(const excludeUrl of excludedUrls) {
                 if(url.includes(excludeUrl)) {
