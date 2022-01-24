@@ -36,22 +36,22 @@ export function setupCloseLogic(window: BrowserWindow, windowType: WindowType, o
 }
 
 export enum Preload {
-    DRESSING = './components/Dressing/preload.js',
-    BELT = './components/Belt/preload.js',
-    CHAT_LOG = './components/ChatLog/preload.js',
-    SETTINGS = './components/Settings/preload.js',
-    NOTES = './components/Notes/preload.js',
-    FOOD = './components/Food/preload.js'
+    DRESSING = '../components/Dressing/preload.js',
+    BELT = '../components/Belt/preload.js',
+    CHAT_LOG = '../components/ChatLog/preload.js',
+    SETTINGS = '../components/Settings/preload.js',
+    NOTES = '../components/Notes/preload.js',
+    FOOD = '../components/Food/preload.js'
 }
 
 export enum HTMLPath {
-    DRESSING = '../gui/Dressing/index.html',
-    BELT = '../gui/Belt/index.html',
-    CHAT_LOG = '../gui/ChatLog/index.html',
-    SETTINGS = '../gui/Settings/index.html',
-    NOTES = '../gui/Notes/index.html',
-    FOOD = '../gui/Food/index.html',
-    CHAT_SETTINGS = '../gui/ChatSettings/index.html'
+    DRESSING = '../../gui/Dressing/index.html',
+    BELT = '../../gui/Belt/index.html',
+    CHAT_LOG = '../../gui/ChatLog/index.html',
+    SETTINGS = '../../gui/Settings/index.html',
+    NOTES = '../../gui/Notes/index.html',
+    FOOD = '../../gui/Food/index.html',
+    CHAT_SETTINGS = '../../gui/ChatSettings/index.html'
 }
 
 export enum WindowType {

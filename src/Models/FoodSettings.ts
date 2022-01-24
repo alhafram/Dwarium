@@ -1,4 +1,5 @@
 export type FoodSettings = {
     id: string | null | undefined,
-    percentage: string
+    percentage: string,
+    actionId: string
 }

@@ -26,6 +26,12 @@ type InventoryItem = {
     foodType: FoodType
 }
 
+type FoodSettings = {
+    id: string | null | undefined,
+    percentage: string,
+    actionId: string
+}
+
 const Elements = {
     hpBox(): HTMLDivElement {
         return document.getElementById('hp') as HTMLDivElement
@@ -273,17 +279,38 @@ async function reduce(state: FoodWindowState = initialState, action: FoodWindowA
                 mpItem: mpItem
             }
         case FoodWindowActions.SAVE:
+            Elements.saveBox().disabled = true
             const hpPercentage = Elements.hpSelectBox().value
             const mpPercentage = Elements.mpSelectBox().value
-            const hp = {
-                id: state.hpItem?.id ?? null,
-                percentage: hpPercentage
+
+            let hpSetting: FoodSettings = {
+                id: state.hpItem?.id,
+                percentage: hpPercentage,
+                actionId: ''
             }
-            const mp = {
-                id: state.mpItem?.id ?? null,
-                percentage: mpPercentage
+            let mpSetting: FoodSettings = {
+                id: state.mpItem?.id,
+                percentage: mpPercentage,
+                actionId: ''
             }
-            window.foodAPI.save(hp, mp)
+            if(hpSetting.id) {
+                let text = await window.foodAPI.loadItem(hpSetting.id)
+                // @ts-ignore
+                const doc = text.toDocument() as Document
+                // @ts-ignore
+                const actionId = doc.getElementsByTagName('input').action_id.value
+                hpSetting.actionId = actionId
+            }
+            if(mpSetting.id) {
+                let text = await window.foodAPI.loadItem(mpSetting.id)
+                // @ts-ignore
+                const doc = text.toDocument() as Document
+                // @ts-ignore
+                const actionId = doc.getElementsByTagName('input').action_id.value
+                mpSetting.actionId = actionId
+            }
+            window.foodAPI.save(hpSetting, mpSetting)
+            Elements.saveBox().disabled = false
             return state
         case FoodWindowActions.CHANGE_HP_PERCENTAGE:
             return {
