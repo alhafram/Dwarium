@@ -1,6 +1,7 @@
 // @ts-nocheck
 import { ipcRenderer } from "electron"
 import ConfigService from "../../services/ConfigService"
+import { Channel } from "../../Channel"
 
 const {
     checkLmtsProxyReady,
@@ -104,7 +105,7 @@ document.addEventListener('eat', async () => {
     }
 })
 
-ipcRenderer.on('userPrv', function(event, nick) {
+ipcRenderer.on(Channel.USER_PRV, function(event, nick) {
     userPrvTag(nick)
 })
 

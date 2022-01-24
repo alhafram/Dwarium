@@ -3,150 +3,96 @@ import configService from './services/ConfigService'
 import { TabsController } from './services/TabsController'
 import { autoUpdater } from "electron-updater"
 import fs from 'fs'
+import path from 'path'
+import { Channel } from './Channel'
 
-ipcMain.on('load_url', (evt, server) => {
+ipcMain.on(Channel.LOAD_URL, (evt, server) => {
     configService.writeData('server', server)
     TabsController.currentTab().webContents.loadURL(`${configService.baseUrl()}/main.php`)
     TabsController.mainWindow?.webContents.setZoomFactor(0.9)
 })
 
-ipcMain.on('reload', () => {
+ipcMain.on(Channel.RELOAD, () => {
     TabsController.currentTab().webContents.reload()
 })
 
-ipcMain.on('back', () => {
+ipcMain.on(Channel.BACK, () => {
     if(TabsController.currentTab().webContents.canGoBack()) {
         TabsController.currentTab().webContents.goBack()
     }
 })
 
-ipcMain.on('forward', () => {
+ipcMain.on(Channel.FORWARD, () => {
     if(TabsController.currentTab().webContents.canGoForward()) {
         TabsController.currentTab().webContents.goForward()
     }
 })
 
 let dressingWindow: BrowserWindow | null
-ipcMain.on('openDressingRoom', () => {
+ipcMain.on(Channel.OPEN_DRESSING_ROOM, () => {
     if(dressingWindow) {
         dressingWindow.show()
         return
     }
-    const path = require('path')
-    dressingWindow = new BrowserWindow({
-        width: 900,
-        height: 700,
-        minWidth: 900,
-        minHeight: 700,
-        useContentSize: true,
-        show: true,
-        parent: configService.windowsAboveApp() ? TabsController.mainWindow! : undefined,
-        webPreferences: {
-            preload: path.join(__dirname, './components/Dressing/preload.js'),
-            nodeIntegration: true
-        }
-    })
-    require("@electron/remote/main").enable(dressingWindow.webContents)
+    dressingWindow = createWindowAndLoad(HTMLPath.DRESSING, Preload.DRESSING, true)
     dressingWindow.on('closed', () => {
         dressingWindow = null
         if(!TabsController.mainWindow?.webContents.isDestroyed()) {
-            TabsController.mainWindow?.webContents.send('openWindow', 'dressingRoom', false)
+            TabsController.mainWindow?.webContents.send(Channel.OPEN_WINDOW, 'dressingRoom', false)
         }
     })
-    dressingWindow.loadFile(`${path.join(__dirname, '../gui/Dressing/index.html')}`)
-    TabsController.mainWindow?.webContents.send('openWindow', 'dressingRoom', true)
+    TabsController.mainWindow?.webContents.send(Channel.OPEN_WINDOW, 'dressingRoom', true)
 })
 
 let beltWindow: BrowserWindow | null
-ipcMain.on('openBeltPotionRoom', () => {
+ipcMain.on(Channel.OPEN_BELT_POTION_ROOM, () => {
     if(beltWindow) {
         beltWindow.show()
         return
     }
-    const path = require('path')
-    beltWindow = new BrowserWindow({
-        width: 900,
-        height: 900,
-        minWidth: 900,
-        minHeight: 700,
-        useContentSize: true,
-        show: true,
-        parent: configService.windowsAboveApp() ? TabsController.mainWindow! : undefined,
-        webPreferences: {
-            preload: path.join(__dirname, './components/Belt/preload.js')
-        }
-    })
-    require("@electron/remote/main").enable(beltWindow.webContents)
+    beltWindow = createWindowAndLoad(HTMLPath.BELT, Preload.BELT, true)
     beltWindow.on('closed', () => {
         beltWindow = null
         if(!TabsController.mainWindow?.webContents.isDestroyed()) {
-            TabsController.mainWindow?.webContents.send('openWindow', 'beltPotionRoom', false)
+            TabsController.mainWindow?.webContents.send(Channel.OPEN_WINDOW, 'beltPotionRoom', false)
         }
     })
-    beltWindow.loadFile(`${path.join(__dirname, '../gui/Belt/index.html')}`)
-    TabsController.mainWindow?.webContents.send('openWindow', 'beltPotionRoom', true)
+    TabsController.mainWindow?.webContents.send(Channel.OPEN_WINDOW, 'beltPotionRoom', true)
 })
 
 let chatLogWindow: BrowserWindow | null
-ipcMain.on('openChatLog', () => {
+ipcMain.on(Channel.OPEN_CHAT_LOG, () => {
     if(chatLogWindow) {
         chatLogWindow.show()
         return
     }
-    const path = require('path')
-    chatLogWindow = new BrowserWindow({
-        width: 900,
-        height: 700,
-        minWidth: 900,
-        minHeight: 700,
-        useContentSize: true,
-        show: true,
-        parent: configService.windowsAboveApp() ? TabsController.mainWindow! : undefined,
-        webPreferences: {
-            preload: path.join(__dirname, './components/ChatLog/preload.js')
-        }
-    })
+    chatLogWindow = createWindowAndLoad(HTMLPath.CHAT_LOG, Preload.CHAT_LOG, true)
     chatLogWindow.on('closed', () => {
         chatLogWindow = null
         if(!TabsController.mainWindow?.webContents.isDestroyed()) {
-            TabsController.mainWindow?.webContents.send('openWindow', 'chatLog', false)
+            TabsController.mainWindow?.webContents.send(Channel.OPEN_WINDOW, 'chatLog', false)
         }
     })
-    chatLogWindow.loadFile(`${path.join(__dirname, '../gui/ChatLog/index.html')}`)
-    require("@electron/remote/main").enable(chatLogWindow.webContents)
-    TabsController.mainWindow?.webContents.send('openWindow', 'chatLog', true)
+    TabsController.mainWindow?.webContents.send(Channel.OPEN_WINDOW, 'chatLog', true)
 })
 
 let chatSettingsWindow: BrowserWindow | null
-ipcMain.on('openChatSettings', () => {
+ipcMain.on(Channel.OPEN_CHAT_SETTINGS, () => {
     if(chatSettingsWindow) {
         chatSettingsWindow.show()
         return
     }
-    const path = require('path')
-    chatSettingsWindow = new BrowserWindow({
-        width: 900,
-        height: 700,
-        minWidth: 900,
-        minHeight: 700,
-        useContentSize: true,
-        show: true,
-        parent: configService.windowsAboveApp() ? TabsController.mainWindow! : undefined,
-        webPreferences: {
-            contextIsolation: false
-        }
-    })
+    chatSettingsWindow = createWindowAndLoad(HTMLPath.CHAT_SETTINGS)
     chatSettingsWindow.on('closed', () => {
         chatSettingsWindow = null
         if(!TabsController.mainWindow?.webContents.isDestroyed()) {
-            TabsController.mainWindow?.webContents.send('openWindow', 'chatSettings', false)
+            TabsController.mainWindow?.webContents.send(Channel.OPEN_WINDOW, 'chatSettings', false)
         }
     })
-    chatSettingsWindow.loadFile(`${path.join(__dirname, '../gui/ChatSettings/index.html')}`)
-    TabsController.mainWindow?.webContents.send('openWindow', 'chatSettings', true)
+    TabsController.mainWindow?.webContents.send(Channel.OPEN_WINDOW, 'chatSettings', true)
 })
 
-ipcMain.on('new_tab', (evt, id, url) => {
+ipcMain.on(Channel.NEW_TAB, (evt, id, url) => {
     createNewTab(url, id)
 })
 
@@ -164,15 +110,15 @@ function createNewTab(url: string, id: string) {
         if(originalTitle.length > 15) {
             title = title.concat(' ...')
         }
-        TabsController.mainWindow?.webContents.send('finishLoadUrl', tabId, title)
-        TabsController.mainWindow?.webContents.send('url', browserView.webContents.getURL(), tabId)
+        TabsController.mainWindow?.webContents.send(Channel.FINISH_LOAD_URL, tabId, title)
+        TabsController.mainWindow?.webContents.send(Channel.URL, browserView.webContents.getURL(), tabId)
     })
     if(configService.windowOpenNewTab()) {
         browserView.webContents.setWindowOpenHandler(({
             url,
             features
         }) => {
-            TabsController.mainWindow?.webContents.send('new_tab', url)
+            TabsController.mainWindow?.webContents.send(Channel.NEW_TAB, url)
             return {
                 action: 'deny'
             }
@@ -187,22 +133,22 @@ function createNewTab(url: string, id: string) {
     })
     TabsController.mainWindowContainer?.setViewContentBounds(TabsController.currentTab())
     browserView.webContents.loadURL(url)
-    TabsController.mainWindow?.webContents.send('url', url, tabId)
+    TabsController.mainWindow?.webContents.send(Channel.URL, url, tabId)
 }
 
-ipcMain.on('make_active', (evt, id) => {
+ipcMain.on(Channel.MAKE_ACTIVE, (evt, id) => {
     TabsController.setupCurrent(id)
     TabsController.mainWindow?.setBrowserView(TabsController.currentTab())
     TabsController.mainWindowContainer?.setViewContentBounds(TabsController.currentTab(), TabsController.mainWindow?.getBounds())
-    TabsController.mainWindow?.webContents.send('url', TabsController.currentTab().webContents.getURL(), id)
+    TabsController.mainWindow?.webContents.send(Channel.URL, TabsController.currentTab().webContents.getURL(), id)
 })
 
-ipcMain.on('remove_view', (evt, id) => {
+ipcMain.on(Channel.REMOVE_VIEW, (evt, id) => {
     TabsController.deleteTab(id)
 })
 
-ipcMain.on('close_tab', (evt, id) => {
-    TabsController.mainWindow?.webContents.send('close_tab', id)
+ipcMain.on(Channel.CLOSE_TAB, (evt, id) => {
+    TabsController.mainWindow?.webContents.send(Channel.CLOSE_TAB, id)
 })
 
 ipcMain.handle('MakeWebRequest', async (evt, req) => {
@@ -210,14 +156,14 @@ ipcMain.handle('MakeWebRequest', async (evt, req) => {
     return result
 })
 
-ipcMain.on('goUrl', (evt, url) => {
+ipcMain.on(Channel.GO_URL, (evt, url) => {
     if(!url.includes('http')) {
         url = 'http://' + url
     }
     TabsController.currentTab().webContents.loadURL(url)
 })
 
-ipcMain.on('updateApplication', () => {
+ipcMain.on(Channel.UPDATE_APPLICATION, () => {
     autoUpdater.quitAndInstall(false, true)
 })
 
@@ -247,14 +193,8 @@ ipcMain.handle('LoadSetItems', async (evt, args: [string]) => {
     return res
 })
 
-ipcMain.on('findCharacter', (event, nick) => {
-    const userInfoBrowserWindow = new BrowserWindow({
-        width: 1200,
-        height: 900,
-        useContentSize: true,
-        show: true,
-        parent: configService.windowsAboveApp() ? TabsController.mainWindow! : undefined
-    })
+ipcMain.on(Channel.FIND_CHARACTER, (event, nick) => {
+    const userInfoBrowserWindow = createWindowAndLoad()
     userInfoBrowserWindow.webContents.loadURL(`${configService.baseUrl()}/user_info.php?nick=${nick}`)
 })
 
@@ -266,55 +206,40 @@ async function fetch(request: { url: string; script: string }) {
     return result
 }
 
-
 let settingsWindow: BrowserWindow | null
-ipcMain.on('openSettings', () => {
+ipcMain.on(Channel.OPEN_SETTINGS, () => {
     if(settingsWindow) {
         settingsWindow.show()
         return
     }
-    const path = require('path')
-    settingsWindow = new BrowserWindow({
-        width: 900,
-        height: 700,
-        minWidth: 900,
-        minHeight: 700,
-        useContentSize: true,
-        show: true,
-        parent: configService.windowsAboveApp() ? TabsController.mainWindow! : undefined,
-        webPreferences: {
-            preload: path.join(__dirname, './components/Settings/preload.js')
-        }
-    })
+    settingsWindow = createWindowAndLoad(HTMLPath.SETTINGS, Preload.SETTINGS, true)
     settingsWindow.on('closed', () => {
         settingsWindow = null
         if(!TabsController.mainWindow?.webContents.isDestroyed()) {
-            TabsController.mainWindow?.webContents?.send('openWindow', 'settings', false)
+            TabsController.mainWindow?.webContents?.send(Channel.OPEN_WINDOW, 'settings', false)
         }
     })
-    require("@electron/remote/main").enable(settingsWindow.webContents)
-    settingsWindow.loadFile(`${path.join(__dirname, '../gui/Settings/index.html')}`)
-    TabsController.mainWindow?.webContents.send('openWindow', 'settings', true)
+    TabsController.mainWindow?.webContents.send(Channel.OPEN_WINDOW, 'settings', true)
 })
 
-ipcMain.on('userPrv', (event, nick) => {
-    TabsController.mainWindowContainer?.browserView?.webContents.send('userPrv', nick)
+ipcMain.on(Channel.USER_PRV, (event, nick) => {
+    TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.USER_PRV, nick)
 })
 
 let screenIsMaking = false
-ipcMain.on('takeScreenshot', async () => {
+ipcMain.on(Channel.TAKE_SCREENSHOT, async () => {
     if(screenIsMaking) {
         return
     }
     screenIsMaking = true
-    TabsController.mainWindow?.webContents.send('openWindow', 'screenshot', true)
+    TabsController.mainWindow?.webContents.send(Channel.OPEN_WINDOW, 'screenshot', true)
     const basePath =  app.getPath('userData') + '/screens'
     if(!fs.existsSync(basePath)) {
         fs.mkdirSync(basePath)
     }
     let page = await TabsController.mainWindowContainer?.browserView?.webContents.capturePage()
     if(!page) {
-        TabsController.mainWindow?.webContents.send('openWindow', 'screenshot', false)
+        TabsController.mainWindow?.webContents.send(Channel.OPEN_WINDOW, 'screenshot', false)
         screenIsMaking = false
         return
     }
@@ -322,78 +247,84 @@ ipcMain.on('takeScreenshot', async () => {
     let png = resized.toPNG()
     let path = `${basePath}/${new Date().toLocaleString().replaceAll(' ', '').replaceAll('/', '.').replaceAll(':', '_')}.png`
     fs.writeFile(path, png, (err: any) => {
-        TabsController.mainWindow?.webContents.send('openWindow', 'screenshot', false)
+        TabsController.mainWindow?.webContents.send(Channel.OPEN_WINDOW, 'screenshot', false)
         screenIsMaking = false
     })
 })
 
-ipcMain.on('findEffects', (event, nick) => {
-    const effetsInfoBrowserWindow = new BrowserWindow({
-        width: 1200,
-        height: 900,
-        useContentSize: true,
-        show: true,
-        parent: configService.windowsAboveApp() ? TabsController.mainWindow! : undefined
-    })
+ipcMain.on(Channel.FIND_EFFECTS, (event, nick) => {
+    const effetsInfoBrowserWindow = createWindowAndLoad()
     effetsInfoBrowserWindow.webContents.loadURL(`${configService.baseUrl()}/effect_info.php?nick=${nick}`)
 })
 
 let notesWindow: BrowserWindow | null
-ipcMain.on('openNotes', () => {
+ipcMain.on(Channel.OPEN_NOTES, () => {
     if(notesWindow) {
         notesWindow.show()
         return
     }
-    const path = require('path')
-    notesWindow = new BrowserWindow({
-        width: 900,
-        height: 700,
-        minWidth: 300,
-        minHeight: 300,
-        useContentSize: true,
-        show: true,
-        parent: configService.windowsAboveApp() ? TabsController.mainWindow! : undefined,
-        webPreferences: {
-            preload: path.join(__dirname, './components/Notes/preload.js')
-        }
-    })
+    notesWindow = createWindowAndLoad(HTMLPath.NOTES, Preload.NOTES, true)
     notesWindow.on('closed', () => {
         notesWindow = null
         if(!TabsController.mainWindow?.webContents.isDestroyed()) {
-            TabsController.mainWindow?.webContents.send('openWindow', 'notes', false)
+            TabsController.mainWindow?.webContents.send(Channel.OPEN_WINDOW, 'notes', false)
         }
     })
-    notesWindow.loadFile(`${path.join(__dirname, '../gui/Notes/index.html')}`)
-    require("@electron/remote/main").enable(notesWindow.webContents)
-    TabsController.mainWindow?.webContents.send('openWindow', 'notes', true)
+    TabsController.mainWindow?.webContents.send(Channel.OPEN_WINDOW, 'notes', true)
 })
 
 let foodWindow: BrowserWindow | null
-ipcMain.on('openFood', () => {
+ipcMain.on(Channel.OPEN_FOOD, () => {
     if(foodWindow) {
         foodWindow.show()
         return
     }
-    const path = require('path')
-    foodWindow = new BrowserWindow({
+    foodWindow = createWindowAndLoad(HTMLPath.FOOD, Preload.FOOD, true)
+    foodWindow.on('closed', () => {
+        foodWindow = null
+        if(!TabsController.mainWindow?.webContents.isDestroyed()) {
+            TabsController.mainWindow?.webContents?.send(Channel.OPEN_WINDOW, 'food', false)
+        }
+    })
+    TabsController.mainWindow?.webContents.send(Channel.OPEN_WINDOW, 'food', true)
+})
+
+function createWindowAndLoad(htmlPath?: HTMLPath, preloadPath?: string, enableRemote: boolean = false, contextIsolation: boolean = true): BrowserWindow {
+    const window = new BrowserWindow({
         width: 900,
         height: 700,
         minWidth: 900,
         minHeight: 700,
-        useContentSize: true,
-        show: true,
         parent: configService.windowsAboveApp() ? TabsController.mainWindow! : undefined,
         webPreferences: {
-            preload: path.join(__dirname, './components/Food/preload.js')
+            preload: preloadPath ? path.join(__dirname, preloadPath) : undefined,
+            contextIsolation: contextIsolation
         }
     })
-    foodWindow.on('closed', () => {
-        foodWindow = null
-        if(!TabsController.mainWindow?.webContents.isDestroyed()) {
-            TabsController.mainWindow?.webContents?.send('openWindow', 'food', false)
-        }
-    })
-    require("@electron/remote/main").enable(foodWindow.webContents)
-    foodWindow.loadFile(`${path.join(__dirname, '../gui/Food/index.html')}`)
-    TabsController.mainWindow?.webContents.send('openWindow', 'food', true)
-})
+    if(htmlPath) {
+        window.loadFile(path.join(__dirname, htmlPath))
+    }
+    if(enableRemote) {
+        require("@electron/remote/main").enable(window.webContents)
+    }
+    return window
+}
+
+enum Preload {
+    DRESSING = './components/Dressing/preload.js',
+    BELT = './components/Belt/preload.js',
+    CHAT_LOG = './components/ChatLog/preload.js',
+    SETTINGS = './components/Settings/preload.js',
+    NOTES = './components/Notes/preload.js',
+    FOOD = './components/Food/preload.js'
+}
+
+enum HTMLPath {
+    DRESSING = '../gui/Dressing/index.html',
+    BELT = '../gui/Belt/index.html',
+    CHAT_LOG = '../gui/ChatLog/index.html',
+    SETTINGS = '../gui/Settings/index.html',
+    NOTES = '../gui/Notes/index.html',
+    FOOD = '../gui/Food/index.html',
+    CHAT_SETTINGS = '../gui/ChatSettings/index.html'
+}

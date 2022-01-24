@@ -2,6 +2,7 @@ import { BrowserView, BrowserWindow, globalShortcut, session, clipboard, Rectang
 import path from 'path'
 import configService from '../../services/ConfigService'
 import { TabsController } from '../../services/TabsController'
+import { Channel } from '../../Channel'
 
 export default class MainWindowContainer {
 
@@ -48,13 +49,13 @@ export default class MainWindowContainer {
 
         this.mainWindow.webContents.on('did-finish-load', () => {
             let currentServer = configService.server()
-            this.mainWindow.webContents.send('server', currentServer)
+            this.mainWindow.webContents.send(Channel.SERVER, currentServer)
         })
 
         this.mainWindow.on('focus', () => {
             globalShortcut.register('CommandOrControl+W', () => {
                 if(TabsController.currentTab() != TabsController.getMain()) {
-                    this.mainWindow.webContents.send('close_tab', TabsController.current_tab_id)
+                    this.mainWindow.webContents.send(Channel.CLOSE_TAB, TabsController.current_tab_id)
                 }
                 if(TabsController.onlyMain()) {
                     this.mainWindow.close()
@@ -74,18 +75,18 @@ export default class MainWindowContainer {
                 }
             })
             globalShortcut.register('CommandOrControl+T', () => {
-                this.mainWindow.webContents.send('new_tab')
+                this.mainWindow.webContents.send(Channel.NEW_TAB)
             })
             if(process.platform == 'win32' || process.platform == 'linux') {
                 globalShortcut.register('F11', () => {
                     this.mainWindow.setFullScreen(!this.mainWindow.isFullScreen())
                 })
                 globalShortcut.register('F9', () => {
-                    this.mainWindow.webContents.send('takeScreenshot')
+                    this.mainWindow.webContents.send(Channel.TAKE_SCREENSHOT)
                 })
             } else {
                 globalShortcut.register('CommandOrControl+F', () => {
-                    this.mainWindow.webContents.send('takeScreenshot')
+                    this.mainWindow.webContents.send(Channel.TAKE_SCREENSHOT)
                 })
             }
         })
@@ -137,7 +138,7 @@ export default class MainWindowContainer {
                 }
             }
             if(configService.windowOpenNewTab() && !features.includes('location=no') || TabsController.currentTab() == TabsController.getMain() && !features) {
-                this.mainWindow.webContents.send('new_tab', url)
+                this.mainWindow.webContents.send(Channel.NEW_TAB, url)
                 return {
                     action: 'deny'
                 }
@@ -211,7 +212,7 @@ export default class MainWindowContainer {
             }
         })
         browserView.webContents.on('did-finish-load', () => {
-            this.mainWindow.webContents.send('url', browserView.webContents.getURL(), 'main')
+            this.mainWindow.webContents.send(Channel.URL, browserView.webContents.getURL(), 'main')
         })
         browserView.webContents.setZoomFactor(0.9)
         browserView.setAutoResize({
