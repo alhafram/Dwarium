@@ -1,6 +1,7 @@
 import { ipcRenderer } from 'electron'
 import configService from '../../services/ConfigService'
 import { Channel } from '../../Models/Channel'
+import { generateRandomId } from '../../components/Utils'
 
 let switcher: HTMLElement | null
 let tabs: HTMLElement | null
@@ -136,7 +137,7 @@ function createNewTab(id?: string, title?: string) {
     const new_tab = document.createElement('div')
     new_tab.className += 'ab active'
     if(!id) {
-        id = 'tab_' + (buttons.length - 1)
+        id = generateRandomId()
     }
     new_tab.id = id
     new_tab.onclick = makeActive
