@@ -3,8 +3,8 @@ import configService from './services/ConfigService'
 import { TabsController } from './services/TabsController'
 import { autoUpdater } from "electron-updater"
 import fs from 'fs'
-import path from 'path'
-import { Channel } from './Channel'
+import { Channel } from './Models/Channel'
+import { createWindowAndLoad, WindowType, setupCloseLogic, HTMLPath, Preload } from './services/WindowCreationHelper'
 
 ipcMain.on(Channel.LOAD_URL, (evt, server) => {
     configService.writeData('server', server)
@@ -26,70 +26,6 @@ ipcMain.on(Channel.FORWARD, () => {
     if(TabsController.currentTab().webContents.canGoForward()) {
         TabsController.currentTab().webContents.goForward()
     }
-})
-
-let dressingWindow: BrowserWindow | null
-ipcMain.on(Channel.OPEN_DRESSING_ROOM, () => {
-    if(dressingWindow) {
-        dressingWindow.show()
-        return
-    }
-    dressingWindow = createWindowAndLoad(HTMLPath.DRESSING, Preload.DRESSING, true)
-    dressingWindow.on('closed', () => {
-        dressingWindow = null
-        if(!TabsController.mainWindow?.webContents.isDestroyed()) {
-            TabsController.mainWindow?.webContents.send(Channel.OPEN_WINDOW, 'dressingRoom', false)
-        }
-    })
-    TabsController.mainWindow?.webContents.send(Channel.OPEN_WINDOW, 'dressingRoom', true)
-})
-
-let beltWindow: BrowserWindow | null
-ipcMain.on(Channel.OPEN_BELT_POTION_ROOM, () => {
-    if(beltWindow) {
-        beltWindow.show()
-        return
-    }
-    beltWindow = createWindowAndLoad(HTMLPath.BELT, Preload.BELT, true)
-    beltWindow.on('closed', () => {
-        beltWindow = null
-        if(!TabsController.mainWindow?.webContents.isDestroyed()) {
-            TabsController.mainWindow?.webContents.send(Channel.OPEN_WINDOW, 'beltPotionRoom', false)
-        }
-    })
-    TabsController.mainWindow?.webContents.send(Channel.OPEN_WINDOW, 'beltPotionRoom', true)
-})
-
-let chatLogWindow: BrowserWindow | null
-ipcMain.on(Channel.OPEN_CHAT_LOG, () => {
-    if(chatLogWindow) {
-        chatLogWindow.show()
-        return
-    }
-    chatLogWindow = createWindowAndLoad(HTMLPath.CHAT_LOG, Preload.CHAT_LOG, true)
-    chatLogWindow.on('closed', () => {
-        chatLogWindow = null
-        if(!TabsController.mainWindow?.webContents.isDestroyed()) {
-            TabsController.mainWindow?.webContents.send(Channel.OPEN_WINDOW, 'chatLog', false)
-        }
-    })
-    TabsController.mainWindow?.webContents.send(Channel.OPEN_WINDOW, 'chatLog', true)
-})
-
-let chatSettingsWindow: BrowserWindow | null
-ipcMain.on(Channel.OPEN_CHAT_SETTINGS, () => {
-    if(chatSettingsWindow) {
-        chatSettingsWindow.show()
-        return
-    }
-    chatSettingsWindow = createWindowAndLoad(HTMLPath.CHAT_SETTINGS)
-    chatSettingsWindow.on('closed', () => {
-        chatSettingsWindow = null
-        if(!TabsController.mainWindow?.webContents.isDestroyed()) {
-            TabsController.mainWindow?.webContents.send(Channel.OPEN_WINDOW, 'chatSettings', false)
-        }
-    })
-    TabsController.mainWindow?.webContents.send(Channel.OPEN_WINDOW, 'chatSettings', true)
 })
 
 ipcMain.on(Channel.NEW_TAB, (evt, id, url) => {
@@ -206,22 +142,6 @@ async function fetch(request: { url: string; script: string }) {
     return result
 }
 
-let settingsWindow: BrowserWindow | null
-ipcMain.on(Channel.OPEN_SETTINGS, () => {
-    if(settingsWindow) {
-        settingsWindow.show()
-        return
-    }
-    settingsWindow = createWindowAndLoad(HTMLPath.SETTINGS, Preload.SETTINGS, true)
-    settingsWindow.on('closed', () => {
-        settingsWindow = null
-        if(!TabsController.mainWindow?.webContents.isDestroyed()) {
-            TabsController.mainWindow?.webContents?.send(Channel.OPEN_WINDOW, 'settings', false)
-        }
-    })
-    TabsController.mainWindow?.webContents.send(Channel.OPEN_WINDOW, 'settings', true)
-})
-
 ipcMain.on(Channel.USER_PRV, (event, nick) => {
     TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.USER_PRV, nick)
 })
@@ -232,14 +152,14 @@ ipcMain.on(Channel.TAKE_SCREENSHOT, async () => {
         return
     }
     screenIsMaking = true
-    TabsController.mainWindow?.webContents.send(Channel.OPEN_WINDOW, 'screenshot', true)
+    TabsController.mainWindow?.webContents.send(Channel.OPEN_WINDOW, WindowType.SCREENSHOT, true)
     const basePath =  app.getPath('userData') + '/screens'
     if(!fs.existsSync(basePath)) {
         fs.mkdirSync(basePath)
     }
     let page = await TabsController.mainWindowContainer?.browserView?.webContents.capturePage()
     if(!page) {
-        TabsController.mainWindow?.webContents.send(Channel.OPEN_WINDOW, 'screenshot', false)
+        TabsController.mainWindow?.webContents.send(Channel.OPEN_WINDOW, WindowType.SCREENSHOT, false)
         screenIsMaking = false
         return
     }
@@ -247,7 +167,7 @@ ipcMain.on(Channel.TAKE_SCREENSHOT, async () => {
     let png = resized.toPNG()
     let path = `${basePath}/${new Date().toLocaleString().replaceAll(' ', '').replaceAll('/', '.').replaceAll(':', '_')}.png`
     fs.writeFile(path, png, (err: any) => {
-        TabsController.mainWindow?.webContents.send(Channel.OPEN_WINDOW, 'screenshot', false)
+        TabsController.mainWindow?.webContents.send(Channel.OPEN_WINDOW, WindowType.SCREENSHOT, false)
         screenIsMaking = false
     })
 })
@@ -257,20 +177,30 @@ ipcMain.on(Channel.FIND_EFFECTS, (event, nick) => {
     effetsInfoBrowserWindow.webContents.loadURL(`${configService.baseUrl()}/effect_info.php?nick=${nick}`)
 })
 
+/// WINDOWS 
+
+let settingsWindow: BrowserWindow | null
+ipcMain.on(Channel.OPEN_SETTINGS, () => {
+    if(settingsWindow) {
+        settingsWindow.show()
+        return
+    }
+    settingsWindow = createWindowAndLoad(WindowType.SETTINGS, HTMLPath.SETTINGS, Preload.SETTINGS, true)
+    setupCloseLogic(settingsWindow, WindowType.SETTINGS, function() {
+        settingsWindow = null
+    })
+})
+
 let notesWindow: BrowserWindow | null
 ipcMain.on(Channel.OPEN_NOTES, () => {
     if(notesWindow) {
         notesWindow.show()
         return
     }
-    notesWindow = createWindowAndLoad(HTMLPath.NOTES, Preload.NOTES, true)
-    notesWindow.on('closed', () => {
+    notesWindow = createWindowAndLoad(WindowType.NOTES, HTMLPath.NOTES, Preload.NOTES, true)
+    setupCloseLogic(notesWindow, WindowType.NOTES, function() {
         notesWindow = null
-        if(!TabsController.mainWindow?.webContents.isDestroyed()) {
-            TabsController.mainWindow?.webContents.send(Channel.OPEN_WINDOW, 'notes', false)
-        }
     })
-    TabsController.mainWindow?.webContents.send(Channel.OPEN_WINDOW, 'notes', true)
 })
 
 let foodWindow: BrowserWindow | null
@@ -279,52 +209,56 @@ ipcMain.on(Channel.OPEN_FOOD, () => {
         foodWindow.show()
         return
     }
-    foodWindow = createWindowAndLoad(HTMLPath.FOOD, Preload.FOOD, true)
-    foodWindow.on('closed', () => {
+    foodWindow = createWindowAndLoad(WindowType.FOOD, HTMLPath.FOOD, Preload.FOOD, true)
+    setupCloseLogic(foodWindow, WindowType.FOOD, function() {
         foodWindow = null
-        if(!TabsController.mainWindow?.webContents.isDestroyed()) {
-            TabsController.mainWindow?.webContents?.send(Channel.OPEN_WINDOW, 'food', false)
-        }
     })
-    TabsController.mainWindow?.webContents.send(Channel.OPEN_WINDOW, 'food', true)
 })
 
-function createWindowAndLoad(htmlPath?: HTMLPath, preloadPath?: string, enableRemote: boolean = false, contextIsolation: boolean = true): BrowserWindow {
-    const window = new BrowserWindow({
-        width: 900,
-        height: 700,
-        minWidth: 900,
-        minHeight: 700,
-        parent: configService.windowsAboveApp() ? TabsController.mainWindow! : undefined,
-        webPreferences: {
-            preload: preloadPath ? path.join(__dirname, preloadPath) : undefined,
-            contextIsolation: contextIsolation
-        }
+let dressingWindow: BrowserWindow | null
+ipcMain.on(Channel.OPEN_DRESSING_ROOM, () => {
+    if(dressingWindow) {
+        dressingWindow.show()
+        return
+    }
+    dressingWindow = createWindowAndLoad(WindowType.DRESSING_ROOM, HTMLPath.DRESSING, Preload.DRESSING, true)
+    setupCloseLogic(dressingWindow, WindowType.DRESSING_ROOM, function() {
+        dressingWindow = null
     })
-    if(htmlPath) {
-        window.loadFile(path.join(__dirname, htmlPath))
-    }
-    if(enableRemote) {
-        require("@electron/remote/main").enable(window.webContents)
-    }
-    return window
-}
+})
 
-enum Preload {
-    DRESSING = './components/Dressing/preload.js',
-    BELT = './components/Belt/preload.js',
-    CHAT_LOG = './components/ChatLog/preload.js',
-    SETTINGS = './components/Settings/preload.js',
-    NOTES = './components/Notes/preload.js',
-    FOOD = './components/Food/preload.js'
-}
+let beltWindow: BrowserWindow | null
+ipcMain.on(Channel.OPEN_BELT_POTION_ROOM, () => {
+    if(beltWindow) {
+        beltWindow.show()
+        return
+    }
+    beltWindow = createWindowAndLoad(WindowType.BELT_POTION_ROOM, HTMLPath.BELT, Preload.BELT, true)
+    setupCloseLogic(beltWindow, WindowType.BELT_POTION_ROOM, function() {
+        beltWindow = null
+    })
+})
 
-enum HTMLPath {
-    DRESSING = '../gui/Dressing/index.html',
-    BELT = '../gui/Belt/index.html',
-    CHAT_LOG = '../gui/ChatLog/index.html',
-    SETTINGS = '../gui/Settings/index.html',
-    NOTES = '../gui/Notes/index.html',
-    FOOD = '../gui/Food/index.html',
-    CHAT_SETTINGS = '../gui/ChatSettings/index.html'
-}
+let chatLogWindow: BrowserWindow | null
+ipcMain.on(Channel.OPEN_CHAT_LOG, () => {
+    if(chatLogWindow) {
+        chatLogWindow.show()
+        return
+    }
+    chatLogWindow = createWindowAndLoad(WindowType.CHAT_LOG, HTMLPath.CHAT_LOG, Preload.CHAT_LOG, true)
+    setupCloseLogic(chatLogWindow, WindowType.CHAT_LOG, function() {
+        chatLogWindow = null
+    })
+})
+
+let chatSettingsWindow: BrowserWindow | null
+ipcMain.on(Channel.OPEN_CHAT_SETTINGS, () => {
+    if(chatSettingsWindow) {
+        chatSettingsWindow.show()
+        return
+    }
+    chatSettingsWindow = createWindowAndLoad(WindowType.CHAT_SETTINGS, HTMLPath.CHAT_SETTINGS)
+    setupCloseLogic(chatSettingsWindow, WindowType.CHAT_SETTINGS, function() {
+        chatSettingsWindow = null
+    })
+})

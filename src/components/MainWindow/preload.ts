@@ -1,6 +1,6 @@
 import { ipcRenderer } from 'electron'
 import configService from '../../services/ConfigService'
-import { Channel } from '../../Channel'
+import { Channel } from '../../Models/Channel'
 
 let switcher: HTMLElement | null
 let tabs: HTMLElement | null

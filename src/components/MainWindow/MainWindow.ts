@@ -2,7 +2,7 @@ import { BrowserView, BrowserWindow, globalShortcut, session, clipboard, Rectang
 import path from 'path'
 import configService from '../../services/ConfigService'
 import { TabsController } from '../../services/TabsController'
-import { Channel } from '../../Channel'
+import { Channel } from '../../Models/Channel'
 
 export default class MainWindowContainer {
 

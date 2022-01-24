@@ -6,7 +6,7 @@ import configService from './services/ConfigService'
 require('@electron/remote/main').initialize()
 require('v8-compile-cache')
 import electronReload from "electron-reload"
-import { Channel } from './Channel'
+import { Channel } from './Models/Channel'
 electronReload(__dirname, {})
 
 autoUpdater.checkForUpdatesAndNotify()

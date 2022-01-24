@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { ipcRenderer } from "electron"
 import ConfigService from "../../services/ConfigService"
-import { Channel } from "../../Channel"
+import { Channel } from "../../Models/Channel"
 
 const {
     checkLmtsProxyReady,
