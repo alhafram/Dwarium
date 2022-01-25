@@ -7,6 +7,10 @@ body {
     background-color: #fff;
 }
 
+#main {
+    min-width: 30px;
+}
+
 .tabs {
     overflow: scroll;
     border: 1px solid #ccc;
@@ -38,12 +42,13 @@ body {
 
 .ab {
     display: inline-block;
-    padding: 0.5em 2em;
+    padding: 0.5em 1.5em;
     text-decoration: none;
     background-color: #f1f1f1;
     color: #000;
     cursor: pointer;
     line-height: 0px;
+    min-width: 100px;
 }
 
 .ab a {
@@ -51,6 +56,8 @@ body {
     margin: auto;
     height: 10px;
     font-size: 12px;
+    width: 90px;
+    line-height: 0;
 }
 
 .ab:hover {
@@ -62,11 +69,11 @@ body {
 }
 
 .closeButton {
+    right: -21px;
     top: -8px;
     position: relative;
     width: 20px;
     height: 20px;
-    right: -31px;
     background-image: url('./images/Cross.png');
     background-size: contain;
     float: right;
