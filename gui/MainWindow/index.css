@@ -18,8 +18,7 @@ body {
     user-select: none;
 }
 
-/* Style the buttons inside the tab */
-.tabs button {
+.addButton {
     background-color: inherit;
     float: left;
     border: none;
@@ -29,14 +28,12 @@ body {
     font-size: 17px;
 }
 
-/* Change background color of buttons on hover */
 .tabs button:hover {
-    background-color: #ddd;
+    background-color: #aaa;
 }
 
-/* Create an active/current tablink class */
 .tabs button.active {
-    background-color: #ccc;
+    background-color: #aaa;
 }
 
 .ab {
@@ -64,38 +61,18 @@ body {
     background-color: #ccc;
 }
 
-.close {
-    position: absolute;
-    width: 10px;
-    height: 10px;
-    opacity: 0.4;
+.closeButton {
+    top: -8px;
+    position: relative;
+    width: 20px;
+    height: 20px;
+    right: -31px;
+    background-image: url('./images/Cross.png');
+    background-size: contain;
+    float: right;
+    border: none;
+    background-color: inherit;
 }
-
-.close:hover {
-    opacity: 1;
-}
-
-.close::before,
-.close::after {
-    position: absolute;
-    content: ' ';
-    height: 10px;
-    width: 2px;
-    background-color: #000;
-    margin-left: 12px;
-    margin-top: -3px;
-}
-
-.close::before {
-    transform: rotate(45deg);
-}
-
-.close::after {
-    transform: rotate(-45deg);
-}
-
-
-/* Refactored */
 
 /* Server switcher */
 .knob,

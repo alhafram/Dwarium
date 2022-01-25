@@ -134,26 +134,26 @@ function createNewTab(id?: string, title?: string) {
     buttons = buttons.filter(b => b.className.includes('ab'))
     buttons.forEach(b => b.className = 'ab')
 
-    const new_tab = document.createElement('div')
-    new_tab.className += 'ab active'
+    const newTab = document.createElement('div')
+    newTab.className += 'ab active'
     if(!id) {
         id = generateRandomId()
     }
-    new_tab.id = id
-    new_tab.onclick = makeActive
+    newTab.id = id
+    newTab.onclick = makeActive
 
     const mainA = document.createElement('a')
     mainA.textContent = title ?? 'New tab'
-    new_tab.appendChild(mainA)
+    newTab.appendChild(mainA)
 
     if(id != 'main') {
-        const closeA = document.createElement('a')
-        closeA.className = 'close'
-        closeA.onclick = closeTab
-        new_tab.appendChild(closeA)
+        const closeButton = document.createElement('button')
+        closeButton.className = 'closeButton'
+        closeButton.onclick = closeTab
+        newTab.appendChild(closeButton)
     }
-    tabs?.insertBefore(new_tab, document.querySelector('#new_tab'))
-    return new_tab
+    tabs?.insertBefore(newTab, document.querySelector('#new_tab'))
+    return newTab
 }
 
 function makeActive(evt: Event) {
