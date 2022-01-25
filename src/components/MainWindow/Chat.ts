@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { app, powerMonitor, globalShortcut, Notification, BrowserWindow } from '@electron/remote'
+import { app, powerMonitor, globalShortcut, Notification, getCurrentWindow } from '@electron/remote'
 import fs from 'fs'
 import path from 'path'
 const logsFolderPath = path.join(app.getPath ('userData'), 'logs')
@@ -237,24 +237,37 @@ function setupReceiver() {
             document.dispatchEvent(new Event('eat'))
         }
 
+        console.log(TabsController.mainWindow)
         // Notifications logic
         if(msg?.channel == 2 && msg?.msg_text?.toLocaleLowerCase().includes("на вас совершено")) {
-            app.dock.bounce('critical')
+            if(process.platform == 'darwin') {
+                app.dock.bounce('critical')
+            }
+            if(process.platform == 'win32') {
+                getCurrentWindow()?.flashFrame(true)
+            }
             new Notification({ title: 'Оповещение!', body: 'На вас совершено нападение!' }).show()
-            BrowserWindow.getFocusedWindow?.flashFrame()
-        }
+        }0
 
         if(msg?.channel == 2 && msg?.bonus_text == 1 && msg?.msg_text.includes("<b class=\"redd\">Для того, чтобы подтвердить свое участие ")) {
-            app.dock.bounce('critical')
+            if(process.platform == 'darwin') {
+                app.dock.bounce('critical')
+            }
+            if(process.platform == 'win32') {
+                getCurrentWindow()?.flashFrame(true)
+            }
             new Notification({ title: 'Оповещение!', body: 'Получена сюдашка на поле боя!' }).show()
-            BrowserWindow.getFocusedWindow()?.flashFrame(true)
         }
 
         if(msg?.to_user_nicks != undefined) {
             if(Object.values(msg.to_user_nicks).includes(top[0].canvas.app.avatar.model.login)) {
-                app.dock.bounce('informational')
+                if(process.platform == 'darwin') {
+                    app.dock.bounce('informational')
+                }
+                if(process.platform == 'win32') {
+                    getCurrentWindow()?.flashFrame(true)
+                }
                 new Notification({ title: 'Оповещение!', body: 'Получено новое сообщение!' }).show()
-                BrowserWindow.getFocusedWindow()?.flashFrame(true)
             }
         }
 
