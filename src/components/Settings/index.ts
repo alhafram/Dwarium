@@ -12,7 +12,10 @@ interface SettingsWindowState {
     mailServer: boolean,
     userAgentTextFieldActive?: boolean,
     screenshotsFolderPath: string,
-    ownServer: string
+    ownServer: string,
+    fightNotifications: boolean,
+    battlegroundNotifications: boolean,
+    messageNotifications: boolean
 }
 
 enum UserAgentType {
@@ -34,7 +37,10 @@ enum SettingsWindowActions {
     CHANGE_WINDOWS_ABOVE_APP,
     CHANGE_MAXIMIZE_ON_START,
     CHANGE_HIDE_TOP_PANEL_IN_FULL_SCREEN,
-    CHANGE_MAIL_SERVER
+    CHANGE_MAIL_SERVER,
+    CHANGE_FIGHT_NOTIFICATIONS,
+    CHANGE_BATTLEGROUND_NOTIFICATIONS,
+    CHANGE_MESSAGE_NOTIFICATIONS
 }
 
 const Elements = {
@@ -70,6 +76,15 @@ const Elements = {
     },
     ownServerBox(): HTMLInputElement {
         return document.getElementById('ownServer') as HTMLInputElement
+    },
+    fightNotificationsBox(): HTMLInputElement {
+        return document.getElementById('fightNotifications') as HTMLInputElement
+    },
+    battlegroundNotificationsBox(): HTMLInputElement {
+        return document.getElementById('battlegroundNotifications') as HTMLInputElement
+    },
+    messageNotificationsBox(): HTMLInputElement {
+        return document.getElementById('messageNotifications') as HTMLInputElement
     }
 }
 
@@ -119,6 +134,15 @@ function setupListeners() {
     Elements.mailServerBox().onclick = function() {
         dispatch(SettingsWindowActions.CHANGE_MAIL_SERVER)
     }
+    Elements.fightNotificationsBox().onchange = () => {
+        dispatch(SettingsWindowActions.CHANGE_FIGHT_NOTIFICATIONS)
+    }
+    Elements.battlegroundNotificationsBox().onchange = () => {
+        dispatch(SettingsWindowActions.CHANGE_BATTLEGROUND_NOTIFICATIONS)
+    }
+    Elements.messageNotificationsBox().onchange = () => {
+        dispatch(SettingsWindowActions.CHANGE_MESSAGE_NOTIFICATIONS)
+    }
 }
 
 let initialState: SettingsWindowState = {
@@ -137,14 +161,16 @@ let initialState: SettingsWindowState = {
     mailServer: false,
     userAgentTextFieldActive: false,
     screenshotsFolderPath: '',
-    ownServer: ''
+    ownServer: '',
+    fightNotifications: false,
+    battlegroundNotifications: false,
+    messageNotifications: false
 }
 
 function reduce(state: SettingsWindowState = initialState, action: SettingsWindowActions): SettingsWindowState {
     switch(action) {
         case SettingsWindowActions.LOAD_SETTINGS:
             let loadedSettings = window.settingsAPI.loadSettings()
-            console.log(loadedSettings)
             if(Object.keys(loadedSettings).length == 0) {
                 return state
             } else {
@@ -159,7 +185,10 @@ function reduce(state: SettingsWindowState = initialState, action: SettingsWindo
                     mailServer: loadedSettings.mailServer ?? false,
                     maximizeOnStart: loadedSettings.maximizeOnStart ?? false,
                     screenshotsFolderPath: window.settingsAPI.screenshotsFolder(),
-                    ownServer: loadedSettings.ownServer ?? ''
+                    ownServer: loadedSettings.ownServer ?? '',
+                    fightNotifications: loadedSettings.fightNotifications ?? false,
+                    battlegroundNotifications: loadedSettings.battlegroundNotifications ?? false,
+                    messageNotifications: loadedSettings.messageNotifications ?? false,
                 }
             }
         case SettingsWindowActions.SAVE_SETTINGS:
@@ -219,6 +248,21 @@ function reduce(state: SettingsWindowState = initialState, action: SettingsWindo
                 ...state,
                 mailServer: Elements.mailServerBox().checked
             }
+        case SettingsWindowActions.CHANGE_FIGHT_NOTIFICATIONS:
+            return {
+                ...state,
+                fightNotifications: Elements.fightNotificationsBox().checked
+            }
+        case SettingsWindowActions.CHANGE_BATTLEGROUND_NOTIFICATIONS:
+            return {
+                ...state,
+                battlegroundNotifications: Elements.battlegroundNotificationsBox().checked
+            }
+        case SettingsWindowActions.CHANGE_MESSAGE_NOTIFICATIONS:
+            return {
+                ...state,
+                messageNotifications: Elements.messageNotificationsBox().checked
+            }
     }
 }
 
@@ -262,6 +306,10 @@ function render(): void {
 
     Elements.screenshotsFolderPathBox().value = initialState.screenshotsFolderPath
     Elements.ownServerBox().value = initialState.ownServer
+
+    Elements.fightNotificationsBox().checked = initialState.fightNotifications
+    Elements.battlegroundNotificationsBox().checked = initialState.battlegroundNotifications
+    Elements.messageNotificationsBox().checked = initialState.messageNotifications
 }
 
 document.addEventListener('DOMContentLoaded', async () => {

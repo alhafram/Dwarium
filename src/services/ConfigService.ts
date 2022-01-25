@@ -111,6 +111,35 @@ function notes(): any[] {
     return keys.map(key => JSON.parse(contents[key]))
 }
 
+// Notifications
+
+function fightNotifications(): boolean {
+    let settings = readData('settings')
+    if(settings) {
+        settings = JSON.parse(settings)
+        return settings.fightNotifications ?? false
+    }
+    return false
+}
+
+function battlegroundNotifications(): boolean {
+    let settings = readData('settings')
+    if(settings) {
+        settings = JSON.parse(settings)
+        return settings.battlegroundNotifications ?? false
+    }
+    return false
+}
+
+function messageNotifications(): boolean {
+    let settings = readData('settings')
+    if(settings) {
+        settings = JSON.parse(settings)
+        return settings.messageNotifications ?? false
+    }
+    return false
+}
+
 function writeData(key: string, value: any): void {
     let contents = parseData(configPath)
     contents[key] = value
@@ -150,5 +179,8 @@ export default {
     beltSets,
     notes,
     hpFood,
-    mpFood
+    mpFood,
+    fightNotifications,
+    battlegroundNotifications,
+    messageNotifications
 }

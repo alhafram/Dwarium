@@ -2,6 +2,7 @@
 import { app, powerMonitor, globalShortcut, Notification, getCurrentWindow } from '@electron/remote'
 import fs from 'fs'
 import path from 'path'
+import ConfigService from '../../services/ConfigService'
 const logsFolderPath = path.join(app.getPath ('userData'), 'logs')
 const filePath = path.join(logsFolderPath, 'chat.log')
 
@@ -237,7 +238,6 @@ function setupReceiver() {
             document.dispatchEvent(new Event('eat'))
         }
 
-        console.log(TabsController.mainWindow)
         // Notifications logic
         if(msg?.channel == 2 && msg?.msg_text?.toLocaleLowerCase().includes("на вас совершено")) {
             if(process.platform == 'darwin') {
@@ -246,8 +246,10 @@ function setupReceiver() {
             if(process.platform == 'win32') {
                 getCurrentWindow()?.flashFrame(true)
             }
-            new Notification({ title: 'Оповещение!', body: 'На вас совершено нападение!' }).show()
-        }0
+            if(ConfigService.fightNotifications()) {
+                new Notification({ title: 'Оповещение!', body: 'На вас совершено нападение!' }).show()
+            }
+        }
 
         if(msg?.channel == 2 && msg?.bonus_text == 1 && msg?.msg_text.includes("<b class=\"redd\">Для того, чтобы подтвердить свое участие ")) {
             if(process.platform == 'darwin') {
@@ -256,7 +258,9 @@ function setupReceiver() {
             if(process.platform == 'win32') {
                 getCurrentWindow()?.flashFrame(true)
             }
-            new Notification({ title: 'Оповещение!', body: 'Получена сюдашка на поле боя!' }).show()
+            if(ConfigService.battlegroundNotifications()) {
+                new Notification({ title: 'Оповещение!', body: 'Получена сюдашка на поле боя!' }).show()
+            }
         }
 
         if(msg?.to_user_nicks != undefined) {
@@ -267,7 +271,9 @@ function setupReceiver() {
                 if(process.platform == 'win32') {
                     getCurrentWindow()?.flashFrame(true)
                 }
-                new Notification({ title: 'Оповещение!', body: 'Получено новое сообщение!' }).show()
+                if(ConfigService.messageNotifications()) {
+                    new Notification({ title: 'Оповещение!', body: 'Получено новое сообщение!' }).show()
+                }
             }
         }
 
