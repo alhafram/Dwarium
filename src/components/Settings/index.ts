@@ -11,7 +11,8 @@ interface SettingsWindowState {
     hideTopPanelInFullScreen: boolean,
     mailServer: boolean,
     userAgentTextFieldActive?: boolean,
-    screenshotsFolderPath: string
+    screenshotsFolderPath: string,
+    ownServer: string
 }
 
 enum UserAgentType {
@@ -67,6 +68,9 @@ const Elements = {
     mailServerBox(): HTMLInputElement {
         return document.getElementById('mailServer') as HTMLInputElement
     },
+    ownServerBox(): HTMLInputElement {
+        return document.getElementById('ownServer') as HTMLInputElement
+    }
 }
 
 function getTitle(type: UserAgentType): string {
@@ -132,13 +136,15 @@ let initialState: SettingsWindowState = {
     hideTopPanelInFullScreen: false,
     mailServer: false,
     userAgentTextFieldActive: false,
-    screenshotsFolderPath: ''
+    screenshotsFolderPath: '',
+    ownServer: ''
 }
 
 function reduce(state: SettingsWindowState = initialState, action: SettingsWindowActions): SettingsWindowState {
     switch(action) {
         case SettingsWindowActions.LOAD_SETTINGS:
             let loadedSettings = window.settingsAPI.loadSettings()
+            console.log(loadedSettings)
             if(Object.keys(loadedSettings).length == 0) {
                 return state
             } else {
@@ -152,7 +158,8 @@ function reduce(state: SettingsWindowState = initialState, action: SettingsWindo
                     hideTopPanelInFullScreen: loadedSettings.hideTopPanelInFullScreen ?? false,
                     mailServer: loadedSettings.mailServer ?? false,
                     maximizeOnStart: loadedSettings.maximizeOnStart ?? false,
-                    screenshotsFolderPath: window.settingsAPI.screenshotsFolder()
+                    screenshotsFolderPath: window.settingsAPI.screenshotsFolder(),
+                    ownServer: loadedSettings.ownServer ?? ''
                 }
             }
         case SettingsWindowActions.SAVE_SETTINGS:
@@ -160,6 +167,7 @@ function reduce(state: SettingsWindowState = initialState, action: SettingsWindo
             delete savedSettings.userAgents
             delete savedSettings.userAgentTextFieldActive
             savedSettings.selectedUserAgentValue = Elements.userAgentTextValue().value
+            savedSettings.ownServer = Elements.ownServerBox().value
             if(savedSettings.selectedUserAgentValue.length == 0) {
                 alert('User-Agent не может быть пустым')
                 return state
@@ -253,6 +261,7 @@ function render(): void {
     Elements.mailServerBox().checked = initialState.mailServer
 
     Elements.screenshotsFolderPathBox().value = initialState.screenshotsFolderPath
+    Elements.ownServerBox().value = initialState.ownServer
 }
 
 document.addEventListener('DOMContentLoaded', async () => {

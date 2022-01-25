@@ -9,6 +9,10 @@ function server(): string {
 }
 
 function baseUrl(): string {
+    const server = ownServer()
+    if(server.length != 0) {
+        return server
+    }
     return `https://${readData('server')}.dwar${mailServer()}.ru`
 }
 
@@ -22,6 +26,15 @@ function mailServer(): string {
     return ""
 }
 
+function ownServer(): string {
+    let settings = readData('settings')
+    if(settings) {
+        settings = JSON.parse(settings)
+        return settings.ownServer ?? ""
+    }
+    return ""
+}
+
 function loadSettings(): any {
     return readData('settings')
 }
@@ -30,7 +43,7 @@ function windowOpenNewTab(): boolean {
     let settings = readData('settings')
     if(settings) {
         settings = JSON.parse(settings)
-        return settings.windowOpenNewTab
+        return settings.windowOpenNewTab ?? false
     }
     return false
 }
@@ -39,7 +52,7 @@ function windowsAboveApp(): boolean {
     let settings = readData('settings')
     if(settings) {
         settings = JSON.parse(settings)
-        return settings.windowsAboveApp
+        return settings.windowsAboveApp ?? false
     }
     return false
 }
