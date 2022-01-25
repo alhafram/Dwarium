@@ -434,7 +434,7 @@ function convertItemIntoDiv(item: InventoryItem): HTMLDivElement {
     if(item.kind_id == '12') {
         divItem.setAttribute('weapon', '2h')
     }
-    if(item.kind_id == '10') {
+    if(item.kind_id == '10' || item.kind_id == '42') {
         divItem.setAttribute('weapon', '1h')
     }
     if(item.kind_id == '44' || item.kind_id == '17') {
@@ -453,7 +453,7 @@ function getType(kind_id: string): InventoryItemType {
     if(kind_id == '5' || kind_id == '77' || kind_id == '120') {
         return InventoryItemType.BRACERS
     }
-    if(kind_id == '10' || kind_id == '12') {
+    if(kind_id == '10' || kind_id == '12' || kind_id == '42') {
         return InventoryItemType.MAIN_WEAPON
     }
     if(kind_id == '44' || kind_id == '17') {
@@ -785,7 +785,7 @@ async function reduce(state: DressingWindowState = initialState, action: Dressin
     let arcats = state.arcats
     let rings = state.rings
     let amulets = state.amulets
-    const parsedItemTypes = ['helmets', 'shoulders', 'bracers', 'mainWeapons', 'offhandWeapons', 'cuirasses', 'leggings', 'chainmails', 'boots', 'bows', 'quivers', 'rings', 'amulets', 'arcats']
+    const parsedItemTypes = ['helmets', 'shoulders', 'bracers', 'mainWeapons', 'offhandWeapons', 'cuirasses', 'leggings', 'chainmails', 'boots', 'bows', 'quivers', 'rings', 'amulets', 'arcats', 'profWeapons']
     switch(action) {
         case DressingWindowActions.LOAD_CONTENT:
             let result = await window.dressingAPI.loadItemsData(['allItems', 'wearedItems'])
