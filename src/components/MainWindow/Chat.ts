@@ -238,13 +238,15 @@ function setupReceiver() {
             document.dispatchEvent(new Event('eat'))
         }
 
+        const currentWindow = getCurrentWindow()
+
         // Notifications logic
         if(msg?.channel == 2 && msg?.msg_text?.toLocaleLowerCase().includes("на вас совершено")) {
             if(process.platform == 'darwin') {
                 app.dock.bounce('critical')
             }
             if(process.platform == 'win32') {
-                getCurrentWindow()?.flashFrame(true)
+                currentWindow.flashFrame(!currentWindow.isFocused())
             }
             if(ConfigService.fightNotifications()) {
                 new Notification({ title: 'Оповещение!', body: 'На вас совершено нападение!' }).show()
@@ -256,7 +258,7 @@ function setupReceiver() {
                 app.dock.bounce('critical')
             }
             if(process.platform == 'win32') {
-                getCurrentWindow()?.flashFrame(true)
+                currentWindow.flashFrame(!currentWindow.isFocused())
             }
             if(ConfigService.battlegroundNotifications()) {
                 new Notification({ title: 'Оповещение!', body: 'Получена сюдашка на поле боя!' }).show()
@@ -269,7 +271,7 @@ function setupReceiver() {
                     app.dock.bounce('informational')
                 }
                 if(process.platform == 'win32') {
-                    getCurrentWindow()?.flashFrame(true)
+                    currentWindow.flashFrame(!currentWindow.isFocused())
                 }
                 if(ConfigService.messageNotifications()) {
                     new Notification({ title: 'Оповещение!', body: 'Получено новое сообщение!' }).show()
