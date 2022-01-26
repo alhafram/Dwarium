@@ -160,9 +160,36 @@ export default class MainWindowContainer {
             }
         })
 
-        this.browserView.webContents.on('did-create-window', (window) => {
-            window.setMenu(null)
-            window.setFullScreen(false)
+        this.browserView?.webContents.on('did-create-window', (window) => {
+            this.setupCreatedWindow(window)
+        })
+    }
+
+    setupCreatedWindow(window: BrowserWindow) {
+        window.setMenu(null)
+        window.setFullScreen(false)
+        this.setupOpenHandler(window)
+    }
+
+    setupOpenHandler(window: BrowserWindow) {
+        window.webContents.setWindowOpenHandler(({ url, features }) => {
+            const splittedFeatures = features.split(',')
+            const x = parseInt(splittedFeatures.find(str => str.startsWith('left'))?.split('=').pop() ?? '')
+            const y = parseInt(splittedFeatures.find(str => str.startsWith('top'))?.split('=').pop() ?? '')
+            const width = parseInt(splittedFeatures.find(str => str.startsWith('width'))?.split('=').pop() ?? '')
+            const height = parseInt(splittedFeatures.find(str => str.startsWith('height'))?.split('=').pop() ?? '')
+            const newWindow = new BrowserWindow({
+                x: x,
+                y:y,
+                width: width,
+                height: height,
+                parent: configService.windowsAboveApp() ? this.mainWindow : undefined
+            })
+            this.setupOpenHandler(newWindow)
+            newWindow.loadURL(url)
+            return {
+                action: 'deny'
+            }
         })
     }
 
