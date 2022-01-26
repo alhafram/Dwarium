@@ -113,29 +113,56 @@ function notes(): any[] {
 
 // Notifications
 
-function fightNotifications(): boolean {
+function fightNotificationsSystem(): boolean {
     let settings = readData('settings')
     if(settings) {
         settings = JSON.parse(settings)
-        return settings.fightNotifications ?? false
+        return settings.fightNotificationsSystem ?? false
     }
     return false
 }
 
-function battlegroundNotifications(): boolean {
+function fightNotificationsIngame(): boolean {
     let settings = readData('settings')
     if(settings) {
         settings = JSON.parse(settings)
-        return settings.battlegroundNotifications ?? false
+        return settings.fightNotificationsIngame ?? false
     }
     return false
 }
 
-function messageNotifications(): boolean {
+function battlegroundNotificationsSystem(): boolean {
     let settings = readData('settings')
     if(settings) {
         settings = JSON.parse(settings)
-        return settings.messageNotifications ?? false
+        return settings.battlegroundNotificationsSystem ?? false
+    }
+    return false
+}
+
+function battlegroundNotificationsIngame(): boolean {
+    let settings = readData('settings')
+    if(settings) {
+        settings = JSON.parse(settings)
+        return settings.battlegroundNotificationsIngame ?? false
+    }
+    return false
+}
+
+function messageNotificationsSystem(): boolean {
+    let settings = readData('settings')
+    if(settings) {
+        settings = JSON.parse(settings)
+        return settings.messageNotificationsSystem ?? false
+    }
+    return false
+}
+
+function messageNotificationsIngame(): boolean {
+    let settings = readData('settings')
+    if(settings) {
+        settings = JSON.parse(settings)
+        return settings.messageNotificationsIngame ?? false
     }
     return false
 }
@@ -180,7 +207,10 @@ export default {
     notes,
     hpFood,
     mpFood,
-    fightNotifications,
-    battlegroundNotifications,
-    messageNotifications
+    fightNotificationsSystem,
+    fightNotificationsIngame,
+    battlegroundNotificationsSystem,
+    battlegroundNotificationsIngame,
+    messageNotificationsSystem,
+    messageNotificationsIngame
 }

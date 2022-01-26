@@ -235,7 +235,8 @@ export default class MainWindowContainer {
                 enablePreferredSizeMode: true,
                 preload: path.join(__dirname, 'MainBrowserViewPreload.js'),
                 contextIsolation: false,
-                nativeWindowOpen: true
+                nativeWindowOpen: true,
+                webSecurity: false
             }
         })
         browserView.webContents.on('did-finish-load', () => {

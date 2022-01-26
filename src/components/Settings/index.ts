@@ -13,9 +13,12 @@ interface SettingsWindowState {
     userAgentTextFieldActive?: boolean,
     screenshotsFolderPath: string,
     ownServer: string,
-    fightNotifications: boolean,
-    battlegroundNotifications: boolean,
-    messageNotifications: boolean
+    fightNotificationsSystem: boolean,
+    fightNotificationsIngame: boolean,
+    battlegroundNotificationsSystem: boolean,
+    battlegroundNotificationsIngame: boolean,
+    messageNotificationsSystem: boolean,
+    messageNotificationsIngame: boolean
 }
 
 enum UserAgentType {
@@ -38,9 +41,12 @@ enum SettingsWindowActions {
     CHANGE_MAXIMIZE_ON_START,
     CHANGE_HIDE_TOP_PANEL_IN_FULL_SCREEN,
     CHANGE_MAIL_SERVER,
-    CHANGE_FIGHT_NOTIFICATIONS,
-    CHANGE_BATTLEGROUND_NOTIFICATIONS,
-    CHANGE_MESSAGE_NOTIFICATIONS
+    CHANGE_FIGHT_NOTIFICATIONS_SYSTEM,
+    CHANGE_FIGHT_NOTIFICATIONS_INGAME,
+    CHANGE_BATTLEGROUND_NOTIFICATIONS_SYSTEM,
+    CHANGE_BATTLEGROUND_NOTIFICATIONS_INGAME,
+    CHANGE_MESSAGE_NOTIFICATIONS_SYSTEM,
+    CHANGE_MESSAGE_NOTIFICATIONS_INGAME
 }
 
 const Elements = {
@@ -77,14 +83,23 @@ const Elements = {
     ownServerBox(): HTMLInputElement {
         return document.getElementById('ownServer') as HTMLInputElement
     },
-    fightNotificationsBox(): HTMLInputElement {
-        return document.getElementById('fightNotifications') as HTMLInputElement
+    fightNotificationsSystemBox(): HTMLInputElement {
+        return document.getElementById('fightNotificationsSystem') as HTMLInputElement
     },
-    battlegroundNotificationsBox(): HTMLInputElement {
-        return document.getElementById('battlegroundNotifications') as HTMLInputElement
+    fightNotificationsIngameBox(): HTMLInputElement {
+        return document.getElementById('fightNotificationsIngame') as HTMLInputElement
     },
-    messageNotificationsBox(): HTMLInputElement {
-        return document.getElementById('messageNotifications') as HTMLInputElement
+    battlegroundNotificationsSystemBox(): HTMLInputElement {
+        return document.getElementById('battlegroundNotificationsSystem') as HTMLInputElement
+    },
+    battlegroundNotificationsIngameBox(): HTMLInputElement {
+        return document.getElementById('battlegroundNotificationsIngame') as HTMLInputElement
+    },
+    messageNotificationsSystemBox(): HTMLInputElement {
+        return document.getElementById('messageNotificationsSystem') as HTMLInputElement
+    },
+    messageNotificationsIngameBox(): HTMLInputElement {
+        return document.getElementById('messageNotificationsIngame') as HTMLInputElement
     }
 }
 
@@ -134,14 +149,23 @@ function setupListeners() {
     Elements.mailServerBox().onclick = function() {
         dispatch(SettingsWindowActions.CHANGE_MAIL_SERVER)
     }
-    Elements.fightNotificationsBox().onchange = () => {
-        dispatch(SettingsWindowActions.CHANGE_FIGHT_NOTIFICATIONS)
+    Elements.fightNotificationsSystemBox().onchange = () => {
+        dispatch(SettingsWindowActions.CHANGE_FIGHT_NOTIFICATIONS_SYSTEM)
     }
-    Elements.battlegroundNotificationsBox().onchange = () => {
-        dispatch(SettingsWindowActions.CHANGE_BATTLEGROUND_NOTIFICATIONS)
+    Elements.fightNotificationsIngameBox().onchange = () => {
+        dispatch(SettingsWindowActions.CHANGE_FIGHT_NOTIFICATIONS_INGAME)
     }
-    Elements.messageNotificationsBox().onchange = () => {
-        dispatch(SettingsWindowActions.CHANGE_MESSAGE_NOTIFICATIONS)
+    Elements.battlegroundNotificationsSystemBox().onchange = () => {
+        dispatch(SettingsWindowActions.CHANGE_BATTLEGROUND_NOTIFICATIONS_SYSTEM)
+    }
+    Elements.battlegroundNotificationsIngameBox().onchange = () => {
+        dispatch(SettingsWindowActions.CHANGE_BATTLEGROUND_NOTIFICATIONS_INGAME)
+    }
+    Elements.messageNotificationsSystemBox().onchange = () => {
+        dispatch(SettingsWindowActions.CHANGE_MESSAGE_NOTIFICATIONS_SYSTEM)
+    }
+    Elements.messageNotificationsIngameBox().onchange = () => {
+        dispatch(SettingsWindowActions.CHANGE_MESSAGE_NOTIFICATIONS_INGAME)
     }
 }
 
@@ -162,9 +186,12 @@ let initialState: SettingsWindowState = {
     userAgentTextFieldActive: false,
     screenshotsFolderPath: '',
     ownServer: '',
-    fightNotifications: false,
-    battlegroundNotifications: false,
-    messageNotifications: false
+    fightNotificationsSystem: false,
+    fightNotificationsIngame: false,
+    battlegroundNotificationsSystem: false,
+    battlegroundNotificationsIngame: false,
+    messageNotificationsSystem: false,
+    messageNotificationsIngame: false
 }
 
 function reduce(state: SettingsWindowState = initialState, action: SettingsWindowActions): SettingsWindowState {
@@ -186,9 +213,12 @@ function reduce(state: SettingsWindowState = initialState, action: SettingsWindo
                     maximizeOnStart: loadedSettings.maximizeOnStart ?? false,
                     screenshotsFolderPath: window.settingsAPI.screenshotsFolder(),
                     ownServer: loadedSettings.ownServer ?? '',
-                    fightNotifications: loadedSettings.fightNotifications ?? false,
-                    battlegroundNotifications: loadedSettings.battlegroundNotifications ?? false,
-                    messageNotifications: loadedSettings.messageNotifications ?? false,
+                    fightNotificationsSystem: loadedSettings.fightNotificationsSystem ?? false,
+                    fightNotificationsIngame: loadedSettings.fightNotificationsIngame ?? false,
+                    battlegroundNotificationsSystem: loadedSettings.battlegroundNotificationsSystem ?? false,
+                    battlegroundNotificationsIngame: loadedSettings.battlegroundNotificationsIngame ?? false,
+                    messageNotificationsSystem: loadedSettings.messageNotificationsSystem ?? false,
+                    messageNotificationsIngame: loadedSettings.messageNotificationsIngame ?? false,
                 }
             }
         case SettingsWindowActions.SAVE_SETTINGS:
@@ -248,20 +278,35 @@ function reduce(state: SettingsWindowState = initialState, action: SettingsWindo
                 ...state,
                 mailServer: Elements.mailServerBox().checked
             }
-        case SettingsWindowActions.CHANGE_FIGHT_NOTIFICATIONS:
+        case SettingsWindowActions.CHANGE_FIGHT_NOTIFICATIONS_SYSTEM:
             return {
                 ...state,
-                fightNotifications: Elements.fightNotificationsBox().checked
+                fightNotificationsSystem: Elements.fightNotificationsSystemBox().checked
             }
-        case SettingsWindowActions.CHANGE_BATTLEGROUND_NOTIFICATIONS:
+        case SettingsWindowActions.CHANGE_FIGHT_NOTIFICATIONS_INGAME:
             return {
                 ...state,
-                battlegroundNotifications: Elements.battlegroundNotificationsBox().checked
+                fightNotificationsIngame: Elements.fightNotificationsIngameBox().checked
             }
-        case SettingsWindowActions.CHANGE_MESSAGE_NOTIFICATIONS:
+        case SettingsWindowActions.CHANGE_BATTLEGROUND_NOTIFICATIONS_SYSTEM:
             return {
                 ...state,
-                messageNotifications: Elements.messageNotificationsBox().checked
+                battlegroundNotificationsSystem: Elements.battlegroundNotificationsSystemBox().checked
+            }
+        case SettingsWindowActions.CHANGE_BATTLEGROUND_NOTIFICATIONS_INGAME:
+            return {
+                ...state,
+                battlegroundNotificationsIngame: Elements.battlegroundNotificationsIngameBox().checked
+            }
+        case SettingsWindowActions.CHANGE_MESSAGE_NOTIFICATIONS_SYSTEM:
+            return {
+                ...state,
+                messageNotificationsSystem: Elements.messageNotificationsSystemBox().checked
+            }
+        case SettingsWindowActions.CHANGE_MESSAGE_NOTIFICATIONS_INGAME:
+            return {
+                ...state,
+                messageNotificationsIngame: Elements.messageNotificationsIngameBox().checked
             }
     }
 }
@@ -307,9 +352,12 @@ function render(): void {
     Elements.screenshotsFolderPathBox().value = initialState.screenshotsFolderPath
     Elements.ownServerBox().value = initialState.ownServer
 
-    Elements.fightNotificationsBox().checked = initialState.fightNotifications
-    Elements.battlegroundNotificationsBox().checked = initialState.battlegroundNotifications
-    Elements.messageNotificationsBox().checked = initialState.messageNotifications
+    Elements.fightNotificationsSystemBox().checked = initialState.fightNotificationsSystem
+    Elements.fightNotificationsIngameBox().checked = initialState.fightNotificationsIngame
+    Elements.battlegroundNotificationsSystemBox().checked = initialState.battlegroundNotificationsSystem
+    Elements.battlegroundNotificationsIngameBox().checked = initialState.battlegroundNotificationsIngame
+    Elements.messageNotificationsSystemBox().checked = initialState.messageNotificationsSystem
+    Elements.messageNotificationsIngameBox().checked = initialState.messageNotificationsIngame
 }
 
 document.addEventListener('DOMContentLoaded', async () => {

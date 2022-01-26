@@ -1,8 +1,9 @@
 // @ts-nocheck
-import { app, powerMonitor, globalShortcut, Notification, getCurrentWindow } from '@electron/remote'
+import { app, powerMonitor, globalShortcut, getCurrentWindow } from '@electron/remote'
 import fs from 'fs'
 import path from 'path'
-import ConfigService from '../../services/ConfigService'
+import sendNotification from '../../services/Notifications'
+
 const logsFolderPath = path.join(app.getPath ('userData'), 'logs')
 const filePath = path.join(logsFolderPath, 'chat.log')
 
@@ -238,46 +239,8 @@ function setupReceiver() {
             document.dispatchEvent(new Event('eat'))
         }
 
-        const currentWindow = getCurrentWindow()
-
         // Notifications logic
-        if(msg?.channel == 2 && msg?.msg_text?.toLocaleLowerCase().includes("на вас совершено")) {
-            if(process.platform == 'darwin') {
-                app.dock.bounce('critical')
-            }
-            if(process.platform == 'win32') {
-                currentWindow.flashFrame(!currentWindow.isFocused())
-            }
-            if(ConfigService.fightNotifications()) {
-                new Notification({ title: 'Оповещение!', body: 'На вас совершено нападение!' }).show()
-            }
-        }
-
-        if(msg?.channel == 2 && msg?.bonus_text == 1 && msg?.msg_text.includes("<b class=\"redd\">Для того, чтобы подтвердить свое участие ")) {
-            if(process.platform == 'darwin') {
-                app.dock.bounce('critical')
-            }
-            if(process.platform == 'win32') {
-                currentWindow.flashFrame(!currentWindow.isFocused())
-            }
-            if(ConfigService.battlegroundNotifications()) {
-                new Notification({ title: 'Оповещение!', body: 'Получена сюдашка на поле боя!' }).show()
-            }
-        }
-
-        if(msg?.to_user_nicks != undefined) {
-            if(Object.values(msg.to_user_nicks).includes(top[0].canvas.app.avatar.model.login)) {
-                if(process.platform == 'darwin') {
-                    app.dock.bounce('informational')
-                }
-                if(process.platform == 'win32') {
-                    currentWindow.flashFrame(!currentWindow.isFocused())
-                }
-                if(ConfigService.messageNotifications()) {
-                    new Notification({ title: 'Оповещение!', body: 'Получено новое сообщение!' }).show()
-                }
-            }
-        }
+        sendNotification(msg)
 
         var msg_dom = null;
         var client_text = msg.msg_text;
