@@ -9,6 +9,10 @@ function server(): string {
 }
 
 function baseUrl(): string {
+    const server = ownServer()
+    if(server.length != 0) {
+        return server
+    }
     return `https://${readData('server')}.dwar${mailServer()}.ru`
 }
 
@@ -22,6 +26,15 @@ function mailServer(): string {
     return ""
 }
 
+function ownServer(): string {
+    let settings = readData('settings')
+    if(settings) {
+        settings = JSON.parse(settings)
+        return settings.ownServer ?? ""
+    }
+    return ""
+}
+
 function loadSettings(): any {
     return readData('settings')
 }
@@ -30,7 +43,7 @@ function windowOpenNewTab(): boolean {
     let settings = readData('settings')
     if(settings) {
         settings = JSON.parse(settings)
-        return settings.windowOpenNewTab
+        return settings.windowOpenNewTab ?? false
     }
     return false
 }
@@ -39,7 +52,7 @@ function windowsAboveApp(): boolean {
     let settings = readData('settings')
     if(settings) {
         settings = JSON.parse(settings)
-        return settings.windowsAboveApp
+        return settings.windowsAboveApp ?? false
     }
     return false
 }
@@ -98,6 +111,62 @@ function notes(): any[] {
     return keys.map(key => JSON.parse(contents[key]))
 }
 
+// Notifications
+
+function fightNotificationsSystem(): boolean {
+    let settings = readData('settings')
+    if(settings) {
+        settings = JSON.parse(settings)
+        return settings.fightNotificationsSystem ?? false
+    }
+    return false
+}
+
+function fightNotificationsIngame(): boolean {
+    let settings = readData('settings')
+    if(settings) {
+        settings = JSON.parse(settings)
+        return settings.fightNotificationsIngame ?? false
+    }
+    return false
+}
+
+function battlegroundNotificationsSystem(): boolean {
+    let settings = readData('settings')
+    if(settings) {
+        settings = JSON.parse(settings)
+        return settings.battlegroundNotificationsSystem ?? false
+    }
+    return false
+}
+
+function battlegroundNotificationsIngame(): boolean {
+    let settings = readData('settings')
+    if(settings) {
+        settings = JSON.parse(settings)
+        return settings.battlegroundNotificationsIngame ?? false
+    }
+    return false
+}
+
+function messageNotificationsSystem(): boolean {
+    let settings = readData('settings')
+    if(settings) {
+        settings = JSON.parse(settings)
+        return settings.messageNotificationsSystem ?? false
+    }
+    return false
+}
+
+function messageNotificationsIngame(): boolean {
+    let settings = readData('settings')
+    if(settings) {
+        settings = JSON.parse(settings)
+        return settings.messageNotificationsIngame ?? false
+    }
+    return false
+}
+
 function writeData(key: string, value: any): void {
     let contents = parseData(configPath)
     contents[key] = value
@@ -137,5 +206,11 @@ export default {
     beltSets,
     notes,
     hpFood,
-    mpFood
+    mpFood,
+    fightNotificationsSystem,
+    fightNotificationsIngame,
+    battlegroundNotificationsSystem,
+    battlegroundNotificationsIngame,
+    messageNotificationsSystem,
+    messageNotificationsIngame
 }

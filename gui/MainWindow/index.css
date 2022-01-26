@@ -7,6 +7,10 @@ body {
     background-color: #fff;
 }
 
+#main {
+    min-width: 30px;
+}
+
 .tabs {
     overflow: scroll;
     border: 1px solid #ccc;
@@ -18,8 +22,7 @@ body {
     user-select: none;
 }
 
-/* Style the buttons inside the tab */
-.tabs button {
+.addButton {
     background-color: inherit;
     float: left;
     border: none;
@@ -29,24 +32,23 @@ body {
     font-size: 17px;
 }
 
-/* Change background color of buttons on hover */
 .tabs button:hover {
-    background-color: #ddd;
+    background-color: #aaa;
 }
 
-/* Create an active/current tablink class */
 .tabs button.active {
-    background-color: #ccc;
+    background-color: #aaa;
 }
 
 .ab {
     display: inline-block;
-    padding: 0.5em 2em;
+    padding: 0.5em 1.5em;
     text-decoration: none;
     background-color: #f1f1f1;
     color: #000;
     cursor: pointer;
     line-height: 0px;
+    min-width: 100px;
 }
 
 .ab a {
@@ -54,6 +56,8 @@ body {
     margin: auto;
     height: 10px;
     font-size: 12px;
+    width: 90px;
+    line-height: 0;
 }
 
 .ab:hover {
@@ -64,38 +68,18 @@ body {
     background-color: #ccc;
 }
 
-.close {
-    position: absolute;
-    width: 10px;
-    height: 10px;
-    opacity: 0.4;
+.closeButton {
+    right: -21px;
+    top: -8px;
+    position: relative;
+    width: 20px;
+    height: 20px;
+    background-image: url('./images/Cross.png');
+    background-size: contain;
+    float: right;
+    border: none;
+    background-color: inherit;
 }
-
-.close:hover {
-    opacity: 1;
-}
-
-.close::before,
-.close::after {
-    position: absolute;
-    content: ' ';
-    height: 10px;
-    width: 2px;
-    background-color: #000;
-    margin-left: 12px;
-    margin-top: -3px;
-}
-
-.close::before {
-    transform: rotate(45deg);
-}
-
-.close::after {
-    transform: rotate(-45deg);
-}
-
-
-/* Refactored */
 
 /* Server switcher */
 .knob,

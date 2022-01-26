@@ -1,11 +1,4 @@
-var art_alt = null
-
-// @ts-ignore Temporary solution for hack in simple_alt.js
-window.myAPI = {}
-// @ts-ignore Temporary solution for hack in simple_alt.js
-window.myAPI.baseUrl = function() {
-    return window.dressingAPI.baseUrl()
-}
+let art_alt = null
 
 type DressingSet = {
     id: string,
@@ -441,7 +434,7 @@ function convertItemIntoDiv(item: InventoryItem): HTMLDivElement {
     if(item.kind_id == '12') {
         divItem.setAttribute('weapon', '2h')
     }
-    if(item.kind_id == '10') {
+    if(item.kind_id == '10' || item.kind_id == '42') {
         divItem.setAttribute('weapon', '1h')
     }
     if(item.kind_id == '44' || item.kind_id == '17') {
@@ -460,7 +453,7 @@ function getType(kind_id: string): InventoryItemType {
     if(kind_id == '5' || kind_id == '77' || kind_id == '120') {
         return InventoryItemType.BRACERS
     }
-    if(kind_id == '10' || kind_id == '12') {
+    if(kind_id == '10' || kind_id == '12' || kind_id == '42') {
         return InventoryItemType.MAIN_WEAPON
     }
     if(kind_id == '44' || kind_id == '17') {
@@ -504,7 +497,6 @@ function getStyle(items: InventoryItem[]): string | null {
     return uniqueStyles.size == 0 ? null : Array.from(uniqueStyles as Set<string>)[0]
 }
 
-// ???? BETTER SOLUTION
 let dragableItem: HTMLDivElement | null = null
 
 function handleDragStartEquipableItem(this: any) {
@@ -586,8 +578,8 @@ function difference(setA: string[], setB: string[]): Set<string> {
     return _difference
 }
 
-function parseMagicSchools(result: string): string {
-    let doc = result.toDocument()
+function parseMagicSchools(result: any): string {
+    let doc = result.toDocument() as Document
     let schools = Array.from(doc.querySelector('body > table > tbody > tr:nth-child(2) > td.bgg > table > tbody > tr:nth-child(1) > td:nth-child(2) > select')!.children).map(e => e.textContent!)
     let currentStyle = difference(SetStyleHelper.magmarSchools, schools)
     if(currentStyle.size  == SetStyleHelper.magmarSchools.length) {
@@ -630,7 +622,6 @@ function filterArcats(arcats: InventoryItem[]): Arcats {
     }
 }
 
-// ???? BETTER SOLUTION
 let dragableSet: any = null
 function createSetElement(set: DressingSet, active: boolean = false) {
     let article = document.createElement('article')
@@ -665,11 +656,7 @@ function createSetElement(set: DressingSet, active: boolean = false) {
 }
 
 function generateSetId() {
-    return 'set_' + generateRandomId()
-}
-
-function generateRandomId() {
-    return (Math.random() + 1).toString(36).substring(2)
+    return 'set_' + window.utilsAPI.generateRandomId()
 }
 
 function addNewSet(): DressingSet {
@@ -798,7 +785,7 @@ async function reduce(state: DressingWindowState = initialState, action: Dressin
     let arcats = state.arcats
     let rings = state.rings
     let amulets = state.amulets
-    const parsedItemTypes = ['helmets', 'shoulders', 'bracers', 'mainWeapons', 'offhandWeapons', 'cuirasses', 'leggings', 'chainmails', 'boots', 'bows', 'quivers', 'rings', 'amulets', 'arcats']
+    const parsedItemTypes = ['helmets', 'shoulders', 'bracers', 'mainWeapons', 'offhandWeapons', 'cuirasses', 'leggings', 'chainmails', 'boots', 'bows', 'quivers', 'rings', 'amulets', 'arcats', 'profWeapons']
     switch(action) {
         case DressingWindowActions.LOAD_CONTENT:
             let result = await window.dressingAPI.loadItemsData(['allItems', 'wearedItems'])
@@ -814,7 +801,7 @@ async function reduce(state: DressingWindowState = initialState, action: Dressin
             if(parsedAllItems.zikkurat.length != 0) {
                 zikkuratId = parsedAllItems.zikkurat[0].id
                 const res = await window.dressingAPI.getMagicSchools(zikkuratId)
-                currentMagicSchool = parseMagicSchools(res.result)
+                currentMagicSchool = parseMagicSchools(res)
             }
             const bracelet = parsedWearedItems.bracelets[0]
             var arcatsCount = 0

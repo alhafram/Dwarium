@@ -11,7 +11,14 @@ interface SettingsWindowState {
     hideTopPanelInFullScreen: boolean,
     mailServer: boolean,
     userAgentTextFieldActive?: boolean,
-    screenshotsFolderPath: string
+    screenshotsFolderPath: string,
+    ownServer: string,
+    fightNotificationsSystem: boolean,
+    fightNotificationsIngame: boolean,
+    battlegroundNotificationsSystem: boolean,
+    battlegroundNotificationsIngame: boolean,
+    messageNotificationsSystem: boolean,
+    messageNotificationsIngame: boolean
 }
 
 enum UserAgentType {
@@ -33,7 +40,13 @@ enum SettingsWindowActions {
     CHANGE_WINDOWS_ABOVE_APP,
     CHANGE_MAXIMIZE_ON_START,
     CHANGE_HIDE_TOP_PANEL_IN_FULL_SCREEN,
-    CHANGE_MAIL_SERVER
+    CHANGE_MAIL_SERVER,
+    CHANGE_FIGHT_NOTIFICATIONS_SYSTEM,
+    CHANGE_FIGHT_NOTIFICATIONS_INGAME,
+    CHANGE_BATTLEGROUND_NOTIFICATIONS_SYSTEM,
+    CHANGE_BATTLEGROUND_NOTIFICATIONS_INGAME,
+    CHANGE_MESSAGE_NOTIFICATIONS_SYSTEM,
+    CHANGE_MESSAGE_NOTIFICATIONS_INGAME
 }
 
 const Elements = {
@@ -67,6 +80,27 @@ const Elements = {
     mailServerBox(): HTMLInputElement {
         return document.getElementById('mailServer') as HTMLInputElement
     },
+    ownServerBox(): HTMLInputElement {
+        return document.getElementById('ownServer') as HTMLInputElement
+    },
+    fightNotificationsSystemBox(): HTMLInputElement {
+        return document.getElementById('fightNotificationsSystem') as HTMLInputElement
+    },
+    fightNotificationsIngameBox(): HTMLInputElement {
+        return document.getElementById('fightNotificationsIngame') as HTMLInputElement
+    },
+    battlegroundNotificationsSystemBox(): HTMLInputElement {
+        return document.getElementById('battlegroundNotificationsSystem') as HTMLInputElement
+    },
+    battlegroundNotificationsIngameBox(): HTMLInputElement {
+        return document.getElementById('battlegroundNotificationsIngame') as HTMLInputElement
+    },
+    messageNotificationsSystemBox(): HTMLInputElement {
+        return document.getElementById('messageNotificationsSystem') as HTMLInputElement
+    },
+    messageNotificationsIngameBox(): HTMLInputElement {
+        return document.getElementById('messageNotificationsIngame') as HTMLInputElement
+    }
 }
 
 function getTitle(type: UserAgentType): string {
@@ -115,6 +149,24 @@ function setupListeners() {
     Elements.mailServerBox().onclick = function() {
         dispatch(SettingsWindowActions.CHANGE_MAIL_SERVER)
     }
+    Elements.fightNotificationsSystemBox().onchange = () => {
+        dispatch(SettingsWindowActions.CHANGE_FIGHT_NOTIFICATIONS_SYSTEM)
+    }
+    Elements.fightNotificationsIngameBox().onchange = () => {
+        dispatch(SettingsWindowActions.CHANGE_FIGHT_NOTIFICATIONS_INGAME)
+    }
+    Elements.battlegroundNotificationsSystemBox().onchange = () => {
+        dispatch(SettingsWindowActions.CHANGE_BATTLEGROUND_NOTIFICATIONS_SYSTEM)
+    }
+    Elements.battlegroundNotificationsIngameBox().onchange = () => {
+        dispatch(SettingsWindowActions.CHANGE_BATTLEGROUND_NOTIFICATIONS_INGAME)
+    }
+    Elements.messageNotificationsSystemBox().onchange = () => {
+        dispatch(SettingsWindowActions.CHANGE_MESSAGE_NOTIFICATIONS_SYSTEM)
+    }
+    Elements.messageNotificationsIngameBox().onchange = () => {
+        dispatch(SettingsWindowActions.CHANGE_MESSAGE_NOTIFICATIONS_INGAME)
+    }
 }
 
 let initialState: SettingsWindowState = {
@@ -132,7 +184,14 @@ let initialState: SettingsWindowState = {
     hideTopPanelInFullScreen: false,
     mailServer: false,
     userAgentTextFieldActive: false,
-    screenshotsFolderPath: ''
+    screenshotsFolderPath: '',
+    ownServer: '',
+    fightNotificationsSystem: false,
+    fightNotificationsIngame: false,
+    battlegroundNotificationsSystem: false,
+    battlegroundNotificationsIngame: false,
+    messageNotificationsSystem: false,
+    messageNotificationsIngame: false
 }
 
 function reduce(state: SettingsWindowState = initialState, action: SettingsWindowActions): SettingsWindowState {
@@ -152,7 +211,14 @@ function reduce(state: SettingsWindowState = initialState, action: SettingsWindo
                     hideTopPanelInFullScreen: loadedSettings.hideTopPanelInFullScreen ?? false,
                     mailServer: loadedSettings.mailServer ?? false,
                     maximizeOnStart: loadedSettings.maximizeOnStart ?? false,
-                    screenshotsFolderPath: window.settingsAPI.screenshotsFolder()
+                    screenshotsFolderPath: window.settingsAPI.screenshotsFolder(),
+                    ownServer: loadedSettings.ownServer ?? '',
+                    fightNotificationsSystem: loadedSettings.fightNotificationsSystem ?? false,
+                    fightNotificationsIngame: loadedSettings.fightNotificationsIngame ?? false,
+                    battlegroundNotificationsSystem: loadedSettings.battlegroundNotificationsSystem ?? false,
+                    battlegroundNotificationsIngame: loadedSettings.battlegroundNotificationsIngame ?? false,
+                    messageNotificationsSystem: loadedSettings.messageNotificationsSystem ?? false,
+                    messageNotificationsIngame: loadedSettings.messageNotificationsIngame ?? false,
                 }
             }
         case SettingsWindowActions.SAVE_SETTINGS:
@@ -160,6 +226,7 @@ function reduce(state: SettingsWindowState = initialState, action: SettingsWindo
             delete savedSettings.userAgents
             delete savedSettings.userAgentTextFieldActive
             savedSettings.selectedUserAgentValue = Elements.userAgentTextValue().value
+            savedSettings.ownServer = Elements.ownServerBox().value
             if(savedSettings.selectedUserAgentValue.length == 0) {
                 alert('User-Agent не может быть пустым')
                 return state
@@ -211,6 +278,36 @@ function reduce(state: SettingsWindowState = initialState, action: SettingsWindo
                 ...state,
                 mailServer: Elements.mailServerBox().checked
             }
+        case SettingsWindowActions.CHANGE_FIGHT_NOTIFICATIONS_SYSTEM:
+            return {
+                ...state,
+                fightNotificationsSystem: Elements.fightNotificationsSystemBox().checked
+            }
+        case SettingsWindowActions.CHANGE_FIGHT_NOTIFICATIONS_INGAME:
+            return {
+                ...state,
+                fightNotificationsIngame: Elements.fightNotificationsIngameBox().checked
+            }
+        case SettingsWindowActions.CHANGE_BATTLEGROUND_NOTIFICATIONS_SYSTEM:
+            return {
+                ...state,
+                battlegroundNotificationsSystem: Elements.battlegroundNotificationsSystemBox().checked
+            }
+        case SettingsWindowActions.CHANGE_BATTLEGROUND_NOTIFICATIONS_INGAME:
+            return {
+                ...state,
+                battlegroundNotificationsIngame: Elements.battlegroundNotificationsIngameBox().checked
+            }
+        case SettingsWindowActions.CHANGE_MESSAGE_NOTIFICATIONS_SYSTEM:
+            return {
+                ...state,
+                messageNotificationsSystem: Elements.messageNotificationsSystemBox().checked
+            }
+        case SettingsWindowActions.CHANGE_MESSAGE_NOTIFICATIONS_INGAME:
+            return {
+                ...state,
+                messageNotificationsIngame: Elements.messageNotificationsIngameBox().checked
+            }
     }
 }
 
@@ -253,6 +350,14 @@ function render(): void {
     Elements.mailServerBox().checked = initialState.mailServer
 
     Elements.screenshotsFolderPathBox().value = initialState.screenshotsFolderPath
+    Elements.ownServerBox().value = initialState.ownServer
+
+    Elements.fightNotificationsSystemBox().checked = initialState.fightNotificationsSystem
+    Elements.fightNotificationsIngameBox().checked = initialState.fightNotificationsIngame
+    Elements.battlegroundNotificationsSystemBox().checked = initialState.battlegroundNotificationsSystem
+    Elements.battlegroundNotificationsIngameBox().checked = initialState.battlegroundNotificationsIngame
+    Elements.messageNotificationsSystemBox().checked = initialState.messageNotificationsSystem
+    Elements.messageNotificationsIngameBox().checked = initialState.messageNotificationsIngame
 }
 
 document.addEventListener('DOMContentLoaded', async () => {

@@ -1,12 +1,5 @@
 let art_alt = null
 
-// @ts-ignore Temporary solution for hack in simple_alt.js
-window.myAPI = {}
-// @ts-ignore Temporary solution for hack in simple_alt.js
-window.myAPI.baseUrl = function() {
-    return window.foodAPI.baseUrl()
-}
-
 type EnchantMode = {
     title: string
     value: string
@@ -31,6 +24,12 @@ type InventoryItem = {
     enchant_mod?: EnchantMode,
     cnt: string,
     foodType: FoodType
+}
+
+type FoodSettings = {
+    id: string | null | undefined,
+    percentage: string,
+    actionId: string
 }
 
 const Elements = {
@@ -280,17 +279,38 @@ async function reduce(state: FoodWindowState = initialState, action: FoodWindowA
                 mpItem: mpItem
             }
         case FoodWindowActions.SAVE:
+            Elements.saveBox().disabled = true
             const hpPercentage = Elements.hpSelectBox().value
             const mpPercentage = Elements.mpSelectBox().value
-            const hp = {
-                id: state.hpItem?.id ?? null,
-                percentage: hpPercentage
+
+            let hpSetting: FoodSettings = {
+                id: state.hpItem?.id,
+                percentage: hpPercentage,
+                actionId: ''
             }
-            const mp = {
-                id: state.mpItem?.id ?? null,
-                percentage: mpPercentage
+            let mpSetting: FoodSettings = {
+                id: state.mpItem?.id,
+                percentage: mpPercentage,
+                actionId: ''
             }
-            window.foodAPI.save(hp, mp)
+            if(hpSetting.id) {
+                let text = await window.foodAPI.loadItem(hpSetting.id)
+                // @ts-ignore
+                const doc = text.toDocument() as Document
+                // @ts-ignore
+                const actionId = doc.getElementsByTagName('input').action_id.value
+                hpSetting.actionId = actionId
+            }
+            if(mpSetting.id) {
+                let text = await window.foodAPI.loadItem(mpSetting.id)
+                // @ts-ignore
+                const doc = text.toDocument() as Document
+                // @ts-ignore
+                const actionId = doc.getElementsByTagName('input').action_id.value
+                mpSetting.actionId = actionId
+            }
+            window.foodAPI.save(hpSetting, mpSetting)
+            Elements.saveBox().disabled = false
             return state
         case FoodWindowActions.CHANGE_HP_PERCENTAGE:
             return {

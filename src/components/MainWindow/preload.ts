@@ -1,5 +1,7 @@
 import { ipcRenderer } from 'electron'
 import configService from '../../services/ConfigService'
+import { Channel } from '../../Models/Channel'
+import { generateRandomId } from '../../components/Utils'
 
 let switcher: HTMLElement | null
 let tabs: HTMLElement | null
@@ -33,64 +35,64 @@ window.addEventListener('DOMContentLoaded', () => {
         const knob = document.querySelector('#switcher > div.knob')
         if(knob?.getAttribute('server') == 'W1') {
             knob.setAttribute('server','W2')
-            ipcRenderer.send('load_url', 'w2')
+            ipcRenderer.send(Channel.LOAD_URL, 'w2')
         } else {
             knob?.setAttribute('server', 'W1')
-            ipcRenderer.send('load_url', 'w1')
+            ipcRenderer.send(Channel.LOAD_URL, 'w1')
         }
     })
     document.getElementById('reloadButton')?.addEventListener('click', () => {
-        ipcRenderer.send('reload')
+        ipcRenderer.send(Channel.RELOAD)
     })
     document.getElementById('backButton')?.addEventListener('click', () => {
-        ipcRenderer.send('back')
+        ipcRenderer.send(Channel.BACK)
     })
     document.getElementById('forwardButton')?.addEventListener('click', () => {
-        ipcRenderer.send('forward')
+        ipcRenderer.send(Channel.FORWARD)
     })
     document.getElementById('dressingRoom')?.addEventListener('click', () => {
-        ipcRenderer.send('openDressingRoom')
+        ipcRenderer.send(Channel.OPEN_DRESSING_ROOM)
     })
     document.getElementById('beltPotionRoom')?.addEventListener('click', () => {
-        ipcRenderer.send('openBeltPotionRoom')
+        ipcRenderer.send(Channel.OPEN_BELT_POTION_ROOM)
     })
     document.getElementById('chatLog')?.addEventListener('click', () => {
-        ipcRenderer.send('openChatLog')
+        ipcRenderer.send(Channel.OPEN_CHAT_LOG)
     })
     document.getElementById('chatSettings')?.addEventListener('click', () => {
-        ipcRenderer.send('openChatSettings')
+        ipcRenderer.send(Channel.OPEN_CHAT_SETTINGS)
     })
     document.getElementById('settings')?.addEventListener('click', () => {
-        ipcRenderer.send('openSettings')
+        ipcRenderer.send(Channel.OPEN_SETTINGS)
     })
     document.addEventListener('new_tab', (evt) => {
         const tab = createNewTab()
-        ipcRenderer.send('new_tab', tab.id)
+        ipcRenderer.send(Channel.NEW_TAB, tab.id)
     })
     document.addEventListener('make_active', (evt) => {
         makeActive(evt)
-        ipcRenderer.send('make_active', (<CustomEvent>evt).detail.id)
+        ipcRenderer.send(Channel.MAKE_ACTIVE, (<CustomEvent>evt).detail.id)
     })
     document.addEventListener('close_tab', (evt) => {
-        ipcRenderer.send('close_tab', (<CustomEvent>evt).detail.id)
+        ipcRenderer.send(Channel.CLOSE_TAB, (<CustomEvent>evt).detail.id)
     })
     document.addEventListener('goUrl', (evt) => {
-        ipcRenderer.send('goUrl', (<CustomEvent>evt).detail)
+        ipcRenderer.send(Channel.GO_URL, (<CustomEvent>evt).detail)
     })
     document.addEventListener('setupMain', () => {
         createNewTab('main', 'Main')
     })
     document.getElementById('updateApplication')?.addEventListener('click', () => {
-        ipcRenderer.send('updateApplication')
+        ipcRenderer.send(Channel.UPDATE_APPLICATION)
     })
     document.getElementById('findCharacter')?.addEventListener('click', () => {
         const nick = Elements.usernameBox().value
         if(nick.length != 0) {
             if(configService.windowOpenNewTab()) {
                 const tab = createNewTab()
-                ipcRenderer.send('new_tab', tab.id, `${configService.baseUrl()}/user_info.php?nick=${nick}`)
+                ipcRenderer.send(Channel.NEW_TAB, tab.id, `${configService.baseUrl()}/user_info.php?nick=${nick}`)
             } else {
-                ipcRenderer.send('findCharacter', nick)
+                ipcRenderer.send(Channel.FIND_CHARACTER, nick)
             }
         }
     })
@@ -102,7 +104,7 @@ window.addEventListener('DOMContentLoaded', () => {
     Elements.userPrvBox().onclick = function() {
         const nick = Elements.usernameBox().value
         if(nick.length > 0) {
-            ipcRenderer.send('userPrv', nick)
+            ipcRenderer.send(Channel.USER_PRV, nick)
         }
     }
     Elements.findEffectsBox().onclick = function() {
@@ -110,20 +112,20 @@ window.addEventListener('DOMContentLoaded', () => {
         if(nick.length > 0) {
             if(configService.windowOpenNewTab()) {
                 const tab = createNewTab()
-                ipcRenderer.send('new_tab', tab.id, `${configService.baseUrl()}/effect_info.php?nick=${nick}`)
+                ipcRenderer.send(Channel.NEW_TAB, tab.id, `${configService.baseUrl()}/effect_info.php?nick=${nick}`)
             } else {
-                ipcRenderer.send('findEffects', nick)
+                ipcRenderer.send(Channel.FIND_EFFECTS, nick)
             }
         }
     }
     Elements.notesBox().onclick = function() {
-        ipcRenderer.send('openNotes')
+        ipcRenderer.send(Channel.OPEN_NOTES)
     }
     Elements.screenshotBox().onclick = function() {
-        ipcRenderer.send('takeScreenshot')
+        ipcRenderer.send(Channel.TAKE_SCREENSHOT)
     }
     Elements.foodBox().onclick = function() {
-        ipcRenderer.send('openFood')
+        ipcRenderer.send(Channel.OPEN_FOOD)
     }
 })
 
@@ -132,26 +134,26 @@ function createNewTab(id?: string, title?: string) {
     buttons = buttons.filter(b => b.className.includes('ab'))
     buttons.forEach(b => b.className = 'ab')
 
-    const new_tab = document.createElement('div')
-    new_tab.className += 'ab active'
+    const newTab = document.createElement('div')
+    newTab.className += 'ab active'
     if(!id) {
-        id = 'tab_' + (buttons.length - 1)
+        id = generateRandomId()
     }
-    new_tab.id = id
-    new_tab.onclick = makeActive
+    newTab.id = id
+    newTab.onclick = makeActive
 
     const mainA = document.createElement('a')
     mainA.textContent = title ?? 'New tab'
-    new_tab.appendChild(mainA)
+    newTab.appendChild(mainA)
 
     if(id != 'main') {
-        const closeA = document.createElement('a')
-        closeA.className = 'close'
-        closeA.onclick = closeTab
-        new_tab.appendChild(closeA)
+        const closeButton = document.createElement('button')
+        closeButton.className = 'closeButton'
+        closeButton.onclick = closeTab
+        newTab.appendChild(closeButton)
     }
-    tabs?.insertBefore(new_tab, document.querySelector('#new_tab'))
-    return new_tab
+    tabs?.insertBefore(newTab, document.querySelector('#new_tab'))
+    return newTab
 }
 
 function makeActive(evt: Event) {
@@ -161,19 +163,19 @@ function makeActive(evt: Event) {
     const target = evt.currentTarget as HTMLElement
     let id = target.id
     target.className += ' active'
-    ipcRenderer.send('make_active', id)
+    ipcRenderer.send(Channel.MAKE_ACTIVE, id)
     evt.stopPropagation()
 }
 
-ipcRenderer.on('server', (event, server) => {
+ipcRenderer.on(Channel.SERVER, (event, server) => {
     const switcherChekbox = document.querySelector('#switcher .checkbox') as HTMLInputElement
     if(!server) {
         // Default - W2
         switcherChekbox.checked = true
         switcher?.click()
-        ipcRenderer.send('load_url', 'w2')
+        ipcRenderer.send(Channel.LOAD_URL, 'w2')
     } else {
-        ipcRenderer.send('load_url', server)
+        ipcRenderer.send(Channel.LOAD_URL, server)
         if(server == 'w2') {
             switcherChekbox.checked = true
             switcher?.click()
@@ -183,49 +185,49 @@ ipcRenderer.on('server', (event, server) => {
 
 function closeTab(evt: Event) {
     const parentElement = (evt.currentTarget as HTMLElement).parentElement?.id
-    ipcRenderer.send('close_tab', parentElement)
+    ipcRenderer.send(Channel.CLOSE_TAB, parentElement)
     evt.stopPropagation()
 }
 
-ipcRenderer.on('url', (event, url, id) => {
+ipcRenderer.on(Channel.URL, (event, url, id) => {
     const urlBarField = document.querySelector('.urlBarField') as HTMLInputElement
     urlBarField.disabled = id == 'main'
     urlBarField.value = url
 })
 
-ipcRenderer.on('finishLoadUrl', (event, id, title) => {
+ipcRenderer.on(Channel.FINISH_LOAD_URL, (event, id, title) => {
     let element = document.getElementById(id)?.firstElementChild as HTMLLinkElement
     if(element) {
         element.textContent = title
     }
 })
 
-ipcRenderer.on('new_tab', (event, url) => {
+ipcRenderer.on(Channel.NEW_TAB, (event, url) => {
     const tab = createNewTab()
-    ipcRenderer.send('new_tab', tab.id, url)
+    ipcRenderer.send(Channel.NEW_TAB, tab.id, url)
 })
 
-ipcRenderer.on('close_tab', (evt, id) => {
+ipcRenderer.on(Channel.CLOSE_TAB, (evt, id) => {
     let currentTabs = Array.from(tabs!.children)
     currentTabs.pop()
     let current_tab = currentTabs.filter(t => t.id == id)[0]
     if(current_tab) {
         tabs?.removeChild(current_tab);
         (currentTabs[0] as HTMLElement).click()
-        ipcRenderer.send('remove_view', id)
+        ipcRenderer.send(Channel.REMOVE_VIEW, id)
     }
 })
 
-ipcRenderer.on('updateApplicationAvailable', () => {
+ipcRenderer.on(Channel.UPDATE_APPLICATION_AVAILABLE, () => {
     const updateApplicationStyle = document.getElementById('updateApplication')?.style
     updateApplicationStyle?.setProperty('display', 'block')
 })
 
-ipcRenderer.on('openWindow', (_evt, id, active) => {
+ipcRenderer.on(Channel.OPEN_WINDOW, (_evt, id, active) => {
     const element = document.getElementById(id)
     element!.style.backgroundColor = active ? '#999' : 'white'
 })
 
-ipcRenderer.on('takeScreenshot', () => {
-    ipcRenderer.send('takeScreenshot')
+ipcRenderer.on(Channel.TAKE_SCREENSHOT, () => {
+    ipcRenderer.send(Channel.TAKE_SCREENSHOT)
 })

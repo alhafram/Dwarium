@@ -2,6 +2,7 @@ import { BrowserView, BrowserWindow, globalShortcut, session, clipboard, Rectang
 import path from 'path'
 import configService from '../../services/ConfigService'
 import { TabsController } from '../../services/TabsController'
+import { Channel } from '../../Models/Channel'
 
 export default class MainWindowContainer {
 
@@ -48,13 +49,13 @@ export default class MainWindowContainer {
 
         this.mainWindow.webContents.on('did-finish-load', () => {
             let currentServer = configService.server()
-            this.mainWindow.webContents.send('server', currentServer)
+            this.mainWindow.webContents.send(Channel.SERVER, currentServer)
         })
 
         this.mainWindow.on('focus', () => {
             globalShortcut.register('CommandOrControl+W', () => {
                 if(TabsController.currentTab() != TabsController.getMain()) {
-                    this.mainWindow.webContents.send('close_tab', TabsController.current_tab_id)
+                    this.mainWindow.webContents.send(Channel.CLOSE_TAB, TabsController.current_tab_id)
                 }
                 if(TabsController.onlyMain()) {
                     this.mainWindow.close()
@@ -74,18 +75,18 @@ export default class MainWindowContainer {
                 }
             })
             globalShortcut.register('CommandOrControl+T', () => {
-                this.mainWindow.webContents.send('new_tab')
+                this.mainWindow.webContents.send(Channel.NEW_TAB)
             })
             if(process.platform == 'win32' || process.platform == 'linux') {
                 globalShortcut.register('F11', () => {
                     this.mainWindow.setFullScreen(!this.mainWindow.isFullScreen())
                 })
                 globalShortcut.register('F9', () => {
-                    this.mainWindow.webContents.send('takeScreenshot')
+                    this.mainWindow.webContents.send(Channel.TAKE_SCREENSHOT)
                 })
             } else {
                 globalShortcut.register('CommandOrControl+F', () => {
-                    this.mainWindow.webContents.send('takeScreenshot')
+                    this.mainWindow.webContents.send(Channel.TAKE_SCREENSHOT)
                 })
             }
         })
@@ -114,23 +115,30 @@ export default class MainWindowContainer {
 
         // @ts-ignore - TS - FIX
         this.browserView.webContents.setWindowOpenHandler(({ url, features }) => {
+            const splittedFeatures = features.split(',')
+            const left = parseInt(splittedFeatures.find(str => str.startsWith('left'))?.split('=').pop() ?? '')
+            const top = parseInt(splittedFeatures.find(str => str.startsWith('top'))?.split('=').pop() ?? '')
             const excludedUrls = [
-                `https://${configService.server()}.dwar.ru/action_form.php`,
-                `https://${configService.server()}.dwar.ru/area_cube_recipes.php`
+                `${configService.baseUrl()}/action_form.php`,
+                `${configService.baseUrl()}/area_cube_recipes.php`
             ]
             for(const excludeUrl of excludedUrls) {
                 if(url.includes(excludeUrl)) {
                     return {
                         action: 'allow',
                         overrideBrowserWindowOptions: {
-                            enablePreferredSizeMode: true,
-                            parent: configService.windowsAboveApp() ? TabsController.mainWindow : null
+                            parent: configService.windowsAboveApp() ? TabsController.mainWindow : null,
+                            x: left > 0 ? left : 0,
+                            y: top > 0 ? top : 0,
+                            webPreferences: {
+                                enablePreferredSizeMode: true
+                            }
                         }
                     }
                 }
             }
             if(configService.windowOpenNewTab() && !features.includes('location=no') || TabsController.currentTab() == TabsController.getMain() && !features) {
-                this.mainWindow.webContents.send('new_tab', url)
+                this.mainWindow.webContents.send(Channel.NEW_TAB, url)
                 return {
                     action: 'deny'
                 }
@@ -138,21 +146,50 @@ export default class MainWindowContainer {
                 return {
                     action: 'allow',
                     overrideBrowserWindowOptions: {
-                        enablePreferredSizeMode: true,
                         parent: configService.windowsAboveApp() ? TabsController.mainWindow : null,
+                        x: left > 0 ? left : 0,
+                        y: top > 0 ? top : 0,
                         webPreferences: {
                             contextIsolation: false,
                             nativeWindowOpen: true,
                             nodeIntegrationInSubFrames: true,
+                            enablePreferredSizeMode: true
                         }
                     }
                 }
             }
         })
 
-        this.browserView.webContents.on('did-create-window', (window) => {
-            window.setMenu(null)
-            window.setFullScreen(false)
+        this.browserView?.webContents.on('did-create-window', (window) => {
+            this.setupCreatedWindow(window)
+        })
+    }
+
+    setupCreatedWindow(window: BrowserWindow) {
+        window.setMenu(null)
+        window.setFullScreen(false)
+        this.setupOpenHandler(window)
+    }
+
+    setupOpenHandler(window: BrowserWindow) {
+        window.webContents.setWindowOpenHandler(({ url, features }) => {
+            const splittedFeatures = features.split(',')
+            const x = parseInt(splittedFeatures.find(str => str.startsWith('left'))?.split('=').pop() ?? '')
+            const y = parseInt(splittedFeatures.find(str => str.startsWith('top'))?.split('=').pop() ?? '')
+            const width = parseInt(splittedFeatures.find(str => str.startsWith('width'))?.split('=').pop() ?? '')
+            const height = parseInt(splittedFeatures.find(str => str.startsWith('height'))?.split('=').pop() ?? '')
+            const newWindow = new BrowserWindow({
+                x: x,
+                y:y,
+                width: width,
+                height: height,
+                parent: configService.windowsAboveApp() ? this.mainWindow : undefined
+            })
+            this.setupOpenHandler(newWindow)
+            newWindow.loadURL(url)
+            return {
+                action: 'deny'
+            }
         })
     }
 
@@ -198,11 +235,12 @@ export default class MainWindowContainer {
                 enablePreferredSizeMode: true,
                 preload: path.join(__dirname, 'MainBrowserViewPreload.js'),
                 contextIsolation: false,
-                nativeWindowOpen: true
+                nativeWindowOpen: true,
+                webSecurity: false
             }
         })
         browserView.webContents.on('did-finish-load', () => {
-            this.mainWindow.webContents.send('url', browserView.webContents.getURL(), 'main')
+            this.mainWindow.webContents.send(Channel.URL, browserView.webContents.getURL(), 'main')
         })
         browserView.webContents.setZoomFactor(0.9)
         browserView.setAutoResize({

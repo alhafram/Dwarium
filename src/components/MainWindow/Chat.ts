@@ -1,7 +1,9 @@
 // @ts-nocheck
-import { app, powerMonitor, globalShortcut } from '@electron/remote'
+import { app, powerMonitor, globalShortcut, getCurrentWindow } from '@electron/remote'
 import fs from 'fs'
 import path from 'path'
+import sendNotification from '../../services/Notifications'
+
 const logsFolderPath = path.join(app.getPath ('userData'), 'logs')
 const filePath = path.join(logsFolderPath, 'chat.log')
 
@@ -236,6 +238,9 @@ function setupReceiver() {
         if(msg.channel == 2 && msg.msg_text && msg.msg_text.includes('Окончен бой')) {
             document.dispatchEvent(new Event('eat'))
         }
+
+        // Notifications logic
+        sendNotification(msg)
 
         var msg_dom = null;
         var client_text = msg.msg_text;
