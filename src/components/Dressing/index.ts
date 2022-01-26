@@ -338,7 +338,7 @@ function parse(art_alt: InventoryItem[]): Inventory {
     let amulets = items.filter(i => i.kind_id == '25')
     items = items.removeItems(amulets)
 
-    let profWeapons = items.filter(i => i.kind_id == '42')
+    let profWeapons = items.filter(i => i.kind_id == '42' || i.kind_id == '41' || i.kind_id == '51')
     items = items.removeItems(profWeapons)
 
     let belts = items.filter(i => i.kind_id == '31')
@@ -434,7 +434,7 @@ function convertItemIntoDiv(item: InventoryItem): HTMLDivElement {
     if(item.kind_id == '12') {
         divItem.setAttribute('weapon', '2h')
     }
-    if(item.kind_id == '10' || item.kind_id == '42') {
+    if(item.kind_id == '10' || item.kind_id == '42' || item.kind_id == '41' || item.kind_id == '51') {
         divItem.setAttribute('weapon', '1h')
     }
     if(item.kind_id == '44' || item.kind_id == '17') {
@@ -453,7 +453,7 @@ function getType(kind_id: string): InventoryItemType {
     if(kind_id == '5' || kind_id == '77' || kind_id == '120') {
         return InventoryItemType.BRACERS
     }
-    if(kind_id == '10' || kind_id == '12' || kind_id == '42') {
+    if(kind_id == '10' || kind_id == '12' || kind_id == '42' || kind_id == '41' || kind_id == '51') {
         return InventoryItemType.MAIN_WEAPON
     }
     if(kind_id == '44' || kind_id == '17') {
