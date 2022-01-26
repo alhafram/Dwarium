@@ -236,7 +236,8 @@ export default class MainWindowContainer {
                 preload: path.join(__dirname, 'MainBrowserViewPreload.js'),
                 contextIsolation: false,
                 nativeWindowOpen: true,
-                webSecurity: false
+                webSecurity: false,
+                backgroundThrottling: false
             }
         })
         browserView.webContents.on('did-finish-load', () => {
