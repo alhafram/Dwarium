@@ -3,8 +3,8 @@ import path from 'path'
 import configService from '../../services/ConfigService'
 import { TabsController } from '../../services/TabsController'
 import { Channel } from '../../Models/Channel'
-
-import { getBrowserWindowPosition, getClientWindowPosition, saveBrowserWindowPosition, saveClientWindowPosition, WindowType } from '../../services/WindowSizeManager'
+import { WindowType } from '../../services/WindowCreationHelper'
+import { getBrowserWindowPosition, getClientWindowPosition, saveBrowserWindowPosition, saveClientWindowPosition } from '../../services/WindowSizeManager'
 
 export default class MainWindowContainer {
 

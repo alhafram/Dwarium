@@ -4,10 +4,15 @@ import { TabsController } from './TabsController'
 import { BrowserWindow } from 'electron'
 import { Channel } from '../Models/Channel'
 
-export function createWindowAndLoad(windowType?: WindowType, htmlPath?: HTMLPath, preloadPath?: string, enableRemote: boolean = false, contextIsolation: boolean = true): BrowserWindow {
+import { getClientWindowPosition, saveClientWindowPosition } from './WindowSizeManager'
+
+export function createWindowAndLoad(windowType: WindowType, htmlPath?: HTMLPath, preloadPath?: string, enableRemote: boolean = false, contextIsolation: boolean = true): BrowserWindow {
+    const windowPosition = getClientWindowPosition(windowType)
     let window: BrowserWindow | null = new BrowserWindow({
-        width: 900,
-        height: 700,
+        x: windowPosition?.x ?? 0,
+        y: windowPosition?.y ?? 0,
+        width: windowPosition?.width ?? 900,
+        height: windowPosition?.height ?? 700,
         minWidth: 900,
         minHeight: 700,
         parent: ConfigService.windowsAboveApp() ? TabsController.mainWindow! : undefined,
@@ -27,6 +32,9 @@ export function createWindowAndLoad(windowType?: WindowType, htmlPath?: HTMLPath
 }
 
 export function setupCloseLogic(window: BrowserWindow, windowType: WindowType, onClose: () => void) {
+    window.on('close', () => {
+        saveClientWindowPosition(windowType, window.getBounds())
+    })
     window.on('closed', () => {
         onClose()
         if(!TabsController.mainWindow?.webContents.isDestroyed()) {
@@ -55,6 +63,7 @@ export enum HTMLPath {
 }
 
 export enum WindowType {
+    MAIN = 'main',
     DRESSING_ROOM = 'dressingRoom',
     BELT_POTION_ROOM = 'beltPotionRoom',
     CHAT_LOG = 'chatLog',
@@ -62,5 +71,7 @@ export enum WindowType {
     SETTINGS = 'settings',
     NOTES = 'notes',
     FOOD = 'food',
-    SCREENSHOT = 'screenshot'
+    SCREENSHOT = 'screenshot',
+    USER_INFO = 'userInfo',
+    USER_EFFECTS = 'userEffects',
 }

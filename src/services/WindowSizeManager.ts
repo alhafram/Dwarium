@@ -2,17 +2,9 @@ const { app } = process.type === 'browser' ? require('electron') : require('@ele
 import { Rectangle } from 'electron'
 import fs from 'fs'
 import path from 'path'
-const configPath = path.join(app.getPath('userData'), 'windows.json')
+import { WindowType } from './WindowCreationHelper'
 
-export enum WindowType {
-    MAIN,
-    FOOD,
-    NOTE,
-    DRESSING,
-    BELT,
-    CHAT_LOG,
-    SETTINGS
-}
+const configPath = path.join(app.getPath('userData'), 'windows.json')
 
 function saveClientWindowPosition(type: WindowType, size: Rectangle): void {
     let contents = parseData(configPath)
