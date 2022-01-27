@@ -162,6 +162,11 @@ export default class MainWindowContainer {
 
         this.browserView?.webContents.on('did-create-window', (window) => {
             this.setupCreatedWindow(window)
+            window.on('close', () => {
+                if(configService.windowsAboveApp()) {
+                    this.mainWindow.focus()
+                }
+            })
         })
     }
 
