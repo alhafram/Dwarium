@@ -23,13 +23,14 @@ type InventoryItem = {
     trend: string | undefined,
     enchant_mod?: EnchantMode,
     cnt: string,
-    foodType: FoodType
+    foodType: FoodType,
+    actionId: string
 }
 
 type FoodSettings = {
     id: string | null | undefined,
     percentage: string,
-    actionId: string
+    actionId: string | null | undefined
 }
 
 const Elements = {
@@ -147,31 +148,51 @@ function setupEquipableItemEvents(item: HTMLElement) {
     }, false)
 }
 
+type FoodItem = {
+    id: string
+    actionId: string
+    foodType: FoodType
+}
+
 async function reduce(state: FoodWindowState = initialState, action: FoodWindowActions, data?: any): Promise<FoodWindowState> {
     let allItems = state.allItems
     switch(action) {
         case FoodWindowActions.LOAD_CONTENT:
             let result = await window.foodAPI.loadItemsData(['allItems', 'allPotions'])
-            allItems = Object.keys(result.allItems).map(key => result.allItems[key]) as InventoryItem[]
-            const allPotions = Object.keys(result.allPotions).map(key => result.allPotions[key]) as InventoryItem[]
+            let foodResult = await window.foodAPI.fetchFood()
+            const parser = new DOMParser()
+            const doc = parser.parseFromString(foodResult, "application/xml")
+            const xmlFoodItems = Array.from(doc.documentElement.children)
             
-            const itemsWithFoodEnchant = allItems.filter(item => item.enchant_mod && item.enchant_mod.value.includes('сытости')).map(item => {
-                item.foodType = FoodType.BOTH
-                return item
-            })
-            const foodItems = allPotions.filter(item => item.kind_id == '48').map(item => {
-                if(item.desc.includes('жизни') && item.desc.includes('маны')) {
-                    item.foodType = FoodType.BOTH
-                } else if(item.desc.includes('жизни')) {
-                    item.foodType = FoodType.HP
-                } else if(item.desc.includes('маны')) {
-                    item.foodType = FoodType.MP
+            const foodItems = xmlFoodItems.map(xmlFoodItem => {
+                let type: FoodType
+                if(xmlFoodItem.getAttribute('add_hp') != '0' && xmlFoodItem.getAttribute('add_mp') != '0') {
+                    type = FoodType.BOTH
+                } else if(xmlFoodItem.getAttribute('add_hp') == '0') {
+                    type = FoodType.MP
+                } else if(xmlFoodItem.getAttribute('add_mp') == '0') {
+                    type = FoodType.HP
+                } else {
+                    alert('Странная еда! Напишите в группу')
+                    type = FoodType.HP
                 }
+                return {
+                    id: xmlFoodItem.id,
+                    actionId: xmlFoodItem.getAttribute('action_id') ?? '0',
+                    foodType: type
+                }
+            }) as FoodItem[]
+
+            allItems = Object.keys(result.allItems).map(key => result.allItems[key]) as InventoryItem[]
+            allItems = allItems.concat(Object.keys(result.allPotions).map(key => result.allPotions[key]) as InventoryItem[])
+            
+            const allFoodItems = allItems.filter(item => foodItems.map(item => item.id).includes(item.id)).map(item => {
+                const foodItem = foodItems.find(foodItem => foodItem.id == item.id)!
+                item.foodType = foodItem.foodType
+                item.actionId = foodItem.actionId
                 return item
             })
-
-            const allFoodItems = itemsWithFoodEnchant.concat(foodItems)
-
+            
             const currentHpFoodSettings = window.foodAPI.hpFood()
             const currentMpFoodSettings = window.foodAPI.mpFood()
 
@@ -286,28 +307,12 @@ async function reduce(state: FoodWindowState = initialState, action: FoodWindowA
             let hpSetting: FoodSettings = {
                 id: state.hpItem?.id,
                 percentage: hpPercentage,
-                actionId: ''
+                actionId: state.hpItem?.actionId
             }
             let mpSetting: FoodSettings = {
                 id: state.mpItem?.id,
                 percentage: mpPercentage,
-                actionId: ''
-            }
-            if(hpSetting.id) {
-                let text = await window.foodAPI.loadItem(hpSetting.id)
-                // @ts-ignore
-                const doc = text.toDocument() as Document
-                // @ts-ignore
-                const actionId = doc.getElementsByTagName('input').action_id.value
-                hpSetting.actionId = actionId
-            }
-            if(mpSetting.id) {
-                let text = await window.foodAPI.loadItem(mpSetting.id)
-                // @ts-ignore
-                const doc = text.toDocument() as Document
-                // @ts-ignore
-                const actionId = doc.getElementsByTagName('input').action_id.value
-                mpSetting.actionId = actionId
+                actionId: state.mpItem?.actionId
             }
             window.foodAPI.save(hpSetting, mpSetting)
             Elements.saveBox().disabled = false
