@@ -4,6 +4,8 @@ import configService from '../../services/ConfigService'
 import { TabsController } from '../../services/TabsController'
 import { Channel } from '../../Models/Channel'
 
+import { getBrowserWindowPosition, getClientWindowPosition, saveBrowserWindowPosition, saveClientWindowPosition, WindowType } from '../../services/WindowSizeManager'
+
 export default class MainWindowContainer {
 
     browserView: BrowserView | null | undefined
@@ -11,9 +13,12 @@ export default class MainWindowContainer {
     isFullscreen = false
 
     constructor() {
+        const mainWindowPosition = getClientWindowPosition(WindowType.MAIN)
         this.mainWindow = new BrowserWindow({
-            width: 1400,
-            height: 900,
+            x: mainWindowPosition?.x ?? 0,
+            y: mainWindowPosition?.y ?? 0,
+            width: mainWindowPosition?.width ?? 1400,
+            height: mainWindowPosition?.height ?? 900,
             minWidth: 1100,
             minHeight: 500,
             title: 'Dwarium',
@@ -23,7 +28,12 @@ export default class MainWindowContainer {
                 backgroundThrottling: false
             },
             useContentSize: true,
-            show: false
+            show: false,
+            paintWhenInitiallyHidden: true
+        })
+        this.mainWindow.webContents.incrementCapturerCount()
+        this.mainWindow.on('close', () => {
+            saveClientWindowPosition(WindowType.MAIN, this.mainWindow.getBounds())
         })
         require("@electron/remote/main").enable(this.mainWindow.webContents)
         this.mainWindow.setMenu(null)
@@ -109,30 +119,50 @@ export default class MainWindowContainer {
         }
     }
 
+    getPositionFor(url: string): Rectangle | undefined {
+        const convertedURL = new URL(url)
+        const path = convertedURL.pathname
+        return getBrowserWindowPosition(path)
+    }
+
+    parseFeatures(features: string): Rectangle {
+        const splittedFeatures = features.split(',')
+        const x = parseInt(splittedFeatures.find(str => str.startsWith('left'))?.split('=').pop() ?? '')
+        const y = parseInt(splittedFeatures.find(str => str.startsWith('top'))?.split('=').pop() ?? '')
+        const width = parseInt(splittedFeatures.find(str => str.startsWith('width'))?.split('=').pop() ?? '')
+        const height = parseInt(splittedFeatures.find(str => str.startsWith('height'))?.split('=').pop() ?? '')
+        return { 
+            x: x, 
+            y: y, 
+            width: width, 
+            height: height 
+        }
+    }
+
     setup() {
         this.browserView = this.createMainBrowserView()
         this.mainWindow.setBrowserView(this.browserView)
 
         // @ts-ignore - TS - FIX
         this.browserView.webContents.setWindowOpenHandler(({ url, features }) => {
-            const splittedFeatures = features.split(',')
-            const left = parseInt(splittedFeatures.find(str => str.startsWith('left'))?.split('=').pop() ?? '')
-            const top = parseInt(splittedFeatures.find(str => str.startsWith('top'))?.split('=').pop() ?? '')
             const excludedUrls = [
                 `${configService.baseUrl()}/action_form.php`,
                 `${configService.baseUrl()}/area_cube_recipes.php`
             ]
+            const windowPosition = this.getPositionFor(url)
+            const defaultPosition = this.parseFeatures(features)
             for(const excludeUrl of excludedUrls) {
                 if(url.includes(excludeUrl)) {
                     return {
                         action: 'allow',
                         overrideBrowserWindowOptions: {
                             parent: configService.windowsAboveApp() ? TabsController.mainWindow : null,
-                            x: left > 0 ? left : 0,
-                            y: top > 0 ? top : 0,
-                            webPreferences: {
-                                enablePreferredSizeMode: true
-                            }
+                            x: windowPosition?.x ?? (defaultPosition.x > 0 ? defaultPosition.x : 0),
+                            y: windowPosition?.y ?? (defaultPosition.y > 0 ? defaultPosition.y : 0),
+                            width:  windowPosition?.width ?? defaultPosition.width,
+                            height:  windowPosition?.height ?? defaultPosition.height,
+                            resizable: true, 
+                            movable: true
                         }
                     }
                 }
@@ -147,8 +177,12 @@ export default class MainWindowContainer {
                     action: 'allow',
                     overrideBrowserWindowOptions: {
                         parent: configService.windowsAboveApp() ? TabsController.mainWindow : null,
-                        x: left > 0 ? left : 0,
-                        y: top > 0 ? top : 0,
+                        x: windowPosition?.x ?? (defaultPosition.x > 0 ? defaultPosition.x : 0),
+                        y: windowPosition?.y ?? (defaultPosition.y > 0 ? defaultPosition.y : 0),
+                        width:  windowPosition?.width ?? defaultPosition.width,
+                        height:  windowPosition?.height ?? defaultPosition.height,
+                        resizable: true, 
+                        movable: true,
                         webPreferences: {
                             contextIsolation: false,
                             nativeWindowOpen: true,
@@ -162,11 +196,6 @@ export default class MainWindowContainer {
 
         this.browserView?.webContents.on('did-create-window', (window) => {
             this.setupCreatedWindow(window)
-            window.on('close', () => {
-                if(configService.windowsAboveApp()) {
-                    this.mainWindow.focus()
-                }
-            })
         })
     }
 
@@ -178,22 +207,31 @@ export default class MainWindowContainer {
 
     setupOpenHandler(window: BrowserWindow) {
         window.webContents.setWindowOpenHandler(({ url, features }) => {
-            const splittedFeatures = features.split(',')
-            const x = parseInt(splittedFeatures.find(str => str.startsWith('left'))?.split('=').pop() ?? '')
-            const y = parseInt(splittedFeatures.find(str => str.startsWith('top'))?.split('=').pop() ?? '')
-            const width = parseInt(splittedFeatures.find(str => str.startsWith('width'))?.split('=').pop() ?? '')
-            const height = parseInt(splittedFeatures.find(str => str.startsWith('height'))?.split('=').pop() ?? '')
+            const windowPosition = this.getPositionFor(url)
+            const defaultPosition = this.parseFeatures(features)
+
             const newWindow = new BrowserWindow({
-                x: x,
-                y:y,
-                width: width,
-                height: height,
+                x: windowPosition?.x ?? (defaultPosition.x > 0 ? defaultPosition.x : 0),
+                y: windowPosition?.y ?? (defaultPosition.y > 0 ? defaultPosition.y : 0),
+                width: windowPosition?.width ?? defaultPosition.width,
+                height: windowPosition?.height ?? defaultPosition.height,
                 parent: configService.windowsAboveApp() ? this.mainWindow : undefined
             })
             this.setupOpenHandler(newWindow)
             newWindow.loadURL(url)
             return {
                 action: 'deny'
+            }
+        })
+        window.on('close', () => {
+            const url = window.webContents?.getURL()
+            if(!url) {
+                return
+            }
+            const convertedURL = new URL(url)
+            saveBrowserWindowPosition(convertedURL.pathname, window.getBounds())
+            if(configService.windowsAboveApp()) {
+                this.mainWindow.focus()
             }
         })
     }
@@ -241,8 +279,7 @@ export default class MainWindowContainer {
                 preload: path.join(__dirname, 'MainBrowserViewPreload.js'),
                 contextIsolation: false,
                 nativeWindowOpen: true,
-                webSecurity: false,
-                backgroundThrottling: false
+                webSecurity: false
             }
         })
         browserView.webContents.on('did-finish-load', () => {
