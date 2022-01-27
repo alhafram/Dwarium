@@ -131,6 +131,7 @@ ipcMain.handle('LoadSetItems', async (evt, args: [string]) => {
 
 ipcMain.on(Channel.FIND_CHARACTER, (event, nick) => {
     const userInfoBrowserWindow = createWindowAndLoad(WindowType.USER_INFO)
+    setupCloseLogic(userInfoBrowserWindow, WindowType.USER_INFO, () => {})
     userInfoBrowserWindow.webContents.loadURL(`${configService.baseUrl()}/user_info.php?nick=${nick}`)
 })
 
@@ -174,6 +175,7 @@ ipcMain.on(Channel.TAKE_SCREENSHOT, async () => {
 
 ipcMain.on(Channel.FIND_EFFECTS, (event, nick) => {
     const effetsInfoBrowserWindow = createWindowAndLoad(WindowType.USER_EFFECTS)
+    setupCloseLogic(effetsInfoBrowserWindow, WindowType.USER_EFFECTS, () => {})
     effetsInfoBrowserWindow.webContents.loadURL(`${configService.baseUrl()}/effect_info.php?nick=${nick}`)
 })
 
