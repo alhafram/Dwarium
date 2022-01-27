@@ -41,6 +41,22 @@ function createWindow() {
             requestHeaders: details.requestHeaders
         })
     })
+
+    const filter = {
+        urls: ['*://*.dwar.ru/*', '*://*.dwar.mail.ru/*']
+    }
+    session.defaultSession.webRequest.onBeforeRequest(filter, (details, callback) => {
+        if(details.resourceType == 'script') {
+            if(details.url.includes('cht.js')) {
+                callback({
+                    redirectURL: `file://${app.getAppPath()}/out/Scripts/cht.js`
+                })
+                return
+            }
+        }
+        callback({})
+    })
+
     TabsController.mainWindow = mainWindowContainer.mainWindow
     TabsController.mainWindowContainer = mainWindowContainer
     require('./ipcMainHandler')

@@ -10,10 +10,21 @@ type ChatMessage = {
 
 const notificationTitle = 'Оповещение!'
 
-enum NotificationDescription {
+enum NotificationType {
     ATTACKED = 'На вас совершено нападение!',
     BATTLEGROUND = 'Получена сюдашка на поле боя!',
     MESSAGE = 'Получено новое сообщение!'
+}
+
+function getSoundFor(notificationType: NotificationType) {
+    switch(notificationType) {
+        case NotificationType.ATTACKED:
+            return 'attacked.ogg'
+        case NotificationType.BATTLEGROUND:
+            return 'battleground.ogg'
+        case NotificationType.MESSAGE:
+            return 'message.ogg'
+    }
 }
 
 export default function sendNotification(message: ChatMessage | null) {
@@ -25,10 +36,10 @@ export default function sendNotification(message: ChatMessage | null) {
         setupBounce('critical')
         setupFlashFlame()
         if(ConfigService.fightNotificationsSystem()) {
-            new Notification({ title: notificationTitle, body: NotificationDescription.ATTACKED }).show()
+            new Notification({ title: notificationTitle, body: NotificationType.ATTACKED }).show()
         }
         if(ConfigService.fightNotificationsIngame()) {
-            playIngameNotificationSound()
+            playIngameNotificationSound(NotificationType.ATTACKED)
         }
     }
 
@@ -36,10 +47,10 @@ export default function sendNotification(message: ChatMessage | null) {
         setupBounce('critical')
         setupFlashFlame()
         if(ConfigService.battlegroundNotificationsSystem()) {
-            new Notification({ title: notificationTitle, body: NotificationDescription.BATTLEGROUND }).show()
+            new Notification({ title: notificationTitle, body: NotificationType.BATTLEGROUND }).show()
         }
         if(ConfigService.battlegroundNotificationsIngame()) {
-            playIngameNotificationSound()
+            playIngameNotificationSound(NotificationType.BATTLEGROUND)
         }
     }
 
@@ -48,10 +59,10 @@ export default function sendNotification(message: ChatMessage | null) {
             setupFlashFlame()
             setupBounce('informational')
             if(ConfigService.messageNotificationsSystem()) {
-                new Notification({ title: notificationTitle, body: NotificationDescription.MESSAGE }).show()
+                new Notification({ title: notificationTitle, body: NotificationType.MESSAGE }).show()
             }
             if(ConfigService.messageNotificationsIngame()) {
-                playIngameNotificationSound()
+                playIngameNotificationSound(NotificationType.MESSAGE)
             }
         }
     }
@@ -70,7 +81,7 @@ function setupBounce(type: 'critical' | 'informational') {
     }
 }
 
-function playIngameNotificationSound() {
-    var audio = new Audio('file://' + app.getAppPath() + '/Resources/message.ogg')
+function playIngameNotificationSound(type: NotificationType) {
+    var audio = new Audio(`file://${app.getAppPath()}/Resources/${getSoundFor(type)}`)
     audio.play()
 }
