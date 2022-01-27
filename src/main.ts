@@ -1,6 +1,6 @@
 import { app, session } from 'electron'
 import { TabsController } from './services/TabsController'
-import MainWindowContainer from './components/MainWindow/MainWindow'
+import MainWindowContainer from './Components/MainWindow/MainWindow'
 import { autoUpdater } from "electron-updater"
 import configService from './services/ConfigService'
 require('@electron/remote/main').initialize()

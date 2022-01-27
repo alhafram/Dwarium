@@ -44,12 +44,12 @@ export function setupCloseLogic(window: BrowserWindow, windowType: WindowType, o
 }
 
 export enum Preload {
-    DRESSING = '../components/Dressing/preload.js',
-    BELT = '../components/Belt/preload.js',
-    CHAT_LOG = '../components/ChatLog/preload.js',
-    SETTINGS = '../components/Settings/preload.js',
-    NOTES = '../components/Notes/preload.js',
-    FOOD = '../components/Food/preload.js'
+    DRESSING = '../Components/Dressing/preload.js',
+    BELT = '../Components/Belt/preload.js',
+    CHAT_LOG = '../Components/ChatLog/preload.js',
+    SETTINGS = '../Components/Settings/preload.js',
+    NOTES = '../Components/Notes/preload.js',
+    FOOD = '../Components/Food/preload.js'
 }
 
 export enum HTMLPath {

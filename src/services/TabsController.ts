@@ -1,5 +1,5 @@
 import { BrowserView, BrowserWindow } from "electron"
-import MainWindowContainer from '../components/MainWindow/MainWindow'
+import MainWindowContainer from '../Components/MainWindow/MainWindow'
 
 interface Tab {
     [key: string]: BrowserView;
