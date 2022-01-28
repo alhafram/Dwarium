@@ -5,6 +5,7 @@ import {
 import ConfigService from '../../services/ConfigService'
 import { FoodSettings } from '../../Models/FoodSettings'
 import '../BaseAPI'
+import { Channel } from '../../Models/Channel'
 
 contextBridge.exposeInMainWorld('foodAPI', {
     baseUrl: () => {
@@ -26,6 +27,7 @@ contextBridge.exposeInMainWorld('foodAPI', {
     save: (hpFood: FoodSettings, mpFood: FoodSettings) => {
         ConfigService.writeData('hpFood', hpFood.id == null ? null : hpFood)
         ConfigService.writeData('mpFood', mpFood.id == null ? null : mpFood)
+        ipcRenderer.send(Channel.FOOD_CHANGED)
     }
 })
 

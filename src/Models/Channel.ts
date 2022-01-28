@@ -24,5 +24,6 @@ export enum Channel {
     FINISH_LOAD_URL = 'finishLoadUrl',
     URL = 'url',
     SERVER = 'server',
-    UPDATE_APPLICATION_AVAILABLE = 'updateApplicationAvailable'
+    UPDATE_APPLICATION_AVAILABLE = 'updateApplicationAvailable',
+    FOOD_CHANGED = 'foodChanged'
 }

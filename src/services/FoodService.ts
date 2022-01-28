@@ -1,77 +1,113 @@
-import { ipcRenderer } from "electron"
-import { InventoryItem } from '../Models/InventoryItem'
 import ConfigService from './ConfigService'
-import { FoodSettings } from '../Models/FoodSettings'
 
-export default async function eat() {
-    // @ts-ignore
-    if(top[0].canvas.app.avatar.model.ghost) {
+type FoodItem = {
+    id: string
+    actionId: string
+    addHp: number
+    addMp: number
+    cnt: number,
+    picture: string
+}
+
+async function fetchFood(): Promise<FoodItem[]> {
+    let req = await fetch(`${ConfigService.baseUrl()}/user_conf.php?mode=food`)
+    let text = await req.text()
+    const parser = new DOMParser()
+    const doc = parser.parseFromString(text, "application/xml")
+    const items = Array.from(doc.documentElement.children)
+    return items.map(item => {
+        const foodItem: FoodItem = {
+            id: item.id,
+            actionId: item.getAttribute('action_id')!,
+            addHp: parseInt(item.getAttribute('add_hp')!),
+            addMp: parseInt(item.getAttribute('add_mp')!),
+            cnt: parseInt(item.getAttribute('cnt')!),
+            picture: item.getAttribute('picture')!
+        }
+        return foodItem
+    })
+}
+
+let hpFoodItem: FoodItem | undefined
+let mpFoodItem: FoodItem | undefined
+
+function reset() {
+    hpFoodItem = undefined
+    mpFoodItem = undefined
+}
+
+async function eat() {
+    if(isGhost()) {
         return
     }
-    const result = await ipcRenderer.invoke('LoadSetItems', ['allItems', 'allPotions'])
-    const allItems = Object.keys(result.allItems).map(key => result.allItems[key]) as InventoryItem[]
-    const allPotions = Object.keys(result.allPotions).map(key => result.allPotions[key]) as InventoryItem[]
-    const itemsWithFoodEnchant = allItems.filter(item => item.enchant_mod && item.enchant_mod.value.includes('сытости'))
-    const foodItems = allPotions.filter(item => item.kind_id == '48')
-    const allFoodItems = itemsWithFoodEnchant.concat(foodItems)
-
     const hpFood = ConfigService.hpFood()
     const mpFood = ConfigService.mpFood()
-    let hpEatCounter = 0
-    if(hpFood && hpFood.id) {
-        if(!hpFood.actionId) {
-            alert('Пересохраните настройки еды!')
-            return
-        }
-        const hpFoodInInventory = allFoodItems.find(item => item.id == hpFood.id)
-        if(hpFoodInInventory) {
-            // @ts-ignore
-            while((top[0].canvas.app.avatar.model.hpCur / top[0].canvas.app.avatar.model.hpMax) * 100 < hpFood.percentage) {
-                // @ts-ignore
-                if(top[0].canvas.app.avatar.model.ghost) {
-                    return
-                }
-                if(hpEatCounter > 9) {
-                    alert('Еда на хп съелась 10 раз!! Возможно что то пошло не так! Напишите в группу!!!')
-                    return
-                }
-                await useItem(hpFood)
-                hpEatCounter += 1
-            }
-        } else {
-            ConfigService.writeData('hpFood', null)
-            alert('Кончилась еда на ХП')
+    if(hpFood || mpFood) {
+        if(!hpFoodItem && !mpFoodItem) {
+            const foodItems = await fetchFood()
+            hpFoodItem = foodItems.find(foodItem => foodItem.id == hpFood?.id)
+            mpFoodItem = foodItems.find(foodItem => foodItem.id == mpFood?.id)
         }
     }
-    let mpEatCounter = 0
-    if(mpFood && mpFood.id) {
-        if(!mpFood.actionId) {
-            alert('Пересохраните настройки еды!')
+
+    // @ts-ignore
+    var hpCur = top[0].canvas.app.avatar.model.hpCur as number
+    // @ts-ignore
+    var hpMax = top[0].canvas.app.avatar.model.hpMax as number
+    // @ts-ignore
+    var mpCur = top[0].canvas.app.avatar.model.mpCur as number
+    // @ts-ignore
+    var mpMax = top[0].canvas.app.avatar.model.mpMax as number
+
+    if(hpFoodItem && hpFood) {
+        if(hpFoodItem.cnt <= 0) {
+            ConfigService.writeData('hpFood', null)
+            alert('Кончилась еда на хп')
             return
         }
-        const mpFoodInInventory = allFoodItems.find(item => item.id == mpFood.id)
-        if(mpFoodInInventory) {
-            // @ts-ignore
-            if((top[0].canvas.app.avatar.model.mpCur / top[0].canvas.app.avatar.model.mpMax) * 100 < mpFood.percentage) {
-                // @ts-ignore
-                if(top[0].canvas.app.avatar.model.ghost) {
-                    return
-                }
-                if(mpEatCounter > 9) {
-                    alert('Еда на хп съелась 10 раз!! Возможно что то пошло не так! Напишите в группу!!!')
-                    return
-                }
-                await useItem(mpFood)
-                mpEatCounter += 1
+        while((hpCur / hpMax) * 100 < parseInt(hpFood.percentage)) {
+            if(isGhost()) {
+                return
             }
-        } else {
+            await useItem(hpFoodItem)
+            hpCur += hpFoodItem.addHp
+            mpCur += hpFoodItem.addMp
+            if(!isBacon(hpFoodItem)) {
+                hpFoodItem.cnt -= 1
+            }
+        }
+    }
+
+    if(mpFoodItem && mpFood) {
+        if(mpFoodItem.cnt <= 0) {
             ConfigService.writeData('mpFood', null)
-            alert('Кончилась еда на МП')
+            alert('Кончилась еда на мп')
+            return
+        }
+        while((mpCur / mpMax) * 100 < parseInt(mpFood.percentage)) {
+            if(isGhost()) {
+                return
+            }
+            await useItem(mpFoodItem)
+            hpCur += mpFoodItem.addHp
+            mpCur += mpFoodItem.addMp
+            if(!isBacon(mpFoodItem)) {
+                mpFoodItem.cnt -= 1
+            }
         }
     }
 }
 
-async function useItem(item: FoodSettings): Promise<void> {
+function isGhost(): boolean {
+    // @ts-ignore
+    return top[0].canvas.app.avatar.model.ghost
+}
+
+function isBacon(item: FoodItem): boolean {
+    return item.picture == 'food_bacon_n_eggs_violet.gif'
+}
+
+async function useItem(item: FoodItem): Promise<void> {
     await fetch(`${ConfigService.baseUrl()}/action_run.php`, {
         'headers': {
             'content-type': 'application/x-www-form-urlencoded',
@@ -83,4 +119,9 @@ async function useItem(item: FoodSettings): Promise<void> {
         'mode': 'cors',
         'credentials': 'include'
     })
+}
+
+export default {
+    eat,
+    reset
 }

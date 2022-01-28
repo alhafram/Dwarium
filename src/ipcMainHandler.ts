@@ -179,6 +179,10 @@ ipcMain.on(Channel.FIND_EFFECTS, (event, nick) => {
     effetsInfoBrowserWindow.webContents.loadURL(`${configService.baseUrl()}/effect_info.php?nick=${nick}`)
 })
 
+ipcMain.on(Channel.FOOD_CHANGED, () => {
+    TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.FOOD_CHANGED)
+})
+
 /// WINDOWS 
 
 let settingsWindow: BrowserWindow | null
