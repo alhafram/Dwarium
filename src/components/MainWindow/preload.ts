@@ -1,7 +1,7 @@
 import { ipcRenderer } from 'electron'
 import configService from '../../services/ConfigService'
 import { Channel } from '../../Models/Channel'
-import { generateRandomId } from '../../components/Utils'
+import { generateRandomId } from '../Utils'
 
 let switcher: HTMLElement | null
 let tabs: HTMLElement | null

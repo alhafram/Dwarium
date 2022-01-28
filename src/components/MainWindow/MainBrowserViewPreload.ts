@@ -2,7 +2,7 @@ import { ipcRenderer } from 'electron'
 import { Channel } from '../../Models/Channel'
 import sendNotification from '../../services/Notifications'
 import ChatService from '../../services/ChatService'
-import eat from '../../services/FoodService'
+import FoodService from '../../services/FoodService'
 
 window.addEventListener('DOMContentLoaded', async () => {
     ChatService.setupShortcut()
@@ -11,7 +11,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 document.addEventListener('Message', (event) => {
     const message = (<CustomEvent>event).detail
     if(message.channel == 2 && message.msg_text && message.msg_text.includes('Окончен бой')) {
-        eat()
+        FoodService.eat()
     }
     sendNotification(message)
 })
@@ -24,4 +24,8 @@ document.addEventListener('MessageDom', (event) => {
 ipcRenderer.on(Channel.USER_PRV, function(event, nick) {
     // @ts-ignore
     userPrvTag(nick)
+})
+
+ipcRenderer.on(Channel.FOOD_CHANGED, function(event, nick) {
+    FoodService.reset()
 })
