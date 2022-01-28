@@ -1,11 +1,11 @@
-import { app, session } from 'electron'
+import { app, session, shell } from 'electron'
 import { TabsController } from './services/TabsController'
 import MainWindowContainer from './Components/MainWindow/MainWindow'
-import { autoUpdater } from "electron-updater"
+import { autoUpdater } from 'electron-updater'
 import configService from './services/ConfigService'
 require('@electron/remote/main').initialize()
 require('v8-compile-cache')
-import electronReload from "electron-reload"
+import electronReload from 'electron-reload'
 import { Channel } from './Models/Channel'
 electronReload(__dirname, {})
 
@@ -15,7 +15,6 @@ setInterval(() => {
 }, 1000 * 60 * 60)
 
 autoUpdater.signals.updateDownloaded((info: any) => {
-    console.log("DOWNLOADED", info)
     mainWindowContainer?.mainWindow.webContents.send(Channel.UPDATE_APPLICATION_AVAILABLE)
 })
 
@@ -32,7 +31,7 @@ function createWindow() {
     TabsController.setupMain(mainWindowContainer.browserView!)
     mainWindowContainer.setViewContentBounds(TabsController.currentTab())
     mainWindowContainer.start()
-    require("@electron/remote/main").enable(mainWindowContainer.browserView!.webContents)
+    require('@electron/remote/main').enable(mainWindowContainer.browserView!.webContents)
 
     session.defaultSession.webRequest.onBeforeSendHeaders((details: { requestHeaders: { [x: string]: any } }, callback: (arg0: { cancel: boolean; requestHeaders: any }) => void) => {
         details.requestHeaders['User-Agent'] = configService.userAgent()

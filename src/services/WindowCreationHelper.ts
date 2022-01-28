@@ -3,6 +3,7 @@ import path from 'path'
 import { TabsController } from './TabsController'
 import { BrowserWindow } from 'electron'
 import { Channel } from '../Models/Channel'
+import setupContextMenu from './ContextMenu'
 
 import { getClientWindowPosition, saveClientWindowPosition } from './WindowSizeManager'
 
@@ -21,6 +22,7 @@ export function createWindowAndLoad(windowType: WindowType, htmlPath?: HTMLPath,
             contextIsolation: contextIsolation
         }
     })
+    setupContextMenu(window)
     if(htmlPath) {
         window.loadFile(path.join(__dirname, htmlPath))
     }

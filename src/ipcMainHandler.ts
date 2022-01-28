@@ -5,6 +5,7 @@ import { autoUpdater } from "electron-updater"
 import fs from 'fs'
 import { Channel } from './Models/Channel'
 import { createWindowAndLoad, WindowType, setupCloseLogic, HTMLPath, Preload } from './services/WindowCreationHelper'
+import setupContextMenu from './services/ContextMenu'
 
 ipcMain.on(Channel.LOAD_URL, (evt, server) => {
     configService.writeData('server', server)
@@ -39,6 +40,7 @@ function createNewTab(url: string, id: string) {
             enablePreferredSizeMode: true
         }
     })
+    setupContextMenu(browserView)
     const tabId = id
     browserView.webContents.on('did-finish-load', () => {
         let originalTitle = browserView.webContents.getTitle()

@@ -4,6 +4,7 @@ import configService from '../../services/ConfigService'
 import { TabsController } from '../../services/TabsController'
 import { Channel } from '../../Models/Channel'
 import { WindowType } from '../../services/WindowCreationHelper'
+import setupContextMenu from '../../services/ContextMenu'
 import { getBrowserWindowPosition, getClientWindowPosition, saveBrowserWindowPosition, saveClientWindowPosition } from '../../services/WindowSizeManager'
 
 export default class MainWindowContainer {
@@ -196,6 +197,7 @@ export default class MainWindowContainer {
 
         this.browserView?.webContents.on('did-create-window', (window) => {
             this.setupCreatedWindow(window)
+            setupContextMenu(window)
         })
     }
 
@@ -217,6 +219,7 @@ export default class MainWindowContainer {
                 height: windowPosition?.height ?? defaultPosition.height,
                 parent: configService.windowsAboveApp() ? this.mainWindow : undefined
             })
+            setupContextMenu(newWindow)
             this.setupOpenHandler(newWindow)
             newWindow.loadURL(url)
             return {
@@ -282,6 +285,7 @@ export default class MainWindowContainer {
                 webSecurity: false
             }
         })
+        setupContextMenu(browserView)
         browserView.webContents.on('did-finish-load', () => {
             this.mainWindow.webContents.send(Channel.URL, browserView.webContents.getURL(), 'main')
         })

@@ -155,14 +155,16 @@ async function reduce(state: FoodWindowState = initialState, action: FoodWindowA
     let allItems = state.allItems
     switch(action) {
         case FoodWindowActions.LOAD_CONTENT:
-            let result = await window.foodAPI.loadItemsData(['allItems', 'allPotions'])
+            let result = await window.foodAPI.loadItemsData(['allItems', 'allPotions', 'wearedItems'])
             let foodResult = await window.foodAPI.fetchFood()
             const parser = new DOMParser()
             const doc = parser.parseFromString(foodResult, "application/xml")
             const xmlFoodItems = Array.from(doc.documentElement.children)
             
-            allItems = Object.keys(result.allItems).map(key => result.allItems[key]) as InventoryItem[]
-            allItems = allItems.concat(Object.keys(result.allPotions).map(key => result.allPotions[key]) as InventoryItem[])
+            const items = Object.keys(result.allItems).map(key => result.allItems[key]) as InventoryItem[]
+            const potions = Object.keys(result.allPotions).map(key => result.allPotions[key]) as InventoryItem[]
+            const wearedItems = Object.keys(result.wearedItems).map(key => result.wearedItems[key]) as InventoryItem[]
+            allItems = allItems.concat(items).concat(potions).concat(wearedItems)
             
             const allFoodItems = xmlFoodItems.map(xmlFoodItem => {
                 let type: FoodType
@@ -203,7 +205,7 @@ async function reduce(state: FoodWindowState = initialState, action: FoodWindowA
                 }
             }
 
-            art_alt = Object.assign(result.allItems, result.allPotions)
+            art_alt = Object.assign(result.allItems, result.allPotions, result.wearedItems)
             return {
                 ...state,
                 allItems: allFoodItems,
