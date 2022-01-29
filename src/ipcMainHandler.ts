@@ -118,6 +118,10 @@ ipcMain.handle('LoadSetItems', async (evt, args: [string]) => {
         allPotions: {
             url: `${configService.baseUrl()}/user_iframe.php?group=1`,
             script: 'art_alt'
+        },
+        otherItems: {
+            url: `${configService.baseUrl()}/user_iframe.php?group=3`,
+            script: 'art_alt' 
         }
     }
     // @ts-ignore
