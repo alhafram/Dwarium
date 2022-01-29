@@ -10,9 +10,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
 document.addEventListener('Message', (event) => {
     const message = (<CustomEvent>event).detail
-    if(message.channel == 2 && message.msg_text && message.msg_text.includes('Окончен бой')) {
-        FoodService.eat()
-    }
+    FoodService.eat(message)
     sendNotification(message)
 })
 

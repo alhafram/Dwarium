@@ -1,7 +1,7 @@
 import { app, Notification, getCurrentWindow } from '@electron/remote'
 import ConfigService from './ConfigService'
 
-type ChatMessage = {
+export type ChatMessage = {
     channel: number
     msg_text: string | null | undefined
     bonus_text: number | null | undefined,
@@ -32,7 +32,7 @@ export default function sendNotification(message: ChatMessage | null) {
     // @ts-ignore
     const nickname = top[0]?.canvas?.app?.avatar?.model?.login ?? ''
 
-    if(message?.channel == 2 && message?.msg_text?.toLocaleLowerCase().includes("на вас совершено")) {
+    if(message?.channel == 2 && message?.msg_text?.toLocaleLowerCase().includes("на вас совершено") && !message.to_user_nicks) {
         setupBounce('critical')
         setupFlashFlame()
         if(ConfigService.fightNotificationsSystem()) {

@@ -1,4 +1,5 @@
 import ConfigService from './ConfigService'
+import { ChatMessage } from './Notifications'
 
 type FoodItem = {
     id: string
@@ -36,7 +37,10 @@ function reset() {
     mpFoodItem = undefined
 }
 
-async function eat() {
+async function eat(message: ChatMessage) {
+    if(!(message.channel == 2 && message.msg_text && message.msg_text.toLocaleLowerCase().includes('окончен бой') && !message.to_user_nicks)) {
+        return
+    }
     if(isGhost()) {
         return
     }
