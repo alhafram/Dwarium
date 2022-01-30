@@ -1,6 +1,6 @@
 {
     "name": "Dwarium",
-    "version": "1.0.11",
+    "version": "1.0.12",
     "description": "",
     "main": "out/main.js",
     "scripts": {
@@ -20,8 +20,8 @@
     "devDependencies": {
         "@types/jquery": "^3.5.13",
         "concurrently": "^7.0.0",
-        "electron": "^16.0.6",
-        "electron-builder": "^22.14.5",
+        "electron": "^16.0.8",
+        "electron-builder": "^22.14.13",
         "typescript": "^4.5.4"
     },
     "dependencies": {
