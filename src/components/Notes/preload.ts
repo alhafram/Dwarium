@@ -1,20 +1,27 @@
 import { contextBridge } from 'electron'
 import configService from '../../services/ConfigService'
+import NotesService from '../../services/NotesService'
 
 contextBridge.exposeInMainWorld('notesAPI', {
-    loadNotes: () => {
+    // Refactor 1.0.15
+    loadOldNotes: () => {
         return configService.notes()
     },
+    loadNewNotes: () => {
+        return NotesService.notes()
+    },
     saveNote: (note: any) => {
-        configService.writeData(note.id, JSON.stringify(note))
+        NotesService.writeData(note.id, JSON.stringify(note))
     },
     removeNote: (id: string) => {
         configService.writeData(id, null)
+        NotesService.writeData(id, null)
     }
 })
 
 export interface NotesAPI {
-    loadNotes: () => any,
+    loadOldNotes: () => any,
+    loadNewNotes: () => any,
     saveNote: (note: {}) => void,
     removeNote: (id: string) => void
 }
