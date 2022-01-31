@@ -65,7 +65,8 @@ type FoodWindowState = {
     hpItem: InventoryItem | null,
     mpItem: InventoryItem | null,
     hpPercentage: string,
-    mpPercentage: string
+    mpPercentage: string,
+    userId: number
 }
 
 var initialState: FoodWindowState = {
@@ -73,7 +74,8 @@ var initialState: FoodWindowState = {
     hpItem: null,
     mpItem: null,
     hpPercentage: '',
-    mpPercentage: ''
+    mpPercentage: '',
+    userId: 0
 }
 
 enum FoodWindowActions {
@@ -183,9 +185,20 @@ async function reduce(state: FoodWindowState = initialState, action: FoodWindowA
                 item!.foodType = type
                 return item
             })
+            const userId = await window.foodAPI.getUserId() as number
+            if(!userId) {
+                console.log("Не найден user id пользователя, попробуйте авторизоваться и заново открыть автопоедалку!")
+                return state
+            }
+            const userConfig = window.foodAPI.getUserConfig(userId)
             
-            const currentHpFoodSettings = window.foodAPI.hpFood()
-            const currentMpFoodSettings = window.foodAPI.mpFood()
+            const currentHpFoodSettings = userConfig.hpFood ?? window.foodAPI.hpFood()
+            const currentMpFoodSettings = userConfig.mpFood ?? window.foodAPI.mpFood()
+
+            window.foodAPI.saveOld({ id: null, percentage: '' }, { id: null, percentage: '' })
+            userConfig.hpFood = currentHpFoodSettings
+            userConfig.mpFood = currentMpFoodSettings
+            window.foodAPI.saveNew(userConfig)
 
             let currentHpFood: InventoryItem | null = null
             let currentMpFood: InventoryItem | null = null
@@ -213,7 +226,8 @@ async function reduce(state: FoodWindowState = initialState, action: FoodWindowA
                 hpItem: currentHpFood,
                 mpItem: currentMpFood,
                 hpPercentage: currentHpPercentage,
-                mpPercentage: currentMpPercentage
+                mpPercentage: currentMpPercentage,
+                userId: userId
             }
         case FoodWindowActions.EQUIP:
             const equipedItemBox = data[0] as HTMLDivElement
@@ -303,7 +317,10 @@ async function reduce(state: FoodWindowState = initialState, action: FoodWindowA
                 id: state.mpItem?.id,
                 percentage: mpPercentage
             }
-            window.foodAPI.save(hpSetting, mpSetting)
+            const newUserConfig = window.foodAPI.getUserConfig(state.userId)
+            newUserConfig.hpFood = hpSetting
+            newUserConfig.mpFood = mpSetting
+            window.foodAPI.saveNew(newUserConfig)
             Elements.saveBox().disabled = false
             return state
         case FoodWindowActions.CHANGE_HP_PERCENTAGE:

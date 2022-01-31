@@ -100,10 +100,15 @@ function createNoteElement(note: Note, active: boolean = false) {
 async function reduce(state: NotesWindowState = initialState, action: NotesWindowActions, data ? : any): Promise < NotesWindowState > {
     switch(action) {
         case NotesWindowActions.LOAD_CONTENT:
-            const loadedNotes = window.notesAPI.loadNotes() as Note[]
+            const loadedOldNotes = window.notesAPI.loadOldNotes() as Note[]
+            loadedOldNotes.forEach(note => {
+                window.notesAPI.saveNote(note)
+                window.notesAPI.removeNote(note.id)
+            })
+            const newNotes = window.notesAPI.loadNewNotes() as Note[]
             return {
                 ...state,
-                notes: loadedNotes
+                notes: newNotes
             }
         case NotesWindowActions.CREATE_NEW_NOTE:
             Elements.editorBox().value = ''

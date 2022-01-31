@@ -189,6 +189,10 @@ ipcMain.on(Channel.FOOD_CHANGED, () => {
     TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.FOOD_CHANGED)
 })
 
+ipcMain.handle(Channel.GET_ID, async () => {
+    return await TabsController.mainWindowContainer?.browserView?.webContents.executeJavaScript('top._top().myId')
+})
+
 /// WINDOWS 
 
 let settingsWindow: BrowserWindow | null

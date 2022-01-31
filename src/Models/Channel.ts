@@ -25,5 +25,6 @@ export enum Channel {
     URL = 'url',
     SERVER = 'server',
     UPDATE_APPLICATION_AVAILABLE = 'updateApplicationAvailable',
-    FOOD_CHANGED = 'foodChanged'
+    FOOD_CHANGED = 'foodChanged',
+    GET_ID = 'getId'
 }
