@@ -44,7 +44,8 @@ type BeltDressingWindowState = {
     activeFilters: DressingFilterColor[],
     sets: BeltDressingSet[],
     currentSet: BeltDressingSet | null,
-    warning: boolean
+    warning: boolean,
+    userId: number
 }
 
 enum DressingFilterColor {
@@ -208,7 +209,8 @@ var initialState: BeltDressingWindowState = {
     sets: [],
     currentSet: null,
     allItems: [],
-    warning: false
+    warning: false,
+    userId: 0
 }
 
 function setupFilters() {
@@ -301,7 +303,25 @@ async function reduce(state: BeltDressingWindowState = initialState, action: Bel
             art_alt = Object.assign({}, items.allPotions)
             const equipedPotionsAltRes = await window.beltPotionAPI.getEquipedPotionsAlt()
             art_alt = Object.assign(art_alt, equipedPotionsAltRes)
+            
+            const userId = await window.beltPotionAPI.getUserId() as number
+            if(!userId) {
+                console.log("Не найден user id пользователя, попробуйте авторизоваться и заново открыть автопоедалку!")
+                return state
+            }
+            const userConfig = window.beltPotionAPI.getUserConfig(userId)
+
             sets = window.beltPotionAPI.loadBeltSets()
+
+            sets.forEach(set => {
+                window.beltPotionAPI.removeSet(set.id)
+            })
+            
+            if(sets.length != 0) {
+                userConfig.beltSets = sets
+            }
+            window.beltPotionAPI.saveNew(userConfig)
+            sets = userConfig.beltSets ?? []
 
             let hasWarning = false
             if(!data) {
@@ -323,7 +343,8 @@ async function reduce(state: BeltDressingWindowState = initialState, action: Bel
                 allItems: allItems,
                 sets: sets,
                 currentEquipedItems: currentEquipedItems,
-                warning: hasWarning
+                warning: hasWarning,
+                userId: userId
             }
         case BeltDressingWindowActions.EQUIP:
             const equipedItemBox = data as HTMLDivElement
@@ -393,8 +414,10 @@ async function reduce(state: BeltDressingWindowState = initialState, action: Bel
             }
         case BeltDressingWindowActions.CREATE_NEW_SET:
             const newSet = data as BeltDressingSet
-            window.beltPotionAPI.saveSet(newSet)
             sets.push(newSet)
+            const userConfig1 = window.beltPotionAPI.getUserConfig(state.userId)
+            userConfig1.beltSets = sets
+            window.beltPotionAPI.saveNew(userConfig1)
             return {
                 ...state,
                 currentSet: newSet,
@@ -417,7 +440,9 @@ async function reduce(state: BeltDressingWindowState = initialState, action: Bel
                 }
                 sets.push(set)
             }
-            window.beltPotionAPI.saveSet(set)
+            const userConfig2 = window.beltPotionAPI.getUserConfig(state.userId)
+            userConfig2.beltSets = sets
+            window.beltPotionAPI.saveNew(userConfig2)
             return {
                 ...state,
                 currentSet: set,
@@ -430,7 +455,11 @@ async function reduce(state: BeltDressingWindowState = initialState, action: Bel
                 const isCurrentSet = deletedSet == state.currentSet
                 const deletedSetId = deletedSet?.id
                 sets = sets.removeItem(deletedSet)
-                window.beltPotionAPI.removeSet(deletedSetId)
+                
+                const userConfig = window.beltPotionAPI.getUserConfig(state.userId)
+                userConfig.beltSets = sets
+                window.beltPotionAPI.saveNew(userConfig)
+
                 currentEquipedItems = isCurrentSet ? [] : state.currentEquipedItems
                 const currentSet = isCurrentSet ? null : state.currentSet
                 return {

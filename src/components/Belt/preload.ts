@@ -2,7 +2,10 @@ import {
     ipcRenderer,
     contextBridge
 } from 'electron'
+import { Channel } from '../../Models/Channel'
+import { UserConfig } from '../../Models/UserConfig'
 import configService from '../../services/ConfigService'
+import UserConfigService from '../../services/UserConfigService'
 import '../BaseAPI'
 import '../Utils'
 
@@ -81,6 +84,16 @@ contextBridge.exposeInMainWorld('beltPotionAPI', {
           'credentials': 'include'
           }).then(resp => resp.text())`
           return ipcRenderer.invoke('MakeWebRequest', req)
+    },
+    getUserId: async () => {
+        const id = await ipcRenderer.invoke(Channel.GET_ID)
+        return id
+    },
+    getUserConfig: (id: number) => {
+        return UserConfigService.get(id)
+    },
+    saveNew: (userConfig: UserConfig) => {
+        UserConfigService.save(userConfig)
     }
 })
 
@@ -97,7 +110,10 @@ export interface BeltPotionAPI {
     getEquipedPotionsAlt: () => Promise<any>,
     updateSlot: (num: string, type: string) => Promise<any>,
     getSlots: () => Promise<number[]>,
-    refreshLeftMenu: () => Promise<any>
+    refreshLeftMenu: () => Promise<any>,
+    getUserId: () => any,
+    getUserConfig: (id: number) => UserConfig,
+    saveNew: (userConfig: UserConfig) => void
 }
 
 declare global {
