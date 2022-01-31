@@ -16,7 +16,8 @@ function get(id: number): UserConfig {
             id: id,
             hpFood: null,
             mpFood: null,
-            sets: []
+            sets: [],
+            beltSets: []
         }
         save(newUserConfig)
     }
