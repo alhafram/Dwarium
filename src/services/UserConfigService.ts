@@ -15,7 +15,8 @@ function get(id: number): UserConfig {
         const newUserConfig: UserConfig = {
             id: id,
             hpFood: null,
-            mpFood: null
+            mpFood: null,
+            sets: []
         }
         save(newUserConfig)
     }

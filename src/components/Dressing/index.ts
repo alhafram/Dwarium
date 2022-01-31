@@ -100,7 +100,8 @@ type DressingWindowState = {
     currentStyle: string | null,
     currentMagicSchool: string | null,
     arcatsCount: number,
-    zikkuratId: string | null
+    zikkuratId: string | null,
+    userId: number
 }
 
 const Elements = {
@@ -248,7 +249,8 @@ var initialState: DressingWindowState = {
     currentStyle: null,
     currentMagicSchool: null,
     arcatsCount: 0,
-    zikkuratId: null
+    zikkuratId: null,
+    userId: 0
 }
 
 enum DressingWindowActions {
@@ -808,7 +810,24 @@ async function reduce(state: DressingWindowState = initialState, action: Dressin
             if(bracelet) {
                 arcatsCount = bracelet.skills.find(s => s.title === 'Слоты для аркатов')!.value.slice(4, 5) as number
             }
-            const loadedSets = window.dressingAPI.loadSets() as DressingSet[]
+            const userId = await window.dressingAPI.getUserId() as number
+            if(!userId) {
+                console.log("Не найден user id пользователя, попробуйте авторизоваться и заново открыть автопоедалку!")
+                return state
+            }
+            const userConfig = window.dressingAPI.getUserConfig(userId)
+            let loadedSets = window.dressingAPI.loadSets() as DressingSet[]
+
+            loadedSets.forEach(set => {
+                window.dressingAPI.removeSet(set.id)
+            })
+            
+            if(loadedSets.length != 0) {
+                userConfig.sets = loadedSets
+            }
+            window.dressingAPI.saveNew(userConfig)
+            loadedSets = userConfig.sets
+
             let preselectSet = loadedSets.find(set => difference(currentEquipedItems.map(item => item.id), set.ids).size == 0 && difference(set.ids, currentEquipedItems.map(item => item.id)).size == 0) || null
             art_alt = Object.assign(result.allItems, result.wearedItems)
             return {
@@ -823,7 +842,8 @@ async function reduce(state: DressingWindowState = initialState, action: Dressin
                 currentSet: preselectSet,
                 arcats: repeatableItems.arcats,
                 rings: repeatableItems.rings,
-                amulets: repeatableItems.amulets
+                amulets: repeatableItems.amulets,
+                userId: userId
             }
         case DressingWindowActions.SELECT_PLACEHOLDER:
             let selectedBox = data as HTMLDivElement
@@ -951,7 +971,9 @@ async function reduce(state: DressingWindowState = initialState, action: Dressin
             }
         case DressingWindowActions.CREATE_NEW_SET:
             const newSet = data as DressingSet
-            window.dressingAPI.saveSet(newSet)
+            const userConfig1 = window.dressingAPI.getUserConfig(state.userId)
+            userConfig1.sets.push(newSet)
+            window.dressingAPI.saveNew(userConfig1)
             sets.push(newSet)
             return {
                 ...state,
@@ -985,7 +1007,9 @@ async function reduce(state: DressingWindowState = initialState, action: Dressin
                 }
                 sets.push(set)
             }
-            window.dressingAPI.saveSet(set)
+            const userConfig2 = window.dressingAPI.getUserConfig(state.userId)
+            userConfig2.sets = sets
+            window.dressingAPI.saveNew(userConfig2)
             return {
                 ...state,
                 currentSet: set,
@@ -998,7 +1022,9 @@ async function reduce(state: DressingWindowState = initialState, action: Dressin
                 const isCurrentSet = deletedSet == state.currentSet
                 const deletedSetId = deletedSet?.id
                 sets = sets.removeItem(deletedSet)
-                window.dressingAPI.removeSet(deletedSetId)
+                const userConfig = window.dressingAPI.getUserConfig(state.userId)
+                userConfig.sets = sets
+                window.dressingAPI.saveNew(userConfig)
                 currentEquipedItems = isCurrentSet ? [] : state.currentEquipedItems
                 const currentSet = isCurrentSet ? null : state.currentSet
                 return {
