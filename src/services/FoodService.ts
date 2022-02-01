@@ -1,5 +1,6 @@
 import ConfigService from './ConfigService'
 import { ChatMessage } from './Notifications'
+import UserConfigService from './UserConfigService'
 
 type FoodItem = {
     id: string
@@ -44,8 +45,12 @@ async function eat(message: ChatMessage) {
     if(isGhost()) {
         return
     }
-    const hpFood = ConfigService.hpFood()
-    const mpFood = ConfigService.mpFood()
+
+    // @ts-ignore
+    const userId = top._top().myId as number;
+    const config = UserConfigService.get(userId)
+    const hpFood = config.hpFood
+    const mpFood = config.mpFood
     if(hpFood || mpFood) {
         if(!hpFoodItem && !mpFoodItem) {
             const foodItems = await fetchFood()
