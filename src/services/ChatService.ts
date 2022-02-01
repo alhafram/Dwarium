@@ -39,7 +39,11 @@ function logMessage(message: any) {
     let html = node.outerHTML
     html = html.replaceAll('src="images/', `src="${ConfigService.baseUrl()}/images/`).replaceAll('src="/images/', `src="${ConfigService.baseUrl()}/images/`)
     html = html.replaceAll('href="/artifact_info.php', `href="${ConfigService.baseUrl()}/artifact_info.php`)
-    logStream.write(html + '\n')
+    logStream.write(html + '\n', (error) => {
+        if(error) {
+            alert('Произошла ошибка, при записи в лог! Напишите в группу!')
+        }
+    })
 }
 
 function setupShortcut() {
