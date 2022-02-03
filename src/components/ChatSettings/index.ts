@@ -351,6 +351,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     Elements.saveBox().onclick = () => {
+        if(confirm('При включении автоответчика/флудилки, рекомендуем использовать UserAgent 4-й версии клиента. Открыть настройки клиента?')) {
+            window.chatSettingsAPI.openSettings()
+        }
         dispatch(ChatSettingsWindowActions.SAVE)
     }
 })

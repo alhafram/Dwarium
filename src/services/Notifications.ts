@@ -1,11 +1,16 @@
 import { app, Notification, getCurrentWindow } from '@electron/remote'
 import ConfigService from './ConfigService'
 
+type ChatMessageUserNicks = {
+    [key: number]: string
+}
+
 export type ChatMessage = {
     channel: number
     msg_text: string | null | undefined
     bonus_text: number | null | undefined,
-    to_user_nicks: string[] | undefined
+    to_user_nicks: ChatMessageUserNicks | undefined,
+    user_nick: string | null | undefined
 }
 
 const notificationTitle = 'Оповещение!'

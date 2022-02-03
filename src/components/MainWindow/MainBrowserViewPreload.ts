@@ -6,12 +6,14 @@ import FoodService from '../../services/FoodService'
 
 window.addEventListener('DOMContentLoaded', async () => {
     ChatService.setupShortcut()
+    ChatService.setupAutoResponder()
 })
 
 document.addEventListener('Message', (event) => {
     const message = (<CustomEvent>event).detail
     FoodService.eat(message)
     sendNotification(message)
+    ChatService.handleMessage(message)
 })
 
 document.addEventListener('MessageDom', (event) => {
