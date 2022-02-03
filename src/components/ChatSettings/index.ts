@@ -299,6 +299,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     Elements.inactiveTimerBox().onchange = () => {
         dispatch(ChatSettingsWindowActions.CHANGE_INACTIVE_TIMER)
     }
+    Elements.inactiveTimerBox().onkeyup = () => {
+        const value = parseInt(Elements.inactiveTimerBox().value)
+        if(value >= 0 && !isNaN(value)) {
+            dispatch(ChatSettingsWindowActions.CHANGE_INACTIVE_TIMER)
+        } else {
+            Elements.inactiveTimerBox().value = '0'
+        }
+    }
 
     Elements.privateChatResponseBox().onchange = () => {
         dispatch(ChatSettingsWindowActions.CHANGE_PRIVATE_CHAT_RESPONSE)
@@ -325,11 +333,27 @@ document.addEventListener('DOMContentLoaded', async () => {
     Elements.commonChatFloodingTimerBox().onchange = () => {
         dispatch(ChatSettingsWindowActions.CHANGE_COMMON_CHAT_FLOODING_TIMER)
     }
+    Elements.commonChatFloodingTimerBox().onkeyup = () => {
+        const value = parseInt(Elements.commonChatFloodingTimerBox().value)
+        if(value >= 1 && !isNaN(value)) {
+            dispatch(ChatSettingsWindowActions.CHANGE_COMMON_CHAT_FLOODING_TIMER)
+        } else {
+            Elements.commonChatFloodingTimerBox().value = '1'
+        }
+    }
     Elements.tradeChatFloodingMessageBox().onchange = () => {
         dispatch(ChatSettingsWindowActions.CHANGE_TRADE_CHAT_FLOODING_MESSAGE)
     }
     Elements.tradeChatFloodingTimerBox().onchange = () => {
         dispatch(ChatSettingsWindowActions.CHANGE_TRADE_CHAT_FLOODING_TIMER)
+    }
+    Elements.tradeChatFloodingTimerBox().onkeyup = () => {
+        const value = parseInt(Elements.tradeChatFloodingTimerBox().value)
+        if(value >= 1 && !isNaN(value)) {
+            dispatch(ChatSettingsWindowActions.CHANGE_TRADE_CHAT_FLOODING_TIMER)
+        } else {
+            Elements.tradeChatFloodingTimerBox().value = '1'
+        }
     }
     Elements.groupChatFloodingMessageBox().onchange = () => {
         dispatch(ChatSettingsWindowActions.CHANGE_GROUP_CHAT_FLOODING_MESSAGE)
@@ -337,17 +361,41 @@ document.addEventListener('DOMContentLoaded', async () => {
     Elements.groupChatFloodingTimerBox().onchange = () => {
         dispatch(ChatSettingsWindowActions.CHANGE_GROUP_CHAT_FLOODING_TIMER)
     }
+    Elements.groupChatFloodingTimerBox().onkeyup = () => {
+        const value = parseInt(Elements.groupChatFloodingTimerBox().value)
+        if(value >= 1 && !isNaN(value)) {
+            dispatch(ChatSettingsWindowActions.CHANGE_GROUP_CHAT_FLOODING_TIMER)
+        } else {
+            Elements.groupChatFloodingTimerBox().value = '1'
+        }
+    }
     Elements.clanChatFloodingMessageBox().onchange = () => {
         dispatch(ChatSettingsWindowActions.CHANGE_CLAN_CHAT_FLOODING_MESSAGE)
     }
     Elements.clanChatFloodingTimerBox().onchange = () => {
         dispatch(ChatSettingsWindowActions.CHANGE_CLAN_CHAT_FLOODING_TIMER)
     }
+    Elements.clanChatFloodingTimerBox().onkeyup = () => {
+        const value = parseInt(Elements.clanChatFloodingTimerBox().value)
+        if(value >= 1 && !isNaN(value)) {
+            dispatch(ChatSettingsWindowActions.CHANGE_CLAN_CHAT_FLOODING_TIMER)
+        } else {
+            Elements.clanChatFloodingTimerBox().value = '1'
+        }
+    }
     Elements.allianceChatFloodingMessageBox().onchange = () => {
         dispatch(ChatSettingsWindowActions.CHANGE_ALLIANCE_CHAT_FLOODING_MESSAGE)
     }
     Elements.allianceChatFloodingTimerBox().onchange = () => {
         dispatch(ChatSettingsWindowActions.CHANGE_ALLIANCE_CHAT_FLOODING_TIMER)
+    }
+    Elements.allianceChatFloodingTimerBox().onkeyup = () => {
+        const value = parseInt(Elements.allianceChatFloodingTimerBox().value)
+        if(value >= 1 && !isNaN(value)) {
+            dispatch(ChatSettingsWindowActions.CHANGE_ALLIANCE_CHAT_FLOODING_TIMER)
+        } else {
+            Elements.allianceChatFloodingTimerBox().value = '1'
+        }
     }
 
     Elements.saveBox().onclick = () => {
