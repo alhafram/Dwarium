@@ -41,16 +41,112 @@ var messagesQueue: QueueChatMessage[] = []
 let config: ChatSettingsConfig
 async function loadConfig() {
     const userId = await ipcRenderer.invoke(Channel.GET_ID) as number
-    config = ChatSettingsService.get(userId)
+    if(userId) {
+        config = ChatSettingsService.get(userId)
+    }
+}
+
+function convertToMs(minutes: number): number {
+    return minutes * 60 * 1000
+}
+
+let commonChatFloodingInterval: NodeJS.Timer | undefined
+let tradeChatFloodingInterval: NodeJS.Timer | undefined
+let groupChatFloodingInterval: NodeJS.Timer | undefined
+let clanChatFloodingInterval: NodeJS.Timer | undefined
+let allianceChatFloodingInterval: NodeJS.Timer | undefined
+
+async function setupFlooding() {
+    await loadConfig()
+    if(config) {
+        if(!config.floodingEnabled) {
+            return
+        }
+        const commonChatFloodingMessage = config.commonChatFloodingMessage
+        const tradeChatFloodingMessage = config.tradeChatFloodingMessage
+        const groupChatFloodingMessage = config.groupChatFloodingMessage
+        const clanChatFloodingMessage = config.clanChatFloodingMessage
+        const allianceChatFloodingMessage = config.clanChatFloodingMessage
+        if(commonChatFloodingMessage.length != 0) {
+            commonChatFloodingInterval = setInterval(() => {
+                const newQueueMessage: QueueChatMessage = {
+                    text: commonChatFloodingMessage,
+                    channel: ChatChannel.COMMON
+                }
+                messagesQueue.push(newQueueMessage)
+            }, convertToMs(config.commonChatFloodingTimer))
+        }
+        if(tradeChatFloodingMessage.length != 0) {
+            tradeChatFloodingInterval = setInterval(() => {
+                const newQueueMessage: QueueChatMessage = {
+                    text: tradeChatFloodingMessage,
+                    channel: ChatChannel.TRADE
+                }
+                messagesQueue.push(newQueueMessage)
+            }, convertToMs(config.tradeChatFloodingTimer))
+        }
+        if(groupChatFloodingMessage.length != 0) {
+            groupChatFloodingInterval = setInterval(() => {
+                const newQueueMessage: QueueChatMessage = {
+                    text: groupChatFloodingMessage,
+                    channel: ChatChannel.GROUP
+                }
+                messagesQueue.push(newQueueMessage)
+            }, convertToMs(config.groupChatFloodingTimer))
+        }
+        if(clanChatFloodingMessage.length != 0) {
+            clanChatFloodingInterval = setInterval(() => {
+                const newQueueMessage: QueueChatMessage = {
+                    text: clanChatFloodingMessage,
+                    channel: ChatChannel.CLAN
+                }
+                messagesQueue.push(newQueueMessage)
+            }, convertToMs(config.clanChatFloodingTimer))
+        }
+        if(allianceChatFloodingMessage.length != 0) {
+            allianceChatFloodingInterval = setInterval(() => {
+                const newQueueMessage: QueueChatMessage = {
+                    text: allianceChatFloodingMessage,
+                    channel: ChatChannel.ALLIANCE
+                }
+                messagesQueue.push(newQueueMessage)
+            }, convertToMs(config.allianceChatFloodingTimer))
+        }
+    }
+}
+
+function restartFlooding() {
+    if(commonChatFloodingInterval) {
+        clearInterval(commonChatFloodingInterval)
+        commonChatFloodingInterval = undefined
+    }
+    if(tradeChatFloodingInterval) {
+        clearInterval(tradeChatFloodingInterval)
+        tradeChatFloodingInterval = undefined
+    }
+    if(groupChatFloodingInterval) {
+        clearInterval(groupChatFloodingInterval)
+        groupChatFloodingInterval = undefined
+    }
+    if(clanChatFloodingInterval) {
+        clearInterval(clanChatFloodingInterval)
+        clanChatFloodingInterval = undefined
+    }
+    if(allianceChatFloodingInterval) {
+        clearInterval(allianceChatFloodingInterval)
+        allianceChatFloodingInterval = undefined
+    }
+    setupFlooding()
 }
 
 function setupAutoResponder() {
     setInterval(async () => {
         if(!config) {
             await loadConfig()
+        } else {
+            let idleTime = powerMonitor.getSystemIdleTime()
+            isIdle = idleTime >= config.inactiveTimer * 60
         }
-        let idleTime = powerMonitor.getSystemIdleTime()
-        isIdle = idleTime >= config.inactiveTimer * 60
     }, 1000)
     let messages_interval = setInterval(async function() {
         var message = messagesQueue[0]
@@ -100,8 +196,6 @@ function getAutoResponceForChannel(channel: ChatChannel) {
 
 var prevReceivers: Set<string>[] = []
 
-console.log(prevReceivers)
-
 function handleMessage(message: any) {
     const chatMessage = message as ChatMessage
     if(chatMessage) {
@@ -142,11 +236,9 @@ function handleMessage(message: any) {
                         return
                     }
                     prevReceivers.push(newReceiversSet)
-                    console.log("ADD Receiver", newReceiversSet)
                     setTimeout(() => {
                         const index = prevReceivers.indexOf(newReceiversSet)
                         if(index != -1) {
-                            console.log("REMOVE Receiver", newReceiversSet)
                             delete prevReceivers[index]
                         }
                     }, 10000)
@@ -211,11 +303,13 @@ function setupShortcut() {
 
 ipcRenderer.on(Channel.CHAT_SETTINGS_CHANGED, async () => {
     await loadConfig()
+    restartFlooding()
 })
 
 export default {
     handleMessage,
     logMessage,
     setupShortcut,
-    setupAutoResponder
+    setupAutoResponder,
+    setupFlooding
 }

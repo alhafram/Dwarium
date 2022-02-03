@@ -7,6 +7,7 @@ import FoodService from '../../services/FoodService'
 window.addEventListener('DOMContentLoaded', async () => {
     ChatService.setupShortcut()
     ChatService.setupAutoResponder()
+    ChatService.setupFlooding()
 })
 
 document.addEventListener('Message', (event) => {
