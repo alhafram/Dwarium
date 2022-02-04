@@ -189,6 +189,10 @@ ipcMain.on(Channel.FOOD_CHANGED, () => {
     TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.FOOD_CHANGED)
 })
 
+ipcMain.on(Channel.CHAT_SETTINGS_CHANGED, () => {
+    TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.CHAT_SETTINGS_CHANGED)
+})
+
 ipcMain.handle(Channel.GET_ID, async () => {
     return await TabsController.mainWindowContainer?.browserView?.webContents.executeJavaScript('top._top().myId')
 })
@@ -273,7 +277,7 @@ ipcMain.on(Channel.OPEN_CHAT_SETTINGS, () => {
         chatSettingsWindow.show()
         return
     }
-    chatSettingsWindow = createWindowAndLoad(WindowType.CHAT_SETTINGS, HTMLPath.CHAT_SETTINGS)
+    chatSettingsWindow = createWindowAndLoad(WindowType.CHAT_SETTINGS, HTMLPath.CHAT_SETTINGS, Preload.CHAT_SETTINGS, true)
     setupCloseLogic(chatSettingsWindow, WindowType.CHAT_SETTINGS, function() {
         chatSettingsWindow = null
     })

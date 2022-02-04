@@ -2,12 +2,15 @@ import { app, session, shell } from 'electron'
 import { TabsController } from './services/TabsController'
 import MainWindowContainer from './Components/MainWindow/MainWindow'
 import { autoUpdater } from 'electron-updater'
-import configService from './services/ConfigService'
+import ConfigService from './services/ConfigService'
 require('@electron/remote/main').initialize()
 require('v8-compile-cache')
 import electronReload from 'electron-reload'
 import { Channel } from './Models/Channel'
 electronReload(__dirname, {})
+
+autoUpdater.allowDowngrade = ConfigService.updateChannel() == 'stable'
+autoUpdater.allowPrerelease = ConfigService.updateChannel() != 'stable'
 
 autoUpdater.checkForUpdatesAndNotify()
 setInterval(() => {
@@ -34,7 +37,7 @@ function createWindow() {
     require('@electron/remote/main').enable(mainWindowContainer.browserView!.webContents)
 
     session.defaultSession.webRequest.onBeforeSendHeaders((details: { requestHeaders: { [x: string]: any } }, callback: (arg0: { cancel: boolean; requestHeaders: any }) => void) => {
-        details.requestHeaders['User-Agent'] = configService.userAgent()
+        details.requestHeaders['User-Agent'] = ConfigService.userAgent()
         callback({
             cancel: false,
             requestHeaders: details.requestHeaders

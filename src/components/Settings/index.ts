@@ -18,7 +18,8 @@ interface SettingsWindowState {
     battlegroundNotificationsSystem: boolean,
     battlegroundNotificationsIngame: boolean,
     messageNotificationsSystem: boolean,
-    messageNotificationsIngame: boolean
+    messageNotificationsIngame: boolean,
+    updateChannel: string
 }
 
 enum UserAgentType {
@@ -46,7 +47,8 @@ enum SettingsWindowActions {
     CHANGE_BATTLEGROUND_NOTIFICATIONS_SYSTEM,
     CHANGE_BATTLEGROUND_NOTIFICATIONS_INGAME,
     CHANGE_MESSAGE_NOTIFICATIONS_SYSTEM,
-    CHANGE_MESSAGE_NOTIFICATIONS_INGAME
+    CHANGE_MESSAGE_NOTIFICATIONS_INGAME,
+    CHANGE_UPDATE_CHANNEL
 }
 
 const Elements = {
@@ -100,6 +102,9 @@ const Elements = {
     },
     messageNotificationsIngameBox(): HTMLInputElement {
         return document.getElementById('messageNotificationsIngame') as HTMLInputElement
+    },
+    updateChannelBoxes(): HTMLInputElement[] {
+        return Array.from(document.getElementsByName('updateChannel')) as HTMLInputElement[]
     }
 }
 
@@ -167,6 +172,11 @@ function setupListeners() {
     Elements.messageNotificationsIngameBox().onchange = () => {
         dispatch(SettingsWindowActions.CHANGE_MESSAGE_NOTIFICATIONS_INGAME)
     }
+    Elements.updateChannelBoxes().forEach(updateChannel => {
+        updateChannel.onchange = () => {
+            dispatch(SettingsWindowActions.CHANGE_UPDATE_CHANNEL, updateChannel.value)
+        }
+    })
 }
 
 let initialState: SettingsWindowState = {
@@ -191,10 +201,11 @@ let initialState: SettingsWindowState = {
     battlegroundNotificationsSystem: false,
     battlegroundNotificationsIngame: false,
     messageNotificationsSystem: false,
-    messageNotificationsIngame: false
+    messageNotificationsIngame: false,
+    updateChannel: 'stable'
 }
 
-function reduce(state: SettingsWindowState = initialState, action: SettingsWindowActions): SettingsWindowState {
+function reduce(state: SettingsWindowState = initialState, action: SettingsWindowActions, data: any): SettingsWindowState {
     switch(action) {
         case SettingsWindowActions.LOAD_SETTINGS:
             let loadedSettings = window.settingsAPI.loadSettings()
@@ -219,6 +230,7 @@ function reduce(state: SettingsWindowState = initialState, action: SettingsWindo
                     battlegroundNotificationsIngame: loadedSettings.battlegroundNotificationsIngame ?? false,
                     messageNotificationsSystem: loadedSettings.messageNotificationsSystem ?? false,
                     messageNotificationsIngame: loadedSettings.messageNotificationsIngame ?? false,
+                    updateChannel: loadedSettings.updateChannel ?? 'stable'
                 }
             }
         case SettingsWindowActions.SAVE_SETTINGS:
@@ -308,11 +320,16 @@ function reduce(state: SettingsWindowState = initialState, action: SettingsWindo
                 ...state,
                 messageNotificationsIngame: Elements.messageNotificationsIngameBox().checked
             }
+        case SettingsWindowActions.CHANGE_UPDATE_CHANNEL:
+            return {
+                ...state,
+                updateChannel: data
+            }
     }
 }
 
-function dispatch(action: SettingsWindowActions): void {
-    initialState = reduce(initialState, action)
+function dispatch(action: SettingsWindowActions, data?: any): void {
+    initialState = reduce(initialState, action, data)
     render()
 }
 
@@ -358,6 +375,11 @@ function render(): void {
     Elements.battlegroundNotificationsIngameBox().checked = initialState.battlegroundNotificationsIngame
     Elements.messageNotificationsSystemBox().checked = initialState.messageNotificationsSystem
     Elements.messageNotificationsIngameBox().checked = initialState.messageNotificationsIngame
+    Elements.updateChannelBoxes().forEach(channel => {
+        if(channel.value == initialState.updateChannel) {
+            channel.checked = true
+        }
+    })
 }
 
 document.addEventListener('DOMContentLoaded', async () => {

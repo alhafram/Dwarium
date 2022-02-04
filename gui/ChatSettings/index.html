@@ -1,112 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="./style.css" />
+    
+    <script>var exports = {}</script>
+    <script src="../../out/Components/ChatSettings/index.js"></script>
 </head>
-
-<style>
-.field {
-    clear: both;
-    text-align: right;
-    line-height: 25px;
-}
-
-label {
-    float: left;
-    padding-right: 10px;
-}
-
-.main {
-    display: flex;
-}
-
-.time {
-    width: 50px;
-}
-
-</style>
 
 <body>
     <div class="main">
         <div>
             <h2>Настройки автоответчика</h2>
             <div class="field">
-                <label for="inactiveEnable">Включить автоответчик</label>
-                <input type="checkbox" id="inactiveEnable" />
+                <label for="autoResponderEnabled">Включить автоответчик</label>
+                <input type="checkbox" id="autoResponderEnabled" />
             </div>
             <br>
             <div class="field">
                 <label for="inactiveTimer">Время ухода в инактив</label>
-                <input type="text" placeholder="В минутах" id="inactiveTimer" />
+                <input type="number" min="0" placeholder="В минутах" id="inactiveTimer" />
             </div>
             <br>
             <div class="field">
-                <label for="private">Ответ в приват</label>
-                <input type="text" id="private" />
+                <label for="privateChatResponse">Ответ в приват</label>
+                <input type="text" id="privateChatResponse" />
             </div>
             <br>
             <div class="field">
-                <label for="common">Ответ в основной чат</label>
-                <input type="text" id="common" />
+                <label for="commonChatResponse">Ответ в основной чат</label>
+                <input type="text" id="commonChatResponse" />
             </div>
             <br>
             <div class="field">
-                <label for="trade">Ответ в торговый</label>
-                <input type="text" id="trade" />
+                <label for="tradeChatResponse">Ответ в торговый</label>
+                <input type="text" id="tradeChatResponse" />
             </div>
             <br>
             <div class="field">
-                <label for="group">Ответ в группу</label>
-                <input type="text" id="group" />
+                <label for="groupChatResponse">Ответ в группу</label>
+                <input type="text" id="groupChatResponse" />
             </div>
             <br>
             <div class="field">
-                <label for="clan">Ответ в клан</label>
-                <input type="text" id="clan" />
+                <label for="clanChatResponse">Ответ в клан</label>
+                <input type="text" id="clanChatResponse" />
             </div>
             <br>
             <div class="field">
-                <label for="alliance">Ответ в альянс</label>
-                <input type="text" id="alliance" />
+                <label for="allianceChatResponse">Ответ в альянс</label>
+                <input type="text" id="allianceChatResponse" />
             </div>
         </div>
         <div style="margin-left: 50px;">
             <h2>Настройки флудилки</h2>
             <div class="field">
-                <label for="floodEnable">Включить флудилку</label>
-                <input type="checkbox" id="floodEnable" />
+                <label for="floodingEnabled">Включить флудилку</label>
+                <input type="checkbox" id="floodingEnabled" />
             </div>
             <br>
             <br>
             <div class="field">
-                <label for="commonFlood">Основной чат</label>
-                <input type="text" id="commonFlood" />
-                <input type="text" placeholder="Мин." class="time" id="commonFloodTime" />
+                <label for="commonChatFloodingMessage">Основной чат</label>
+                <input type="text" id="commonChatFloodingMessage" />
+                <input type="number" min="1" value="10" placeholder="Мин." class="time" id="commonChatFloodingTimer" />
             </div>
             <br>
             <div class="field">
-                <label for="tradeFlood">Торговый чат</label>
-                <input type="text" id="tradeFlood" />
-                <input type="text" placeholder="Мин." class="time" id="tradeFloodTime" />
+                <label for="tradeChatFloodingMessage">Торговый чат</label>
+                <input type="text" id="tradeChatFloodingMessage" />
+                <input type="number" min="1" value="10" placeholder="Мин." class="time" id="tradeChatFloodingTimer" />
             </div>
             <br>
             <div class="field">
-                <label for="groupFlood">Чат группы</label>
-                <input type="text" id="groupFlood" />
-                <input type="text" placeholder="Мин." class="time" id="groupFloodTime" />
+                <label for="groupChatFloodingMessage">Чат группы</label>
+                <input type="text" id="groupChatFloodingMessage" />
+                <input type="number" min="1" value="10" placeholder="Мин." class="time" id="groupChatFloodingTimer" />
             </div>
             <br>
             <div class="field">
-                <label for="clanFlood">Чат клана</label>
-                <input type="text" id="clanFlood" />
-                <input type="text" placeholder="Мин." class="time" id="clanFloodTime" />
+                <label for="clanChatFloodingMessage">Чат клана</label>
+                <input type="text" id="clanChatFloodingMessage" />
+                <input type="number" min="1" value="10" placeholder="Мин." class="time" id="clanChatFloodingTimer" />
             </div>
             <br>
             <div class="field">
-                <label for="allianceFlood">Чат альянса</label>
-                <input type="text" id="allianceFlood" />
-                <input type="text" placeholder="Мин." class="time" id="allianceFloodTime" />
+                <label for="allianceChatFloodingMessage">Чат альянса</label>
+                <input type="text" id="allianceChatFloodingMessage" />
+                <input type="number" min="1" value="10" placeholder="Мин." class="time" id="allianceChatFloodingTimer" />
             </div>
         </div>
     </div>
     <br>
-    <button>Сохранить</button>
+    <button id="save">Сохранить</button>
 </body>

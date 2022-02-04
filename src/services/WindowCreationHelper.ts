@@ -51,7 +51,8 @@ export enum Preload {
     CHAT_LOG = '../Components/ChatLog/preload.js',
     SETTINGS = '../Components/Settings/preload.js',
     NOTES = '../Components/Notes/preload.js',
-    FOOD = '../Components/Food/preload.js'
+    FOOD = '../Components/Food/preload.js',
+    CHAT_SETTINGS = '../Components/ChatSettings/preload.js'
 }
 
 export enum HTMLPath {
