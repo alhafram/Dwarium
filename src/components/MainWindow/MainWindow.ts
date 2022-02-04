@@ -148,7 +148,8 @@ export default class MainWindowContainer {
         this.browserView.webContents.setWindowOpenHandler(({ url, features }) => {
             const excludedUrls = [
                 `${configService.baseUrl()}/action_form.php`,
-                `${configService.baseUrl()}/area_cube_recipes.php`
+                `${configService.baseUrl()}/area_cube_recipes.php`,
+                `${configService.baseUrl()}/friend_list.php`
             ]
             const windowPosition = this.getPositionFor(url)
             const defaultPosition = this.parseFeatures(features)
