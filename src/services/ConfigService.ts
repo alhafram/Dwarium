@@ -167,6 +167,15 @@ function messageNotificationsIngame(): boolean {
     return false
 }
 
+function updateChannel(): string {
+    let settings = readData('settings')
+    if(settings) {
+        settings = JSON.parse(settings)
+        return settings.updateChannel ?? 'stable'
+    }
+    return 'stable'
+}
+
 function writeData(key: string, value: any): void {
     let contents = parseData(configPath)
     contents[key] = value
@@ -212,5 +221,6 @@ export default {
     battlegroundNotificationsSystem,
     battlegroundNotificationsIngame,
     messageNotificationsSystem,
-    messageNotificationsIngame
+    messageNotificationsIngame,
+    updateChannel
 }
