@@ -168,10 +168,13 @@ function setupAutoResponder() {
                 'credentials': 'include'
             });
             const json = await req.json()
-            if(!json['chat|send'].error) {
+            const error = json['chat|send'].error
+            if(!error) {
                 messagesQueue.shift()
             } else {
-                console.log("GOT ERROR, RESEND", message)
+                if(error == "Вы не можете говорить, т.к. на Вас наложено проклятие молчания!") {
+                    messagesQueue.shift()
+                }
             }
         }
     }, 1000)
