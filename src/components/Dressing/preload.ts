@@ -81,42 +81,16 @@ contextBridge.exposeInMainWorld('dressingAPI', {
     },
     loadItemsData: async (types: string[]) => {
         return await ipcRenderer.invoke('LoadSetItems', types)
-    },
-    // Refactor 1.0.15
-    saveSet: (set: { id: string }) => {
-        configService.writeData(set.id, JSON.stringify(set))
-    },
-    removeSet: (id: string) => {
-        configService.writeData(id, null)
-    },
-    loadSets: () => {
-        return configService.sets()
-    },
-    getUserId: async () => {
-        const id = await ipcRenderer.invoke(Channel.GET_ID)
-        return id
-    },
-    getUserConfig: (id: number) => {
-        return UserConfigService.get(id)
-    },
-    saveNew: (userConfig: UserConfig) => {
-        UserConfigService.save(userConfig)
-    },
+    }
 })
 
 export interface DressingAPI {
     baseUrl: () => string,
     loadItemsData: (types: string[]) => any,
-    saveSet: (set: { id: string }) => void,
-    removeSet: (id: string) => void,
-    loadSets: () => any[],
-    getMagicSchools: (zikkuratId?: string) => Promise <any>,
+    getMagicSchools: (zikkuratId?: string) => Promise<any>,
     unequipRequest: (id: string) => Promise <any> ,
     equipRequest: (id: string) => Promise <any> ,
-    changeStyle: (zikkuratId: string, styleId: number) => Promise <any>,
-    getUserId: () => any,
-    getUserConfig: (id: number) => UserConfig,
-    saveNew: (userConfig: UserConfig) => void
+    changeStyle: (zikkuratId: string, styleId: number) => Promise<any>
 }
 
 declare global {
