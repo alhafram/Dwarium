@@ -19,7 +19,9 @@ module.exports = {
             'inactiveTabColor': '#C4C4C4',
             'activeTabColorDark': '#FAFAFA',
             'inactiveTabColorDark': '#C8CACB',
-            'addTabDarkHover': '#0C0C0C'
+            'addTabDarkHover': '#0C0C0C',
+            'dividerColor': '#D5D4D8',
+            'dividerColorDark': '#696969'
         },
         extend: {
             width: {

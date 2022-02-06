@@ -31,9 +31,9 @@
 }
 
 .activeTab {
-    @apply text-activeTabColor dark:text-activeTabColorDark bg-white dark:bg-activeTabColor rounded-b-xl
+    @apply text-activeTabColor dark:text-activeTabColorDark bg-white dark:bg-activeTabColor rounded-b-xl;
 }
 
 .inactiveTab {
-    @apply text-inactiveTabColor dark:text-inactiveTabColor bg-inputBackgroundColor dark:bg-inputBackgroundColorDark rounded-none
+    @apply text-inactiveTabColor dark:text-inactiveTabColor bg-inputBackgroundColor dark:bg-inputBackgroundColorDark rounded-none border-dividerColor dark:border-dividerColorDark ;
 }

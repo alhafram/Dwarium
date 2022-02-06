@@ -5,7 +5,7 @@
     "main": "out/main.js",
     "scripts": {
         "compile": "tsc",
-        "start": "yarn run compile && electron .",
+        "start": "yarn run compile && yarn run compileCSS && electron .",
         "all": "yarn run prod && electron-builder -mwl",
         "mac": "yarn run prod && electron-builder -m",
         "win": "yarn run prod && electron-builder -w",
@@ -13,8 +13,9 @@
         "publish": "yarn run prod && electron-builder -mwl --publish always",
         "dev": "concurrently \"tsc -w\" \"electron .\" \"yarn run tailwind\"",
         "clean": "rm -rf ./out rm -rf ./dist",
-        "prod": "yarn run clean && yarn run compile",
-        "tailwind": "npx tailwindcss -i ./src/Styles/main.css -o ./out/main.css --watch"
+        "prod": "yarn run clean && yarn run compile && yarn run compileCSS",
+        "tailwind": "npx tailwindcss -i ./src/Styles/main.css -o ./out/main.css --watch",
+        "compileCSS": "npx tailwindcss -i ./src/Styles/main.css -o ./out/main.css"
     },
     "author": "",
     "license": "ISC",

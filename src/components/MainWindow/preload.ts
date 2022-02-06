@@ -226,25 +226,25 @@ function createNewTab(id?: string, title?: string) {
 }
 
 function drawDividers() {
-    const tabs = Array.from(Elements.tabsDiv().children)
-    const tabsNeedToAddDividers = tabs.filter(item => {
-        const index = tabs.indexOf(item)
+    const tabs = Array.from(Elements.tabsDiv().children) as HTMLElement[]
+    const tabsNeedToAddDividers = tabs.filter(tab => {
+        const index = tabs.indexOf(tab)
         const prevTab = tabs[index - 1]
         const nextTab = tabs[index + 1]
-        item.classList.remove('border-r')
-        return item.id != 'addTabButton' && !item.classList.contains('activeTab') && !prevTab?.classList.contains('activeTab') && !nextTab?.classList.contains('activeTab')
+        tab.style.borderRightWidth = '0px'
+        return tab.id != 'addTabButton' && !tab.classList.contains('activeTab') && !prevTab?.classList.contains('activeTab') && !nextTab?.classList.contains('activeTab')
     })
     tabsNeedToAddDividers.forEach(tab => {
-        tab.classList.add('border-r')
+        tab.style.borderRightWidth = '1px'
     })
     const activeTab = tabs.find(item => item.classList.contains('activeTab'))
     if(activeTab) {
         const nextAfterActiveTabIndex = tabs.indexOf(activeTab) + 1
-        if(tabs[nextAfterActiveTabIndex]?.id != 'addTabButton') {
-            tabs[nextAfterActiveTabIndex].classList.add('border-r')
+        const nextAfterActiveTab = tabs[nextAfterActiveTabIndex]
+        if(nextAfterActiveTab.id != 'addTabButton') {
+            nextAfterActiveTab.style.borderRightWidth = '1px'
         }
     }
-
 }
 
 
