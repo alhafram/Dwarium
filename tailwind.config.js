@@ -51,9 +51,7 @@ module.exports = {
             minWidth: {
               '150px': '150px',
             },
-            backgroundImage: {
-              'closeButton': "url('../src/Styles/closeButton.svg')"
-            }
+            backgroundImage: { }
         },
     },
     plugins: [],

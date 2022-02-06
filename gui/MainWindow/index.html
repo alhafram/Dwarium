@@ -20,7 +20,7 @@
 
             <label for="toogleButton" class="flex items-center cursor-pointer ml-5 mt-auto mb-auto">
                 <div class="relative">
-                    <input id="toogleButton" type="checkbox" class="hidden" />
+                    <input id="serverSwitcher" type="checkbox" class="hidden" />
                     <div class="w-switcher h-5.5 bg-inputBackgroundColor dark:bg-inputBackgroundColorDark rounded-full"></div>
                     <div class="toggle-circle absolute w-5 h-5 bg-w1 rounded-full inset-y-0 text-center pt-1">
                         <p class="text-xss font-bold select-none">W1</p>
@@ -43,14 +43,14 @@
                     <path d="M0 8C0 12.4178 3.64619 16 8.14286 16C10.3052 16 12.3771 15.1644 13.9333 13.6889L12.5762 12.3556C11.4271 13.5556 9.82571 14.2222 8.14286 14.2222C2.49714 14.2222 -0.325714 7.52 3.66429 3.6C7.65429 -0.32 14.4762 2.46222 14.4762 8H11.7619L15.381 11.5556H15.4714L19 8H16.2857C16.2857 3.58222 12.6395 0 8.14286 0C3.64619 0 0 3.58222 0 8Z" />
                 </svg>
             </button>
-            <input type="url" placeholder="Введите URL" class="ml-13px h-30px w-300px input" />
-            <button class="innerButtonWithImage">
+            <input id="urlInput" type="url" placeholder="Введите URL" class="ml-13px h-30px w-300px input" />
+            <button id="favouriteButton" class="innerButtonWithImage">
                 <svg class="buttonIcon" width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M8.33333 11.1583L5.2 13.05L6.025 9.48333L3.25833 7.08333L6.90833 6.775L8.33333 3.40833L9.75833 6.775L13.4083 7.08333L10.6417 9.48333L11.4667 13.05L8.33333 11.1583ZM16.6667 6.03333L10.675 5.525L8.33333 0L5.99167 5.525L0 6.03333L4.54167 9.975L3.18333 15.8333L8.33333 12.725L13.4833 15.8333L12.1167 9.975L16.6667 6.03333Z" />
                 </svg>
             </button>
-            <input type="url" placeholder="Ник персонажа" class="ml-30px h-30px w-220px input" />
-            <button class="innerButtonWithImage">
+            <input id="nicknameInput" type="text" placeholder="Ник персонажа" class="ml-30px h-30px w-220px input" />
+            <button id="userTagButton" class="innerButtonWithImage">
                 <svg class="buttonIcon" width="15" height="12" viewBox="0 0 15 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M0 12L15 6L0 0V4.66667L10.7143 6L0 7.33333V12Z" />
                 </svg>
@@ -147,13 +147,13 @@
 
         <div class="flex bg-inputBackgroundColor dark:bg-inputBackgroundColorDark ">
 
-            <div id="tabs" style="overflow: scroll;" class="h-10 mr-24 bg-inputBackgroundColor dark:bg-inputBackgroundColorDark flex overflow-x-hidden">
+            <div id="tabsDiv" style="overflow: scroll;" class="h-10 mr-24 bg-inputBackgroundColor dark:bg-inputBackgroundColorDark flex overflow-x-hidden">
 
-                <button style="min-width: 100px;" id="main" class="w-100px min-w-full h-10 activeTab">
+                <button id="main" style="min-width: 100px;" id="main" class="w-100px min-w-full h-10 activeTab">
                     Main
                 </button>
 
-                <button style="min-width: 20px;" class="w-5 h-5 mb-auto mt-auto ml-2 mr-2 hover:bg-inactiveTabColorDark dark:hover:bg-addTabDarkHover rounded-full" id="addTab" onclick="addTab()">
+                <button id="addTabButton" style="min-width: 20px;" class="w-5 h-5 mb-auto mt-auto ml-2 mr-2 hover:bg-inactiveTabColorDark dark:hover:bg-addTabDarkHover rounded-full">
                     <svg class="buttonIcon" width="13" height="14" viewBox="0 0 13 14" xmlns="http://www.w3.org/2000/svg">
                         <path d="M7.14089 1.27698H5.85901V6.35906H0.776928V7.64094H5.85901V12.723H7.14089V7.64094H12.223V6.35906H7.14089V1.27698Z" />
                     </svg>
@@ -161,7 +161,7 @@
             </div>
 
             <div class="float-right right-30px absolute mt-1.5">
-                <button id="modeSwitcher" class="buttonWithImage hover:bg-iconColorDark dark:hover:bg-addTabDarkHover">
+                <button id="modeSwitcherButton" class="buttonWithImage hover:bg-iconColorDark dark:hover:bg-addTabDarkHover">
                     <svg class="buttonIcon" width="11" height="16" viewBox="0 0 11 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M2.375 9.8901e-06C1.56933 -0.00126937 0.768272 0.12156 0 0.364177C1.60741 0.869326 3.01173 1.87414 4.00868 3.23247C5.00563 4.59079 5.5432 6.23176 5.5432 7.91668C5.5432 9.60159 5.00563 11.2426 4.00868 12.6009C3.01173 13.9592 1.60741 14.964 0 15.4692C1.08859 15.8113 2.23827 15.914 3.37027 15.7703C4.50226 15.6267 5.58982 15.24 6.55843 14.6368C7.52704 14.0336 8.35381 13.2281 8.98208 12.2756C9.61035 11.323 10.0253 10.2459 10.1984 9.11806C10.3716 7.99019 10.2989 6.83822 9.98533 5.74108C9.67175 4.64393 9.12469 3.62754 8.38165 2.76155C7.63861 1.89555 6.71714 1.20042 5.68038 0.723769C4.64362 0.247122 3.51608 0.000230638 2.375 9.8901e-06Z" fill="#808487"/>
                     </svg>
@@ -175,40 +175,5 @@
         </div>
     </div>
 </body>
-
-<script>
-function addTab() {
-    const newTabString = `
-            <button style="min-width: 150px;" class="shrink-0 w-150px h-10 activeTab">
-                Google noo..
-                <button class="relative right-7 float-right -mr-25px bg-center bg-closeButton closeButtonActiveTab">
-                </button>
-            </button>
-        `
-    const newTab = parseHTML(newTabString)
-    const tabs = document.getElementById('tabs')
-    const addTabButton = document.getElementById('addTab')
-
-    document.querySelectorAll('.activeTab').forEach(item => {
-        item?.firstElementChild?.classList.replace('separatorActiveTab', 'separatorInactiveTab')
-        item?.lastElementChild?.classList.replace('closeButtonActiveTab', 'closeButtonInactiveTab')
-        item.classList.replace('activeTab', 'inactiveTab')
-    })
-    tabs.insertBefore(newTab, addTabButton)
-    document.querySelector("#tabs").scrollTo({
-        left: 9999999999,
-        behavior: 'smooth'
-    })
-}
-
-function parseHTML(html) {
-    var t = document.createElement('template');
-    t.innerHTML = html;
-    let but1 = t.content.children[0]
-    but1.appendChild(t.content.children[1])
-    return but1
-}
-
-</script>
 
 </html>

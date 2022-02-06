@@ -4,70 +4,114 @@ import { Channel } from '../../Models/Channel'
 import { generateRandomId } from '../Utils'
 
 let switcher: HTMLElement | null
-let tabs: HTMLElement | null
 
 const Elements = {
-    usernameBox(): HTMLInputElement {
-        return document.getElementById('username') as HTMLInputElement
+    backButton(): HTMLButtonElement {
+        return document.getElementById('backButton') as HTMLButtonElement
     },
-    userPrvBox(): HTMLButtonElement {
-        return document.getElementById('prvUserButton') as HTMLButtonElement
+    forwardButton(): HTMLButtonElement {
+        return document.getElementById('forwardButton') as HTMLButtonElement
+    },
+    reloadButton(): HTMLButtonElement {
+        return document.getElementById('reloadButton') as HTMLButtonElement
+    },
+    urlInput(): HTMLInputElement {
+        return document.getElementById('urlInput') as HTMLInputElement
+    },
+    favouriteButton(): HTMLButtonElement {
+        return document.getElementById('favouriteButton') as HTMLButtonElement
+    },
+    nicknameInput(): HTMLInputElement {
+        return document.getElementById('nicknameInput') as HTMLInputElement
+    },
+    userTagButton(): HTMLButtonElement {
+        return document.getElementById('userTagButton') as HTMLButtonElement
+    },
+    userInfoButton(): HTMLButtonElement {
+        return document.getElementById('userInfoButton') as HTMLButtonElement
     },
     findEffectsBox(): HTMLButtonElement {
-        return document.getElementById('findEffects') as HTMLButtonElement
+        return document.getElementById('userEffectsButton') as HTMLButtonElement
     },
-    notesBox(): HTMLButtonElement {
-        return document.getElementById('notes') as HTMLButtonElement
+    foodButton(): HTMLButtonElement {
+        return document.getElementById('foodButton') as HTMLButtonElement
     },
-    screenshotBox(): HTMLButtonElement {
-        return document.getElementById('screenshot') as HTMLButtonElement
+    screenshotButton(): HTMLButtonElement {
+        return document.getElementById('screenshotButton') as HTMLButtonElement
     },
-    foodBox(): HTMLButtonElement {
-        return document.getElementById('food') as HTMLButtonElement
+    notesButton(): HTMLButtonElement {
+        return document.getElementById('notesButton') as HTMLButtonElement
+    },
+    dressingSetsButton(): HTMLButtonElement {
+        return document.getElementById('dressingSetsButton') as HTMLButtonElement
+    },
+    beltSetsButton(): HTMLButtonElement {
+        return document.getElementById('beltSetsButton') as HTMLButtonElement
+    },
+    chatLogButton(): HTMLButtonElement {
+        return document.getElementById('chatLogButton') as HTMLButtonElement
+    },
+    settingsButton(): HTMLButtonElement {
+        return document.getElementById('settingsButton') as HTMLButtonElement
+    },
+    notificationsButton(): HTMLButtonElement {
+        return document.getElementById('notificationsButton') as HTMLButtonElement
+    },
+    updateApplicationButton(): HTMLButtonElement {
+        return document.getElementById('updateApplicationButton') as HTMLButtonElement
+    },
+    modeSwitcherButton(): HTMLButtonElement {
+        return document.getElementById('modeSwitcherButton') as HTMLButtonElement
+    },
+    mainTab(): HTMLButtonElement {
+        return document.getElementById('main') as HTMLButtonElement
+    },
+    addTabButton(): HTMLButtonElement {
+        return document.getElementById('addTabButton') as HTMLButtonElement
+    },
+    tabsDiv(): HTMLDivElement {
+        return document.getElementById('tabsDiv') as HTMLDivElement
     }
 }
 
 window.addEventListener('DOMContentLoaded', () => {
-    switcher = document.querySelector('#switcher') as HTMLElement
-    tabs = document.querySelector('body > div.tabs')
+    // switcher = document.getElementById('serverSwitcher') as HTMLElement
+    Elements.mainTab().onclick = makeActive
 
-    switcher.addEventListener('click', () => {
-        const knob = document.querySelector('#switcher > div.knob')
-        if(knob?.getAttribute('server') == 'W1') {
-            knob.setAttribute('server','W2')
-            ipcRenderer.send(Channel.LOAD_URL, 'w2')
-        } else {
-            knob?.setAttribute('server', 'W1')
-            ipcRenderer.send(Channel.LOAD_URL, 'w1')
-        }
-    })
-    document.getElementById('reloadButton')?.addEventListener('click', () => {
+    // switcher.addEventListener('click', () => {
+    //     const knob = document.querySelector('#switcher > div.knob')
+    //     if(knob?.getAttribute('server') == 'W1') {
+    //         knob.setAttribute('server','W2')
+    //         ipcRenderer.send(Channel.LOAD_URL, 'w2')
+    //     } else {
+    //         knob?.setAttribute('server', 'W1')
+    //         ipcRenderer.send(Channel.LOAD_URL, 'w1')
+    //     }
+    // })
+    Elements.reloadButton().addEventListener('click', () => {
         ipcRenderer.send(Channel.RELOAD)
     })
-    document.getElementById('backButton')?.addEventListener('click', () => {
+    Elements.backButton().addEventListener('click', () => {
         ipcRenderer.send(Channel.BACK)
     })
-    document.getElementById('forwardButton')?.addEventListener('click', () => {
+    Elements.forwardButton().addEventListener('click', () => {
         ipcRenderer.send(Channel.FORWARD)
     })
-    document.getElementById('dressingRoom')?.addEventListener('click', () => {
+    Elements.dressingSetsButton().addEventListener('click', () => {
         ipcRenderer.send(Channel.OPEN_DRESSING_ROOM)
     })
-    document.getElementById('beltPotionRoom')?.addEventListener('click', () => {
+    Elements.beltSetsButton().addEventListener('click', () => {
         ipcRenderer.send(Channel.OPEN_BELT_POTION_ROOM)
     })
-    document.getElementById('chatLog')?.addEventListener('click', () => {
+    Elements.chatLogButton().addEventListener('click', () => {
         ipcRenderer.send(Channel.OPEN_CHAT_LOG)
     })
+    // REMAKE NO ICON
     document.getElementById('chatSettings')?.addEventListener('click', () => {
         ipcRenderer.send(Channel.OPEN_CHAT_SETTINGS)
     })
-    document.getElementById('settings')?.addEventListener('click', () => {
+    Elements.settingsButton().addEventListener('click', () => {
         ipcRenderer.send(Channel.OPEN_SETTINGS)
-    })
-    document.addEventListener('new_tab', (evt) => {
-        const tab = createNewTab()
-        ipcRenderer.send(Channel.NEW_TAB, tab.id)
     })
     document.addEventListener('make_active', (evt) => {
         makeActive(evt)
@@ -76,17 +120,19 @@ window.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('close_tab', (evt) => {
         ipcRenderer.send(Channel.CLOSE_TAB, (<CustomEvent>evt).detail.id)
     })
+    Elements.urlInput().addEventListener('keyup', (e: KeyboardEvent) => {
+        if(e.key == 'Enter') {
+            ipcRenderer.send(Channel.GO_URL, Elements.urlInput().value)
+        }
+    })
     document.addEventListener('goUrl', (evt) => {
         ipcRenderer.send(Channel.GO_URL, (<CustomEvent>evt).detail)
     })
-    document.addEventListener('setupMain', () => {
-        createNewTab('main', 'Main')
-    })
-    document.getElementById('updateApplication')?.addEventListener('click', () => {
+    Elements.updateApplicationButton().addEventListener('click', () => {
         ipcRenderer.send(Channel.UPDATE_APPLICATION)
     })
-    document.getElementById('findCharacter')?.addEventListener('click', () => {
-        const nick = Elements.usernameBox().value
+    Elements.userInfoButton().addEventListener('click', () => {
+        const nick = Elements.nicknameInput().value
         if(nick.length != 0) {
             if(configService.windowOpenNewTab()) {
                 const tab = createNewTab()
@@ -96,19 +142,19 @@ window.addEventListener('DOMContentLoaded', () => {
             }
         }
     })
-    Elements.usernameBox().onkeyup = function(e) {
+    Elements.nicknameInput().onkeyup = function(e) {
         if(e.key == 'Enter') {
-            document.getElementById('findCharacter')?.click()
+            Elements.userInfoButton().click()
         }
     }
-    Elements.userPrvBox().onclick = function() {
-        const nick = Elements.usernameBox().value
+    Elements.userTagButton().onclick = function() {
+        const nick = Elements.nicknameInput().value
         if(nick.length > 0) {
             ipcRenderer.send(Channel.USER_PRV, nick)
         }
     }
     Elements.findEffectsBox().onclick = function() {
-        const nick = Elements.usernameBox().value
+        const nick = Elements.nicknameInput().value
         if(nick.length > 0) {
             if(configService.windowOpenNewTab()) {
                 const tab = createNewTab()
@@ -118,51 +164,82 @@ window.addEventListener('DOMContentLoaded', () => {
             }
         }
     }
-    Elements.notesBox().onclick = function() {
+    Elements.notesButton().onclick = function() {
         ipcRenderer.send(Channel.OPEN_NOTES)
     }
-    Elements.screenshotBox().onclick = function() {
+    Elements.screenshotButton().onclick = function() {
         ipcRenderer.send(Channel.TAKE_SCREENSHOT)
     }
-    Elements.foodBox().onclick = function() {
+    Elements.foodButton().onclick = function() {
         ipcRenderer.send(Channel.OPEN_FOOD)
+    }
+    let mode = false
+    Elements.modeSwitcherButton().onclick = function() {
+        if(mode) {
+            document.documentElement.classList.remove('dark')
+        } else {
+            document.documentElement.classList.add('dark')
+        }
+        mode = !mode
+    }
+
+    Elements.addTabButton().onclick = function() {
+        const tab = createNewTab()
+        ipcRenderer.send(Channel.NEW_TAB, tab.id)
     }
 })
 
 function createNewTab(id?: string, title?: string) {
-    let buttons = Array.from(tabs!.children)
-    buttons = buttons.filter(b => b.className.includes('ab'))
-    buttons.forEach(b => b.className = 'ab')
-
-    const newTab = document.createElement('div')
-    newTab.className += 'ab active'
+    const newTabString = `
+        <button style="min-width: 150px;" class="shrink-0 w-150px h-10 activeTab">
+            <span>New tab</span>
+            <button style="right: 10px;" class="relative float-right bg-center closeButtonActiveTab">
+                <svg class="buttonIcon" width="9" height="9" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9 0.906428L8.09357 0L4.5 3.59357L0.906428 0L0 0.906428L3.59357 4.5L0 8.09357L0.906428 9L4.5 5.40643L8.09357 9L9 8.09357L5.40643 4.5L9 0.906428Z" />
+                </svg>
+            </button>
+        </button>
+    `
+    const newTab = createTabButton(newTabString) as HTMLButtonElement
     if(!id) {
         id = generateRandomId()
     }
     newTab.id = id
     newTab.onclick = makeActive
+    const closeButton = newTab.children[1] as HTMLButtonElement
+    closeButton.onclick = closeTab
 
-    const mainA = document.createElement('a')
-    mainA.textContent = title ?? 'New tab'
-    newTab.appendChild(mainA)
-
-    if(id != 'main') {
-        const closeButton = document.createElement('button')
-        closeButton.className = 'closeButton'
-        closeButton.onclick = closeTab
-        newTab.appendChild(closeButton)
-    }
-    tabs?.insertBefore(newTab, document.querySelector('#new_tab'))
+    document.querySelectorAll('.activeTab').forEach(item => {
+        item?.firstElementChild?.classList.replace('separatorActiveTab', 'separatorInactiveTab')
+        item?.lastElementChild?.classList.replace('closeButtonActiveTab', 'closeButtonInactiveTab')
+        item.classList.replace('activeTab', 'inactiveTab')
+    })
+    Elements.tabsDiv().insertBefore(newTab, Elements.addTabButton())
+    Elements.tabsDiv().scrollTo({
+        left: 9999999999,
+        behavior: 'smooth'
+    })
     return newTab
 }
 
+
+function createTabButton(html: string) {
+    var t = document.createElement('template')
+    t.innerHTML = html
+    let but1 = t.content.children[0]
+    but1.appendChild(t.content.children[1])
+    return but1
+}
+
 function makeActive(evt: Event) {
-    let buttons = Array.from(tabs!.children)
-    buttons = buttons.filter(b => b.className.includes('ab'))
-    buttons.forEach(b => b.className = 'ab')
+    document.querySelectorAll('.activeTab').forEach(item => {
+        item?.lastElementChild?.classList.replace('closeButtonActiveTab', 'closeButtonInactiveTab')
+        item.classList.replace('activeTab', 'inactiveTab')
+    })
     const target = evt.currentTarget as HTMLElement
+    target.classList.replace('inactiveTab', 'activeTab')
+    target.lastElementChild?.classList.replace('closeButtonInactiveTab', 'closeButtonActiveTab')
     let id = target.id
-    target.className += ' active'
     ipcRenderer.send(Channel.MAKE_ACTIVE, id)
     evt.stopPropagation()
 }
@@ -190,15 +267,14 @@ function closeTab(evt: Event) {
 }
 
 ipcRenderer.on(Channel.URL, (event, url, id) => {
-    const urlBarField = document.querySelector('.urlBarField') as HTMLInputElement
-    urlBarField.disabled = id == 'main'
-    urlBarField.value = url
+    Elements.urlInput().disabled = id == 'main'
+    Elements.urlInput().value = url
 })
 
 ipcRenderer.on(Channel.FINISH_LOAD_URL, (event, id, title) => {
-    let element = document.getElementById(id)?.firstElementChild as HTMLLinkElement
-    if(element) {
-        element.textContent = title
+    let element = document.getElementById(id) as HTMLButtonElement
+    if(element && element.firstElementChild) {
+        element.firstElementChild.textContent = title
     }
 })
 
@@ -208,18 +284,18 @@ ipcRenderer.on(Channel.NEW_TAB, (event, url) => {
 })
 
 ipcRenderer.on(Channel.CLOSE_TAB, (evt, id) => {
-    let currentTabs = Array.from(tabs!.children)
+    let currentTabs = Array.from(Elements.tabsDiv().children)
     currentTabs.pop()
-    let current_tab = currentTabs.filter(t => t.id == id)[0]
-    if(current_tab) {
-        tabs?.removeChild(current_tab);
+    let currentTab = currentTabs.filter(t => t.id == id)[0]
+    if(currentTab) {
+        Elements.tabsDiv().removeChild(currentTab);
         (currentTabs[0] as HTMLElement).click()
         ipcRenderer.send(Channel.REMOVE_VIEW, id)
     }
 })
 
 ipcRenderer.on(Channel.UPDATE_APPLICATION_AVAILABLE, () => {
-    const updateApplicationStyle = document.getElementById('updateApplication')?.style
+    const updateApplicationStyle = Elements.updateApplicationButton().style
     updateApplicationStyle?.setProperty('display', 'block')
 })
 

@@ -44,8 +44,8 @@ function createNewTab(url: string, id: string) {
     const tabId = id
     browserView.webContents.on('did-finish-load', () => {
         let originalTitle = browserView.webContents.getTitle()
-        let title = originalTitle.slice(0, 14)
-        if(originalTitle.length > 16) {
+        let title = originalTitle.slice(0, 8)
+        if(originalTitle.length > 10) {
             title = title.concat('..')
         }
         TabsController.mainWindow?.webContents.send(Channel.FINISH_LOAD_URL, tabId, title)
