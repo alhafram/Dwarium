@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.toggle-circle {
+    left: 5px;
+    margin: auto;
+    transition: all 0.3s ease-in-out;
+}
+
+input:checked~.toggle-circle {
+    transform: translateX(120%);
+    background-color: #298CFF;
+}
+
+.buttonWithImage {
+    @apply w-5.5 h-5.5 bg-no-repeat mt-auto mb-auto hover:bg-inputBackgroundColor dark:hover:bg-inputBackgroundColorDark rounded-full;
+}
+
+.innerButtonWithImage {
+    @apply w-5.5 h-5.5 bg-no-repeat mt-auto mb-auto -ml-7 hover:bg-inputBackgroundColor dark:hover:bg-inputBackgroundColorDark rounded-full;
+}
+
+.closeButtonActiveTab {
+    @apply w-5.5 h-5.5 bg-no-repeat mt-auto mb-auto hover:bg-inputBackgroundColor dark:hover:bg-inputBackgroundColorDark rounded-full;
+}
+
+.closeButtonInactiveTab {
+    @apply w-5.5 h-5.5 bg-no-repeat mt-auto mb-auto hover:bg-white dark:hover:bg-activeTabColor rounded-full;
+}
+
+.buttonIcon {
+    @apply fill-iconColor dark:fill-iconColorDark m-auto;
+}
+
+.buttonStrokeIcon {
+    @apply stroke-iconColor dark:stroke-iconColorDark m-auto;
+}
+
+.input {
+    @apply pl-4 pr-8 text-textColor dark:text-textColorDark text-xs mt-auto mb-auto rounded-full bg-inputBackgroundColor dark:bg-inputBackgroundColorDark outline-none;
+}
+
+.activeTab {
+    @apply text-activeTabColor dark:text-activeTabColorDark bg-white dark:bg-activeTabColor rounded-b-xl
+}
+
+.inactiveTab {
+    @apply text-inactiveTabColor dark:text-inactiveTabColor bg-inputBackgroundColor dark:bg-inputBackgroundColorDark rounded-none
+}

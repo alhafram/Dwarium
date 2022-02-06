@@ -246,7 +246,7 @@ export default class MainWindowContainer {
             x: 0,
             y: 0,
             width: contentBounds.width,
-            height: 61
+            height: 72
         }
     }
 
