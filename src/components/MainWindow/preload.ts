@@ -217,11 +217,34 @@ function createNewTab(id?: string, title?: string) {
         item.classList.replace('activeTab', 'inactiveTab')
     })
     Elements.tabsDiv().insertBefore(newTab, Elements.addTabButton())
+    drawDividers()
     Elements.tabsDiv().scrollTo({
         left: 9999999999,
         behavior: 'smooth'
     })
     return newTab
+}
+
+function drawDividers() {
+    const tabs = Array.from(Elements.tabsDiv().children)
+    const tabsNeedToAddDividers = tabs.filter(item => {
+        const index = tabs.indexOf(item)
+        const prevTab = tabs[index - 1]
+        const nextTab = tabs[index + 1]
+        item.classList.remove('border-r')
+        return item.id != 'addTabButton' && !item.classList.contains('activeTab') && !prevTab?.classList.contains('activeTab') && !nextTab?.classList.contains('activeTab')
+    })
+    tabsNeedToAddDividers.forEach(tab => {
+        tab.classList.add('border-r')
+    })
+    const activeTab = tabs.find(item => item.classList.contains('activeTab'))
+    if(activeTab) {
+        const nextAfterActiveTabIndex = tabs.indexOf(activeTab) + 1
+        if(tabs[nextAfterActiveTabIndex]?.id != 'addTabButton') {
+            tabs[nextAfterActiveTabIndex].classList.add('border-r')
+        }
+    }
+
 }
 
 
@@ -244,6 +267,7 @@ function makeActive(evt: Event) {
     let id = target.id
     ipcRenderer.send(Channel.MAKE_ACTIVE, id)
     evt.stopPropagation()
+    drawDividers()
 }
 
 ipcRenderer.on(Channel.SERVER, (event, server) => {
