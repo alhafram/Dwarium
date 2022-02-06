@@ -75,11 +75,18 @@ const Elements = {
     },
     serverName(): HTMLSpanElement {
         return document.getElementById('serverName') as HTMLSpanElement
+    },
+    darkModeImage(): HTMLElement {
+        return document.getElementById('dark') as HTMLElement
+    },
+    lightModeImage(): HTMLElement {
+        return document.getElementById('light') as HTMLElement
     }
 }
 
 window.addEventListener('DOMContentLoaded', () => {
     Elements.mainTab().onclick = makeActive
+    handleMode()
 
     Elements.serverSwitcher().onchange = function() {
         if(Elements.serverSwitcher().checked) {
@@ -175,14 +182,14 @@ window.addEventListener('DOMContentLoaded', () => {
     Elements.foodButton().onclick = function() {
         ipcRenderer.send(Channel.OPEN_FOOD)
     }
-    let mode = false
+    
     Elements.modeSwitcherButton().onclick = function() {
-        if(mode) {
-            document.documentElement.classList.remove('dark')
+        if(localStorage.darkMode == 'true') {
+            localStorage.darkMode = false
         } else {
-            document.documentElement.classList.add('dark')
+            localStorage.darkMode = true
         }
-        mode = !mode
+        handleMode()
     }
 
     Elements.addTabButton().onclick = function() {
@@ -190,6 +197,18 @@ window.addEventListener('DOMContentLoaded', () => {
         ipcRenderer.send(Channel.NEW_TAB, tab.id)
     }
 })
+
+function handleMode() {
+    if(localStorage.darkMode == 'true') {
+        Elements.darkModeImage().classList.add('hidden')
+        Elements.lightModeImage().classList.remove('hidden')
+        document.documentElement.classList.add('dark')
+    } else {
+        document.documentElement.classList.remove('dark')
+        Elements.lightModeImage().classList.add('hidden')
+        Elements.darkModeImage().classList.remove('hidden')
+    }
+}
 
 function createNewTab(id?: string, title?: string) {
     const newTabString = `
@@ -246,7 +265,6 @@ function drawDividers() {
         }
     }
 }
-
 
 function createTabButton(html: string) {
     var t = document.createElement('template')
