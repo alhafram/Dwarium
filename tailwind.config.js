@@ -35,6 +35,7 @@ module.exports = {
               'xss': '9px'
             },
             spacing: {
+              '1px': '1px',
               '5px': '5px',
               '6px': '6px',
               '7px': '7px',
