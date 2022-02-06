@@ -11,6 +11,17 @@
     *::-webkit-scrollbar {
         display: none;
     }
+
+    .toggle-circle {
+        left: 5px;
+        margin: auto;
+        transition: all 0.3s ease-in-out;
+    }
+
+    input:checked~.toggle-circle {
+        transform: translateX(120%);
+        background-color: #298CFF;
+    }
     </style>
 </head>
 
@@ -18,15 +29,13 @@
     <div class="h-20 w-full bg-backgroundColor dark:bg-backgroundColorDark">
         <div class="h-10 mt-auto flex">
 
-            <label for="toogleButton" class="flex items-center cursor-pointer ml-5 mt-auto mb-auto">
-                <div class="relative">
-                    <input id="serverSwitcher" type="checkbox" class="hidden" />
-                    <div class="w-switcher h-5.5 bg-inputBackgroundColor dark:bg-inputBackgroundColorDark rounded-full"></div>
-                    <div class="toggle-circle absolute w-5 h-5 bg-w1 rounded-full inset-y-0 text-center pt-1">
-                        <p class="text-xss font-bold select-none">W1</p>
-                    </div>
+            <label class="relative flex justify-between items-center ml-5 ">
+                <input id="serverSwitcher" type="checkbox" class="hidden" />
+                <div class="w-switcher h-5.5 bg-inputBackgroundColor dark:bg-inputBackgroundColorDark rounded-full"></div>
+                <div class="toggle-circle absolute w-5 h-5 bg-w1 rounded-full inset-y-0 text-center pt-1">
+                    <p id="serverName" class="text-xss font-bold select-none">W1</p>
                 </div>
-            </label>
+              </label>
 
             <button id="backButton" class="ml-0.5 buttonWithImage">
                 <svg class="buttonIcon" width="19" height="14" viewBox="0 0 19 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -163,7 +172,7 @@
             <div class="float-right right-30px absolute mt-1.5">
                 <button id="modeSwitcherButton" class="buttonWithImage hover:bg-iconColorDark dark:hover:bg-addTabDarkHover">
                     <svg class="buttonIcon" width="11" height="16" viewBox="0 0 11 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M2.375 9.8901e-06C1.56933 -0.00126937 0.768272 0.12156 0 0.364177C1.60741 0.869326 3.01173 1.87414 4.00868 3.23247C5.00563 4.59079 5.5432 6.23176 5.5432 7.91668C5.5432 9.60159 5.00563 11.2426 4.00868 12.6009C3.01173 13.9592 1.60741 14.964 0 15.4692C1.08859 15.8113 2.23827 15.914 3.37027 15.7703C4.50226 15.6267 5.58982 15.24 6.55843 14.6368C7.52704 14.0336 8.35381 13.2281 8.98208 12.2756C9.61035 11.323 10.0253 10.2459 10.1984 9.11806C10.3716 7.99019 10.2989 6.83822 9.98533 5.74108C9.67175 4.64393 9.12469 3.62754 8.38165 2.76155C7.63861 1.89555 6.71714 1.20042 5.68038 0.723769C4.64362 0.247122 3.51608 0.000230638 2.375 9.8901e-06Z" fill="#808487"/>
+                        <path d="M2.375 9.8901e-06C1.56933 -0.00126937 0.768272 0.12156 0 0.364177C1.60741 0.869326 3.01173 1.87414 4.00868 3.23247C5.00563 4.59079 5.5432 6.23176 5.5432 7.91668C5.5432 9.60159 5.00563 11.2426 4.00868 12.6009C3.01173 13.9592 1.60741 14.964 0 15.4692C1.08859 15.8113 2.23827 15.914 3.37027 15.7703C4.50226 15.6267 5.58982 15.24 6.55843 14.6368C7.52704 14.0336 8.35381 13.2281 8.98208 12.2756C9.61035 11.323 10.0253 10.2459 10.1984 9.11806C10.3716 7.99019 10.2989 6.83822 9.98533 5.74108C9.67175 4.64393 9.12469 3.62754 8.38165 2.76155C7.63861 1.89555 6.71714 1.20042 5.68038 0.723769C4.64362 0.247122 3.51608 0.000230638 2.375 9.8901e-06Z" />
                     </svg>
                 </button>
                 <button id="favouriteList" class="buttonWithImage hover:bg-iconColorDark dark:hover:bg-addTabDarkHover">

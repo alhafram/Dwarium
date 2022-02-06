@@ -3,8 +3,6 @@ import configService from '../../services/ConfigService'
 import { Channel } from '../../Models/Channel'
 import { generateRandomId } from '../Utils'
 
-let switcher: HTMLElement | null
-
 const Elements = {
     backButton(): HTMLButtonElement {
         return document.getElementById('backButton') as HTMLButtonElement
@@ -71,23 +69,27 @@ const Elements = {
     },
     tabsDiv(): HTMLDivElement {
         return document.getElementById('tabsDiv') as HTMLDivElement
+    },
+    serverSwitcher(): HTMLInputElement {
+        return document.getElementById('serverSwitcher') as HTMLInputElement
+    },
+    serverName(): HTMLSpanElement {
+        return document.getElementById('serverName') as HTMLSpanElement
     }
 }
 
 window.addEventListener('DOMContentLoaded', () => {
-    // switcher = document.getElementById('serverSwitcher') as HTMLElement
     Elements.mainTab().onclick = makeActive
 
-    // switcher.addEventListener('click', () => {
-    //     const knob = document.querySelector('#switcher > div.knob')
-    //     if(knob?.getAttribute('server') == 'W1') {
-    //         knob.setAttribute('server','W2')
-    //         ipcRenderer.send(Channel.LOAD_URL, 'w2')
-    //     } else {
-    //         knob?.setAttribute('server', 'W1')
-    //         ipcRenderer.send(Channel.LOAD_URL, 'w1')
-    //     }
-    // })
+    Elements.serverSwitcher().onchange = function() {
+        if(Elements.serverSwitcher().checked) {
+            ipcRenderer.send(Channel.LOAD_URL, 'w2')
+            Elements.serverName().textContent = 'W2'
+        } else {
+            ipcRenderer.send(Channel.LOAD_URL, 'w1')
+            Elements.serverName().textContent = 'W1'
+        }
+    }
     Elements.reloadButton().addEventListener('click', () => {
         ipcRenderer.send(Channel.RELOAD)
     })
@@ -245,17 +247,15 @@ function makeActive(evt: Event) {
 }
 
 ipcRenderer.on(Channel.SERVER, (event, server) => {
-    const switcherChekbox = document.querySelector('#switcher .checkbox') as HTMLInputElement
     if(!server) {
-        // Default - W2
-        switcherChekbox.checked = true
-        switcher?.click()
+        Elements.serverSwitcher().checked = true
+        Elements.serverName().textContent = 'W2'
         ipcRenderer.send(Channel.LOAD_URL, 'w2')
     } else {
         ipcRenderer.send(Channel.LOAD_URL, server)
+        Elements.serverName().textContent = (server as string).toUpperCase()
         if(server == 'w2') {
-            switcherChekbox.checked = true
-            switcher?.click()
+            Elements.serverSwitcher().checked = true
         }
     }
 })
