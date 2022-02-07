@@ -345,7 +345,7 @@ ipcRenderer.on(Channel.UPDATE_APPLICATION_AVAILABLE, () => {
 ipcRenderer.on(Channel.OPEN_WINDOW, (_evt, id, active) => {
     const element = getElementIdBy(id)
     if(element) {
-        if(localStorage.darkMode) {
+        if(localStorage.darkMode == 'true') {
             element.style.backgroundColor = active ? '#232323' : ''
         } else {
             element.style.backgroundColor = active ? '#F1F3F4' : ''
