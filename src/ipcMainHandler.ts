@@ -4,7 +4,8 @@ import { TabsController } from './services/TabsController'
 import { autoUpdater } from "electron-updater"
 import fs from 'fs'
 import { Channel } from './Models/Channel'
-import { createWindowAndLoad, WindowType, setupCloseLogic, HTMLPath, Preload } from './services/WindowCreationHelper'
+import { WindowType, Preload, HTMLPath } from './Models/WindowModels'
+import { createWindowAndLoad, setupCloseLogic } from './services/WindowCreationHelper'
 import setupContextMenu from './services/ContextMenu'
 
 ipcMain.on(Channel.LOAD_URL, (evt, server) => {

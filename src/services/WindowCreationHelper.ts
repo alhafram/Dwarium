@@ -4,7 +4,7 @@ import { TabsController } from './TabsController'
 import { BrowserWindow } from 'electron'
 import { Channel } from '../Models/Channel'
 import setupContextMenu from './ContextMenu'
-
+import { WindowType, HTMLPath } from '../Models/WindowModels'
 import { getClientWindowPosition, saveClientWindowPosition } from './WindowSizeManager'
 
 export function createWindowAndLoad(windowType: WindowType, htmlPath?: HTMLPath, preloadPath?: string, enableRemote: boolean = false, contextIsolation: boolean = true): BrowserWindow {
@@ -43,38 +43,4 @@ export function setupCloseLogic(window: BrowserWindow, windowType: WindowType, o
             TabsController.mainWindow?.webContents.send(Channel.OPEN_WINDOW, windowType, false)
         }
     })
-}
-
-export enum Preload {
-    DRESSING = '../Components/Dressing/preload.js',
-    BELT = '../Components/Belt/preload.js',
-    CHAT_LOG = '../Components/ChatLog/preload.js',
-    SETTINGS = '../Components/Settings/preload.js',
-    NOTES = '../Components/Notes/preload.js',
-    FOOD = '../Components/Food/preload.js',
-    CHAT_SETTINGS = '../Components/ChatSettings/preload.js'
-}
-
-export enum HTMLPath {
-    DRESSING = '../../gui/Dressing/index.html',
-    BELT = '../../gui/Belt/index.html',
-    CHAT_LOG = '../../gui/ChatLog/index.html',
-    SETTINGS = '../../gui/Settings/index.html',
-    NOTES = '../../gui/Notes/index.html',
-    FOOD = '../../gui/Food/index.html',
-    CHAT_SETTINGS = '../../gui/ChatSettings/index.html'
-}
-
-export enum WindowType {
-    MAIN = 'main',
-    DRESSING_ROOM = 'dressingRoom',
-    BELT_POTION_ROOM = 'beltPotionRoom',
-    CHAT_LOG = 'chatLog',
-    CHAT_SETTINGS = 'chatSettings',
-    SETTINGS = 'settings',
-    NOTES = 'notes',
-    FOOD = 'food',
-    SCREENSHOT = 'screenshot',
-    USER_INFO = 'userInfo',
-    USER_EFFECTS = 'userEffects',
 }

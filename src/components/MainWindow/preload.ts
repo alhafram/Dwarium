@@ -2,6 +2,7 @@ import { ipcRenderer } from 'electron'
 import configService from '../../services/ConfigService'
 import { Channel } from '../../Models/Channel'
 import { generateRandomId } from '../Utils'
+import { WindowType } from '../../Models/WindowModels'
 
 const Elements = {
     backButton(): HTMLButtonElement {
@@ -52,6 +53,9 @@ const Elements = {
     settingsButton(): HTMLButtonElement {
         return document.getElementById('settingsButton') as HTMLButtonElement
     },
+    chatSettingsButton(): HTMLButtonElement {
+        return document.getElementById('chatSettingsButton') as HTMLButtonElement
+    },
     notificationsButton(): HTMLButtonElement {
         return document.getElementById('notificationsButton') as HTMLButtonElement
     },
@@ -85,9 +89,9 @@ const Elements = {
 }
 
 window.addEventListener('DOMContentLoaded', () => {
-    Elements.mainTab().onclick = makeActive
     handleMode()
 
+    Elements.mainTab().onclick = makeActive
     Elements.serverSwitcher().onchange = function() {
         if(Elements.serverSwitcher().checked) {
             ipcRenderer.send(Channel.LOAD_URL, 'w2')
@@ -115,27 +119,16 @@ window.addEventListener('DOMContentLoaded', () => {
     Elements.chatLogButton().addEventListener('click', () => {
         ipcRenderer.send(Channel.OPEN_CHAT_LOG)
     })
-    // REMAKE NO ICON
-    document.getElementById('chatSettings')?.addEventListener('click', () => {
+    Elements.chatSettingsButton().addEventListener('click', () => {
         ipcRenderer.send(Channel.OPEN_CHAT_SETTINGS)
     })
     Elements.settingsButton().addEventListener('click', () => {
         ipcRenderer.send(Channel.OPEN_SETTINGS)
     })
-    document.addEventListener('make_active', (evt) => {
-        makeActive(evt)
-        ipcRenderer.send(Channel.MAKE_ACTIVE, (<CustomEvent>evt).detail.id)
-    })
-    document.addEventListener('close_tab', (evt) => {
-        ipcRenderer.send(Channel.CLOSE_TAB, (<CustomEvent>evt).detail.id)
-    })
     Elements.urlInput().addEventListener('keyup', (e: KeyboardEvent) => {
         if(e.key == 'Enter') {
             ipcRenderer.send(Channel.GO_URL, Elements.urlInput().value)
         }
-    })
-    document.addEventListener('goUrl', (evt) => {
-        ipcRenderer.send(Channel.GO_URL, (<CustomEvent>evt).detail)
     })
     Elements.updateApplicationButton().addEventListener('click', () => {
         ipcRenderer.send(Channel.UPDATE_APPLICATION)
@@ -182,7 +175,6 @@ window.addEventListener('DOMContentLoaded', () => {
     Elements.foodButton().onclick = function() {
         ipcRenderer.send(Channel.OPEN_FOOD)
     }
-    
     Elements.modeSwitcherButton().onclick = function() {
         if(localStorage.darkMode == 'true') {
             localStorage.darkMode = false
@@ -191,11 +183,21 @@ window.addEventListener('DOMContentLoaded', () => {
         }
         handleMode()
     }
-
     Elements.addTabButton().onclick = function() {
         const tab = createNewTab()
         ipcRenderer.send(Channel.NEW_TAB, tab.id)
     }
+
+    document.addEventListener('make_active', (evt) => {
+        makeActive(evt)
+        ipcRenderer.send(Channel.MAKE_ACTIVE, (<CustomEvent>evt).detail.id)
+    })
+    document.addEventListener('close_tab', (evt) => {
+        ipcRenderer.send(Channel.CLOSE_TAB, (<CustomEvent>evt).detail.id)
+    })
+    document.addEventListener('goUrl', (evt) => {
+        ipcRenderer.send(Channel.GO_URL, (<CustomEvent>evt).detail)
+    })
 })
 
 function handleMode() {
@@ -337,15 +339,43 @@ ipcRenderer.on(Channel.CLOSE_TAB, (evt, id) => {
 })
 
 ipcRenderer.on(Channel.UPDATE_APPLICATION_AVAILABLE, () => {
-    const updateApplicationStyle = Elements.updateApplicationButton().style
-    updateApplicationStyle?.setProperty('display', 'block')
+    Elements.updateApplicationButton().classList.remove('hidden')
 })
 
 ipcRenderer.on(Channel.OPEN_WINDOW, (_evt, id, active) => {
-    const element = document.getElementById(id)
-    element!.style.backgroundColor = active ? '#999' : 'white'
+    const element = getElementIdBy(id)
+    if(element) {
+        if(localStorage.darkMode) {
+            element.style.backgroundColor = active ? '#232323' : ''
+        } else {
+            element.style.backgroundColor = active ? '#F1F3F4' : ''
+        }
+    }
 })
 
 ipcRenderer.on(Channel.TAKE_SCREENSHOT, () => {
     ipcRenderer.send(Channel.TAKE_SCREENSHOT)
 })
+
+function getElementIdBy(type: WindowType): HTMLElement | undefined {
+    switch(type) {
+        case WindowType.FOOD:
+            return Elements.foodButton()
+        case WindowType.SCREENSHOT:
+            return Elements.screenshotButton()
+        case WindowType.NOTES:
+            return Elements.notesButton()
+        case WindowType.DRESSING_ROOM:
+            return Elements.dressingSetsButton()
+        case WindowType.BELT_POTION_ROOM:
+            return Elements.beltSetsButton()
+        case WindowType.CHAT_LOG:
+            return Elements.chatLogButton()
+        case WindowType.SETTINGS:
+            return Elements.settingsButton()
+            case WindowType.CHAT_SETTINGS:
+            return Elements.chatSettingsButton()
+        case WindowType.NOTIFICATIONS_SETTINGS:
+            return Elements.notificationsButton()
+    }
+}

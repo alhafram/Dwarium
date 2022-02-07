@@ -2,7 +2,7 @@ const { app } = process.type === 'browser' ? require('electron') : require('@ele
 import { Rectangle } from 'electron'
 import fs from 'fs'
 import path from 'path'
-import { WindowType } from './WindowCreationHelper'
+import { WindowType } from '../Models/WindowModels'
 
 const configPath = path.join(app.getPath('userData'), 'windows.json')
 

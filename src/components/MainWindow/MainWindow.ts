@@ -3,7 +3,7 @@ import path from 'path'
 import configService from '../../services/ConfigService'
 import { TabsController } from '../../services/TabsController'
 import { Channel } from '../../Models/Channel'
-import { WindowType } from '../../services/WindowCreationHelper'
+import { WindowType } from '../../Models/WindowModels'
 import setupContextMenu from '../../services/ContextMenu'
 import { getBrowserWindowPosition, getClientWindowPosition, saveBrowserWindowPosition, saveClientWindowPosition } from '../../services/WindowSizeManager'
 
