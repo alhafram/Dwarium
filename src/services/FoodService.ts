@@ -70,7 +70,8 @@ async function eat(message: ChatMessage) {
 
     if(hpFoodItem && hpFood) {
         if(hpFoodItem.cnt <= 0) {
-            ConfigService.writeData('hpFood', null)
+            config.hpFood = null
+            UserConfigService.save(config)
             alert('Кончилась еда на хп')
             return
         }
@@ -89,7 +90,8 @@ async function eat(message: ChatMessage) {
 
     if(mpFoodItem && mpFood) {
         if(mpFoodItem.cnt <= 0) {
-            ConfigService.writeData('mpFood', null)
+            config.mpFood = null
+            UserConfigService.save(config)
             alert('Кончилась еда на мп')
             return
         }

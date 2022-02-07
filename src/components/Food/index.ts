@@ -232,7 +232,7 @@ async function reduce(state: FoodWindowState = initialState, action: FoodWindowA
             switch(equipedItem.foodType) {
                 case FoodType.HP:
                     if(equipedStaticItemBox.id == 'hp') {
-                        if(state.hpItem) {
+                        if(state.hpItem && !state.allItems.includes(state.hpItem)) {
                             allItems.push(state.hpItem)
                         }
                         allItems = allItems.removeItem(equipedItem)
@@ -246,7 +246,7 @@ async function reduce(state: FoodWindowState = initialState, action: FoodWindowA
                     }
                 case FoodType.MP:
                     if(equipedStaticItemBox.id == 'mp') {
-                        if(state.mpItem) {
+                        if(state.mpItem && !state.allItems.includes(state.mpItem)) {
                             allItems.push(state.mpItem)
                         }
                         allItems = allItems.removeItem(equipedItem)
@@ -260,12 +260,20 @@ async function reduce(state: FoodWindowState = initialState, action: FoodWindowA
                     }
                 case FoodType.BOTH:
                     if(equipedStaticItemBox.id == 'hp') {
+                        const equipedHpItem = allItems.find(item => item.id == equipedStaticItemBox.firstElementChild?.getAttribute('itemid'))
+                        if(!equipedHpItem && state.hpItem) {
+                            allItems.push(state.hpItem)
+                        }
                         return {
                             ...state,
                             hpItem: equipedItem,
                             allItems: allItems
                         }
                     } else {
+                        const equipedMpItem = allItems.find(item => item.id == equipedStaticItemBox.firstElementChild?.getAttribute('itemid'))
+                        if(!equipedMpItem && state.mpItem) {
+                            allItems.push(state.mpItem)
+                        }
                         return {
                             ...state,
                             mpItem: equipedItem,
