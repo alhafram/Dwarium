@@ -338,7 +338,6 @@ ipcMain.on(Channel.FAVOURITE_LIST, () => {
     favouriteListBrowserView.webContents.loadFile(`${path.join(app.getAppPath(), 'gui', 'FavouriteList', 'index.html')}`)
     favouriteListBrowserView.setBounds({ x: TabsController.mainWindow!.getBounds().width - marginRight, y: 72, width: 208, height: 208 })
     require("@electron/remote/main").enable(favouriteListBrowserView.webContents)
-    favouriteListBrowserView.webContents.openDevTools()
     
     TabsController.mainWindow!.on('resize', function() {
         let frame = TabsController.mainWindow!.getBounds();
