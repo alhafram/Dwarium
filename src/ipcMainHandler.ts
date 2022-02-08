@@ -334,12 +334,14 @@ ipcMain.on(Channel.FAVOURITE_LIST, () => {
         }
     })
     TabsController.mainWindow?.addBrowserView(favouriteListBrowserView)
+    const marginRight = process.platform == 'darwin' ? 208 : 224
     favouriteListBrowserView.webContents.loadFile(`${path.join(app.getAppPath(), 'gui', 'FavouriteList', 'index.html')}`)
-    favouriteListBrowserView.setBounds({ x: TabsController.mainWindow!.getBounds().width - 208, y: 72, width: 208, height: 208 })
+    favouriteListBrowserView.setBounds({ x: TabsController.mainWindow!.getBounds().width - marginRight, y: 72, width: 208, height: 208 })
     require("@electron/remote/main").enable(favouriteListBrowserView.webContents)
+    favouriteListBrowserView.webContents.openDevTools()
     
     TabsController.mainWindow!.on('resize', function() {
         let frame = TabsController.mainWindow!.getBounds();
-        favouriteListBrowserView?.setBounds({ x: frame.width - 200, y: 72, width: 208, height: 208 })
+        favouriteListBrowserView?.setBounds({ x: frame.width - marginRight, y: 72, width: 215, height: 208 })
     })
 })
