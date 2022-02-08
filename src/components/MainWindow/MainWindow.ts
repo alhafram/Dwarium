@@ -227,6 +227,17 @@ export default class MainWindowContainer {
                 action: 'deny'
             }
         })
+        window.on('moved', () => {
+            const url = window.webContents?.getURL()
+            if(!url) {
+                return
+            }
+            const convertedURL = new URL(url)
+            saveBrowserWindowPosition(convertedURL.pathname, window.getBounds())
+            if(configService.windowsAboveApp()) {
+                this.mainWindow.focus()
+            }
+        })
         window.on('close', () => {
             const url = window.webContents?.getURL()
             if(!url) {
