@@ -61,13 +61,15 @@ function renderFavouriteLinks() {
                 </button>
             </div>`
         const node = new DOMParser().parseFromString(favouriteLinkElement, 'text/html').body.firstElementChild as HTMLDivElement
-        node.onclick = function() {
+        node.onclick = function(e) {
             ipcRenderer.send(Channel.NEW_TAB_WITH_URL, link.url)
+            e.stopPropagation()
         }
         const removeButton = node.lastElementChild as HTMLButtonElement
         if(removeButton) {
-            removeButton.onclick = function() {
+            removeButton.onclick = function(e) {
                 FavouriteLinksService.saveFavouriteLink('', link.url, null)
+                e.stopPropagation()
             }
             Elements.linksDiv().appendChild(node)
         }
