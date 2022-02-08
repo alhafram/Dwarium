@@ -283,3 +283,35 @@ ipcMain.on(Channel.OPEN_CHAT_SETTINGS, () => {
         chatSettingsWindow = null
     })
 })
+
+
+let favouriteListWindow: BrowserWindow | null
+ipcMain.on(Channel.FAVOURITE_LIST, () => {
+    if(favouriteListWindow) {
+        favouriteListWindow.show()
+        return
+    }
+    favouriteListWindow = new BrowserWindow({
+        x: TabsController.mainWindow!.getBounds().width - 200,
+        y: 125,
+        width: 200,
+        height: 200,
+        titleBarStyle: 'customButtonsOnHover',
+        parent: TabsController.mainWindow!,
+        resizable: false,
+        movable: false,
+        frame: false,
+        fullscreenable: false,
+        minimizable: false
+    })
+    TabsController.mainWindow!.on('resize', function() {
+        let frame = TabsController.mainWindow!.getBounds();
+        favouriteListWindow?.setPosition(frame.width - 200, frame.y + 100);
+    })
+    favouriteListWindow.on('blur', () => {
+        favouriteListWindow?.hide()
+    })
+    favouriteListWindow.on('closed', () => {
+        favouriteListWindow = null
+    })
+})

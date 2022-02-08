@@ -5,6 +5,12 @@ import { generateRandomId } from '../Utils'
 import { WindowType } from '../../Models/WindowModels'
 
 const Elements = {
+    serverSwitcher(): HTMLInputElement {
+        return document.getElementById('serverSwitcher') as HTMLInputElement
+    },
+    serverName(): HTMLSpanElement {
+        return document.getElementById('serverName') as HTMLSpanElement
+    },
     backButton(): HTMLButtonElement {
         return document.getElementById('backButton') as HTMLButtonElement
     },
@@ -74,17 +80,14 @@ const Elements = {
     tabsDiv(): HTMLDivElement {
         return document.getElementById('tabsDiv') as HTMLDivElement
     },
-    serverSwitcher(): HTMLInputElement {
-        return document.getElementById('serverSwitcher') as HTMLInputElement
-    },
-    serverName(): HTMLSpanElement {
-        return document.getElementById('serverName') as HTMLSpanElement
-    },
     darkModeImage(): HTMLElement {
         return document.getElementById('dark') as HTMLElement
     },
     lightModeImage(): HTMLElement {
         return document.getElementById('light') as HTMLElement
+    },
+    favouriteListButton(): HTMLButtonElement {
+        return document.getElementById('favouriteListButton') as HTMLButtonElement
     }
 }
 
@@ -186,6 +189,9 @@ window.addEventListener('DOMContentLoaded', () => {
     Elements.addTabButton().onclick = function() {
         const tab = createNewTab()
         ipcRenderer.send(Channel.NEW_TAB, tab.id)
+    }
+    Elements.favouriteListButton().onclick = function() {
+        ipcRenderer.send(Channel.FAVOURITE_LIST)
     }
 
     document.addEventListener('make_active', (evt) => {

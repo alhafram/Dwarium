@@ -27,5 +27,6 @@ export enum Channel {
     UPDATE_APPLICATION_AVAILABLE = 'updateApplicationAvailable',
     FOOD_CHANGED = 'foodChanged',
     CHAT_SETTINGS_CHANGED = 'chatSettingsChanged',
-    GET_ID = 'getId'
+    GET_ID = 'getId',
+    FAVOURITE_LIST = 'favouriteList'
 }
