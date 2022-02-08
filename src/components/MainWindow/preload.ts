@@ -3,6 +3,8 @@ import configService from '../../services/ConfigService'
 import { Channel } from '../../Models/Channel'
 import { generateRandomId } from '../Utils'
 import { WindowType } from '../../Models/WindowModels'
+import FavouriteLinkService from '../../services/FavouriteLinksService'
+
 
 const Elements = {
     serverSwitcher(): HTMLInputElement {
@@ -88,11 +90,15 @@ const Elements = {
     },
     favouriteListButton(): HTMLButtonElement {
         return document.getElementById('favouriteListButton') as HTMLButtonElement
+    },
+    favouriteButtonImage(): HTMLElement {
+        return document.getElementById('favouriteButtonImage') as HTMLElement
     }
 }
 
-window.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('DOMContentLoaded', async () => {
     handleMode()
+    await setupFavourite()
 
     Elements.mainTab().onclick = makeActive
     Elements.serverSwitcher().onchange = function() {
@@ -194,6 +200,10 @@ window.addEventListener('DOMContentLoaded', () => {
     Elements.favouriteListButton().onclick = function() {
         ipcRenderer.send(Channel.FAVOURITE_LIST)
     }
+    Elements.favouriteButton().onclick = async function() {
+        const isFavourite = await isCurrentLinkFavourite()
+        saveFavouriteLink(isFavourite)
+    }
 
     document.addEventListener('make_active', (evt) => {
         makeActive(evt)
@@ -207,6 +217,36 @@ window.addEventListener('DOMContentLoaded', () => {
     })
 })
 
+async function isCurrentLinkFavourite(): Promise<boolean> {
+    const urlString = await ipcRenderer.invoke(Channel.GET_URL) as string
+    if(urlString.length == 0) {
+        return false
+    }
+    const url = new URL(urlString).href
+    return FavouriteLinkService.isFavouriteLink(url)
+}
+
+async function saveFavouriteLink(value: boolean | null) {
+    const urlString = await ipcRenderer.invoke(Channel.GET_URL) as string
+    if(urlString.length == 0) {
+        return false
+    }
+    const url = new URL(urlString).href
+    const title = await ipcRenderer.invoke(Channel.GET_TITLE) as string
+    const isFavourite = FavouriteLinkService.isFavouriteLink(url)
+    FavouriteLinkService.saveFavouriteLink(title, url, !isFavourite ? true : null)
+    await setupFavourite()
+}
+
+async function setupFavourite() {
+    const isFavourite = await isCurrentLinkFavourite()
+    if(isFavourite) {
+        Elements.favouriteButtonImage().setAttribute('fill', '#FFFF00')
+    } else {
+        Elements.favouriteButtonImage().removeAttribute('fill')
+    }
+}
+
 function handleMode() {
     if(localStorage.darkMode == 'true') {
         Elements.darkModeImage().classList.add('hidden')
@@ -219,7 +259,7 @@ function handleMode() {
     }
 }
 
-function createNewTab(id?: string, title?: string) {
+function createNewTab(id?: string) {
     const newTabString = `
         <button style="min-width: 150px;" class="shrink-0 w-150px h-10 activeTab">
             <span>New tab</span>
@@ -320,6 +360,7 @@ function closeTab(evt: Event) {
 ipcRenderer.on(Channel.URL, (event, url, id) => {
     Elements.urlInput().disabled = id == 'main'
     Elements.urlInput().value = url
+    setupFavourite()
 })
 
 ipcRenderer.on(Channel.FINISH_LOAD_URL, (event, id, title) => {
@@ -362,6 +403,15 @@ ipcRenderer.on(Channel.OPEN_WINDOW, (_evt, id, active) => {
 
 ipcRenderer.on(Channel.TAKE_SCREENSHOT, () => {
     ipcRenderer.send(Channel.TAKE_SCREENSHOT)
+})
+
+ipcRenderer.on(Channel.FAVOURITE_UPDATED, () => {
+    setupFavourite()
+})
+
+ipcRenderer.on(Channel.NEW_TAB_WITH_URL, (evt, url) => {
+    const tab = createNewTab()
+    ipcRenderer.send(Channel.NEW_TAB, tab.id, url)
 })
 
 function getElementIdBy(type: WindowType): HTMLElement | undefined {

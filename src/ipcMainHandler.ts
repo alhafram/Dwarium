@@ -205,6 +205,25 @@ ipcMain.on(Channel.SWITCH_MODE, () => {
     favouriteListBrowserView?.webContents.send(Channel.SWITCH_MODE)
 })
 
+ipcMain.handle(Channel.GET_URL, () => {
+    return TabsController.currentTab().webContents.getURL()
+})
+
+ipcMain.handle(Channel.GET_TITLE, () => {
+    return TabsController.currentTab().webContents.getTitle()
+})
+
+ipcMain.on(Channel.FAVOURITE_UPDATED, () => {
+    TabsController.mainWindow?.webContents.send(Channel.FAVOURITE_UPDATED)
+    if(favouriteListBrowserView) {
+        favouriteListBrowserView.webContents.send(Channel.FAVOURITE_UPDATED)
+    }
+})
+
+ipcMain.on(Channel.NEW_TAB_WITH_URL, (evt, url) => {
+    TabsController.mainWindow?.webContents.send(Channel.NEW_TAB_WITH_URL, url)
+})
+
 /// WINDOWS 
 
 let settingsWindow: BrowserWindow | null
@@ -317,7 +336,8 @@ ipcMain.on(Channel.FAVOURITE_LIST, () => {
     TabsController.mainWindow?.addBrowserView(favouriteListBrowserView)
     favouriteListBrowserView.webContents.loadFile(`${path.join(app.getAppPath(), 'gui', 'FavouriteList', 'index.html')}`)
     favouriteListBrowserView.setBounds({ x: TabsController.mainWindow!.getBounds().width - 208, y: 72, width: 208, height: 208 })
-    // favouriteListBrowserView.webContents.openDevTools()
+    require("@electron/remote/main").enable(favouriteListBrowserView.webContents)
+    favouriteListBrowserView.webContents.openDevTools()
     
     TabsController.mainWindow!.on('resize', function() {
         let frame = TabsController.mainWindow!.getBounds();
