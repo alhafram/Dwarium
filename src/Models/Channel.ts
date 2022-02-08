@@ -28,5 +28,6 @@ export enum Channel {
     FOOD_CHANGED = 'foodChanged',
     CHAT_SETTINGS_CHANGED = 'chatSettingsChanged',
     GET_ID = 'getId',
-    FAVOURITE_LIST = 'favouriteList'
+    FAVOURITE_LIST = 'favouriteList',
+    SWITCH_MODE = 'switchMode'
 }

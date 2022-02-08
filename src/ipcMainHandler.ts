@@ -3,6 +3,7 @@ import configService from './services/ConfigService'
 import { TabsController } from './services/TabsController'
 import { autoUpdater } from "electron-updater"
 import fs from 'fs'
+import path from 'path'
 import { Channel } from './Models/Channel'
 import { WindowType, Preload, HTMLPath } from './Models/WindowModels'
 import { createWindowAndLoad, setupCloseLogic } from './services/WindowCreationHelper'
@@ -64,6 +65,7 @@ function createNewTab(url: string, id: string) {
         })
     }
     TabsController.addTab(tabId, browserView)
+    closeFavouriteListBrowserView()
     TabsController.setupCurrent(tabId)
     TabsController.mainWindow?.setBrowserView(browserView)
 
@@ -84,6 +86,7 @@ ipcMain.on(Channel.MAKE_ACTIVE, (evt, id) => {
 
 ipcMain.on(Channel.REMOVE_VIEW, (evt, id) => {
     TabsController.deleteTab(id)
+    closeFavouriteListBrowserView()
 })
 
 ipcMain.on(Channel.CLOSE_TAB, (evt, id) => {
@@ -198,6 +201,10 @@ ipcMain.handle(Channel.GET_ID, async () => {
     return await TabsController.mainWindowContainer?.browserView?.webContents.executeJavaScript('top._top().myId')
 })
 
+ipcMain.on(Channel.SWITCH_MODE, () => {
+    favouriteListBrowserView?.webContents.send(Channel.SWITCH_MODE)
+})
+
 /// WINDOWS 
 
 let settingsWindow: BrowserWindow | null
@@ -285,33 +292,35 @@ ipcMain.on(Channel.OPEN_CHAT_SETTINGS, () => {
 })
 
 
-let favouriteListWindow: BrowserWindow | null
+let favouriteListBrowserView: BrowserView | null
+
+function closeFavouriteListBrowserView() {
+    if(favouriteListBrowserView) {
+        if(!favouriteListBrowserView.webContents.isDestroyed()) {
+            TabsController.mainWindow?.removeBrowserView(favouriteListBrowserView);
+            (favouriteListBrowserView.webContents as any).destroy()
+        }
+        favouriteListBrowserView = null
+    }
+}
+
 ipcMain.on(Channel.FAVOURITE_LIST, () => {
-    if(favouriteListWindow) {
-        favouriteListWindow.show()
+    if(favouriteListBrowserView) {
+        closeFavouriteListBrowserView()
         return
     }
-    favouriteListWindow = new BrowserWindow({
-        x: TabsController.mainWindow!.getBounds().width - 200,
-        y: 125,
-        width: 200,
-        height: 200,
-        titleBarStyle: 'customButtonsOnHover',
-        parent: TabsController.mainWindow!,
-        resizable: false,
-        movable: false,
-        frame: false,
-        fullscreenable: false,
-        minimizable: false
+    favouriteListBrowserView = new BrowserView({
+        webPreferences: {
+            preload: `${path.join(app.getAppPath(), 'out', 'Components', 'FavouriteList', 'preload.js')}` 
+        }
     })
+    TabsController.mainWindow?.addBrowserView(favouriteListBrowserView)
+    favouriteListBrowserView.webContents.loadFile(`${path.join(app.getAppPath(), 'gui', 'FavouriteList', 'index.html')}`)
+    favouriteListBrowserView.setBounds({ x: TabsController.mainWindow!.getBounds().width - 208, y: 72, width: 208, height: 208 })
+    // favouriteListBrowserView.webContents.openDevTools()
+    
     TabsController.mainWindow!.on('resize', function() {
         let frame = TabsController.mainWindow!.getBounds();
-        favouriteListWindow?.setPosition(frame.width - 200, frame.y + 100);
-    })
-    favouriteListWindow.on('blur', () => {
-        favouriteListWindow?.hide()
-    })
-    favouriteListWindow.on('closed', () => {
-        favouriteListWindow = null
+        favouriteListBrowserView?.setBounds({ x: frame.width - 200, y: 72, width: 208, height: 208 })
     })
 })

@@ -30,5 +30,6 @@ export enum WindowType {
     SCREENSHOT = 'screenshot',
     USER_INFO = 'userInfo',
     USER_EFFECTS = 'userEffects',
-    NOTIFICATIONS_SETTINGS = 'notificationsSettings'
+    NOTIFICATIONS_SETTINGS = 'notificationsSettings',
+    FAVOURITE_LIST = 'favouriteList'
 }

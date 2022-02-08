@@ -185,6 +185,7 @@ window.addEventListener('DOMContentLoaded', () => {
             localStorage.darkMode = true
         }
         handleMode()
+        ipcRenderer.send(Channel.SWITCH_MODE)
     }
     Elements.addTabButton().onclick = function() {
         const tab = createNewTab()
