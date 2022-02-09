@@ -1,114 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <script src="../../out/Components/Settings/index.js"></script>
+        <style>
+            li {
+                margin-top: 5px;
+            }
+        </style>
+    </head>
 
-<head>
-    <meta charset="utf-8">
-    <script src="../../out/Components/Settings/index.js"></script>
-    <style>
-        li {
-            margin-top: 5px;
-        }
-    </style>
-</head>
+    <body>
+        <div style="display: flex">
+            <div style="width: 50%">
+                <h3>Выберите User-Agent</h3>
+                <select id="userAgents" style="width: 200px" id="useragents"></select>
+                <br /><br />
+                <textarea id="userAgentText" rows="5" style="width: 95%; min-width: 95%; max-width: 95%" type="text" disabled></textarea>
 
-<body>
+                <input id="windowOpenNewTab" type="checkbox" />
+                <label for="windowOpenNewTab">Открывать окна в новых вкладках(По умолчанию в новом окне)</label>
+                <br />
+                <input id="windowsAboveApp" type="checkbox" />
+                <label for="windowsAboveApp">Диалоговые окна всегда поверх клиента</label>
+                <br />
+                <input id="maximizeOnStart" type="checkbox" />
+                <label for="maximizeOnStart">Открывать клиент в полный экран</label>
+                <br />
+                <input id="hideTopPanelInFullScreen" type="checkbox" />
+                <label for="hideTopPanelInFullScreen">Скрывать верхнюю панель в fullsreen(F11)</label>
+                <br />
+                <input id="mailServer" type="checkbox" />
+                <label for="mailServer">Подключаться к mail-серверам</label>
+                <br />
+                <br />
+                <label for="ownServer">Свой сервер</label>
+                <input style="width: 95%; min-width: 95%; max-width: 95%" id="ownServer" type="url" placeholder="https://w2.dwar.ru" />
+                <br />
+                <h3>Настройка оповещений</h3>
 
-    <div style="display: flex;">
-        <div style="width: 50%;">
-            <h3>Выберите User-Agent</h3>
-            <select id="userAgents" style="width: 200px;" id="useragents"></select>
-            <br><br>
-            <textarea id="userAgentText" rows="5" style="width: 95%; min-width: 95%; max-width: 95%;" type="text" disabled></textarea>
+                <input id="fightNotificationsSystem" type="checkbox" />
+                <span>(System)</span>
+                <input id="fightNotificationsIngame" type="checkbox" />
+                <span>(Ingame)</span>
+                <label>Оповещения о нападении</label>
 
-            <input id="windowOpenNewTab" type="checkbox" />
-            <label for="windowOpenNewTab">Открывать окна в новых вкладках(По умолчанию в новом окне)</label>
-            <br>
-            <input id="windowsAboveApp" type="checkbox" />
-            <label for="windowsAboveApp">Диалоговые окна всегда поверх клиента</label>
-            <br>
-            <input id="maximizeOnStart" type="checkbox" />
-            <label for="maximizeOnStart">Открывать клиент в полный экран</label>
-            <br>
-            <input id="hideTopPanelInFullScreen" type="checkbox" />
-            <label for="hideTopPanelInFullScreen">Скрывать верхнюю панель в fullsreen(F11)</label>
-            <br>
-            <input id="mailServer" type="checkbox" />
-            <label for="mailServer">Подключаться к mail-серверам</label>
-            <br>
-            <br>
-            <label for="ownServer">Свой сервер</label>
-            <input style="width: 95%; min-width: 95%; max-width: 95%;" id="ownServer" type="url" placeholder="https://w2.dwar.ru" />
-            <br>
-            <h3>Настройка оповещений</h3>
+                <br />
 
-            <input id="fightNotificationsSystem" type="checkbox" />
-            <span>(System)</span>
-            <input id="fightNotificationsIngame" type="checkbox" />
-            <span>(Ingame)</span>
-            <label>Оповещения о нападении</label>
+                <input id="battlegroundNotificationsSystem" type="checkbox" />
+                <span>(System)</span>
+                <input id="battlegroundNotificationsIngame" type="checkbox" />
+                <span>(Ingame)</span>
+                <label>Оповещения о сюдашке</label>
 
-            <br>
+                <br />
 
-            <input id="battlegroundNotificationsSystem" type="checkbox" />
-            <span>(System)</span>
-            <input id="battlegroundNotificationsIngame" type="checkbox" />
-            <span>(Ingame)</span>
-            <label>Оповещения о сюдашке</label>
+                <input id="messageNotificationsSystem" type="checkbox" />
+                <span>(System)</span>
+                <input id="messageNotificationsIngame" type="checkbox" />
+                <span>(Ingame)</span>
+                <label>Оповещения о сообщениях</label>
 
-            <br>
+                <br />
 
-            <input id="messageNotificationsSystem" type="checkbox" />
-            <span>(System)</span>
-            <input id="messageNotificationsIngame" type="checkbox" />
-            <span>(Ingame)</span>
-            <label>Оповещения о сообщениях</label>
+                <input id="mailNotificationsSystem" type="checkbox" />
+                <span>(System)</span>
+                <input id="mailNotificationsIngame" type="checkbox" />
+                <span>(Ingame)</span>
+                <label>Оповещения о почте</label>
 
-            <br>
-
-            <input id="mailNotificationsSystem" type="checkbox" />
-            <span>(System)</span>
-            <input id="mailNotificationsIngame" type="checkbox" />
-            <span>(Ingame)</span>
-            <label>Оповещения о почте</label>
-
-            <br>
-            <br>
-            <h4>Канал обновлений</h4>
-            <label for="stableChasnnel">Stable</label>
-            <input type="radio" checked name="updateChannel" value="stable" id="stableChannel" />
-            <label for="alphaChannel">Alpha</label>
-            <input type="radio" name="updateChannel" value="alpha" id="alphaChannel"  />
-            <br>
-            <br>
-            <button id="save">Сохранить</button>
-            <br>
-            <br>
-            <br>
-            <label for="screenshotsFolder">Папка со скриншотами</label>
-            <div style="display: flex;">
-                <textarea id="screenshotsFolderPath" rows="2" style="width: 85%; margin-right: 5px; resize: none;" type="text" disabled></textarea>
-                <button id="screenshotsFolder">Открыть</button>
+                <br />
+                <br />
+                <h4>Канал обновлений</h4>
+                <label for="stableChasnnel">Stable</label>
+                <input type="radio" checked name="updateChannel" value="stable" id="stableChannel" />
+                <label for="alphaChannel">Alpha</label>
+                <input type="radio" name="updateChannel" value="alpha" id="alphaChannel" />
+                <br />
+                <br />
+                <button id="save">Сохранить</button>
+                <br />
+                <br />
+                <br />
+                <label for="screenshotsFolder">Папка со скриншотами</label>
+                <div style="display: flex">
+                    <textarea id="screenshotsFolderPath" rows="2" style="width: 85%; margin-right: 5px; resize: none" type="text" disabled></textarea>
+                    <button id="screenshotsFolder">Открыть</button>
+                </div>
+                <br />
             </div>
-            <br>
+            <div style="width: 50%">
+                <h3>Список shortcut-ов</h3>
+                <ul>
+                    <li>F11(Windows/Linux), Fn + F(macOS) - Перейти в fullscreen</li>
+                    <li>Ctrl(Cmd) + T - Открыть новый таб</li>
+                    <li>Ctrl(Cmd) + W - Закрыть текущий таб</li>
+                    <li>F7 - Открыть/Закрыть окно с чатом</li>
+                    <li>Ctrl(Cmd) + Shift + C - Скопировать url страницы, открытой в диалоговом окне</li>
+                    <li>Ctrl(Cmd) + Shift + K - Очистить кэш и остальные ресурсы(Сбрасывает логин)</li>
+                    <li>F9(Windows/Linux), Cmd + F(macOS) - Скриншот</li>
+                </ul>
+                <h3>Dev shortcuts</h3>
+                <ul>
+                    <li>Ctrl(Cmd) + O - Открыть dev tools для webview</li>
+                    <li>Ctrl(Cmd) + Alt + I - Открыть dev tools для window</li>
+                </ul>
+            </div>
         </div>
-        <div style="width: 50%;">
-            <h3>Список shortcut-ов</h3>
-            <ul>
-                <li>F11(Windows/Linux), Fn + F(macOS) - Перейти в fullscreen</li>
-                <li>Ctrl(Cmd) + T - Открыть новый таб</li>
-                <li>Ctrl(Cmd) + W - Закрыть текущий таб</li>
-                <li>F7 - Открыть/Закрыть окно с чатом</li>
-                <li>Ctrl(Cmd) + Shift + C - Скопировать url страницы, открытой в диалоговом окне</li>
-                <li>Ctrl(Cmd) + Shift + K - Очистить кэш и остальные ресурсы(Сбрасывает логин)</li>
-                <li>F9(Windows/Linux), Cmd + F(macOS) - Скриншот</li>
-            </ul>
-            <h3>Dev shortcuts</h3>
-            <ul>
-                <li>Ctrl(Cmd) + O - Открыть dev tools для webview</li>
-                <li>Ctrl(Cmd) + Alt + I - Открыть dev tools для window</li>
-            </ul>
-        </div>
-    </div>
-</body>
-
+    </body>
 </html>

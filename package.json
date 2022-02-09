@@ -15,7 +15,8 @@
         "clean": "rm -rf ./out rm -rf ./dist",
         "prod": "yarn run clean && yarn run compile && yarn run compileCSS",
         "tailwind": "npx tailwindcss -i ./src/Styles/main.css -o ./out/main.css --watch",
-        "compileCSS": "npx tailwindcss -i ./src/Styles/main.css -o ./out/main.css"
+        "compileCSS": "npx tailwindcss -i ./src/Styles/main.css -o ./out/main.css",
+        "prettierHTML": "npx prettier ./gui/**/*.html --write --print-width=200 --bracket-same-line=true --tab-width=4 --single-quote=true --no-semi"
     },
     "author": "",
     "license": "ISC",
@@ -26,6 +27,8 @@
         "electron": "^16.0.8",
         "electron-builder": "^22.14.13",
         "postcss": "^8.4.6",
+        "prettier": "^2.5.1",
+        "prettier-plugin-tailwindcss": "^0.1.7",
         "tailwindcss": "^3.0.18",
         "typescript": "^4.5.4"
     },

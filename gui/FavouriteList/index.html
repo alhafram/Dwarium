@@ -1,24 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
 
-<head>
-    <meta charset="UTF-8">
+        <link href="../../out/main.css" rel="stylesheet" />
 
-    <link href="../../out/main.css" rel="stylesheet">
+        <style>
+            *::-webkit-scrollbar {
+                display: none;
+            }
+        </style>
+    </head>
 
-    <style>
-    *::-webkit-scrollbar {
-        display: none;
-    }
-    </style>
-</head>
-
-<body>
-    <div class="w-52 h-52 rounded-bl-2xl bg-backgroundColor dark:bg-backgroundColorDark ">
-        <p class=" text-textColor dark:text-textColorDark font-medium text-lg pt-4 pl-4">Избранное</p>
-        <div class=" w-full h-1px bg-inputBackgroundColor dark:bg-dividerColorDark"></div>
-        <div class=" absolute float-left left-0 top-14 h-32 w-1 rounded-tr-full rounded-br-full bg-orange"></div>
-        <div id="linksDiv" class="w-full h-32 mt-6 overflow-scroll">
+    <body>
+        <div class="h-52 w-52 rounded-bl-2xl bg-backgroundColor dark:bg-backgroundColorDark">
+            <p class="pt-4 pl-4 text-lg font-medium text-textColor dark:text-textColorDark">Избранное</p>
+            <div class="h-1px w-full bg-inputBackgroundColor dark:bg-dividerColorDark"></div>
+            <div class="absolute left-0 top-14 float-left h-32 w-1 rounded-tr-full rounded-br-full bg-orange"></div>
+            <div id="linksDiv" class="mt-6 h-32 w-full overflow-scroll"></div>
         </div>
-    </div>
-</body>
+    </body>
+</html>

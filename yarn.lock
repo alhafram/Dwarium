@@ -163,9 +163,9 @@
   integrity sha512-iiUgKzV9AuaEkZqkOLDIvlQiL6ltuZd9tGcW3gwpnX8JbuiuhFlEGmmFXEXkN50Cvq7Os88IY2v0dkDqXYWVgA==
 
 "@types/node@*":
-  version "17.0.15"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-17.0.15.tgz#97779282c09c09577120a2162e71d8380003590a"
-  integrity sha512-zWt4SDDv1S9WRBNxLFxFRHxdD9tvH8f5/kg5/IaLFdnSNXsDY4eL3Q3XXN+VxUnWIhyVFDwcsmAprvwXoM/ClA==
+  version "17.0.16"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-17.0.16.tgz#e3733f46797b9df9e853ca9f719c8a6f7b84cd26"
+  integrity sha512-ydLaGVfQOQ6hI1xK2A5nVh8bl0OGoIfYMxPWHqqYe9bTkWCfqiVvZoh2I/QF2sNSkZzZyROBoTefIEI+PB6iIA==
 
 "@types/node@^14.6.2":
   version "14.18.10"
@@ -560,9 +560,9 @@ camelcase@^6.2.0:
   integrity sha512-Gmy6FhYlCY7uOElZUSbxo2UCDH8owEk996gkbrpsgGtrJLM3J7jGxl9Ic7Qwwj4ivOE5AWZWRMecDdF7hqGjFA==
 
 caniuse-lite@^1.0.30001286, caniuse-lite@^1.0.30001297:
-  version "1.0.30001309"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001309.tgz#e0ee78b9bec0704f67304b00ff3c5c0c768a9f62"
-  integrity sha512-Pl8vfigmBXXq+/yUz1jUwULeq9xhMJznzdc/xwl4WclDAuebcTHVefpz8lE/bMI+UN7TOkSSe7B7RnZd6+dzjA==
+  version "1.0.30001310"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001310.tgz#da02cd07432c9eece6992689d1b84ca18139eea8"
+  integrity sha512-cb9xTV8k9HTIUA3GnPUJCk0meUnrHL5gy5QePfDjxHyNBcnzPzrHFv5GqfP7ue5b1ZyzZL0RJboD6hQlPXjhjg==
 
 chalk@^2.0.0, chalk@^2.4.2:
   version "2.4.2"
@@ -1007,9 +1007,9 @@ electron-reload@^2.0.0-alpha.1:
     chokidar "^3.5.2"
 
 electron-to-chromium@^1.4.17:
-  version "1.4.65"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.65.tgz#c0820db06e268e0a2fd4dbce38fb5376d38ca449"
-  integrity sha512-0/d8Skk8sW3FxXP0Dd6MnBlrwx7Qo9cqQec3BlIAlvKnrmS3pHsIbaroEi+nd0kZkGpQ6apMEre7xndzjlEnLw==
+  version "1.4.68"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.68.tgz#d79447b6bd1bec9183f166bb33d4bef0d5e4e568"
+  integrity sha512-cId+QwWrV8R1UawO6b9BR1hnkJ4EJPCPAr4h315vliHUtVUJDk39Sg1PMNnaWKfj5x+93ssjeJ9LKL6r8LaMiA==
 
 electron-updater@^4.6.1:
   version "4.6.5"
@@ -1786,9 +1786,9 @@ node-addon-api@^1.6.3:
   integrity sha512-ibPK3iA+vaY1eEjESkQkM0BbCqFOaZMiXRTtdB0u7b4djtY6JnsjvPdUHVMg6xQt3B8fpTTWHI9A+ADjM9frzg==
 
 node-releases@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-2.0.1.tgz#3d1d395f204f1f2f29a54358b9fb678765ad2fc5"
-  integrity sha512-CqyzN6z7Q6aMeF/ktcMVTzhAHCEpf8SOarwpzpf8pNBY2k5/oM34UHldUwp8VKI7uxct2HxSRdJjBaZeESzcxA==
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-2.0.2.tgz#7139fe71e2f4f11b47d4d2986aaf8c48699e0c01"
+  integrity sha512-XxYDdcQ6eKqp/YjI+tb2C5WM2LgjnZrfYg4vgQt49EK268b6gYCHsBLrK2qvJo4FmCtqmKezb0WZFK4fkrZNsg==
 
 normalize-path@^3.0.0, normalize-path@~3.0.0:
   version "3.0.0"
@@ -1964,6 +1964,16 @@ prepend-http@^2.0.0:
   resolved "https://registry.yarnpkg.com/prepend-http/-/prepend-http-2.0.0.tgz#e92434bfa5ea8c19f41cdfd401d741a3c819d897"
   integrity sha1-6SQ0v6XqjBn0HN/UAddBo8gZ2Jc=
 
+prettier-plugin-tailwindcss@^0.1.7:
+  version "0.1.7"
+  resolved "https://registry.yarnpkg.com/prettier-plugin-tailwindcss/-/prettier-plugin-tailwindcss-0.1.7.tgz#f51de7b7bbabaa0724d3aff7a62957e5aa873482"
+  integrity sha512-tmBr45hCLuit2Cz9Pwow0/Jl1bGivYGsfcF29O+3sKcE++ybjz9dfie565S3ZsvAeV8uYer9SRMBWDsHPly2Lg==
+
+prettier@^2.5.1:
+  version "2.5.1"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.5.1.tgz#fff75fa9d519c54cf0fce328c1017d94546bc56a"
+  integrity sha512-vBZcPRUR5MZJwoyi3ZoyQlc1rXeEck8KgeC9AwwOn+exuxLxq5toTRDTSaVrXHxelDMHy9zlicw8u66yxoSUFg==
+
 process-nextick-args@~2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/process-nextick-args/-/process-nextick-args-2.0.1.tgz#7820d9b16120cc55ca9ae7792680ae7dba6d7fe2"
@@ -2074,7 +2084,7 @@ resolve-from@^4.0.0:
   resolved "https://registry.yarnpkg.com/resolve-from/-/resolve-from-4.0.0.tgz#4abcd852ad32dd7baabfe9b40e00a36db5f392e6"
   integrity sha512-pb/MYmXstAkysRFx8piNI1tGFNQIFA3vkE3Gq4EuA1dF6gHp/+vgZqsCGJapvy8N3Q+4o7FwvquPJcnZ7RYy4g==
 
-resolve@^1.21.0:
+resolve@^1.22.0:
   version "1.22.0"
   resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.22.0.tgz#5e0b8c67c15df57a89bdbabe603a002f21731198"
   integrity sha512-Hhtrw0nLeSrFQ7phPp4OOcVjLPIeMnRlr5mcnVuMe7M/7eBn98A3hmFRLoFo3DLZkivSYwhRUJTyPyWAk56WLw==
@@ -2321,9 +2331,9 @@ supports-preserve-symlinks-flag@^1.0.0:
   integrity sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==
 
 tailwindcss@^3.0.18:
-  version "3.0.18"
-  resolved "https://registry.yarnpkg.com/tailwindcss/-/tailwindcss-3.0.18.tgz#ea4825e6496d77dc21877b6b61c7cc56cda3add5"
-  integrity sha512-ihPTpEyA5ANgZbwKlgrbfnzOp9R5vDHFWmqxB1PT8NwOGCOFVVMl+Ps1cQQ369acaqqf1BEF77roCwK0lvNmTw==
+  version "3.0.19"
+  resolved "https://registry.yarnpkg.com/tailwindcss/-/tailwindcss-3.0.19.tgz#cd789953e6762af2e80c5a3e5d6da3a975ee8215"
+  integrity sha512-rjsdfz/qZya5xQ0OVynEMETgWq1CacmftgMYeXXh6bRM5vxsNwRSbMJsCCIjq/w67om9VP/AFMolOwiE+5VKig==
   dependencies:
     arg "^5.0.1"
     chalk "^4.1.2"
@@ -2344,7 +2354,7 @@ tailwindcss@^3.0.18:
     postcss-selector-parser "^6.0.9"
     postcss-value-parser "^4.2.0"
     quick-lru "^5.1.1"
-    resolve "^1.21.0"
+    resolve "^1.22.0"
 
 temp-file@^3.4.0:
   version "3.4.0"
