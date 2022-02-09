@@ -1,5 +1,5 @@
 module.exports = {
-    content: ["./gui/**/*.{html,js}"],
+    content: ["./gui/**/*.{html,js}", "./src/**/*.ts"],
     darkMode: 'class',
     theme: {
         colors: {

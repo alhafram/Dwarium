@@ -3,6 +3,7 @@ import { ipcRenderer } from 'electron'
 import fs from 'fs'
 import path from 'path'
 import { Channel } from '../Models/Channel'
+import { FavouriteLink } from '../Models/FavouriteLink'
 
 const configPath = path.join(app.getPath('userData'), 'favouriteLinks.json')
 
@@ -24,8 +25,14 @@ function saveFavouriteLink(title: string, path: string, value: boolean | null): 
     ipcRenderer.send(Channel.FAVOURITE_UPDATED)
 }
 
-function getLinks() {
-    return parseData(configPath)
+function getLinks(): FavouriteLink[] {
+    const links = parseData(configPath)
+    return Object.keys(links).map(key => {
+        return {
+            url: key,
+            title: links[key].title
+        }
+    })
 }
 
 function isFavouriteLink(path: string): boolean {
