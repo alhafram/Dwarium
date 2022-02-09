@@ -167,6 +167,24 @@ function messageNotificationsIngame(): boolean {
     return false
 }
 
+function mailNotificationsSystem(): boolean {
+    let settings = readData('settings')
+    if(settings) {
+        settings = JSON.parse(settings)
+        return settings.mailNotificationsSystem ?? false
+    }
+    return false
+}
+
+function mailNotificationsIngame(): boolean {
+    let settings = readData('settings')
+    if(settings) {
+        settings = JSON.parse(settings)
+        return settings.mailNotificationsIngame ?? false
+    }
+    return false
+}
+
 function updateChannel(): string {
     let settings = readData('settings')
     if(settings) {
@@ -222,5 +240,7 @@ export default {
     battlegroundNotificationsIngame,
     messageNotificationsSystem,
     messageNotificationsIngame,
+    mailNotificationsSystem,
+    mailNotificationsIngame,
     updateChannel
 }

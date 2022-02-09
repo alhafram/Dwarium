@@ -18,7 +18,8 @@ const notificationTitle = 'Оповещение!'
 enum NotificationType {
     ATTACKED = 'На вас совершено нападение!',
     BATTLEGROUND = 'Получена сюдашка на поле боя!',
-    MESSAGE = 'Получено новое сообщение!'
+    MESSAGE = 'Получено новое сообщение!',
+    MAIL = 'Получено новое письмо!'
 }
 
 function getSoundFor(notificationType: NotificationType) {
@@ -29,6 +30,8 @@ function getSoundFor(notificationType: NotificationType) {
             return 'battleground.ogg'
         case NotificationType.MESSAGE:
             return 'message.ogg'
+        case NotificationType.MAIL:
+            return 'mail.ogg'
     }
 }
 
@@ -45,6 +48,17 @@ export default function sendNotification(message: ChatMessage | null) {
         }
         if(ConfigService.fightNotificationsIngame()) {
             playIngameNotificationSound(NotificationType.ATTACKED)
+        }
+    }
+
+    if(message?.channel == 2 && message?.msg_text?.toLocaleLowerCase().includes("у вас новое письмо от игрока") && !message.to_user_nicks) {
+        setupBounce('informational')
+        setupFlashFlame()
+        if(ConfigService.mailNotificationsSystem()) {
+            new Notification({ title: notificationTitle, body: NotificationType.MAIL }).show()
+        }
+        if(ConfigService.mailNotificationsIngame()) {
+            playIngameNotificationSound(NotificationType.MAIL)
         }
     }
 

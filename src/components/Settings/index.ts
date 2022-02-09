@@ -19,6 +19,8 @@ interface SettingsWindowState {
     battlegroundNotificationsIngame: boolean,
     messageNotificationsSystem: boolean,
     messageNotificationsIngame: boolean,
+    mailNotificationsSystem: boolean,
+    mailNotificationsIngame: boolean,
     updateChannel: string
 }
 
@@ -48,6 +50,8 @@ enum SettingsWindowActions {
     CHANGE_BATTLEGROUND_NOTIFICATIONS_INGAME,
     CHANGE_MESSAGE_NOTIFICATIONS_SYSTEM,
     CHANGE_MESSAGE_NOTIFICATIONS_INGAME,
+    CHANGE_MAIL_NOTIFICATIONS_SYSTEM,
+    CHANGE_MAIL_NOTIFICATIONS_INGAME,
     CHANGE_UPDATE_CHANNEL
 }
 
@@ -102,6 +106,12 @@ const Elements = {
     },
     messageNotificationsIngameBox(): HTMLInputElement {
         return document.getElementById('messageNotificationsIngame') as HTMLInputElement
+    },
+    mailNotificationsSystemBox(): HTMLInputElement {
+        return document.getElementById('mailNotificationsSystem') as HTMLInputElement
+    },
+    mailNotificationsIngameBox(): HTMLInputElement {
+        return document.getElementById('mailNotificationsIngame') as HTMLInputElement
     },
     updateChannelBoxes(): HTMLInputElement[] {
         return Array.from(document.getElementsByName('updateChannel')) as HTMLInputElement[]
@@ -172,6 +182,12 @@ function setupListeners() {
     Elements.messageNotificationsIngameBox().onchange = () => {
         dispatch(SettingsWindowActions.CHANGE_MESSAGE_NOTIFICATIONS_INGAME)
     }
+    Elements.mailNotificationsSystemBox().onchange = () => {
+        dispatch(SettingsWindowActions.CHANGE_MAIL_NOTIFICATIONS_SYSTEM)
+    }
+    Elements.mailNotificationsIngameBox().onchange = () => {
+        dispatch(SettingsWindowActions.CHANGE_MAIL_NOTIFICATIONS_INGAME)
+    }
     Elements.updateChannelBoxes().forEach(updateChannel => {
         updateChannel.onchange = () => {
             dispatch(SettingsWindowActions.CHANGE_UPDATE_CHANNEL, updateChannel.value)
@@ -202,6 +218,8 @@ let initialState: SettingsWindowState = {
     battlegroundNotificationsIngame: false,
     messageNotificationsSystem: false,
     messageNotificationsIngame: false,
+    mailNotificationsSystem: false,
+    mailNotificationsIngame: false,
     updateChannel: 'stable'
 }
 
@@ -230,6 +248,8 @@ function reduce(state: SettingsWindowState = initialState, action: SettingsWindo
                     battlegroundNotificationsIngame: loadedSettings.battlegroundNotificationsIngame ?? false,
                     messageNotificationsSystem: loadedSettings.messageNotificationsSystem ?? false,
                     messageNotificationsIngame: loadedSettings.messageNotificationsIngame ?? false,
+                    mailNotificationsSystem: loadedSettings.mailNotificationsSystem ?? false,
+                    mailNotificationsIngame: loadedSettings.mailNotificationsIngame ?? false,
                     updateChannel: loadedSettings.updateChannel ?? 'stable'
                 }
             }
@@ -320,6 +340,16 @@ function reduce(state: SettingsWindowState = initialState, action: SettingsWindo
                 ...state,
                 messageNotificationsIngame: Elements.messageNotificationsIngameBox().checked
             }
+        case SettingsWindowActions.CHANGE_MAIL_NOTIFICATIONS_SYSTEM:
+            return {
+                ...state,
+                mailNotificationsSystem: Elements.mailNotificationsSystemBox().checked
+            }
+        case SettingsWindowActions.CHANGE_MAIL_NOTIFICATIONS_INGAME:
+            return {
+                ...state,
+                mailNotificationsIngame: Elements.mailNotificationsIngameBox().checked
+            }
         case SettingsWindowActions.CHANGE_UPDATE_CHANNEL:
             return {
                 ...state,
@@ -375,6 +405,8 @@ function render(): void {
     Elements.battlegroundNotificationsIngameBox().checked = initialState.battlegroundNotificationsIngame
     Elements.messageNotificationsSystemBox().checked = initialState.messageNotificationsSystem
     Elements.messageNotificationsIngameBox().checked = initialState.messageNotificationsIngame
+    Elements.mailNotificationsSystemBox().checked = initialState.mailNotificationsSystem
+    Elements.mailNotificationsIngameBox().checked = initialState.mailNotificationsIngame
     Elements.updateChannelBoxes().forEach(channel => {
         if(channel.value == initialState.updateChannel) {
             channel.checked = true
