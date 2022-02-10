@@ -86,6 +86,15 @@ function hideTopPanelInFullScreen(): boolean {
     return false
 }
 
+function enableSpeed(): boolean {
+    let settings = readData('settings')
+    if(settings) {
+        settings = JSON.parse(settings)
+        return settings.enableSpeed ?? false
+    }
+    return false
+}
+
 function hpFood(): FoodSettings | null {
     return readData('hpFood') ?? null
 }
@@ -234,6 +243,7 @@ export default {
     windowsAboveApp,
     maximizeOnStart,
     hideTopPanelInFullScreen,
+    enableSpeed,
     userAgent,
     writeData,
     sets,
