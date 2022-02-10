@@ -1,5 +1,6 @@
+// eslint-disable-next-line no-undef
 module.exports = {
-    content: ["./gui/**/*.{html,js}", "./src/**/*.ts"],
+    content: ['./gui/**/*.{html,js}', './src/**/*.ts'],
     darkMode: 'class',
     theme: {
         colors: {
@@ -32,29 +33,29 @@ module.exports = {
                 '150px': '150px'
             },
             height: {
-              '5.5': '25px'
+                '5.5': '25px'
             },
             fontSize: {
-              'xss': '9px'
+                'xss': '9px'
             },
             spacing: {
-              '1px': '1px',
-              '5px': '5px',
-              '6px': '6px',
-              '7px': '7px',
-              '9px': '9px',
-              '10px': '10px',
-              '13px': '13px',
-              '14px': '14px',
-              '25px': '25px',
-              '26px': '26px',
-              '30px': '30px',
-              '220px': '220px',
-              '300px': '300px'
+                '1px': '1px',
+                '5px': '5px',
+                '6px': '6px',
+                '7px': '7px',
+                '9px': '9px',
+                '10px': '10px',
+                '13px': '13px',
+                '14px': '14px',
+                '25px': '25px',
+                '26px': '26px',
+                '30px': '30px',
+                '220px': '220px',
+                '300px': '300px'
             },
             minWidth: {
-              '150px': '150px',
-              '125px': '125px'
+                '150px': '150px',
+                '125px': '125px'
             },
             backgroundImage: { }
         },
