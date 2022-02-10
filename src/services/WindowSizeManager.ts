@@ -7,9 +7,9 @@ import { WindowType } from '../Models/WindowModels'
 const configPath = path.join(app.getPath('userData'), 'windows.json')
 
 function saveClientWindowPosition(type: WindowType, size: Rectangle): void {
-    let contents = parseData(configPath)
+    const contents = parseData(configPath)
     contents[type] = size
-    Object.keys(contents).forEach(key => {
+    Object.keys(contents).forEach((key) => {
         if(contents[key] === null) {
             delete contents[key]
         }
@@ -18,9 +18,9 @@ function saveClientWindowPosition(type: WindowType, size: Rectangle): void {
 }
 
 function saveBrowserWindowPosition(path: string, size: Rectangle): void {
-    let contents = parseData(configPath)
+    const contents = parseData(configPath)
     contents[path] = size
-    Object.keys(contents).forEach(key => {
+    Object.keys(contents).forEach((key) => {
         if(contents[key] === null) {
             delete contents[key]
         }
@@ -29,15 +29,16 @@ function saveBrowserWindowPosition(path: string, size: Rectangle): void {
 }
 
 function getClientWindowPosition(type: WindowType): Rectangle | undefined {
-    let contents = parseData(configPath)
+    const contents = parseData(configPath)
     return contents[type]
 }
 
 function getBrowserWindowPosition(path: string): Rectangle | undefined {
-    let contents = parseData(configPath)
+    const contents = parseData(configPath)
     return contents[path]
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function parseData(filePath: fs.PathLike): any {
     const defaultData = {}
     try {
@@ -47,9 +48,4 @@ function parseData(filePath: fs.PathLike): any {
     }
 }
 
-export {
-    saveClientWindowPosition,
-    saveBrowserWindowPosition,
-    getClientWindowPosition,
-    getBrowserWindowPosition
-}
+export { saveClientWindowPosition, saveBrowserWindowPosition, getClientWindowPosition, getBrowserWindowPosition }

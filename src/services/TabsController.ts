@@ -1,9 +1,9 @@
-import { BrowserView, BrowserWindow } from "electron"
+import { BrowserView, BrowserWindow } from 'electron'
 import MainWindowContainer from '../Components/MainWindow/MainWindow'
 
 interface Tab {
-    [key: string]: BrowserView;
- }
+    [key: string]: BrowserView
+}
 
 export class TabsController {
     static tabs: Tab = {}
@@ -15,6 +15,7 @@ export class TabsController {
     }
     static deleteTab(id: string): void {
         if(!this.tabs[id]?.webContents.isDestroyed()) {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             (this.tabs[id].webContents as any).destroy()
         }
         delete this.tabs[id]
@@ -36,4 +37,3 @@ export class TabsController {
         return tabIds.length == 1 && tabIds[0] == 'main'
     }
 }
-

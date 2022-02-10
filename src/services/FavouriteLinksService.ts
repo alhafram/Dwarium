@@ -8,7 +8,7 @@ import { FavouriteLink } from '../Models/FavouriteLink'
 const configPath = path.join(app.getPath('userData'), 'favouriteLinks.json')
 
 function saveFavouriteLink(title: string, path: string, value: boolean | null): void {
-    let contents = parseData(configPath)
+    const contents = parseData(configPath)
     if(value) {
         contents[path] = {
             title
@@ -16,7 +16,7 @@ function saveFavouriteLink(title: string, path: string, value: boolean | null): 
     } else {
         contents[path] = null
     }
-    Object.keys(contents).forEach(key => {
+    Object.keys(contents).forEach((key) => {
         if(contents[key] === null) {
             delete contents[key]
         }
@@ -27,7 +27,7 @@ function saveFavouriteLink(title: string, path: string, value: boolean | null): 
 
 function getLinks(): FavouriteLink[] {
     const links = parseData(configPath)
-    return Object.keys(links).map(key => {
+    return Object.keys(links).map((key) => {
         return {
             url: key,
             title: links[key].title
@@ -36,10 +36,11 @@ function getLinks(): FavouriteLink[] {
 }
 
 function isFavouriteLink(path: string): boolean {
-    let contents = parseData(configPath)
+    const contents = parseData(configPath)
     return contents[path] ?? false
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function parseData(filePath: fs.PathLike): any {
     const defaultData = {}
     try {

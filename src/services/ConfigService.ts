@@ -21,20 +21,21 @@ function mailServer(): string {
     if(settings) {
         settings = JSON.parse(settings)
         const isMailServer = settings.mailServer ?? false
-        return isMailServer ? ".mail" : ""
+        return isMailServer ? '.mail' : ''
     }
-    return ""
+    return ''
 }
 
 function ownServer(): string {
     let settings = readData('settings')
     if(settings) {
         settings = JSON.parse(settings)
-        return settings.ownServer ?? ""
+        return settings.ownServer ?? ''
     }
-    return ""
+    return ''
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function loadSettings(): any {
     return readData('settings')
 }
@@ -93,22 +94,25 @@ function mpFood(): FoodSettings | null {
     return readData('mpFood') ?? null
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function sets(): any[] {
-    let contents = parseData(configPath)
-    let keys = Object.keys(contents).filter(key => key.startsWith('set_'))
-    return keys.map(key => JSON.parse(contents[key]))
+    const contents = parseData(configPath)
+    const keys = Object.keys(contents).filter((key) => key.startsWith('set_'))
+    return keys.map((key) => JSON.parse(contents[key]))
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function beltSets(): any[] {
-    let contents = parseData(configPath)
-    let keys = Object.keys(contents).filter(key => key.startsWith('belt_set_'))
-    return keys.map(key => JSON.parse(contents[key]))
+    const contents = parseData(configPath)
+    const keys = Object.keys(contents).filter((key) => key.startsWith('belt_set_'))
+    return keys.map((key) => JSON.parse(contents[key]))
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function notes(): any[] {
-    let contents = parseData(configPath)
-    let keys = Object.keys(contents).filter(key => key.startsWith('note_'))
-    return keys.map(key => JSON.parse(contents[key]))
+    const contents = parseData(configPath)
+    const keys = Object.keys(contents).filter((key) => key.startsWith('note_'))
+    return keys.map((key) => JSON.parse(contents[key]))
 }
 
 // Notifications
@@ -194,10 +198,11 @@ function updateChannel(): string {
     return 'stable'
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function writeData(key: string, value: any): void {
-    let contents = parseData(configPath)
+    const contents = parseData(configPath)
     contents[key] = value
-    Object.keys(contents).forEach(key => {
+    Object.keys(contents).forEach((key) => {
         if(contents[key] === null) {
             delete contents[key]
         }
@@ -205,11 +210,13 @@ function writeData(key: string, value: any): void {
     fs.writeFileSync(configPath, JSON.stringify(contents))
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function readData(key: string): any {
-    let contents = parseData(configPath)
+    const contents = parseData(configPath)
     return contents[key]
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function parseData(filePath: fs.PathLike): any {
     const defaultData = {}
     try {

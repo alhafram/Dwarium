@@ -1,4 +1,5 @@
-import { app, powerMonitor, globalShortcut, getCurrentWindow } from '@electron/remote'
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+import { app, powerMonitor, globalShortcut } from '@electron/remote'
 import fs from 'fs'
 import path from 'path'
 import ConfigService from './ConfigService'
@@ -8,7 +9,7 @@ import { Channel } from '../Models/Channel'
 import { ChatSettingsConfig } from '../Models/ChatSettingsConfig'
 import { ChatMessage } from './Notifications'
 
-const logsFolderPath = path.join(app.getPath ('userData'), 'logs')
+const logsFolderPath = path.join(app.getPath('userData'), 'logs')
 const filePath = path.join(logsFolderPath, 'chat.log')
 
 if(!fs.existsSync(logsFolderPath)) {
@@ -32,15 +33,15 @@ type QueueChatMessage = {
     text: string
 }
 
-var logStream = fs.createWriteStream(filePath, {
+const logStream = fs.createWriteStream(filePath, {
     flags: 'a'
-});
-var isIdle = false
-var messagesQueue: QueueChatMessage[] = []
+})
+let isIdle = false
+const messagesQueue: QueueChatMessage[] = []
 
 let config: ChatSettingsConfig
 async function loadConfig() {
-    const userId = await ipcRenderer.invoke(Channel.GET_ID) as number
+    const userId = (await ipcRenderer.invoke(Channel.GET_ID)) as number
     if(userId) {
         config = ChatSettingsService.get(userId)
     }
@@ -140,39 +141,39 @@ function restartFlooding() {
 }
 
 function setupAutoResponder() {
-    setInterval(async () => {
+    setInterval(async() => {
         if(!config) {
             await loadConfig()
         } else {
-            let idleTime = powerMonitor.getSystemIdleTime()
+            const idleTime = powerMonitor.getSystemIdleTime()
             isIdle = idleTime >= config.inactiveTimer * 60
         }
     }, 1000)
-    let messages_interval = setInterval(async function() {
-        var message = messagesQueue[0]
+    setInterval(async function() {
+        const message = messagesQueue[0]
         if(message) {
             // @ts-ignore
             const crc = top[1].CHAT.session_crc
             const req = await fetch(`${ConfigService.baseUrl()}/entry_point.php?object=chat&action=send&json_mode_on=1`, {
-                'headers': {
-                    'accept': 'application/json, text/javascript, */*; q=0.01',
+                headers: {
+                    accept: 'application/json, text/javascript, */*; q=0.01',
                     'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8',
                     'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
                     'x-requested-with': 'XMLHttpRequest'
                 },
-                'referrer': `${ConfigService.baseUrl()}/cht.php`,
-                'referrerPolicy': 'no-referrer-when-downgrade',
-                'body': encodeURI(`json_mode_on=1&object=chat&action=send&msg_text=${message.text}&channel_talk=${message.channel}&crc=${crc}`),
-                'method': 'POST',
-                'mode': 'cors',
-                'credentials': 'include'
-            });
+                referrer: `${ConfigService.baseUrl()}/cht.php`,
+                referrerPolicy: 'no-referrer-when-downgrade',
+                body: encodeURI(`json_mode_on=1&object=chat&action=send&msg_text=${message.text}&channel_talk=${message.channel}&crc=${crc}`),
+                method: 'POST',
+                mode: 'cors',
+                credentials: 'include'
+            })
             const json = await req.json()
             const error = json['chat|send'].error
             if(!error) {
                 messagesQueue.shift()
             } else {
-                if(error == "Вы не можете говорить, т.к. на Вас наложено проклятие молчания!") {
+                if(error == 'Вы не можете говорить, т.к. на Вас наложено проклятие молчания!') {
                     messagesQueue.shift()
                 }
             }
@@ -181,24 +182,25 @@ function setupAutoResponder() {
 }
 
 function getAutoResponceForChannel(channel: ChatChannel) {
-    switch(channel) {
-        case ChatChannel.PRIVATE:
-            return config.privateChatResponse
-        case ChatChannel.COMMON:
-            return config.commonChatResponse
-        case ChatChannel.TRADE:
-            return config.tradeChatResponse
-        case ChatChannel.GROUP:
-            return config.groupChatResponse
-        case ChatChannel.CLAN:
-            return config.clanChatResponse
-        case ChatChannel.ALLIANCE:
-            return config.allianceChatResponse
+    switch (channel) {
+    case ChatChannel.PRIVATE:
+        return config.privateChatResponse
+    case ChatChannel.COMMON:
+        return config.commonChatResponse
+    case ChatChannel.TRADE:
+        return config.tradeChatResponse
+    case ChatChannel.GROUP:
+        return config.groupChatResponse
+    case ChatChannel.CLAN:
+        return config.clanChatResponse
+    case ChatChannel.ALLIANCE:
+        return config.allianceChatResponse
     }
 }
 
-var prevReceivers: Set<string>[] = []
+const prevReceivers: Set<string>[] = []
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function handleMessage(message: any) {
     const chatMessage = message as ChatMessage
     if(chatMessage) {
@@ -206,13 +208,13 @@ function handleMessage(message: any) {
         const nickname = top[0]?.canvas?.app?.avatar?.model?.login ?? ''
         if(chatMessage.to_user_nicks != undefined) {
             let toUserNicks = Object.values(chatMessage.to_user_nicks)
-            let index = toUserNicks.indexOf(nickname)
+            const index = toUserNicks.indexOf(nickname)
             if(index != -1) {
                 delete toUserNicks[index]
             } else {
                 return
             }
-            toUserNicks = toUserNicks.filter(a => a)
+            toUserNicks = toUserNicks.filter((a) => a)
             toUserNicks.push(chatMessage.user_nick ?? '')
             if(config.autoResponderEnabled && isIdle && toUserNicks.length > 0) {
                 if(chatMessage.user_nick == nickname && toUserNicks.length == 1) {
@@ -222,8 +224,8 @@ function handleMessage(message: any) {
                 const autoResponse = getAutoResponceForChannel(channel)
                 if(autoResponse.length != 0) {
                     const newReceiversSet = new Set(toUserNicks)
-                    var exists = false
-                    const filteredPrevReceivers = prevReceivers.filter(res => res.size == newReceiversSet.size)
+                    let exists = false
+                    const filteredPrevReceivers = prevReceivers.filter((res) => res.size == newReceiversSet.size)
                     for(const newReceiver of newReceiversSet) {
                         for(const receivers of filteredPrevReceivers) {
                             if(receivers.has(newReceiver)) {
@@ -245,7 +247,7 @@ function handleMessage(message: any) {
                             delete prevReceivers[index]
                         }
                     }, 10000)
-                    const usersNeedToAnswer = toUserNicks.map(nick => `${channel == 2 ? 'prv[' : 'to['}${nick}]`).join(' ')
+                    const usersNeedToAnswer = toUserNicks.map((nick) => `${channel == 2 ? 'prv[' : 'to['}${nick}]`).join(' ')
                     const answerText = `${usersNeedToAnswer} ${autoResponse}`
                     const newQueueMessage: QueueChatMessage = {
                         text: answerText,
@@ -258,12 +260,13 @@ function handleMessage(message: any) {
     }
 }
 
-var chatHidden = false
+let chatHidden = false
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function logMessage(message: any) {
-    let node = $(message).get()[0].cloneNode(true) as HTMLElement
+    const node = $(message).get()[0].cloneNode(true) as HTMLElement
     node.removeAttribute('original-msg-object')
-    node.querySelectorAll('*').forEach(elem => {
+    node.querySelectorAll('*').forEach((elem) => {
         elem.removeAttribute('oncontextmenu')
         elem.removeAttribute('onmousedown')
         elem.removeAttribute('onclick')
@@ -305,7 +308,7 @@ function setupShortcut() {
     })
 }
 
-ipcRenderer.on(Channel.CHAT_SETTINGS_CHANGED, async () => {
+ipcRenderer.on(Channel.CHAT_SETTINGS_CHANGED, async() => {
     await loadConfig()
     restartFlooding()
 })

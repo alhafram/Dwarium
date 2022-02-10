@@ -3,7 +3,7 @@ import fs from 'fs'
 import path from 'path'
 import { ChatSettingsConfig } from '../Models/ChatSettingsConfig'
 
-const userConfigsFolderPath = path.join(app.getPath ('userData'), 'users')
+const userConfigsFolderPath = path.join(app.getPath('userData'), 'users')
 
 if(!fs.existsSync(userConfigsFolderPath)) {
     fs.mkdirSync(userConfigsFolderPath)
@@ -16,23 +16,23 @@ function get(id: number): ChatSettingsConfig {
             autoResponderEnabled: false,
             floodingEnabled: false,
             inactiveTimer: 0,
-        
-            privateChatResponse: "",
-            commonChatResponse: "",
-            tradeChatResponse: "",
-            groupChatResponse: "",
-            clanChatResponse: "",
-            allianceChatResponse: "",
-        
-            commonChatFloodingMessage: "",
+
+            privateChatResponse: '',
+            commonChatResponse: '',
+            tradeChatResponse: '',
+            groupChatResponse: '',
+            clanChatResponse: '',
+            allianceChatResponse: '',
+
+            commonChatFloodingMessage: '',
             commonChatFloodingTimer: 10,
-            tradeChatFloodingMessage: "",
+            tradeChatFloodingMessage: '',
             tradeChatFloodingTimer: 10,
-            groupChatFloodingMessage: "",
+            groupChatFloodingMessage: '',
             groupChatFloodingTimer: 10,
-            clanChatFloodingMessage: "",
+            clanChatFloodingMessage: '',
             clanChatFloodingTimer: 10,
-            allianceChatFloodingMessage: "",
+            allianceChatFloodingMessage: '',
             allianceChatFloodingTimer: 10
         }
         save(newChatSettingsConfig, id)
@@ -46,10 +46,12 @@ function save(userConfig: ChatSettingsConfig, id: number): void {
     fs.writeFileSync(filePath, JSON.stringify(userConfig))
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function readData(configPath: string): any {
     return parseData(configPath)
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function parseData(filePath: fs.PathLike): any {
     const defaultData = {}
     try {

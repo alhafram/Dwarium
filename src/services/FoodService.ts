@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import ConfigService from './ConfigService'
 import { ChatMessage } from './Notifications'
 import UserConfigService from './UserConfigService'
@@ -7,17 +9,17 @@ type FoodItem = {
     actionId: string
     addHp: number
     addMp: number
-    cnt: number,
+    cnt: number
     picture: string
 }
 
 async function fetchFood(): Promise<FoodItem[]> {
-    let req = await fetch(`${ConfigService.baseUrl()}/user_conf.php?mode=food`)
-    let text = await req.text()
+    const req = await fetch(`${ConfigService.baseUrl()}/user_conf.php?mode=food`)
+    const text = await req.text()
     const parser = new DOMParser()
-    const doc = parser.parseFromString(text, "application/xml")
+    const doc = parser.parseFromString(text, 'application/xml')
     const items = Array.from(doc.documentElement.children)
-    return items.map(item => {
+    return items.map((item) => {
         const foodItem: FoodItem = {
             id: item.id,
             actionId: item.getAttribute('action_id')!,
@@ -47,26 +49,26 @@ async function eat(message: ChatMessage) {
     }
 
     // @ts-ignore
-    const userId = top._top().myId as number;
+    const userId = top._top().myId as number
     const config = UserConfigService.get(userId)
     const hpFood = config.hpFood
     const mpFood = config.mpFood
     if(hpFood || mpFood) {
         if(!hpFoodItem && !mpFoodItem) {
             const foodItems = await fetchFood()
-            hpFoodItem = foodItems.find(foodItem => foodItem.id == hpFood?.id)
-            mpFoodItem = foodItems.find(foodItem => foodItem.id == mpFood?.id)
+            hpFoodItem = foodItems.find((foodItem) => foodItem.id == hpFood?.id)
+            mpFoodItem = foodItems.find((foodItem) => foodItem.id == mpFood?.id)
         }
     }
 
     // @ts-ignore
-    var hpCur = top[0].canvas.app.avatar.model.hpCur as number
+    let hpCur = top[0].canvas.app.avatar.model.hpCur as number
     // @ts-ignore
-    var hpMax = top[0].canvas.app.avatar.model.hpMax as number
+    const hpMax = top[0].canvas.app.avatar.model.hpMax as number
     // @ts-ignore
-    var mpCur = top[0].canvas.app.avatar.model.mpCur as number
+    let mpCur = top[0].canvas.app.avatar.model.mpCur as number
     // @ts-ignore
-    var mpMax = top[0].canvas.app.avatar.model.mpMax as number
+    const mpMax = top[0].canvas.app.avatar.model.mpMax as number
 
     if(hpFoodItem && hpFood) {
         if(hpFoodItem.cnt <= 0) {
@@ -120,15 +122,15 @@ function isBacon(item: FoodItem): boolean {
 
 async function useItem(item: FoodItem): Promise<void> {
     await fetch(`${ConfigService.baseUrl()}/action_run.php`, {
-        'headers': {
-            'content-type': 'application/x-www-form-urlencoded',
+        headers: {
+            'content-type': 'application/x-www-form-urlencoded'
         },
-        'referrer': `${ConfigService.baseUrl()}/action_form.php?${Math.random()}&artifact_id=${item.id}&in[param_success][url_close]=user.php%3Fmode%3Dpersonage%26group%3D1%26update_swf%3D1`,
-        'referrerPolicy': 'no-referrer-when-downgrade',
-        'body': `object_class=ARTIFACT&object_id=${item.id}&action_id=${item.actionId}&url_success=action_form.php%3Fsuccess%3D1%26default%3DARTIFACT_${item.id}_${item.actionId}&url_error=action_form.php%3Ffailed%3D1%26default%3DARTIFACT_${item.id}_${item.actionId}&artifact_id=${item.id}&in%5Bobject_class%5D=ARTIFACT&in%5Bobject_id%5D=${item.id}&in%5Baction_id%5D=${item.actionId}&in%5Burl_success%5D=action_form.php%3Fsuccess%3D1&in%5Burl_error%5D=action_form.php%3Ffailed%3D1&in%5Bparam_success%5D%5Burl_close%5D=user.php%3Fmode%3Dpersonage%26amp%3Bgroup%3D1%26amp%3Bupdate_swf%3D1`,
-        'method': 'POST',
-        'mode': 'cors',
-        'credentials': 'include'
+        referrer: `${ConfigService.baseUrl()}/action_form.php?${Math.random()}&artifact_id=${item.id}&in[param_success][url_close]=user.php%3Fmode%3Dpersonage%26group%3D1%26update_swf%3D1`,
+        referrerPolicy: 'no-referrer-when-downgrade',
+        body: `object_class=ARTIFACT&object_id=${item.id}&action_id=${item.actionId}&url_success=action_form.php%3Fsuccess%3D1%26default%3DARTIFACT_${item.id}_${item.actionId}&url_error=action_form.php%3Ffailed%3D1%26default%3DARTIFACT_${item.id}_${item.actionId}&artifact_id=${item.id}&in%5Bobject_class%5D=ARTIFACT&in%5Bobject_id%5D=${item.id}&in%5Baction_id%5D=${item.actionId}&in%5Burl_success%5D=action_form.php%3Fsuccess%3D1&in%5Burl_error%5D=action_form.php%3Ffailed%3D1&in%5Bparam_success%5D%5Burl_close%5D=user.php%3Fmode%3Dpersonage%26amp%3Bgroup%3D1%26amp%3Bupdate_swf%3D1`,
+        method: 'POST',
+        mode: 'cors',
+        credentials: 'include'
     })
 }
 

@@ -1,6 +1,5 @@
 import { BrowserView, BrowserWindow } from 'electron'
 import contextMenu from 'electron-context-menu'
-import { TabsController } from './TabsController'
 
 export default function setupContextMenu(window: BrowserView | BrowserWindow) {
     contextMenu({
@@ -14,7 +13,7 @@ export default function setupContextMenu(window: BrowserView | BrowserWindow) {
             copyImage: 'Копировать картинку',
             copyLink: 'Копировать ссылку'
         },
-        menu: (actions, params, win, dicSuggestion) => [
+        menu: (actions) => [
             {
                 label: 'Обновить',
                 click: () => {
