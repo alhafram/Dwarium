@@ -3,37 +3,37 @@
 @tailwind utilities;
 
 .buttonWithImage {
-    @apply w-5.5 h-5.5 bg-no-repeat mt-auto mb-auto hover:bg-inputBackgroundColor dark:hover:bg-inputBackgroundColorDark rounded-full;
+    @apply mt-auto mb-auto h-5.5 w-5.5 rounded-full bg-no-repeat hover:bg-inputBackgroundColor dark:hover:bg-inputBackgroundColorDark;
 }
 
 .innerButtonWithImage {
-    @apply w-5.5 h-5.5 bg-no-repeat mt-auto mb-auto -ml-7 hover:bg-inputBackgroundColor dark:hover:bg-inputBackgroundColorDark rounded-full;
+    @apply mt-auto mb-auto -ml-7 h-5.5 w-5.5 rounded-full bg-no-repeat hover:bg-inputBackgroundColor dark:hover:bg-inputBackgroundColorDark;
 }
 
 .closeButtonActiveTab {
-    @apply w-5.5 h-5.5 bg-no-repeat mt-auto mb-auto hover:bg-inputBackgroundColor dark:hover:bg-inputBackgroundColorDark rounded-full;
+    @apply mt-auto mb-auto h-5.5 w-5.5 rounded-full bg-no-repeat hover:bg-inputBackgroundColor dark:hover:bg-inputBackgroundColorDark;
 }
 
 .closeButtonInactiveTab {
-    @apply w-5.5 h-5.5 bg-no-repeat mt-auto mb-auto hover:bg-white dark:hover:bg-activeTabColor rounded-full;
+    @apply mt-auto mb-auto h-5.5 w-5.5 rounded-full bg-no-repeat hover:bg-white dark:hover:bg-activeTabColor;
 }
 
 .buttonIcon {
-    @apply fill-iconColor dark:fill-iconColorDark m-auto;
+    @apply m-auto fill-iconColor dark:fill-iconColorDark;
 }
 
 .buttonStrokeIcon {
-    @apply stroke-iconColor dark:stroke-iconColorDark m-auto;
+    @apply m-auto stroke-iconColor dark:stroke-iconColorDark;
 }
 
 .input {
-    @apply pl-4 pr-8 text-textColor dark:text-textColorDark text-xs mt-auto mb-auto rounded-full bg-inputBackgroundColor dark:bg-inputBackgroundColorDark outline-none;
+    @apply mt-auto mb-auto rounded-full bg-inputBackgroundColor pl-4 pr-8 text-xs text-textColor outline-none dark:bg-inputBackgroundColorDark dark:text-textColorDark;
 }
 
 .activeTab {
-    @apply text-activeTabColor dark:text-activeTabColorDark bg-white dark:bg-activeTabColor rounded-b-xl;
+    @apply rounded-b-xl bg-white text-activeTabColor dark:bg-activeTabColor dark:text-activeTabColorDark;
 }
 
 .inactiveTab {
-    @apply text-inactiveTabColor dark:text-inactiveTabColor bg-inputBackgroundColor dark:bg-inputBackgroundColorDark rounded-none border-dividerColor dark:border-dividerColorDark ;
+    @apply rounded-none border-dividerColor bg-inputBackgroundColor text-inactiveTabColor dark:border-dividerColorDark dark:bg-inputBackgroundColorDark dark:text-inactiveTabColor;
 }
