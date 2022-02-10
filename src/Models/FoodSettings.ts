@@ -1,4 +1,4 @@
 export type FoodSettings = {
-    id: string | null | undefined,
+    id: string | null | undefined
     percentage: string
 }
