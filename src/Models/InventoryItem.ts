@@ -19,7 +19,7 @@ type EnchantMode = {
     value: string
 }
 
-enum FoodType {
+export enum FoodType {
     HP = 'hp',
     MP = 'mp',
     BOTH = 'both'

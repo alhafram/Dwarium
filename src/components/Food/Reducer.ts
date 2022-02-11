@@ -1,161 +1,40 @@
+import { ipcRenderer } from "electron"
+import { Channel } from "../../Models/Channel"
+import { FoodType, InventoryItem } from "../../Models/InventoryItem"
 import { UserConfig } from "../../Models/UserConfig"
+import ConfigService from "../../services/ConfigService"
+import UserConfigService from "../../services/UserConfigService"
+import { FoodWindowActions } from "./Actions"
+import { FoodWindowState } from "./State"
+import SimpleAlt from './simple_alt'
+import { FoodSettings } from "../../Models/FoodSettings"
+import { Elements } from './Elements'
 
-let art_alt = null
-
-type EnchantMode = {
-    title: string
-    value: string
+async function loadItemsData(types: string[]) {
+    return await ipcRenderer.invoke('LoadSetItems', types)
+}
+async function fetchFood() {
+    let req = `fetch('${ConfigService.baseUrl()}/user_conf.php?mode=food').then(resp => resp.text())`
+    return await ipcRenderer.invoke('MakeWebRequest', req)
 }
 
-enum FoodType {
-    HP = 'hp',
-    MP = 'mp',
-    BOTH = 'both'
+async function getUserId() {
+    return await ipcRenderer.invoke(Channel.GET_ID)
+}
+function getUserConfig(id: number) {
+    return UserConfigService.get(id)
+}
+function save(userConfig: UserConfig) {
+    ipcRenderer.send(Channel.FOOD_CHANGED)
+    UserConfigService.save(userConfig)
 }
 
-type InventoryItem = {
-    id: string
-    title: string, 
-    desc: any, 
-    kind_id: string, 
-    type_id: string,
-    skills: [{ value: any, title: string }],
-    quality: string,
-    image: string,
-    trend: string | undefined,
-    enchant_mod?: EnchantMode,
-    cnt: string,
-    foodType: FoodType
-}
-
-type FoodSettings = {
-    id: string | null | undefined,
-    percentage: string
-}
-
-const Elements = {
-    hpBox(): HTMLDivElement {
-        return document.getElementById('hp') as HTMLDivElement
-    },
-    mpBox(): HTMLDivElement {
-        return document.getElementById('mp') as HTMLDivElement
-    },
-    hpSelectBox(): HTMLSelectElement {
-        return document.getElementById('hpSelect') as HTMLSelectElement
-    },
-    mpSelectBox(): HTMLSelectElement {
-        return document.getElementById('mpSelect') as HTMLSelectElement
-    },
-    allFoodBox(): HTMLDivElement {
-        return document.getElementsByClassName('allFood')[0] as HTMLDivElement
-    },
-    saveBox(): HTMLButtonElement {
-        return document.getElementById('save') as HTMLButtonElement
-    },
-    staticBoxes(): HTMLDivElement[] {
-        return Array.from(document.querySelectorAll('.staticBox'))
-    }
-}
-
-type FoodWindowState = {
-    allItems: InventoryItem[],
-    hpItem: InventoryItem | null,
-    mpItem: InventoryItem | null,
-    hpPercentage: string,
-    mpPercentage: string,
-    userConfig: UserConfig | null
-}
-
-var initialState: FoodWindowState = {
-    allItems: [],
-    hpItem: null,
-    mpItem: null,
-    hpPercentage: '',
-    mpPercentage: '',
-    userConfig: null
-}
-
-enum FoodWindowActions {
-    LOAD_CONTENT,
-    EQUIP,
-    UNEQUIP,
-    SAVE,
-    CHANGE_HP_PERCENTAGE,
-    CHANGE_MP_PERCENTAGE
-}
-
-function convertItemIntoDiv(item: InventoryItem): HTMLDivElement {
-    let divItem = document.createElement('div')
-    divItem.className = 'box'
-    divItem.draggable = true
-    if(item.image.includes(window.foodAPI.baseUrl())) {
-        divItem.style.backgroundImage = `url('${item.image}')`
-    } else {
-        const url = `${window.foodAPI.baseUrl()}/${item.image}`
-        item.image = url
-        divItem.style.backgroundImage = `url('${url}')`
-    }
-    if(item.cnt) {  
-        let span = document.createElement('div')
-        span.textContent = item.cnt
-        span.className = 'bpdig'
-        divItem.appendChild(span)
-    }
-    divItem.style.backgroundRepeat = 'no-repeat'
-    divItem.style.backgroundSize = 'cover'
-    divItem.setAttribute('itemId', item.id)
-    setupEquipableItemEvents(divItem)
-    return divItem
-}
-
-// ???? BETTER SOLUTION
-let dragableItem: HTMLDivElement | null = null
-
-function handleDragStartEquipableItem(this: any) {
-    dragableItem = this
-    this.style.opacity = '0.4'
-    // @ts-ignore
-    artifactAltSimple(this.getAttribute('itemid'), 0)
-}
-
-function handleDragEndEquipableItem(this: any) {
-    dragableItem = null
-    this.style.opacity = '1'
-}
-
-function handleDragOver(e: Event) {
-    e.preventDefault()
-}
-
-function handleDropEquipableItemOnStaticItemBox(this: any, e: Event) {
-    e.stopPropagation()
-    dispatch(FoodWindowActions.EQUIP, [dragableItem, this])
-}
-
-function handleDropEquipableItemIntoAllItems(e: Event) {
-    e.stopPropagation()
-    dispatch(FoodWindowActions.UNEQUIP, dragableItem)
-}
-
-function setupEquipableItemEvents(item: HTMLElement) {
-    item.addEventListener('dragstart', handleDragStartEquipableItem, false)
-    item.addEventListener('dragend', handleDragEndEquipableItem, false)
-    item.addEventListener('mouseover', function() {
-        // @ts-ignore
-        artifactAltSimple(this.getAttribute('itemid'), 2)
-    }, false)
-    item.addEventListener('mouseout', function() {
-        // @ts-ignore
-        artifactAltSimple(this.getAttribute('itemid'), 0)
-    }, false)
-}
-
-async function reduce(state: FoodWindowState = initialState, action: FoodWindowActions, data?: any): Promise<FoodWindowState> {
+export default async function reduce(state: FoodWindowState, action: FoodWindowActions, data?: any): Promise<FoodWindowState> {
     let allItems = state.allItems
     switch(action) {
         case FoodWindowActions.LOAD_CONTENT:
-            let result = await window.foodAPI.loadItemsData(['allItems', 'allPotions', 'wearedItems', 'otherItems'])
-            let foodResult = await window.foodAPI.fetchFood()
+            let result = await loadItemsData(['allItems', 'allPotions', 'wearedItems', 'otherItems'])
+            let foodResult = await fetchFood()
             const parser = new DOMParser()
             const doc = parser.parseFromString(foodResult, "application/xml")
             const xmlFoodItems = Array.from(doc.documentElement.children)
@@ -182,12 +61,12 @@ async function reduce(state: FoodWindowState = initialState, action: FoodWindowA
                 item!.foodType = type
                 return item
             })
-            const userId = await window.baseAPI.getUserId() as number
+            const userId = await getUserId() as number
             if(!userId) {
                 console.log("Не найден user id пользователя, попробуйте авторизоваться и заново открыть автопоедалку!")
                 return state
             }
-            const userConfig = window.baseAPI.getUserConfig(userId)
+            const userConfig = getUserConfig(userId)
 
             let currentHpFood: InventoryItem | null = null
             let currentMpFood: InventoryItem | null = null
@@ -210,7 +89,8 @@ async function reduce(state: FoodWindowState = initialState, action: FoodWindowA
                 }
             }
 
-            art_alt = Object.assign(result.allItems, result.allPotions, result.wearedItems, result.otherItems)
+            const art_alt = Object.assign(result.allItems, result.allPotions, result.wearedItems, result.otherItems)
+            SimpleAlt.setupArtAlt(art_alt)
             return {
                 ...state,
                 allItems: allFoodItems,
@@ -317,7 +197,7 @@ async function reduce(state: FoodWindowState = initialState, action: FoodWindowA
             }
             state.userConfig!.hpFood = hpSetting
             state.userConfig!.mpFood = mpSetting
-            window.baseAPI.save(state.userConfig!)
+            save(state.userConfig!)
             return state
         case FoodWindowActions.CHANGE_HP_PERCENTAGE:
             return {
@@ -331,64 +211,3 @@ async function reduce(state: FoodWindowState = initialState, action: FoodWindowA
             }
     }
 }
-
-async function dispatch(action: FoodWindowActions, data?: any) {
-    initialState = await reduce(initialState, action, data)
-    render()
-}
-
-function render(): void {
-    const parent = Elements.allFoodBox()
-    Array.from(parent?.children ?? []).forEach(itemBox => {
-        parent?.removeChild(itemBox)
-    })
-    initialState.allItems.forEach(item => {
-        const divItem = convertItemIntoDiv(item)
-        parent?.appendChild(divItem)
-    })
-    const hpParent = Elements.hpBox()
-    hpParent.style.border = '1px solid'
-    if(hpParent.firstElementChild) {
-        hpParent.removeChild(hpParent.firstElementChild)
-    }
-    const mpParent = Elements.mpBox()
-    mpParent.style.border = '1px solid'
-    if(mpParent.firstElementChild) {
-        mpParent.removeChild(mpParent.firstElementChild)
-    }
-    if(initialState.hpItem) {
-        const hpItemBox = convertItemIntoDiv(initialState.hpItem)
-        hpParent.style.border = 'none'
-        hpParent.appendChild(hpItemBox)
-    }
-    if(initialState.mpItem) {
-        const mpItemBox = convertItemIntoDiv(initialState.mpItem)
-        mpParent.style.border = 'none'
-        mpParent.appendChild(mpItemBox)
-    }
-    Elements.hpSelectBox().value = initialState.hpPercentage;
-    Elements.mpSelectBox().value = initialState.mpPercentage
-}
-
-document.addEventListener('DOMContentLoaded', async () => {
-    dispatch(FoodWindowActions.LOAD_CONTENT)
-
-    let itemsStaticBoxes = Elements.staticBoxes()
-    itemsStaticBoxes.forEach(function(item) {
-        item.ondragover = handleDragOver
-        item.addEventListener('drop', handleDropEquipableItemOnStaticItemBox, false)
-    })
-    Elements.saveBox().onclick = function() {
-        dispatch(FoodWindowActions.SAVE)
-    }
-    Elements.allFoodBox().ondrop = handleDropEquipableItemIntoAllItems;
-    Elements.allFoodBox().ondragover = handleDragOver
-    Elements.hpSelectBox().onchange = function() {
-        dispatch(FoodWindowActions.CHANGE_HP_PERCENTAGE)
-    }
-    Elements.mpSelectBox().onchange = function() {
-        dispatch(FoodWindowActions.CHANGE_MP_PERCENTAGE)
-    }
-})
-
-export {}
