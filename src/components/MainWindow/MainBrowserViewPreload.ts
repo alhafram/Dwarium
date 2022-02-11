@@ -3,11 +3,13 @@ import { Channel } from '../../Models/Channel'
 import sendNotification from '../../services/Notifications'
 import ChatService from '../../services/ChatService'
 import FoodService from '../../services/FoodService'
+import ScriptInjectService from '../../services/ScriptInjectedService'
 
 window.addEventListener('DOMContentLoaded', async () => {
     ChatService.setupShortcut()
     ChatService.setupAutoResponder()
     ChatService.setupFlooding()
+    ScriptInjectService.setupSpeed()
 })
 
 document.addEventListener('Message', (event) => {

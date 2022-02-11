@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.buttonWithImage {
+    @apply mt-auto mb-auto h-5.5 w-5.5 rounded-full bg-no-repeat hover:bg-inputBackgroundColor dark:hover:bg-inputBackgroundColorDark;
+}
+
+.innerButtonWithImage {
+    @apply mt-auto mb-auto -ml-7 h-5.5 w-5.5 rounded-full bg-no-repeat hover:bg-inputBackgroundColor dark:hover:bg-inputBackgroundColorDark;
+}
+
+.closeButtonActiveTab {
+    @apply mt-auto mb-auto h-5.5 w-5.5 rounded-full bg-no-repeat hover:bg-inputBackgroundColor dark:hover:bg-inputBackgroundColorDark;
+}
+
+.closeButtonInactiveTab {
+    @apply mt-auto mb-auto h-5.5 w-5.5 rounded-full bg-no-repeat hover:bg-white dark:hover:bg-activeTabColor;
+}
+
+.buttonIcon {
+    @apply m-auto fill-iconColor dark:fill-iconColorDark;
+}
+
+.buttonStrokeIcon {
+    @apply m-auto stroke-iconColor dark:stroke-iconColorDark;
+}
+
+.input {
+    @apply mt-auto mb-auto rounded-full bg-inputBackgroundColor pl-4 pr-8 text-xs text-textColor outline-none dark:bg-inputBackgroundColorDark dark:text-textColorDark;
+}
+
+.activeTab {
+    @apply rounded-b-xl bg-white text-activeTabColor dark:bg-activeTabColor dark:text-activeTabColorDark;
+}
+
+.inactiveTab {
+    @apply rounded-none border-dividerColor bg-inputBackgroundColor text-inactiveTabColor dark:border-dividerColorDark dark:bg-inputBackgroundColorDark dark:text-inactiveTabColor;
+}

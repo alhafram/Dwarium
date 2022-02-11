@@ -3,7 +3,7 @@ import fs from 'fs'
 import path from 'path'
 import { UserConfig } from '../Models/UserConfig'
 
-const userConfigsFolderPath = path.join(app.getPath ('userData'), 'users')
+const userConfigsFolderPath = path.join(app.getPath('userData'), 'users')
 
 if(!fs.existsSync(userConfigsFolderPath)) {
     fs.mkdirSync(userConfigsFolderPath)
@@ -30,10 +30,12 @@ function save(userConfig: UserConfig): void {
     fs.writeFileSync(filePath, JSON.stringify(userConfig))
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function readData(key: string, configPath: string): any {
     return parseData(configPath)
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function parseData(filePath: fs.PathLike): any {
     const defaultData = {}
     try {

@@ -9,6 +9,7 @@ interface SettingsWindowState {
     windowsAboveApp: boolean,
     maximizeOnStart: boolean,
     hideTopPanelInFullScreen: boolean,
+    enableSpeed: boolean,
     mailServer: boolean,
     userAgentTextFieldActive?: boolean,
     screenshotsFolderPath: string,
@@ -19,6 +20,8 @@ interface SettingsWindowState {
     battlegroundNotificationsIngame: boolean,
     messageNotificationsSystem: boolean,
     messageNotificationsIngame: boolean,
+    mailNotificationsSystem: boolean,
+    mailNotificationsIngame: boolean,
     updateChannel: string
 }
 
@@ -41,6 +44,7 @@ enum SettingsWindowActions {
     CHANGE_WINDOWS_ABOVE_APP,
     CHANGE_MAXIMIZE_ON_START,
     CHANGE_HIDE_TOP_PANEL_IN_FULL_SCREEN,
+    CHANGE_ENABLE_SPEED,
     CHANGE_MAIL_SERVER,
     CHANGE_FIGHT_NOTIFICATIONS_SYSTEM,
     CHANGE_FIGHT_NOTIFICATIONS_INGAME,
@@ -48,6 +52,8 @@ enum SettingsWindowActions {
     CHANGE_BATTLEGROUND_NOTIFICATIONS_INGAME,
     CHANGE_MESSAGE_NOTIFICATIONS_SYSTEM,
     CHANGE_MESSAGE_NOTIFICATIONS_INGAME,
+    CHANGE_MAIL_NOTIFICATIONS_SYSTEM,
+    CHANGE_MAIL_NOTIFICATIONS_INGAME,
     CHANGE_UPDATE_CHANNEL
 }
 
@@ -72,6 +78,9 @@ const Elements = {
     },
     hideTopPanelInFullScreenBox(): HTMLInputElement {
         return document.getElementById('hideTopPanelInFullScreen') as HTMLInputElement
+    },
+    enableSpeedBox(): HTMLInputElement {
+        return document.getElementById('enableSpeed') as HTMLInputElement
     },
     screenshotsFolderPathBox(): HTMLTextAreaElement {
         return document.getElementById('screenshotsFolderPath') as HTMLTextAreaElement
@@ -102,6 +111,12 @@ const Elements = {
     },
     messageNotificationsIngameBox(): HTMLInputElement {
         return document.getElementById('messageNotificationsIngame') as HTMLInputElement
+    },
+    mailNotificationsSystemBox(): HTMLInputElement {
+        return document.getElementById('mailNotificationsSystem') as HTMLInputElement
+    },
+    mailNotificationsIngameBox(): HTMLInputElement {
+        return document.getElementById('mailNotificationsIngame') as HTMLInputElement
     },
     updateChannelBoxes(): HTMLInputElement[] {
         return Array.from(document.getElementsByName('updateChannel')) as HTMLInputElement[]
@@ -148,6 +163,9 @@ function setupListeners() {
     Elements.hideTopPanelInFullScreenBox().onchange = () => {
         dispatch(SettingsWindowActions.CHANGE_HIDE_TOP_PANEL_IN_FULL_SCREEN)
     }
+    Elements.enableSpeedBox().onchange = () => {
+        dispatch(SettingsWindowActions.CHANGE_ENABLE_SPEED)
+    }
     Elements.screenshotsFolderBox().onclick = function() {
         window.settingsAPI.openScreenshotsFolder(initialState.screenshotsFolderPath)
     }
@@ -172,6 +190,12 @@ function setupListeners() {
     Elements.messageNotificationsIngameBox().onchange = () => {
         dispatch(SettingsWindowActions.CHANGE_MESSAGE_NOTIFICATIONS_INGAME)
     }
+    Elements.mailNotificationsSystemBox().onchange = () => {
+        dispatch(SettingsWindowActions.CHANGE_MAIL_NOTIFICATIONS_SYSTEM)
+    }
+    Elements.mailNotificationsIngameBox().onchange = () => {
+        dispatch(SettingsWindowActions.CHANGE_MAIL_NOTIFICATIONS_INGAME)
+    }
     Elements.updateChannelBoxes().forEach(updateChannel => {
         updateChannel.onchange = () => {
             dispatch(SettingsWindowActions.CHANGE_UPDATE_CHANNEL, updateChannel.value)
@@ -192,6 +216,7 @@ let initialState: SettingsWindowState = {
     windowsAboveApp: false,
     maximizeOnStart: false,
     hideTopPanelInFullScreen: false,
+    enableSpeed: false,
     mailServer: false,
     userAgentTextFieldActive: false,
     screenshotsFolderPath: '',
@@ -202,6 +227,8 @@ let initialState: SettingsWindowState = {
     battlegroundNotificationsIngame: false,
     messageNotificationsSystem: false,
     messageNotificationsIngame: false,
+    mailNotificationsSystem: false,
+    mailNotificationsIngame: false,
     updateChannel: 'stable'
 }
 
@@ -220,6 +247,7 @@ function reduce(state: SettingsWindowState = initialState, action: SettingsWindo
                     windowOpenNewTab: loadedSettings.windowOpenNewTab ?? false,
                     windowsAboveApp: loadedSettings.windowsAboveApp ?? false,
                     hideTopPanelInFullScreen: loadedSettings.hideTopPanelInFullScreen ?? false,
+                    enableSpeed: loadedSettings.enableSpeed ?? false,
                     mailServer: loadedSettings.mailServer ?? false,
                     maximizeOnStart: loadedSettings.maximizeOnStart ?? false,
                     screenshotsFolderPath: window.settingsAPI.screenshotsFolder(),
@@ -230,6 +258,8 @@ function reduce(state: SettingsWindowState = initialState, action: SettingsWindo
                     battlegroundNotificationsIngame: loadedSettings.battlegroundNotificationsIngame ?? false,
                     messageNotificationsSystem: loadedSettings.messageNotificationsSystem ?? false,
                     messageNotificationsIngame: loadedSettings.messageNotificationsIngame ?? false,
+                    mailNotificationsSystem: loadedSettings.mailNotificationsSystem ?? false,
+                    mailNotificationsIngame: loadedSettings.mailNotificationsIngame ?? false,
                     updateChannel: loadedSettings.updateChannel ?? 'stable'
                 }
             }
@@ -285,6 +315,11 @@ function reduce(state: SettingsWindowState = initialState, action: SettingsWindo
                 ...state,
                 hideTopPanelInFullScreen: Elements.hideTopPanelInFullScreenBox().checked
             }
+        case SettingsWindowActions.CHANGE_ENABLE_SPEED:
+            return {
+                ...state,
+                enableSpeed: Elements.enableSpeedBox().checked
+            }
         case SettingsWindowActions.CHANGE_MAIL_SERVER:
             return {
                 ...state,
@@ -319,6 +354,16 @@ function reduce(state: SettingsWindowState = initialState, action: SettingsWindo
             return {
                 ...state,
                 messageNotificationsIngame: Elements.messageNotificationsIngameBox().checked
+            }
+        case SettingsWindowActions.CHANGE_MAIL_NOTIFICATIONS_SYSTEM:
+            return {
+                ...state,
+                mailNotificationsSystem: Elements.mailNotificationsSystemBox().checked
+            }
+        case SettingsWindowActions.CHANGE_MAIL_NOTIFICATIONS_INGAME:
+            return {
+                ...state,
+                mailNotificationsIngame: Elements.mailNotificationsIngameBox().checked
             }
         case SettingsWindowActions.CHANGE_UPDATE_CHANNEL:
             return {
@@ -364,6 +409,7 @@ function render(): void {
     Elements.windowOpenNewTab().checked = initialState.windowOpenNewTab
     Elements.maximizeOnStart().checked = initialState.maximizeOnStart
     Elements.hideTopPanelInFullScreenBox().checked = initialState.hideTopPanelInFullScreen
+    Elements.enableSpeedBox().checked = initialState.enableSpeed
     Elements.mailServerBox().checked = initialState.mailServer
 
     Elements.screenshotsFolderPathBox().value = initialState.screenshotsFolderPath
@@ -375,6 +421,8 @@ function render(): void {
     Elements.battlegroundNotificationsIngameBox().checked = initialState.battlegroundNotificationsIngame
     Elements.messageNotificationsSystemBox().checked = initialState.messageNotificationsSystem
     Elements.messageNotificationsIngameBox().checked = initialState.messageNotificationsIngame
+    Elements.mailNotificationsSystemBox().checked = initialState.mailNotificationsSystem
+    Elements.mailNotificationsIngameBox().checked = initialState.mailNotificationsIngame
     Elements.updateChannelBoxes().forEach(channel => {
         if(channel.value == initialState.updateChannel) {
             channel.checked = true

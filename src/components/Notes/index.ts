@@ -98,35 +98,31 @@ function createNoteElement(note: Note, active: boolean = false) {
 }
 
 async function reduce(state: NotesWindowState = initialState, action: NotesWindowActions, data ? : any): Promise < NotesWindowState > {
+    let notes: Note[] = []
     switch(action) {
         case NotesWindowActions.LOAD_CONTENT:
-            const loadedOldNotes = window.notesAPI.loadOldNotes() as Note[]
-            loadedOldNotes.forEach(note => {
-                window.notesAPI.saveNote(note)
-                window.notesAPI.removeNote(note.id)
-            })
-            const newNotes = window.notesAPI.loadNewNotes() as Note[]
+            notes = window.notesAPI.loadNotes() as Note[]
             return {
                 ...state,
-                notes: newNotes
+                notes: notes
             }
         case NotesWindowActions.CREATE_NEW_NOTE:
             Elements.editorBox().value = ''
             const newNote = data as Note
             window.notesAPI.saveNote(newNote)
-            let currentNotes = state.notes
-            currentNotes.push(newNote)
+            notes = state.notes
+            notes.push(newNote)
             return {
                 ...state,
-                notes: currentNotes,
-                    currentNote: newNote
+                notes: notes,
+                currentNote: newNote
             }
         case NotesWindowActions.SAVE_NOTE:
             let note = state.currentNote
-            let notes1 = state.notes
+            notes = state.notes
             if(note) {
                 note.text = Elements.editorBox().value
-                notes1[notes1.indexOf(note)] = note
+                notes[notes.indexOf(note)] = note
             } else {
                 note = {
                     id: generateNoteId(),
@@ -134,18 +130,18 @@ async function reduce(state: NotesWindowState = initialState, action: NotesWindo
                     date: (new Date()).toLocaleString(),
                     isNew: true
                 }
-                notes1.push(note)
+                notes.push(note)
             }
             window.notesAPI.saveNote(note)
             return {
                 ...state,
                 currentNote: note,
-                    notes: notes1
+                notes: notes
             }
         case NotesWindowActions.REMOVE_NOTE:
             Elements.editorBox().value = ''
             let deletedNoteBox = data as HTMLDivElement | null
-            let notes = state.notes
+            notes = state.notes
             const deletedNote = notes.find(note => note.id == deletedNoteBox?.id)
             if(deletedNote) {
                 const isCurrentNote = deletedNote == state.currentNote

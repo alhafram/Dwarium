@@ -1,3 +1,5 @@
+import { UserConfig } from "../../Models/UserConfig"
+
 let art_alt = null
 
 type EnchantMode = {
@@ -31,11 +33,6 @@ type FoodSettings = {
     percentage: string
 }
 
-type FoodItem = {
-    id: string
-    foodType: FoodType
-}
-
 const Elements = {
     hpBox(): HTMLDivElement {
         return document.getElementById('hp') as HTMLDivElement
@@ -66,7 +63,7 @@ type FoodWindowState = {
     mpItem: InventoryItem | null,
     hpPercentage: string,
     mpPercentage: string,
-    userId: number
+    userConfig: UserConfig | null
 }
 
 var initialState: FoodWindowState = {
@@ -75,7 +72,7 @@ var initialState: FoodWindowState = {
     mpItem: null,
     hpPercentage: '',
     mpPercentage: '',
-    userId: 0
+    userConfig: null
 }
 
 enum FoodWindowActions {
@@ -185,35 +182,29 @@ async function reduce(state: FoodWindowState = initialState, action: FoodWindowA
                 item!.foodType = type
                 return item
             })
-            const userId = await window.foodAPI.getUserId() as number
+            const userId = await window.baseAPI.getUserId() as number
             if(!userId) {
                 console.log("Не найден user id пользователя, попробуйте авторизоваться и заново открыть автопоедалку!")
                 return state
             }
-            const userConfig = window.foodAPI.getUserConfig(userId)
-            
-            const currentHpFoodSettings = userConfig.hpFood ?? window.foodAPI.hpFood()
-            const currentMpFoodSettings = userConfig.mpFood ?? window.foodAPI.mpFood()
-
-            window.foodAPI.saveOld({ id: null, percentage: '' }, { id: null, percentage: '' })
-            userConfig.hpFood = currentHpFoodSettings
-            userConfig.mpFood = currentMpFoodSettings
-            window.foodAPI.saveNew(userConfig)
+            const userConfig = window.baseAPI.getUserConfig(userId)
 
             let currentHpFood: InventoryItem | null = null
             let currentMpFood: InventoryItem | null = null
             let currentHpPercentage = '20'
             let currentMpPercentage = '20'
-            if(currentHpFoodSettings) {
-                currentHpFood = allFoodItems.find(item => item.id == currentHpFoodSettings.id) ?? null
-                currentHpPercentage = currentHpFoodSettings.percentage
+            const hpFood = userConfig.hpFood
+            if(hpFood) {
+                currentHpFood = allFoodItems.find(item => item.id == hpFood.id) ?? null
+                currentHpPercentage = hpFood.percentage
                 if(currentHpFood && currentHpFood.foodType != FoodType.BOTH) {
                     allFoodItems.removeItem(currentHpFood)
                 }
             }
-            if(currentMpFoodSettings) {
-                currentMpFood = allFoodItems.find(item => item.id == currentMpFoodSettings.id) ?? null
-                currentMpPercentage = currentMpFoodSettings.percentage
+            const mpFood = userConfig.mpFood
+            if(mpFood) {
+                currentMpFood = allFoodItems.find(item => item.id == mpFood.id) ?? null
+                currentMpPercentage = mpFood.percentage
                 if(currentMpFood && currentMpFood.foodType != FoodType.BOTH) {
                     allFoodItems.removeItem(currentMpFood)
                 }
@@ -227,7 +218,7 @@ async function reduce(state: FoodWindowState = initialState, action: FoodWindowA
                 mpItem: currentMpFood,
                 hpPercentage: currentHpPercentage,
                 mpPercentage: currentMpPercentage,
-                userId: userId
+                userConfig: userConfig
             }
         case FoodWindowActions.EQUIP:
             const equipedItemBox = data[0] as HTMLDivElement
@@ -241,7 +232,7 @@ async function reduce(state: FoodWindowState = initialState, action: FoodWindowA
             switch(equipedItem.foodType) {
                 case FoodType.HP:
                     if(equipedStaticItemBox.id == 'hp') {
-                        if(state.hpItem) {
+                        if(state.hpItem && !state.allItems.includes(state.hpItem)) {
                             allItems.push(state.hpItem)
                         }
                         allItems = allItems.removeItem(equipedItem)
@@ -255,7 +246,7 @@ async function reduce(state: FoodWindowState = initialState, action: FoodWindowA
                     }
                 case FoodType.MP:
                     if(equipedStaticItemBox.id == 'mp') {
-                        if(state.mpItem) {
+                        if(state.mpItem && !state.allItems.includes(state.mpItem)) {
                             allItems.push(state.mpItem)
                         }
                         allItems = allItems.removeItem(equipedItem)
@@ -269,12 +260,20 @@ async function reduce(state: FoodWindowState = initialState, action: FoodWindowA
                     }
                 case FoodType.BOTH:
                     if(equipedStaticItemBox.id == 'hp') {
+                        const equipedHpItem = allItems.find(item => item.id == equipedStaticItemBox.firstElementChild?.getAttribute('itemid'))
+                        if(!equipedHpItem && state.hpItem) {
+                            allItems.push(state.hpItem)
+                        }
                         return {
                             ...state,
                             hpItem: equipedItem,
                             allItems: allItems
                         }
                     } else {
+                        const equipedMpItem = allItems.find(item => item.id == equipedStaticItemBox.firstElementChild?.getAttribute('itemid'))
+                        if(!equipedMpItem && state.mpItem) {
+                            allItems.push(state.mpItem)
+                        }
                         return {
                             ...state,
                             mpItem: equipedItem,
@@ -305,7 +304,6 @@ async function reduce(state: FoodWindowState = initialState, action: FoodWindowA
                 mpItem: mpItem
             }
         case FoodWindowActions.SAVE:
-            Elements.saveBox().disabled = true
             const hpPercentage = Elements.hpSelectBox().value
             const mpPercentage = Elements.mpSelectBox().value
 
@@ -317,11 +315,9 @@ async function reduce(state: FoodWindowState = initialState, action: FoodWindowA
                 id: state.mpItem?.id,
                 percentage: mpPercentage
             }
-            const newUserConfig = window.foodAPI.getUserConfig(state.userId)
-            newUserConfig.hpFood = hpSetting
-            newUserConfig.mpFood = mpSetting
-            window.foodAPI.saveNew(newUserConfig)
-            Elements.saveBox().disabled = false
+            state.userConfig!.hpFood = hpSetting
+            state.userConfig!.mpFood = mpSetting
+            window.baseAPI.save(state.userConfig!)
             return state
         case FoodWindowActions.CHANGE_HP_PERCENTAGE:
             return {

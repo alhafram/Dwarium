@@ -34,6 +34,9 @@ const Elements = {
     },
     searchTextBox(): HTMLInputElement {
         return document.getElementById('searchText') as HTMLInputElement
+    },
+    searchButton(): HTMLButtonElement {
+        return document.getElementById('searchButton') as HTMLButtonElement
     }
 }
 
@@ -73,6 +76,14 @@ window.addEventListener('DOMContentLoaded', async () => {
     Elements.cleanLogsBox().onclick = function() {
         window.chatLogAPI.cleanLogs()
         filterLog()
+    }
+    Elements.searchButton().onclick = function() {
+        filterLog()
+    }
+    Elements.searchTextBox().onkeyup = function(e: KeyboardEvent) {
+        if(e.key == 'Enter') {
+            filterLog()
+        }
     }
 })
 
