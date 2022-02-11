@@ -29,6 +29,7 @@ window.addEventListener('DOMContentLoaded', () => {
             return UserConfigService.get(id)
         },
         save: (userConfig: UserConfig) => {
+            ipcRenderer.send(Channel.FOOD_CHANGED)
             UserConfigService.save(userConfig)
         },
     })

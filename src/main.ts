@@ -1,4 +1,4 @@
-import { app, session, shell } from 'electron'
+import { app, session } from 'electron'
 import { TabsController } from './services/TabsController'
 import MainWindowContainer from './Components/MainWindow/MainWindow'
 import { autoUpdater } from 'electron-updater'
@@ -17,7 +17,7 @@ setInterval(() => {
     autoUpdater.checkForUpdatesAndNotify()
 }, 1000 * 60 * 60)
 
-autoUpdater.signals.updateDownloaded((info: any) => {
+autoUpdater.signals.updateDownloaded(() => {
     mainWindowContainer?.mainWindow.webContents.send(Channel.UPDATE_APPLICATION_AVAILABLE)
 })
 
@@ -31,11 +31,16 @@ function createWindow() {
         TabsController.mainWindowContainer = null
     })
     mainWindowContainer.setup()
-    TabsController.setupMain(mainWindowContainer.browserView!)
+    if(!mainWindowContainer.browserView) {
+        alert('Browser view creation error')
+        return
+    }
+    TabsController.setupMain(mainWindowContainer.browserView)
     mainWindowContainer.setViewContentBounds(TabsController.currentTab())
     mainWindowContainer.start()
-    require('@electron/remote/main').enable(mainWindowContainer.browserView!.webContents)
+    require('@electron/remote/main').enable(mainWindowContainer.browserView.webContents)
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     session.defaultSession.webRequest.onBeforeSendHeaders((details: { requestHeaders: { [x: string]: any } }, callback: (arg0: { cancel: boolean; requestHeaders: any }) => void) => {
         details.requestHeaders['User-Agent'] = ConfigService.userAgent()
         callback({

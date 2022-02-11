@@ -3,114 +3,113 @@ SPDX-License-Identifier: Apache-2.0 -->
 
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="./style.css" />
+        <link rel="stylesheet" href="../../common/sets.css" />
+        <link rel="stylesheet" href="../../common/main.css" />
 
-    <link rel="stylesheet" href="./style.css" />
-    <link rel="stylesheet" href="../../common/sets.css" />
-    <link rel="stylesheet" href="../../common/main.css" />
+        <script>
+            var exports = {}
+        </script>
+        <script src="../../common/utils.js"></script>
+        <script src="../../common/simple_alt.js"></script>
+        <script src="../../out/Components/Dressing/index.js"></script>
+    </head>
 
-    <script>var exports = {}</script>
-    <script src="../../common/utils.js"></script>
-    <script src="../../common/simple_alt.js"></script>
-    <script src="../../out/Components/Dressing/index.js"></script>
-</head>
-
-<body>
-    <div id="artifact_alt" style="width: 300px; display: none; position: fixed; z-index: 1001; left: 440px; top: 358px;" onmouseover="this.style.display='none';"></div>
-    <div class="content">
-        <div class="sets">
-            <div style="display: flex;">
-                <article id="addSetButton" class="leaderboard__profile">
-                    <img src="https://cdn-icons-png.flaticon.com/512/1828/1828925.png" class="leaderboard__picture">
-                    <span class="leaderboard__name">Добавить комплект</span>
-                </article>
-                <article id="dropSetButton" class="leaderboard__profile_remove_button">
-                    <img src="https://cdn-icons-png.flaticon.com/512/1345/1345823.png" class="leaderboard__picture">
-                </article>
+    <body>
+        <div id="artifact_alt" style="width: 300px; display: none; position: fixed; z-index: 1001; left: 440px; top: 358px" onmouseover="this.style.display='none';"></div>
+        <div class="content">
+            <div class="sets">
+                <div style="display: flex">
+                    <article id="addSetButton" class="leaderboard__profile">
+                        <img src="https://cdn-icons-png.flaticon.com/512/1828/1828925.png" class="leaderboard__picture" />
+                        <span class="leaderboard__name">Добавить комплект</span>
+                    </article>
+                    <article id="dropSetButton" class="leaderboard__profile_remove_button">
+                        <img src="https://cdn-icons-png.flaticon.com/512/1345/1345823.png" class="leaderboard__picture" />
+                    </article>
+                </div>
             </div>
+            <div class="equippedItems">
+                <div id="helmet">
+                    <div type="helmet" id="helmetBox" class="boxStatic"></div>
+                </div>
+                <div id="shoulders">
+                    <div type="shoulders" id="shouldersBox" class="boxStatic"></div>
+                </div>
+                <div id="bracers">
+                    <div type="bracers" id="bracersBox" class="boxStatic"></div>
+                </div>
+                <div id="mainWeapon">
+                    <div type="mainWeapon" id="mainWeaponBox" class="boxStatic"></div>
+                </div>
+                <div id="offhandWeapon">
+                    <div type="offhandWeapon" id="offhandWeaponBox" class="boxStatic"></div>
+                </div>
+                <div id="cuirass">
+                    <div type="cuirass" id="cuirassBox" class="boxStatic"></div>
+                </div>
+                <div id="leggings">
+                    <div type="leggings" id="leggingsBox" class="boxStatic"></div>
+                </div>
+                <div id="chain_mail">
+                    <div type="chainmail" id="chainmailBox" class="boxStatic"></div>
+                </div>
+                <div id="boots">
+                    <div type="boots" id="bootsBox" class="boxStatic"></div>
+                </div>
+                <div id="bow">
+                    <div type="bow" id="bowBox" class="boxStatic"></div>
+                </div>
+                <div id="quiver">
+                    <div type="quiver" id="quiverBox" class="boxStatic"></div>
+                </div>
+                <div id="person"></div>
+                <div id="jewelery">
+                    <div id="ring">
+                        <div type="ring" id="ring1Box" class="boxStatic small"></div>
+                    </div>
+                    <div id="ring">
+                        <div type="ring" id="ring2Box" class="boxStatic small"></div>
+                    </div>
+                    <div id="amulet">
+                        <div type="amulet" id="amulet1Box" class="boxStatic small"></div>
+                    </div>
+                    <div id="amulet">
+                        <div type="amulet" id="amulet2Box" class="boxStatic small"></div>
+                    </div>
+                </div>
+
+                <div id="arcats"></div>
+                <div style="margin-top: 500px; margin-left: 10px; display: flex">
+                    <button style="margin-right: 10px; width: 80px; height: 40px" id="unequip">Снять все</button>
+                    <input id="currentSetTitle" style="padding: 7px 10px; border: 1px solid #ccc" type="text" maxlength="20" value="Current set" placeholder="" />
+                    <div>
+                        <button style="margin-left: 10px; width: 80px" id="saveSet">Сохранить</button>
+                        <button style="margin-left: 10px; width: 80px" id="equipSet">Надеть</button>
+                    </div>
+                </div>
+            </div>
+            <div class="filters">
+                <input class="itemCheckbox" checked type="checkbox" id="i_gray" />
+                <label class="itemsCheckboxFilter i_gray" for="i_gray"></label>
+
+                <input class="itemCheckbox" checked type="checkbox" id="i_green" />
+                <label class="itemsCheckboxFilter i_green" for="i_green"></label>
+
+                <input class="itemCheckbox" checked type="checkbox" id="i_blue" />
+                <label class="itemsCheckboxFilter i_blue" for="i_blue"></label>
+
+                <input class="itemCheckbox" checked type="checkbox" id="i_purple" />
+                <label class="itemsCheckboxFilter i_purple" for="i_purple"></label>
+
+                <input class="itemCheckbox" checked type="checkbox" id="i_red" />
+                <label class="itemsCheckboxFilter i_red" for="i_red"></label>
+            </div>
+            <div class="currentItems"></div>
         </div>
-        <div class="equippedItems">
-            <div id="helmet">
-                <div type="helmet" id="helmetBox" class="boxStatic"></div>
-            </div>
-            <div id="shoulders">
-                <div type="shoulders" id="shouldersBox" class="boxStatic"></div>
-            </div>
-            <div id="bracers">
-                <div type="bracers" id="bracersBox" class="boxStatic"></div>
-            </div>
-            <div id="mainWeapon">
-                <div type="mainWeapon" id="mainWeaponBox" class="boxStatic"></div>
-            </div>
-            <div id="offhandWeapon">
-                <div type="offhandWeapon" id="offhandWeaponBox" class="boxStatic"></div>
-            </div>
-            <div id="cuirass">
-                <div type="cuirass" id="cuirassBox" class="boxStatic"></div>
-            </div>
-            <div id="leggings">
-                <div type="leggings" id="leggingsBox" class="boxStatic"></div>
-            </div>
-            <div id="chain_mail">
-                <div type="chainmail" id="chainmailBox" class="boxStatic"></div>
-            </div>
-            <div id="boots">
-                <div type="boots" id="bootsBox" class="boxStatic"></div>
-            </div>
-            <div id="bow">
-                <div type="bow" id="bowBox" class="boxStatic"></div>
-            </div>
-            <div id="quiver">
-                <div type="quiver" id="quiverBox" class="boxStatic"></div>
-            </div>
-            <div id="person">
-            </div>
-            <div id="jewelery">
-                <div id="ring">
-                    <div type="ring" id="ring1Box" class="boxStatic small"></div>
-                </div>
-                <div id="ring">
-                    <div type="ring" id="ring2Box" class="boxStatic small"></div>
-                </div>
-                <div id="amulet">
-                    <div type="amulet" id="amulet1Box" class="boxStatic small"></div>
-                </div>
-                <div id="amulet">
-                    <div type="amulet" id="amulet2Box" class="boxStatic small"></div>
-                </div>
-            </div>
-
-            <div id="arcats"></div>
-            <div style="margin-top: 500px; margin-left: 10px; display: flex;">
-                <button style="margin-right: 10px; width: 80px; height: 40px" id="unequip">Снять все</button>
-                <input id="currentSetTitle" style="padding: 7px 10px; border: 1px solid #ccc;" type="text" maxlength="20" value="Current set" placeholder="">
-                <div>
-                    <button style="margin-left: 10px; width: 80px" id="saveSet">Сохранить</button>
-                    <button style="margin-left: 10px; width: 80px" id="equipSet">Надеть</button>
-                </div>
-            </div>
-        </div>
-        <div class="filters">
-            <input class="itemCheckbox" checked type="checkbox" id="i_gray">
-            <label class="itemsCheckboxFilter i_gray" for="i_gray"></label>
-
-            <input class="itemCheckbox" checked type="checkbox" id="i_green">
-            <label class="itemsCheckboxFilter i_green" for="i_green"></label>
-
-            <input class="itemCheckbox" checked type="checkbox" id="i_blue">
-            <label class="itemsCheckboxFilter i_blue" for="i_blue"></label>
-
-            <input class="itemCheckbox" checked type="checkbox" id="i_purple">
-            <label class="itemsCheckboxFilter i_purple" for="i_purple"></label>
-
-            <input class="itemCheckbox" checked type="checkbox" id="i_red">
-            <label class="itemsCheckboxFilter i_red" for="i_red"></label>
-        </div>
-        <div class="currentItems"></div>
-    </div>
-</body>
-
+    </body>
 </html>

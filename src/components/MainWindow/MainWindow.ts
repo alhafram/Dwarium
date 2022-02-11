@@ -3,7 +3,7 @@ import path from 'path'
 import configService from '../../services/ConfigService'
 import { TabsController } from '../../services/TabsController'
 import { Channel } from '../../Models/Channel'
-import { WindowType } from '../../services/WindowCreationHelper'
+import { WindowType } from '../../Models/WindowModels'
 import setupContextMenu from '../../services/ContextMenu'
 import { getBrowserWindowPosition, getClientWindowPosition, saveBrowserWindowPosition, saveClientWindowPosition } from '../../services/WindowSizeManager'
 
@@ -227,6 +227,17 @@ export default class MainWindowContainer {
                 action: 'deny'
             }
         })
+        window.on('moved', () => {
+            const url = window.webContents?.getURL()
+            if(!url) {
+                return
+            }
+            const convertedURL = new URL(url)
+            saveBrowserWindowPosition(convertedURL.pathname, window.getBounds())
+            if(configService.windowsAboveApp()) {
+                this.mainWindow.focus()
+            }
+        })
         window.on('close', () => {
             const url = window.webContents?.getURL()
             if(!url) {
@@ -246,7 +257,7 @@ export default class MainWindowContainer {
             x: 0,
             y: 0,
             width: contentBounds.width,
-            height: 61
+            height: 72
         }
     }
 

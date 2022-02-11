@@ -6,6 +6,6 @@ export type UserConfig = {
     id: number
     hpFood: FoodSettings | null
     mpFood: FoodSettings | null
-    sets: DressingSet[],
+    sets: DressingSet[]
     beltSets: BeltDressingSet[]
 }
