@@ -1,29 +1,7 @@
 // @ts-nocheck
 // cht.js
 
-var debugLog = function(str, lock) {
-	if (!debugLog.enabled) return;
-	debugLog.log = (debugLog.log || '') + str + "\n";
-	if (lock) {
-		debugLog.locked_log = debugLog.log;
-	}
-};
-debugLog.send = function() {
-	if (!debugLog.sendEnabled) return;
-	$.post('/pub/cht_debug_log.php', {log: debugLog.log});
-	debugLog.log = debugLog.locked_log || '';
-};
-debugLog.addFlashLog = function() {
-	debugLog('lmts connected=' + (LMTS.isConnected() ? 'yes' : 'no') + ' authorized=' + (LMTS.isAuthorized() ? 'yes' : 'no'));
-	debugLog('--------------- FLASH LOG ---------------');
-	var flash_log = LMTS.getLog().split('<br/>');
-	debugLog(flash_log.join("\n"));
-};
-debugLog.enabled = debugLog.sendEnabled = CHAT.debug;
-
-if (_top().location.hash == '#chat_debug') {
-	debugLog.enabled = 1;
-}
+var debugLog = function(str, lock) { }
 
 var chatButtonState = {};
 var chatButtons = {
@@ -255,7 +233,6 @@ function chatTotalReconnect() {
 		dataType: 'json',
 		success: function(data) {
 			if (data) {
-				debugLog('conn data received', data);
 				var lmts_swfs = $('#lmts_swfs');
 				lmts_swfs.find('script').remove();
 				lmts_swfs.html(lmts_swfs.html());
@@ -293,21 +270,6 @@ function chatSendMessage(msg) {
 
 	if (msg == $('#message').data('dummy-text')) {
 		return false;
-	}
-
-	if (msg == '/chat_debug_send' && debugLog.enabled) {
-		debugLog.addFlashLog();
-		debugLog.send();
-		chatSysMsg('OK');
-		return true;
-	}
-	if (msg == '/chat_debug_log' && debugLog.enabled) {
-		debugLog.addFlashLog();
-		var chat_debug_log = debugLog.log.split("\n");
-		chatClearText();
-		chatSysMsg(chat_debug_log.join('<br/>'));
-		debugLog.log = '';
-		return true;
 	}
 
 	if (!LMTS.isAuthorized()) {
@@ -1178,49 +1140,28 @@ function sessionUpdate(data) {
 	}
 }
 
-if (debugLog.enabled) {
-	debugLog('conf ' + JSON.stringify(CHAT.conf));
-	if ('navigator' in window) {
-		var navigatorProps = ['appCodeName', 'appName', 'appVersion', 'cookieEnabled', 'language', 'oscpu', 'platform', 'product', 'userAgent'];
-		for (var i = 0; i < navigatorProps.length; i++) {
-			var prop = navigatorProps[i];
-			debugLog(prop + '=' + (prop in navigator ? navigator[prop] : 'unknown'));
-		}
-	}
-}
-
 var checkLmtsProxyReady = function() {
 	lastMsgTime = time_current();
 	var proxyRef = document.lmts_proxy;
 	if (proxyRef && typeof proxyRef.connect !== 'undefined') {
-		debugLog('lmts proxy ready');
 		lastMsgTime = time_current();
 		LMTS = esrv(proxyRef);
 
-		LMTS.onError = function(code, msg) {
-			debugLog('esrv error code=' + code + ' msg=' + msg);
-		};
+		LMTS.onError = function(code, msg) { };
 
-		LMTS.onConnect = function() {
-			debugLog('lmts connected', true);
-		};
+		LMTS.onConnect = function() { };
 
 		LMTS.onAuth = function() {
-			debugLog('lmts authorized');
 			$.get(chatUrl, {subscribe: 1});
 		};
 
 		var lmtsRequestRef = LMTS.request;
 		LMTS.request = function(data, success, fail) {
-			debugLog('data send ' + vardump(data));
 			lmtsRequestRef(data, success, fail);
 		};
 		LMTS.reconnect = chatTotalReconnect;
-		LMTS.onData = function(data) {
-			debugLog('data recv ' + vardump(data));
-		};
+		LMTS.onData = function(data) { };
 		LMTS.onDisconnect = function() {
-			debugLog('onDisconnect');
 			LMTS.reconnect();
 		};
 
