@@ -168,7 +168,8 @@ export default class MainWindowContainer {
                             width:  windowPosition?.width ?? defaultPosition.width,
                             height:  windowPosition?.height ?? defaultPosition.height,
                             resizable: true, 
-                            movable: true
+                            movable: true,
+                            fullscreen: false
                         }
                     }
                 }
@@ -189,6 +190,7 @@ export default class MainWindowContainer {
                         height:  windowPosition?.height ?? defaultPosition.height,
                         resizable: true, 
                         movable: true,
+                        fullscreen: false,
                         webPreferences: {
                             contextIsolation: false,
                             nativeWindowOpen: true,
@@ -222,7 +224,8 @@ export default class MainWindowContainer {
                 y: windowPosition?.y ?? (defaultPosition.y > 0 ? defaultPosition.y : 0),
                 width: windowPosition?.width ?? defaultPosition.width,
                 height: windowPosition?.height ?? defaultPosition.height,
-                parent: configService.windowsAboveApp() ? this.mainWindow : undefined
+                parent: configService.windowsAboveApp() ? this.mainWindow : undefined,
+                fullscreen: false
             })
             setupContextMenu(newWindow)
             this.setupOpenHandler(newWindow)

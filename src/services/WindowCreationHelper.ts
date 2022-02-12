@@ -20,7 +20,8 @@ export function createWindowAndLoad(windowType: WindowType, htmlPath?: HTMLPath,
         webPreferences: {
             preload: preloadPath ? path.join(__dirname, preloadPath) : undefined,
             contextIsolation: contextIsolation
-        }
+        },
+        fullscreen: false
     })
     setupContextMenu(window)
     if(htmlPath) {
