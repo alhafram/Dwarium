@@ -24,14 +24,14 @@ enum NotificationType {
 
 function getSoundFor(notificationType: NotificationType) {
     switch (notificationType) {
-    case NotificationType.ATTACKED:
-        return 'attacked.ogg'
-    case NotificationType.BATTLEGROUND:
-        return 'battleground.ogg'
-    case NotificationType.MESSAGE:
-        return 'message.ogg'
-    case NotificationType.MAIL:
-        return 'mail.ogg'
+        case NotificationType.ATTACKED:
+            return 'attacked.ogg'
+        case NotificationType.BATTLEGROUND:
+            return 'battleground.ogg'
+        case NotificationType.MESSAGE:
+            return 'message.ogg'
+        case NotificationType.MAIL:
+            return 'mail.ogg'
     }
 }
 
@@ -43,7 +43,7 @@ export default function sendNotification(message: ChatMessage | null) {
     if(message?.channel == 2 && message?.msg_text?.toLocaleLowerCase().includes('на вас совершено') && !message.to_user_nicks) {
         setupBounce('critical')
         setupFlashFlame()
-        if(ConfigService.fightNotificationsSystem()) {
+        if(ConfigService.fightNotificationsSystem() && currentWindowNotFocused()) {
             new Notification({ title: notificationTitle, body: NotificationType.ATTACKED }).show()
         }
         if(ConfigService.fightNotificationsIngame()) {
@@ -54,7 +54,7 @@ export default function sendNotification(message: ChatMessage | null) {
     if(message?.channel == 2 && message?.msg_text?.toLocaleLowerCase().includes('у вас новое письмо от игрока') && !message.to_user_nicks) {
         setupBounce('informational')
         setupFlashFlame()
-        if(ConfigService.mailNotificationsSystem()) {
+        if(ConfigService.mailNotificationsSystem() && currentWindowNotFocused()) {
             new Notification({ title: notificationTitle, body: NotificationType.MAIL }).show()
         }
         if(ConfigService.mailNotificationsIngame()) {
@@ -65,7 +65,7 @@ export default function sendNotification(message: ChatMessage | null) {
     if(message?.channel == 2 && message?.bonus_text == 1 && message?.msg_text?.includes('<b class="redd">Для того, чтобы подтвердить свое участие ')) {
         setupBounce('critical')
         setupFlashFlame()
-        if(ConfigService.battlegroundNotificationsSystem()) {
+        if(ConfigService.battlegroundNotificationsSystem() && currentWindowNotFocused()) {
             new Notification({ title: notificationTitle, body: NotificationType.BATTLEGROUND }).show()
         }
         if(ConfigService.battlegroundNotificationsIngame()) {
@@ -77,7 +77,7 @@ export default function sendNotification(message: ChatMessage | null) {
         if(Object.values(message.to_user_nicks).includes(nickname)) {
             setupFlashFlame()
             setupBounce('informational')
-            if(ConfigService.messageNotificationsSystem()) {
+            if(ConfigService.messageNotificationsSystem() && currentWindowNotFocused()) {
                 new Notification({ title: notificationTitle, body: NotificationType.MESSAGE }).show()
             }
             if(ConfigService.messageNotificationsIngame()) {
@@ -90,7 +90,7 @@ export default function sendNotification(message: ChatMessage | null) {
 function setupFlashFlame() {
     const currentWindow = getCurrentWindow()
     if(process.platform == 'win32') {
-        currentWindow.flashFrame(!currentWindow.isFocused())
+        currentWindow.flashFrame(currentWindowNotFocused())
     }
 }
 
@@ -103,4 +103,9 @@ function setupBounce(type: 'critical' | 'informational') {
 function playIngameNotificationSound(type: NotificationType) {
     const audio = new Audio(`file://${app.getAppPath()}/Resources/${getSoundFor(type)}`)
     audio.play()
+}
+
+function currentWindowNotFocused(): boolean {
+    const currentWindow = getCurrentWindow()
+    return !currentWindow.isFocused()
 }
