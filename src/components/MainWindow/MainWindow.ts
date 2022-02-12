@@ -88,6 +88,9 @@ export default class MainWindowContainer {
             globalShortcut.register('CommandOrControl+T', () => {
                 this.mainWindow.webContents.send(Channel.NEW_TAB)
             })
+            globalShortcut.register('CommandOrControl+R', () => {
+                this.mainWindow.webContents.send(Channel.RELOAD)
+            })
             if(process.platform == 'win32' || process.platform == 'linux') {
                 globalShortcut.register('F11', () => {
                     this.mainWindow.setFullScreen(!this.mainWindow.isFullScreen())
@@ -112,6 +115,7 @@ export default class MainWindowContainer {
         globalShortcut.unregister('CommandOrControl+O')
         globalShortcut.unregister('CommandOrControl+Shift+K')
         globalShortcut.unregister('CommandOrControl+T')
+        globalShortcut.unregister('CommandOrControl+R')
         if(process.platform == 'win32' || process.platform == 'linux') {
             globalShortcut.unregister('F11')
             globalShortcut.unregister('F9')
@@ -164,7 +168,8 @@ export default class MainWindowContainer {
                             width:  windowPosition?.width ?? defaultPosition.width,
                             height:  windowPosition?.height ?? defaultPosition.height,
                             resizable: true, 
-                            movable: true
+                            movable: true,
+                            fullscreen: false
                         }
                     }
                 }
@@ -185,6 +190,7 @@ export default class MainWindowContainer {
                         height:  windowPosition?.height ?? defaultPosition.height,
                         resizable: true, 
                         movable: true,
+                        fullscreen: false,
                         webPreferences: {
                             contextIsolation: false,
                             nativeWindowOpen: true,
@@ -218,7 +224,8 @@ export default class MainWindowContainer {
                 y: windowPosition?.y ?? (defaultPosition.y > 0 ? defaultPosition.y : 0),
                 width: windowPosition?.width ?? defaultPosition.width,
                 height: windowPosition?.height ?? defaultPosition.height,
-                parent: configService.windowsAboveApp() ? this.mainWindow : undefined
+                parent: configService.windowsAboveApp() ? this.mainWindow : undefined,
+                fullscreen: false
             })
             setupContextMenu(newWindow)
             this.setupOpenHandler(newWindow)

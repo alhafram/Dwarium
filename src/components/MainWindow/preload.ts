@@ -414,6 +414,10 @@ ipcRenderer.on(Channel.NEW_TAB_WITH_URL, (evt, url) => {
     ipcRenderer.send(Channel.NEW_TAB, tab.id, url)
 })
 
+ipcRenderer.on(Channel.RELOAD, () => {
+    ipcRenderer.send(Channel.RELOAD)
+})
+
 function getElementIdBy(type: WindowType): HTMLElement | undefined {
     switch(type) {
         case WindowType.FOOD:

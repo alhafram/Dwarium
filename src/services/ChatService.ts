@@ -183,18 +183,18 @@ function setupAutoResponder() {
 
 function getAutoResponceForChannel(channel: ChatChannel) {
     switch (channel) {
-    case ChatChannel.PRIVATE:
-        return config.privateChatResponse
-    case ChatChannel.COMMON:
-        return config.commonChatResponse
-    case ChatChannel.TRADE:
-        return config.tradeChatResponse
-    case ChatChannel.GROUP:
-        return config.groupChatResponse
-    case ChatChannel.CLAN:
-        return config.clanChatResponse
-    case ChatChannel.ALLIANCE:
-        return config.allianceChatResponse
+        case ChatChannel.PRIVATE:
+            return config.privateChatResponse
+        case ChatChannel.COMMON:
+            return config.commonChatResponse
+        case ChatChannel.TRADE:
+            return config.tradeChatResponse
+        case ChatChannel.GROUP:
+            return config.groupChatResponse
+        case ChatChannel.CLAN:
+            return config.clanChatResponse
+        case ChatChannel.ALLIANCE:
+            return config.allianceChatResponse
     }
 }
 

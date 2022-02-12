@@ -1,31 +1,53 @@
-import {
-    ipcRenderer,
-    contextBridge
-} from 'electron'
-import ConfigService from '../../services/ConfigService'
-import '../BaseAPI'
+import { Elements } from './Elements'
+import render from './Renderer'
+import EventBuilder from '../Common/EventBuilder'
+import { FoodWindowState } from './FoodWindowState'
+import { FoodWindowActions } from './Actions'
+import reduce from './Reducer'
 
-contextBridge.exposeInMainWorld('foodAPI', {
-    baseUrl: () => {
-        return ConfigService.baseUrl()
-    },
-    loadItemsData: async (types: string[]) => {
-        return await ipcRenderer.invoke('LoadSetItems', types)
-    },
-    fetchFood: async () => {
-        let req = `fetch('${ConfigService.baseUrl()}/user_conf.php?mode=food').then(resp => resp.text())`
-        return await ipcRenderer.invoke('MakeWebRequest', req)
+let initialState: FoodWindowState = {
+    allItems: [],
+    hpItem: null,
+    mpItem: null,
+    hpPercentage: '',
+    mpPercentage: '',
+    userConfig: null
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+async function dispatch(action: FoodWindowActions, data?: any) {
+    initialState = await reduce(initialState, action, data)
+    render(initialState)
+}
+
+window.addEventListener('DOMContentLoaded', async() => {
+    dispatch(FoodWindowActions.LOAD_CONTENT)
+
+    const itemsStaticBoxes = Elements.staticBoxes()
+    itemsStaticBoxes.forEach(function(item) {
+        item.ondragover = EventBuilder.handleDragOver
+        item.addEventListener('drop', handleDropEquipableItemOnStaticItemBox, false)
+    })
+    Elements.saveBox().onclick = function() {
+        dispatch(FoodWindowActions.SAVE)
+    }
+    Elements.allFoodBox().ondrop = handleDropEquipableItemIntoAllItems
+    Elements.allFoodBox().ondragover = EventBuilder.handleDragOver
+    Elements.hpSelectBox().onchange = function() {
+        dispatch(FoodWindowActions.CHANGE_HP_PERCENTAGE)
+    }
+    Elements.mpSelectBox().onchange = function() {
+        dispatch(FoodWindowActions.CHANGE_MP_PERCENTAGE)
     }
 })
 
-export interface FoodAPI {
-    baseUrl: () => string,
-    loadItemsData: (types: string[]) => any,
-    fetchFood: () => any,
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function handleDropEquipableItemOnStaticItemBox(this: any, e: DragEvent) {
+    e.stopPropagation()
+    dispatch(FoodWindowActions.EQUIP, [EventBuilder.getDragableItem(), this])
 }
 
-declare global {
-    interface Window {
-        foodAPI: FoodAPI
-    }
+function handleDropEquipableItemIntoAllItems(e: Event) {
+    e.stopPropagation()
+    dispatch(FoodWindowActions.UNEQUIP, EventBuilder.getDragableItem())
 }
