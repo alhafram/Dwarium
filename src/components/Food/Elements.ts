@@ -12,7 +12,7 @@ export const Elements = {
         return document.getElementById('mpSelect') as HTMLSelectElement
     },
     allFoodBox(): HTMLDivElement {
-        return document.getElementsByClassName('allFood')[0] as HTMLDivElement
+        return document.getElementById('allFood') as HTMLDivElement
     },
     saveBox(): HTMLButtonElement {
         return document.getElementById('save') as HTMLButtonElement

@@ -1,11 +1,11 @@
 import { Elements } from './Elements'
 import render from './Renderer'
-import EventBuilder from './EventBuilder'
-import { FoodWindowState } from './State'
+import EventBuilder from '../Common/EventBuilder'
+import { FoodWindowState } from './FoodWindowState'
 import { FoodWindowActions } from './Actions'
 import reduce from './Reducer'
 
-var initialState: FoodWindowState = {
+let initialState: FoodWindowState = {
     allItems: [],
     hpItem: null,
     mpItem: null,
@@ -14,15 +14,16 @@ var initialState: FoodWindowState = {
     userConfig: null
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 async function dispatch(action: FoodWindowActions, data?: any) {
     initialState = await reduce(initialState, action, data)
     render(initialState)
 }
 
-window.addEventListener('DOMContentLoaded', async () => {
+window.addEventListener('DOMContentLoaded', async() => {
     dispatch(FoodWindowActions.LOAD_CONTENT)
 
-    let itemsStaticBoxes = Elements.staticBoxes()
+    const itemsStaticBoxes = Elements.staticBoxes()
     itemsStaticBoxes.forEach(function(item) {
         item.ondragover = EventBuilder.handleDragOver
         item.addEventListener('drop', handleDropEquipableItemOnStaticItemBox, false)
@@ -30,7 +31,7 @@ window.addEventListener('DOMContentLoaded', async () => {
     Elements.saveBox().onclick = function() {
         dispatch(FoodWindowActions.SAVE)
     }
-    Elements.allFoodBox().ondrop = handleDropEquipableItemIntoAllItems;
+    Elements.allFoodBox().ondrop = handleDropEquipableItemIntoAllItems
     Elements.allFoodBox().ondragover = EventBuilder.handleDragOver
     Elements.hpSelectBox().onchange = function() {
         dispatch(FoodWindowActions.CHANGE_HP_PERCENTAGE)
@@ -40,6 +41,7 @@ window.addEventListener('DOMContentLoaded', async () => {
     }
 })
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function handleDropEquipableItemOnStaticItemBox(this: any, e: DragEvent) {
     e.stopPropagation()
     dispatch(FoodWindowActions.EQUIP, [EventBuilder.getDragableItem(), this])

@@ -1,14 +1,14 @@
-import { Elements } from "./Elements"
-import EventBuilder from "./EventBuilder"
-import convertItemIntoDiv from './ItemBuilder'
-import { FoodWindowState } from "./State"
+import { Elements } from './Elements'
+import EventBuilder from '../Common/EventBuilder'
+import convertItemIntoDiv from '../Common/ItemBuilder'
+import { FoodWindowState } from './FoodWindowState'
 
 export default function render(state: FoodWindowState): void {
     const parent = Elements.allFoodBox()
-    Array.from(parent?.children ?? []).forEach(itemBox => {
+    Array.from(parent?.children ?? []).forEach((itemBox) => {
         parent?.removeChild(itemBox)
     })
-    state.allItems.forEach(item => {
+    state.allItems.forEach((item) => {
         const divItem = convertItemIntoDiv(item)
         EventBuilder.setupEquipableItemEvents(divItem)
         parent?.appendChild(divItem)
@@ -35,6 +35,6 @@ export default function render(state: FoodWindowState): void {
         mpParent.style.border = 'none'
         mpParent.appendChild(mpItemBox)
     }
-    Elements.hpSelectBox().value = state.hpPercentage;
+    Elements.hpSelectBox().value = state.hpPercentage
     Elements.mpSelectBox().value = state.mpPercentage
 }
