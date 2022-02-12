@@ -1,32 +1,16 @@
 import { ipcRenderer } from 'electron'
-import { Channel } from '../../Models/Channel'
 import { FoodType, InventoryItem } from '../../Models/InventoryItem'
-import { UserConfig } from '../../Models/UserConfig'
 import ConfigService from '../../services/ConfigService'
-import UserConfigService from '../../services/UserConfigService'
 import { FoodWindowActions } from './Actions'
 import { FoodWindowState } from './FoodWindowState'
 import SimpleAlt from '../../Scripts/simple_alt'
 import { FoodSettings } from '../../Models/FoodSettings'
 import { Elements } from './Elements'
+import Utils from '../Common/Utils'
 
-async function loadItemsData(types: string[]) {
-    return await ipcRenderer.invoke('LoadSetItems', types)
-}
 async function fetchFood() {
     const req = `fetch('${ConfigService.baseUrl()}/user_conf.php?mode=food').then(resp => resp.text())`
     return await ipcRenderer.invoke('MakeWebRequest', req)
-}
-
-async function getUserId() {
-    return await ipcRenderer.invoke(Channel.GET_ID)
-}
-function getUserConfig(id: number) {
-    return UserConfigService.get(id)
-}
-function save(userConfig: UserConfig) {
-    ipcRenderer.send(Channel.FOOD_CHANGED)
-    UserConfigService.save(userConfig)
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -34,7 +18,7 @@ export default async function reduce(state: FoodWindowState, action: FoodWindowA
     let allItems = state.allItems
     switch (action) {
         case FoodWindowActions.LOAD_CONTENT: {
-            const result = await loadItemsData(['allItems', 'allPotions', 'wearedItems', 'otherItems'])
+            const result = await Utils.loadItemsData(['allItems', 'allPotions', 'wearedItems', 'otherItems'])
             const foodResult = await fetchFood()
             const parser = new DOMParser()
             const doc = parser.parseFromString(foodResult, 'application/xml')
@@ -66,12 +50,12 @@ export default async function reduce(state: FoodWindowState, action: FoodWindowA
                     return item
                 })
                 .filter((item): item is InventoryItem => !!item)
-            const userId = (await getUserId()) as number
+            const userId = await Utils.getUserId()
             if(!userId) {
                 console.log('Не найден user id пользователя, попробуйте авторизоваться и заново открыть автопоедалку!')
                 return state
             }
-            const userConfig = getUserConfig(userId)
+            const userConfig = Utils.getUserConfig(userId)
 
             let currentHpFood: InventoryItem | null = null
             let currentMpFood: InventoryItem | null = null
@@ -212,7 +196,7 @@ export default async function reduce(state: FoodWindowState, action: FoodWindowA
             }
             state.userConfig.hpFood = hpSetting
             state.userConfig.mpFood = mpSetting
-            save(state.userConfig)
+            Utils.save(state.userConfig)
             return state
         }
         case FoodWindowActions.CHANGE_HP_PERCENTAGE: {
