@@ -1,53 +1,40 @@
-const { app } = process.type === 'browser' ? require('electron') : require('@electron/remote')
 import { ipcRenderer } from 'electron'
-import fs from 'fs'
-import path from 'path'
 import { Channel } from '../Models/Channel'
+import buildPath, { ConfigPath } from '../Models/ConfigPathes'
 import { FavouriteLink } from '../Models/FavouriteLink'
+import FileHandler from './FileOperationsService'
 
-const configPath = path.join(app.getPath('userData'), 'favouriteLinks.json')
+const path = buildPath(ConfigPath.FAVOURITE_LIST)
 
-function saveFavouriteLink(title: string, path: string, value: boolean | null): void {
-    const contents = parseData(configPath)
+function saveFavouriteLink(title: string, url: string, value: boolean | null): void {
+    const links = getLinks()
+    const favouriteLink = {
+        title,
+        url
+    } as FavouriteLink
     if(value) {
-        contents[path] = {
-            title
-        }
+        links.push(favouriteLink)
     } else {
-        contents[path] = null
-    }
-    Object.keys(contents).forEach((key) => {
-        if(contents[key] === null) {
-            delete contents[key]
+        const index = links.findIndex(link => link.url == url && link.title == title)
+        if(index != -1) {
+            links.splice(index, 1)
         }
-    })
-    fs.writeFileSync(configPath, JSON.stringify(contents))
+    }
+    FileHandler.writeData(path, JSON.stringify(links))
     ipcRenderer.send(Channel.FAVOURITE_UPDATED)
 }
 
 function getLinks(): FavouriteLink[] {
-    const links = parseData(configPath)
-    return Object.keys(links).map((key) => {
-        return {
-            url: key,
-            title: links[key].title
-        }
-    })
-}
-
-function isFavouriteLink(path: string): boolean {
-    const contents = parseData(configPath)
-    return contents[path] ?? false
-}
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function parseData(filePath: fs.PathLike): any {
-    const defaultData = {}
-    try {
-        return JSON.parse(fs.readFileSync(filePath, 'utf-8'))
-    } catch (error) {
-        return defaultData
+    let links = (FileHandler.parseData(path) ?? []) as FavouriteLink[]
+    if(Object.keys(links).length == 0) {
+        links = []
     }
+    return links
+}
+
+function isFavouriteLink(url: string): boolean {
+    const links = getLinks()
+    return links.find(link => link.url == url) != undefined
 }
 
 export default {
