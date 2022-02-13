@@ -2,10 +2,7 @@ import {
     ipcRenderer,
     contextBridge
 } from 'electron'
-import { Channel } from '../../Models/Channel'
-import { UserConfig } from '../../Models/UserConfig'
 import configService from '../../services/ConfigService'
-import UserConfigService from '../../services/UserConfigService'
 import '../BaseAPI'
 import '../Utils'
 
@@ -15,15 +12,6 @@ contextBridge.exposeInMainWorld('beltPotionAPI', {
     },
     loadItemsData: async (types: string[]) => {
         return await ipcRenderer.invoke('LoadSetItems', types)
-    },
-    loadBeltSets: () => {
-        return configService.beltSets()
-    },
-    saveSet: (set: any) => {
-        configService.writeData(set.id, JSON.stringify(set))
-    },
-    removeSet: (id: string) => {
-        configService.writeData(id, null)
     },
     fetchItem: (id: string) => {
         let req = `fetch('${configService.baseUrl()}/artifact_info.php?artifact_id=${id}').then(resp => resp.text())`
@@ -84,25 +72,12 @@ contextBridge.exposeInMainWorld('beltPotionAPI', {
           'credentials': 'include'
           }).then(resp => resp.text())`
           return ipcRenderer.invoke('MakeWebRequest', req)
-    },
-    getUserId: async () => {
-        const id = await ipcRenderer.invoke(Channel.GET_ID)
-        return id
-    },
-    getUserConfig: (id: number) => {
-        return UserConfigService.get(id)
-    },
-    saveNew: (userConfig: UserConfig) => {
-        UserConfigService.save(userConfig)
     }
 })
 
 export interface BeltPotionAPI {
     baseUrl: () => string,
     loadItemsData: (types: string[]) => any,
-    loadBeltSets: () => any,
-    saveSet: (set: {}) => void,
-    removeSet: (id: string) => void,
     fetchItem: (id: string) => Promise<any>,
     unequipRequest: (id: string) => Promise <any>,
     equipPotionRequest: (id: string, slotNum: string, variantNum: string) => Promise<any>,
@@ -110,10 +85,7 @@ export interface BeltPotionAPI {
     getEquipedPotionsAlt: () => Promise<any>,
     updateSlot: (num: string, type: string) => Promise<any>,
     getSlots: () => Promise<number[]>,
-    refreshLeftMenu: () => Promise<any>,
-    getUserId: () => any,
-    getUserConfig: (id: number) => UserConfig,
-    saveNew: (userConfig: UserConfig) => void
+    refreshLeftMenu: () => Promise<any>
 }
 
 declare global {

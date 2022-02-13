@@ -1,7 +1,6 @@
 const { app } = process.type === 'browser' ? require('electron') : require('@electron/remote')
 import fs from 'fs'
 import path from 'path'
-import { FoodSettings } from '../Models/FoodSettings'
 const configPath = path.join(app.getPath('userData'), 'config.json')
 
 function server(): string {
@@ -93,35 +92,6 @@ function enableSpeed(): boolean {
         return settings.enableSpeed ?? false
     }
     return false
-}
-
-function hpFood(): FoodSettings | null {
-    return readData('hpFood') ?? null
-}
-
-function mpFood(): FoodSettings | null {
-    return readData('mpFood') ?? null
-}
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function sets(): any[] {
-    const contents = parseData(configPath)
-    const keys = Object.keys(contents).filter((key) => key.startsWith('set_'))
-    return keys.map((key) => JSON.parse(contents[key]))
-}
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function beltSets(): any[] {
-    const contents = parseData(configPath)
-    const keys = Object.keys(contents).filter((key) => key.startsWith('belt_set_'))
-    return keys.map((key) => JSON.parse(contents[key]))
-}
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function notes(): any[] {
-    const contents = parseData(configPath)
-    const keys = Object.keys(contents).filter((key) => key.startsWith('note_'))
-    return keys.map((key) => JSON.parse(contents[key]))
 }
 
 // Notifications
@@ -246,11 +216,6 @@ export default {
     enableSpeed,
     userAgent,
     writeData,
-    sets,
-    beltSets,
-    notes,
-    hpFood,
-    mpFood,
     fightNotificationsSystem,
     fightNotificationsIngame,
     battlegroundNotificationsSystem,
