@@ -47,7 +47,7 @@ function renderFavouriteLinks() {
         const removeButton = node.lastElementChild as HTMLButtonElement
         if(removeButton) {
             removeButton.onclick = function(e) {
-                FavouriteLinksService.saveFavouriteLink('', link.url, null)
+                FavouriteLinksService.saveFavouriteLink(link.title, link.url, null)
                 e.stopPropagation()
             }
             Elements.linksDiv().appendChild(node)

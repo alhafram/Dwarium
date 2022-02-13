@@ -91,6 +91,9 @@ export default class MainWindowContainer {
             globalShortcut.register('CommandOrControl+R', () => {
                 this.mainWindow.webContents.send(Channel.RELOAD)
             })
+            globalShortcut.register('Control+Tab', () => {
+                this.mainWindow.webContents.send(Channel.SWITCH_NEXT_TAB)
+            })
             if(process.platform == 'win32' || process.platform == 'linux') {
                 globalShortcut.register('F11', () => {
                     this.mainWindow.setFullScreen(!this.mainWindow.isFullScreen())
@@ -116,6 +119,7 @@ export default class MainWindowContainer {
         globalShortcut.unregister('CommandOrControl+Shift+K')
         globalShortcut.unregister('CommandOrControl+T')
         globalShortcut.unregister('CommandOrControl+R')
+        globalShortcut.unregister('Control+Tab')
         if(process.platform == 'win32' || process.platform == 'linux') {
             globalShortcut.unregister('F11')
             globalShortcut.unregister('F9')
