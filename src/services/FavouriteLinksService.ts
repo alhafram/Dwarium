@@ -15,7 +15,7 @@ function saveFavouriteLink(title: string, url: string, value: boolean | null): v
     if(value) {
         links.push(favouriteLink)
     } else {
-        const index = links.findIndex(link => link.url == url && link.title == title)
+        const index = links.findIndex((link) => link.url == url && link.title == title)
         if(index != -1) {
             links.splice(index, 1)
         }
@@ -32,7 +32,7 @@ function getLinks(): FavouriteLink[] {
     // Release 2.2.0 Remove
     if(Object.keys(links).length > 0 && Object.keys(links)[0] != '0') {
         FileOperationsService.deleteFile(path)
-        Object.keys(links).forEach(key => {
+        Object.keys(links).forEach((key) => {
             const favouriteLink = {
                 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                 // @ts-ignore
@@ -47,7 +47,7 @@ function getLinks(): FavouriteLink[] {
 
 function isFavouriteLink(url: string): boolean {
     const links = getLinks()
-    return links.find(link => link.url == url) != undefined
+    return links.find((link) => link.url == url) != undefined
 }
 
 export default {

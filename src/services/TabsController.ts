@@ -14,7 +14,6 @@ export class TabsController {
     static addTab(id: string, tab: BrowserView): void {
         this.tabs[id] = tab
         this.tabsList.push(id)
-        console.log(this.tabsList, this.tabs)
     }
     static deleteTab(id: string): void {
         if(!this.tabs[id]?.webContents.isDestroyed()) {
@@ -24,11 +23,10 @@ export class TabsController {
         const index = this.tabsList.indexOf(id)
         this.tabsList.splice(index, 1)
         delete this.tabs[id]
-        console.log(this.tabsList, this.tabs)
     }
     static setupMain(tab: BrowserView): void {
         this.tabs['main'] = tab
-        if(!this.tabsList.find(tab => tab == 'main')) {
+        if(!this.tabsList.find((tab) => tab == 'main')) {
             this.tabsList.push('main')
         }
     }
