@@ -20,6 +20,24 @@ async function loadItemsData(types: string[]) {
     return await ipcRenderer.invoke('LoadSetItems', types)
 }
 
+Array.prototype.removeItem = function(element) {
+    var index = this.indexOf(element)
+    if(index != -1) {
+        this.splice(index, 1)
+    }
+    return this
+}
+
+Array.prototype.removeItems = function(elements) {
+    for(var element of elements) {
+        var index = this.indexOf(element)
+        if(index != -1) {
+            this.splice(index, 1)
+        }
+    }
+    return this
+}
+
 export default {
     getUserId,
     getUserConfig,
