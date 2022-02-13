@@ -229,6 +229,15 @@ ipcMain.on(Channel.NEW_TAB_WITH_URL, (evt, url) => {
     TabsController.mainWindow?.webContents.send(Channel.NEW_TAB_WITH_URL, url)
 })
 
+ipcMain.on(Channel.SWITCH_NEXT_TAB, () => {
+    const currentTabIndex = TabsController.tabsList.indexOf(TabsController.current_tab_id)
+    if(currentTabIndex != -1 && TabsController.tabsList.length - 1 != currentTabIndex) {
+        const nextIndex = currentTabIndex + 1
+        const nextTabId = TabsController.tabsList[nextIndex]
+        TabsController.mainWindow?.webContents.send(Channel.MAKE_ACTIVE, nextTabId)
+    }
+})
+
 /// WINDOWS
 
 let settingsWindow: BrowserWindow | null

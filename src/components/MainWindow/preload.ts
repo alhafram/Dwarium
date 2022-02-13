@@ -337,6 +337,21 @@ function makeActive(evt: Event) {
     drawDividers()
 }
 
+function makeActiveWith(id: string) {
+    document.querySelectorAll('.activeTab').forEach(item => {
+        item?.lastElementChild?.classList.replace('closeButtonActiveTab', 'closeButtonInactiveTab')
+        item.classList.replace('activeTab', 'inactiveTab')
+    })
+    const target = document.getElementById(id)
+    if(target) {
+        target.classList.replace('inactiveTab', 'activeTab')
+        target.lastElementChild?.classList.replace('closeButtonInactiveTab', 'closeButtonActiveTab')
+        let id = target.id
+        ipcRenderer.send(Channel.MAKE_ACTIVE, id)
+    }
+    drawDividers()
+}
+
 ipcRenderer.on(Channel.SERVER, (event, server) => {
     if(!server) {
         Elements.serverSwitcher().checked = true
@@ -416,6 +431,14 @@ ipcRenderer.on(Channel.NEW_TAB_WITH_URL, (evt, url) => {
 
 ipcRenderer.on(Channel.RELOAD, () => {
     ipcRenderer.send(Channel.RELOAD)
+})
+
+ipcRenderer.on(Channel.SWITCH_NEXT_TAB, () => {
+    ipcRenderer.send(Channel.SWITCH_NEXT_TAB)
+})
+
+ipcRenderer.on(Channel.MAKE_ACTIVE, (evt, id) => {
+    makeActiveWith(id)
 })
 
 function getElementIdBy(type: WindowType): HTMLElement | undefined {

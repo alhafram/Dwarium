@@ -33,5 +33,6 @@ export enum Channel {
     GET_TITLE = 'getTitle',
     FAVOURITE_LIST = 'favouriteList',
     SWITCH_MODE = 'switchMode',
-    FAVOURITE_UPDATED = 'favouriteUpdated'
+    FAVOURITE_UPDATED = 'favouriteUpdated',
+    SWITCH_NEXT_TAB = 'switchNextTab'
 }
