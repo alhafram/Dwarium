@@ -1,10 +1,10 @@
-import { app } from '@electron/remote'
 import { contextBridge } from 'electron'
-import fs from 'fs'
-import path from 'path'
 import readline from 'readline'
-const logsFolderPath = path.join(app.getPath('userData'), 'logs')
-const filePath = path.join(logsFolderPath, 'chat.log')
+import { buildFolderPath, buildPathWithBase, ConfigPath, Folder } from '../../Models/ConfigPathes'
+import FileOperationsService from '../../services/FileOperationsService'
+
+const folderPath = buildFolderPath(Folder.LOGS)
+const filePath = buildPathWithBase(folderPath, ConfigPath.CHAT_LOG)
 
 type ChatLog = {
     date: string,
@@ -14,14 +14,12 @@ var chatLogs: ChatLog[] = []
 
 async function processLineByLine() {
 
-    if(!fs.existsSync(logsFolderPath)) {
-        fs.mkdirSync(logsFolderPath)
-        fs.openSync(filePath, 'w')
-    } else if(!fs.existsSync(filePath)) {
-        fs.openSync(filePath, 'w')
+    FileOperationsService.checkFolder(folderPath)
+    if(!FileOperationsService.fileExists(filePath)) {
+        FileOperationsService.createFile(filePath)
     }
 
-    const fileStream = fs.createReadStream(filePath)
+    const fileStream = FileOperationsService.createReadStream(filePath)
     const rl = readline.createInterface({
         input: fileStream,
         crlfDelay: Infinity
@@ -98,7 +96,7 @@ contextBridge.exposeInMainWorld('chatLogAPI', {
         }
     },
     cleanLogs: () => {
-        fs.truncateSync(filePath, 0)
+        FileOperationsService.truncate(filePath)
         chatLogs = []
     }
 })

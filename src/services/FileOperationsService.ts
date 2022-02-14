@@ -43,6 +43,14 @@ function writeFile(path: fs.PathLike, data: Buffer, callback: (() => void)) {
     })
 }
 
+function createReadStream(path: fs.PathLike): fs.ReadStream {
+    return fs.createReadStream(path)
+}
+
+function truncate(path: fs.PathLike): void {
+    fs.truncateSync(path, 0)
+}
+
 export default {
     parseData,
     writeData,
@@ -51,5 +59,7 @@ export default {
     fileExists,
     createFile,
     createWriteStream,
-    writeFile
+    writeFile,
+    createReadStream,
+    truncate
 }
