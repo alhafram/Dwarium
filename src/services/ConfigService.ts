@@ -1,4 +1,3 @@
-import fs from 'fs'
 import { ClientSettings } from '../Models/ClientSettings'
 import buildPath, { ConfigPath } from '../Models/ConfigPathes'
 import FileOperationsService from './FileOperationsService'
@@ -219,7 +218,7 @@ function writeData(key: string, value: any): void {
             delete contents[key]
         }
     })
-    fs.writeFileSync(path, JSON.stringify(contents))
+    FileOperationsService.writeData(path, JSON.stringify(contents))
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
