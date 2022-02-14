@@ -1,35 +1,34 @@
-const { app } = process.type === 'browser' ? require('electron') : require('@electron/remote')
 import { Rectangle } from 'electron'
-import fs from 'fs'
-import path from 'path'
+import buildPath, { ConfigPath } from '../Models/ConfigPathes'
 import { WindowType } from '../Models/WindowModels'
+import FileOperationsService from './FileOperationsService'
 
-const configPath = path.join(app.getPath('userData'), 'windows.json')
+const path = buildPath(ConfigPath.WINDOW_SIZE)
 
 function saveClientWindowPosition(type: WindowType, size: Rectangle): void {
-    const contents = parseData(configPath)
+    const contents = FileOperationsService.parseData(path) as any
     contents[type] = fixNegativePositions(size)
     Object.keys(contents).forEach((key) => {
         if(contents[key] === null) {
             delete contents[key]
         }
     })
-    fs.writeFileSync(configPath, JSON.stringify(contents))
+    FileOperationsService.writeData(path, JSON.stringify(contents))
 }
 
-function saveBrowserWindowPosition(path: string, size: Rectangle): void {
-    const contents = parseData(configPath)
-    contents[path] = fixNegativePositions(size)
+function saveBrowserWindowPosition(url: string, size: Rectangle): void {
+    const contents = FileOperationsService.parseData(path) as any
+    contents[url] = fixNegativePositions(size)
     Object.keys(contents).forEach((key) => {
         if(contents[key] === null) {
             delete contents[key]
         }
     })
-    fs.writeFileSync(configPath, JSON.stringify(contents))
+    FileOperationsService.writeData(path, JSON.stringify(contents))
 }
 
 function getClientWindowPosition(type: WindowType): Rectangle | undefined {
-    const contents = parseData(configPath)
+    const contents = FileOperationsService.parseData(path) as any
     if(contents && contents[type]) {
         const rect = contents[type] as Rectangle
         return fixNegativePositions(rect)
@@ -37,9 +36,9 @@ function getClientWindowPosition(type: WindowType): Rectangle | undefined {
     return contents[type]
 }
 
-function getBrowserWindowPosition(path: string): Rectangle | undefined {
-    const contents = parseData(configPath)
-    return contents[path]
+function getBrowserWindowPosition(url: string): Rectangle | undefined {
+    const contents = FileOperationsService.parseData(path) as any
+    return contents[url]
 }
 
 function fixNegativePositions(size: Rectangle): Rectangle {
@@ -50,16 +49,6 @@ function fixNegativePositions(size: Rectangle): Rectangle {
         size.y = 0
     }
     return size
-}
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function parseData(filePath: fs.PathLike): any {
-    const defaultData = {}
-    try {
-        return JSON.parse(fs.readFileSync(filePath, 'utf-8'))
-    } catch (error) {
-        return defaultData
-    }
 }
 
 export { saveClientWindowPosition, saveBrowserWindowPosition, getClientWindowPosition, getBrowserWindowPosition }
