@@ -27,10 +27,22 @@ function fileExists(path: fs.PathLike): boolean {
     return fs.existsSync(path)
 }
 
+function createFile(path: fs.PathLike): void {
+    fs.openSync(path, 'w')
+}
+
+function createWriteStream(path: fs.PathLike): fs.WriteStream {
+    return fs.createWriteStream(path, {
+        flags: 'a'
+    })
+}
+
 export default {
     parseData,
     writeData,
     deleteFile,
     checkFolder,
-    fileExists
+    fileExists,
+    createFile,
+    createWriteStream
 }

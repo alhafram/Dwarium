@@ -5,11 +5,13 @@ enum ConfigPath {
     FAVOURITE_LIST = 'favouriteLinks.json',
     CONFIG = 'config.json',
     WINDOW_SIZE = 'windows.json',
-    NOTES = 'notes.json'
+    NOTES = 'notes.json',
+    CHAT_LOG = 'chat.log'
 }
 
 enum Folder {
-    USERS = 'users'
+    USERS = 'users',
+    LOGS = 'logs'
 }
 
 function buildPath(config: ConfigPath): string {

@@ -1,22 +1,20 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { app, powerMonitor, globalShortcut } from '@electron/remote'
-import fs from 'fs'
-import path from 'path'
+import { powerMonitor, globalShortcut } from '@electron/remote'
 import ConfigService from './ConfigService'
 import ChatSettingsService from './ChatSettingsService'
 import { ipcRenderer } from 'electron'
 import { Channel } from '../Models/Channel'
 import { ChatSettingsConfig } from '../Models/ChatSettingsConfig'
 import { ChatMessage } from './Notifications'
+import { buildFolderPath, buildPathWithBase, ConfigPath, Folder } from '../Models/ConfigPathes'
+import FileOperationsService from './FileOperationsService'
 
-const logsFolderPath = path.join(app.getPath('userData'), 'logs')
-const filePath = path.join(logsFolderPath, 'chat.log')
+const folderPath = buildFolderPath(Folder.LOGS)
+const filePath = buildPathWithBase(folderPath, ConfigPath.CHAT_LOG)
 
-if(!fs.existsSync(logsFolderPath)) {
-    fs.mkdirSync(logsFolderPath)
-    fs.openSync(filePath, 'w')
-} else if(!fs.existsSync(filePath)) {
-    fs.openSync(filePath, 'w')
+FileOperationsService.checkFolder(folderPath)
+if(!FileOperationsService.fileExists(filePath)) {
+    FileOperationsService.createFile(filePath)
 }
 
 enum ChatChannel {
@@ -33,9 +31,7 @@ type QueueChatMessage = {
     text: string
 }
 
-const logStream = fs.createWriteStream(filePath, {
-    flags: 'a'
-})
+const logStream = FileOperationsService.createWriteStream(filePath)
 let isIdle = false
 const messagesQueue: QueueChatMessage[] = []
 
