@@ -4,7 +4,8 @@ import path from 'path'
 export enum ConfigPath {
     FAVOURITE_LIST = 'favouriteLinks.json',
     CONFIG = 'config.json',
-    WINDOW_SIZE = 'windows.json'
+    WINDOW_SIZE = 'windows.json',
+    NOTES = 'notes.json'
 }
 
 export default function buildPath(config: ConfigPath): string {
