@@ -1,7 +1,51 @@
-const { app } = process.type === 'browser' ? require('electron') : require('@electron/remote')
 import fs from 'fs'
-import path from 'path'
-const configPath = path.join(app.getPath('userData'), 'config.json')
+import buildPath, { ConfigPath } from '../Models/ConfigPathes'
+import FileOperationsService from './FileOperationsService'
+
+const path = buildPath(ConfigPath.CONFIG)
+
+type ClientSettings = {
+    server: string
+    baseUrl: string
+    ownServer: string
+    windowOpenNewTab: boolean
+    windowsAboveApp: boolean
+    maximizeOnStart: boolean
+    hideTopPanelInFullScreen: boolean
+    enableSpeed: boolean
+    fightNotificationsSystem: boolean
+    fightNotificationsIngame: boolean
+    battlegroundNotificationsSystem: boolean
+    battlegroundNotificationsIngame: boolean
+    messageNotificationsSystem: boolean
+    messageNotificationsIngame: boolean
+    mailNotificationsSystem: boolean
+    mailNotificationsIngame: boolean
+    updateChannel: string
+}
+
+function getSettings(): ClientSettings {
+    let settings = {
+        server: server(),
+        baseUrl: baseUrl(),
+        ownServer: ownServer(),
+        windowOpenNewTab: windowOpenNewTab(),
+        windowsAboveApp: windowsAboveApp(),
+        maximizeOnStart: maximizeOnStart(),
+        hideTopPanelInFullScreen: hideTopPanelInFullScreen(),
+        enableSpeed: enableSpeed(),
+        fightNotificationsSystem: fightNotificationsSystem(),
+        fightNotificationsIngame: fightNotificationsIngame(),
+        battlegroundNotificationsSystem: battlegroundNotificationsSystem(),
+        battlegroundNotificationsIngame: battlegroundNotificationsIngame(),
+        messageNotificationsSystem: messageNotificationsSystem(),
+        messageNotificationsIngame: messageNotificationsIngame(),
+        mailNotificationsSystem: mailNotificationsSystem(),
+        mailNotificationsIngame: mailNotificationsIngame(),
+        updateChannel: updateChannel()
+    }
+    return settings
+}
 
 function server(): string {
     return readData('server')
@@ -179,35 +223,24 @@ function updateChannel(): string {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function writeData(key: string, value: any): void {
-    const contents = parseData(configPath)
+    const contents = FileOperationsService.parseData(path) as any
     contents[key] = value
     Object.keys(contents).forEach((key) => {
         if(contents[key] === null) {
             delete contents[key]
         }
     })
-    fs.writeFileSync(configPath, JSON.stringify(contents))
+    fs.writeFileSync(path, JSON.stringify(contents))
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function readData(key: string): any {
-    const contents = parseData(configPath)
+    const contents = FileOperationsService.parseData(path) as any
     return contents[key]
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function parseData(filePath: fs.PathLike): any {
-    const defaultData = {}
-    try {
-        return JSON.parse(fs.readFileSync(filePath, 'utf-8'))
-    } catch (error) {
-        return defaultData
-    }
-}
-
 export default {
-    server,
-    baseUrl,
+    getSettings,
     loadSettings,
     windowOpenNewTab,
     windowsAboveApp,

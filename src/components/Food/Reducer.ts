@@ -9,7 +9,7 @@ import { Elements } from './Elements'
 import Utils from '../Common/Utils'
 
 async function fetchFood() {
-    const req = `fetch('${ConfigService.baseUrl()}/user_conf.php?mode=food').then(resp => resp.text())`
+    const req = `fetch('${ConfigService.getSettings().baseUrl}/user_conf.php?mode=food').then(resp => resp.text())`
     return await ipcRenderer.invoke('MakeWebRequest', req)
 }
 

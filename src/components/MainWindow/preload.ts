@@ -1,5 +1,5 @@
 import { ipcRenderer } from 'electron'
-import configService from '../../services/ConfigService'
+import ConfigService from '../../services/ConfigService'
 import { Channel } from '../../Models/Channel'
 import { generateRandomId } from '../Utils'
 import { WindowType } from '../../Models/WindowModels'
@@ -145,9 +145,9 @@ window.addEventListener('DOMContentLoaded', async () => {
     Elements.userInfoButton().addEventListener('click', () => {
         const nick = Elements.nicknameInput().value
         if(nick.length != 0) {
-            if(configService.windowOpenNewTab()) {
+            if(ConfigService.windowOpenNewTab()) {
                 const tab = createNewTab()
-                ipcRenderer.send(Channel.NEW_TAB, tab.id, `${configService.baseUrl()}/user_info.php?nick=${nick}`)
+                ipcRenderer.send(Channel.NEW_TAB, tab.id, `${ConfigService.getSettings().baseUrl}/user_info.php?nick=${nick}`)
             } else {
                 ipcRenderer.send(Channel.FIND_CHARACTER, nick)
             }
@@ -167,9 +167,9 @@ window.addEventListener('DOMContentLoaded', async () => {
     Elements.findEffectsBox().onclick = function() {
         const nick = Elements.nicknameInput().value
         if(nick.length > 0) {
-            if(configService.windowOpenNewTab()) {
+            if(ConfigService.windowOpenNewTab()) {
                 const tab = createNewTab()
-                ipcRenderer.send(Channel.NEW_TAB, tab.id, `${configService.baseUrl()}/effect_info.php?nick=${nick}`)
+                ipcRenderer.send(Channel.NEW_TAB, tab.id, `${ConfigService.getSettings().baseUrl}/effect_info.php?nick=${nick}`)
             } else {
                 ipcRenderer.send(Channel.FIND_EFFECTS, nick)
             }

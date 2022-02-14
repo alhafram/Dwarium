@@ -2,7 +2,8 @@ const { app } = process.type === 'browser' ? require('electron') : require('@ele
 import path from 'path'
 
 export enum ConfigPath {
-    FAVOURITE_LIST = 'favouriteLinks.json'
+    FAVOURITE_LIST = 'favouriteLinks.json',
+    CONFIG = 'config.json'
 }
 
 export default function buildPath(config: ConfigPath): string {

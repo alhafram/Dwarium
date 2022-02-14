@@ -1,5 +1,5 @@
 import { BrowserWindow, BrowserView, ipcMain, app } from 'electron'
-import configService from './services/ConfigService'
+import ConfigService from './services/ConfigService'
 import { TabsController } from './services/TabsController'
 import { autoUpdater } from 'electron-updater'
 import fs from 'fs'
@@ -10,8 +10,8 @@ import { createWindowAndLoad, setupCloseLogic } from './services/WindowCreationH
 import setupContextMenu from './services/ContextMenu'
 
 ipcMain.on(Channel.LOAD_URL, (evt, server) => {
-    configService.writeData('server', server)
-    TabsController.currentTab().webContents.loadURL(`${configService.baseUrl()}/main.php`)
+    ConfigService.writeData('server', server)
+    TabsController.currentTab().webContents.loadURL(`${ConfigService.getSettings().baseUrl}/main.php`)
     TabsController.mainWindow?.webContents.setZoomFactor(0.9)
 })
 
@@ -53,7 +53,7 @@ function createNewTab(url: string, id: string) {
         TabsController.mainWindow?.webContents.send(Channel.FINISH_LOAD_URL, tabId, title)
         TabsController.mainWindow?.webContents.send(Channel.URL, browserView.webContents.getURL(), tabId)
     })
-    if(configService.windowOpenNewTab()) {
+    if(ConfigService.windowOpenNewTab()) {
         browserView.webContents.setWindowOpenHandler(({ url }) => {
             TabsController.mainWindow?.webContents.send(Channel.NEW_TAB, url)
             return {
@@ -109,19 +109,19 @@ ipcMain.on(Channel.UPDATE_APPLICATION, () => {
 ipcMain.handle('LoadSetItems', async(evt, args: [string]) => {
     const SetRequests = {
         allItems: {
-            url: `${configService.baseUrl()}/user_iframe.php?group=2`,
+            url: `${ConfigService.getSettings().baseUrl}/user_iframe.php?group=2`,
             script: 'art_alt'
         },
         wearedItems: {
-            url: `${configService.baseUrl()}/user.php`,
+            url: `${ConfigService.getSettings().baseUrl}/user.php`,
             script: 'art_alt'
         },
         allPotions: {
-            url: `${configService.baseUrl()}/user_iframe.php?group=1`,
+            url: `${ConfigService.getSettings().baseUrl}/user_iframe.php?group=1`,
             script: 'art_alt'
         },
         otherItems: {
-            url: `${configService.baseUrl()}/user_iframe.php?group=3`,
+            url: `${ConfigService.getSettings().baseUrl}/user_iframe.php?group=3`,
             script: 'art_alt'
         }
     }
@@ -142,7 +142,7 @@ ipcMain.on(Channel.FIND_CHARACTER, (event, nick) => {
     const userInfoBrowserWindow = createWindowAndLoad(WindowType.USER_INFO)
     // eslint-disable-next-line @typescript-eslint/no-empty-function
     setupCloseLogic(userInfoBrowserWindow, WindowType.USER_INFO, () => {})
-    userInfoBrowserWindow.webContents.loadURL(`${configService.baseUrl()}/user_info.php?nick=${nick}`)
+    userInfoBrowserWindow.webContents.loadURL(`${ConfigService.getSettings().baseUrl}/user_info.php?nick=${nick}`)
 })
 
 async function fetch(request: { url: string; script: string }) {
@@ -191,7 +191,7 @@ ipcMain.on(Channel.FIND_EFFECTS, (event, nick) => {
     const effetsInfoBrowserWindow = createWindowAndLoad(WindowType.USER_EFFECTS)
     // eslint-disable-next-line @typescript-eslint/no-empty-function
     setupCloseLogic(effetsInfoBrowserWindow, WindowType.USER_EFFECTS, () => {})
-    effetsInfoBrowserWindow.webContents.loadURL(`${configService.baseUrl()}/effect_info.php?nick=${nick}`)
+    effetsInfoBrowserWindow.webContents.loadURL(`${ConfigService.getSettings().baseUrl}/effect_info.php?nick=${nick}`)
 })
 
 ipcMain.on(Channel.FOOD_CHANGED, () => {

@@ -5,10 +5,10 @@ export default function convertItemIntoDiv(item: InventoryItem): HTMLDivElement 
     const divItem = document.createElement('div')
     divItem.className = 'box'
     divItem.draggable = true
-    if(item.image.includes(ConfigService.baseUrl())) {
+    if(item.image.includes(ConfigService.getSettings().baseUrl)) {
         divItem.style.backgroundImage = `url('${item.image}')`
     } else {
-        const url = `${ConfigService.baseUrl()}/${item.image}`
+        const url = `${ConfigService.getSettings().baseUrl}/${item.image}`
         item.image = url
         divItem.style.backgroundImage = `url('${url}')`
     }
