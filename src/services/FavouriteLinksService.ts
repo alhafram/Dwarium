@@ -1,6 +1,6 @@
 import { ipcRenderer } from 'electron'
 import { Channel } from '../Models/Channel'
-import buildPath, { ConfigPath } from '../Models/ConfigPathes'
+import { buildPath, ConfigPath } from '../Models/ConfigPathes'
 import { FavouriteLink } from '../Models/FavouriteLink'
 import FileOperationsService from './FileOperationsService'
 

@@ -9,16 +9,28 @@ function parseData(filePath: fs.PathLike): unknown {
     }
 }
 
-function writeData(path: fs.PathLike, data: string) {
+function writeData(path: fs.PathLike, data: string): void {
     fs.writeFileSync(path, data)
 }
 
-function deleteFile(path: fs.PathLike) {
+function deleteFile(path: fs.PathLike): void {
     fs.unlinkSync(path)
+}
+
+function checkFolder(path: fs.PathLike): void {
+    if(!fs.existsSync(path)) {
+        fs.mkdirSync(path)
+    }
+}
+
+function fileExists(path: fs.PathLike): boolean {
+    return fs.existsSync(path)
 }
 
 export default {
     parseData,
     writeData,
-    deleteFile
+    deleteFile,
+    checkFolder,
+    fileExists
 }

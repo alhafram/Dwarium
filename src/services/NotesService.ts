@@ -1,4 +1,4 @@
-import buildPath, { ConfigPath } from '../Models/ConfigPathes'
+import { buildPath, ConfigPath } from '../Models/ConfigPathes'
 import FileOperationsService from './FileOperationsService'
 
 const path = buildPath(ConfigPath.NOTES)

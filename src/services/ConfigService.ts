@@ -1,12 +1,12 @@
 import { ClientSettings } from '../Models/ClientSettings'
-import buildPath, { ConfigPath } from '../Models/ConfigPathes'
+import { buildPath, ConfigPath } from '../Models/ConfigPathes'
 import FileOperationsService from './FileOperationsService'
 
 const path = buildPath(ConfigPath.CONFIG)
 
 // Refactor 2.3.0
 function getSettings(): ClientSettings {
-    let settings = {
+    const settings = {
         server: server(),
         baseUrl: baseUrl(),
         mailServer: mailServer(),

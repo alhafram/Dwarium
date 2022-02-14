@@ -1,5 +1,5 @@
 import { Rectangle } from 'electron'
-import buildPath, { ConfigPath } from '../Models/ConfigPathes'
+import { buildPath, ConfigPath } from '../Models/ConfigPathes'
 import { WindowType } from '../Models/WindowModels'
 import FileOperationsService from './FileOperationsService'
 
