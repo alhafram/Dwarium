@@ -37,7 +37,7 @@ function createWriteStream(path: fs.PathLike): fs.WriteStream {
     })
 }
 
-function writeFile(path: fs.PathLike, data: Buffer, callback: (() => void)) {
+function writeFile(path: fs.PathLike, data: Buffer, callback: () => void) {
     fs.writeFile(path, data, () => {
         callback()
     })

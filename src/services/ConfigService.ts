@@ -229,5 +229,5 @@ function readData(key: string): any {
 
 export default {
     getSettings,
-    writeData,
+    writeData
 }

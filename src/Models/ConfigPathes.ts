@@ -27,10 +27,4 @@ function buildPathWithBase(basePath: string, name: string): string {
     return path.join(basePath, name)
 }
 
-export {
-    buildPath,
-    buildFolderPath,
-    buildPathWithBase,
-    ConfigPath,
-    Folder
-}
+export { buildPath, buildFolderPath, buildPathWithBase, ConfigPath, Folder }

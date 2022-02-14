@@ -125,7 +125,9 @@ async function useItem(item: FoodItem): Promise<void> {
         headers: {
             'content-type': 'application/x-www-form-urlencoded'
         },
-        referrer: `${ConfigService.getSettings().baseUrl}/action_form.php?${Math.random()}&artifact_id=${item.id}&in[param_success][url_close]=user.php%3Fmode%3Dpersonage%26group%3D1%26update_swf%3D1`,
+        referrer: `${ConfigService.getSettings().baseUrl}/action_form.php?${Math.random()}&artifact_id=${
+            item.id
+        }&in[param_success][url_close]=user.php%3Fmode%3Dpersonage%26group%3D1%26update_swf%3D1`,
         referrerPolicy: 'no-referrer-when-downgrade',
         body: `object_class=ARTIFACT&object_id=${item.id}&action_id=${item.actionId}&url_success=action_form.php%3Fsuccess%3D1%26default%3DARTIFACT_${item.id}_${item.actionId}&url_error=action_form.php%3Ffailed%3D1%26default%3DARTIFACT_${item.id}_${item.actionId}&artifact_id=${item.id}&in%5Bobject_class%5D=ARTIFACT&in%5Bobject_id%5D=${item.id}&in%5Baction_id%5D=${item.actionId}&in%5Burl_success%5D=action_form.php%3Fsuccess%3D1&in%5Burl_error%5D=action_form.php%3Ffailed%3D1&in%5Bparam_success%5D%5Burl_close%5D=user.php%3Fmode%3Dpersonage%26amp%3Bgroup%3D1%26amp%3Bupdate_swf%3D1`,
         method: 'POST',
