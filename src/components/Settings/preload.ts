@@ -1,17 +1,14 @@
 import { contextBridge, ipcRenderer } from 'electron'
 import { app, shell } from '@electron/remote'
-import configService from '../../services/ConfigService'
+import ConfigService from '../../services/ConfigService'
+import { ClientSettings } from '../../Models/ClientSettings'
 
 contextBridge.exposeInMainWorld('settingsAPI', {
     saveSettings: (settings: JSON) => {
-        configService.writeData('settings', JSON.stringify(settings))
+        ConfigService.writeData('settings', JSON.stringify(settings))
     },
     loadSettings: () => {
-        let loadedSettings = configService.loadSettings()
-        if(loadedSettings) {
-            loadedSettings = JSON.parse(loadedSettings)
-        }
-        return loadedSettings ?? {}
+        return ConfigService.getSettings()
     },
     restart: () => {
         app.relaunch()
@@ -27,7 +24,7 @@ contextBridge.exposeInMainWorld('settingsAPI', {
 
 export interface SettingsAPI {
     saveSettings: (settings: {}) => void,
-    loadSettings: () => any,
+    loadSettings: () => ClientSettings,
     restart: () => void,
     screenshotsFolder(): string,
     openScreenshotsFolder(path: string): void

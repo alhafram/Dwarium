@@ -145,7 +145,7 @@ window.addEventListener('DOMContentLoaded', async () => {
     Elements.userInfoButton().addEventListener('click', () => {
         const nick = Elements.nicknameInput().value
         if(nick.length != 0) {
-            if(ConfigService.windowOpenNewTab()) {
+            if(ConfigService.getSettings().windowOpenNewTab) {
                 const tab = createNewTab()
                 ipcRenderer.send(Channel.NEW_TAB, tab.id, `${ConfigService.getSettings().baseUrl}/user_info.php?nick=${nick}`)
             } else {
@@ -167,7 +167,7 @@ window.addEventListener('DOMContentLoaded', async () => {
     Elements.findEffectsBox().onclick = function() {
         const nick = Elements.nicknameInput().value
         if(nick.length > 0) {
-            if(ConfigService.windowOpenNewTab()) {
+            if(ConfigService.getSettings().windowOpenNewTab) {
                 const tab = createNewTab()
                 ipcRenderer.send(Channel.NEW_TAB, tab.id, `${ConfigService.getSettings().baseUrl}/effect_info.php?nick=${nick}`)
             } else {

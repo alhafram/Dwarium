@@ -166,7 +166,7 @@ export default class MainWindowContainer {
                     return {
                         action: 'allow',
                         overrideBrowserWindowOptions: {
-                            parent: ConfigService.windowsAboveApp() ? TabsController.mainWindow : null,
+                            parent: ConfigService.getSettings().windowsAboveApp ? TabsController.mainWindow : null,
                             x: windowPosition?.x ?? (defaultPosition.x > 0 ? defaultPosition.x : 0),
                             y: windowPosition?.y ?? (defaultPosition.y > 0 ? defaultPosition.y : 0),
                             width:  windowPosition?.width ?? defaultPosition.width,
@@ -178,7 +178,7 @@ export default class MainWindowContainer {
                     }
                 }
             }
-            if(ConfigService.windowOpenNewTab() && !features.includes('location=no') || TabsController.currentTab() == TabsController.getMain() && !features) {
+            if(ConfigService.getSettings().windowOpenNewTab && !features.includes('location=no') || TabsController.currentTab() == TabsController.getMain() && !features) {
                 this.mainWindow.webContents.send(Channel.NEW_TAB, url)
                 return {
                     action: 'deny'
@@ -187,7 +187,7 @@ export default class MainWindowContainer {
                 return {
                     action: 'allow',
                     overrideBrowserWindowOptions: {
-                        parent: ConfigService.windowsAboveApp() ? TabsController.mainWindow : null,
+                        parent: ConfigService.getSettings().windowsAboveApp ? TabsController.mainWindow : null,
                         x: windowPosition?.x ?? (defaultPosition.x > 0 ? defaultPosition.x : 0),
                         y: windowPosition?.y ?? (defaultPosition.y > 0 ? defaultPosition.y : 0),
                         width:  windowPosition?.width ?? defaultPosition.width,
@@ -228,7 +228,7 @@ export default class MainWindowContainer {
                 y: windowPosition?.y ?? (defaultPosition.y > 0 ? defaultPosition.y : 0),
                 width: windowPosition?.width ?? defaultPosition.width,
                 height: windowPosition?.height ?? defaultPosition.height,
-                parent: ConfigService.windowsAboveApp() ? this.mainWindow : undefined,
+                parent: ConfigService.getSettings().windowsAboveApp ? this.mainWindow : undefined,
                 fullscreen: false
             })
             setupContextMenu(newWindow)
@@ -245,7 +245,7 @@ export default class MainWindowContainer {
             }
             const convertedURL = new URL(url)
             saveBrowserWindowPosition(convertedURL.pathname, window.getBounds())
-            if(ConfigService.windowsAboveApp()) {
+            if(ConfigService.getSettings().windowsAboveApp) {
                 this.mainWindow.focus()
             }
         })
@@ -256,7 +256,7 @@ export default class MainWindowContainer {
             }
             const convertedURL = new URL(url)
             saveBrowserWindowPosition(convertedURL.pathname, window.getBounds())
-            if(ConfigService.windowsAboveApp()) {
+            if(ConfigService.getSettings().windowsAboveApp) {
                 this.mainWindow.focus()
             }
         })
@@ -276,7 +276,7 @@ export default class MainWindowContainer {
         const [contentWidth, contentHeight] = this.mainWindow.getContentSize()
         const controlBounds = this.getControlBounds()
         let y = controlBounds.y + controlBounds.height
-        if(ConfigService.hideTopPanelInFullScreen() && TabsController.getMain() == TabsController.currentTab()) {
+        if(ConfigService.getSettings().hideTopPanelInFullScreen && TabsController.getMain() == TabsController.currentTab()) {
             y = this.isFullscreen ? 0 : y
             controlBounds.height = this.isFullscreen ? 0 : controlBounds.height
         }
@@ -292,7 +292,7 @@ export default class MainWindowContainer {
 
     start() {
         this.mainWindow.show();
-        if(ConfigService.maximizeOnStart()) {
+        if(ConfigService.getSettings().maximizeOnStart) {
             this.mainWindow.maximize()
         }
         this.mainWindow.loadFile(`${path.join(app.getAppPath(), 'gui', 'MainWindow', 'index.html')}`)

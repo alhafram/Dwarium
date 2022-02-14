@@ -241,26 +241,27 @@ function reduce(state: SettingsWindowState = initialState, action: SettingsWindo
             } else {
                 return {
                     ...state,
-                    selectedUserAgentType: loadedSettings.selectedUserAgentType,
+                    // @ts-ignore
+                    selectedUserAgentType: UserAgentType[Object.keys(UserAgentType)[Object.values(UserAgentType).indexOf(loadedSettings.selectedUserAgentType)]],
                     selectedUserAgentValue: loadedSettings.selectedUserAgentValue,
                     userAgentTextFieldActive: loadedSettings.selectedUserAgentType == UserAgentType.OWN,
-                    windowOpenNewTab: loadedSettings.windowOpenNewTab ?? false,
-                    windowsAboveApp: loadedSettings.windowsAboveApp ?? false,
-                    hideTopPanelInFullScreen: loadedSettings.hideTopPanelInFullScreen ?? false,
-                    enableSpeed: loadedSettings.enableSpeed ?? false,
-                    mailServer: loadedSettings.mailServer ?? false,
-                    maximizeOnStart: loadedSettings.maximizeOnStart ?? false,
+                    windowOpenNewTab: loadedSettings.windowOpenNewTab,
+                    windowsAboveApp: loadedSettings.windowsAboveApp,
+                    hideTopPanelInFullScreen: loadedSettings.hideTopPanelInFullScreen,
+                    enableSpeed: loadedSettings.enableSpeed,
+                    mailServer: loadedSettings.mailServer,
+                    maximizeOnStart: loadedSettings.maximizeOnStart,
                     screenshotsFolderPath: window.settingsAPI.screenshotsFolder(),
                     ownServer: loadedSettings.ownServer ?? '',
-                    fightNotificationsSystem: loadedSettings.fightNotificationsSystem ?? false,
-                    fightNotificationsIngame: loadedSettings.fightNotificationsIngame ?? false,
-                    battlegroundNotificationsSystem: loadedSettings.battlegroundNotificationsSystem ?? false,
-                    battlegroundNotificationsIngame: loadedSettings.battlegroundNotificationsIngame ?? false,
-                    messageNotificationsSystem: loadedSettings.messageNotificationsSystem ?? false,
-                    messageNotificationsIngame: loadedSettings.messageNotificationsIngame ?? false,
-                    mailNotificationsSystem: loadedSettings.mailNotificationsSystem ?? false,
-                    mailNotificationsIngame: loadedSettings.mailNotificationsIngame ?? false,
-                    updateChannel: loadedSettings.updateChannel ?? 'stable'
+                    fightNotificationsSystem: loadedSettings.fightNotificationsSystem,
+                    fightNotificationsIngame: loadedSettings.fightNotificationsIngame,
+                    battlegroundNotificationsSystem: loadedSettings.battlegroundNotificationsSystem,
+                    battlegroundNotificationsIngame: loadedSettings.battlegroundNotificationsIngame,
+                    messageNotificationsSystem: loadedSettings.messageNotificationsSystem,
+                    messageNotificationsIngame: loadedSettings.messageNotificationsIngame,
+                    mailNotificationsSystem: loadedSettings.mailNotificationsSystem,
+                    mailNotificationsIngame: loadedSettings.mailNotificationsIngame,
+                    updateChannel: loadedSettings.updateChannel
                 }
             }
         case SettingsWindowActions.SAVE_SETTINGS:
@@ -284,6 +285,7 @@ function reduce(state: SettingsWindowState = initialState, action: SettingsWindo
         case SettingsWindowActions.CHANGE_USER_AGENT:
             const newValue = Elements.userAgentsSelect().value
             let userAgentType = UserAgentType[newValue as keyof typeof UserAgentType]
+            console.log(userAgentType)
             let userAgentValue = userAgentType.toString()
             if(UserAgentType[newValue as keyof typeof UserAgentType].toString() == UserAgentType.OWN.toString()) {
                 userAgentType = UserAgentType.OWN

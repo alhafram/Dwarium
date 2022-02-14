@@ -1,36 +1,21 @@
 import fs from 'fs'
+import { ClientSettings } from '../Models/ClientSettings'
 import buildPath, { ConfigPath } from '../Models/ConfigPathes'
 import FileOperationsService from './FileOperationsService'
 
 const path = buildPath(ConfigPath.CONFIG)
 
-type ClientSettings = {
-    server: string
-    baseUrl: string
-    ownServer: string
-    windowOpenNewTab: boolean
-    windowsAboveApp: boolean
-    maximizeOnStart: boolean
-    hideTopPanelInFullScreen: boolean
-    enableSpeed: boolean
-    fightNotificationsSystem: boolean
-    fightNotificationsIngame: boolean
-    battlegroundNotificationsSystem: boolean
-    battlegroundNotificationsIngame: boolean
-    messageNotificationsSystem: boolean
-    messageNotificationsIngame: boolean
-    mailNotificationsSystem: boolean
-    mailNotificationsIngame: boolean
-    updateChannel: string
-}
-
+// Refactor 2.3.0
 function getSettings(): ClientSettings {
     let settings = {
         server: server(),
         baseUrl: baseUrl(),
+        mailServer: mailServer(),
         ownServer: ownServer(),
         windowOpenNewTab: windowOpenNewTab(),
         windowsAboveApp: windowsAboveApp(),
+        selectedUserAgentType: selectedUserAgentType(),
+        selectedUserAgentValue: selectedUserAgentValue(),
         maximizeOnStart: maximizeOnStart(),
         hideTopPanelInFullScreen: hideTopPanelInFullScreen(),
         enableSpeed: enableSpeed(),
@@ -56,17 +41,16 @@ function baseUrl(): string {
     if(server.length != 0) {
         return server
     }
-    return `https://${readData('server')}.dwar${mailServer()}.ru`
+    return `https://${readData('server')}.dwar${mailServer() ? '.mail' : ''}.ru`
 }
 
-function mailServer(): string {
+function mailServer(): boolean {
     let settings = readData('settings')
     if(settings) {
         settings = JSON.parse(settings)
-        const isMailServer = settings.mailServer ?? false
-        return isMailServer ? '.mail' : ''
+        return settings.mailServer ?? false
     }
-    return ''
+    return false
 }
 
 function ownServer(): string {
@@ -76,11 +60,6 @@ function ownServer(): string {
         return settings.ownServer ?? ''
     }
     return ''
-}
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function loadSettings(): any {
-    return readData('settings')
 }
 
 function windowOpenNewTab(): boolean {
@@ -101,7 +80,17 @@ function windowsAboveApp(): boolean {
     return false
 }
 
-function userAgent(): string {
+function selectedUserAgentType(): string {
+    let settings = readData('settings')
+    const defaultUA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36'
+    if(settings) {
+        settings = JSON.parse(settings)
+        return settings.selectedUserAgentType ?? defaultUA
+    }
+    return defaultUA
+}
+
+function selectedUserAgentValue(): string {
     let settings = readData('settings')
     const defaultUA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36'
     if(settings) {
@@ -241,21 +230,5 @@ function readData(key: string): any {
 
 export default {
     getSettings,
-    loadSettings,
-    windowOpenNewTab,
-    windowsAboveApp,
-    maximizeOnStart,
-    hideTopPanelInFullScreen,
-    enableSpeed,
-    userAgent,
     writeData,
-    fightNotificationsSystem,
-    fightNotificationsIngame,
-    battlegroundNotificationsSystem,
-    battlegroundNotificationsIngame,
-    messageNotificationsSystem,
-    messageNotificationsIngame,
-    mailNotificationsSystem,
-    mailNotificationsIngame,
-    updateChannel
 }
