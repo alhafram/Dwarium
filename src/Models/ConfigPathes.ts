@@ -11,7 +11,8 @@ enum ConfigPath {
 
 enum Folder {
     USERS = 'users',
-    LOGS = 'logs'
+    LOGS = 'logs',
+    SCREENS = 'screens'
 }
 
 function buildPath(config: ConfigPath): string {

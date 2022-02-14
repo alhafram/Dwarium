@@ -37,6 +37,12 @@ function createWriteStream(path: fs.PathLike): fs.WriteStream {
     })
 }
 
+function writeFile(path: fs.PathLike, data: Buffer, callback: (() => void)) {
+    fs.writeFile(path, data, () => {
+        callback()
+    })
+}
+
 export default {
     parseData,
     writeData,
@@ -44,5 +50,6 @@ export default {
     checkFolder,
     fileExists,
     createFile,
-    createWriteStream
+    createWriteStream,
+    writeFile
 }

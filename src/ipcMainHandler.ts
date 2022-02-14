@@ -2,12 +2,13 @@ import { BrowserWindow, BrowserView, ipcMain, app } from 'electron'
 import ConfigService from './services/ConfigService'
 import { TabsController } from './services/TabsController'
 import { autoUpdater } from 'electron-updater'
-import fs from 'fs'
 import path from 'path'
 import { Channel } from './Models/Channel'
 import { WindowType, Preload, HTMLPath } from './Models/WindowModels'
 import { createWindowAndLoad, setupCloseLogic } from './services/WindowCreationHelper'
 import setupContextMenu from './services/ContextMenu'
+import { buildFolderPath, Folder } from './Models/ConfigPathes'
+import FileOperationsService from './services/FileOperationsService'
 
 ipcMain.on(Channel.LOAD_URL, (evt, server) => {
     ConfigService.writeData('server', server)
@@ -165,10 +166,8 @@ ipcMain.on(Channel.TAKE_SCREENSHOT, async() => {
     }
     screenIsMaking = true
     TabsController.mainWindow?.webContents.send(Channel.OPEN_WINDOW, WindowType.SCREENSHOT, true)
-    const basePath = app.getPath('userData') + '/screens'
-    if(!fs.existsSync(basePath)) {
-        fs.mkdirSync(basePath)
-    }
+    const basePath = buildFolderPath(Folder.SCREENS)
+    FileOperationsService.checkFolder(basePath)
     const page = await TabsController.mainWindowContainer?.browserView?.webContents.capturePage()
     if(!page) {
         TabsController.mainWindow?.webContents.send(Channel.OPEN_WINDOW, WindowType.SCREENSHOT, false)
@@ -181,7 +180,7 @@ ipcMain.on(Channel.TAKE_SCREENSHOT, async() => {
     })
     const png = resized.toPNG()
     const path = `${basePath}/${new Date().toLocaleString().replaceAll(' ', '').replaceAll('/', '.').replaceAll(':', '_')}.png`
-    fs.writeFile(path, png, () => {
+    FileOperationsService.writeFile(path, png, () => {
         TabsController.mainWindow?.webContents.send(Channel.OPEN_WINDOW, WindowType.SCREENSHOT, false)
         screenIsMaking = false
     })
