@@ -1,27 +1,27 @@
 export interface SettingsWindowState {
     userAgents?: {
-        id: string,
+        id: string
         value: string
     }[]
-    selectedUserAgentType: UserAgentType,
-    selectedUserAgentValue: string,
-    windowOpenNewTab: boolean,
-    windowsAboveApp: boolean,
-    maximizeOnStart: boolean,
-    hideTopPanelInFullScreen: boolean,
-    enableSpeed: boolean,
-    mailServer: boolean,
-    userAgentTextFieldActive?: boolean,
-    screenshotsFolderPath: string,
-    ownServer: string,
-    fightNotificationsSystem: boolean,
-    fightNotificationsIngame: boolean,
-    battlegroundNotificationsSystem: boolean,
-    battlegroundNotificationsIngame: boolean,
-    messageNotificationsSystem: boolean,
-    messageNotificationsIngame: boolean,
-    mailNotificationsSystem: boolean,
-    mailNotificationsIngame: boolean,
+    selectedUserAgentType: UserAgentType
+    selectedUserAgentValue: string
+    windowOpenNewTab: boolean
+    windowsAboveApp: boolean
+    maximizeOnStart: boolean
+    hideTopPanelInFullScreen: boolean
+    enableSpeed: boolean
+    mailServer: boolean
+    userAgentTextFieldActive?: boolean
+    screenshotsFolderPath: string
+    ownServer: string
+    fightNotificationsSystem: boolean
+    fightNotificationsIngame: boolean
+    battlegroundNotificationsSystem: boolean
+    battlegroundNotificationsIngame: boolean
+    messageNotificationsSystem: boolean
+    messageNotificationsIngame: boolean
+    mailNotificationsSystem: boolean
+    mailNotificationsIngame: boolean
     updateChannel: string
 }
 

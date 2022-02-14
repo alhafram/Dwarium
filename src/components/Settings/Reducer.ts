@@ -1,18 +1,19 @@
 import { app } from '@electron/remote'
-import ConfigService from "../../services/ConfigService";
-import { SettingsWindowActions } from "./Actions";
-import { Elements } from "./Elements";
-import { SettingsWindowState, UserAgentType } from "./SettingsWindowState";
+import ConfigService from '../../services/ConfigService'
+import { SettingsWindowActions } from './Actions'
+import { Elements } from './Elements'
+import { SettingsWindowState, UserAgentType } from './SettingsWindowState'
 
-export default function reduce(state: SettingsWindowState, action: SettingsWindowActions, data: any): SettingsWindowState {
-    switch(action) {
-        case SettingsWindowActions.LOAD_SETTINGS:
-            let loadedSettings = ConfigService.getSettings()
+export default function reduce(state: SettingsWindowState, action: SettingsWindowActions, data: unknown): SettingsWindowState {
+    switch (action) {
+        case SettingsWindowActions.LOAD_SETTINGS: {
+            const loadedSettings = ConfigService.getSettings()
             if(Object.keys(loadedSettings).length == 0) {
                 return state
             } else {
                 return {
                     ...state,
+                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                     // @ts-ignore
                     selectedUserAgentType: UserAgentType[Object.keys(UserAgentType)[Object.values(UserAgentType).indexOf(loadedSettings.selectedUserAgentType)]],
                     selectedUserAgentValue: loadedSettings.selectedUserAgentValue,
@@ -36,8 +37,9 @@ export default function reduce(state: SettingsWindowState, action: SettingsWindo
                     updateChannel: loadedSettings.updateChannel
                 }
             }
-        case SettingsWindowActions.SAVE_SETTINGS:
-            let savedSettings = Object.assign({}, state);
+        }
+        case SettingsWindowActions.SAVE_SETTINGS: {
+            const savedSettings = Object.assign({}, state)
             delete savedSettings.userAgents
             delete savedSettings.userAgentTextFieldActive
             savedSettings.selectedUserAgentValue = Elements.userAgentTextValue().value
@@ -55,7 +57,8 @@ export default function reduce(state: SettingsWindowState, action: SettingsWindo
                 ...state,
                 selectedUserAgentValue: savedSettings.selectedUserAgentValue
             }
-        case SettingsWindowActions.CHANGE_USER_AGENT:
+        }
+        case SettingsWindowActions.CHANGE_USER_AGENT: {
             const newValue = Elements.userAgentsSelect().value
             let userAgentType = UserAgentType[newValue as keyof typeof UserAgentType]
             console.log(userAgentType)
@@ -70,6 +73,7 @@ export default function reduce(state: SettingsWindowState, action: SettingsWindo
                 selectedUserAgentValue: userAgentValue,
                 userAgentTextFieldActive: userAgentType == UserAgentType.OWN
             }
+        }
         case SettingsWindowActions.CHANGE_WINDOW_OPEN_NEW_TAB:
             return {
                 ...state,
@@ -84,7 +88,7 @@ export default function reduce(state: SettingsWindowState, action: SettingsWindo
             return {
                 ...state,
                 maximizeOnStart: Elements.maximizeOnStart().checked
-            } 
+            }
         case SettingsWindowActions.CHANGE_HIDE_TOP_PANEL_IN_FULL_SCREEN:
             return {
                 ...state,
@@ -143,7 +147,7 @@ export default function reduce(state: SettingsWindowState, action: SettingsWindo
         case SettingsWindowActions.CHANGE_UPDATE_CHANNEL:
             return {
                 ...state,
-                updateChannel: data
+                updateChannel: data as string
             }
     }
 }

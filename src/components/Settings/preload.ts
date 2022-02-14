@@ -77,7 +77,7 @@ function setupListeners() {
     Elements.mailNotificationsIngameBox().onchange = () => {
         dispatch(SettingsWindowActions.CHANGE_MAIL_NOTIFICATIONS_INGAME)
     }
-    Elements.updateChannelBoxes().forEach(updateChannel => {
+    Elements.updateChannelBoxes().forEach((updateChannel) => {
         updateChannel.onchange = () => {
             dispatch(SettingsWindowActions.CHANGE_UPDATE_CHANNEL, updateChannel.value)
         }
@@ -85,7 +85,7 @@ function setupListeners() {
 }
 
 let initialState: SettingsWindowState = {
-    userAgents: Object.keys(UserAgentType).map(key => {
+    userAgents: Object.keys(UserAgentType).map((key) => {
         return {
             id: key,
             value: getTitle(UserAgentType[key as keyof typeof UserAgentType])
@@ -113,25 +113,25 @@ let initialState: SettingsWindowState = {
     updateChannel: 'stable'
 }
 
-function dispatch(action: SettingsWindowActions, data?: any): void {
+function dispatch(action: SettingsWindowActions, data?: unknown): void {
     initialState = reduce(initialState, action, data)
     render()
 }
 
 function render(): void {
-    function createUserAgentOption(agent: { id: string, value: string }): HTMLOptionElement | null {
+    function createUserAgentOption(agent: { id: string; value: string }): HTMLOptionElement | null {
         if(!agent.value) {
             return null
         }
-        let element = document.createElement('option')
+        const element = document.createElement('option')
         element.value = agent.id
         element.text = agent.value
         return element
     }
 
-    let parent = Elements.userAgentsSelect()
+    const parent = Elements.userAgentsSelect()
     if(parent.childElementCount == 0) {
-        initialState.userAgents?.forEach(userAgent => {
+        initialState.userAgents?.forEach((userAgent) => {
             const option = createUserAgentOption(userAgent)
             if(option) {
                 if(UserAgentType[option.value as keyof typeof UserAgentType] == initialState.selectedUserAgentType) {
@@ -163,14 +163,14 @@ function render(): void {
     Elements.messageNotificationsIngameBox().checked = initialState.messageNotificationsIngame
     Elements.mailNotificationsSystemBox().checked = initialState.mailNotificationsSystem
     Elements.mailNotificationsIngameBox().checked = initialState.mailNotificationsIngame
-    Elements.updateChannelBoxes().forEach(channel => {
+    Elements.updateChannelBoxes().forEach((channel) => {
         if(channel.value == initialState.updateChannel) {
             channel.checked = true
         }
     })
 }
 
-document.addEventListener('DOMContentLoaded', async () => {
+document.addEventListener('DOMContentLoaded', async() => {
     dispatch(SettingsWindowActions.LOAD_SETTINGS)
     setupListeners()
 })
