@@ -261,7 +261,7 @@ function handleMode() {
 
 function createNewTab(id?: string) {
     const newTabString = `
-        <button style="min-width: 150px;" class="shrink-0 w-150px h-10 activeTab">
+        <button class="shrink-0 w-36 h-10 activeTab">
             <span>New tab</span>
             <button style="right: 10px;" class="relative float-right bg-center closeButtonActiveTab">
                 <svg class="buttonIcon" width="9" height="9" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg">

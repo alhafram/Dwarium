@@ -3,19 +3,19 @@
 @tailwind utilities;
 
 .buttonWithImage {
-    @apply mt-auto mb-auto h-5.5 w-5.5 rounded-full bg-no-repeat hover:bg-inputBackgroundColor dark:hover:bg-inputBackgroundColorDark;
+    @apply mt-auto mb-auto h-6 w-6 rounded-full bg-no-repeat hover:bg-inputBackgroundColor dark:hover:bg-inputBackgroundColorDark;
 }
 
 .innerButtonWithImage {
-    @apply mt-auto mb-auto -ml-7 h-5.5 w-5.5 rounded-full bg-no-repeat hover:bg-inputBackgroundColor dark:hover:bg-inputBackgroundColorDark;
+    @apply mt-auto mb-auto -ml-7 h-6 w-6 rounded-full bg-no-repeat hover:bg-inputBackgroundColor dark:hover:bg-inputBackgroundColorDark;
 }
 
 .closeButtonActiveTab {
-    @apply mt-auto mb-auto h-5.5 w-5.5 rounded-full bg-no-repeat hover:bg-inputBackgroundColor dark:hover:bg-inputBackgroundColorDark;
+    @apply mt-auto mb-auto h-6 w-6 rounded-full bg-no-repeat hover:bg-inputBackgroundColor dark:hover:bg-inputBackgroundColorDark;
 }
 
 .closeButtonInactiveTab {
-    @apply mt-auto mb-auto h-5.5 w-5.5 rounded-full bg-no-repeat hover:bg-white dark:hover:bg-activeTabColor;
+    @apply mt-auto mb-auto h-6 w-6 rounded-full bg-no-repeat hover:bg-white dark:hover:bg-activeTabColor;
 }
 
 .buttonIcon {
