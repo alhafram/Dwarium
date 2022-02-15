@@ -7,7 +7,7 @@
 }
 
 .selectedButton {
-    @apply bg-inputBackgroundColor dark:bg-inputBackgroundColorDark
+    @apply bg-inputBackgroundColor dark:bg-inputBackgroundColorDark;
 }
 
 .innerButtonWithImage {

@@ -28,7 +28,7 @@ function saveFavouriteLink(title: string, url: string, value: boolean | null): v
 
 function updateTitle(id: string, newTitle: string): void {
     const links = getLinks()
-    links.forEach(link => {
+    links.forEach((link) => {
         if(link.id == id) {
             link.title = newTitle
         }
@@ -43,7 +43,7 @@ function getLinks(): FavouriteLink[] {
     if(Object.keys(links).length == 0) {
         links = []
     }
-    links.forEach(link => {
+    links.forEach((link) => {
         if(!link.id) {
             link.id = generateRandomId()
         }
