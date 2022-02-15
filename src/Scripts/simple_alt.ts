@@ -94,26 +94,26 @@ function renderArtifactAlt(id) {
     var content = '';
 
     content += '<table width="300" border="0" cellspacing="0" cellpadding="0" style="background-color:#FBD4A4;">'
-    content += `<tr><td width="14" class="aa-tl aa-tl-n"><img src="${ConfigService.baseUrl()}/images/d.gif" width="14" height="4"></td>`
-    content += `<td class="aa-t aa-t-n" align="center"><img src="${ConfigService.baseUrl()}/images/d.gif" width="1" height="4"></td>`
-    content += `<td width="14" class="aa-tr aa-tr-n"><img src="${ConfigService.baseUrl()}/images/d.gif" width="14" height="4"></td></tr>`
-    content += `<tr><td width="14" class="aa-tl aa-tl-n" style="background-position: 0 50%"><img src="${ConfigService.baseUrl()}/images/d.gif" width="14" height="16"></td>`
+    content += `<tr><td width="14" class="aa-tl aa-tl-n"><img src="${ConfigService.getSettings().baseUrl}/images/d.gif" width="14" height="4"></td>`
+    content += `<td class="aa-t aa-t-n" align="center"><img src="${ConfigService.getSettings().baseUrl}/images/d.gif" width="1" height="4"></td>`
+    content += `<td width="14" class="aa-tr aa-tr-n"><img src="${ConfigService.getSettings().baseUrl}/images/d.gif" width="14" height="4"></td></tr>`
+    content += `<tr><td width="14" class="aa-tl aa-tl-n" style="background-position: 0 50%"><img src="${ConfigService.getSettings().baseUrl}/images/d.gif" width="14" height="16"></td>`
     content += '<td class="aa-t aa-t-n" align="center" style="vertical-align:middle; background-position: 0 50%"><b style="color:' + a.color + '">' + a.title + '</b></td>';
-    content += `<td width="14" class="aa-tr aa-tr-n" style="background-position: 0 50%"><img src="${ConfigService.baseUrl()}/images/d.gif" width="14" height="16"></td></tr>`
-    content += `<tr><td width="14" class="aa-tl-h-l"><img src="${ConfigService.baseUrl()}/images/d.gif" width="14" height="4"></td>`
-    content += `<td class="aa-t-h-c" align="center"><img src="${ConfigService.baseUrl()}/images/d.gif" width="1" height="4"></td>`
-    content += `<td width="14" class="aa-tr-h-r"><img src="${ConfigService.baseUrl()}/images/d.gif" width="14" height="4"></td></tr>`
+    content += `<td width="14" class="aa-tr aa-tr-n" style="background-position: 0 50%"><img src="${ConfigService.getSettings().baseUrl}/images/d.gif" width="14" height="16"></td></tr>`
+    content += `<tr><td width="14" class="aa-tl-h-l"><img src="${ConfigService.getSettings().baseUrl}/images/d.gif" width="14" height="4"></td>`
+    content += `<td class="aa-t-h-c" align="center"><img src="${ConfigService.getSettings().baseUrl}/images/d.gif" width="1" height="4"></td>`
+    content += `<td width="14" class="aa-tr-h-r"><img src="${ConfigService.getSettings().baseUrl}/images/d.gif" width="14" height="4"></td></tr>`
     content += '<tr><td class="aa-l" style="padding:0;"></td><td style="padding:0;">';
     content += '<table width="275" style=" margin: 3px" border="0" cellspacing="0" cellpadding="0"><tr>';
     content += '<td align="center" valign="top" width="60">';
-    if(!a.image.includes(ConfigService.baseUrl())) {
-        a.image = ConfigService.baseUrl() + a.image
+    if(!a.image.includes(ConfigService.getSettings().baseUrl)) {
+        a.image = ConfigService.getSettings().baseUrl + a.image
     }
     content += '<table width="60" height="60" cellpadding="0" cellspacing="0" border="0" style="margin: 2px" background="' + a.image + '"><tr><td valign="bottom">';
 
     if(a.enchant_icon && a.enchant_icon != undefined) {
-        if(!a.enchant_icon.includes(ConfigService.baseUrl())) {
-            a.enchant_icon = a.enchant_icon.replaceAll("/images/", `${ConfigService.baseUrl()}/images/`)
+        if(!a.enchant_icon.includes(ConfigService.getSettings().baseUrl)) {
+            a.enchant_icon = a.enchant_icon.replaceAll("/images/", `${ConfigService.getSettings().baseUrl}/images/`)
         }
         content += a.enchant_icon.replace(/&quot;/g, '"');
     } else {
@@ -130,12 +130,12 @@ function renderArtifactAlt(id) {
 
     content += '</td></tr></table>';
     content += '</td><td>';
-    content += `<div><img src="${ConfigService.baseUrl()}/images/tbl-shp_item-icon.gif" width="11" height="10" align="absmiddle">&nbsp;` + a.kind + `</div>`
+    content += `<div><img src="${ConfigService.getSettings().baseUrl}/images/tbl-shp_item-icon.gif" width="11" height="10" align="absmiddle">&nbsp;` + a.kind + `</div>`
     if(a.dur != undefined) {
         if(a.flags2 && a.flags2.crashproof && a.flags2.crashproof != undefined) {
-            content += `<div><img src="${ConfigService.baseUrl()}/images/tbl-shp_item-iznos.gif" width="11" height="10" align="absmiddle"> <span class="red">` + a.flags2.crashproof + `</span></div>`
+            content += `<div><img src="${ConfigService.getSettings().baseUrl}/images/tbl-shp_item-iznos.gif" width="11" height="10" align="absmiddle"> <span class="red">` + a.flags2.crashproof + `</span></div>`
         } else
-            content += `<div><img src="${ConfigService.baseUrl()}/images/tbl-shp_item-iznos.gif" width="11" height="10" align="absmiddle"> <span class="red">` + a.dur + '</span>/' + a.dur_max + `</div>`
+            content += `<div><img src="${ConfigService.getSettings().baseUrl}/images/tbl-shp_item-iznos.gif" width="11" height="10" align="absmiddle"> <span class="red">` + a.dur + '</span>/' + a.dur_max + `</div>`
     }
     if(a.com && a.com != undefined) {
         content += '<div class="b red">' + a.com.title + ' ' + a.com.value + '</div>';
@@ -145,16 +145,16 @@ function renderArtifactAlt(id) {
     }
     content += '</td><td>';
     if(a.lev && a.lev != undefined) {
-        content += `<div><img src="${ConfigService.baseUrl()}/images/tbl-shp_level-icon.gif" width="11" height="10" align="absmiddle"> ` + a.lev.title + ` <b class="red">` + a.lev.value + `</b></div>`;
+        content += `<div><img src="${ConfigService.getSettings().baseUrl}/images/tbl-shp_level-icon.gif" width="11" height="10" align="absmiddle"> ` + a.lev.title + ` <b class="red">` + a.lev.value + `</b></div>`;
     }
     if(a.trend && a.trend != undefined) {
-        content += `<div><img src="${ConfigService.baseUrl()}/images/tbl-shp_item-trend.gif" width="11" height="10" align="absmiddle">&nbsp;` + a.trend.replace(/&quot;/g, '"') + `</div>`
+        content += `<div><img src="${ConfigService.getSettings().baseUrl}/images/tbl-shp_item-trend.gif" width="11" height="10" align="absmiddle">&nbsp;` + a.trend.replace(/&quot;/g, '"') + `</div>`
     }
     if(a.cls && a.cls != undefined) {
-        content += `<div><img src="${ConfigService.baseUrl()}/images/class.gif" width="11" height="10" align="absmiddle">`;
+        content += `<div><img src="${ConfigService.getSettings().baseUrl}/images/class.gif" width="11" height="10" align="absmiddle">`;
         for(i = 0; i < a.cls.length; i++) {
-            if(!a.cls[i].includes(ConfigService.baseUrl())) {
-                a.cls[i] = a.cls[i].replace('/images/', `${ConfigService.baseUrl()}/images/`)
+            if(!a.cls[i].includes(ConfigService.getSettings().baseUrl)) {
+                a.cls[i] = a.cls[i].replace('/images/', `${ConfigService.getSettings().baseUrl}/images/`)
             }
             content += a.cls[i].replace(/&quot;/g, '"');
         }
@@ -252,22 +252,22 @@ function renderArtifactAlt(id) {
         bg = !bg;
     }
     if(a.rank_min && a.rank_min != undefined) {
-		if(!a.rank_min.includes(ConfigService.baseUrl())) {
-			a.rank_min = a.rank_min.replace('/images/', `${ConfigService.baseUrl()}/images/`)
+		if(!a.rank_min.includes(ConfigService.getSettings().baseUrl)) {
+			a.rank_min = a.rank_min.replace('/images/', `${ConfigService.getSettings().baseUrl}/images/`)
 		}
         content += '<tr class="skill_list ' + (bg ? 'list_dark' : '') + '"><td colspan="2">' + a.rank_min.replace(/&quot;/g, '"') + '</td></tr>';
         bg = !bg;
     }
     if(a.desc && a.desc != undefined) {
-        if(!a.desc.includes(ConfigService.baseUrl())) {
-			a.desc = a.desc.replaceAll('/images/', `${ConfigService.baseUrl()}/images/`)
+        if(!a.desc.includes(ConfigService.getSettings().baseUrl)) {
+			a.desc = a.desc.replaceAll('/images/', `${ConfigService.getSettings().baseUrl}/images/`)
 		}
         content += '<tr class="skill_list ' + (bg ? 'list_dark' : '') + '"><td colspan="2">' + a.desc.replace(/&quot;/g, '"') + '</td></tr>';
         bg = !bg;
     }
     content += '</table>';
     content += '</td><td class="aa-r" style="padding: 0"></td></tr>';
-    content += `<tr><td class="aa-bl"></td><td class="aa-b"><img src="${ConfigService.baseUrl()}/images/d.gif" width="1" height="5"></td><td class="aa-br"></td></tr>`
+    content += `<tr><td class="aa-bl"></td><td class="aa-b"><img src="${ConfigService.getSettings().baseUrl}/images/d.gif" width="1" height="5"></td><td class="aa-br"></td></tr>`
     content += '</table>';
 	
     return content;
