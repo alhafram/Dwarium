@@ -279,10 +279,9 @@ function createNewTab(id?: string) {
     const closeButton = newTab.children[1] as HTMLButtonElement
     closeButton.onclick = closeTab
 
-    document.querySelectorAll('.activeTab').forEach(item => {
-        item?.firstElementChild?.classList.replace('separatorActiveTab', 'separatorInactiveTab')
-        item?.lastElementChild?.classList.replace('closeButtonActiveTab', 'closeButtonInactiveTab')
+    document.querySelectorAll('.activeTab,.activeTabMain').forEach(item => {
         item.classList.replace('activeTab', 'inactiveTab')
+        item.classList.replace('activeTabMain', 'inactiveTab')
     })
     Elements.tabsDiv().insertBefore(newTab, Elements.addTabButton())
     drawDividers()
@@ -300,7 +299,7 @@ function drawDividers() {
         const prevTab = tabs[index - 1]
         const nextTab = tabs[index + 1]
         tab.style.borderRightWidth = '0px'
-        return tab.id != 'addTabButton' && !tab.classList.contains('activeTab') && !prevTab?.classList.contains('activeTab') && !nextTab?.classList.contains('activeTab')
+        return tab.id != 'addTabButton' && !tab.classList.contains('activeTab') && !tab.classList.contains('activeTabMain') && !prevTab?.classList.contains('activeTab') && !nextTab?.classList.contains('activeTab')
     })
     tabsNeedToAddDividers.forEach(tab => {
         tab.style.borderRightWidth = '1px'
@@ -324,29 +323,39 @@ function createTabButton(html: string) {
 }
 
 function makeActive(evt: Event) {
-    document.querySelectorAll('.activeTab').forEach(item => {
+    document.querySelectorAll('.activeTab,.activeTabMain').forEach(item => {
         item?.lastElementChild?.classList.replace('closeButtonActiveTab', 'closeButtonInactiveTab')
         item.classList.replace('activeTab', 'inactiveTab')
+        item.classList.replace('activeTabMain', 'inactiveTab')
     })
     const target = evt.currentTarget as HTMLElement
-    target.classList.replace('inactiveTab', 'activeTab')
     target.lastElementChild?.classList.replace('closeButtonInactiveTab', 'closeButtonActiveTab')
     let id = target.id
+    if(id == 'main') {
+        target.classList.replace('inactiveTab', 'activeTabMain')
+    } else {
+        target.classList.replace('inactiveTab', 'activeTab')
+    }
     ipcRenderer.send(Channel.MAKE_ACTIVE, id)
     evt.stopPropagation()
     drawDividers()
 }
 
 function makeActiveWith(id: string) {
-    document.querySelectorAll('.activeTab').forEach(item => {
+    document.querySelectorAll('.activeTab,.activeTabMain').forEach(item => {
         item?.lastElementChild?.classList.replace('closeButtonActiveTab', 'closeButtonInactiveTab')
         item.classList.replace('activeTab', 'inactiveTab')
+        item.classList.replace('activeTabMain', 'inactiveTab')
     })
     const target = document.getElementById(id)
     if(target) {
-        target.classList.replace('inactiveTab', 'activeTab')
         target.lastElementChild?.classList.replace('closeButtonInactiveTab', 'closeButtonActiveTab')
         let id = target.id
+        if(id == 'main') {
+            target.classList.replace('inactiveTab', 'activeTabMain')
+        } else {
+            target.classList.replace('inactiveTab', 'activeTab')
+        }
         ipcRenderer.send(Channel.MAKE_ACTIVE, id)
     }
     drawDividers()

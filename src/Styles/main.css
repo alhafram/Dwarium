@@ -34,6 +34,10 @@
     @apply rounded-b-xl bg-white text-activeTabColor dark:bg-activeTabColor dark:text-activeTabColorDark;
 }
 
+.activeTabMain {
+    @apply rounded-br-xl bg-white text-activeTabColor dark:bg-activeTabColor dark:text-activeTabColorDark;
+}
+
 .inactiveTab {
     @apply rounded-none border-dividerColor bg-inputBackgroundColor text-inactiveTabColor dark:border-dividerColorDark dark:bg-inputBackgroundColorDark dark:text-inactiveTabColor;
 }
