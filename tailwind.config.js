@@ -4,6 +4,7 @@ module.exports = {
     darkMode: 'class',
     theme: {
         colors: {
+            'transparent': 'transparent',
             'backgroundColor': '#FFFFFF',
             'backgroundColorDark': '#2F2F2F',
             'inputBackgroundColor': '#F1F3F4',

@@ -6,6 +6,10 @@
     @apply mt-auto mb-auto h-6 w-6 rounded-full bg-no-repeat hover:bg-inputBackgroundColor dark:hover:bg-inputBackgroundColorDark;
 }
 
+.selectedButton {
+    @apply bg-inputBackgroundColor dark:bg-inputBackgroundColorDark
+}
+
 .innerButtonWithImage {
     @apply mt-auto mb-auto -ml-7 h-6 w-6 rounded-full bg-no-repeat hover:bg-inputBackgroundColor dark:hover:bg-inputBackgroundColorDark;
 }

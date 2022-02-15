@@ -29,7 +29,7 @@ function renderFavouriteLinks() {
         let favouriteLinkElement = `
             <div class="cursor-pointer h-10 w-full hover:bg-inputBackgroundColor dark:hover:bg-inputBackgroundColorDark">
                 <div class="float-left">
-                    <input style="background: transparent" class="ml-9 bg-transparent text-textColor w-32 outline-none dark:text-textColorDark text-sm font-medium" value='${title}' type="text" />
+                    <input class="ml-9 bg-transparent text-textColor w-32 outline-none dark:text-textColorDark text-sm font-medium" value='${title}' type="text" />
                     <p class="ml-9 text-textColor dark:text-textColorDark text-xs font-light">${url}</p>
                 </div>
                 <button class="relative top-2 right-3 float-right w-6 h-6 hover:bg-disabledButton dark:hover:bg-addTabDarkHover rounded-full">

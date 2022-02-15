@@ -263,7 +263,7 @@ function createNewTab(id?: string) {
     const newTabString = `
         <button class="shrink-0 w-36 h-10 activeTab">
             <span>New tab</span>
-            <button style="right: 10px;" class="relative float-right bg-center closeButtonActiveTab">
+            <button class="relative right-2 float-right bg-center closeButtonActiveTab">
                 <svg class="buttonIcon" width="9" height="9" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg">
                     <path d="M9 0.906428L8.09357 0L4.5 3.59357L0.906428 0L0 0.906428L3.59357 4.5L0 8.09357L0.906428 9L4.5 5.40643L8.09357 9L9 8.09357L5.40643 4.5L9 0.906428Z" />
                 </svg>
@@ -416,12 +416,10 @@ ipcRenderer.on(Channel.UPDATE_APPLICATION_AVAILABLE, () => {
 
 ipcRenderer.on(Channel.OPEN_WINDOW, (_evt, id, active) => {
     const element = getElementIdBy(id)
-    if(element) {
-        if(localStorage.darkMode == 'true') {
-            element.style.backgroundColor = active ? '#232323' : ''
-        } else {
-            element.style.backgroundColor = active ? '#F1F3F4' : ''
-        }
+    if(active) {
+        element?.classList.add('selectedButton')
+    } else {
+        element?.classList.remove('selectedButton')
     }
 })
 
