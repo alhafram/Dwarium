@@ -64,6 +64,7 @@ export default class MainWindowContainer {
         })
 
         this.mainWindow.on('focus', () => {
+            this.browserView?.webContents.focus()
             globalShortcut.register('CommandOrControl+W', () => {
                 if(TabsController.currentTab() != TabsController.getMain()) {
                     this.mainWindow.webContents.send(Channel.CLOSE_TAB, TabsController.current_tab_id)
