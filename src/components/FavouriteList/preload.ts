@@ -27,9 +27,9 @@ function renderFavouriteLinks() {
         const title = link.title.slice(0, 18)
         const url = link.url.slice(0, 18)
         let favouriteLinkElement = `
-            <div class="cursor-pointer h-9 w-full hover:bg-inputBackgroundColor dark:hover:bg-inputBackgroundColorDark">
+            <div class="cursor-pointer h-10 w-full hover:bg-inputBackgroundColor dark:hover:bg-inputBackgroundColorDark">
                 <div class="float-left">
-                    <p class="ml-9 text-textColor dark:text-textColorDark text-sm font-medium">${title}</p>
+                    <input class="ml-9 bg-backgroundColor dark:bg-backgroundColorDark text-textColor w-32 outline-none dark:text-textColorDark text-sm font-medium" value='${title}' type="text" />
                     <p class="ml-9 text-textColor dark:text-textColorDark text-xs font-light">${url}</p>
                 </div>
                 <button class="relative top-1 right-3 float-right w-6 h-6 hover:bg-disabledButton dark:hover:bg-addTabDarkHover rounded-full">
@@ -40,9 +40,20 @@ function renderFavouriteLinks() {
             </div>
         `
         const node = new DOMParser().parseFromString(favouriteLinkElement, 'text/html').body.firstElementChild as HTMLDivElement
+        const titleInput = node.firstElementChild?.firstElementChild as HTMLInputElement | null | undefined
+        if(titleInput) {
+            titleInput.onkeyup = function(e) {
+                if(e.key == 'Enter') {
+                    const newValue = titleInput.value
+                    titleInput.blur()
+                    FavouriteLinksService.updateTitle(link.id, newValue)
+                }
+            }
+        }
         node.onclick = function(e) {
-            ipcRenderer.send(Channel.NEW_TAB_WITH_URL, link.url)
-            e.stopPropagation()
+            if(e.target != titleInput) {
+                ipcRenderer.send(Channel.NEW_TAB_WITH_URL, link.url)
+            } 
         }
         const removeButton = node.lastElementChild as HTMLButtonElement
         if(removeButton) {

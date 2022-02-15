@@ -1,4 +1,5 @@
 import { ipcRenderer } from 'electron'
+import { generateRandomId } from '../Components/Utils'
 import { Channel } from '../Models/Channel'
 import { buildPath, ConfigPath } from '../Models/ConfigPathes'
 import { FavouriteLink } from '../Models/FavouriteLink'
@@ -10,16 +11,29 @@ function saveFavouriteLink(title: string, url: string, value: boolean | null): v
     const links = getLinks()
     const favouriteLink = {
         title,
-        url
+        url,
+        id: generateRandomId()
     } as FavouriteLink
     if(value) {
         links.push(favouriteLink)
     } else {
-        const index = links.findIndex((link) => link.url == url && link.title == title)
+        const index = links.findIndex((link) => link.url == url)
         if(index != -1) {
             links.splice(index, 1)
         }
     }
+    FileOperationsService.writeData(path, JSON.stringify(links))
+    ipcRenderer.send(Channel.FAVOURITE_UPDATED)
+}
+
+function updateTitle(id: string, newTitle: string): void {
+    const links = getLinks()
+    links.forEach(link => {
+        if(link.id == id) {
+            link.title = newTitle
+        }
+    })
+    console.log(links)
     FileOperationsService.writeData(path, JSON.stringify(links))
     ipcRenderer.send(Channel.FAVOURITE_UPDATED)
 }
@@ -29,19 +43,11 @@ function getLinks(): FavouriteLink[] {
     if(Object.keys(links).length == 0) {
         links = []
     }
-    // Release 2.2.0 Remove
-    if(Object.keys(links).length > 0 && Object.keys(links)[0] != '0') {
-        FileOperationsService.deleteFile(path)
-        Object.keys(links).forEach((key) => {
-            const favouriteLink = {
-                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                // @ts-ignore
-                title: links[key].title,
-                url: key
-            } as FavouriteLink
-            saveFavouriteLink(favouriteLink.title, favouriteLink.url, true)
-        })
-    }
+    links.forEach(link => {
+        if(!link.id) {
+            link.id = generateRandomId()
+        }
+    })
     return links
 }
 
@@ -53,5 +59,6 @@ function isFavouriteLink(url: string): boolean {
 export default {
     saveFavouriteLink,
     isFavouriteLink,
-    getLinks
+    getLinks,
+    updateTitle
 }

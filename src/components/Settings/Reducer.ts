@@ -61,7 +61,6 @@ export default function reduce(state: SettingsWindowState, action: SettingsWindo
         case SettingsWindowActions.CHANGE_USER_AGENT: {
             const newValue = Elements.userAgentsSelect().value
             let userAgentType = UserAgentType[newValue as keyof typeof UserAgentType]
-            console.log(userAgentType)
             let userAgentValue = userAgentType.toString()
             if(UserAgentType[newValue as keyof typeof UserAgentType].toString() == UserAgentType.OWN.toString()) {
                 userAgentType = UserAgentType.OWN
