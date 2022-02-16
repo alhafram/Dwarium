@@ -32,6 +32,9 @@ module.exports = {
                 '5px': '5px',
                 '25px': '25px'
             },
+            fontFamily: {
+                montserrat: ['Montserrat']
+            },
             backgroundImage: { }
         },
     },
