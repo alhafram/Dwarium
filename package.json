@@ -16,7 +16,8 @@
         "prod": "yarn run clean && yarn run compile && yarn run compileCSS",
         "tailwind": "npx tailwindcss -i ./src/Styles/main.css -o ./out/main.css --watch",
         "compileCSS": "npx tailwindcss -i ./src/Styles/main.css -o ./out/main.css",
-        "prettierHTML": "npx prettier ./gui/**/*.html --write --print-width=200 --bracket-same-line=true --tab-width=4 --single-quote=true --no-semi"
+        "prettierHTML": "npx prettier ./gui/**/*.html --write --print-width=200 --bracket-same-line=true --tab-width=4 --single-quote=true --no-semi",
+        "prettierCSS": "./src/Styles/main.css --write --print-width=200 --bracket-same-line=true --tab-width=4 --single-quote=true --no-semi"
     },
     "author": "",
     "license": "ISC",

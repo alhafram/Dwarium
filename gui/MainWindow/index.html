@@ -4,7 +4,9 @@
         <meta charset="UTF-8" />
 
         <link href="../../out/main.css" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+        <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
+            rel="stylesheet" />
 
         <style>
             *::-webkit-scrollbar {
@@ -19,7 +21,7 @@
 
             input:checked ~ .toggle-circle {
                 transform: translateX(120%);
-                background-color: #298CFF;
+                background-color: #298cff;
             }
         </style>
     </head>
@@ -31,7 +33,7 @@
                     <input id="serverSwitcher" type="checkbox" class="hidden" />
                     <div class="h-6 w-14 rounded-full bg-lightGrey dark:bg-lightBlack"></div>
                     <div class="toggle-circle absolute inset-y-0 h-5 w-5 rounded-full bg-w1 pt-1 text-center">
-                        <p id="serverName" class="select-none text-white text-xss font-bold">W1</p>
+                        <p id="serverName" class="select-none text-xss font-bold text-white">W1</p>
                     </div>
                 </label>
 
@@ -54,7 +56,10 @@
                 <input id="urlInput" type="url" placeholder="Введите URL" class="input ml-3 h-8 w-80" />
                 <button id="favouriteButton" title="Избранное" class="innerButtonWithImage">
                     <svg class="buttonIcon" width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path id="favouriteButtonImage" class="favouriteButtonDefault" d="M7.75837 11.0244L7.5 10.8685L7.24163 11.0244L3.61922 13.2108L4.57458 9.09044L4.64257 8.79719L4.41523 8.59988L1.21987 5.82666L5.43546 5.46315L5.7352 5.4373L5.85275 5.16036L7.5 1.27966L9.14725 5.16036L9.2648 5.4373L9.56454 5.46315L13.7786 5.82654L10.5776 8.59959L10.3495 8.79719L10.4181 9.09109L11.3789 13.2096L7.75837 11.0244Z" />
+                        <path
+                            id="favouriteButtonImage"
+                            class="favouriteButtonDefault"
+                            d="M7.75837 11.0244L7.5 10.8685L7.24163 11.0244L3.61922 13.2108L4.57458 9.09044L4.64257 8.79719L4.41523 8.59988L1.21987 5.82666L5.43546 5.46315L5.7352 5.4373L5.85275 5.16036L7.5 1.27966L9.14725 5.16036L9.2648 5.4373L9.56454 5.46315L13.7786 5.82654L10.5776 8.59959L10.3495 8.79719L10.4181 9.09109L11.3789 13.2096L7.75837 11.0244Z" />
                     </svg>
                 </button>
                 <input id="nicknameInput" type="text" placeholder="Ник персонажа" class="input ml-8 h-8 w-56" />

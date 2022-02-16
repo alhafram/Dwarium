@@ -31,25 +31,25 @@
 }
 
 .input {
-    @apply mt-auto mb-auto font-montserrat placeholder:font-montserrat rounded-full bg-lightGrey pl-4 pr-8 text-xs text-dark outline-none dark:bg-lightBlack dark:text-secondaryLightGrey;
+    @apply mt-auto mb-auto rounded-full bg-lightGrey pl-4 pr-8 font-montserrat text-xs text-dark outline-none placeholder:font-montserrat dark:bg-lightBlack dark:text-secondaryLightGrey;
 }
 
 .activeTab {
-    @apply rounded-b-xl font-montserrat bg-white text-dark dark:bg-dark dark:text-secondaryLightGrey;
+    @apply rounded-b-xl bg-white font-montserrat text-dark dark:bg-dark dark:text-secondaryLightGrey;
 }
 
 .activeTabMain {
-    @apply rounded-br-xl font-montserrat bg-white text-dark dark:bg-dark dark:text-secondaryLightGrey;
+    @apply rounded-br-xl bg-white font-montserrat text-dark dark:bg-dark dark:text-secondaryLightGrey;
 }
 
 .inactiveTab {
-    @apply rounded-none font-montserrat border-dividerColor bg-lightGrey text-secondaryMediumGrey dark:border-dividerColorDark dark:bg-lightBlack dark:text-lightDark;
+    @apply rounded-none border-dividerColor bg-lightGrey font-montserrat text-secondaryMediumGrey dark:border-dividerColorDark dark:bg-lightBlack dark:text-lightDark;
 }
 
 .favouriteButtonDefault {
-    @apply stroke-grey dark:stroke-mediumGrey fill-transparent;
+    @apply fill-transparent stroke-grey dark:stroke-mediumGrey;
 }
 
 .favouriteButtonSelected {
-    @apply fill-grey dark:fill-mediumGrey stroke-transparent;
+    @apply fill-grey stroke-transparent dark:fill-mediumGrey;
 }
