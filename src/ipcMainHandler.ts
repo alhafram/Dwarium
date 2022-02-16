@@ -230,8 +230,8 @@ ipcMain.on(Channel.NEW_TAB_WITH_URL, (evt, url) => {
 
 ipcMain.on(Channel.SWITCH_NEXT_TAB, () => {
     const currentTabIndex = TabsController.tabsList.indexOf(TabsController.current_tab_id)
-    if(currentTabIndex != -1 && TabsController.tabsList.length - 1 != currentTabIndex) {
-        const nextIndex = currentTabIndex + 1
+    if(currentTabIndex != -1 && TabsController.tabsList.length > 1) {
+        const nextIndex = TabsController.tabsList.length - 1 != currentTabIndex ? currentTabIndex + 1 : 0
         const nextTabId = TabsController.tabsList[nextIndex]
         TabsController.mainWindow?.webContents.send(Channel.MAKE_ACTIVE, nextTabId)
     }
