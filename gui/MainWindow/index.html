@@ -18,19 +18,19 @@
 
             input:checked ~ .toggle-circle {
                 transform: translateX(120%);
-                background-color: #298cff;
+                background-color: #298CFF;
             }
         </style>
     </head>
 
     <body class="select-none">
-        <div class="bg-backgroundColor dark:bg-backgroundColorDark">
+        <div class="bg-white dark:bg-dark">
             <div class="mt-auto flex h-10">
                 <label title="Переключатель сервера" class="relative ml-5 flex cursor-pointer items-center justify-between">
                     <input id="serverSwitcher" type="checkbox" class="hidden" />
-                    <div class="h-6 w-14 rounded-full bg-inputBackgroundColor dark:bg-inputBackgroundColorDark"></div>
+                    <div class="h-6 w-14 rounded-full bg-lightGrey dark:bg-lightBlack"></div>
                     <div class="toggle-circle absolute inset-y-0 h-5 w-5 rounded-full bg-w1 pt-1 text-center">
-                        <p id="serverName" class="select-none text-xss font-bold">W1</p>
+                        <p id="serverName" class="select-none text-white text-xss font-bold">W1</p>
                     </div>
                 </label>
 
@@ -195,17 +195,17 @@
                 </div>
             </div>
 
-            <div class="flex bg-inputBackgroundColor dark:bg-inputBackgroundColorDark">
-                <div id="tabsDiv" style="overflow: scroll" class="mr-24 flex h-10 overflow-x-hidden bg-inputBackgroundColor dark:bg-inputBackgroundColorDark">
+            <div class="flex bg-lightGrey dark:bg-lightBlack">
+                <div id="tabsDiv" style="overflow: scroll" class="mr-24 flex h-10 overflow-x-hidden bg-lightGrey dark:bg-lightBlack">
                     <button id="main" style="min-width: 100px" id="main" class="activeTabMain h-10 w-24">Main</button>
-                    <button id="addTabButton" style="min-width: 20px" class="mb-auto mt-auto ml-2 mr-2 h-5 w-5 rounded-full hover:bg-inactiveTabColorDark dark:hover:bg-addTabDarkHover">
+                    <button id="addTabButton" style="min-width: 20px" class="mb-auto mt-auto ml-2 mr-2 h-5 w-5 rounded-full hover:bg-white dark:hover:bg-dark">
                         <svg class="buttonIcon" width="13" height="14" viewBox="0 0 13 14" xmlns="http://www.w3.org/2000/svg">
                             <path d="M7.14089 1.27698H5.85901V6.35906H0.776928V7.64094H5.85901V12.723H7.14089V7.64094H12.223V6.35906H7.14089V1.27698Z" />
                         </svg>
                     </button>
                 </div>
                 <div class="absolute right-4 float-right mt-2">
-                    <button id="modeSwitcherButton" title="Переключить тему" class="buttonWithImage hover:bg-iconColorDark dark:hover:bg-addTabDarkHover">
+                    <button id="modeSwitcherButton" title="Переключить тему" class="buttonWithImage hover:bg-white dark:hover:bg-dark">
                         <svg id="dark" class="buttonIcon" width="20" height="20" viewBox="0 0 11 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M2.375 9.8901e-06C1.56933 -0.00126937 0.768272 0.12156 0 0.364177C1.60741 0.869326 3.01173 1.87414 4.00868 3.23247C5.00563 4.59079 5.5432 6.23176 5.5432 7.91668C5.5432 9.60159 5.00563 11.2426 4.00868 12.6009C3.01173 13.9592 1.60741 14.964 0 15.4692C1.08859 15.8113 2.23827 15.914 3.37027 15.7703C4.50226 15.6267 5.58982 15.24 6.55843 14.6368C7.52704 14.0336 8.35381 13.2281 8.98208 12.2756C9.61035 11.323 10.0253 10.2459 10.1984 9.11806C10.3716 7.99019 10.2989 6.83822 9.98533 5.74108C9.67175 4.64393 9.12469 3.62754 8.38165 2.76155C7.63861 1.89555 6.71714 1.20042 5.68038 0.723769C4.64362 0.247122 3.51608 0.000230638 2.375 9.8901e-06Z" />
@@ -216,7 +216,7 @@
                                 fill="#C8CACB" />
                         </svg>
                     </button>
-                    <button id="favouriteListButton" title="Избранные ссылки" class="buttonWithImage ml-2 hover:bg-iconColorDark dark:hover:bg-addTabDarkHover">
+                    <button id="favouriteListButton" title="Избранные ссылки" class="buttonWithImage ml-2 hover:bg-white dark:hover:bg-dark">
                         <svg class="buttonIcon" width="20" height="20" viewBox="0 0 18 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M0 13V11.5556H11.5714V13H0ZM0 5.77778H18V7.22222H0V5.77778ZM14.1429 0V1.44444H0V0H14.1429Z" />
                         </svg>

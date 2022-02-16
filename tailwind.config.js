@@ -5,26 +5,24 @@ module.exports = {
     theme: {
         colors: {
             'transparent': 'transparent',
-            'backgroundColor': '#FFFFFF',
-            'backgroundColorDark': '#2F2F2F',
-            'inputBackgroundColor': '#F1F3F4',
-            'inputBackgroundColorDark': '#232323',
-            'iconColor': '#808487',
-            'iconColorDark': '#C8CACB',
-            'disabledButton': '#C8CACB',
-            'disabledButtonDark': '#808487',
-            'textColor': '#2F2F2F',
-            'textColorDark': '#FAFAFA',
-            'w1': '#FF7629',
             'white': '#FFFFFF',
-            'activeTabColor': '#2F2F2F',
-            'inactiveTabColor': '#C4C4C4',
-            'activeTabColorDark': '#FAFAFA',
-            'inactiveTabColorDark': '#C8CACB',
-            'addTabDarkHover': '#0C0C0C',
+            'dark': '#2F2F2F',
+            'lightDark': '#626262',
+
+            'lightBlack': '#232323',
+
+            'grey': '#808487',
+            'lightGrey': '#F1F3F4',
+            'secondaryLightGrey': '#FAFAFA',
+            'mediumGrey': '#C8CACB',
+            'secondaryMediumGrey': '#C4C4C4',
+
+            'w1': '#FF7629',
+            'orange': '#FCC458',
+
             'dividerColor': '#D5D4D8',
             'dividerColorDark': '#696969',
-            'orange': '#FCC458'
+            
         },
         extend: {
             fontSize: {
