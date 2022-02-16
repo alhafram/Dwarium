@@ -241,9 +241,9 @@ async function saveFavouriteLink(value: boolean | null) {
 async function setupFavourite() {
     const isFavourite = await isCurrentLinkFavourite()
     if(isFavourite) {
-        Elements.favouriteButtonImage().setAttribute('fill', '#FFFF00')
+        Elements.favouriteButtonImage().classList.replace('favouriteButtonDefault', 'favouriteButtonSelected')
     } else {
-        Elements.favouriteButtonImage().removeAttribute('fill')
+        Elements.favouriteButtonImage().classList.replace('favouriteButtonSelected', 'favouriteButtonDefault')
     }
 }
 

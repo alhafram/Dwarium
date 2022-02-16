@@ -45,3 +45,11 @@
 .inactiveTab {
     @apply rounded-none border-dividerColor bg-lightGrey text-secondaryMediumGrey dark:border-dividerColorDark dark:bg-lightBlack dark:text-lightDark;
 }
+
+.favouriteButtonDefault {
+    @apply stroke-grey dark:stroke-mediumGrey fill-transparent;
+}
+
+.favouriteButtonSelected {
+    @apply fill-grey dark:fill-mediumGrey stroke-transparent;
+}
