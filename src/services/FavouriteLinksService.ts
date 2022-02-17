@@ -33,7 +33,6 @@ function updateTitle(id: string, newTitle: string): void {
             link.title = newTitle
         }
     })
-    console.log(links)
     FileOperationsService.writeData(path, JSON.stringify(links))
     ipcRenderer.send(Channel.FAVOURITE_UPDATED)
 }

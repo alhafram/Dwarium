@@ -1,12 +1,14 @@
 import { Elements } from './Elements'
-import render from './Renderer'
-import EventBuilder from '../Common/EventBuilder'
+import { render, getDragableItem } from './Renderer'
+import { handleDragOver } from '../Common/EventBuilder'
 import { FoodWindowState } from './FoodWindowState'
 import { FoodWindowActions } from './Actions'
 import reduce from './Reducer'
+import setupMode from '../../services/DarkModeHandler'
 
 let initialState: FoodWindowState = {
     allItems: [],
+    xmlFoodItems: [],
     hpItem: null,
     mpItem: null,
     hpPercentage: '',
@@ -21,33 +23,41 @@ async function dispatch(action: FoodWindowActions, data?: any) {
 }
 
 window.addEventListener('DOMContentLoaded', async() => {
+    setupMode()
     dispatch(FoodWindowActions.LOAD_CONTENT)
+    Elements.hpDiv().ondragover = handleDragOver
+    Elements.hpDiv().addEventListener('drop', handleDropEquipableItemOnStaticItemBox, false)
 
-    const itemsStaticBoxes = Elements.staticBoxes()
-    itemsStaticBoxes.forEach(function(item) {
-        item.ondragover = EventBuilder.handleDragOver
-        item.addEventListener('drop', handleDropEquipableItemOnStaticItemBox, false)
-    })
-    Elements.saveBox().onclick = function() {
+    Elements.mpDiv().ondragover = handleDragOver
+    Elements.mpDiv().addEventListener('drop', handleDropEquipableItemOnStaticItemBox, false)
+
+    Elements.saveButton().onclick = function() {
         dispatch(FoodWindowActions.SAVE)
     }
-    Elements.allFoodBox().ondrop = handleDropEquipableItemIntoAllItems
-    Elements.allFoodBox().ondragover = EventBuilder.handleDragOver
-    Elements.hpSelectBox().onchange = function() {
-        dispatch(FoodWindowActions.CHANGE_HP_PERCENTAGE)
+    Elements.allFoodDiv().ondrop = handleDropEquipableItemIntoAllItems
+    Elements.allFoodDiv().ondragover = handleDragOver
+
+    Elements.hpMinusButton().onclick = function() {
+        dispatch(FoodWindowActions.MINUS_HP_PERCENTAGE)
     }
-    Elements.mpSelectBox().onchange = function() {
-        dispatch(FoodWindowActions.CHANGE_MP_PERCENTAGE)
+    Elements.hpPlusButton().onclick = function() {
+        dispatch(FoodWindowActions.PLUS_HP_PERCENTAGE)
+    }
+    Elements.mpMinusButton().onclick = function() {
+        dispatch(FoodWindowActions.MINUS_MP_PERCENTAGE)
+    }
+    Elements.mpPlusButton().onclick = function() {
+        dispatch(FoodWindowActions.PLUS_MP_PERCENTAGE)
     }
 })
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function handleDropEquipableItemOnStaticItemBox(this: any, e: DragEvent) {
     e.stopPropagation()
-    dispatch(FoodWindowActions.EQUIP, [EventBuilder.getDragableItem(), this])
+    dispatch(FoodWindowActions.EQUIP, [getDragableItem(), this])
 }
 
 function handleDropEquipableItemIntoAllItems(e: Event) {
     e.stopPropagation()
-    dispatch(FoodWindowActions.UNEQUIP, EventBuilder.getDragableItem())
+    dispatch(FoodWindowActions.UNEQUIP, getDragableItem())
 }

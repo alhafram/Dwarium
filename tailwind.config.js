@@ -17,6 +17,15 @@ module.exports = {
             'mediumGrey': '#C8CACB',
             'secondaryMediumGrey': '#C4C4C4',
 
+            'textGrey': '#7D7D7D',   // Rename
+            'textGreyDark': '#EAEAEA',   // Rename
+            'strokeGrey': '#E5E5E5', // Rename
+            'strokeGreyDark': '#6C6C6C', // Rename
+            'foodBackground': '#F7F7F7',
+            'foodBackgroundDark': '#454545',
+
+            'allFooBorderDark': '#3F3F3F',
+
             'w1': '#FF7629',
             'orange': '#FCC458',
 
@@ -26,7 +35,7 @@ module.exports = {
         },
         extend: {
             fontSize: {
-                'xss': '9px'
+                'xss': '10px'
             },
             spacing: {
                 '5px': '5px',
@@ -34,6 +43,12 @@ module.exports = {
             },
             fontFamily: {
                 montserrat: ['Montserrat']
+            },
+            lineHeight: {
+                '0': '0'
+            },
+            gridTemplateColumns: {
+                'auto-fit': 'repeat(auto-fill, minmax(80px, 1fr))'
             },
             backgroundImage: { }
         },

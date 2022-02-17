@@ -207,6 +207,7 @@ ipcMain.handle(Channel.GET_ID, async() => {
 
 ipcMain.on(Channel.SWITCH_MODE, () => {
     favouriteListBrowserView?.webContents.send(Channel.SWITCH_MODE)
+    foodWindow?.webContents.send(Channel.SWITCH_MODE)
 })
 
 ipcMain.handle(Channel.GET_URL, () => {

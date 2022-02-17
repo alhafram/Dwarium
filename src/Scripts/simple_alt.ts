@@ -93,6 +93,10 @@ function renderArtifactAlt(id) {
     var i = 0;
     var content = '';
 
+    content = `<head><style>#artifact_alt {
+        font-family: Tahoma, Geneva, sans-serif;
+        font-size: 11px;
+    }</style><head>`
     content += '<table width="300" border="0" cellspacing="0" cellpadding="0" style="background-color:#FBD4A4;">'
     content += `<tr><td width="14" class="aa-tl aa-tl-n"><img src="${ConfigService.getSettings().baseUrl}/images/d.gif" width="14" height="4"></td>`
     content += `<td class="aa-t aa-t-n" align="center"><img src="${ConfigService.getSettings().baseUrl}/images/d.gif" width="1" height="4"></td>`

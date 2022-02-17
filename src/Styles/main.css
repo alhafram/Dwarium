@@ -35,15 +35,15 @@
 }
 
 .activeTab {
-    @apply rounded-b-xl bg-white font-montserrat text-dark dark:bg-dark dark:text-secondaryLightGrey;
+    @apply rounded-b-xl bg-white font-montserrat text-sm font-semibold  text-dark dark:bg-dark dark:text-secondaryLightGrey;
 }
 
 .activeTabMain {
-    @apply rounded-br-xl bg-white font-montserrat text-dark dark:bg-dark dark:text-secondaryLightGrey;
+    @apply rounded-br-xl bg-white font-montserrat text-sm font-semibold text-dark dark:bg-dark dark:text-secondaryLightGrey;
 }
 
 .inactiveTab {
-    @apply rounded-none border-dividerColor bg-lightGrey font-montserrat text-secondaryMediumGrey dark:border-dividerColorDark dark:bg-lightBlack dark:text-lightDark;
+    @apply rounded-none border-dividerColor bg-lightGrey text-sm font-semibold font-montserrat text-secondaryMediumGrey dark:border-dividerColorDark dark:bg-lightBlack dark:text-lightDark;
 }
 
 .favouriteButtonDefault {
@@ -52,4 +52,48 @@
 
 .favouriteButtonSelected {
     @apply fill-grey stroke-transparent dark:fill-mediumGrey;
+}
+
+.foodTitleText {
+    @apply text-center font-montserrat text-xs font-extrabold text-textGrey dark:text-textGreyDark;
+}
+
+.foodBox {
+    @apply w-20 h-20 mt-1 border-dashed flex border-4 bg-foodBackground dark:bg-foodBackgroundDark border-strokeGrey dark:border-strokeGreyDark rounded-3xl;
+}
+
+.foodBoxHighlighted {
+    @apply w-20 h-20 mt-1 border-dashed flex border-4 bg-strokeGrey dark:bg-strokeGreyDark border-textGrey dark:border-textGreyDark rounded-3xl;
+}
+
+.foodBoxBg {
+    @apply stroke-strokeGrey dark:stroke-strokeGreyDark fill-strokeGrey dark:fill-strokeGreyDark;
+}
+
+.foodBoxBgHighlighted {
+    @apply stroke-textGrey dark:stroke-textGreyDark fill-textGrey dark:fill-textGreyDark;
+}
+
+.foodLabel {
+    @apply text-center mt-2.5 font-montserrat text-xss font-extrabold text-textGrey dark:text-textGreyDark;
+}
+
+.foodButtonLeft {
+    @apply leading-0 text-textGrey dark:text-textGreyDark font-montserrat font-semibold text-xl h-4 w-4 m-auto ml-1.5;
+}
+
+.foodButtonRight {
+    @apply leading-0 text-textGrey dark:text-textGreyDark font-montserrat font-semibold text-xl h-4 w-4 m-auto mr-1.5;
+}
+
+.foodButtonContainer {
+    @apply w-20 h-8 border-2 grid grid-flow-col rounded-3xl border-strokeGrey dark:border-strokeGreyDark;
+}
+
+.foodPercentage {
+    @apply m-auto text-xss text-textGrey dark:text-textGreyDark font-extrabold;
+}
+
+.defaultButton {
+    @apply w-20 h-8 border-2 text-textGrey dark:text-textGreyDark hover:bg-strokeGrey dark:hover:bg-strokeGreyDark rounded-full text-xss font-extrabold font-montserrat border-strokeGrey dark:border-strokeGreyDark;
 }
