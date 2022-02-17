@@ -13,11 +13,10 @@ function render(state: FoodWindowState): void {
         parent?.removeChild(itemBox)
     })
     state.allItems.forEach((item) => {
-        const xmlFoodItem = state.xmlFoodItems.find(xmlItem => item.id == xmlItem.id)
+        const xmlFoodItem = state.xmlFoodItems.find((xmlItem) => item.id == xmlItem.id)
         const divItem = convertItemIntoDiv(item, xmlFoodItem)
         setupEquipableItemEvents(divItem)
         parent?.appendChild(divItem)
-        
     })
     const hpParent = Elements.hpDiv()
     if(hpParent.childElementCount > 1) {
@@ -29,7 +28,7 @@ function render(state: FoodWindowState): void {
         }
     }
     if(state.hpItem) {
-        const xmlFoodItem = state.xmlFoodItems.find(xmlItem => state.hpItem?.id == xmlItem.id)
+        const xmlFoodItem = state.xmlFoodItems.find((xmlItem) => state.hpItem?.id == xmlItem.id)
         const hpItemBox = convertItemIntoDiv(state.hpItem, xmlFoodItem)
         hpParent.appendChild(hpItemBox)
         setupEquipableItemEvents(hpItemBox)
@@ -47,7 +46,7 @@ function render(state: FoodWindowState): void {
         }
     }
     if(state.mpItem) {
-        const xmlFoodItem = state.xmlFoodItems.find(xmlItem => state.mpItem?.id == xmlItem.id)
+        const xmlFoodItem = state.xmlFoodItems.find((xmlItem) => state.mpItem?.id == xmlItem.id)
         const mpItemBox = convertItemIntoDiv(state.mpItem, xmlFoodItem)
         mpParent.appendChild(mpItemBox)
         setupEquipableItemEvents(mpItemBox)
@@ -64,9 +63,9 @@ function handleDragStartEquipableItem(this: any) {
     dragableItem = this
     this.style.opacity = '0.4'
     SimpleAlt.artifactAltSimple(this.getAttribute('itemid'), 0, this)
-    const item = currentState.allItems.find(item => item.id == this.getAttribute('itemid'))
+    const item = currentState.allItems.find((item) => item.id == this.getAttribute('itemid'))
     if(item) {
-        switch(item.foodType) {
+        switch (item.foodType) {
             case FoodType.HP:
                 highlightFoodBox(FoodType.HP)
                 break
@@ -95,7 +94,7 @@ function highlightFoodBox(foodType: FoodType) {
 function handleDragEndEquipableItem(this: any) {
     dragableItem = null
     this.style.opacity = '1'
-    const item = currentState.allItems.find(item => item.id == this.getAttribute('itemid'))
+    const item = currentState.allItems.find((item) => item.id == this.getAttribute('itemid'))
     if(item) {
         Elements.hpDiv().classList.replace('foodBoxHighlighted', 'foodBox')
         Elements.hpBg().classList.replace('foodBoxBgHighlighted', 'foodBoxBg')
@@ -113,8 +112,4 @@ function setupEquipableItemEvents(item: HTMLElement) {
 function getDragableItem() {
     return dragableItem
 }
-export {
-    render,
-    getDragableItem,
-    setupEquipableItemEvents
-}
+export { render, getDragableItem, setupEquipableItemEvents }

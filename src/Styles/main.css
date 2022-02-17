@@ -43,7 +43,7 @@
 }
 
 .inactiveTab {
-    @apply rounded-none border-dividerColor bg-lightGrey text-sm font-semibold font-montserrat text-secondaryMediumGrey dark:border-dividerColorDark dark:bg-lightBlack dark:text-lightDark;
+    @apply rounded-none border-dividerColor bg-lightGrey font-montserrat text-sm font-semibold text-secondaryMediumGrey dark:border-dividerColorDark dark:bg-lightBlack dark:text-lightDark;
 }
 
 .favouriteButtonDefault {
@@ -59,41 +59,41 @@
 }
 
 .foodBox {
-    @apply w-20 h-20 mt-1 border-dashed flex border-4 bg-light dark:bg-secondaryBlack border-lightMediumGrey dark:border-secondaryDark rounded-3xl;
+    @apply mt-1 flex h-20 w-20 rounded-3xl border-4 border-dashed border-lightMediumGrey bg-light dark:border-secondaryDark dark:bg-secondaryBlack;
 }
 
 .foodBoxHighlighted {
-    @apply w-20 h-20 mt-1 border-dashed flex border-4 bg-lightMediumGrey dark:bg-secondaryDark border-secondaryLightDark dark:border-secondaryLight rounded-3xl;
+    @apply mt-1 flex h-20 w-20 rounded-3xl border-4 border-dashed border-secondaryLightDark bg-lightMediumGrey dark:border-secondaryLight dark:bg-secondaryDark;
 }
 
 .foodBoxBg {
-    @apply stroke-lightMediumGrey dark:stroke-secondaryDark fill-lightMediumGrey dark:fill-secondaryDark;
+    @apply fill-lightMediumGrey stroke-lightMediumGrey dark:fill-secondaryDark dark:stroke-secondaryDark;
 }
 
 .foodBoxBgHighlighted {
-    @apply stroke-secondaryLightDark dark:stroke-secondaryLight fill-secondaryLightDark dark:fill-secondaryLight;
+    @apply fill-secondaryLightDark stroke-secondaryLightDark dark:fill-secondaryLight dark:stroke-secondaryLight;
 }
 
 .foodLabel {
-    @apply text-center mt-2.5 font-montserrat text-xss font-extrabold text-secondaryLightDark dark:text-secondaryLight;
+    @apply mt-2.5 text-center font-montserrat text-xss font-extrabold text-secondaryLightDark dark:text-secondaryLight;
 }
 
 .foodButtonLeft {
-    @apply leading-0 text-secondaryLightDark dark:text-secondaryLight font-montserrat font-semibold text-xl h-4 w-4 m-auto ml-1.5;
+    @apply m-auto ml-1.5 h-4 w-4 font-montserrat text-xl font-semibold leading-0 text-secondaryLightDark dark:text-secondaryLight;
 }
 
 .foodButtonRight {
-    @apply leading-0 text-secondaryLightDark dark:text-secondaryLight font-montserrat font-semibold text-xl h-4 w-4 m-auto mr-1.5;
+    @apply m-auto mr-1.5 h-4 w-4 font-montserrat text-xl font-semibold leading-0 text-secondaryLightDark dark:text-secondaryLight;
 }
 
 .foodButtonContainer {
-    @apply w-20 h-8 border-2 grid grid-flow-col rounded-3xl border-lightMediumGrey dark:border-secondaryDark;
+    @apply grid h-8 w-20 grid-flow-col rounded-3xl border-2 border-lightMediumGrey dark:border-secondaryDark;
 }
 
 .foodPercentage {
-    @apply m-auto text-xss text-secondaryLightDark dark:text-secondaryLight font-extrabold;
+    @apply m-auto text-xss font-extrabold text-secondaryLightDark dark:text-secondaryLight;
 }
 
 .defaultButton {
-    @apply w-20 h-8 border-2 text-secondaryLightDark dark:text-secondaryLight hover:bg-lightMediumGrey dark:hover:bg-secondaryDark rounded-full text-xss font-extrabold font-montserrat border-lightMediumGrey dark:border-secondaryDark;
+    @apply h-8 w-20 rounded-full border-2 border-lightMediumGrey font-montserrat text-xss font-extrabold text-secondaryLightDark hover:bg-lightMediumGrey dark:border-secondaryDark dark:text-secondaryLight dark:hover:bg-secondaryDark;
 }

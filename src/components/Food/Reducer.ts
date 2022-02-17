@@ -80,7 +80,7 @@ export default async function reduce(state: FoodWindowState, action: FoodWindowA
 
             const art_alt = Object.assign(result.allItems, result.allPotions, result.wearedItems, result.otherItems)
             SimpleAlt.setupArtAlt(art_alt)
-            
+
             return {
                 ...state,
                 allItems: allFoodItems,
