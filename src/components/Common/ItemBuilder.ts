@@ -6,7 +6,7 @@ export default function convertItemIntoDiv(item: InventoryItem, xmlFoodItem: Ele
     const count = xmlFoodItem?.getAttribute('cnt')
     let counterElement = ''
     if(count) {
-        counterElement = parseInt(count) > 1 ? `<p class=" h-5 w-12 border text-textGrey dark:text-textGreyDark font-extrabold font-montserrat text-xs leading-normal bg-white dark:bg-dark mt-auto ml-auto mr-auto rounded-full border-strokeGrey dark:border-strokeGreyDark text-center">${count}</p>` : ''
+        counterElement = parseInt(count) > 1 ? `<p class=" h-5 w-12 border text-secondaryLightDark dark:text-secondaryLight font-extrabold font-montserrat text-xs leading-normal bg-white dark:bg-dark mt-auto ml-auto mr-auto rounded-full border-lightMediumGrey dark:border-secondaryDark text-center">${count}</p>` : ''
     }
     
     const html = `
