@@ -1,7 +1,7 @@
 import ConfigService from './ConfigService'
 
 function setupSpeed() {
-    if(ConfigService.enableSpeed()) {
+    if(ConfigService.getSettings().enableSpeed) {
         setInterval(() => {
             if(top && top[0] && top[0][1] && top[0][1].document) {
                 // eslint-disable-next-line @typescript-eslint/ban-ts-comment

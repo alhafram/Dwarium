@@ -1,7 +1,35 @@
-const { app } = process.type === 'browser' ? require('electron') : require('@electron/remote')
-import fs from 'fs'
-import path from 'path'
-const configPath = path.join(app.getPath('userData'), 'config.json')
+import { ClientSettings } from '../Models/ClientSettings'
+import { buildPath, ConfigPath } from '../Models/ConfigPathes'
+import FileOperationsService from './FileOperationsService'
+
+const path = buildPath(ConfigPath.CONFIG)
+
+// Refactor 2.3.0
+function getSettings(): ClientSettings {
+    const settings = {
+        server: server(),
+        baseUrl: baseUrl(),
+        mailServer: mailServer(),
+        ownServer: ownServer(),
+        windowOpenNewTab: windowOpenNewTab(),
+        windowsAboveApp: windowsAboveApp(),
+        selectedUserAgentType: selectedUserAgentType(),
+        selectedUserAgentValue: selectedUserAgentValue(),
+        maximizeOnStart: maximizeOnStart(),
+        hideTopPanelInFullScreen: hideTopPanelInFullScreen(),
+        enableSpeed: enableSpeed(),
+        fightNotificationsSystem: fightNotificationsSystem(),
+        fightNotificationsIngame: fightNotificationsIngame(),
+        battlegroundNotificationsSystem: battlegroundNotificationsSystem(),
+        battlegroundNotificationsIngame: battlegroundNotificationsIngame(),
+        messageNotificationsSystem: messageNotificationsSystem(),
+        messageNotificationsIngame: messageNotificationsIngame(),
+        mailNotificationsSystem: mailNotificationsSystem(),
+        mailNotificationsIngame: mailNotificationsIngame(),
+        updateChannel: updateChannel()
+    }
+    return settings
+}
 
 function server(): string {
     return readData('server')
@@ -12,17 +40,16 @@ function baseUrl(): string {
     if(server.length != 0) {
         return server
     }
-    return `https://${readData('server')}.dwar${mailServer()}.ru`
+    return `https://${readData('server')}.dwar${mailServer() ? '.mail' : ''}.ru`
 }
 
-function mailServer(): string {
+function mailServer(): boolean {
     let settings = readData('settings')
     if(settings) {
         settings = JSON.parse(settings)
-        const isMailServer = settings.mailServer ?? false
-        return isMailServer ? '.mail' : ''
+        return settings.mailServer ?? false
     }
-    return ''
+    return false
 }
 
 function ownServer(): string {
@@ -32,11 +59,6 @@ function ownServer(): string {
         return settings.ownServer ?? ''
     }
     return ''
-}
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function loadSettings(): any {
-    return readData('settings')
 }
 
 function windowOpenNewTab(): boolean {
@@ -57,7 +79,17 @@ function windowsAboveApp(): boolean {
     return false
 }
 
-function userAgent(): string {
+function selectedUserAgentType(): string {
+    let settings = readData('settings')
+    const defaultUA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36'
+    if(settings) {
+        settings = JSON.parse(settings)
+        return settings.selectedUserAgentType ?? defaultUA
+    }
+    return defaultUA
+}
+
+function selectedUserAgentValue(): string {
     let settings = readData('settings')
     const defaultUA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36'
     if(settings) {
@@ -179,50 +211,23 @@ function updateChannel(): string {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function writeData(key: string, value: any): void {
-    const contents = parseData(configPath)
+    const contents = FileOperationsService.parseData(path) as any
     contents[key] = value
     Object.keys(contents).forEach((key) => {
         if(contents[key] === null) {
             delete contents[key]
         }
     })
-    fs.writeFileSync(configPath, JSON.stringify(contents))
+    FileOperationsService.writeData(path, JSON.stringify(contents))
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function readData(key: string): any {
-    const contents = parseData(configPath)
+    const contents = FileOperationsService.parseData(path) as any
     return contents[key]
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function parseData(filePath: fs.PathLike): any {
-    const defaultData = {}
-    try {
-        return JSON.parse(fs.readFileSync(filePath, 'utf-8'))
-    } catch (error) {
-        return defaultData
-    }
-}
-
 export default {
-    server,
-    baseUrl,
-    loadSettings,
-    windowOpenNewTab,
-    windowsAboveApp,
-    maximizeOnStart,
-    hideTopPanelInFullScreen,
-    enableSpeed,
-    userAgent,
-    writeData,
-    fightNotificationsSystem,
-    fightNotificationsIngame,
-    battlegroundNotificationsSystem,
-    battlegroundNotificationsIngame,
-    messageNotificationsSystem,
-    messageNotificationsIngame,
-    mailNotificationsSystem,
-    mailNotificationsIngame,
-    updateChannel
+    getSettings,
+    writeData
 }

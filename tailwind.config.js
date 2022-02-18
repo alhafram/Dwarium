@@ -4,58 +4,51 @@ module.exports = {
     darkMode: 'class',
     theme: {
         colors: {
-            'backgroundColor': '#FFFFFF',
-            'backgroundColorDark': '#2F2F2F',
-            'inputBackgroundColor': '#F1F3F4',
-            'inputBackgroundColorDark': '#232323',
-            'iconColor': '#808487',
-            'iconColorDark': '#C8CACB',
-            'disabledButton': '#C8CACB',
-            'disabledButtonDark': '#808487',
-            'textColor': '#2F2F2F',
-            'textColorDark': '#FAFAFA',
-            'w1': '#FF7629',
+            'transparent': 'transparent',
             'white': '#FFFFFF',
-            'activeTabColor': '#2F2F2F',
-            'inactiveTabColor': '#C4C4C4',
-            'activeTabColorDark': '#FAFAFA',
-            'inactiveTabColorDark': '#C8CACB',
-            'addTabDarkHover': '#0C0C0C',
+
+            'dark': '#2F2F2F',
+            'lightDark': '#626262',
+            'secondaryLightDark': '#7D7D7D',
+            'secondaryDark': '#6C6C6C',
+
+            'lightBlack': '#232323',
+            'secondaryBlack': '#454545',
+
+            'grey': '#808487',
+            'lightGrey': '#F1F3F4',
+            'secondaryLightGrey': '#FAFAFA',
+            'lightMediumGrey': '#E5E5E5',
+            'mediumGrey': '#C8CACB',
+            'secondaryMediumGrey': '#C4C4C4',
+
+            'light': '#F7F7F7',
+            'secondaryLight': '#EAEAEA',
+
+            'w1': '#FF7629',
+            'orange': '#FCC458',
+            'allFooBorderDark': '#3F3F3F',
+
             'dividerColor': '#D5D4D8',
             'dividerColorDark': '#696969',
-            'orange': '#FCC458'
+            
         },
         extend: {
-            width: {
-                'switcher': '54px',
-                '5.5': '25px',
-                '100px': '100px',
-                '150px': '150px'
-            },
-            height: {
-                '5.5': '25px'
-            },
             fontSize: {
-                'xss': '9px'
+                'xss': '10px'
             },
             spacing: {
-                '1px': '1px',
                 '5px': '5px',
-                '6px': '6px',
-                '7px': '7px',
-                '9px': '9px',
-                '10px': '10px',
-                '13px': '13px',
-                '14px': '14px',
-                '25px': '25px',
-                '26px': '26px',
-                '30px': '30px',
-                '220px': '220px',
-                '300px': '300px'
+                '25px': '25px'
             },
-            minWidth: {
-                '150px': '150px',
-                '125px': '125px'
+            fontFamily: {
+                montserrat: ['Montserrat']
+            },
+            lineHeight: {
+                '0': '0'
+            },
+            gridTemplateColumns: {
+                'auto-fit': 'repeat(auto-fill, minmax(80px, 1fr))'
             },
             backgroundImage: { }
         },

@@ -1,22 +1,20 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { app, powerMonitor, globalShortcut } from '@electron/remote'
-import fs from 'fs'
-import path from 'path'
+import { powerMonitor, globalShortcut } from '@electron/remote'
 import ConfigService from './ConfigService'
 import ChatSettingsService from './ChatSettingsService'
 import { ipcRenderer } from 'electron'
 import { Channel } from '../Models/Channel'
 import { ChatSettingsConfig } from '../Models/ChatSettingsConfig'
 import { ChatMessage } from './Notifications'
+import { buildFolderPath, buildPathWithBase, ConfigPath, Folder } from '../Models/ConfigPathes'
+import FileOperationsService from './FileOperationsService'
 
-const logsFolderPath = path.join(app.getPath('userData'), 'logs')
-const filePath = path.join(logsFolderPath, 'chat.log')
+const folderPath = buildFolderPath(Folder.LOGS)
+const filePath = buildPathWithBase(folderPath, ConfigPath.CHAT_LOG)
 
-if(!fs.existsSync(logsFolderPath)) {
-    fs.mkdirSync(logsFolderPath)
-    fs.openSync(filePath, 'w')
-} else if(!fs.existsSync(filePath)) {
-    fs.openSync(filePath, 'w')
+FileOperationsService.checkFolder(folderPath)
+if(!FileOperationsService.fileExists(filePath)) {
+    FileOperationsService.createFile(filePath)
 }
 
 enum ChatChannel {
@@ -33,9 +31,7 @@ type QueueChatMessage = {
     text: string
 }
 
-const logStream = fs.createWriteStream(filePath, {
-    flags: 'a'
-})
+const logStream = FileOperationsService.createWriteStream(filePath)
 let isIdle = false
 const messagesQueue: QueueChatMessage[] = []
 
@@ -154,14 +150,14 @@ function setupAutoResponder() {
         if(message) {
             // @ts-ignore
             const crc = top[1].CHAT.session_crc
-            const req = await fetch(`${ConfigService.baseUrl()}/entry_point.php?object=chat&action=send&json_mode_on=1`, {
+            const req = await fetch(`${ConfigService.getSettings().baseUrl}/entry_point.php?object=chat&action=send&json_mode_on=1`, {
                 headers: {
                     accept: 'application/json, text/javascript, */*; q=0.01',
                     'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8',
                     'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
                     'x-requested-with': 'XMLHttpRequest'
                 },
-                referrer: `${ConfigService.baseUrl()}/cht.php`,
+                referrer: `${ConfigService.getSettings().baseUrl}/cht.php`,
                 referrerPolicy: 'no-referrer-when-downgrade',
                 body: encodeURI(`json_mode_on=1&object=chat&action=send&msg_text=${message.text}&channel_talk=${message.channel}&crc=${crc}`),
                 method: 'POST',
@@ -273,8 +269,8 @@ function logMessage(message: any) {
         elem.removeAttribute('href')
     })
     let html = node.outerHTML
-    html = html.replaceAll('src="images/', `src="${ConfigService.baseUrl()}/images/`).replaceAll('src="/images/', `src="${ConfigService.baseUrl()}/images/`)
-    html = html.replaceAll('href="/artifact_info.php', `href="${ConfigService.baseUrl()}/artifact_info.php`)
+    html = html.replaceAll('src="images/', `src="${ConfigService.getSettings().baseUrl}/images/`).replaceAll('src="/images/', `src="${ConfigService.getSettings().baseUrl}/images/`)
+    html = html.replaceAll('href="/artifact_info.php', `href="${ConfigService.getSettings().baseUrl}/artifact_info.php`)
     logStream.write(html + '\n', (error) => {
         if(error) {
             console.log(error)

@@ -20,7 +20,7 @@ declare global {
 window.addEventListener('DOMContentLoaded', () => {
     contextBridge.exposeInMainWorld('baseAPI', {
         baseUrl: () => {
-            return ConfigService.baseUrl()
+            return ConfigService.getSettings().baseUrl
         },
         getUserId: async () => {
             return await ipcRenderer.invoke(Channel.GET_ID)

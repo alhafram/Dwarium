@@ -1,23 +1,44 @@
 export const Elements = {
-    hpBox(): HTMLDivElement {
-        return document.getElementById('hp') as HTMLDivElement
+    hpDiv(): HTMLDivElement {
+        return document.getElementById('hpDiv') as HTMLDivElement
     },
-    mpBox(): HTMLDivElement {
-        return document.getElementById('mp') as HTMLDivElement
+    hpBg(): Element {
+        return document.getElementById('hpBg') as Element
     },
-    hpSelectBox(): HTMLSelectElement {
-        return document.getElementById('hpSelect') as HTMLSelectElement
+    mpBg(): Element {
+        return document.getElementById('mpBg') as Element
     },
-    mpSelectBox(): HTMLSelectElement {
-        return document.getElementById('mpSelect') as HTMLSelectElement
+    mpDiv(): HTMLDivElement {
+        return document.getElementById('mpDiv') as HTMLDivElement
     },
-    allFoodBox(): HTMLDivElement {
-        return document.getElementById('allFood') as HTMLDivElement
+    hpIconSvg(): HTMLElement {
+        return document.getElementById('hpIconSvg') as HTMLElement
     },
-    saveBox(): HTMLButtonElement {
-        return document.getElementById('save') as HTMLButtonElement
+    mpIconSvg(): HTMLElement {
+        return document.getElementById('mpIconSvg') as HTMLElement
     },
-    staticBoxes(): HTMLDivElement[] {
-        return Array.from(document.querySelectorAll('.staticBox'))
+    hpPercentageP(): HTMLSelectElement {
+        return document.getElementById('hpPercentageP') as HTMLSelectElement
+    },
+    mpPercentageP(): HTMLSelectElement {
+        return document.getElementById('mpPercentageP') as HTMLSelectElement
+    },
+    allFoodDiv(): HTMLDivElement {
+        return document.getElementById('allFoodDiv') as HTMLDivElement
+    },
+    saveButton(): HTMLButtonElement {
+        return document.getElementById('saveButton') as HTMLButtonElement
+    },
+    hpMinusButton(): HTMLButtonElement {
+        return document.getElementById('hpMinusButton') as HTMLButtonElement
+    },
+    hpPlusButton(): HTMLButtonElement {
+        return document.getElementById('hpPlusButton') as HTMLButtonElement
+    },
+    mpMinusButton(): HTMLButtonElement {
+        return document.getElementById('mpMinusButton') as HTMLButtonElement
+    },
+    mpPlusButton(): HTMLButtonElement {
+        return document.getElementById('mpPlusButton') as HTMLButtonElement
     }
 }

@@ -1,5 +1,5 @@
 import { ipcRenderer } from 'electron'
-import configService from '../../services/ConfigService'
+import ConfigService from '../../services/ConfigService'
 import { Channel } from '../../Models/Channel'
 import { generateRandomId } from '../Utils'
 import { WindowType } from '../../Models/WindowModels'
@@ -142,12 +142,13 @@ window.addEventListener('DOMContentLoaded', async () => {
     Elements.updateApplicationButton().addEventListener('click', () => {
         ipcRenderer.send(Channel.UPDATE_APPLICATION)
     })
-    Elements.userInfoButton().addEventListener('click', () => {
+    Elements.userInfoButton().addEventListener('click', async () => {
         const nick = Elements.nicknameInput().value
         if(nick.length != 0) {
-            if(configService.windowOpenNewTab()) {
+            if(ConfigService.getSettings().windowOpenNewTab) {
                 const tab = createNewTab()
-                ipcRenderer.send(Channel.NEW_TAB, tab.id, `${configService.baseUrl()}/user_info.php?nick=${nick}`)
+                const baseMainUrl = await ipcRenderer.invoke(Channel.GET_MAIN_URL)
+                ipcRenderer.send(Channel.NEW_TAB, tab.id, `${baseMainUrl}/user_info.php?nick=${nick}`)
             } else {
                 ipcRenderer.send(Channel.FIND_CHARACTER, nick)
             }
@@ -164,12 +165,13 @@ window.addEventListener('DOMContentLoaded', async () => {
             ipcRenderer.send(Channel.USER_PRV, nick)
         }
     }
-    Elements.findEffectsBox().onclick = function() {
+    Elements.findEffectsBox().onclick = async function() {
         const nick = Elements.nicknameInput().value
         if(nick.length > 0) {
-            if(configService.windowOpenNewTab()) {
+            if(ConfigService.getSettings().windowOpenNewTab) {
                 const tab = createNewTab()
-                ipcRenderer.send(Channel.NEW_TAB, tab.id, `${configService.baseUrl()}/effect_info.php?nick=${nick}`)
+                const baseMainUrl = await ipcRenderer.invoke(Channel.GET_MAIN_URL)
+                ipcRenderer.send(Channel.NEW_TAB, tab.id, `${baseMainUrl}/effect_info.php?nick=${nick}`)
             } else {
                 ipcRenderer.send(Channel.FIND_EFFECTS, nick)
             }
@@ -241,9 +243,9 @@ async function saveFavouriteLink(value: boolean | null) {
 async function setupFavourite() {
     const isFavourite = await isCurrentLinkFavourite()
     if(isFavourite) {
-        Elements.favouriteButtonImage().setAttribute('fill', '#FFFF00')
+        Elements.favouriteButtonImage().classList.replace('favouriteButtonDefault', 'favouriteButtonSelected')
     } else {
-        Elements.favouriteButtonImage().removeAttribute('fill')
+        Elements.favouriteButtonImage().classList.replace('favouriteButtonSelected', 'favouriteButtonDefault')
     }
 }
 
@@ -261,9 +263,9 @@ function handleMode() {
 
 function createNewTab(id?: string) {
     const newTabString = `
-        <button style="min-width: 150px;" class="shrink-0 w-150px h-10 activeTab">
+        <button class="shrink-0 w-36 h-10 activeTab">
             <span>New tab</span>
-            <button style="right: 10px;" class="relative float-right bg-center closeButtonActiveTab">
+            <button class="relative right-2 float-right bg-center closeButtonActiveTab">
                 <svg class="buttonIcon" width="9" height="9" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg">
                     <path d="M9 0.906428L8.09357 0L4.5 3.59357L0.906428 0L0 0.906428L3.59357 4.5L0 8.09357L0.906428 9L4.5 5.40643L8.09357 9L9 8.09357L5.40643 4.5L9 0.906428Z" />
                 </svg>
@@ -279,10 +281,9 @@ function createNewTab(id?: string) {
     const closeButton = newTab.children[1] as HTMLButtonElement
     closeButton.onclick = closeTab
 
-    document.querySelectorAll('.activeTab').forEach(item => {
-        item?.firstElementChild?.classList.replace('separatorActiveTab', 'separatorInactiveTab')
-        item?.lastElementChild?.classList.replace('closeButtonActiveTab', 'closeButtonInactiveTab')
+    document.querySelectorAll('.activeTab,.activeTabMain').forEach(item => {
         item.classList.replace('activeTab', 'inactiveTab')
+        item.classList.replace('activeTabMain', 'inactiveTab')
     })
     Elements.tabsDiv().insertBefore(newTab, Elements.addTabButton())
     drawDividers()
@@ -300,7 +301,7 @@ function drawDividers() {
         const prevTab = tabs[index - 1]
         const nextTab = tabs[index + 1]
         tab.style.borderRightWidth = '0px'
-        return tab.id != 'addTabButton' && !tab.classList.contains('activeTab') && !prevTab?.classList.contains('activeTab') && !nextTab?.classList.contains('activeTab')
+        return tab.id != 'addTabButton' && !tab.classList.contains('activeTab') && !tab.classList.contains('activeTabMain') && !prevTab?.classList.contains('activeTab') && !nextTab?.classList.contains('activeTab')
     })
     tabsNeedToAddDividers.forEach(tab => {
         tab.style.borderRightWidth = '1px'
@@ -324,32 +325,42 @@ function createTabButton(html: string) {
 }
 
 function makeActive(evt: Event) {
-    document.querySelectorAll('.activeTab').forEach(item => {
-        item?.lastElementChild?.classList.replace('closeButtonActiveTab', 'closeButtonInactiveTab')
-        item.classList.replace('activeTab', 'inactiveTab')
-    })
+    resetTabClasses()
     const target = evt.currentTarget as HTMLElement
-    target.classList.replace('inactiveTab', 'activeTab')
     target.lastElementChild?.classList.replace('closeButtonInactiveTab', 'closeButtonActiveTab')
     let id = target.id
+    if(id == 'main') {
+        target.classList.replace('inactiveTab', 'activeTabMain')
+    } else {
+        target.classList.replace('inactiveTab', 'activeTab')
+    }
     ipcRenderer.send(Channel.MAKE_ACTIVE, id)
     evt.stopPropagation()
     drawDividers()
 }
 
 function makeActiveWith(id: string) {
-    document.querySelectorAll('.activeTab').forEach(item => {
-        item?.lastElementChild?.classList.replace('closeButtonActiveTab', 'closeButtonInactiveTab')
-        item.classList.replace('activeTab', 'inactiveTab')
-    })
+    resetTabClasses()
     const target = document.getElementById(id)
     if(target) {
-        target.classList.replace('inactiveTab', 'activeTab')
         target.lastElementChild?.classList.replace('closeButtonInactiveTab', 'closeButtonActiveTab')
         let id = target.id
+        if(id == 'main') {
+            target.classList.replace('inactiveTab', 'activeTabMain')
+        } else {
+            target.classList.replace('inactiveTab', 'activeTab')
+        }
         ipcRenderer.send(Channel.MAKE_ACTIVE, id)
     }
     drawDividers()
+}
+
+function resetTabClasses() {
+    document.querySelectorAll('.activeTab,.activeTabMain,.inactiveTab').forEach(item => {
+        item?.lastElementChild?.classList.replace('closeButtonActiveTab', 'closeButtonInactiveTab')
+        item.classList.replace('activeTab', 'inactiveTab')
+        item.classList.replace('activeTabMain', 'inactiveTab')
+    })
 }
 
 ipcRenderer.on(Channel.SERVER, (event, server) => {
@@ -407,12 +418,10 @@ ipcRenderer.on(Channel.UPDATE_APPLICATION_AVAILABLE, () => {
 
 ipcRenderer.on(Channel.OPEN_WINDOW, (_evt, id, active) => {
     const element = getElementIdBy(id)
-    if(element) {
-        if(localStorage.darkMode == 'true') {
-            element.style.backgroundColor = active ? '#232323' : ''
-        } else {
-            element.style.backgroundColor = active ? '#F1F3F4' : ''
-        }
+    if(active) {
+        element?.classList.add('selectedButton')
+    } else {
+        element?.classList.remove('selectedButton')
     }
 })
 

@@ -3,37 +3,113 @@
 @tailwind utilities;
 
 .buttonWithImage {
-    @apply mt-auto mb-auto h-5.5 w-5.5 rounded-full bg-no-repeat hover:bg-inputBackgroundColor dark:hover:bg-inputBackgroundColorDark;
+    @apply mt-auto mb-auto h-6 w-6 rounded-full bg-no-repeat hover:bg-lightGrey dark:hover:bg-lightBlack;
+}
+
+.selectedButton {
+    @apply bg-lightGrey dark:bg-lightBlack;
 }
 
 .innerButtonWithImage {
-    @apply mt-auto mb-auto -ml-7 h-5.5 w-5.5 rounded-full bg-no-repeat hover:bg-inputBackgroundColor dark:hover:bg-inputBackgroundColorDark;
+    @apply mt-auto mb-auto -ml-7 h-6 w-6 rounded-full bg-no-repeat hover:bg-white dark:hover:bg-dark;
 }
 
 .closeButtonActiveTab {
-    @apply mt-auto mb-auto h-5.5 w-5.5 rounded-full bg-no-repeat hover:bg-inputBackgroundColor dark:hover:bg-inputBackgroundColorDark;
+    @apply mt-auto mb-auto h-6 w-6 rounded-full bg-no-repeat hover:bg-lightGrey dark:hover:bg-lightBlack;
 }
 
 .closeButtonInactiveTab {
-    @apply mt-auto mb-auto h-5.5 w-5.5 rounded-full bg-no-repeat hover:bg-white dark:hover:bg-activeTabColor;
+    @apply mt-auto mb-auto h-6 w-6 rounded-full bg-no-repeat hover:bg-white dark:hover:bg-dark;
 }
 
 .buttonIcon {
-    @apply m-auto fill-iconColor dark:fill-iconColorDark;
+    @apply m-auto fill-grey dark:fill-mediumGrey;
 }
 
 .buttonStrokeIcon {
-    @apply m-auto stroke-iconColor dark:stroke-iconColorDark;
+    @apply m-auto stroke-grey dark:stroke-mediumGrey;
 }
 
 .input {
-    @apply mt-auto mb-auto rounded-full bg-inputBackgroundColor pl-4 pr-8 text-xs text-textColor outline-none dark:bg-inputBackgroundColorDark dark:text-textColorDark;
+    @apply mt-auto mb-auto rounded-full bg-lightGrey pl-4 pr-8 font-montserrat text-xs text-dark outline-none placeholder:font-montserrat dark:bg-lightBlack dark:text-secondaryLightGrey;
 }
 
 .activeTab {
-    @apply rounded-b-xl bg-white text-activeTabColor dark:bg-activeTabColor dark:text-activeTabColorDark;
+    @apply rounded-b-xl bg-white font-montserrat text-sm font-semibold  text-dark dark:bg-dark dark:text-secondaryLightGrey;
+}
+
+.activeTabMain {
+    @apply rounded-br-xl bg-white font-montserrat text-sm font-semibold text-dark dark:bg-dark dark:text-secondaryLightGrey;
 }
 
 .inactiveTab {
-    @apply rounded-none border-dividerColor bg-inputBackgroundColor text-inactiveTabColor dark:border-dividerColorDark dark:bg-inputBackgroundColorDark dark:text-inactiveTabColor;
+    @apply rounded-none border-dividerColor bg-lightGrey font-montserrat text-sm font-semibold text-secondaryMediumGrey dark:border-dividerColorDark dark:bg-lightBlack dark:text-lightDark;
+}
+
+.favouriteButtonDefault {
+    @apply fill-transparent stroke-grey dark:stroke-mediumGrey;
+}
+
+.favouriteButtonSelected {
+    @apply fill-grey stroke-transparent dark:fill-mediumGrey;
+}
+
+.foodTitleText {
+    @apply text-center font-montserrat text-xs font-extrabold text-secondaryLightDark dark:text-secondaryLight;
+}
+
+.foodBox {
+    @apply mt-1 flex h-20 w-20 rounded-3xl border-4 border-dashed border-lightMediumGrey bg-light dark:border-secondaryDark dark:bg-secondaryBlack;
+}
+
+.foodBoxHighlighted {
+    @apply mt-1 flex h-20 w-20 rounded-3xl border-4 border-dashed border-secondaryLightDark bg-lightMediumGrey dark:border-secondaryLight dark:bg-secondaryDark;
+}
+
+.foodBoxBg {
+    @apply fill-lightMediumGrey stroke-lightMediumGrey dark:fill-secondaryDark dark:stroke-secondaryDark;
+}
+
+.foodBoxBgHighlighted {
+    @apply fill-secondaryLightDark stroke-secondaryLightDark dark:fill-secondaryLight dark:stroke-secondaryLight;
+}
+
+.foodLabel {
+    @apply mt-2.5 text-center font-montserrat text-xss font-extrabold text-secondaryLightDark dark:text-secondaryLight;
+}
+
+.foodButtonLeft {
+    @apply m-auto ml-1.5 h-4 w-4 font-montserrat text-xl font-semibold leading-0 text-secondaryLightDark dark:text-secondaryLight;
+}
+
+.foodButtonRight {
+    @apply m-auto mr-1.5 h-4 w-4 font-montserrat text-xl font-semibold leading-0 text-secondaryLightDark dark:text-secondaryLight;
+}
+
+.foodButtonContainer {
+    @apply grid h-8 w-20 grid-flow-col rounded-3xl border-2 border-lightMediumGrey dark:border-secondaryDark;
+}
+
+.foodPercentage {
+    @apply m-auto text-xss font-extrabold text-secondaryLightDark dark:text-secondaryLight;
+}
+
+.defaultButton {
+    @apply h-8 w-20 rounded-full border-2 border-lightMediumGrey font-montserrat text-xss font-extrabold text-secondaryLightDark hover:bg-lightMediumGrey dark:border-secondaryDark dark:text-secondaryLight dark:hover:bg-secondaryDark;
+}
+
+.basket {
+    @apply ml-5 mt-1 flex h-14 w-14 rounded-full border-4 border-dashed border-lightMediumGrey bg-light dark:border-secondaryDark dark:bg-secondaryBlack;
+}
+
+.basketActive {
+    @apply ml-5 mt-1 flex h-14 w-14 rounded-full border-4 border-dashed border-secondaryLightDark bg-lightMediumGrey dark:border-secondaryLight dark:bg-secondaryDark;
+}
+
+.basketIcon {
+    @apply fill-lightMediumGrey dark:fill-secondaryDark;
+}
+
+.basketIconActive {
+    @apply fill-secondaryLightDark dark:fill-secondaryLight;
 }

@@ -16,7 +16,7 @@ export function createWindowAndLoad(windowType: WindowType, htmlPath?: HTMLPath,
         height: windowPosition?.height ?? 700,
         minWidth: 900,
         minHeight: 700,
-        parent: ConfigService.windowsAboveApp() ? TabsController.mainWindow ?? undefined : undefined,
+        parent: ConfigService.getSettings().windowsAboveApp ? TabsController.mainWindow ?? undefined : undefined,
         webPreferences: {
             preload: preloadPath ? path.join(__dirname, preloadPath) : undefined,
             contextIsolation: contextIsolation

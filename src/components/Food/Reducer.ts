@@ -9,7 +9,7 @@ import { Elements } from './Elements'
 import Utils from '../Common/Utils'
 
 async function fetchFood() {
-    const req = `fetch('${ConfigService.baseUrl()}/user_conf.php?mode=food').then(resp => resp.text())`
+    const req = `fetch('${ConfigService.getSettings().baseUrl}/user_conf.php?mode=food').then(resp => resp.text())`
     return await ipcRenderer.invoke('MakeWebRequest', req)
 }
 
@@ -80,9 +80,11 @@ export default async function reduce(state: FoodWindowState, action: FoodWindowA
 
             const art_alt = Object.assign(result.allItems, result.allPotions, result.wearedItems, result.otherItems)
             SimpleAlt.setupArtAlt(art_alt)
+
             return {
                 ...state,
                 allItems: allFoodItems,
+                xmlFoodItems: xmlFoodItems,
                 hpItem: currentHpFood,
                 mpItem: currentMpFood,
                 hpPercentage: currentHpPercentage,
@@ -101,7 +103,7 @@ export default async function reduce(state: FoodWindowState, action: FoodWindowA
             }
             switch (equipedItem.foodType) {
                 case FoodType.HP: {
-                    if(equipedStaticItemBox.id == 'hp') {
+                    if(equipedStaticItemBox.id == 'hpDiv') {
                         if(state.hpItem && !state.allItems.includes(state.hpItem)) {
                             allItems.push(state.hpItem)
                         }
@@ -116,7 +118,7 @@ export default async function reduce(state: FoodWindowState, action: FoodWindowA
                     }
                 }
                 case FoodType.MP: {
-                    if(equipedStaticItemBox.id == 'mp') {
+                    if(equipedStaticItemBox.id == 'mpDiv') {
                         if(state.mpItem && !state.allItems.includes(state.mpItem)) {
                             allItems.push(state.mpItem)
                         }
@@ -131,8 +133,8 @@ export default async function reduce(state: FoodWindowState, action: FoodWindowA
                     }
                 }
                 case FoodType.BOTH: {
-                    if(equipedStaticItemBox.id == 'hp') {
-                        const equipedHpItem = allItems.find((item) => item.id == equipedStaticItemBox.firstElementChild?.getAttribute('itemid'))
+                    if(equipedStaticItemBox.id == 'hpDiv') {
+                        const equipedHpItem = allItems.find((item) => item.id == equipedStaticItemBox.lastElementChild?.getAttribute('itemid'))
                         if(!equipedHpItem && state.hpItem) {
                             allItems.push(state.hpItem)
                         }
@@ -142,7 +144,7 @@ export default async function reduce(state: FoodWindowState, action: FoodWindowA
                             allItems: allItems
                         }
                     } else {
-                        const equipedMpItem = allItems.find((item) => item.id == equipedStaticItemBox.firstElementChild?.getAttribute('itemid'))
+                        const equipedMpItem = allItems.find((item) => item.id == equipedStaticItemBox.lastElementChild?.getAttribute('itemid'))
                         if(!equipedMpItem && state.mpItem) {
                             allItems.push(state.mpItem)
                         }
@@ -161,13 +163,13 @@ export default async function reduce(state: FoodWindowState, action: FoodWindowA
             const id = unequipedElement.getAttribute('itemid')
             let hpItem = state.hpItem
             let mpItem = state.mpItem
-            if(hpItem?.id == id && unequipedElement?.parentElement?.id == 'hp' && hpItem) {
+            if(hpItem?.id == id && unequipedElement?.parentElement?.id == 'hpDiv' && hpItem) {
                 if(!allItems.includes(hpItem)) {
                     allItems.push(hpItem)
                 }
                 hpItem = null
             }
-            if(mpItem?.id == id && unequipedElement?.parentElement?.id == 'mp' && mpItem) {
+            if(mpItem?.id == id && unequipedElement?.parentElement?.id == 'mpDiv' && mpItem) {
                 if(!allItems.includes(mpItem)) {
                     allItems.push(mpItem)
                 }
@@ -183,8 +185,10 @@ export default async function reduce(state: FoodWindowState, action: FoodWindowA
             if(!state.userConfig) {
                 return state
             }
-            const hpPercentage = Elements.hpSelectBox().value
-            const mpPercentage = Elements.mpSelectBox().value
+            let hpPercentage = Elements.hpPercentageP().textContent as string
+            hpPercentage = hpPercentage.replace('%', '')
+            let mpPercentage = Elements.mpPercentageP().textContent as string
+            mpPercentage = mpPercentage.replace('%', '')
 
             const hpSetting: FoodSettings = {
                 id: state.hpItem?.id,
@@ -199,16 +203,44 @@ export default async function reduce(state: FoodWindowState, action: FoodWindowA
             Utils.save(state.userConfig)
             return state
         }
-        case FoodWindowActions.CHANGE_HP_PERCENTAGE: {
+        case FoodWindowActions.MINUS_HP_PERCENTAGE: {
+            let hpPercentage = parseInt(state.hpPercentage) - 10
+            if(hpPercentage < 10) {
+                hpPercentage = parseInt(state.hpPercentage)
+            }
             return {
                 ...state,
-                hpPercentage: Elements.hpSelectBox().value
+                hpPercentage: hpPercentage.toString()
             }
         }
-        case FoodWindowActions.CHANGE_MP_PERCENTAGE: {
+        case FoodWindowActions.PLUS_HP_PERCENTAGE: {
+            let hpPercentage = parseInt(state.hpPercentage) + 10
+            if(hpPercentage > 100) {
+                hpPercentage = parseInt(state.hpPercentage)
+            }
             return {
                 ...state,
-                mpPercentage: Elements.mpSelectBox().value
+                hpPercentage: hpPercentage.toString()
+            }
+        }
+        case FoodWindowActions.MINUS_MP_PERCENTAGE: {
+            let mpPercentage = parseInt(state.mpPercentage) - 10
+            if(mpPercentage < 10) {
+                mpPercentage = parseInt(state.mpPercentage)
+            }
+            return {
+                ...state,
+                mpPercentage: mpPercentage.toString()
+            }
+        }
+        case FoodWindowActions.PLUS_MP_PERCENTAGE: {
+            let mpPercentage = parseInt(state.mpPercentage) + 10
+            if(mpPercentage > 100) {
+                mpPercentage = parseInt(state.mpPercentage)
+            }
+            return {
+                ...state,
+                mpPercentage: mpPercentage.toString()
             }
         }
     }

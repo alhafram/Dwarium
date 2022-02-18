@@ -43,10 +43,10 @@ export default function sendNotification(message: ChatMessage | null) {
     if(message?.channel == 2 && message?.msg_text?.toLocaleLowerCase().includes('на вас совершено') && !message.to_user_nicks) {
         setupBounce('critical')
         setupFlashFlame()
-        if(ConfigService.fightNotificationsSystem() && currentWindowNotFocused()) {
+        if(ConfigService.getSettings().fightNotificationsSystem && currentWindowNotFocused()) {
             new Notification({ title: notificationTitle, body: NotificationType.ATTACKED }).show()
         }
-        if(ConfigService.fightNotificationsIngame()) {
+        if(ConfigService.getSettings().fightNotificationsIngame) {
             playIngameNotificationSound(NotificationType.ATTACKED)
         }
     }
@@ -54,10 +54,10 @@ export default function sendNotification(message: ChatMessage | null) {
     if(message?.channel == 2 && message?.msg_text?.toLocaleLowerCase().includes('у вас новое письмо от игрока') && !message.to_user_nicks) {
         setupBounce('informational')
         setupFlashFlame()
-        if(ConfigService.mailNotificationsSystem() && currentWindowNotFocused()) {
+        if(ConfigService.getSettings().mailNotificationsSystem && currentWindowNotFocused()) {
             new Notification({ title: notificationTitle, body: NotificationType.MAIL }).show()
         }
-        if(ConfigService.mailNotificationsIngame()) {
+        if(ConfigService.getSettings().mailNotificationsIngame) {
             playIngameNotificationSound(NotificationType.MAIL)
         }
     }
@@ -65,10 +65,10 @@ export default function sendNotification(message: ChatMessage | null) {
     if(message?.channel == 2 && message?.bonus_text == 1 && message?.msg_text?.includes('<b class="redd">Для того, чтобы подтвердить свое участие ')) {
         setupBounce('critical')
         setupFlashFlame()
-        if(ConfigService.battlegroundNotificationsSystem() && currentWindowNotFocused()) {
+        if(ConfigService.getSettings().battlegroundNotificationsSystem && currentWindowNotFocused()) {
             new Notification({ title: notificationTitle, body: NotificationType.BATTLEGROUND }).show()
         }
-        if(ConfigService.battlegroundNotificationsIngame()) {
+        if(ConfigService.getSettings().battlegroundNotificationsIngame) {
             playIngameNotificationSound(NotificationType.BATTLEGROUND)
         }
     }
@@ -77,10 +77,10 @@ export default function sendNotification(message: ChatMessage | null) {
         if(Object.values(message.to_user_nicks).includes(nickname)) {
             setupFlashFlame()
             setupBounce('informational')
-            if(ConfigService.messageNotificationsSystem() && currentWindowNotFocused()) {
+            if(ConfigService.getSettings().messageNotificationsSystem && currentWindowNotFocused()) {
                 new Notification({ title: notificationTitle, body: NotificationType.MESSAGE }).show()
             }
-            if(ConfigService.messageNotificationsIngame()) {
+            if(ConfigService.getSettings().messageNotificationsIngame) {
                 playIngameNotificationSound(NotificationType.MESSAGE)
             }
         }

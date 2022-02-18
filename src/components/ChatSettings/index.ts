@@ -253,7 +253,6 @@ async function reduce(state: ChatSettingsWindowState = initialState, action: Cha
                 console.log("Не найден user id пользователя, попробуйте авторизоваться и заново открыть настройки чата!")
                 return state
             }
-            console.log(state)
             window.chatSettingsAPI.save(state, userId1)
             return state
     }

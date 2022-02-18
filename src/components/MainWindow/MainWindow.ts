@@ -1,6 +1,6 @@
 import { BrowserView, BrowserWindow, globalShortcut, session, clipboard, Rectangle, app } from 'electron'
 import path from 'path'
-import configService from '../../services/ConfigService'
+import ConfigService from '../../services/ConfigService'
 import { TabsController } from '../../services/TabsController'
 import { Channel } from '../../Models/Channel'
 import { WindowType } from '../../Models/WindowModels'
@@ -59,11 +59,12 @@ export default class MainWindowContainer {
         })
 
         this.mainWindow.webContents.on('did-finish-load', () => {
-            let currentServer = configService.server()
+            let currentServer = ConfigService.getSettings().server
             this.mainWindow.webContents.send(Channel.SERVER, currentServer)
         })
 
         this.mainWindow.on('focus', () => {
+            this.browserView?.webContents.focus()
             globalShortcut.register('CommandOrControl+W', () => {
                 if(TabsController.currentTab() != TabsController.getMain()) {
                     this.mainWindow.webContents.send(Channel.CLOSE_TAB, TabsController.current_tab_id)
@@ -155,9 +156,9 @@ export default class MainWindowContainer {
         // @ts-ignore - TS - FIX
         this.browserView.webContents.setWindowOpenHandler(({ url, features }) => {
             const excludedUrls = [
-                `${configService.baseUrl()}/action_form.php`,
-                `${configService.baseUrl()}/area_cube_recipes.php`,
-                `${configService.baseUrl()}/friend_list.php`
+                `${ConfigService.getSettings().baseUrl}/action_form.php`,
+                `${ConfigService.getSettings().baseUrl}/area_cube_recipes.php`,
+                `${ConfigService.getSettings().baseUrl}/friend_list.php`
             ]
             const windowPosition = this.getPositionFor(url)
             const defaultPosition = this.parseFeatures(features)
@@ -166,7 +167,7 @@ export default class MainWindowContainer {
                     return {
                         action: 'allow',
                         overrideBrowserWindowOptions: {
-                            parent: configService.windowsAboveApp() ? TabsController.mainWindow : null,
+                            parent: ConfigService.getSettings().windowsAboveApp ? TabsController.mainWindow : null,
                             x: windowPosition?.x ?? (defaultPosition.x > 0 ? defaultPosition.x : 0),
                             y: windowPosition?.y ?? (defaultPosition.y > 0 ? defaultPosition.y : 0),
                             width:  windowPosition?.width ?? defaultPosition.width,
@@ -178,7 +179,7 @@ export default class MainWindowContainer {
                     }
                 }
             }
-            if(configService.windowOpenNewTab() && !features.includes('location=no') || TabsController.currentTab() == TabsController.getMain() && !features) {
+            if(ConfigService.getSettings().windowOpenNewTab && !features.includes('location=no') || TabsController.currentTab() == TabsController.getMain() && !features) {
                 this.mainWindow.webContents.send(Channel.NEW_TAB, url)
                 return {
                     action: 'deny'
@@ -187,7 +188,7 @@ export default class MainWindowContainer {
                 return {
                     action: 'allow',
                     overrideBrowserWindowOptions: {
-                        parent: configService.windowsAboveApp() ? TabsController.mainWindow : null,
+                        parent: ConfigService.getSettings().windowsAboveApp ? TabsController.mainWindow : null,
                         x: windowPosition?.x ?? (defaultPosition.x > 0 ? defaultPosition.x : 0),
                         y: windowPosition?.y ?? (defaultPosition.y > 0 ? defaultPosition.y : 0),
                         width:  windowPosition?.width ?? defaultPosition.width,
@@ -228,7 +229,7 @@ export default class MainWindowContainer {
                 y: windowPosition?.y ?? (defaultPosition.y > 0 ? defaultPosition.y : 0),
                 width: windowPosition?.width ?? defaultPosition.width,
                 height: windowPosition?.height ?? defaultPosition.height,
-                parent: configService.windowsAboveApp() ? this.mainWindow : undefined,
+                parent: ConfigService.getSettings().windowsAboveApp ? this.mainWindow : undefined,
                 fullscreen: false
             })
             setupContextMenu(newWindow)
@@ -245,7 +246,7 @@ export default class MainWindowContainer {
             }
             const convertedURL = new URL(url)
             saveBrowserWindowPosition(convertedURL.pathname, window.getBounds())
-            if(configService.windowsAboveApp()) {
+            if(ConfigService.getSettings().windowsAboveApp) {
                 this.mainWindow.focus()
             }
         })
@@ -256,7 +257,7 @@ export default class MainWindowContainer {
             }
             const convertedURL = new URL(url)
             saveBrowserWindowPosition(convertedURL.pathname, window.getBounds())
-            if(configService.windowsAboveApp()) {
+            if(ConfigService.getSettings().windowsAboveApp) {
                 this.mainWindow.focus()
             }
         })
@@ -276,7 +277,7 @@ export default class MainWindowContainer {
         const [contentWidth, contentHeight] = this.mainWindow.getContentSize()
         const controlBounds = this.getControlBounds()
         let y = controlBounds.y + controlBounds.height
-        if(configService.hideTopPanelInFullScreen() && TabsController.getMain() == TabsController.currentTab()) {
+        if(ConfigService.getSettings().hideTopPanelInFullScreen && TabsController.getMain() == TabsController.currentTab()) {
             y = this.isFullscreen ? 0 : y
             controlBounds.height = this.isFullscreen ? 0 : controlBounds.height
         }
@@ -292,7 +293,7 @@ export default class MainWindowContainer {
 
     start() {
         this.mainWindow.show();
-        if(configService.maximizeOnStart()) {
+        if(ConfigService.getSettings().maximizeOnStart) {
             this.mainWindow.maximize()
         }
         this.mainWindow.loadFile(`${path.join(app.getAppPath(), 'gui', 'MainWindow', 'index.html')}`)

@@ -9,8 +9,8 @@ import electronReload from 'electron-reload'
 import { Channel } from './Models/Channel'
 electronReload(__dirname, {})
 
-autoUpdater.allowDowngrade = ConfigService.updateChannel() == 'stable'
-autoUpdater.allowPrerelease = ConfigService.updateChannel() != 'stable'
+autoUpdater.allowDowngrade = ConfigService.getSettings().updateChannel == 'stable'
+autoUpdater.allowPrerelease = ConfigService.getSettings().updateChannel != 'stable'
 
 autoUpdater.checkForUpdatesAndNotify()
 setInterval(() => {
@@ -42,7 +42,7 @@ function createWindow() {
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     session.defaultSession.webRequest.onBeforeSendHeaders((details: { requestHeaders: { [x: string]: any } }, callback: (arg0: { cancel: boolean; requestHeaders: any }) => void) => {
-        details.requestHeaders['User-Agent'] = ConfigService.userAgent()
+        details.requestHeaders['User-Agent'] = ConfigService.getSettings().selectedUserAgentValue
         callback({
             cancel: false,
             requestHeaders: details.requestHeaders

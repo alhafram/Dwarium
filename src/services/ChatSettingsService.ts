@@ -1,17 +1,13 @@
-import { app } from '@electron/remote'
-import fs from 'fs'
-import path from 'path'
 import { ChatSettingsConfig } from '../Models/ChatSettingsConfig'
+import { buildFolderPath, buildPathWithBase, Folder } from '../Models/ConfigPathes'
+import FileOperationsService from './FileOperationsService'
 
-const userConfigsFolderPath = path.join(app.getPath('userData'), 'users')
-
-if(!fs.existsSync(userConfigsFolderPath)) {
-    fs.mkdirSync(userConfigsFolderPath)
-}
+const folderPath = buildFolderPath(Folder.USERS)
+FileOperationsService.checkFolder(folderPath)
 
 function get(id: number): ChatSettingsConfig {
-    const filePath = path.join(userConfigsFolderPath, `ChatConfig_${id}.json`)
-    if(!fs.existsSync(filePath)) {
+    const filePath = buildPathWithBase(folderPath, `ChatConfig_${id}.json`)
+    if(!FileOperationsService.fileExists(filePath)) {
         const newChatSettingsConfig: ChatSettingsConfig = {
             autoResponderEnabled: false,
             floodingEnabled: false,
@@ -42,23 +38,12 @@ function get(id: number): ChatSettingsConfig {
 }
 
 function save(userConfig: ChatSettingsConfig, id: number): void {
-    const filePath = path.join(userConfigsFolderPath, `ChatConfig_${id}.json`)
-    fs.writeFileSync(filePath, JSON.stringify(userConfig))
+    const filePath = buildPathWithBase(folderPath, `ChatConfig_${id}.json`)
+    FileOperationsService.writeData(filePath, JSON.stringify(userConfig))
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function readData(configPath: string): any {
-    return parseData(configPath)
-}
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function parseData(filePath: fs.PathLike): any {
-    const defaultData = {}
-    try {
-        return JSON.parse(fs.readFileSync(filePath, 'utf-8'))
-    } catch (error) {
-        return defaultData
-    }
+    return FileOperationsService.parseData(configPath)
 }
 
 export default {

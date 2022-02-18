@@ -1,17 +1,18 @@
 import { BrowserWindow, BrowserView, ipcMain, app } from 'electron'
-import configService from './services/ConfigService'
+import ConfigService from './services/ConfigService'
 import { TabsController } from './services/TabsController'
 import { autoUpdater } from 'electron-updater'
-import fs from 'fs'
 import path from 'path'
 import { Channel } from './Models/Channel'
 import { WindowType, Preload, HTMLPath } from './Models/WindowModels'
 import { createWindowAndLoad, setupCloseLogic } from './services/WindowCreationHelper'
 import setupContextMenu from './services/ContextMenu'
+import { buildFolderPath, Folder } from './Models/ConfigPathes'
+import FileOperationsService from './services/FileOperationsService'
 
 ipcMain.on(Channel.LOAD_URL, (evt, server) => {
-    configService.writeData('server', server)
-    TabsController.currentTab().webContents.loadURL(`${configService.baseUrl()}/main.php`)
+    ConfigService.writeData('server', server)
+    TabsController.currentTab().webContents.loadURL(`${ConfigService.getSettings().baseUrl}/main.php`)
     TabsController.mainWindow?.webContents.setZoomFactor(0.9)
 })
 
@@ -53,7 +54,7 @@ function createNewTab(url: string, id: string) {
         TabsController.mainWindow?.webContents.send(Channel.FINISH_LOAD_URL, tabId, title)
         TabsController.mainWindow?.webContents.send(Channel.URL, browserView.webContents.getURL(), tabId)
     })
-    if(configService.windowOpenNewTab()) {
+    if(ConfigService.getSettings().windowOpenNewTab) {
         browserView.webContents.setWindowOpenHandler(({ url }) => {
             TabsController.mainWindow?.webContents.send(Channel.NEW_TAB, url)
             return {
@@ -109,19 +110,19 @@ ipcMain.on(Channel.UPDATE_APPLICATION, () => {
 ipcMain.handle('LoadSetItems', async(evt, args: [string]) => {
     const SetRequests = {
         allItems: {
-            url: `${configService.baseUrl()}/user_iframe.php?group=2`,
+            url: `${ConfigService.getSettings().baseUrl}/user_iframe.php?group=2`,
             script: 'art_alt'
         },
         wearedItems: {
-            url: `${configService.baseUrl()}/user.php`,
+            url: `${ConfigService.getSettings().baseUrl}/user.php`,
             script: 'art_alt'
         },
         allPotions: {
-            url: `${configService.baseUrl()}/user_iframe.php?group=1`,
+            url: `${ConfigService.getSettings().baseUrl}/user_iframe.php?group=1`,
             script: 'art_alt'
         },
         otherItems: {
-            url: `${configService.baseUrl()}/user_iframe.php?group=3`,
+            url: `${ConfigService.getSettings().baseUrl}/user_iframe.php?group=3`,
             script: 'art_alt'
         }
     }
@@ -142,8 +143,14 @@ ipcMain.on(Channel.FIND_CHARACTER, (event, nick) => {
     const userInfoBrowserWindow = createWindowAndLoad(WindowType.USER_INFO)
     // eslint-disable-next-line @typescript-eslint/no-empty-function
     setupCloseLogic(userInfoBrowserWindow, WindowType.USER_INFO, () => {})
-    userInfoBrowserWindow.webContents.loadURL(`${configService.baseUrl()}/user_info.php?nick=${nick}`)
+    userInfoBrowserWindow.webContents.loadURL(`${getMainBaseUrl()}/user_info.php?nick=${nick}`)
 })
+
+function getMainBaseUrl(): string {
+    const mainUrlString = TabsController.getMain().webContents.getURL()
+    const mainUrl = new URL(mainUrlString)
+    return mainUrl.origin
+}
 
 async function fetch(request: { url: string; script: string }) {
     const bw = new BrowserView()
@@ -165,10 +172,8 @@ ipcMain.on(Channel.TAKE_SCREENSHOT, async() => {
     }
     screenIsMaking = true
     TabsController.mainWindow?.webContents.send(Channel.OPEN_WINDOW, WindowType.SCREENSHOT, true)
-    const basePath = app.getPath('userData') + '/screens'
-    if(!fs.existsSync(basePath)) {
-        fs.mkdirSync(basePath)
-    }
+    const basePath = buildFolderPath(Folder.SCREENS)
+    FileOperationsService.checkFolder(basePath)
     const page = await TabsController.mainWindowContainer?.browserView?.webContents.capturePage()
     if(!page) {
         TabsController.mainWindow?.webContents.send(Channel.OPEN_WINDOW, WindowType.SCREENSHOT, false)
@@ -181,7 +186,7 @@ ipcMain.on(Channel.TAKE_SCREENSHOT, async() => {
     })
     const png = resized.toPNG()
     const path = `${basePath}/${new Date().toLocaleString().replaceAll(' ', '').replaceAll('/', '.').replaceAll(':', '_')}.png`
-    fs.writeFile(path, png, () => {
+    FileOperationsService.writeFile(path, png, () => {
         TabsController.mainWindow?.webContents.send(Channel.OPEN_WINDOW, WindowType.SCREENSHOT, false)
         screenIsMaking = false
     })
@@ -191,7 +196,7 @@ ipcMain.on(Channel.FIND_EFFECTS, (event, nick) => {
     const effetsInfoBrowserWindow = createWindowAndLoad(WindowType.USER_EFFECTS)
     // eslint-disable-next-line @typescript-eslint/no-empty-function
     setupCloseLogic(effetsInfoBrowserWindow, WindowType.USER_EFFECTS, () => {})
-    effetsInfoBrowserWindow.webContents.loadURL(`${configService.baseUrl()}/effect_info.php?nick=${nick}`)
+    effetsInfoBrowserWindow.webContents.loadURL(`${getMainBaseUrl()}/effect_info.php?nick=${nick}`)
 })
 
 ipcMain.on(Channel.FOOD_CHANGED, () => {
@@ -208,10 +213,16 @@ ipcMain.handle(Channel.GET_ID, async() => {
 
 ipcMain.on(Channel.SWITCH_MODE, () => {
     favouriteListBrowserView?.webContents.send(Channel.SWITCH_MODE)
+    foodWindow?.webContents.send(Channel.SWITCH_MODE)
+    notesWindow?.webContents.send(Channel.SWITCH_MODE)
 })
 
 ipcMain.handle(Channel.GET_URL, () => {
     return TabsController.currentTab().webContents.getURL()
+})
+
+ipcMain.handle(Channel.GET_MAIN_URL, () => {
+    return getMainBaseUrl()
 })
 
 ipcMain.handle(Channel.GET_TITLE, () => {
@@ -231,8 +242,8 @@ ipcMain.on(Channel.NEW_TAB_WITH_URL, (evt, url) => {
 
 ipcMain.on(Channel.SWITCH_NEXT_TAB, () => {
     const currentTabIndex = TabsController.tabsList.indexOf(TabsController.current_tab_id)
-    if(currentTabIndex != -1 && TabsController.tabsList.length - 1 != currentTabIndex) {
-        const nextIndex = currentTabIndex + 1
+    if(currentTabIndex != -1 && TabsController.tabsList.length > 1) {
+        const nextIndex = TabsController.tabsList.length - 1 != currentTabIndex ? currentTabIndex + 1 : 0
         const nextTabId = TabsController.tabsList[nextIndex]
         TabsController.mainWindow?.webContents.send(Channel.MAKE_ACTIVE, nextTabId)
     }
