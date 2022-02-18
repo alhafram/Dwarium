@@ -99,11 +99,11 @@
 }
 
 .basket {
-    @apply ml-5 w-14 h-14 mt-1 flex rounded-full border-4 border-dashed border-lightMediumGrey dark:border-secondaryDark bg-light dark:bg-secondaryBlack;
+    @apply ml-5 mt-1 flex h-14 w-14 rounded-full border-4 border-dashed border-lightMediumGrey bg-light dark:border-secondaryDark dark:bg-secondaryBlack;
 }
 
 .basketActive {
-    @apply ml-5 w-14 h-14 mt-1 flex rounded-full border-4 border-dashed border-secondaryLightDark dark:border-secondaryLight bg-lightMediumGrey dark:bg-secondaryDark;
+    @apply ml-5 mt-1 flex h-14 w-14 rounded-full border-4 border-dashed border-secondaryLightDark bg-lightMediumGrey dark:border-secondaryLight dark:bg-secondaryDark;
 }
 
 .basketIcon {
