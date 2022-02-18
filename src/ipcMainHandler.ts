@@ -143,8 +143,14 @@ ipcMain.on(Channel.FIND_CHARACTER, (event, nick) => {
     const userInfoBrowserWindow = createWindowAndLoad(WindowType.USER_INFO)
     // eslint-disable-next-line @typescript-eslint/no-empty-function
     setupCloseLogic(userInfoBrowserWindow, WindowType.USER_INFO, () => {})
-    userInfoBrowserWindow.webContents.loadURL(`${ConfigService.getSettings().baseUrl}/user_info.php?nick=${nick}`)
+    userInfoBrowserWindow.webContents.loadURL(`${getMainBaseUrl()}/user_info.php?nick=${nick}`)
 })
+
+function getMainBaseUrl(): string {
+    const mainUrlString = TabsController.getMain().webContents.getURL()
+    const mainUrl = new URL(mainUrlString)
+    return mainUrl.origin
+}
 
 async function fetch(request: { url: string; script: string }) {
     const bw = new BrowserView()
@@ -190,7 +196,7 @@ ipcMain.on(Channel.FIND_EFFECTS, (event, nick) => {
     const effetsInfoBrowserWindow = createWindowAndLoad(WindowType.USER_EFFECTS)
     // eslint-disable-next-line @typescript-eslint/no-empty-function
     setupCloseLogic(effetsInfoBrowserWindow, WindowType.USER_EFFECTS, () => {})
-    effetsInfoBrowserWindow.webContents.loadURL(`${ConfigService.getSettings().baseUrl}/effect_info.php?nick=${nick}`)
+    effetsInfoBrowserWindow.webContents.loadURL(`${getMainBaseUrl()}/effect_info.php?nick=${nick}`)
 })
 
 ipcMain.on(Channel.FOOD_CHANGED, () => {
@@ -213,6 +219,10 @@ ipcMain.on(Channel.SWITCH_MODE, () => {
 
 ipcMain.handle(Channel.GET_URL, () => {
     return TabsController.currentTab().webContents.getURL()
+})
+
+ipcMain.handle(Channel.GET_MAIN_URL, () => {
+    return getMainBaseUrl()
 })
 
 ipcMain.handle(Channel.GET_TITLE, () => {

@@ -30,6 +30,7 @@ export enum Channel {
     CHAT_SETTINGS_CHANGED = 'chatSettingsChanged',
     GET_ID = 'getId',
     GET_URL = 'getURL',
+    GET_MAIN_URL = 'getMainURL',
     GET_TITLE = 'getTitle',
     FAVOURITE_LIST = 'favouriteList',
     SWITCH_MODE = 'switchMode',

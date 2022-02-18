@@ -142,12 +142,13 @@ window.addEventListener('DOMContentLoaded', async () => {
     Elements.updateApplicationButton().addEventListener('click', () => {
         ipcRenderer.send(Channel.UPDATE_APPLICATION)
     })
-    Elements.userInfoButton().addEventListener('click', () => {
+    Elements.userInfoButton().addEventListener('click', async () => {
         const nick = Elements.nicknameInput().value
         if(nick.length != 0) {
             if(ConfigService.getSettings().windowOpenNewTab) {
                 const tab = createNewTab()
-                ipcRenderer.send(Channel.NEW_TAB, tab.id, `${ConfigService.getSettings().baseUrl}/user_info.php?nick=${nick}`)
+                const baseMainUrl = await ipcRenderer.invoke(Channel.GET_MAIN_URL)
+                ipcRenderer.send(Channel.NEW_TAB, tab.id, `${baseMainUrl}/user_info.php?nick=${nick}`)
             } else {
                 ipcRenderer.send(Channel.FIND_CHARACTER, nick)
             }
@@ -164,12 +165,13 @@ window.addEventListener('DOMContentLoaded', async () => {
             ipcRenderer.send(Channel.USER_PRV, nick)
         }
     }
-    Elements.findEffectsBox().onclick = function() {
+    Elements.findEffectsBox().onclick = async function() {
         const nick = Elements.nicknameInput().value
         if(nick.length > 0) {
             if(ConfigService.getSettings().windowOpenNewTab) {
                 const tab = createNewTab()
-                ipcRenderer.send(Channel.NEW_TAB, tab.id, `${ConfigService.getSettings().baseUrl}/effect_info.php?nick=${nick}`)
+                const baseMainUrl = await ipcRenderer.invoke(Channel.GET_MAIN_URL)
+                ipcRenderer.send(Channel.NEW_TAB, tab.id, `${baseMainUrl}/effect_info.php?nick=${nick}`)
             } else {
                 ipcRenderer.send(Channel.FIND_EFFECTS, nick)
             }
