@@ -1,34 +1,34 @@
-import NotesService from "../../services/NotesService"
-import { NotesWindowActions } from "./Actions"
-import { Elements } from "./Elements"
-import { NotesWindowState, Note } from "./NotesWindowState"
+import NotesService from '../../services/NotesService'
+import { NotesWindowActions } from './Actions'
+import { Elements } from './Elements'
+import { NotesWindowState, Note } from './NotesWindowState'
 import '../Common/Utils'
-import { generateRandomId } from "../Utils"
+import { generateRandomId } from '../Utils'
 
 function saveNote(note: any) {
     NotesService.writeData(note.id, JSON.stringify(note))
 }
 
 function addNewNote(): Note {
-    let id = generateNoteId()
-    let newSet: Note = {
+    const id = generateNoteId()
+    const newSet: Note = {
         id: id,
         text: '',
-        date: (new Date()).toLocaleString()
+        date: new Date().toLocaleString()
     }
     return newSet
 }
 
-export default async function reduce(state: NotesWindowState, action: NotesWindowActions, data ? : any): Promise < NotesWindowState > {
+export default async function reduce(state: NotesWindowState, action: NotesWindowActions, data?: any): Promise<NotesWindowState> {
     let notes: Note[] = []
-    switch(action) {
+    switch (action) {
         case NotesWindowActions.LOAD_CONTENT:
             notes = NotesService.notes() as Note[]
             return {
                 ...state,
                 notes: notes
             }
-        case NotesWindowActions.CREATE_NEW_NOTE:
+        case NotesWindowActions.CREATE_NEW_NOTE: {
             Elements.editorTextarea().value = ''
             const newNote = addNewNote()
             saveNote(newNote)
@@ -39,7 +39,8 @@ export default async function reduce(state: NotesWindowState, action: NotesWindo
                 notes: notes,
                 currentNote: newNote
             }
-        case NotesWindowActions.SAVE_NOTE:
+        }
+        case NotesWindowActions.SAVE_NOTE: {
             let note = state.currentNote
             notes = state.notes
             if(note) {
@@ -49,7 +50,7 @@ export default async function reduce(state: NotesWindowState, action: NotesWindo
                 note = {
                     id: generateNoteId(),
                     text: Elements.editorTextarea().value,
-                    date: (new Date()).toLocaleString()
+                    date: new Date().toLocaleString()
                 }
                 notes.push(note)
             }
@@ -59,11 +60,12 @@ export default async function reduce(state: NotesWindowState, action: NotesWindo
                 currentNote: note,
                 notes: notes
             }
-        case NotesWindowActions.REMOVE_NOTE:
+        }
+        case NotesWindowActions.REMOVE_NOTE: {
             Elements.editorTextarea().value = ''
-            let deletedNoteBox = data as HTMLDivElement | null
+            const deletedNoteBox = data as HTMLDivElement | null
             notes = state.notes
-            const deletedNote = notes.find(note => note.id == deletedNoteBox?.id)
+            const deletedNote = notes.find((note) => note.id == deletedNoteBox?.id)
             if(deletedNote) {
                 const isCurrentNote = deletedNote == state.currentNote
                 const deletedNoteId = deletedNote?.id
@@ -80,12 +82,14 @@ export default async function reduce(state: NotesWindowState, action: NotesWindo
                     ...state
                 }
             }
-        case NotesWindowActions.SELECT_NOTE:
+        }
+        case NotesWindowActions.SELECT_NOTE: {
             const selectedNote = data as Note
             return {
                 ...state,
                 currentNote: selectedNote
             }
+        }
     }
 }
 

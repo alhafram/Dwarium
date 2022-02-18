@@ -1,13 +1,15 @@
-import { NotesWindowActions } from "./Actions"
-import { Elements } from "./Elements"
-import { Note, NotesWindowState } from "./NotesWindowState"
+import { NotesWindowActions } from './Actions'
+import { Elements } from './Elements'
+import { Note, NotesWindowState } from './NotesWindowState'
 import dispatch from './preload'
 
 let dragableNote: HTMLElement | null = null
 
-function createNoteElement(note: Note, isActive: boolean = false) {
+function createNoteElement(note: Note, isActive = false) {
     const newNoteString = `
-    <div id="${note.id}" draggable="true" class="hover:bg-lightMediumGrey dark:hover:bg-secondaryDark mt-3 cursor-pointer w-40 h-14 ${isActive ? 'bg-lightMediumGrey dark:bg-secondaryDark border-4 border-dashed border-secondaryLightDark dark:border-secondaryLight' : 'bg-light dark:bg-secondaryBlack' } rounded-3xl">
+    <div id="${note.id}" draggable="true" class="hover:bg-lightMediumGrey dark:hover:bg-secondaryDark mt-3 cursor-pointer w-40 h-14 ${
+    isActive ? 'bg-lightMediumGrey dark:bg-secondaryDark border-4 border-dashed border-secondaryLightDark dark:border-secondaryLight' : 'bg-light dark:bg-secondaryBlack'
+} rounded-3xl">
         <p class="pl-2 pt-2 text-secondaryLightDark dark:text-secondaryLight text-ellipsis whitespace-nowrap overflow-hidden font-montserrat font-extrabold text-xss">${note.text}</p>
         <p class="pl-2 text-secondaryLightDark dark:text-secondaryLight font-montserrat font-light text-xs">${note.date}</p>
     </div>`
@@ -35,10 +37,12 @@ function createNoteElement(note: Note, isActive: boolean = false) {
 }
 
 function render(state: NotesWindowState): void {
-    Array.from(Elements.notesDiv().children).filter(element => element.id.startsWith('note_')).forEach(element => Elements.notesDiv().removeChild(element))
+    Array.from(Elements.notesDiv().children)
+        .filter((element) => element.id.startsWith('note_'))
+        .forEach((element) => Elements.notesDiv().removeChild(element))
     for(const set of state.notes) {
         const isActive = state.currentNote?.id == set.id
-        let setDiv = createNoteElement(set, isActive)
+        const setDiv = createNoteElement(set, isActive)
         if(isActive) {
             Elements.editorTextarea().value = set.text
         }
@@ -50,7 +54,4 @@ function getDragableNote() {
     return dragableNote
 }
 
-export {
-    render,
-    getDragableNote
-}
+export { render, getDragableNote }

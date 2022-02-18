@@ -6,7 +6,7 @@ import reduce from './Reducer'
 import { handleDragOver } from '../Common/EventBuilder'
 import { render, getDragableNote } from './Renderer'
 
-var initialState: NotesWindowState = {
+let initialState: NotesWindowState = {
     notes: [],
     currentNote: null
 }

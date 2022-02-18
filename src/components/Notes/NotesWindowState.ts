@@ -1,10 +1,10 @@
 export type Note = {
-    id: string,
-    text: string,
+    id: string
+    text: string
     date: string
 }
 
 export type NotesWindowState = {
-    notes: Note[],
+    notes: Note[]
     currentNote: Note | null
 }
