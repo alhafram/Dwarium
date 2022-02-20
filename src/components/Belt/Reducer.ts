@@ -140,7 +140,6 @@ export default async function reduce(state: BeltDressingWindowState, action: Bel
                 currentEquipedItems: currentEquipedItems
             }
         case BeltDressingWindowActions.EQUIP_DND:
-            console.log(data)
             const equipedItemBox1 = data[0] as HTMLDivElement
             const equipedStaticItemBox = data[1] as HTMLDivElement
             const itemId1 = equipedItemBox1.getAttribute('itemid')

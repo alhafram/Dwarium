@@ -144,7 +144,6 @@ function setupFilters() {
 }
 
 export default async function dispatch(action: BeltDressingWindowActions, data?: any) {
-    console.log(BeltDressingWindowActions[action])
     initialState = await reduce(initialState, action, data)
     render()
 }
