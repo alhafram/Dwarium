@@ -113,3 +113,34 @@
 .basketIconActive {
     @apply fill-secondaryLightDark dark:fill-secondaryLight;
 }
+
+.potionBox {
+    @apply mt-1 flex h-70px w-70px rounded-30px border-4 border-dashed border-lightMediumGrey bg-light dark:border-secondaryDark dark:bg-secondaryBlack;
+}
+
+.filterLabel {
+    @apply absolute w-10 h-10 rounded-full cursor-pointer;
+}
+
+.filterLabel:before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 0;
+    left: 0;
+    width: 30px;
+    height: 30px;
+    margin: 0 auto;
+    transform: translateY(-50%);
+    border-radius: 50%;
+    transition: 0.2s ease width, 0.2s ease height;
+}
+
+#i_gray:checked+.filterLabel:before,
+#i_green:checked+.filterLabel:before,
+#i_blue:checked+.filterLabel:before,
+#i_purple:checked+.filterLabel:before,
+#i_red:checked+.filterLabel:before {
+    width: 0;
+    height: 0;
+}

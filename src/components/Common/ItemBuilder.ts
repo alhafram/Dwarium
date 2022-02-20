@@ -3,7 +3,7 @@ import ConfigService from '../../services/ConfigService'
 
 export default function convertItemIntoDiv(item: InventoryItem, xmlFoodItem: Element | undefined): HTMLDivElement {
     const url = item.image.includes(ConfigService.getSettings().baseUrl) ? item.image : `${ConfigService.getSettings().baseUrl}/${item.image}`
-    const count = xmlFoodItem?.getAttribute('cnt')
+    const count = xmlFoodItem?.getAttribute('cnt') ?? item.cnt
     let counterElement = ''
     if(count) {
         counterElement = parseInt(count) > 1 ? `<p class=" h-5 w-12 border text-secondaryLightDark dark:text-secondaryLight font-extrabold font-montserrat text-xs leading-normal bg-white dark:bg-dark mt-auto ml-auto mr-auto rounded-full border-lightMediumGrey dark:border-secondaryDark text-center">${count}</p>` : ''
@@ -16,5 +16,7 @@ export default function convertItemIntoDiv(item: InventoryItem, xmlFoodItem: Ele
     `
     const parser = new DOMParser()
     const element = parser.parseFromString(html, 'text/html')
-    return element.body.firstElementChild as HTMLDivElement
+    const itemDiv = element.body.firstElementChild as HTMLDivElement
+    itemDiv.setAttribute('quality', item.quality)
+    return itemDiv
 }

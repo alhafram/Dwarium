@@ -32,6 +32,17 @@ module.exports = {
             'dividerColor': '#D5D4D8',
             'dividerColorDark': '#696969',
             
+            'greenFilderBorder': '#80B773',
+            'greenFilderBg': '#C9F3BF',
+
+            'blueFilderBorder': '#738EB7',
+            'blueFilderBg': '#BFDAF3',
+
+            'purpleFilterBorder': '#9973B7',
+            'purpleFilterBg': '#D6BFF3',
+
+            'redFilterBorder': '#B77373',
+            'redFilterBg': '#F3BFBF'
         },
         extend: {
             fontSize: {
@@ -39,7 +50,9 @@ module.exports = {
             },
             spacing: {
                 '5px': '5px',
-                '25px': '25px'
+                '25px': '25px',
+                '70px': '70px',
+                'inherit': 'inherit'
             },
             fontFamily: {
                 montserrat: ['Montserrat']
@@ -49,6 +62,9 @@ module.exports = {
             },
             gridTemplateColumns: {
                 'auto-fit': 'repeat(auto-fill, minmax(80px, 1fr))'
+            },
+            borderRadius: {
+                '30px': '30px'
             },
             backgroundImage: { }
         },
