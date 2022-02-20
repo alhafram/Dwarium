@@ -1,28 +1,28 @@
-import { InventoryItem } from "../../Models/InventoryItem"
-import Utils from "../Common/Utils"
-import { BeltDressingWindowActions } from "./Actions"
-import { BeltDressingWindowState, BeltDressingSet, BeltDressingSetPotion } from "./BeltDressingWindowState"
-import { Elements } from "./Elements"
+import { InventoryItem } from '../../Models/InventoryItem'
+import Utils from '../Common/Utils'
+import { BeltDressingWindowActions } from './Actions'
+import { BeltDressingWindowState, BeltDressingSet, BeltDressingSetPotion } from './BeltDressingWindowState'
+import { Elements } from './Elements'
 import SimpleAlt from '../../Scripts/simple_alt'
-import { DressingFilterColor, generateRandomId } from "../Utils"
+import { DressingFilterColor, generateRandomId } from '../Utils'
 import Requests from './Requests'
 
 type EquipedPotion = {
-    id: string,
-    title: string,
-    slot: number,
-    variant: Boolean,
+    id: string
+    title: string
+    slot: number
+    variant: boolean
     image: string
 }
 
 function parsePotions(items: InventoryItem[]) {
     let potions = Object.values(items)
-    potions = potions.filter(item => item.type_id == '7' && item.kind_id != '65')
+    potions = potions.filter((item) => item.type_id == '7' && item.kind_id != '65')
     return potions
 }
 
 function generateSetPotions(items: InventoryItem[]): BeltDressingSetPotion[] {
-    return items.map(item => {
+    return items.map((item) => {
         return {
             item: item.title,
             slot: item.slot!,
@@ -61,11 +61,13 @@ function generateSetId() {
 
 async function parseEquipedPotions() {
     const equipedPotionsReq = await Requests.getEquipedPotions()
-    let equipedPotions: EquipedPotion[] = equipedPotionsReq.flat().filter((potion: EquipedPotion) => potion)
-    for(let item of equipedPotions) {
-        let res = await Requests.fetchItem(item.id!) as string
-        let doc = res.toDocument() as Document
-        let title = doc.querySelector('body > table > tbody > tr > td > table > tbody > tr:nth-child(2) > td > div > div.bg-l > div > div > div > div > div > div > div > table:nth-child(1) > tbody > tr:nth-child(2) > td.tbl-usi_bg > table > tbody > tr:nth-child(1) > td:nth-child(3) > table > tbody > tr > td:nth-child(2) > h1 > b')?.textContent
+    const equipedPotions: EquipedPotion[] = equipedPotionsReq.flat().filter((potion: EquipedPotion) => potion)
+    for(const item of equipedPotions) {
+        const res = (await Requests.fetchItem(item.id!)) as string
+        const doc = res.toDocument() as Document
+        const title = doc.querySelector(
+            'body > table > tbody > tr > td > table > tbody > tr:nth-child(2) > td > div > div.bg-l > div > div > div > div > div > div > div > table:nth-child(1) > tbody > tr:nth-child(2) > td.tbl-usi_bg > table > tbody > tr:nth-child(1) > td:nth-child(3) > table > tbody > tr > td:nth-child(2) > h1 > b'
+        )?.textContent
         item.title = title ?? ''
     }
     return equipedPotions
@@ -75,19 +77,19 @@ export default async function reduce(state: BeltDressingWindowState, action: Bel
     let newFilters: DressingFilterColor[] = []
     let sets = state.sets
     let currentEquipedItems = state.currentEquipedItems
-    switch(action) {
+    switch (action) {
         case BeltDressingWindowActions.LOAD_CONTENT:
             const [slots, variants] = await Requests.getSlots()
-            let items = await Requests.loadItemsData(['allPotions'])
+            const items = await Requests.loadItemsData(['allPotions'])
             let allItems = parsePotions(items.allPotions)
             // @ts-ignore
             allItems = allItems.sort((a, b) => a.quality - b.quality)
             const equipedPotionsAltRes = await Requests.getEquipedPotionsAlt()
             SimpleAlt.setupArtAlt(Object.assign(items.allPotions, equipedPotionsAltRes))
-            
-            const userId = await Utils.getUserId() as number
+
+            const userId = (await Utils.getUserId()) as number
             if(!userId) {
-                console.log("Не найден user id пользователя, попробуйте авторизоваться и заново открыть автопоедалку!")
+                console.log('Не найден user id пользователя, попробуйте авторизоваться и заново открыть автопоедалку!')
                 return state
             }
             const userConfig = Utils.getUserConfig(userId)
@@ -96,14 +98,16 @@ export default async function reduce(state: BeltDressingWindowState, action: Bel
             let hasWarning = false
             if(!data) {
                 const equipedPotions = await parseEquipedPotions()
-                currentEquipedItems = equipedPotions.map(potion => {
-                    let foundItem = allItems.find(item => item.title == potion.title && item.picture!.includes(potion.image))
-                    if(foundItem) {
-                        return copyInventoryItemWithoutBox(foundItem, potion)
-                    } else {
-                        hasWarning = true
-                    }
-                }).filter(item => item !== undefined) as InventoryItem[]
+                currentEquipedItems = equipedPotions
+                    .map((potion) => {
+                        const foundItem = allItems.find((item) => item.title == potion.title && item.picture!.includes(potion.image))
+                        if(foundItem) {
+                            return copyInventoryItemWithoutBox(foundItem, potion)
+                        } else {
+                            hasWarning = true
+                        }
+                    })
+                    .filter((item) => item !== undefined) as InventoryItem[]
             }
             return {
                 ...state,
@@ -118,10 +122,10 @@ export default async function reduce(state: BeltDressingWindowState, action: Bel
         case BeltDressingWindowActions.EQUIP:
             const equipedItemBox = data as HTMLDivElement
             const itemId = equipedItemBox.getAttribute('itemid')
-            let equipedItem = state.allItems.find(item => item.id == itemId)
-            const emptyBox = Array.from(Elements.staticBoxes()).find(box => box.childElementCount == 0)
+            let equipedItem = state.allItems.find((item) => item.id == itemId)
+            const emptyBox = Array.from(Elements.staticBoxes()).find((box) => box.childElementCount == 0)
             if(!equipedItem) {
-                alert("ШО ТО НЕ ТАК!!! Напиши в группу")
+                alert('ШО ТО НЕ ТАК!!! Напиши в группу')
                 return {
                     ...state
                 }
@@ -140,9 +144,9 @@ export default async function reduce(state: BeltDressingWindowState, action: Bel
             const equipedItemBox1 = data[0] as HTMLDivElement
             const equipedStaticItemBox = data[1] as HTMLDivElement
             const itemId1 = equipedItemBox1.getAttribute('itemid')
-            let equipedItem1 = state.allItems.find(item => item.id == itemId1)
+            let equipedItem1 = state.allItems.find((item) => item.id == itemId1)
             if(!equipedItem1) {
-                alert("ШО ТО НЕ ТАК!!! Напиши в группу")
+                alert('ШО ТО НЕ ТАК!!! Напиши в группу')
                 return {
                     ...state
                 }
@@ -155,9 +159,9 @@ export default async function reduce(state: BeltDressingWindowState, action: Bel
             }
         case BeltDressingWindowActions.UNEQUIP_ITEM:
             const unequipedItemBox = data as HTMLDivElement
-            let variant = unequipedItemBox.getAttribute('variant')
-            let slot = unequipedItemBox.getAttribute('slot')
-            const unequipedItem = currentEquipedItems.find(item => item.variant == variant && item.slot == slot)
+            const variant = unequipedItemBox.getAttribute('variant')
+            const slot = unequipedItemBox.getAttribute('slot')
+            const unequipedItem = currentEquipedItems.find((item) => item.variant == variant && item.slot == slot)
             if(!unequipedItem) {
                 return {
                     ...state
@@ -217,15 +221,15 @@ export default async function reduce(state: BeltDressingWindowState, action: Bel
                 sets: sets
             }
         case BeltDressingWindowActions.REMOVE_SET:
-            let deletedSetBox = data as HTMLDivElement | null
-            const deletedSet = sets.find(set => set.id == deletedSetBox?.id)
+            const deletedSetBox = data as HTMLDivElement | null
+            const deletedSet = sets.find((set) => set.id == deletedSetBox?.id)
             if(deletedSet) {
                 const isCurrentSet = deletedSet == state.currentSet
                 sets = sets.removeItem(deletedSet)
-                
+
                 state.userConfig!.beltSets = sets
                 Utils.save(state.userConfig!)
-                
+
                 currentEquipedItems = isCurrentSet ? [] : state.currentEquipedItems
                 const currentSet = isCurrentSet ? null : state.currentSet
                 return {
@@ -241,15 +245,17 @@ export default async function reduce(state: BeltDressingWindowState, action: Bel
             }
         case BeltDressingWindowActions.SELECT_SET:
             const selectedSet = data as BeltDressingSet
-            let items1 = selectedSet.potions.map(potion => {
-                let inventoryPotion = state.allItems.find(item => item.title == potion.item && item.picture!.includes(potion.image))
-                inventoryPotion = Object.assign({}, inventoryPotion)
-                if(inventoryPotion.title) {
-                    return copyInventoryItemWithoutBox(inventoryPotion, potion)
-                } else {
-                    return undefined
-                }
-            }).filter(item => item != undefined) as InventoryItem[]
+            const items1 = selectedSet.potions
+                .map((potion) => {
+                    let inventoryPotion = state.allItems.find((item) => item.title == potion.item && item.picture!.includes(potion.image))
+                    inventoryPotion = Object.assign({}, inventoryPotion)
+                    if(inventoryPotion.title) {
+                        return copyInventoryItemWithoutBox(inventoryPotion, potion)
+                    } else {
+                        return undefined
+                    }
+                })
+                .filter((item) => item != undefined) as InventoryItem[]
             return {
                 ...state,
                 currentSet: selectedSet,
@@ -267,10 +273,10 @@ export default async function reduce(state: BeltDressingWindowState, action: Bel
             disableButtons(true)
             const equipedPotions = await parseEquipedPotions()
             let needToUnequip: EquipedPotion[] = []
-            let needToEquip: InventoryItem[] = []
-            state.currentSet.potions.forEach(setPotion => {
-                let setPotionInEquipedPotions = equipedPotions.find(a => a.slot.toString() == setPotion.slot && a.variant == ((setPotion.variant == null) ? false : true))
-                var needToEquipPotion = state.allItems.find(item => item.title == setPotion.item && item.picture!.includes(setPotion.image))
+            const needToEquip: InventoryItem[] = []
+            state.currentSet.potions.forEach((setPotion) => {
+                const setPotionInEquipedPotions = equipedPotions.find((a) => a.slot.toString() == setPotion.slot && a.variant == (setPotion.variant == null ? false : true))
+                let needToEquipPotion = state.allItems.find((item) => item.title == setPotion.item && item.picture!.includes(setPotion.image))
                 if(setPotionInEquipedPotions && (setPotion.item != setPotionInEquipedPotions.title || !needToEquipPotion?.picture!.includes(setPotionInEquipedPotions.image))) {
                     needToUnequip.push(setPotionInEquipedPotions)
                     if(needToEquipPotion) {
@@ -296,20 +302,20 @@ export default async function reduce(state: BeltDressingWindowState, action: Bel
                 return state
             }
             while(needToUnequip.length != 0) {
-                let item = needToUnequip[0]
+                const item = needToUnequip[0]
                 await Requests.unequipRequest(item.id)
                 await Requests.updateSlot(item.slot.toString(), item.variant ? 'variantItems' : 'items')
                 needToUnequip.removeItem(item)
             }
             while(needToEquip.length != 0) {
-                let item = needToEquip[0]
+                const item = needToEquip[0]
                 await Requests.equipPotionRequest(item.id, item.slot!, item.variant ? '1' : '0')
                 await Requests.updateSlot(item.slot!, item.variant ? 'variantItems' : 'items')
                 needToEquip.removeItem(item)
             }
             state.allItems = []
             await Requests.refreshLeftMenu()
-            await new Promise<void>(resolve => {
+            await new Promise<void>((resolve) => {
                 setTimeout(() => {
                     resolve()
                 }, 1000)

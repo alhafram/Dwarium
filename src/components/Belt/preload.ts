@@ -9,13 +9,13 @@ import reduce from './Reducer'
 import { DressingFilterColor, generateRandomId, getFilterColor } from '../Utils'
 
 function renderSlots(slotsCount: number, variantSlots: number) {
-    var currentVariantSlot = 1
+    let currentVariantSlot = 1
     for(let i = 0; i < slotsCount; i++) {
-        let potionRowDiv = document.createElement('div')
+        const potionRowDiv = document.createElement('div')
         potionRowDiv.style.display = 'flex'
         potionRowDiv.style.marginTop = '10px'
-        
-        let divPotionString = `<button class="potionBox">
+
+        const divPotionString = `<button class="potionBox">
             <svg class="m-auto"  width="28" height="38" viewBox="0 0 28 38" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path class="foodBoxBg" d="M3.88618 37.375H24.1138C24.2451 37.1636 28 33.7382 28 27.6133C28 21.9485 24.5684 16.8489 19.3846 14.6894V11.4634H21.5385V4.93164H19.3846V0.625H8.61539V4.93164H6.46154V11.4634H8.61539V14.6894C3.43157 16.8489 0 21.9485 0 27.6133C0 33.7242 3.75913 37.17 3.88618 37.375ZM10.7692 2.77832H17.2308V4.93164H10.7692V2.77832ZM10.0513 16.4438L10.7692 16.19V9.31006H8.61539V7.08496H19.3846V9.31006H17.2308V16.19L17.9487 16.4438C22.6726 18.1129 25.8462 22.6015 25.8462 27.6133C25.8462 30.4176 24.8879 33.1009 23.1381 35.2217H4.86186C3.11214 33.1009 2.15385 30.4176 2.15385 27.6133C2.15385 22.6015 5.3274 18.1129 10.0513 16.4438Z" />
                 <path class="foodBoxBg" d="M5.91599 33.0684H22.0839L22.3949 32.5309C23.2315 31.0849 23.6922 29.3385 23.6922 27.6133C23.6922 24.4739 22.2218 22.5454 22.0839 22.23H14.8918C14.447 20.9767 13.25 20.0767 11.8461 20.0767C10.4422 20.0767 9.2452 20.9767 8.80041 22.23H5.91599C5.78614 22.5269 4.30762 24.4868 4.30762 27.6133C4.30762 30.8015 5.80157 32.8034 5.91599 33.0684ZM11.8461 22.23C12.4398 22.23 12.923 22.7131 12.923 23.3066C12.923 23.9002 12.4398 24.3833 11.8461 24.3833C11.2524 24.3833 10.7692 23.9002 10.7692 23.3066C10.7692 22.7131 11.2524 22.23 11.8461 22.23ZM7.18698 24.3833H8.80041C9.2452 25.6366 10.4422 26.5366 11.8461 26.5366C13.25 26.5366 14.447 25.6366 14.8918 24.3833H20.8129C21.2891 25.3871 21.5384 26.492 21.5384 27.6133C21.5384 28.7567 21.2826 29.9079 20.8109 30.915H7.18895C6.71723 29.9079 6.46146 28.7567 6.46146 27.6133C6.46146 26.492 6.71078 25.3871 7.18698 24.3833Z" />
@@ -32,9 +32,9 @@ function renderSlots(slotsCount: number, variantSlots: number) {
             setupPotionListeners(divPotion)
             potionRowDiv.appendChild(divPotion)
         }
-        for(var j = 0; j < 2; j++) {
+        for(let j = 0; j < 2; j++) {
             if(currentVariantSlot <= variantSlots) {
-                let divPotionString = `<button class="potionBox ml-5">
+                const divPotionString = `<button class="potionBox ml-5">
                     <svg class="m-auto"  width="28" height="38" viewBox="0 0 28 38" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path class="foodBoxBg" d="M3.88618 37.375H24.1138C24.2451 37.1636 28 33.7382 28 27.6133C28 21.9485 24.5684 16.8489 19.3846 14.6894V11.4634H21.5385V4.93164H19.3846V0.625H8.61539V4.93164H6.46154V11.4634H8.61539V14.6894C3.43157 16.8489 0 21.9485 0 27.6133C0 33.7242 3.75913 37.17 3.88618 37.375ZM10.7692 2.77832H17.2308V4.93164H10.7692V2.77832ZM10.0513 16.4438L10.7692 16.19V9.31006H8.61539V7.08496H19.3846V9.31006H17.2308V16.19L17.9487 16.4438C22.6726 18.1129 25.8462 22.6015 25.8462 27.6133C25.8462 30.4176 24.8879 33.1009 23.1381 35.2217H4.86186C3.11214 33.1009 2.15385 30.4176 2.15385 27.6133C2.15385 22.6015 5.3274 18.1129 10.0513 16.4438Z" />
                     <path class="foodBoxBg" d="M5.91599 33.0684H22.0839L22.3949 32.5309C23.2315 31.0849 23.6922 29.3385 23.6922 27.6133C23.6922 24.4739 22.2218 22.5454 22.0839 22.23H14.8918C14.447 20.9767 13.25 20.0767 11.8461 20.0767C10.4422 20.0767 9.2452 20.9767 8.80041 22.23H5.91599C5.78614 22.5269 4.30762 24.4868 4.30762 27.6133C4.30762 30.8015 5.80157 32.8034 5.91599 33.0684ZM11.8461 22.23C12.4398 22.23 12.923 22.7131 12.923 23.3066C12.923 23.9002 12.4398 24.3833 11.8461 24.3833C11.2524 24.3833 10.7692 23.9002 10.7692 23.3066C10.7692 22.7131 11.2524 22.23 11.8461 22.23ZM7.18698 24.3833H8.80041C9.2452 25.6366 10.4422 26.5366 11.8461 26.5366C13.25 26.5366 14.447 25.6366 14.8918 24.3833H20.8129C21.2891 25.3871 21.5384 26.492 21.5384 27.6133C21.5384 28.7567 21.2826 29.9079 20.8109 30.915H7.18895C6.71723 29.9079 6.46146 28.7567 6.46146 27.6133C6.46146 26.492 6.71078 25.3871 7.18698 24.3833Z" />
@@ -100,7 +100,7 @@ function setupEquipableItemEvents(item: HTMLElement) {
     setupAltEvents(item)
 }
 
-var initialState: BeltDressingWindowState = {
+let initialState: BeltDressingWindowState = {
     currentEquipedItems: [],
     slots: 0,
     variants: 0,
@@ -117,8 +117,8 @@ function generateSetId() {
 }
 
 function addNewSet(): BeltDressingSet {
-    let id = generateSetId()
-    let newSet: BeltDressingSet = {
+    const id = generateSetId()
+    const newSet: BeltDressingSet = {
         id: id,
         title: 'Default set',
         potions: [],
@@ -126,7 +126,6 @@ function addNewSet(): BeltDressingSet {
     }
     return newSet
 }
-
 
 function setupFilters() {
     for(const key of Object.values(DressingFilterColor)) {
@@ -152,59 +151,61 @@ export default async function dispatch(action: BeltDressingWindowActions, data?:
 
 let dragableSet: HTMLElement | null = null
 function createNoteElement(note: BeltDressingSet, isActive = false) {
-        const newNoteString = `
+    const newNoteString = `
         <div id="${note.id}" draggable="true" class="hover:bg-lightMediumGrey dark:hover:bg-secondaryDark mt-3 cursor-pointer w-40 h-14 ${
-        isActive ? 'bg-lightMediumGrey dark:bg-secondaryDark border-4 border-dashed border-secondaryLightDark dark:border-secondaryLight' : 'bg-light dark:bg-secondaryBlack'
-    } rounded-3xl">
+    isActive ? 'bg-lightMediumGrey dark:bg-secondaryDark border-4 border-dashed border-secondaryLightDark dark:border-secondaryLight' : 'bg-light dark:bg-secondaryBlack'
+} rounded-3xl">
             <p class="pl-2 pt-2 text-secondaryLightDark dark:text-secondaryLight text-ellipsis whitespace-nowrap overflow-hidden font-montserrat font-extrabold text-xss">${note.title}</p>
         </div>`
-        const parser = new DOMParser()
-        const newNoteDiv = parser.parseFromString(newNoteString, 'text/html').body.firstElementChild as HTMLDivElement
-        newNoteDiv.ondragstart = function() {
-            newNoteDiv.style.opacity = '0.4'
-            dragableSet = newNoteDiv
-            Elements.removeNoteDiv().classList.replace('basket', 'basketActive')
-            Elements.basketIcon().classList.replace('basketIcon', 'basketIconActive')
-        }
-        newNoteDiv.ondragend = function() {
-            newNoteDiv.style.opacity = '1'
-            dragableSet = null
-            Elements.removeNoteDiv().classList.replace('basketActive', 'basket')
-            Elements.basketIcon().classList.replace('basketIconActive', 'basketIcon')
-        }
-        newNoteDiv.ondragover = function(e) {
-            e.preventDefault()
-        }
-        newNoteDiv.onclick = function() {
-            dispatch(BeltDressingWindowActions.SELECT_SET, note)
-        }
-        return newNoteDiv
+    const parser = new DOMParser()
+    const newNoteDiv = parser.parseFromString(newNoteString, 'text/html').body.firstElementChild as HTMLDivElement
+    newNoteDiv.ondragstart = function() {
+        newNoteDiv.style.opacity = '0.4'
+        dragableSet = newNoteDiv
+        Elements.removeNoteDiv().classList.replace('basket', 'basketActive')
+        Elements.basketIcon().classList.replace('basketIcon', 'basketIconActive')
     }
+    newNoteDiv.ondragend = function() {
+        newNoteDiv.style.opacity = '1'
+        dragableSet = null
+        Elements.removeNoteDiv().classList.replace('basketActive', 'basket')
+        Elements.basketIcon().classList.replace('basketIconActive', 'basketIcon')
+    }
+    newNoteDiv.ondragover = function(e) {
+        e.preventDefault()
+    }
+    newNoteDiv.onclick = function() {
+        dispatch(BeltDressingWindowActions.SELECT_SET, note)
+    }
+    return newNoteDiv
+}
 
 function render(): void {
-    Array.from(Elements.allItemsDiv().children ?? []).forEach(item => Elements.allItemsDiv().removeChild(item))
+    Array.from(Elements.allItemsDiv().children ?? []).forEach((item) => Elements.allItemsDiv().removeChild(item))
 
-    let itemsStaticBoxes = Array.from(Elements.staticBoxes()) as HTMLDivElement[]
+    const itemsStaticBoxes = Array.from(Elements.staticBoxes()) as HTMLDivElement[]
     itemsStaticBoxes.forEach(function(item) {
         item.parentElement?.removeChild(item)
     })
-    Array.from(Elements.potionStaticBoxesDiv().children).forEach(box => {
+    Array.from(Elements.potionStaticBoxesDiv().children).forEach((box) => {
         box.parentElement?.removeChild(box)
     })
     renderSlots(initialState.slots, initialState.variants)
-    const allItemDivs = initialState.allItems.map(item => {
-        if(!initialState.activeFilters.includes(getFilterColor(item.quality))) {
-            return convertItemIntoDiv(item, undefined)
-        }
-    }).filter(div => div) as HTMLDivElement[]
-    allItemDivs.forEach(item => {
+    const allItemDivs = initialState.allItems
+        .map((item) => {
+            if(!initialState.activeFilters.includes(getFilterColor(item.quality))) {
+                return convertItemIntoDiv(item, undefined)
+            }
+        })
+        .filter((div) => div) as HTMLDivElement[]
+    allItemDivs.forEach((item) => {
         setupEquipableItemEvents(item)
-        let parent = Elements.allItemsDiv()
+        const parent = Elements.allItemsDiv()
         parent?.appendChild(item)
     })
-    for(let item of initialState.currentEquipedItems) {
-        let potionBoxes = Array.from(Elements.potionDivs())
-        let emptyBox = potionBoxes.find(box => box.childElementCount == 1 && box.getAttribute('slot') == item.slot && box.getAttribute('variant') == item.variant) as HTMLElement
+    for(const item of initialState.currentEquipedItems) {
+        const potionBoxes = Array.from(Elements.potionDivs())
+        const emptyBox = potionBoxes.find((box) => box.childElementCount == 1 && box.getAttribute('slot') == item.slot && box.getAttribute('variant') == item.variant) as HTMLElement
         const potionDiv = convertItemIntoDiv(item, undefined)
         setupEquipableItemEvents(potionDiv)
         potionDiv.classList.replace('h-20', 'h-70px')
@@ -220,15 +221,17 @@ function render(): void {
         emptyBox.style.border = 'none'
         emptyBox.style.visibility = 'hidden'
         emptyBox.appendChild(potionDiv)
-        let icon = emptyBox.firstElementChild as HTMLElement | null
+        const icon = emptyBox.firstElementChild as HTMLElement | null
         if(icon) {
             icon.style.display = 'none'
         }
     }
-    Array.from(Elements.setsDiv().children).filter(element => element.id.startsWith('belt_set_')).forEach(element => Elements.setsDiv().removeChild(element))
+    Array.from(Elements.setsDiv().children)
+        .filter((element) => element.id.startsWith('belt_set_'))
+        .forEach((element) => Elements.setsDiv().removeChild(element))
     for(const set of initialState.sets) {
         const isActive = initialState.currentSet?.id == set.id
-        let setDiv = createNoteElement(set, isActive)
+        const setDiv = createNoteElement(set, isActive)
         if(isActive) {
             Elements.setTitleBox().value = set.title
         }
@@ -241,7 +244,7 @@ function render(): void {
     Elements.warningBox().style.display = initialState.warning ? 'block' : 'none'
 }
 
-document.addEventListener('DOMContentLoaded', async () => {
+document.addEventListener('DOMContentLoaded', async() => {
     setupMode()
     dispatch(BeltDressingWindowActions.LOAD_CONTENT)
     setupFilters()

@@ -13,7 +13,7 @@ SPDX-License-Identifier: Apache-2.0 -->
             rel="stylesheet" />
     </head>
 
-    <body class=" bg-white dark:bg-dark">
+    <body class="bg-white dark:bg-dark">
         <div id="artifact_alt" style="width: 300px; display: none; position: fixed; z-index: 1001; left: 440px; top: 358px"></div>
         <div class="flex">
             <div class="mt-5 ml-8 w-40">
@@ -32,31 +32,35 @@ SPDX-License-Identifier: Apache-2.0 -->
             <div class="ml-16 mt-9 w-72">
                 <div class="flex">
                     <button class="defaultButton" id="unequip">Снять все</button>
-                    <button class="ml-5 defaultButton"id="equip">Надеть</button>
-                    <button class="ml-5 defaultButton" id="save">Сохранить</button>
+                    <button class="defaultButton ml-5" id="equip">Надеть</button>
+                    <button class="defaultButton ml-5" id="save">Сохранить</button>
                 </div>
-                <input id="currentSetTitle" class="mt-12 ml-inherit bg-lightMediumGrey pl-4 pr-4 outline-none font-montserrat text-xss font-extrabold text-secondaryLightDark dark:text-secondaryLight dark:bg-secondaryDark rounded-full h-8 w-40 border-lightMediumGrey" type="text" value="Current set" />
+                <input
+                    id="currentSetTitle"
+                    class="mt-12 ml-inherit h-8 w-40 rounded-full border-lightMediumGrey bg-lightMediumGrey pl-4 pr-4 font-montserrat text-xss font-extrabold text-secondaryLightDark outline-none dark:bg-secondaryDark dark:text-secondaryLight"
+                    type="text"
+                    value="Current set" />
                 <span id="warning" style="display: none; font-weight: bold; font-size: 12px; color: darkred">Похоже в текущей экипировке есть эликсиры, которых нет в рюкзаке!</span>
                 <div id="potionStaticBoxesDiv" class="mt-8"></div>
             </div>
 
             <div class="ml-16 mt-9">
                 <input class="hidden" checked type="checkbox" id="i_gray" />
-                <label class="filterLabel before:bg-secondaryMediumGrey bg-secondaryLightDark" for="i_gray"></label>
+                <label class="filterLabel bg-secondaryLightDark before:bg-secondaryMediumGrey" for="i_gray"></label>
 
                 <input class="hidden" checked type="checkbox" id="i_green" />
-                <label class="filterLabel before:bg-greenFilderBg bg-greenFilderBorder mt-12" for="i_green"></label>
+                <label class="filterLabel mt-12 bg-greenFilderBorder before:bg-greenFilderBg" for="i_green"></label>
 
                 <input class="hidden" checked type="checkbox" id="i_blue" />
-                <label class="filterLabel before:bg-blueFilderBg bg-blueFilderBorder mt-24" for="i_blue"></label>
+                <label class="filterLabel mt-24 bg-blueFilderBorder before:bg-blueFilderBg" for="i_blue"></label>
 
                 <input class="hidden" checked type="checkbox" id="i_purple" />
-                <label class="filterLabel before:bg-purpleFilterBg bg-purpleFilterBorder mt-36" for="i_purple"></label>
+                <label class="filterLabel mt-36 bg-purpleFilterBorder before:bg-purpleFilterBg" for="i_purple"></label>
 
                 <input class="hidden" checked type="checkbox" id="i_red" />
-                <label class="filterLabel before:bg-redFilterBg bg-redFilterBorder mt-48" for="i_red"></label>
+                <label class="filterLabel mt-48 bg-redFilterBorder before:bg-redFilterBg" for="i_red"></label>
             </div>
-            <div class="ml-8 pl-8 grid w-4/5 h-1/2 grid-cols-auto-fit mt-9 mr-8 gap-3" id="allItemsDiv"></div>
+            <div class="ml-8 mt-9 mr-8 grid h-1/2 w-4/5 grid-cols-auto-fit gap-3 pl-8" id="allItemsDiv"></div>
         </div>
     </body>
 </html>

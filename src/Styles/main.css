@@ -119,11 +119,11 @@
 }
 
 .filterLabel {
-    @apply absolute w-10 h-10 rounded-full cursor-pointer;
+    @apply absolute h-10 w-10 cursor-pointer rounded-full;
 }
 
 .filterLabel:before {
-    content: "";
+    content: '';
     position: absolute;
     top: 50%;
     right: 0;
@@ -136,11 +136,11 @@
     transition: 0.2s ease width, 0.2s ease height;
 }
 
-#i_gray:checked+.filterLabel:before,
-#i_green:checked+.filterLabel:before,
-#i_blue:checked+.filterLabel:before,
-#i_purple:checked+.filterLabel:before,
-#i_red:checked+.filterLabel:before {
+#i_gray:checked + .filterLabel:before,
+#i_green:checked + .filterLabel:before,
+#i_blue:checked + .filterLabel:before,
+#i_purple:checked + .filterLabel:before,
+#i_red:checked + .filterLabel:before {
     width: 0;
     height: 0;
 }
