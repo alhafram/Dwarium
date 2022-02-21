@@ -6,7 +6,6 @@ export type BeltDressingSet = {
     id: string
     title: string
     potions: BeltDressingSetPotion[]
-    isNew: boolean
 }
 
 export type BeltDressingSetPotion = {

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { InventoryItem } from '../../Models/InventoryItem'
 import Utils from '../Common/Utils'
 import { BeltDressingWindowActions } from './Actions'
@@ -78,7 +79,7 @@ export default async function reduce(state: BeltDressingWindowState, action: Bel
     let sets = state.sets
     let currentEquipedItems = state.currentEquipedItems
     switch (action) {
-        case BeltDressingWindowActions.LOAD_CONTENT:
+        case BeltDressingWindowActions.LOAD_CONTENT: {
             const [slots, variants] = await Requests.getSlots()
             const items = await Requests.loadItemsData(['allPotions'])
             let allItems = parsePotions(items.allPotions)
@@ -119,7 +120,8 @@ export default async function reduce(state: BeltDressingWindowState, action: Bel
                 warning: hasWarning,
                 userConfig: userConfig
             }
-        case BeltDressingWindowActions.EQUIP:
+        }
+        case BeltDressingWindowActions.EQUIP: {
             const equipedItemBox = data as HTMLDivElement
             const itemId = equipedItemBox.getAttribute('itemid')
             let equipedItem = state.allItems.find((item) => item.id == itemId)
@@ -139,10 +141,11 @@ export default async function reduce(state: BeltDressingWindowState, action: Bel
                 ...state,
                 currentEquipedItems: currentEquipedItems
             }
-        case BeltDressingWindowActions.EQUIP_DND:
+        }
+        case BeltDressingWindowActions.EQUIP_DND: {
             const equipedItemBox1 = data[0] as HTMLDivElement
             const equipedStaticItemBox = data[1] as HTMLDivElement
-            const alreadyEquipedItem = currentEquipedItems.find(item => item.slot == equipedStaticItemBox.getAttribute('slot') && item.variant == equipedStaticItemBox.getAttribute('variant'))
+            const alreadyEquipedItem = currentEquipedItems.find((item) => item.slot == equipedStaticItemBox.getAttribute('slot') && item.variant == equipedStaticItemBox.getAttribute('variant'))
             if(alreadyEquipedItem) {
                 currentEquipedItems = currentEquipedItems.removeItem(alreadyEquipedItem)
             }
@@ -161,7 +164,8 @@ export default async function reduce(state: BeltDressingWindowState, action: Bel
                 ...state,
                 currentEquipedItems: currentEquipedItems
             }
-        case BeltDressingWindowActions.UNEQUIP_ITEM:
+        }
+        case BeltDressingWindowActions.UNEQUIP_ITEM: {
             const unequipedItemBox = data as HTMLDivElement
             const variant = unequipedItemBox.getAttribute('variant')
             const slot = unequipedItemBox.getAttribute('slot')
@@ -176,6 +180,7 @@ export default async function reduce(state: BeltDressingWindowState, action: Bel
                 ...state,
                 currentEquipedItems: currentEquipedItems
             }
+        }
         case BeltDressingWindowActions.ADD_FILTER:
             newFilters = state.activeFilters
             newFilters.push(data)
@@ -190,7 +195,7 @@ export default async function reduce(state: BeltDressingWindowState, action: Bel
                 ...state,
                 activeFilters: newFilters
             }
-        case BeltDressingWindowActions.CREATE_NEW_SET:
+        case BeltDressingWindowActions.CREATE_NEW_SET: {
             const newSet = data as BeltDressingSet
             sets.push(newSet)
             state.userConfig!.beltSets = sets
@@ -201,19 +206,18 @@ export default async function reduce(state: BeltDressingWindowState, action: Bel
                 sets: sets,
                 currentEquipedItems: []
             }
-        case BeltDressingWindowActions.SAVE_SET:
+        }
+        case BeltDressingWindowActions.SAVE_SET: {
             let set = state.currentSet
             if(set) {
                 set.title = Elements.setTitleInput().value
                 set.potions = generateSetPotions(state.currentEquipedItems)
                 sets[sets.indexOf(set)] = set
-                set.isNew = false
             } else {
                 set = {
                     id: generateSetId(),
                     title: Elements.setTitleInput().value,
-                    potions: generateSetPotions(state.currentEquipedItems),
-                    isNew: true
+                    potions: generateSetPotions(state.currentEquipedItems)
                 }
                 sets.push(set)
             }
@@ -224,7 +228,8 @@ export default async function reduce(state: BeltDressingWindowState, action: Bel
                 currentSet: set,
                 sets: sets
             }
-        case BeltDressingWindowActions.REMOVE_SET:
+        }
+        case BeltDressingWindowActions.REMOVE_SET: {
             const deletedSetBox = data as HTMLDivElement | null
             const deletedSet = sets.find((set) => set.id == deletedSetBox?.id)
             if(deletedSet) {
@@ -247,7 +252,8 @@ export default async function reduce(state: BeltDressingWindowState, action: Bel
                     ...state
                 }
             }
-        case BeltDressingWindowActions.SELECT_SET:
+        }
+        case BeltDressingWindowActions.SELECT_SET: {
             const selectedSet = data as BeltDressingSet
             const items1 = selectedSet.potions
                 .map((potion) => {
@@ -265,12 +271,13 @@ export default async function reduce(state: BeltDressingWindowState, action: Bel
                 currentSet: selectedSet,
                 currentEquipedItems: items1
             }
+        }
         case BeltDressingWindowActions.UNEQUIP_ALL:
             return {
                 ...state,
                 currentEquipedItems: []
             }
-        case BeltDressingWindowActions.EQUIP_FROM_SET:
+        case BeltDressingWindowActions.EQUIP_FROM_SET: {
             if(!state.currentSet) {
                 return state
             }
@@ -329,6 +336,7 @@ export default async function reduce(state: BeltDressingWindowState, action: Bel
             return {
                 ...state
             }
+        }
         default:
             return state
     }

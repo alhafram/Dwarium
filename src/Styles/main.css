@@ -95,7 +95,7 @@
 }
 
 .defaultButton {
-    @apply h-8 w-20 rounded-full border-2 disabled:border-light disabled:hover:bg-transparent dark:disabled:border-secondaryBlack dark:disabled:hover:bg-transparent dark:disabled:text-secondaryDark disabled:text-lightMediumGrey border-lightMediumGrey font-montserrat text-xss font-extrabold text-secondaryLightDark hover:bg-lightMediumGrey dark:border-secondaryDark dark:text-secondaryLight dark:hover:bg-secondaryDark;
+    @apply h-8 w-20 rounded-full border-2 border-lightMediumGrey font-montserrat text-xss font-extrabold text-secondaryLightDark hover:bg-lightMediumGrey disabled:border-light disabled:text-lightMediumGrey disabled:hover:bg-transparent dark:border-secondaryDark dark:text-secondaryLight dark:hover:bg-secondaryDark dark:disabled:border-secondaryBlack dark:disabled:text-secondaryDark dark:disabled:hover:bg-transparent;
 }
 
 .basket {

@@ -9,10 +9,16 @@ SPDX-License-Identifier: Apache-2.0 -->
 
         <link href="../../out/main.css" rel="stylesheet" />
         <link rel="stylesheet" href="../../common/main.css" />
-        
+
         <link
             href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
             rel="stylesheet" />
+
+        <style>
+            *::-webkit-scrollbar {
+                display: none;
+            }
+        </style>
     </head>
 
     <body class="bg-white dark:bg-dark">
@@ -39,11 +45,13 @@ SPDX-License-Identifier: Apache-2.0 -->
                 </div>
                 <input
                     id="setTitleInput"
-                    class="mt-12 ml-inherit h-8 w-40 border-2 rounded-full border-lightMediumGrey dark:border-secondaryDark pl-4 pr-4 font-montserrat text-xss font-extrabold text-secondaryLightDark outline-none dark:bg-dark dark:text-secondaryLight"
+                    class="mt-12 ml-inherit h-8 w-40 rounded-full border-2 border-lightMediumGrey pl-4 pr-4 font-montserrat text-xss font-extrabold text-secondaryLightDark outline-none dark:border-secondaryDark dark:bg-dark dark:text-secondaryLight"
                     type="text"
                     value="Current set" />
-                <span id="warningSpan" class="mt-4 font-montserrat hidden font-extrabold text-xs text-secondaryLightDark dark:text-lightMediumGrey">Похоже в текущей экипировке есть эликсиры, которых нет в рюкзаке!</span>
-                <div id="potionStaticBoxesDiv" class="mt-8"></div>
+                <span id="warningSpan" class="mt-4 hidden font-montserrat text-xs font-extrabold text-secondaryLightDark dark:text-lightMediumGrey"
+                    >Похоже в текущей экипировке есть эликсиры, которых нет в рюкзаке!</span
+                >
+                <div id="potionStaticBoxesDiv" class="my-8"></div>
             </div>
 
             <div class="ml-16 mt-9">

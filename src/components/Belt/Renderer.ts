@@ -1,9 +1,10 @@
-import convertItemIntoDiv from "../Common/ItemBuilder"
-import { DressingFilterColor, generateRandomId, getFilterColor } from "../Utils"
-import { BeltDressingWindowActions } from "./Actions"
-import { BeltDressingSet, BeltDressingWindowState } from "./BeltDressingWindowState"
-import { Elements } from "./Elements"
-import dispatch from "./preload"
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import convertItemIntoDiv from '../Common/ItemBuilder'
+import { DressingFilterColor, generateRandomId, getFilterColor } from '../Utils'
+import { BeltDressingWindowActions } from './Actions'
+import { BeltDressingSet, BeltDressingWindowState } from './BeltDressingWindowState'
+import { Elements } from './Elements'
+import dispatch from './preload'
 import { handleDragOver, setupAltEvents, dismissAlt } from '../Common/EventBuilder'
 
 function createNoteElement(note: BeltDressingSet, isActive = false) {
@@ -182,11 +183,7 @@ export function render(state: BeltDressingWindowState): void {
         if(isActive) {
             Elements.setTitleInput().value = set.title
         }
-        if(set.isNew) {
-            Elements.setsDiv().insertBefore(setDiv, Elements.setsDiv().firstElementChild?.nextElementSibling!)
-        } else {
-            Elements.setsDiv().appendChild(setDiv)
-        }
+        Elements.setsDiv().appendChild(setDiv)
     }
     Elements.warningSpan().style.display = state.warning ? 'block' : 'none'
 }
@@ -197,8 +194,7 @@ function addNewSet(): BeltDressingSet {
     const newSet: BeltDressingSet = {
         id: id,
         title: 'Default set',
-        potions: [],
-        isNew: true
+        potions: []
     }
     return newSet
 }
