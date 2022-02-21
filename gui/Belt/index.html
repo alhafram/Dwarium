@@ -20,8 +20,8 @@ SPDX-License-Identifier: Apache-2.0 -->
         <div class="flex">
             <div class="mt-5 ml-8 w-40">
                 <div class="flex items-center">
-                    <button id="newNoteButton" class="defaultButton">Добавить</button>
-                    <div id="removeNoteDiv" class="basket">
+                    <button id="newSetButton" class="defaultButton">Добавить</button>
+                    <div id="removeSetDiv" class="basket">
                         <svg id="basketIcon" class="basketIcon m-auto" width="25" height="29" viewBox="0 0 25 29" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M7.8125 0V1.61111H0V4.83333H1.5625V25.7778C1.5625 26.6324 1.89174 27.452 2.47779 28.0562C3.06384 28.6605 3.8587 29 4.6875 29H20.3125C21.1413 29 21.9362 28.6605 22.5222 28.0562C23.1083 27.452 23.4375 26.6324 23.4375 25.7778V4.83333H25V1.61111H17.1875V0H7.8125ZM4.6875 4.83333H20.3125V25.7778H4.6875V4.83333ZM7.8125 8.05556V22.5556H10.9375V8.05556H7.8125ZM14.0625 8.05556V22.5556H17.1875V8.05556H14.0625Z" />
@@ -33,16 +33,16 @@ SPDX-License-Identifier: Apache-2.0 -->
 
             <div class="ml-16 mt-9 w-72">
                 <div class="flex">
-                    <button class="defaultButton" id="unequip">Снять все</button>
-                    <button class="defaultButton ml-5" id="equip">Надеть</button>
-                    <button class="defaultButton ml-5" id="save">Сохранить</button>
+                    <button class="defaultButton" id="unequipButton">Снять все</button>
+                    <button class="defaultButton ml-5" id="equipSetButton">Надеть</button>
+                    <button class="defaultButton ml-5" id="saveSetButton">Сохранить</button>
                 </div>
                 <input
-                    id="currentSetTitle"
+                    id="setTitleInput"
                     class="mt-12 ml-inherit h-8 w-40 border-2 rounded-full border-lightMediumGrey dark:border-secondaryDark pl-4 pr-4 font-montserrat text-xss font-extrabold text-secondaryLightDark outline-none dark:bg-dark dark:text-secondaryLight"
                     type="text"
                     value="Current set" />
-                <span id="warning" style="display: none; font-weight: bold; font-size: 12px; color: darkred">Похоже в текущей экипировке есть эликсиры, которых нет в рюкзаке!</span>
+                <span id="warningSpan" class="mt-4 font-montserrat hidden font-extrabold text-xs text-secondaryLightDark dark:text-lightMediumGrey">Похоже в текущей экипировке есть эликсиры, которых нет в рюкзаке!</span>
                 <div id="potionStaticBoxesDiv" class="mt-8"></div>
             </div>
 

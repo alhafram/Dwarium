@@ -50,9 +50,9 @@ function copyInventoryItemWithoutBox(item: InventoryItem, potion: EquipedPotion 
 }
 
 function disableButtons(disabled: boolean) {
-    Elements.saveSetBox().disabled = disabled
-    Elements.equipSetBox().disabled = disabled
-    Elements.unequipBox().disabled = disabled
+    Elements.saveSetButton().disabled = disabled
+    Elements.equipSetButton().disabled = disabled
+    Elements.unequipButton().disabled = disabled
 }
 
 function generateSetId() {
@@ -123,7 +123,7 @@ export default async function reduce(state: BeltDressingWindowState, action: Bel
             const equipedItemBox = data as HTMLDivElement
             const itemId = equipedItemBox.getAttribute('itemid')
             let equipedItem = state.allItems.find((item) => item.id == itemId)
-            const emptyBox = Array.from(Elements.staticBoxes()).find((box) => box.childElementCount == 0)
+            const emptyBox = Array.from(Elements.potionDivs()).find((box) => box.childElementCount == 1)
             if(!equipedItem) {
                 alert('ШО ТО НЕ ТАК!!! Напиши в группу')
                 return {
@@ -142,8 +142,13 @@ export default async function reduce(state: BeltDressingWindowState, action: Bel
         case BeltDressingWindowActions.EQUIP_DND:
             const equipedItemBox1 = data[0] as HTMLDivElement
             const equipedStaticItemBox = data[1] as HTMLDivElement
+            const alreadyEquipedItem = currentEquipedItems.find(item => item.slot == equipedStaticItemBox.getAttribute('slot') && item.variant == equipedStaticItemBox.getAttribute('variant'))
+            if(alreadyEquipedItem) {
+                currentEquipedItems = currentEquipedItems.removeItem(alreadyEquipedItem)
+            }
             const itemId1 = equipedItemBox1.getAttribute('itemid')
             let equipedItem1 = state.allItems.find((item) => item.id == itemId1)
+            console.log(equipedItem1)
             if(!equipedItem1) {
                 alert('ШО ТО НЕ ТАК!!! Напиши в группу')
                 return {
@@ -199,14 +204,14 @@ export default async function reduce(state: BeltDressingWindowState, action: Bel
         case BeltDressingWindowActions.SAVE_SET:
             let set = state.currentSet
             if(set) {
-                set.title = Elements.setTitleBox().value
+                set.title = Elements.setTitleInput().value
                 set.potions = generateSetPotions(state.currentEquipedItems)
                 sets[sets.indexOf(set)] = set
                 set.isNew = false
             } else {
                 set = {
                     id: generateSetId(),
-                    title: Elements.setTitleBox().value,
+                    title: Elements.setTitleInput().value,
                     potions: generateSetPotions(state.currentEquipedItems),
                     isNew: true
                 }

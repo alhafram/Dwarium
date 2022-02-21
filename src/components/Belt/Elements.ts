@@ -2,35 +2,29 @@ export const Elements = {
     setsDiv(): HTMLDivElement {
         return document.getElementById('setsDiv') as HTMLDivElement
     },
-    setTitleBox(): HTMLInputElement {
-        return document.getElementById('currentSetTitle') as HTMLInputElement
+    setTitleInput(): HTMLInputElement {
+        return document.getElementById('setTitleInput') as HTMLInputElement
     },
-    saveSetBox(): HTMLInputElement {
-        return document.getElementById('save') as HTMLInputElement
+    saveSetButton(): HTMLInputElement {
+        return document.getElementById('saveSetButton') as HTMLInputElement
     },
-    equipSetBox(): HTMLButtonElement {
-        return document.getElementById('equip') as HTMLButtonElement
+    equipSetButton(): HTMLButtonElement {
+        return document.getElementById('equipSetButton') as HTMLButtonElement
     },
-    unequipBox(): HTMLButtonElement {
-        return document.getElementById('unequip') as HTMLButtonElement
+    unequipButton(): HTMLButtonElement {
+        return document.getElementById('unequipButton') as HTMLButtonElement
     },
     allItemsDiv(): HTMLDivElement {
         return document.getElementById('allItemsDiv') as HTMLDivElement
     },
-    staticBoxes(): HTMLCollection {
-        return document.getElementsByClassName('potion')
+    warningSpan(): HTMLSpanElement {
+        return document.getElementById('warningSpan') as HTMLSpanElement
     },
-    warningBox(): HTMLSpanElement {
-        return document.getElementById('warning') as HTMLSpanElement
+    newSetButton(): HTMLInputElement {
+        return document.getElementById('newSetButton') as HTMLInputElement
     },
-    notesDiv(): HTMLDivElement {
-        return document.getElementById('notesDiv') as HTMLDivElement
-    },
-    newNoteButton(): HTMLInputElement {
-        return document.getElementById('newNoteButton') as HTMLInputElement
-    },
-    removeNoteDiv(): HTMLButtonElement {
-        return document.getElementById('removeNoteDiv') as HTMLButtonElement
+    removeSetDiv(): HTMLButtonElement {
+        return document.getElementById('removeSetDiv') as HTMLButtonElement
     },
     basketIcon(): HTMLElement {
         return document.getElementById('basketIcon') as HTMLElement

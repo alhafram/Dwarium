@@ -18,5 +18,6 @@ export default function convertItemIntoDiv(item: InventoryItem, xmlFoodItem: Ele
     const element = parser.parseFromString(html, 'text/html')
     const itemDiv = element.body.firstElementChild as HTMLDivElement
     itemDiv.setAttribute('quality', item.quality)
+    itemDiv.setAttribute('equiped', 'false')
     return itemDiv
 }
