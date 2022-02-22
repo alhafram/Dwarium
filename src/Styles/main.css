@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .buttonWithImage {
-    @apply mt-auto mb-auto h-6 w-6 rounded-full bg-no-repeat hover:bg-lightGrey dark:hover:bg-lightBlack  disabled:hover:bg-transparent dark:disabled:hover:bg-transparent;
+    @apply mt-auto mb-auto h-6 w-6 rounded-full bg-no-repeat hover:bg-lightGrey disabled:hover:bg-transparent  dark:hover:bg-lightBlack dark:disabled:hover:bg-transparent;
 }
 
 .selectedButton {
