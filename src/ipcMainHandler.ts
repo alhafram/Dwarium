@@ -32,6 +32,14 @@ ipcMain.on(Channel.FORWARD, () => {
     }
 })
 
+ipcMain.handle(Channel.IS_BACK_ENABLED, () => {
+    return TabsController.currentTab().webContents.canGoBack()
+})
+
+ipcMain.handle(Channel.IS_FORWARD_ENABLED, () => {
+    return TabsController.currentTab().webContents.canGoForward()
+})
+
 ipcMain.on(Channel.NEW_TAB, (evt, id, url) => {
     createNewTab(url, id)
 })
@@ -139,10 +147,14 @@ ipcMain.handle('LoadSetItems', async(evt, args: [string]) => {
     return res
 })
 
-ipcMain.on(Channel.FIND_CHARACTER, (event, nick) => {
+ipcMain.on(Channel.FIND_CHARACTER, (event, nick, noredir) => {
     const userInfoBrowserWindow = createWindowAndLoad(WindowType.USER_INFO)
     // eslint-disable-next-line @typescript-eslint/no-empty-function
     setupCloseLogic(userInfoBrowserWindow, WindowType.USER_INFO, () => {})
+    if(noredir) {
+        userInfoBrowserWindow.webContents.loadURL(`${getMainBaseUrl()}/user_info.php?nick=${nick}&noredir=${noredir}`)
+        return
+    }
     userInfoBrowserWindow.webContents.loadURL(`${getMainBaseUrl()}/user_info.php?nick=${nick}`)
 })
 
@@ -215,6 +227,7 @@ ipcMain.on(Channel.SWITCH_MODE, () => {
     favouriteListBrowserView?.webContents.send(Channel.SWITCH_MODE)
     foodWindow?.webContents.send(Channel.SWITCH_MODE)
     notesWindow?.webContents.send(Channel.SWITCH_MODE)
+    beltWindow?.webContents.send(Channel.SWITCH_MODE)
 })
 
 ipcMain.handle(Channel.GET_URL, () => {

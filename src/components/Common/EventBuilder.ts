@@ -22,7 +22,12 @@ function setupAltEvents(item: HTMLElement) {
     )
 }
 
+function dismissAlt(item: HTMLElement) {
+    SimpleAlt.artifactAltSimple(item.getAttribute('itemid'), 0, event)
+}
+
 export {
     handleDragOver,
-    setupAltEvents
+    setupAltEvents,
+    dismissAlt
 }

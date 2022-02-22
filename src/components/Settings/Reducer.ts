@@ -21,7 +21,7 @@ export default function reduce(state: SettingsWindowState, action: SettingsWindo
                     windowOpenNewTab: loadedSettings.windowOpenNewTab,
                     windowsAboveApp: loadedSettings.windowsAboveApp,
                     hideTopPanelInFullScreen: loadedSettings.hideTopPanelInFullScreen,
-                    enableSpeed: loadedSettings.enableSpeed,
+                    animationSpeedType: loadedSettings.animationSpeedType,
                     mailServer: loadedSettings.mailServer,
                     maximizeOnStart: loadedSettings.maximizeOnStart,
                     screenshotsFolderPath: app.getPath('userData') + '/screens',
@@ -93,10 +93,10 @@ export default function reduce(state: SettingsWindowState, action: SettingsWindo
                 ...state,
                 hideTopPanelInFullScreen: Elements.hideTopPanelInFullScreenBox().checked
             }
-        case SettingsWindowActions.CHANGE_ENABLE_SPEED:
+        case SettingsWindowActions.CHANGE_ANIMATION_SPEED_TYPE:
             return {
                 ...state,
-                enableSpeed: Elements.enableSpeedBox().checked
+                animationSpeedType: data as string
             }
         case SettingsWindowActions.CHANGE_MAIL_SERVER:
             return {

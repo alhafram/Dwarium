@@ -38,6 +38,17 @@ Array.prototype.removeItems = function(elements) {
     return this
 }
 
+String.prototype.toDocument = function() {
+    var parser = new DOMParser();
+    return parser.parseFromString(this.toString(), 'text/html');
+}
+
+declare global {
+    export interface String {
+        toDocument(): Document
+    }
+}
+
 export default {
     getUserId,
     getUserConfig,

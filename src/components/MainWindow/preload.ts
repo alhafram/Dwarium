@@ -19,6 +19,12 @@ const Elements = {
     forwardButton(): HTMLButtonElement {
         return document.getElementById('forwardButton') as HTMLButtonElement
     },
+    backButtonSvg(): HTMLButtonElement {
+        return document.getElementById('backButtonSvg') as HTMLButtonElement
+    },
+    forwardButtonSvg(): HTMLButtonElement {
+        return document.getElementById('forwardButtonSvg') as HTMLButtonElement
+    },
     reloadButton(): HTMLButtonElement {
         return document.getElementById('reloadButton') as HTMLButtonElement
     },
@@ -148,9 +154,15 @@ window.addEventListener('DOMContentLoaded', async () => {
             if(ConfigService.getSettings().windowOpenNewTab) {
                 const tab = createNewTab()
                 const baseMainUrl = await ipcRenderer.invoke(Channel.GET_MAIN_URL)
+                const noredir = await getNoredir(nick)
+                if(noredir) {
+                    ipcRenderer.send(Channel.NEW_TAB, tab.id, `${baseMainUrl}/user_info.php?nick=${nick}&noredir=${noredir}`)
+                    return
+                }
                 ipcRenderer.send(Channel.NEW_TAB, tab.id, `${baseMainUrl}/user_info.php?nick=${nick}`)
             } else {
-                ipcRenderer.send(Channel.FIND_CHARACTER, nick)
+                const noredir = await getNoredir(nick)
+                ipcRenderer.send(Channel.FIND_CHARACTER, nick, noredir)
             }
         }
     })
@@ -383,7 +395,21 @@ function closeTab(evt: Event) {
     evt.stopPropagation()
 }
 
-ipcRenderer.on(Channel.URL, (event, url, id) => {
+ipcRenderer.on(Channel.URL, async (event, url, id) => {
+    const isBackEnabled = await ipcRenderer.invoke(Channel.IS_BACK_ENABLED) as boolean
+    const isForwardEnabled = await ipcRenderer.invoke(Channel.IS_FORWARD_ENABLED) as boolean
+    Elements.backButton().disabled = !isBackEnabled
+    if(!isBackEnabled) {
+        Elements.backButtonSvg().classList.replace('buttonIcon', 'buttonIconDisabled')
+    } else {
+        Elements.backButtonSvg().classList.replace('buttonIconDisabled', 'buttonIcon')
+    }
+    Elements.forwardButton().disabled = !isForwardEnabled
+    if(!isForwardEnabled) {
+        Elements.forwardButtonSvg().classList.replace('buttonIcon', 'buttonIconDisabled')
+    } else {
+        Elements.forwardButtonSvg().classList.replace('buttonIconDisabled', 'buttonIcon')
+    }
     Elements.urlInput().disabled = id == 'main'
     Elements.urlInput().value = url
     setupFavourite()
@@ -472,3 +498,20 @@ function getElementIdBy(type: WindowType): HTMLElement | undefined {
             return Elements.notificationsButton()
     }
 }
+
+async function getNoredir(nick: string): Promise<string|null> {
+    const baseMainUrl = await ipcRenderer.invoke(Channel.GET_MAIN_URL)
+    const req = await fetch(`${baseMainUrl}/user_info.php?nick=${nick}`)
+    const text = await req.text()
+    const parser = new DOMParser()
+    const doc = parser.parseFromString(text, 'text/html')
+    const onclickValue = doc.querySelector("body > table > tbody > tr:nth-child(1) > td > table > tbody > tr:nth-child(2) > td > div > div.bg-l > div > div > div > div > div > div > div > p > b > b > input[type=button]")?.getAttribute('onclick')
+    if(onclickValue) {
+        const splittedValue = onclickValue.split('=')
+        const noredir = splittedValue.slice(-1)[0].slice(0, -2)
+        return noredir
+    }
+    return null
+}
+
+ipcRenderer.send

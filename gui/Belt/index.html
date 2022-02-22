@@ -7,64 +7,70 @@ SPDX-License-Identifier: Apache-2.0 -->
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-        <link rel="stylesheet" href="./style.css" />
-        <link rel="stylesheet" href="../../common/sets.css" />
+        <link href="../../out/main.css" rel="stylesheet" />
         <link rel="stylesheet" href="../../common/main.css" />
 
-        <script>
-            var exports = {}
-        </script>
-        <script src="../../common/simple_alt.js"></script>
-        <script src="../../common/utils.js"></script>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
+            rel="stylesheet" />
 
-        <script src="../../out/Components/Belt/index.js"></script>
+        <style>
+            *::-webkit-scrollbar {
+                display: none;
+            }
+        </style>
     </head>
 
-    <body>
+    <body class="bg-white dark:bg-dark">
         <div id="artifact_alt" style="width: 300px; display: none; position: fixed; z-index: 1001; left: 440px; top: 358px"></div>
-        <div class="content">
-            <div class="sets">
-                <div style="display: flex">
-                    <article id="addSetButton" class="leaderboard__profile">
-                        <img src="https://cdn-icons-png.flaticon.com/512/1828/1828925.png" class="leaderboard__picture" />
-                        <span class="leaderboard__name">Добавить набор</span>
-                    </article>
-                    <article id="dropSetButton" class="leaderboard__profile_remove_button">
-                        <img src="https://cdn-icons-png.flaticon.com/512/1345/1345823.png" class="leaderboard__picture" />
-                    </article>
+        <div class="flex">
+            <div class="mt-5 ml-8 w-40">
+                <div class="flex items-center">
+                    <button id="newSetButton" class="defaultButton">Добавить</button>
+                    <div id="removeSetDiv" class="basket">
+                        <svg id="basketIcon" class="basketIcon m-auto" width="25" height="29" viewBox="0 0 25 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M7.8125 0V1.61111H0V4.83333H1.5625V25.7778C1.5625 26.6324 1.89174 27.452 2.47779 28.0562C3.06384 28.6605 3.8587 29 4.6875 29H20.3125C21.1413 29 21.9362 28.6605 22.5222 28.0562C23.1083 27.452 23.4375 26.6324 23.4375 25.7778V4.83333H25V1.61111H17.1875V0H7.8125ZM4.6875 4.83333H20.3125V25.7778H4.6875V4.83333ZM7.8125 8.05556V22.5556H10.9375V8.05556H7.8125ZM14.0625 8.05556V22.5556H17.1875V8.05556H14.0625Z" />
+                        </svg>
+                    </div>
                 </div>
+                <div id="setsDiv" class="mt-6 h-5/6 overflow-scroll"></div>
             </div>
 
-            <div class="equippedItems">
-                <div style="display: flex; width: 200px">
-                    <button id="unequip">Снять все</button>
-                    <button id="equip">Надеть</button>
-                    <button id="save">Сохранить</button>
+            <div class="ml-16 mt-9 w-72">
+                <div class="flex">
+                    <button class="defaultButton" id="unequipButton">Снять все</button>
+                    <button class="defaultButton ml-5" id="equipSetButton">Надеть</button>
+                    <button class="defaultButton ml-5" id="saveSetButton">Сохранить</button>
                 </div>
-                <br />
-                <input id="currentSetTitle" style="width: 153px; padding: 7px 15px; border: 1px solid #ccc" type="text" maxlength="15" value="Current set" placeholder="" />
-                <br /><br />
-                <span id="warning" style="display: none; font-weight: bold; font-size: 12px; color: darkred">Похоже в текущей экипировке есть эликсиры, которых нет в рюкзаке!</span>
-                <div id="potionStaticBoxes"></div>
+                <input
+                    id="setTitleInput"
+                    class="mt-12 ml-inherit h-8 w-40 rounded-full border-2 border-lightMediumGrey pl-4 pr-4 font-montserrat text-xss font-extrabold text-secondaryLightDark outline-none dark:border-secondaryDark dark:bg-dark dark:text-secondaryLight"
+                    type="text"
+                    value="Current set" />
+                <span id="warningSpan" class="mt-4 hidden font-montserrat text-xs font-extrabold text-secondaryLightDark dark:text-lightMediumGrey"
+                    >Похоже в текущей экипировке есть эликсиры, которых нет в рюкзаке!</span
+                >
+                <div id="potionStaticBoxesDiv" class="my-8"></div>
             </div>
 
-            <div class="filters">
-                <input class="itemCheckbox" checked type="checkbox" id="i_gray" />
-                <label class="itemsCheckboxFilter i_gray" for="i_gray"></label>
+            <div class="ml-16 mt-9">
+                <input class="hidden" checked type="checkbox" id="i_gray" />
+                <label class="filterLabel bg-secondaryLightDark before:bg-secondaryMediumGrey" for="i_gray"></label>
 
-                <input class="itemCheckbox" checked type="checkbox" id="i_green" />
-                <label class="itemsCheckboxFilter i_green" for="i_green"></label>
+                <input class="hidden" checked type="checkbox" id="i_green" />
+                <label class="filterLabel mt-12 bg-greenFilderBorder before:bg-greenFilderBg" for="i_green"></label>
 
-                <input class="itemCheckbox" checked type="checkbox" id="i_blue" />
-                <label class="itemsCheckboxFilter i_blue" for="i_blue"></label>
+                <input class="hidden" checked type="checkbox" id="i_blue" />
+                <label class="filterLabel mt-24 bg-blueFilderBorder before:bg-blueFilderBg" for="i_blue"></label>
 
-                <input class="itemCheckbox" checked type="checkbox" id="i_purple" />
-                <label class="itemsCheckboxFilter i_purple" for="i_purple"></label>
+                <input class="hidden" checked type="checkbox" id="i_purple" />
+                <label class="filterLabel mt-36 bg-purpleFilterBorder before:bg-purpleFilterBg" for="i_purple"></label>
 
-                <input class="itemCheckbox" checked type="checkbox" id="i_red" />
-                <label class="itemsCheckboxFilter i_red" for="i_red"></label>
+                <input class="hidden" checked type="checkbox" id="i_red" />
+                <label class="filterLabel mt-48 bg-redFilterBorder before:bg-redFilterBg" for="i_red"></label>
             </div>
-            <div class="currentItems"></div>
+            <div class="m-9 grid h-1/2 w-4/5 grid-cols-auto-fit gap-3 pl-8" id="allItemsDiv"></div>
         </div>
     </body>
 </html>

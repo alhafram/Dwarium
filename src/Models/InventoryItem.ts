@@ -10,8 +10,11 @@ export type InventoryItem = {
     image: string
     trend: string | undefined
     enchant_mod?: EnchantMode
-    cnt: string
+    cnt: string | null
     foodType: FoodType
+    slot: string | undefined | null
+    variant: string | undefined | null
+    picture: string | undefined | null
 }
 
 type EnchantMode = {

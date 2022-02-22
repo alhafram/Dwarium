@@ -44,9 +44,11 @@ function setupListeners() {
     Elements.hideTopPanelInFullScreenBox().onchange = () => {
         dispatch(SettingsWindowActions.CHANGE_HIDE_TOP_PANEL_IN_FULL_SCREEN)
     }
-    Elements.enableSpeedBox().onchange = () => {
-        dispatch(SettingsWindowActions.CHANGE_ENABLE_SPEED)
-    }
+    Elements.animationSpeedTypes().forEach((speedType) => {
+        speedType.onchange = () => {
+            dispatch(SettingsWindowActions.CHANGE_ANIMATION_SPEED_TYPE, speedType.id)
+        }
+    })
     Elements.screenshotsFolderBox().onclick = function() {
         shell.openPath(initialState.screenshotsFolderPath)
     }
@@ -97,7 +99,7 @@ let initialState: SettingsWindowState = {
     windowsAboveApp: false,
     maximizeOnStart: false,
     hideTopPanelInFullScreen: false,
-    enableSpeed: false,
+    animationSpeedType: '',
     mailServer: false,
     userAgentTextFieldActive: false,
     screenshotsFolderPath: '',
@@ -149,7 +151,11 @@ function render(): void {
     Elements.windowOpenNewTab().checked = initialState.windowOpenNewTab
     Elements.maximizeOnStart().checked = initialState.maximizeOnStart
     Elements.hideTopPanelInFullScreenBox().checked = initialState.hideTopPanelInFullScreen
-    Elements.enableSpeedBox().checked = initialState.enableSpeed
+    Elements.animationSpeedTypes().forEach((speedType) => {
+        if(speedType.id == initialState.animationSpeedType) {
+            speedType.checked = true
+        }
+    })
     Elements.mailServerBox().checked = initialState.mailServer
 
     Elements.screenshotsFolderPathBox().value = initialState.screenshotsFolderPath
