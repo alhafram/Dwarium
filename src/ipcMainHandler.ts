@@ -139,10 +139,14 @@ ipcMain.handle('LoadSetItems', async(evt, args: [string]) => {
     return res
 })
 
-ipcMain.on(Channel.FIND_CHARACTER, (event, nick) => {
+ipcMain.on(Channel.FIND_CHARACTER, (event, nick, noredir) => {
     const userInfoBrowserWindow = createWindowAndLoad(WindowType.USER_INFO)
     // eslint-disable-next-line @typescript-eslint/no-empty-function
     setupCloseLogic(userInfoBrowserWindow, WindowType.USER_INFO, () => {})
+    if(noredir) {
+        userInfoBrowserWindow.webContents.loadURL(`${getMainBaseUrl()}/user_info.php?nick=${nick}&noredir=${noredir}`)
+        return
+    }
     userInfoBrowserWindow.webContents.loadURL(`${getMainBaseUrl()}/user_info.php?nick=${nick}`)
 })
 

@@ -148,9 +148,15 @@ window.addEventListener('DOMContentLoaded', async () => {
             if(ConfigService.getSettings().windowOpenNewTab) {
                 const tab = createNewTab()
                 const baseMainUrl = await ipcRenderer.invoke(Channel.GET_MAIN_URL)
+                const noredir = await getNoredir(nick)
+                if(noredir) {
+                    ipcRenderer.send(Channel.NEW_TAB, tab.id, `${baseMainUrl}/user_info.php?nick=${nick}&noredir=${noredir}`)
+                    return
+                }
                 ipcRenderer.send(Channel.NEW_TAB, tab.id, `${baseMainUrl}/user_info.php?nick=${nick}`)
             } else {
-                ipcRenderer.send(Channel.FIND_CHARACTER, nick)
+                const noredir = await getNoredir(nick)
+                ipcRenderer.send(Channel.FIND_CHARACTER, nick, noredir)
             }
         }
     })
@@ -472,3 +478,21 @@ function getElementIdBy(type: WindowType): HTMLElement | undefined {
             return Elements.notificationsButton()
     }
 }
+
+async function getNoredir(nick: string): Promise<string|null> {
+    const baseMainUrl = await ipcRenderer.invoke(Channel.GET_MAIN_URL)
+    const req = await fetch(`${baseMainUrl}/user_info.php?nick=${nick}`)
+    const text = await req.text()
+    const parser = new DOMParser()
+    const doc = parser.parseFromString(text, 'text/html')
+    const onclickValue = doc.querySelector("body > table > tbody > tr:nth-child(1) > td > table > tbody > tr:nth-child(2) > td > div > div.bg-l > div > div > div > div > div > div > div > p > b > b > input[type=button]")?.getAttribute('onclick')
+    console.log(onclickValue)
+    if(onclickValue) {
+        const splittedValue = onclickValue.split('=')
+        const noredir = splittedValue.slice(-1)[0].slice(0, -2)
+        return noredir
+    }
+    return null
+}
+
+ipcRenderer.send
