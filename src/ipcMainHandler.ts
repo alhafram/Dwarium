@@ -32,6 +32,14 @@ ipcMain.on(Channel.FORWARD, () => {
     }
 })
 
+ipcMain.handle(Channel.IS_BACK_ENABLED, () => {
+    return TabsController.currentTab().webContents.canGoBack()
+})
+
+ipcMain.handle(Channel.IS_FORWARD_ENABLED, () => {
+    return TabsController.currentTab().webContents.canGoForward()
+})
+
 ipcMain.on(Channel.NEW_TAB, (evt, id, url) => {
     createNewTab(url, id)
 })

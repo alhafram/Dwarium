@@ -3,6 +3,8 @@ export enum Channel {
     RELOAD = 'reload',
     BACK = 'back',
     FORWARD = 'forward',
+    IS_BACK_ENABLED = 'isBackEnabled',
+    IS_FORWARD_ENABLED = 'isForwardEnabled',
     OPEN_DRESSING_ROOM = 'openDressingRoom',
     OPEN_BELT_POTION_ROOM = 'openBeltPotionRoom',
     OPEN_CHAT_LOG = 'openChatLog',

@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .buttonWithImage {
-    @apply mt-auto mb-auto h-6 w-6 rounded-full bg-no-repeat hover:bg-lightGrey dark:hover:bg-lightBlack;
+    @apply mt-auto mb-auto h-6 w-6 rounded-full bg-no-repeat hover:bg-lightGrey dark:hover:bg-lightBlack  disabled:hover:bg-transparent dark:disabled:hover:bg-transparent;
 }
 
 .selectedButton {
@@ -24,6 +24,10 @@
 
 .buttonIcon {
     @apply m-auto fill-grey dark:fill-mediumGrey;
+}
+
+.buttonIconDisabled {
+    @apply m-auto fill-mediumGrey dark:fill-grey;
 }
 
 .buttonStrokeIcon {
