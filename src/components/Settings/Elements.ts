@@ -20,8 +20,8 @@ export const Elements = {
     hideTopPanelInFullScreenBox(): HTMLInputElement {
         return document.getElementById('hideTopPanelInFullScreen') as HTMLInputElement
     },
-    enableSpeedBox(): HTMLInputElement {
-        return document.getElementById('enableSpeed') as HTMLInputElement
+    animationSpeedTypes(): HTMLInputElement[] {
+        return document.getElementsByName('animationSpeed') as unknown as HTMLInputElement[]
     },
     screenshotsFolderPathBox(): HTMLTextAreaElement {
         return document.getElementById('screenshotsFolderPath') as HTMLTextAreaElement

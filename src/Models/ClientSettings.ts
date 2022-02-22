@@ -9,7 +9,7 @@ export type ClientSettings = {
     selectedUserAgentValue: string
     maximizeOnStart: boolean
     hideTopPanelInFullScreen: boolean
-    enableSpeed: boolean
+    animationSpeedType: string
     fightNotificationsSystem: boolean
     fightNotificationsIngame: boolean
     battlegroundNotificationsSystem: boolean

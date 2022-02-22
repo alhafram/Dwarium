@@ -9,7 +9,7 @@ export interface SettingsWindowState {
     windowsAboveApp: boolean
     maximizeOnStart: boolean
     hideTopPanelInFullScreen: boolean
-    enableSpeed: boolean
+    animationSpeedType: string
     mailServer: boolean
     userAgentTextFieldActive?: boolean
     screenshotsFolderPath: string

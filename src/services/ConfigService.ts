@@ -17,7 +17,7 @@ function getSettings(): ClientSettings {
         selectedUserAgentValue: selectedUserAgentValue(),
         maximizeOnStart: maximizeOnStart(),
         hideTopPanelInFullScreen: hideTopPanelInFullScreen(),
-        enableSpeed: enableSpeed(),
+        animationSpeedType: animationSpeedType(),
         fightNotificationsSystem: fightNotificationsSystem(),
         fightNotificationsIngame: fightNotificationsIngame(),
         battlegroundNotificationsSystem: battlegroundNotificationsSystem(),
@@ -117,13 +117,13 @@ function hideTopPanelInFullScreen(): boolean {
     return false
 }
 
-function enableSpeed(): boolean {
+function animationSpeedType(): string {
     let settings = readData('settings')
     if(settings) {
         settings = JSON.parse(settings)
-        return settings.enableSpeed ?? false
+        return settings.animationSpeedType ?? 'gameSpeed'
     }
-    return false
+    return 'gameSpeed'
 }
 
 // Notifications
