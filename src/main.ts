@@ -1,4 +1,4 @@
-import { app, session } from 'electron'
+import { app, BeforeSendResponse, OnBeforeSendHeadersListenerDetails, OnResponseStartedListenerDetails, session } from 'electron'
 import { TabsController } from './services/TabsController'
 import MainWindowContainer from './Components/MainWindow/MainWindow'
 import { autoUpdater } from 'electron-updater'
@@ -7,6 +7,7 @@ require('@electron/remote/main').initialize()
 require('v8-compile-cache')
 import electronReload from 'electron-reload'
 import { Channel } from './Models/Channel'
+import { eldivInfoFix, userInfoAchieventFix } from './Scripts/ContentFixes'
 electronReload(__dirname, {})
 
 autoUpdater.allowDowngrade = ConfigService.getSettings().updateChannel == 'stable'
@@ -40,13 +41,23 @@ function createWindow() {
     mainWindowContainer.start()
     require('@electron/remote/main').enable(mainWindowContainer.browserView.webContents)
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    session.defaultSession.webRequest.onBeforeSendHeaders((details: { requestHeaders: { [x: string]: any } }, callback: (arg0: { cancel: boolean; requestHeaders: any }) => void) => {
+    session.defaultSession.webRequest.onBeforeSendHeaders((details: OnBeforeSendHeadersListenerDetails, callback: (beforeSendResponse: BeforeSendResponse) => void) => {
         details.requestHeaders['User-Agent'] = ConfigService.getSettings().selectedUserAgentValue
         callback({
             cancel: false,
             requestHeaders: details.requestHeaders
         })
+    })
+
+    session.defaultSession.webRequest.onResponseStarted((details: OnResponseStartedListenerDetails) => {
+        if(details.url.includes(`${ConfigService.getSettings().baseUrl}/user_info.php`)) {
+            const script = userInfoAchieventFix()
+            details.webContents?.executeJavaScript(script)
+        }
+        if(details.url.includes(`${ConfigService.getSettings().baseUrl}/user.php?mode=skills`)) {
+            const script = eldivInfoFix()
+            details.webContents?.executeJavaScript(script)
+        }
     })
 
     const filter = {
