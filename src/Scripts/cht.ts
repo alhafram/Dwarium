@@ -705,7 +705,7 @@ function chatReceiveMessage(msg) {
 		client_msg.data.recipient_list.push(msg.to_user_nicks[key]);
 	}
 	_top().clientExchangePut(vardump(client_msg).replace(/<\/?[^>]+>/gi, ''));
-	if (scrollCurrent >= scrollMax - 30) {
+	if (scrollCurrent >= scrollMax - 100) {
 		_top().frames['chat'].frames['chat_text'].scrollTo(0, 65535);
 	}
 	if (msie7) chatUpdateDataAttach();
