@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import convertItemIntoDiv from '../Common/ItemBuilder'
 import { DressingFilterColor, generateRandomId, getFilterColor } from '../Utils'
 import { BeltDressingWindowActions } from './Actions'
 import { BeltDressingSet, BeltDressingWindowState } from './BeltDressingWindowState'
 import { Elements } from './Elements'
 import dispatch from './preload'
 import { handleDragOver, setupAltEvents, dismissAlt } from '../Common/EventBuilder'
+import { convertItemIntoDiv } from '../Common/ItemBuilder'
 
 function createNoteElement(note: BeltDressingSet, isActive = false) {
     const newNoteString = `

@@ -151,7 +151,6 @@ export default async function reduce(state: BeltDressingWindowState, action: Bel
             }
             const itemId1 = equipedItemBox1.getAttribute('itemid')
             let equipedItem1 = state.allItems.find((item) => item.id == itemId1)
-            console.log(equipedItem1)
             if(!equipedItem1) {
                 alert('ШО ТО НЕ ТАК!!! Напиши в группу')
                 return {
