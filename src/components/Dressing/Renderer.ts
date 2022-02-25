@@ -7,6 +7,7 @@ import { convertItemIntoDiv } from '../Common/ItemBuilder'
 import SimpleAlt from '../../Scripts/simple_alt'
 import dispatch from './preload'
 import { DressingSet } from '../../Models/DressingSet'
+import { SetStyleHelper } from './SetStyleHelper'
 
 function getAllStaticDivs(): HTMLDivElement[] {
     return [
@@ -328,10 +329,11 @@ function createArcatSlot(id: number): HTMLDivElement {
 let dragableSet: any = null
 function createNoteElement(note: DressingSet, isActive = false) {
     const newNoteString = `
-        <div id="${note.id}" draggable="true" class="hover:bg-lightMediumGrey dark:hover:bg-secondaryDark mt-3 cursor-pointer w-40 h-14 ${
+        <div id="${note.id}" draggable="true" class="flex hover:bg-lightMediumGrey dark:hover:bg-secondaryDark mt-3 cursor-pointer w-40 h-14 ${
     isActive ? 'bg-lightMediumGrey dark:bg-secondaryDark border-4 border-dashed border-secondaryLightDark dark:border-secondaryLight' : 'bg-light dark:bg-secondaryBlack'
 } rounded-3xl">
-            <p class="pl-2 pt-2 text-secondaryLightDark dark:text-secondaryLight text-ellipsis whitespace-nowrap overflow-hidden font-montserrat font-extrabold text-xss">${note.title}</p>
+           ${SetStyleHelper.getMagicIcon(note.magicSchool)}
+            <p class="ml-2 my-auto text-secondaryLightDark dark:text-secondaryLight text-ellipsis whitespace-nowrap overflow-hidden font-montserrat font-extrabold text-xss">${note.title}</p>
         </div>`
     const parser = new DOMParser()
     const newNoteDiv = parser.parseFromString(newNoteString, 'text/html').body.firstElementChild as HTMLDivElement
