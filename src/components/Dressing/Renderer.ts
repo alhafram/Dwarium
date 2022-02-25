@@ -1,22 +1,39 @@
-import { handleDragOver } from "../Common/EventBuilder"
-import { DressingFilterColor, generateRandomId, getQuality } from "../Utils"
-import { DressingWindowActions } from "./Actions"
-import { DressingWindowState } from "./DressingWindowState"
-import { Elements } from "./Elements"
+import { handleDragOver } from '../Common/EventBuilder'
+import { DressingFilterColor, generateRandomId, getQuality } from '../Utils'
+import { DressingWindowActions } from './Actions'
+import { DressingWindowState } from './DressingWindowState'
+import { Elements } from './Elements'
 import { convertItemIntoDiv } from '../Common/ItemBuilder'
 import SimpleAlt from '../../Scripts/simple_alt'
-import dispatch from "./preload"
-import { DressingSet } from "../../Models/DressingSet"
+import dispatch from './preload'
+import { DressingSet } from '../../Models/DressingSet'
 
 function getAllStaticDivs(): HTMLDivElement[] {
-    return [Elements.helmetDiv(), Elements.shouldersDiv(), Elements.bracersDiv(), Elements.mainWeaponDiv(),
-        Elements.offhandWeaponDiv(), Elements.cuirassDiv(), Elements.leggingsDiv(), Elements.chainmailDiv(), 
-        Elements.bootsDiv(), Elements.bowDiv(), Elements.quiverDiv(), Elements.ring1Div(), Elements.ring2Div(), 
-        Elements.amulet1Div(), Elements.amulet2Div(),Elements.arcat1Div(), Elements.arcat2Div(), Elements.arcat3Div(), Elements.arcat4Div()]
+    return [
+        Elements.helmetDiv(),
+        Elements.shouldersDiv(),
+        Elements.bracersDiv(),
+        Elements.mainWeaponDiv(),
+        Elements.offhandWeaponDiv(),
+        Elements.cuirassDiv(),
+        Elements.leggingsDiv(),
+        Elements.chainmailDiv(),
+        Elements.bootsDiv(),
+        Elements.bowDiv(),
+        Elements.quiverDiv(),
+        Elements.ring1Div(),
+        Elements.ring2Div(),
+        Elements.amulet1Div(),
+        Elements.amulet2Div(),
+        Elements.arcat1Div(),
+        Elements.arcat2Div(),
+        Elements.arcat3Div(),
+        Elements.arcat4Div()
+    ]
 }
 
 function render(initialState: DressingWindowState): void {
-    getAllStaticDivs().forEach(box => {
+    getAllStaticDivs().forEach((box) => {
         if(box != null) {
             box.classList.replace('potionBoxSmallHighlighted', 'potionBoxSmall')
             box.classList.replace('potionBoxHighlighted', 'potionBox')
@@ -25,7 +42,7 @@ function render(initialState: DressingWindowState): void {
             if(svg) {
                 svg.style.display = 'block'
                 const pathes = Array.from(svg.children)
-                pathes.forEach(path => {
+                pathes.forEach((path) => {
                     path.classList.replace('dressingBoxBgHighlighted', 'dressingBoxBg')
                 })
             }
@@ -37,16 +54,16 @@ function render(initialState: DressingWindowState): void {
             }
         }
     })
-    Array.from(Elements.allItemsDiv().children ?? []).forEach(item => Elements.allItemsDiv().removeChild(item))
-    const allItemDivs = initialState.allItems.map(item => {
+    Array.from(Elements.allItemsDiv().children ?? []).forEach((item) => Elements.allItemsDiv().removeChild(item))
+    const allItemDivs = initialState.allItems.map((item) => {
         const element = convertItemIntoDiv(item, undefined)
         element.style.display = 'block'
-        let parent = Elements.allItemsDiv()
+        const parent = Elements.allItemsDiv()
         setupEquipableItemEvents(element)
         parent?.appendChild(element)
         return element
     })
-    Array.from(Elements.arcatsDiv().children ?? []).forEach(item => Elements.arcatsDiv().removeChild(item))
+    Array.from(Elements.arcatsDiv().children ?? []).forEach((item) => Elements.arcatsDiv().removeChild(item))
     if(initialState.arcatsCount != 0) {
         for(let i = 0; i < initialState.arcatsCount; i++) {
             const arcatSlot = createArcatSlot(i)
@@ -61,7 +78,7 @@ function render(initialState: DressingWindowState): void {
             }
         }
     }
-    const equipedItemsIds = initialState.currentEquipedItems.map(item => item.id)
+    const equipedItemsIds = initialState.currentEquipedItems.map((item) => item.id)
     if(initialState.selectedStaticItemId) {
         const box = eval(`Elements_1.Elements.${initialState.selectedStaticItemId}()`) as HTMLDivElement
         box.classList.replace('potionBoxSmall', 'potionBoxSmallHighlighted')
@@ -69,32 +86,32 @@ function render(initialState: DressingWindowState): void {
         const svg = box.firstElementChild as SVGElement | null
         if(svg) {
             const pathes = Array.from(svg.children)
-            pathes.forEach(path => {
+            pathes.forEach((path) => {
                 path.classList.replace('dressingBoxBg', 'dressingBoxBgHighlighted')
             })
         }
-        const visibleItems = allItemDivs.filter(item => item.style.display != 'none' && !equipedItemsIds.includes(item.getAttribute('itemid') ?? ''))
-        visibleItems.forEach(item => item.style.display = item.getAttribute('type') == box.getAttribute('type') ? 'block' : 'none')
+        const visibleItems = allItemDivs.filter((item) => item.style.display != 'none' && !equipedItemsIds.includes(item.getAttribute('itemid') ?? ''))
+        visibleItems.forEach((item) => (item.style.display = item.getAttribute('type') == box.getAttribute('type') ? 'block' : 'none'))
     }
-    let visibleItems = allItemDivs.filter(item => item.style.display != 'none' && !equipedItemsIds.includes(item.getAttribute('itemid') ?? ''))
+    let visibleItems = allItemDivs.filter((item) => item.style.display != 'none' && !equipedItemsIds.includes(item.getAttribute('itemid') ?? ''))
     for(const filter of initialState.activeFilters) {
         const filterQuality = getQuality(filter)
-        let items = visibleItems.filter(e => e.getAttribute('quality') == filterQuality)
-        items.forEach(item => item.style.display = 'none')
+        const items = visibleItems.filter((e) => e.getAttribute('quality') == filterQuality)
+        items.forEach((item) => (item.style.display = 'none'))
     }
     if(initialState.currentStyle) {
-        visibleItems = visibleItems.filter(item => item.style.display == 'block' && !equipedItemsIds.includes(item.getAttribute('itemid') ?? ''))
-        visibleItems.forEach(item => item.style.display = (item.getAttribute('trend') == initialState.currentStyle || item.getAttribute('trend') == 'Универсал') ? 'block' : 'none')
+        visibleItems = visibleItems.filter((item) => item.style.display == 'block' && !equipedItemsIds.includes(item.getAttribute('itemid') ?? ''))
+        visibleItems.forEach((item) => (item.style.display = item.getAttribute('trend') == initialState.currentStyle || item.getAttribute('trend') == 'Универсал' ? 'block' : 'none'))
     }
     for(const equipedItem of initialState.currentEquipedItems) {
-        let equipedDiv = Array.from(Elements.allItemsDiv().children ?? []).find(item => item.getAttribute('itemid') == equipedItem.id) as HTMLElement | undefined
+        const equipedDiv = Array.from(Elements.allItemsDiv().children ?? []).find((item) => item.getAttribute('itemid') == equipedItem.id) as HTMLElement | undefined
         if(!equipedDiv) {
-            alert("ШО ТО НЕ ТАК!!! Напиши в группу")
-            return 
+            alert('ШО ТО НЕ ТАК!!! Напиши в группу')
+            return
         }
         const type = equipedDiv.getAttribute('type')
         const itemBox = eval(`Elements_1.Elements.${type}Div()`) as HTMLDivElement
-        
+
         const isWeapon = equipedDiv.getAttribute('weapon')
         itemBox.appendChild(equipedDiv)
         equipedDiv.setAttribute('equiped', 'true')
@@ -110,7 +127,7 @@ function render(initialState: DressingWindowState): void {
         }
         itemBox.style.borderWidth = '0px'
         if(isWeapon) {
-            if(isWeapon == "2h") {
+            if(isWeapon == '2h') {
                 const copyWeapon = equipedDiv.cloneNode(true) as HTMLElement
                 copyWeapon.setAttribute('copy', 'true')
                 copyWeapon.setAttribute('equiped', 'true')
@@ -130,10 +147,12 @@ function render(initialState: DressingWindowState): void {
     Elements.allItemsDiv().ondragover = handleDragOver
     Elements.allItemsDiv().ondrop = handleDropEquipableItemIntoAllItems
 
-    Array.from(Elements.setsDiv().children).filter(element => element.id.startsWith('set_')).forEach(element => Elements.setsDiv().removeChild(element))
+    Array.from(Elements.setsDiv().children)
+        .filter((element) => element.id.startsWith('set_'))
+        .forEach((element) => Elements.setsDiv().removeChild(element))
     for(const set of initialState.sets) {
         const isActive = initialState.currentSet == set
-        let setDiv = createNoteElement(set, isActive)
+        const setDiv = createNoteElement(set, isActive)
         if(isActive) {
             Elements.setTitleInput().value = set.title
         }
@@ -144,8 +163,8 @@ function render(initialState: DressingWindowState): void {
 
 function setupInteractionEvents(initialState: DressingWindowState) {
     const armorTypes = ['helmet', 'shoulders', 'bracers', 'mainWeapon', 'offhandWeapon', 'cuirass', 'leggings', 'chainmail', 'boots', 'bow', 'quiver', 'ring1', 'ring2', 'amulet1', 'amulet2']
-    armorTypes.forEach(t => {
-        let itemBox = eval(`Elements_1.Elements.${t}Div()`) as HTMLElement
+    armorTypes.forEach((t) => {
+        const itemBox = eval(`Elements_1.Elements.${t}Div()`) as HTMLElement
         itemBox.onclick = function() {
             if(initialState.selectedStaticItemId && itemBox.id == initialState.selectedStaticItemId) {
                 dispatch(DressingWindowActions.DESELECT_PLACEHOLDER, itemBox)
@@ -168,14 +187,14 @@ function handleDragStartEquipableItem(this: any) {
 
 function handleDragEndEquipableItem(this: any) {
     dragableItem = null
-    getAllStaticDivs().forEach(box => {
+    getAllStaticDivs().forEach((box) => {
         if(box) {
             box.classList.replace('potionBoxSmallHighlighted', 'potionBoxSmall')
             box.classList.replace('potionBoxHighlighted', 'potionBox')
             const svg = box.firstElementChild as SVGElement | null
             if(svg) {
                 const pathes = Array.from(svg.children)
-                pathes.forEach(path => {
+                pathes.forEach((path) => {
                     path.classList.replace('dressingBoxBgHighlighted', 'dressingBoxBg')
                 })
             }
@@ -217,7 +236,7 @@ function highlightDressingBox(item: HTMLElement) {
         const svg = box.firstElementChild as SVGElement | null
         if(svg) {
             const pathes = Array.from(svg.children)
-            pathes.forEach(path => {
+            pathes.forEach((path) => {
                 path.classList.replace('dressingBoxBg', 'dressingBoxBgHighlighted')
             })
         }
@@ -232,14 +251,14 @@ function highlightDressingBox(item: HTMLElement) {
         if(type == 'arcat') {
             boxes = [Elements.arcat1Div(), Elements.arcat2Div(), Elements.arcat3Div(), Elements.arcat4Div()]
         }
-        boxes.forEach(box => {
+        boxes.forEach((box) => {
             if(box) {
                 box.classList.replace('potionBoxSmall', 'potionBoxSmallHighlighted')
                 box.classList.replace('potionBox', 'potionBoxHighlighted')
                 const svg = box.firstElementChild as SVGElement | null
                 if(svg) {
                     const pathes = Array.from(svg.children)
-                    pathes.forEach(path => {
+                    pathes.forEach((path) => {
                         path.classList.replace('dressingBoxBg', 'dressingBoxBgHighlighted')
                     })
                 }
@@ -253,12 +272,20 @@ function setupEquipableItemEvents(item: HTMLElement) {
     item.ondragover = handleDragOver
     item.addEventListener('dragend', handleDragEndEquipableItem, false)
     item.onclick = handleClickEquipableItem
-    item.addEventListener('mouseover', function() {
-        SimpleAlt.artifactAltSimple(this.getAttribute('itemid'), 2, this)
-    }, false)
-    item.addEventListener('mouseout', function() {
-        SimpleAlt.artifactAltSimple(this.getAttribute('itemid'), 0, this)
-    }, false)
+    item.addEventListener(
+        'mouseover',
+        function() {
+            SimpleAlt.artifactAltSimple(this.getAttribute('itemid'), 2, this)
+        },
+        false
+    )
+    item.addEventListener(
+        'mouseout',
+        function() {
+            SimpleAlt.artifactAltSimple(this.getAttribute('itemid'), 0, this)
+        },
+        false
+    )
 }
 
 function setupFilters() {
@@ -334,8 +361,8 @@ function generateSetId() {
 }
 
 function addNewSet(): DressingSet {
-    let id = generateSetId()
-    let newSet: DressingSet = {
+    const id = generateSetId()
+    const newSet: DressingSet = {
         id: id,
         title: 'Default set',
         ids: [],
@@ -376,7 +403,4 @@ function setupView() {
     }
 }
 
-export {
-    setupView,
-    render
-}
+export { setupView, render }

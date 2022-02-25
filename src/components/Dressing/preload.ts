@@ -4,7 +4,7 @@ import { DressingWindowActions } from './Actions'
 import reduce from './Reducer'
 import { render, setupView } from './Renderer'
 
-var initialState: DressingWindowState = {
+let initialState: DressingWindowState = {
     selectedStaticItemId: null,
     currentEquipedItems: [],
     arcats: [],
@@ -26,7 +26,7 @@ export default async function dispatch(action: DressingWindowActions, data?: any
     render(initialState)
 }
 
-document.addEventListener('DOMContentLoaded', async () => {
+document.addEventListener('DOMContentLoaded', async() => {
     dispatch(DressingWindowActions.LOAD_CONTENT)
     setupMode()
     setupView()

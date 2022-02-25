@@ -161,7 +161,6 @@
     height: 0;
 }
 
-
 .dressingBoxBg {
     @apply fill-lightMediumGrey dark:fill-secondaryDark;
 }
