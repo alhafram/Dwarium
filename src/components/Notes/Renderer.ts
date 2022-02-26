@@ -1,3 +1,4 @@
+import { ListElements } from '../Common/List/Elements'
 import { NotesWindowActions } from './Actions'
 import { Elements } from './Elements'
 import { Note, NotesWindowState } from './NotesWindowState'
@@ -18,14 +19,14 @@ function createNoteElement(note: Note, isActive = false) {
     newNoteDiv.ondragstart = function() {
         newNoteDiv.style.opacity = '0.4'
         dragableNote = newNoteDiv
-        Elements.removeNoteDiv().classList.replace('basket', 'basketActive')
-        Elements.basketIcon().classList.replace('basketIcon', 'basketIconActive')
+        ListElements.removeSetDiv().classList.replace('basket', 'basketActive')
+        ListElements.basketIcon().classList.replace('basketIcon', 'basketIconActive')
     }
     newNoteDiv.ondragend = function() {
         newNoteDiv.style.opacity = '1'
         dragableNote = null
-        Elements.removeNoteDiv().classList.replace('basketActive', 'basket')
-        Elements.basketIcon().classList.replace('basketIconActive', 'basketIcon')
+        ListElements.removeSetDiv().classList.replace('basketActive', 'basket')
+        ListElements.basketIcon().classList.replace('basketIconActive', 'basketIcon')
     }
     newNoteDiv.ondragover = function(e) {
         e.preventDefault()
@@ -37,16 +38,16 @@ function createNoteElement(note: Note, isActive = false) {
 }
 
 function render(state: NotesWindowState): void {
-    Array.from(Elements.notesDiv().children)
+    Array.from(ListElements.setsDiv().children)
         .filter((element) => element.id.startsWith('note_'))
-        .forEach((element) => Elements.notesDiv().removeChild(element))
+        .forEach((element) => ListElements.setsDiv().removeChild(element))
     for(const set of state.notes) {
         const isActive = state.currentNote?.id == set.id
         const setDiv = createNoteElement(set, isActive)
         if(isActive) {
             Elements.editorTextarea().value = set.text
         }
-        Elements.notesDiv().appendChild(setDiv)
+        ListElements.setsDiv().appendChild(setDiv)
     }
 }
 

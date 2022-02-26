@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { DressingSet } from '../../Models/DressingSet'
 import { InventoryItem } from '../../Models/InventoryItem'
 import { getType, InventoryItemType } from '../Common/ItemBuilder'
@@ -9,15 +7,9 @@ import { DressingWindowActions } from './Actions'
 import { DressingWindowState } from './DressingWindowState'
 import { Elements } from './Elements'
 import Requests from './Requests'
-import { SetStyleHelper } from './SetStyleHelper'
+import { StyleHelper } from './StyleHelper'
 import parse from './InventoryParser'
 import SimpleAlt from '../../Scripts/simple_alt'
-
-type RepeatableItems = {
-    arcats: InventoryItem[]
-    rings: InventoryItem[]
-    amulets: InventoryItem[]
-}
 
 export default async function reduce(state: DressingWindowState, action: DressingWindowActions, data?: any): Promise<DressingWindowState> {
     let newFilters: DressingFilterColor[] = []
@@ -56,7 +48,7 @@ export default async function reduce(state: DressingWindowState, action: Dressin
                 .filter((key) => parsedItemTypes.includes(key))
                 .map((key) => parsedWearedItems[key])
                 .flat() as InventoryItem[]
-            const repeatableItems = countRepeatableItems(currentEquipedItems)
+            const repeatableItems = parse(currentEquipedItems)
             // @ts-ignore
             allItems = allItems.concat(currentEquipedItems).sort((a, b) => a.kind_id - b.kind_id)
             allItems.forEach((item) => {
@@ -266,7 +258,7 @@ export default async function reduce(state: DressingWindowState, action: Dressin
             }
             let set = state.currentSet
             const equipmentItemIds = state.currentEquipedItems.map((item) => item.id)
-            const setMagicSchool = SetStyleHelper.getSchool(state.currentStyle, state.currentMagicSchool)
+            const setMagicSchool = StyleHelper.getSchool(state.currentStyle, state.currentMagicSchool)
             if(set) {
                 set.title = Elements.setTitleInput().value
                 set.ids = equipmentItemIds
@@ -320,7 +312,7 @@ export default async function reduce(state: DressingWindowState, action: Dressin
         case DressingWindowActions.SELECT_SET: {
             const selectedSet = data as DressingSet
             const items = selectedSet.ids.map((id) => state.allItems.find((item) => item.id == id)).filter((item) => item != undefined) as InventoryItem[]
-            const repeatableItems1 = countRepeatableItems(items)
+            const repeatableItems1 = parse(items)
             return {
                 ...state,
                 currentSet: selectedSet,
@@ -341,7 +333,7 @@ export default async function reduce(state: DressingWindowState, action: Dressin
             const currentSet = state.currentSet
             if(currentSet.magicSchool && state.currentMagicSchool && state.currentMagicSchool != currentSet.magicSchool) {
                 if(state.zikkuratId) {
-                    const styleId = SetStyleHelper.getStyleId(currentSet.magicSchool)
+                    const styleId = StyleHelper.getStyleId(currentSet.magicSchool)
                     await Requests.changeStyle(state.zikkuratId, styleId)
                     state.currentMagicSchool = currentSet.magicSchool
                 }
@@ -367,7 +359,7 @@ export default async function reduce(state: DressingWindowState, action: Dressin
             for(const id of needToPutOn) {
                 await Requests.equipRequest(id)
             }
-            const repeatableItems2 = countRepeatableItems(currentEquipedItems)
+            const repeatableItems2 = parse(currentEquipedItems)
             Elements.saveSetButton().disabled = false
             Elements.equipSetButton().disabled = false
             Elements.unequipButton().disabled = false
@@ -392,39 +384,14 @@ export default async function reduce(state: DressingWindowState, action: Dressin
     }
 }
 
-function countRepeatableItems(items: InventoryItem[]): RepeatableItems {
-    const countedItems: RepeatableItems = {
-        arcats: [],
-        rings: [],
-        amulets: []
-    }
-    items.forEach((item) => {
-        const type = getType(item.kind_id)
-        switch (type) {
-            case InventoryItemType.ARCAT:
-                countedItems.arcats.push(item)
-                break
-            case InventoryItemType.RING:
-                countedItems.rings.push(item)
-                break
-            case InventoryItemType.AMULET:
-                countedItems.amulets.push(item)
-                break
-            default:
-                break
-        }
-    })
-    return countedItems
-}
-
 function parseMagicSchools(result: any): string {
     const doc = result.toDocument() as Document
     const magicSchoolsElements = doc.querySelector('body > table > tbody > tr:nth-child(2) > td.bgg > table > tbody > tr:nth-child(1) > td:nth-child(2) > select')
     if(magicSchoolsElements) {
         const schools = Array.from(magicSchoolsElements.children).map((e) => e.textContent ?? '')
-        let currentStyle = difference(SetStyleHelper.magmarSchools, schools)
-        if(currentStyle.size == SetStyleHelper.magmarSchools.length) {
-            currentStyle = difference(SetStyleHelper.humanSchools, schools)
+        let currentStyle = difference(StyleHelper.magmarSchools, schools)
+        if(currentStyle.size == StyleHelper.magmarSchools.length) {
+            currentStyle = difference(StyleHelper.humanSchools, schools)
         }
         return Array.from(currentStyle)[0]
     }

@@ -3,11 +3,12 @@ import { DressingFilterColor, generateRandomId, getQuality } from '../Utils'
 import { DressingWindowActions } from './Actions'
 import { DressingWindowState } from './DressingWindowState'
 import { Elements } from './Elements'
+import { ListElements } from '../Common/List/Elements'
 import { convertItemIntoDiv } from '../Common/ItemBuilder'
 import SimpleAlt from '../../Scripts/simple_alt'
 import dispatch from './preload'
 import { DressingSet } from '../../Models/DressingSet'
-import { SetStyleHelper } from './SetStyleHelper'
+import { StyleHelper } from './StyleHelper'
 
 function getAllStaticDivs(): HTMLDivElement[] {
     return [
@@ -148,16 +149,16 @@ function render(initialState: DressingWindowState): void {
     Elements.allItemsDiv().ondragover = handleDragOver
     Elements.allItemsDiv().ondrop = handleDropEquipableItemIntoAllItems
 
-    Array.from(Elements.setsDiv().children)
+    Array.from(ListElements.setsDiv().children)
         .filter((element) => element.id.startsWith('set_'))
-        .forEach((element) => Elements.setsDiv().removeChild(element))
+        .forEach((element) => ListElements.setsDiv().removeChild(element))
     for(const set of initialState.sets) {
         const isActive = initialState.currentSet == set
         const setDiv = createNoteElement(set, isActive)
         if(isActive) {
             Elements.setTitleInput().value = set.title
         }
-        Elements.setsDiv().appendChild(setDiv)
+        ListElements.setsDiv().appendChild(setDiv)
     }
     setupInteractionEvents(initialState)
 }
@@ -332,7 +333,7 @@ function createNoteElement(note: DressingSet, isActive = false) {
         <div id="${note.id}" draggable="true" class="flex hover:bg-lightMediumGrey dark:hover:bg-secondaryDark mt-3 cursor-pointer w-40 h-14 ${
     isActive ? 'bg-lightMediumGrey dark:bg-secondaryDark border-4 border-dashed border-secondaryLightDark dark:border-secondaryLight' : 'bg-light dark:bg-secondaryBlack'
 } rounded-3xl">
-           ${SetStyleHelper.getMagicIcon(note.magicSchool)}
+           ${StyleHelper.getMagicIcon(note.magicSchool)}
             <p class="ml-2 my-auto text-secondaryLightDark dark:text-secondaryLight text-ellipsis whitespace-nowrap overflow-hidden font-montserrat font-extrabold text-xss">${note.title}</p>
         </div>`
     const parser = new DOMParser()
@@ -340,14 +341,14 @@ function createNoteElement(note: DressingSet, isActive = false) {
     newNoteDiv.ondragstart = function() {
         newNoteDiv.style.opacity = '0.4'
         dragableSet = newNoteDiv
-        Elements.removeSetDiv().classList.replace('basket', 'basketActive')
-        Elements.basketIcon().classList.replace('basketIcon', 'basketIconActive')
+        ListElements.removeSetDiv().classList.replace('basket', 'basketActive')
+        ListElements.basketIcon().classList.replace('basketIcon', 'basketIconActive')
     }
     newNoteDiv.ondragend = function() {
         newNoteDiv.style.opacity = '1'
         dragableSet = null
-        Elements.removeSetDiv().classList.replace('basketActive', 'basket')
-        Elements.basketIcon().classList.replace('basketIconActive', 'basketIcon')
+        ListElements.removeSetDiv().classList.replace('basketActive', 'basket')
+        ListElements.basketIcon().classList.replace('basketIconActive', 'basketIcon')
     }
     newNoteDiv.ondragover = function(e) {
         e.preventDefault()
@@ -383,15 +384,15 @@ function setupView() {
     })
     setupFilters()
 
-    Elements.newSetButton().onclick = function() {
+    ListElements.newSetButton().onclick = function() {
         const newSet = addNewSet()
         dispatch(DressingWindowActions.CREATE_NEW_SET, newSet)
     }
-    Elements.removeSetDiv().ondrop = function(e) {
+    ListElements.removeSetDiv().ondrop = function(e) {
         e.preventDefault()
         dispatch(DressingWindowActions.REMOVE_SET, dragableSet)
     }
-    Elements.removeSetDiv().ondragover = function(e) {
+    ListElements.removeSetDiv().ondragover = function(e) {
         e.preventDefault()
     }
     Elements.unequipButton().onclick = function() {

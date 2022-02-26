@@ -1,8 +1,8 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { DressingFilterColor, generateRandomId, getFilterColor } from '../Utils'
 import { BeltDressingWindowActions } from './Actions'
 import { BeltDressingSet, BeltDressingWindowState } from './BeltDressingWindowState'
 import { Elements } from './Elements'
+import { ListElements } from '../Common/List/Elements'
 import dispatch from './preload'
 import { handleDragOver, setupAltEvents, dismissAlt } from '../Common/EventBuilder'
 import { convertItemIntoDiv } from '../Common/ItemBuilder'
@@ -19,14 +19,14 @@ function createNoteElement(note: BeltDressingSet, isActive = false) {
     newNoteDiv.ondragstart = function() {
         newNoteDiv.style.opacity = '0.4'
         dragableSet = newNoteDiv
-        Elements.removeSetDiv().classList.replace('basket', 'basketActive')
-        Elements.basketIcon().classList.replace('basketIcon', 'basketIconActive')
+        ListElements.removeSetDiv().classList.replace('basket', 'basketActive')
+        ListElements.basketIcon().classList.replace('basketIcon', 'basketIconActive')
     }
     newNoteDiv.ondragend = function() {
         newNoteDiv.style.opacity = '1'
         dragableSet = null
-        Elements.removeSetDiv().classList.replace('basketActive', 'basket')
-        Elements.basketIcon().classList.replace('basketIconActive', 'basketIcon')
+        ListElements.removeSetDiv().classList.replace('basketActive', 'basket')
+        ListElements.basketIcon().classList.replace('basketIconActive', 'basketIcon')
     }
     newNoteDiv.ondragover = function(e) {
         e.preventDefault()
@@ -174,16 +174,16 @@ export function render(state: BeltDressingWindowState): void {
             icon.style.display = 'none'
         }
     }
-    Array.from(Elements.setsDiv().children)
+    Array.from(ListElements.setsDiv().children)
         .filter((element) => element.id.startsWith('belt_set_'))
-        .forEach((element) => Elements.setsDiv().removeChild(element))
+        .forEach((element) => ListElements.setsDiv().removeChild(element))
     for(const set of state.sets) {
         const isActive = state.currentSet?.id == set.id
         const setDiv = createNoteElement(set, isActive)
         if(isActive) {
             Elements.setTitleInput().value = set.title
         }
-        Elements.setsDiv().appendChild(setDiv)
+        ListElements.setsDiv().appendChild(setDiv)
     }
     Elements.warningSpan().style.display = state.warning ? 'block' : 'none'
 }
@@ -200,15 +200,15 @@ function addNewSet(): BeltDressingSet {
 }
 
 export function setupView() {
-    Elements.newSetButton().onclick = function() {
+    ListElements.newSetButton().onclick = function() {
         const newSet = addNewSet()
         dispatch(BeltDressingWindowActions.CREATE_NEW_SET, newSet)
     }
-    Elements.removeSetDiv().ondrop = function(e) {
+    ListElements.removeSetDiv().ondrop = function(e) {
         e.preventDefault()
         dispatch(BeltDressingWindowActions.REMOVE_SET, dragableSet)
     }
-    Elements.removeSetDiv().ondragover = handleDragOver
+    ListElements.removeSetDiv().ondragover = handleDragOver
     Elements.unequipButton().onclick = function() {
         dispatch(BeltDressingWindowActions.UNEQUIP_ALL)
     }

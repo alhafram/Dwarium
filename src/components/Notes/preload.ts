@@ -5,6 +5,7 @@ import setupMode from '../../services/DarkModeHandler'
 import reduce from './Reducer'
 import { handleDragOver } from '../Common/EventBuilder'
 import { render, getDragableNote } from './Renderer'
+import { ListElements } from '../Common/List/Elements'
 
 let initialState: NotesWindowState = {
     notes: [],
@@ -19,14 +20,14 @@ export default async function dispatch(action: NotesWindowActions, data?: any) {
 document.addEventListener('DOMContentLoaded', () => {
     setupMode()
     dispatch(NotesWindowActions.LOAD_CONTENT)
-    Elements.newNoteButton().onclick = function() {
+    ListElements.newSetButton().onclick = function() {
         dispatch(NotesWindowActions.CREATE_NEW_NOTE)
     }
-    Elements.removeNoteDiv().ondrop = function(e) {
+    ListElements.removeSetDiv().ondrop = function(e) {
         e.preventDefault()
         dispatch(NotesWindowActions.REMOVE_NOTE, getDragableNote())
     }
-    Elements.removeNoteDiv().ondragover = handleDragOver
+    ListElements.removeSetDiv().ondragover = handleDragOver
     Elements.editorTextarea().onkeyup = function() {
         dispatch(NotesWindowActions.SAVE_NOTE)
     }

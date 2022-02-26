@@ -95,9 +95,6 @@ export const Elements = {
     arcat4Div(): HTMLDivElement {
         return document.getElementById('arcat4Div') as HTMLDivElement
     },
-    setsDiv(): HTMLDivElement {
-        return document.getElementById('setsDiv') as HTMLDivElement
-    },
     setTitleInput(): HTMLInputElement {
         return document.getElementById('setTitleInput') as HTMLInputElement
     },
@@ -112,15 +109,6 @@ export const Elements = {
     },
     allItemsDiv(): HTMLDivElement {
         return document.getElementById('allItemsDiv') as HTMLDivElement
-    },
-    newSetButton(): HTMLInputElement {
-        return document.getElementById('newSetButton') as HTMLInputElement
-    },
-    removeSetDiv(): HTMLButtonElement {
-        return document.getElementById('removeSetDiv') as HTMLButtonElement
-    },
-    basketIcon(): HTMLElement {
-        return document.getElementById('basketIcon') as HTMLElement
     },
     arcatsDiv(): HTMLDivElement {
         return document.getElementById('arcats') as HTMLDivElement

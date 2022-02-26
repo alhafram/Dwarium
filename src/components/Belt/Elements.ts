@@ -1,7 +1,4 @@
 export const Elements = {
-    setsDiv(): HTMLDivElement {
-        return document.getElementById('setsDiv') as HTMLDivElement
-    },
     setTitleInput(): HTMLInputElement {
         return document.getElementById('setTitleInput') as HTMLInputElement
     },
@@ -19,15 +16,6 @@ export const Elements = {
     },
     warningSpan(): HTMLSpanElement {
         return document.getElementById('warningSpan') as HTMLSpanElement
-    },
-    newSetButton(): HTMLInputElement {
-        return document.getElementById('newSetButton') as HTMLInputElement
-    },
-    removeSetDiv(): HTMLButtonElement {
-        return document.getElementById('removeSetDiv') as HTMLButtonElement
-    },
-    basketIcon(): HTMLElement {
-        return document.getElementById('basketIcon') as HTMLElement
     },
     potionStaticBoxesDiv(): HTMLElement {
         return document.getElementById('potionStaticBoxesDiv') as HTMLElement

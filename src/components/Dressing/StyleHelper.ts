@@ -1,4 +1,4 @@
-export const SetStyleHelper = {
+export const StyleHelper = {
     magmarSchools: ['Огонь', 'Земля', 'Тень'],
     humanSchools: ['Воздух', 'Свет', 'Вода'],
     getStyleId(name: string | null): number {
@@ -26,7 +26,7 @@ export const SetStyleHelper = {
         if(!style || !currentSchool) {
             return null
         }
-        if(SetStyleHelper.magmarSchools.includes(currentSchool)) {
+        if(this.magmarSchools.includes(currentSchool)) {
             if(style == 'Костолом') {
                 return 'Огонь'
             }
@@ -37,7 +37,7 @@ export const SetStyleHelper = {
                 return 'Тень'
             }
         }
-        if(SetStyleHelper.humanSchools.includes(currentSchool)) {
+        if(this.humanSchools.includes(currentSchool)) {
             if(style == 'Костолом') {
                 return 'Воздух'
             }
