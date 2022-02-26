@@ -9,6 +9,7 @@ import SimpleAlt from '../../Scripts/simple_alt'
 import dispatch from './preload'
 import { DressingSet } from '../../Models/DressingSet'
 import { StyleHelper } from './StyleHelper'
+import { SetElements } from '../Common/Set/Elements'
 
 function getAllStaticDivs(): HTMLDivElement[] {
     return [
@@ -56,11 +57,11 @@ function render(initialState: DressingWindowState): void {
             }
         }
     })
-    Array.from(Elements.allItemsDiv().children ?? []).forEach((item) => Elements.allItemsDiv().removeChild(item))
+    Array.from(SetElements.allItemsDiv().children ?? []).forEach((item) => SetElements.allItemsDiv().removeChild(item))
     const allItemDivs = initialState.allItems.map((item) => {
         const element = convertItemIntoDiv(item, undefined)
         element.style.display = 'block'
-        const parent = Elements.allItemsDiv()
+        const parent = SetElements.allItemsDiv()
         setupEquipableItemEvents(element)
         parent?.appendChild(element)
         return element
@@ -106,7 +107,7 @@ function render(initialState: DressingWindowState): void {
         visibleItems.forEach((item) => (item.style.display = item.getAttribute('trend') == initialState.currentStyle || item.getAttribute('trend') == 'Универсал' ? 'block' : 'none'))
     }
     for(const equipedItem of initialState.currentEquipedItems) {
-        const equipedDiv = Array.from(Elements.allItemsDiv().children ?? []).find((item) => item.getAttribute('itemid') == equipedItem.id) as HTMLElement | undefined
+        const equipedDiv = Array.from(SetElements.allItemsDiv().children ?? []).find((item) => item.getAttribute('itemid') == equipedItem.id) as HTMLElement | undefined
         if(!equipedDiv) {
             alert('ШО ТО НЕ ТАК!!! Напиши в группу')
             return
@@ -146,8 +147,8 @@ function render(initialState: DressingWindowState): void {
             }
         }
     }
-    Elements.allItemsDiv().ondragover = handleDragOver
-    Elements.allItemsDiv().ondrop = handleDropEquipableItemIntoAllItems
+    SetElements.allItemsDiv().ondragover = handleDragOver
+    SetElements.allItemsDiv().ondrop = handleDropEquipableItemIntoAllItems
 
     Array.from(ListElements.setsDiv().children)
         .filter((element) => element.id.startsWith('set_'))
@@ -156,7 +157,7 @@ function render(initialState: DressingWindowState): void {
         const isActive = initialState.currentSet == set
         const setDiv = createNoteElement(set, isActive)
         if(isActive) {
-            Elements.setTitleInput().value = set.title
+            SetElements.setTitleInput().value = set.title
         }
         ListElements.setsDiv().appendChild(setDiv)
     }
@@ -395,13 +396,13 @@ function setupView() {
     ListElements.removeSetDiv().ondragover = function(e) {
         e.preventDefault()
     }
-    Elements.unequipButton().onclick = function() {
+    SetElements.unequipButton().onclick = function() {
         dispatch(DressingWindowActions.UNEQUIP_ALL)
     }
-    Elements.equipSetButton().onclick = function() {
+    SetElements.equipSetButton().onclick = function() {
         dispatch(DressingWindowActions.EQUIP_FROM_SET)
     }
-    Elements.saveSetButton().onclick = function() {
+    SetElements.saveSetButton().onclick = function() {
         dispatch(DressingWindowActions.SAVE_SET)
     }
 }

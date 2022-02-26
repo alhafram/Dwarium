@@ -10,6 +10,7 @@ import Requests from './Requests'
 import { StyleHelper } from './StyleHelper'
 import parse from './InventoryParser'
 import SimpleAlt from '../../Scripts/simple_alt'
+import { disableButtons, SetElements } from '../Common/Set/Elements'
 
 export default async function reduce(state: DressingWindowState, action: DressingWindowActions, data?: any): Promise<DressingWindowState> {
     let newFilters: DressingFilterColor[] = []
@@ -260,7 +261,7 @@ export default async function reduce(state: DressingWindowState, action: Dressin
             const equipmentItemIds = state.currentEquipedItems.map((item) => item.id)
             const setMagicSchool = StyleHelper.getSchool(state.currentStyle, state.currentMagicSchool)
             if(set) {
-                set.title = Elements.setTitleInput().value
+                set.title = SetElements.setTitleInput().value
                 set.ids = equipmentItemIds
                 set.style = state.currentStyle
                 set.magicSchool = setMagicSchool
@@ -268,7 +269,7 @@ export default async function reduce(state: DressingWindowState, action: Dressin
             } else {
                 set = {
                     id: generateSetId(),
-                    title: Elements.setTitleInput().value,
+                    title: SetElements.setTitleInput().value,
                     ids: equipmentItemIds,
                     style: state.currentStyle,
                     magicSchool: setMagicSchool
@@ -327,9 +328,7 @@ export default async function reduce(state: DressingWindowState, action: Dressin
             if(!state.currentSet) {
                 return state
             }
-            Elements.saveSetButton().disabled = true
-            Elements.equipSetButton().disabled = true
-            Elements.unequipButton().disabled = true
+            disableButtons(true)
             const currentSet = state.currentSet
             if(currentSet.magicSchool && state.currentMagicSchool && state.currentMagicSchool != currentSet.magicSchool) {
                 if(state.zikkuratId) {
@@ -360,9 +359,7 @@ export default async function reduce(state: DressingWindowState, action: Dressin
                 await Requests.equipRequest(id)
             }
             const repeatableItems2 = parse(currentEquipedItems)
-            Elements.saveSetButton().disabled = false
-            Elements.equipSetButton().disabled = false
-            Elements.unequipButton().disabled = false
+            disableButtons(false)
             return {
                 ...state,
                 arcats: repeatableItems2.arcats,

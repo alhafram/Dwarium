@@ -6,6 +6,7 @@ import { ListElements } from '../Common/List/Elements'
 import dispatch from './preload'
 import { handleDragOver, setupAltEvents, dismissAlt } from '../Common/EventBuilder'
 import { convertItemIntoDiv } from '../Common/ItemBuilder'
+import { SetElements } from '../Common/Set/Elements'
 
 function createNoteElement(note: BeltDressingSet, isActive = false) {
     const newNoteString = `
@@ -129,7 +130,7 @@ function createDivPotionStr(variant: boolean) {
 }
 
 export function render(state: BeltDressingWindowState): void {
-    Array.from(Elements.allItemsDiv().children ?? []).forEach((item) => Elements.allItemsDiv().removeChild(item))
+    Array.from(SetElements.allItemsDiv().children ?? []).forEach((item) => SetElements.allItemsDiv().removeChild(item))
 
     const itemsStaticBoxes = Array.from(Elements.potionDivs()) as HTMLDivElement[]
     itemsStaticBoxes.forEach(function(item) {
@@ -148,7 +149,7 @@ export function render(state: BeltDressingWindowState): void {
         .filter((div) => div) as HTMLDivElement[]
     allItemDivs.forEach((item) => {
         setupEquipableItemEvents(item)
-        const parent = Elements.allItemsDiv()
+        const parent = SetElements.allItemsDiv()
         parent?.appendChild(item)
     })
     for(const item of state.currentEquipedItems) {
@@ -181,7 +182,7 @@ export function render(state: BeltDressingWindowState): void {
         const isActive = state.currentSet?.id == set.id
         const setDiv = createNoteElement(set, isActive)
         if(isActive) {
-            Elements.setTitleInput().value = set.title
+            SetElements.setTitleInput().value = set.title
         }
         ListElements.setsDiv().appendChild(setDiv)
     }
@@ -209,17 +210,17 @@ export function setupView() {
         dispatch(BeltDressingWindowActions.REMOVE_SET, dragableSet)
     }
     ListElements.removeSetDiv().ondragover = handleDragOver
-    Elements.unequipButton().onclick = function() {
+    SetElements.unequipButton().onclick = function() {
         dispatch(BeltDressingWindowActions.UNEQUIP_ALL)
     }
-    Elements.equipSetButton().onclick = function() {
+    SetElements.equipSetButton().onclick = function() {
         dispatch(BeltDressingWindowActions.EQUIP_FROM_SET)
     }
-    Elements.saveSetButton().onclick = function() {
+    SetElements.saveSetButton().onclick = function() {
         dispatch(BeltDressingWindowActions.SAVE_SET)
     }
-    Elements.allItemsDiv().ondragover = handleDragOver
-    Elements.allItemsDiv().ondrop = function() {
+    SetElements.allItemsDiv().ondragover = handleDragOver
+    SetElements.allItemsDiv().ondrop = function() {
         dispatch(BeltDressingWindowActions.UNEQUIP_ITEM, dragableItem)
     }
 }
