@@ -4,5 +4,4 @@ export type DressingSet = {
     ids: string[]
     style: string | null
     magicSchool: string | null
-    isNew: boolean
 }

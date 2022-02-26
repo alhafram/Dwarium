@@ -7,6 +7,7 @@ import { Elements } from './Elements'
 import SimpleAlt from '../../Scripts/simple_alt'
 import { DressingFilterColor, generateRandomId } from '../Utils'
 import Requests from './Requests'
+import { disableButtons, SetElements } from '../Common/Set/Elements'
 
 type EquipedPotion = {
     id: string
@@ -48,12 +49,6 @@ function copyInventoryItemWithoutBox(item: InventoryItem, potion: EquipedPotion 
     copyItem.variant = potion.variant ? 'true' : null
     copyItem.cnt = null
     return copyItem
-}
-
-function disableButtons(disabled: boolean) {
-    Elements.saveSetButton().disabled = disabled
-    Elements.equipSetButton().disabled = disabled
-    Elements.unequipButton().disabled = disabled
 }
 
 function generateSetId() {
@@ -151,7 +146,6 @@ export default async function reduce(state: BeltDressingWindowState, action: Bel
             }
             const itemId1 = equipedItemBox1.getAttribute('itemid')
             let equipedItem1 = state.allItems.find((item) => item.id == itemId1)
-            console.log(equipedItem1)
             if(!equipedItem1) {
                 alert('ШО ТО НЕ ТАК!!! Напиши в группу')
                 return {
@@ -210,13 +204,13 @@ export default async function reduce(state: BeltDressingWindowState, action: Bel
         case BeltDressingWindowActions.SAVE_SET: {
             let set = state.currentSet
             if(set) {
-                set.title = Elements.setTitleInput().value
+                set.title = SetElements.setTitleInput().value
                 set.potions = generateSetPotions(state.currentEquipedItems)
                 sets[sets.indexOf(set)] = set
             } else {
                 set = {
                     id: generateSetId(),
-                    title: Elements.setTitleInput().value,
+                    title: SetElements.setTitleInput().value,
                     potions: generateSetPotions(state.currentEquipedItems)
                 }
                 sets.push(set)

@@ -1,11 +1,12 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import convertItemIntoDiv from '../Common/ItemBuilder'
 import { DressingFilterColor, generateRandomId, getFilterColor } from '../Utils'
 import { BeltDressingWindowActions } from './Actions'
 import { BeltDressingSet, BeltDressingWindowState } from './BeltDressingWindowState'
 import { Elements } from './Elements'
+import { ListElements } from '../Common/List/Elements'
 import dispatch from './preload'
 import { handleDragOver, setupAltEvents, dismissAlt } from '../Common/EventBuilder'
+import { convertItemIntoDiv } from '../Common/ItemBuilder'
+import { SetElements } from '../Common/Set/Elements'
 
 function createNoteElement(note: BeltDressingSet, isActive = false) {
     const newNoteString = `
@@ -19,14 +20,14 @@ function createNoteElement(note: BeltDressingSet, isActive = false) {
     newNoteDiv.ondragstart = function() {
         newNoteDiv.style.opacity = '0.4'
         dragableSet = newNoteDiv
-        Elements.removeSetDiv().classList.replace('basket', 'basketActive')
-        Elements.basketIcon().classList.replace('basketIcon', 'basketIconActive')
+        ListElements.removeSetDiv().classList.replace('basket', 'basketActive')
+        ListElements.basketIcon().classList.replace('basketIcon', 'basketIconActive')
     }
     newNoteDiv.ondragend = function() {
         newNoteDiv.style.opacity = '1'
         dragableSet = null
-        Elements.removeSetDiv().classList.replace('basketActive', 'basket')
-        Elements.basketIcon().classList.replace('basketIconActive', 'basketIcon')
+        ListElements.removeSetDiv().classList.replace('basketActive', 'basket')
+        ListElements.basketIcon().classList.replace('basketIconActive', 'basketIcon')
     }
     newNoteDiv.ondragover = function(e) {
         e.preventDefault()
@@ -129,7 +130,7 @@ function createDivPotionStr(variant: boolean) {
 }
 
 export function render(state: BeltDressingWindowState): void {
-    Array.from(Elements.allItemsDiv().children ?? []).forEach((item) => Elements.allItemsDiv().removeChild(item))
+    Array.from(SetElements.allItemsDiv().children ?? []).forEach((item) => SetElements.allItemsDiv().removeChild(item))
 
     const itemsStaticBoxes = Array.from(Elements.potionDivs()) as HTMLDivElement[]
     itemsStaticBoxes.forEach(function(item) {
@@ -148,7 +149,7 @@ export function render(state: BeltDressingWindowState): void {
         .filter((div) => div) as HTMLDivElement[]
     allItemDivs.forEach((item) => {
         setupEquipableItemEvents(item)
-        const parent = Elements.allItemsDiv()
+        const parent = SetElements.allItemsDiv()
         parent?.appendChild(item)
     })
     for(const item of state.currentEquipedItems) {
@@ -174,16 +175,16 @@ export function render(state: BeltDressingWindowState): void {
             icon.style.display = 'none'
         }
     }
-    Array.from(Elements.setsDiv().children)
+    Array.from(ListElements.setsDiv().children)
         .filter((element) => element.id.startsWith('belt_set_'))
-        .forEach((element) => Elements.setsDiv().removeChild(element))
+        .forEach((element) => ListElements.setsDiv().removeChild(element))
     for(const set of state.sets) {
         const isActive = state.currentSet?.id == set.id
         const setDiv = createNoteElement(set, isActive)
         if(isActive) {
-            Elements.setTitleInput().value = set.title
+            SetElements.setTitleInput().value = set.title
         }
-        Elements.setsDiv().appendChild(setDiv)
+        ListElements.setsDiv().appendChild(setDiv)
     }
     Elements.warningSpan().style.display = state.warning ? 'block' : 'none'
 }
@@ -200,26 +201,26 @@ function addNewSet(): BeltDressingSet {
 }
 
 export function setupView() {
-    Elements.newSetButton().onclick = function() {
+    ListElements.newSetButton().onclick = function() {
         const newSet = addNewSet()
         dispatch(BeltDressingWindowActions.CREATE_NEW_SET, newSet)
     }
-    Elements.removeSetDiv().ondrop = function(e) {
+    ListElements.removeSetDiv().ondrop = function(e) {
         e.preventDefault()
         dispatch(BeltDressingWindowActions.REMOVE_SET, dragableSet)
     }
-    Elements.removeSetDiv().ondragover = handleDragOver
-    Elements.unequipButton().onclick = function() {
+    ListElements.removeSetDiv().ondragover = handleDragOver
+    SetElements.unequipButton().onclick = function() {
         dispatch(BeltDressingWindowActions.UNEQUIP_ALL)
     }
-    Elements.equipSetButton().onclick = function() {
+    SetElements.equipSetButton().onclick = function() {
         dispatch(BeltDressingWindowActions.EQUIP_FROM_SET)
     }
-    Elements.saveSetButton().onclick = function() {
+    SetElements.saveSetButton().onclick = function() {
         dispatch(BeltDressingWindowActions.SAVE_SET)
     }
-    Elements.allItemsDiv().ondragover = handleDragOver
-    Elements.allItemsDiv().ondrop = function() {
+    SetElements.allItemsDiv().ondragover = handleDragOver
+    SetElements.allItemsDiv().ondrop = function() {
         dispatch(BeltDressingWindowActions.UNEQUIP_ITEM, dragableItem)
     }
 }

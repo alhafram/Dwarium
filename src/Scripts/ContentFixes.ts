@@ -7,6 +7,21 @@ export function userInfoAchieventFix(): string {
     `
 }
 
+export function ergamFix(): string {
+    return `
+    setTimeout(() => {
+        const elem = document.game.main.children[0]?.location.children[1]
+        if(elem) {
+            var scale = 282 / document.game.main.children[0].location.children[1].width
+            if(document.game.main.children[0].location.children[1].width > 300) {
+                document.game.main.children[0].location.children[1].transform.scale.x = scale
+                document.game.main.children[0].location.children[1].transform.scale.y = scale
+            }
+        }
+    }, 100)
+    `
+}
+
 export function eldivInfoFix(): string {
     return `
     setTimeout(() => {

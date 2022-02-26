@@ -1,9 +1,9 @@
 import { Elements } from './Elements'
-import convertItemIntoDiv from '../Common/ItemBuilder'
 import { FoodWindowState } from './FoodWindowState'
 import { setupAltEvents } from '../../Components/Common/EventBuilder'
 import SimpleAlt from '../../Scripts/simple_alt'
 import { FoodType } from '../../Models/InventoryItem'
+import { convertItemIntoDiv } from '../Common/ItemBuilder'
 
 let currentState: FoodWindowState
 function render(state: FoodWindowState): void {
