@@ -7,7 +7,7 @@ require('@electron/remote/main').initialize()
 require('v8-compile-cache')
 import electronReload from 'electron-reload'
 import { Channel } from './Models/Channel'
-import { eldivInfoFix, userInfoAchieventFix } from './Scripts/ContentFixes'
+import { eldivInfoFix, ergamFix, userInfoAchieventFix } from './Scripts/ContentFixes'
 electronReload(__dirname, {})
 
 autoUpdater.allowDowngrade = ConfigService.getSettings().updateChannel == 'stable'
@@ -53,6 +53,8 @@ function createWindow() {
         if(details.url.includes(`${ConfigService.getSettings().baseUrl}/user_info.php`)) {
             const script = userInfoAchieventFix()
             details.webContents?.executeJavaScript(script)
+            const script2 = ergamFix()
+            details.webContents?.executeJavaScript(script2)
         }
         if(details.url.includes(`${ConfigService.getSettings().baseUrl}/user.php?mode=skills`)) {
             const script = eldivInfoFix()
