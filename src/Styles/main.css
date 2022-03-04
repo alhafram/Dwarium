@@ -169,7 +169,6 @@
     @apply fill-secondaryLightDark  dark:fill-secondaryLight;
 }
 
-
 /* Calendar */
 #today {
     @apply text-white;
@@ -189,11 +188,11 @@
 }
 
 .calendarMonth {
-    @apply text-secondaryLightDark dark:text-secondaryLight font-montserrat font-extrabold text-xss;
+    @apply font-montserrat text-xss font-extrabold text-secondaryLightDark dark:text-secondaryLight;
 }
 
 tbody td {
-    @apply rounded-full cursor-pointer relative font-montserrat text-xss font-extrabold text-secondaryLightDark dark:text-secondaryLight;
+    @apply relative cursor-pointer rounded-full font-montserrat text-xss font-extrabold text-secondaryLightDark dark:text-secondaryLight;
     width: 35px;
 }
 

@@ -28,5 +28,8 @@ export const Elements = {
     },
     searchButton(): HTMLButtonElement {
         return document.getElementById('searchButton') as HTMLButtonElement
+    },
+    messageLogsDiv(): HTMLDivElement {
+        return document.getElementById('messageLogsDiv') as HTMLDivElement
     }
 }

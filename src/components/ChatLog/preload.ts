@@ -1,4 +1,4 @@
-import { contextBridge } from 'electron'
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import readline from 'readline'
 import { buildFolderPath, buildPathWithBase, ConfigPath, Folder } from '../../Models/ConfigPathes'
 import setupMode from '../../services/DarkModeHandler'
@@ -13,13 +13,12 @@ const folderPath = buildFolderPath(Folder.LOGS)
 const filePath = buildPathWithBase(folderPath, ConfigPath.CHAT_LOG)
 
 type ChatLog = {
-    date: string,
+    date: string
     logs: string[]
 }
-var chatLogs: ChatLog[] = []
+let chatLogs: ChatLog[] = []
 
 async function processLineByLine() {
-
     FileOperationsService.checkFolder(folderPath)
     if(!FileOperationsService.fileExists(filePath)) {
         FileOperationsService.createFile(filePath)
@@ -37,10 +36,10 @@ async function processLineByLine() {
             // @ts-ignore
             const messageDate = new Date(new Date(timestamp).getYear() + 1900, new Date(timestamp).getMonth(), new Date(timestamp).getDate())
             const messageDateTimestamp = messageDate.getTime().toString()
-            const foundLog = chatLogs.find(chatLog => chatLog.date == messageDateTimestamp)
+            const foundLog = chatLogs.find((chatLog) => chatLog.date == messageDateTimestamp)
             if(foundLog) {
-                let index = chatLogs.indexOf(foundLog)
-                let log = chatLogs[index]
+                const index = chatLogs.indexOf(foundLog)
+                const log = chatLogs[index]
                 log.logs.push(line)
                 chatLogs[index] = log
             } else {
@@ -57,24 +56,21 @@ async function processLineByLine() {
 async function loadContent() {
     await processLineByLine()
 }
-    
+
 function selectDay(day: Date, filters: any[], searchText: string) {
-    const foundChatLogs = chatLogs.find(chatLog => chatLog.date == day.getTime().toString())
+    const foundChatLogs = chatLogs.find((chatLog) => chatLog.date == day.getTime().toString())
     if(foundChatLogs) {
-        const logsContainer = document.getElementById('messageLogs') as HTMLDivElement
-        Array.from(logsContainer.children).forEach(logDiv => {
-            logsContainer.removeChild(logDiv)
-        })
+        clearMessagesDiv()
         for(const line of foundChatLogs.logs) {
-            let elem = document.createElementFromString(line) as HTMLDivElement
+            const elem = document.createElementFromString(line) as HTMLDivElement
             if(searchText.startsWith('!')) {
-                let allCommand = searchText.slice(1, searchText.length)
-                let splittedCommand = allCommand.split('=')
-                let command = splittedCommand[0]
-                let value = splittedCommand[1] ?? ""
+                const allCommand = searchText.slice(1, searchText.length)
+                const splittedCommand = allCommand.split('=')
+                const command = splittedCommand[0]
+                const value = splittedCommand[1] ?? ''
                 if(command == 'nick' && value.length > 0) {
                     if(elem.getAttribute('nick')?.toLocaleLowerCase() == value.toLocaleLowerCase()) {
-                        logsContainer.appendChild(elem)
+                        Elements.messageLogsDiv().appendChild(elem)
                         continue
                     }
                 }
@@ -82,23 +78,32 @@ function selectDay(day: Date, filters: any[], searchText: string) {
             if(!elem.innerText.toLocaleLowerCase().includes(searchText.toLocaleLowerCase())) {
                 continue
             }
-            for(let filter of filters) {
+            for(const filter of filters) {
                 if(filter != 'cml_spc') {
                     if(elem.firstElementChild?.className == filter) {
-                        logsContainer.appendChild(elem)
+                        Elements.messageLogsDiv().appendChild(elem)
                     }
                 } else {
                     if(elem.className == filter) {
-                        logsContainer.appendChild(elem)
+                        Elements.messageLogsDiv().appendChild(elem)
                     }
                 }
             }
             if(filters.length == 0) {
-                logsContainer.appendChild(elem)
+                Elements.messageLogsDiv().appendChild(elem)
             }
         }
-        document.body.appendChild(logsContainer)
+        document.body.appendChild(Elements.messageLogsDiv())
+    } else {
+        clearMessagesDiv()
     }
+}
+
+function clearMessagesDiv() {
+    const logsContainer = Elements.messageLogsDiv()
+    Array.from(logsContainer.children).forEach((logDiv) => {
+        logsContainer.removeChild(logDiv)
+    })
 }
 
 function cleanLogs() {
@@ -106,7 +111,7 @@ function cleanLogs() {
     chatLogs = []
 }
 
-var filters: string[] = []
+const filters: string[] = []
 
 function filterLog() {
     if(!calendar) {
@@ -115,9 +120,9 @@ function filterLog() {
     selectDay(calendar.selectedDay, filters, Elements.searchTextBox().value)
 }
 
-var calendar: any
+let calendar: any
 
-window.addEventListener('DOMContentLoaded', async () => {
+window.addEventListener('DOMContentLoaded', async() => {
     setupMode()
     setupCalendar()
     await loadContent()
@@ -165,96 +170,95 @@ window.addEventListener('DOMContentLoaded', async () => {
 })
 
 function setupCalendar() {
-    var today = new Date(),
-        year = today.getFullYear(),
-        month = today.getMonth(),
-        monthTag = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
-        day = today.getDate(),
-        days = document.getElementsByTagName('td'),
-        selectedDay: Date | null = null,
-        daysLen = days.length;
+    const today = new Date()
+    let year = today.getFullYear()
+    let month = today.getMonth()
+    const monthTag = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+    let day = today.getDate()
+    const days = document.getElementsByTagName('td')
+    let selectedDay: Date | null = null
+    let daysLen = days.length
 
     class Calendar {
         selectedDay: Date | null
         constructor() {
             this.selectedDay = selectedDay
-            this.draw();
+            this.draw()
         }
         draw() {
-            this.drawDays();
-            var that = this,
+            this.drawDays()
+            // eslint-disable-next-line @typescript-eslint/no-this-alias
+            const that = this,
                 reset = document.getElementById('reset'),
                 pre = document.getElementById('pre-button'),
-                next = document.getElementById('next-button');
+                next = document.getElementById('next-button')
 
             pre?.addEventListener('click', function() {
-                that.preMonth();
-            });
+                that.preMonth()
+            })
             next?.addEventListener('click', function() {
-                that.nextMonth();
-            });
+                that.nextMonth()
+            })
             reset!.addEventListener('click', function() {
-                that.reset();
-            });
+                that.reset()
+            })
             while(daysLen--) {
                 days[daysLen].addEventListener('click', function() {
-                    that.clickDay(this);
-                });
+                    that.clickDay(this)
+                })
             }
         }
         drawHeader(e: string | number) {
-            var headDay = document.getElementById('head-day'),
-                headMonth = document.getElementById('head-month');
+            const headDay = document.getElementById('head-day'),
+                headMonth = document.getElementById('head-month')
             // @ts-ignore
-            e ? headDay.innerHTML = e : headDay[0].innerHTML = day;
-            headMonth!.innerHTML = monthTag[month] + " - " + year;
+            e ? (headDay.innerHTML = e) : (headDay[0].innerHTML = day)
+            headMonth!.innerHTML = monthTag[month] + ' - ' + year
         }
         drawDays() {
-            var startDay = new Date(year, month, 1).getDay(),
-                nDays = new Date(year, month + 1, 0).getDate(),
-                n = startDay;
-            for(var k = 0; k < 42; k++) {
-                days[k].innerHTML = '';
-                days[k].id = '';
-                days[k].className = '';
+            const startDay = new Date(year, month, 1).getDay(),
+                nDays = new Date(year, month + 1, 0).getDate()
+            let n = startDay
+            for(let k = 0; k < 42; k++) {
+                days[k].innerHTML = ''
+                days[k].id = ''
+                days[k].className = ''
             }
 
-            for(var i = 1; i <= nDays; i++) {
+            for(let i = 1; i <= nDays; i++) {
                 // @ts-ignore
-                days[n].innerHTML = i;
-                n++;
+                days[n].innerHTML = i
+                n++
             }
 
-            for(var j = 0; j < 42; j++) {
-                if(days[j].innerHTML === "") {
-
-                    days[j].id = "disabled";
-
+            for(let j = 0; j < 42; j++) {
+                if(days[j].innerHTML === '') {
+                    days[j].id = 'disabled'
                 } else if(j === day + startDay - 1) {
-                    if((month === today.getMonth()) && (year === today.getFullYear())) {
-                        this.drawHeader(day);
-                        days[j].id = "today";
+                    if(month === today.getMonth() && year === today.getFullYear()) {
+                        this.drawHeader(day)
+                        days[j].id = 'today'
                         this.clickDay(days[j])
                     }
                 }
                 if(selectedDay) {
-                    if((j === selectedDay.getDate() + startDay - 1) && (month === selectedDay.getMonth()) && (year === selectedDay.getFullYear())) {
-                        days[j].className = "selected";
-                        this.drawHeader(selectedDay.getDate());
+                    if(j === selectedDay.getDate() + startDay - 1 && month === selectedDay.getMonth() && year === selectedDay.getFullYear()) {
+                        days[j].className = 'selected'
+                        this.drawHeader(selectedDay.getDate())
                     }
                 }
             }
         }
         clickDay(o: HTMLTableCellElement) {
-            var selected = document.getElementsByClassName("selected"),
-                len = selected.length;
+            const selected = document.getElementsByClassName('selected'),
+                len = selected.length
             if(len !== 0) {
-                selected[0].className = "";
+                selected[0].className = ''
             }
-            o.className = "selected";
+            o.className = 'selected'
             // @ts-ignore
-            selectedDay = new Date(year, month, o.innerHTML);
-            this.drawHeader(o.innerHTML);
+            selectedDay = new Date(year, month, o.innerHTML)
+            this.drawHeader(o.innerHTML)
             if(this.selectedDay?.getTime() != selectedDay.getTime()) {
                 this.selectedDay = selectedDay
                 // @ts-ignore Function in index.js
@@ -263,30 +267,30 @@ function setupCalendar() {
         }
         preMonth() {
             if(month < 1) {
-                month = 11;
-                year = year - 1;
+                month = 11
+                year = year - 1
             } else {
-                month = month - 1;
+                month = month - 1
             }
-            this.drawHeader(1);
-            this.drawDays();
+            this.drawHeader(1)
+            this.drawDays()
         }
         nextMonth() {
             if(month >= 11) {
-                month = 0;
-                year = year + 1;
+                month = 0
+                year = year + 1
             } else {
-                month = month + 1;
+                month = month + 1
             }
-            this.drawHeader(1);
-            this.drawDays();
+            this.drawHeader(1)
+            this.drawDays()
         }
         reset() {
-            month = today.getMonth();
-            year = today.getFullYear();
-            day = today.getDate();
-            this.drawDays();
+            month = today.getMonth()
+            year = today.getFullYear()
+            day = today.getDate()
+            this.drawDays()
         }
     }
-    calendar = new Calendar();
+    calendar = new Calendar()
 }

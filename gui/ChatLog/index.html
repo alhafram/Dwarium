@@ -20,7 +20,7 @@
     </head>
 
     <body class="bg-white dark:bg-dark">
-        <div style="width: 350px;" class="float-right mr-5 rounded-full">
+        <div style="width: 350px" class="float-right mr-5 rounded-full">
             <div class="flex rounded-3xl bg-[url('../gui/ChatLog/bg.png')] bg-cover text-center">
                 <div class="relative flex w-1/3 items-center rounded-l-3xl">
                     <p id="reset" class="absolute top-3 right-3 cursor-pointer rounded-full border-2 border-lightMediumGrey px-2 py-1 font-montserrat text-xss font-semibold text-white">TODAY</p>
@@ -29,17 +29,16 @@
                         <p id="head-day" class="ml-3 font-montserrat text-8xl font-extrabold text-white"></p>
                     </div>
                 </div>
-                <div class="w-2/3 bg-lightMediumGrey dark:bg-dark px-5 pt-10 pb-5 opacity-80 rounded-3xl">
+                <div class="w-2/3 rounded-3xl bg-lightMediumGrey px-5 pt-10 pb-5 opacity-80 dark:bg-dark">
                     <div class="w-100 button-wrap">
-                        <button id="pre-button" class="relative hover:bg-white w-25px h-25px rounded-full dark:hover:bg-secondaryLightDark">
-                            <svg class=" fill-secondaryLightDark dark:fill-secondaryLight m-auto" width="19" height="14" viewBox="0 0 19 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <button id="pre-button" class="relative h-25px w-25px rounded-full hover:bg-white dark:hover:bg-secondaryLightDark">
+                            <svg class="m-auto fill-secondaryLightDark dark:fill-secondaryLight" width="19" height="14" viewBox="0 0 19 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M18.802 6.00298V7.99702H3.82545L8.48528 12.6569L7.07107 14.0711L0 7L7.07107 -0.0710677L8.48528 1.34315L3.82545 6.00298H18.802Z" />
                             </svg>
                         </button>
-                        <button id="next-button" class="ml-20 w-25px h-25px rounded-full hover:bg-white dark:hover:bg-secondaryLightDark">
-                            <svg class="fill-secondaryLightDark dark:fill-secondaryLight m-auto" width="19" height="14" viewBox="0 0 19 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M-0.00314097 6.00298V7.99702H14.9734L10.3135 12.6569L11.7278 14.0711L18.7988 7L11.7278 -0.0710677L10.3135 1.34315L14.9734 6.00298H-0.00314097Z" />
+                        <button id="next-button" class="ml-20 h-25px w-25px rounded-full hover:bg-white dark:hover:bg-secondaryLightDark">
+                            <svg class="m-auto fill-secondaryLightDark dark:fill-secondaryLight" width="19" height="14" viewBox="0 0 19 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M-0.00314097 6.00298V7.99702H14.9734L10.3135 12.6569L11.7278 14.0711L18.7988 7L11.7278 -0.0710677L10.3135 1.34315L14.9734 6.00298H-0.00314097Z" />
                             </svg>
                         </button>
                     </div>
@@ -116,59 +115,64 @@
             </div>
             <div style="margin: 10px">
                 <div class="flex">
-                    <input type="text" placeholder="Search string" style="width: 360px" id="searchText" class=" border-2 border-lightMediumGrey bg-white dark:bg-dark rounded-full px-3 outline-none h-10 text-xs font-extrabold font-montserrat text-secondaryLightDark dark:text-secondaryLight" />
-                    <button id="searchButton" class="-ml-8 h-6 w-6 mt-auto mb-auto">
+                    <input
+                        type="text"
+                        placeholder="Search string"
+                        style="width: 360px"
+                        id="searchText"
+                        class="h-10 rounded-full border-2 border-lightMediumGrey bg-white px-3 font-montserrat text-xs font-extrabold text-secondaryLightDark outline-none dark:bg-dark dark:text-secondaryLight" />
+                    <button id="searchButton" class="-ml-8 mt-auto mb-auto h-6 w-6">
                         <svg class="buttonIcon" width="15" height="12" viewBox="0 0 15 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M0 12L15 6L0 0V4.66667L10.7143 6L0 7.33333V12Z" />
                         </svg>
                     </button>
                 </div>
 
-                <label for="private" class="flex relative items-center cursor-pointer mt-5">
-                    <input type="checkbox" id="private" class="sr-only">
-                    <div class="w-11 h-6 bg-gray-200 rounded-full border border-gray-200 toggle-bg dark:bg-gray-700 dark:border-gray-600"></div>
-                    <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Приват</span>
+                <label for="private" class="relative mt-5 flex cursor-pointer items-center">
+                    <input type="checkbox" id="private" class="sr-only" />
+                    <div class="bg-gray-200 border-gray-200 toggle-bg dark:bg-gray-700 dark:border-gray-600 h-6 w-11 rounded-full border"></div>
+                    <span class="text-gray-900 dark:text-gray-300 ml-3 text-sm font-medium">Приват</span>
                 </label>
 
-                <label for="common" class="flex relative items-center cursor-pointer mt-5">
-                    <input type="checkbox" id="common" class="sr-only">
-                    <div class="w-11 h-6 bg-gray-200 rounded-full border border-gray-200 toggle-bg dark:bg-gray-700 dark:border-gray-600"></div>
-                    <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Общий</span>
+                <label for="common" class="relative mt-5 flex cursor-pointer items-center">
+                    <input type="checkbox" id="common" class="sr-only" />
+                    <div class="bg-gray-200 border-gray-200 toggle-bg dark:bg-gray-700 dark:border-gray-600 h-6 w-11 rounded-full border"></div>
+                    <span class="text-gray-900 dark:text-gray-300 ml-3 text-sm font-medium">Общий</span>
                 </label>
 
-                <label for="system" class="flex relative items-center cursor-pointer mt-5">
-                    <input type="checkbox" id="system" class="sr-only">
-                    <div class="w-11 h-6 bg-gray-200 rounded-full border border-gray-200 toggle-bg dark:bg-gray-700 dark:border-gray-600"></div>
-                    <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Системные</span>
+                <label for="system" class="relative mt-5 flex cursor-pointer items-center">
+                    <input type="checkbox" id="system" class="sr-only" />
+                    <div class="bg-gray-200 border-gray-200 toggle-bg dark:bg-gray-700 dark:border-gray-600 h-6 w-11 rounded-full border"></div>
+                    <span class="text-gray-900 dark:text-gray-300 ml-3 text-sm font-medium">Системные</span>
                 </label>
 
-                <label for="trade" class="flex relative items-center cursor-pointer mt-5">
-                    <input type="checkbox" id="trade" class="sr-only">
-                    <div class="w-11 h-6 bg-gray-200 rounded-full border border-gray-200 toggle-bg dark:bg-gray-700 dark:border-gray-600"></div>
-                    <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Торговый</span>
+                <label for="trade" class="relative mt-5 flex cursor-pointer items-center">
+                    <input type="checkbox" id="trade" class="sr-only" />
+                    <div class="bg-gray-200 border-gray-200 toggle-bg dark:bg-gray-700 dark:border-gray-600 h-6 w-11 rounded-full border"></div>
+                    <span class="text-gray-900 dark:text-gray-300 ml-3 text-sm font-medium">Торговый</span>
                 </label>
 
-                <label for="clan" class="flex relative items-center cursor-pointer mt-5">
-                    <input type="checkbox" id="clan" class="sr-only">
-                    <div class="w-11 h-6 bg-gray-200 rounded-full border border-gray-200 toggle-bg dark:bg-gray-700 dark:border-gray-600"></div>
-                    <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Клан</span>
+                <label for="clan" class="relative mt-5 flex cursor-pointer items-center">
+                    <input type="checkbox" id="clan" class="sr-only" />
+                    <div class="bg-gray-200 border-gray-200 toggle-bg dark:bg-gray-700 dark:border-gray-600 h-6 w-11 rounded-full border"></div>
+                    <span class="text-gray-900 dark:text-gray-300 ml-3 text-sm font-medium">Клан</span>
                 </label>
 
-                <label for="alliance" class="flex relative items-center cursor-pointer mt-5">
-                    <input type="checkbox" id="alliance" class="sr-only">
-                    <div class="w-11 h-6 bg-gray-200 rounded-full border border-gray-200 toggle-bg dark:bg-gray-700 dark:border-gray-600"></div>
-                    <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Альянс</span>
+                <label for="alliance" class="relative mt-5 flex cursor-pointer items-center">
+                    <input type="checkbox" id="alliance" class="sr-only" />
+                    <div class="bg-gray-200 border-gray-200 toggle-bg dark:bg-gray-700 dark:border-gray-600 h-6 w-11 rounded-full border"></div>
+                    <span class="text-gray-900 dark:text-gray-300 ml-3 text-sm font-medium">Альянс</span>
                 </label>
 
-                <label for="group" class="flex relative items-center cursor-pointer mt-5">
-                    <input type="checkbox" id="group" class="sr-only">
-                    <div class="w-11 h-6 bg-gray-200 rounded-full border border-gray-200 toggle-bg dark:bg-gray-700 dark:border-gray-600"></div>
-                    <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Группа</span>
+                <label for="group" class="relative mt-5 flex cursor-pointer items-center">
+                    <input type="checkbox" id="group" class="sr-only" />
+                    <div class="bg-gray-200 border-gray-200 toggle-bg dark:bg-gray-700 dark:border-gray-600 h-6 w-11 rounded-full border"></div>
+                    <span class="text-gray-900 dark:text-gray-300 ml-3 text-sm font-medium">Группа</span>
                 </label>
-                
-                <button id="cleanLogs" class="defaultButton w-32 h-10 mt-10">Удалить логи</button>
+
+                <button id="cleanLogs" class="defaultButton mt-10 h-10 w-32">Удалить логи</button>
             </div>
         </div>
-        <div id="messageLogs" style="height: 95vh; margin-right: 400px" class="m-5 overflow-scroll rounded-3xl bg-lightMediumGrey p-3"></div>
+        <div id="messageLogsDiv" style="height: 95vh; margin-right: 400px" class="m-5 overflow-scroll rounded-3xl bg-lightMediumGrey p-3"></div>
     </body>
 </html>
