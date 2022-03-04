@@ -3,52 +3,60 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <link rel="stylesheet" href="./style.css" />
         <link rel="stylesheet" href="./ChatLog.css" />
+        <link rel="stylesheet" href="../../out/main.css" />
 
-        <script>
-            var exports = {}
-        </script>
-        <script src="../../common/utils.js"></script>
-        <script src="../../out/Components/ChatLog/main.js"></script>
-        <script src="../../out/Components/ChatLog/index.js"></script>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
+            rel="stylesheet" />
+        <link rel="stylesheet" href="https://unpkg.com/flowbite@1.3.4/dist/flowbite.min.css" />
+        <script src="https://unpkg.com/flowbite@1.3.4/dist/flowbite.js"></script>
+
+        <style>
+            img {
+                display: inherit;
+            }
+        </style>
     </head>
 
-    <body style="margin-bottom: 35px">
-        <div style="height: 310px; float: right">
-            <div class="elegant-calencar d-md-flex">
-                <div class="wrap-header d-flex align-items-center img">
-                    <p id="reset">Today</p>
-                    <div id="header" class="p-0">
-                        <div class="head-info">
-                            <div class="head-month"></div>
-                            <div class="head-day"></div>
-                        </div>
+    <body class="bg-white dark:bg-dark">
+        <div style="width: 350px;" class="float-right mr-5 rounded-full">
+            <div class="flex rounded-3xl bg-[url('../gui/ChatLog/bg.png')] bg-cover text-center">
+                <div class="relative flex w-1/3 items-center rounded-l-3xl">
+                    <p id="reset" class="absolute top-3 right-3 cursor-pointer rounded-full border-2 border-lightMediumGrey px-2 py-1 font-montserrat text-xss font-semibold text-white">TODAY</p>
+                    <div>
+                        <p id="head-month" class="ml-3 text-center font-montserrat text-xl font-extrabold text-white"></p>
+                        <p id="head-day" class="ml-3 font-montserrat text-8xl font-extrabold text-white"></p>
                     </div>
                 </div>
-                <div class="calendar-wrap">
+                <div class="w-2/3 bg-lightMediumGrey dark:bg-dark px-5 pt-10 pb-5 opacity-80 rounded-3xl">
                     <div class="w-100 button-wrap">
-                        <div class="pre-button d-flex align-items-center justify-content-center">
-                            <img style="height: 25px" src="./Back.png" />
-                        </div>
-                        <div class="next-button d-flex align-items-center justify-content-center">
-                            <img style="height: 25px" src="./Forward.png" />
-                        </div>
+                        <button id="pre-button" class="relative hover:bg-white w-25px h-25px rounded-full dark:hover:bg-secondaryLightDark">
+                            <svg class=" fill-secondaryLightDark dark:fill-secondaryLight m-auto" width="19" height="14" viewBox="0 0 19 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M18.802 6.00298V7.99702H3.82545L8.48528 12.6569L7.07107 14.0711L0 7L7.07107 -0.0710677L8.48528 1.34315L3.82545 6.00298H18.802Z" />
+                            </svg>
+                        </button>
+                        <button id="next-button" class="ml-20 w-25px h-25px rounded-full hover:bg-white dark:hover:bg-secondaryLightDark">
+                            <svg class="fill-secondaryLightDark dark:fill-secondaryLight m-auto" width="19" height="14" viewBox="0 0 19 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M-0.00314097 6.00298V7.99702H14.9734L10.3135 12.6569L11.7278 14.0711L18.7988 7L11.7278 -0.0710677L10.3135 1.34315L14.9734 6.00298H-0.00314097Z" />
+                            </svg>
+                        </button>
                     </div>
                     <table id="calendar">
                         <thead>
-                            <tr>
-                                <th>Sun</th>
-                                <th>Mon</th>
-                                <th>Tue</th>
-                                <th>Wed</th>
-                                <th>Thu</th>
-                                <th>Fri</th>
-                                <th>Sat</th>
+                            <tr class="h-12">
+                                <th class="calendarMonth">SUN</th>
+                                <th class="calendarMonth">MON</th>
+                                <th class="calendarMonth">TUE</th>
+                                <th class="calendarMonth">WED</th>
+                                <th class="calendarMonth">THU</th>
+                                <th class="calendarMonth">FRI</th>
+                                <th class="calendarMonth">SAT</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
+                            <tr class="h-12">
                                 <td></td>
                                 <td></td>
                                 <td></td>
@@ -57,7 +65,7 @@
                                 <td></td>
                                 <td></td>
                             </tr>
-                            <tr>
+                            <tr class="h-12">
                                 <td></td>
                                 <td></td>
                                 <td></td>
@@ -66,7 +74,7 @@
                                 <td></td>
                                 <td></td>
                             </tr>
-                            <tr>
+                            <tr class="h-12">
                                 <td></td>
                                 <td></td>
                                 <td></td>
@@ -75,7 +83,7 @@
                                 <td></td>
                                 <td></td>
                             </tr>
-                            <tr>
+                            <tr class="h-12">
                                 <td></td>
                                 <td></td>
                                 <td></td>
@@ -84,7 +92,7 @@
                                 <td></td>
                                 <td></td>
                             </tr>
-                            <tr>
+                            <tr class="h-12">
                                 <td></td>
                                 <td></td>
                                 <td></td>
@@ -93,7 +101,7 @@
                                 <td></td>
                                 <td></td>
                             </tr>
-                            <tr>
+                            <tr class="h-12">
                                 <td></td>
                                 <td></td>
                                 <td></td>
@@ -107,43 +115,60 @@
                 </div>
             </div>
             <div style="margin: 10px">
-                <div class="filterElement input">
-                    <input type="text" placeholder="Search string" id="searchText" />
-                    <button id="searchButton">Найти</button>
+                <div class="flex">
+                    <input type="text" placeholder="Search string" style="width: 360px" id="searchText" class=" border-2 border-lightMediumGrey bg-white dark:bg-dark rounded-full px-3 outline-none h-10 text-xs font-extrabold font-montserrat text-secondaryLightDark dark:text-secondaryLight" />
+                    <button id="searchButton" class="-ml-8 h-6 w-6 mt-auto mb-auto">
+                        <svg class="buttonIcon" width="15" height="12" viewBox="0 0 15 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M0 12L15 6L0 0V4.66667L10.7143 6L0 7.33333V12Z" />
+                        </svg>
+                    </button>
                 </div>
 
-                <div class="filterElement">
-                    <input type="checkbox" id="private" />
-                    <label class="col-form-label" for="private">Приват</label>
-                </div>
-                <div class="filterElement">
-                    <input type="checkbox" id="common" />
-                    <label class="col-form-label" for="common">Общий</label>
-                </div>
-                <div class="filterElement">
-                    <input type="checkbox" id="system" />
-                    <label class="col-form-label" for="system">Системные</label>
-                </div>
-                <div class="filterElement">
-                    <input type="checkbox" id="trade" />
-                    <label class="col-form-label" for="trade">Торговый</label>
-                </div>
-                <div class="filterElement">
-                    <input type="checkbox" id="clan" />
-                    <label class="col-form-label" for="clan">Клан</label>
-                </div>
-                <div class="filterElement">
-                    <input type="checkbox" id="alliance" />
-                    <label class="col-form-label" for="alliance">Альянс</label>
-                </div>
-                <div class="filterElement">
-                    <input type="checkbox" id="group" />
-                    <label class="col-form-label" for="group">Группа</label>
-                </div>
-                <div class="filterElement">
-                    <button id="cleanLogs">Удалить логи чата</button>
-                </div>
+                <label for="private" class="flex relative items-center cursor-pointer mt-5">
+                    <input type="checkbox" id="private" class="sr-only">
+                    <div class="w-11 h-6 bg-gray-200 rounded-full border border-gray-200 toggle-bg dark:bg-gray-700 dark:border-gray-600"></div>
+                    <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Приват</span>
+                </label>
+
+                <label for="common" class="flex relative items-center cursor-pointer mt-5">
+                    <input type="checkbox" id="common" class="sr-only">
+                    <div class="w-11 h-6 bg-gray-200 rounded-full border border-gray-200 toggle-bg dark:bg-gray-700 dark:border-gray-600"></div>
+                    <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Общий</span>
+                </label>
+
+                <label for="system" class="flex relative items-center cursor-pointer mt-5">
+                    <input type="checkbox" id="system" class="sr-only">
+                    <div class="w-11 h-6 bg-gray-200 rounded-full border border-gray-200 toggle-bg dark:bg-gray-700 dark:border-gray-600"></div>
+                    <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Системные</span>
+                </label>
+
+                <label for="trade" class="flex relative items-center cursor-pointer mt-5">
+                    <input type="checkbox" id="trade" class="sr-only">
+                    <div class="w-11 h-6 bg-gray-200 rounded-full border border-gray-200 toggle-bg dark:bg-gray-700 dark:border-gray-600"></div>
+                    <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Торговый</span>
+                </label>
+
+                <label for="clan" class="flex relative items-center cursor-pointer mt-5">
+                    <input type="checkbox" id="clan" class="sr-only">
+                    <div class="w-11 h-6 bg-gray-200 rounded-full border border-gray-200 toggle-bg dark:bg-gray-700 dark:border-gray-600"></div>
+                    <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Клан</span>
+                </label>
+
+                <label for="alliance" class="flex relative items-center cursor-pointer mt-5">
+                    <input type="checkbox" id="alliance" class="sr-only">
+                    <div class="w-11 h-6 bg-gray-200 rounded-full border border-gray-200 toggle-bg dark:bg-gray-700 dark:border-gray-600"></div>
+                    <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Альянс</span>
+                </label>
+
+                <label for="group" class="flex relative items-center cursor-pointer mt-5">
+                    <input type="checkbox" id="group" class="sr-only">
+                    <div class="w-11 h-6 bg-gray-200 rounded-full border border-gray-200 toggle-bg dark:bg-gray-700 dark:border-gray-600"></div>
+                    <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Группа</span>
+                </label>
+                
+                <button id="cleanLogs" class="defaultButton w-32 h-10 mt-10">Удалить логи</button>
             </div>
         </div>
+        <div id="messageLogs" style="height: 95vh; margin-right: 400px" class="m-5 overflow-scroll rounded-3xl bg-lightMediumGrey p-3"></div>
     </body>
 </html>

@@ -11,12 +11,6 @@ a:active {
     text-decoration: none;
 }
 
-body {
-    background-color: #FFE4AA;
-    margin: 10px;
-    overflow-y: hidden;
-}
-
 .cml_prv,
 .cml_prv * {
     /* private */

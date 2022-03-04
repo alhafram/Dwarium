@@ -168,3 +168,61 @@
 .dressingBoxBgHighlighted {
     @apply fill-secondaryLightDark  dark:fill-secondaryLight;
 }
+
+
+/* Calendar */
+#today {
+    @apply text-white;
+}
+#today:after {
+    background: #e13a9d;
+}
+
+#disabled {
+    @apply cursor-auto bg-lightMediumGrey dark:bg-dark;
+}
+
+.filterElement {
+    clear: both;
+    margin: 10px 0 0 10px;
+    color: black;
+}
+
+.calendarMonth {
+    @apply text-secondaryLightDark dark:text-secondaryLight font-montserrat font-extrabold text-xss;
+}
+
+tbody td {
+    @apply rounded-full cursor-pointer relative font-montserrat text-xss font-extrabold text-secondaryLightDark dark:text-secondaryLight;
+    width: 35px;
+}
+
+tbody td:after {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    content: '';
+    width: 30px;
+    height: 30px;
+    margin: 0 auto;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    border-radius: 50%;
+    -webkit-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+    z-index: -1;
+}
+
+tbody td:hover,
+.selected {
+    @apply text-secondaryLightDark dark:text-secondaryLight;
+}
+
+tbody td:hover:after,
+.selected:after {
+    @apply bg-white dark:bg-secondaryLightDark dark:text-secondaryDark;
+}
