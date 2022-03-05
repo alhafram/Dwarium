@@ -43,9 +43,21 @@ String.prototype.toDocument = function() {
     return parser.parseFromString(this.toString(), 'text/html');
 }
 
+Document.prototype.createElementFromString = function(str: string): ChildNode {
+    const element = new DOMParser().parseFromString(str, 'text/html')
+    return element.body.firstChild!
+}
+
 declare global {
     export interface String {
         toDocument(): Document
+    }
+    export interface Document {
+        createElementFromString(str: string): ChildNode
+    }
+    export interface Array<T> {
+        removeItem(elem: T): T[]
+        removeItems(arr: T[]): T[]
     }
 }
 

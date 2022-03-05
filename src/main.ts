@@ -49,22 +49,23 @@ function createWindow() {
         })
     })
 
-    session.defaultSession.webRequest.onResponseStarted((details: OnResponseStartedListenerDetails) => {
-        if(details.url.includes(`${ConfigService.getSettings().baseUrl}/user_info.php`)) {
+    const filter = {
+        urls: ['*://*.dwar.ru/*', '*://*.dwar.mail.ru/*']
+    }
+
+    session.defaultSession.webRequest.onResponseStarted(filter, (details: OnResponseStartedListenerDetails) => {
+        if(details.url.includes('/user_info.php')) {
             const script = userInfoAchieventFix()
             details.webContents?.executeJavaScript(script)
             const script2 = ergamFix()
             details.webContents?.executeJavaScript(script2)
         }
-        if(details.url.includes(`${ConfigService.getSettings().baseUrl}/user.php?mode=skills`)) {
+        if(details.url.includes('/user.php?mode=skills')) {
             const script = eldivInfoFix()
             details.webContents?.executeJavaScript(script)
         }
     })
 
-    const filter = {
-        urls: ['*://*.dwar.ru/*', '*://*.dwar.mail.ru/*']
-    }
     session.defaultSession.webRequest.onBeforeRequest(filter, (details, callback) => {
         if(details.resourceType == 'script') {
             if(details.url.includes('cht.js')) {
