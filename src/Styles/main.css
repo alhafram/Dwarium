@@ -169,23 +169,22 @@
     @apply fill-secondaryLightDark  dark:fill-secondaryLight;
 }
 
-
 .chatSettingslabel {
-    @apply text-xs pt-2 text-secondaryLightDark dark:text-secondaryLight;
+    @apply pt-2 text-xs text-secondaryLightDark dark:text-secondaryLight;
 }
 
 .chatSettingsAutoresponderInput {
-    @apply float-right text-xss  font-montserrat font-extrabold border-2 outline-none text-secondaryLightDark dark:text-secondaryLight border-lightMediumGrey w-48 h-8 rounded-full p-3 bg-transparent;
+    @apply float-right h-8  w-48 rounded-full border-2 border-lightMediumGrey bg-transparent p-3 font-montserrat text-xss font-extrabold text-secondaryLightDark outline-none dark:text-secondaryLight;
 }
 
 .chatSettingsAutoresponderContainer {
-    @apply text-secondaryLightDark font-montserrat font-extrabold mt-5 h-8;
+    @apply mt-5 h-8 font-montserrat font-extrabold text-secondaryLightDark;
 }
 
 .chatSettingsFloodingInput {
-    @apply text-xss border-2  font-montserrat font-extrabold outline-none text-secondaryLightDark dark:text-secondaryLight border-lightMediumGrey w-48 h-8 rounded-full p-3 bg-transparent;
+    @apply h-8 w-48  rounded-full border-2 border-lightMediumGrey bg-transparent p-3 font-montserrat text-xss font-extrabold text-secondaryLightDark outline-none dark:text-secondaryLight;
 }
 
 .chatSettingsFloodingTimerInput {
-    @apply text-xss border-2 font-montserrat font-extrabold outline-none text-secondaryLightDark dark:text-secondaryLight border-lightMediumGrey w-24 h-8 rounded-full p-3 bg-transparent;
+    @apply h-8 w-24 rounded-full border-2 border-lightMediumGrey bg-transparent p-3 font-montserrat text-xss font-extrabold text-secondaryLightDark outline-none dark:text-secondaryLight;
 }

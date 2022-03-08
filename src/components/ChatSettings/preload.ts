@@ -4,27 +4,27 @@ import reduce from './Reducer'
 import setupMode from '../../services/DarkModeHandler'
 import { render, setupView } from './Renderer'
 
-var initialState: ChatSettingsWindowState = {
+let initialState: ChatSettingsWindowState = {
     autoResponderEnabled: false,
     floodingEnabled: false,
     inactiveTimer: 0,
 
-    privateChatResponse: "",
-    commonChatResponse: "",
-    tradeChatResponse: "",
-    groupChatResponse: "",
-    clanChatResponse: "",
-    allianceChatResponse: "",
+    privateChatResponse: '',
+    commonChatResponse: '',
+    tradeChatResponse: '',
+    groupChatResponse: '',
+    clanChatResponse: '',
+    allianceChatResponse: '',
 
-    commonChatFloodingMessage: "",
+    commonChatFloodingMessage: '',
     commonChatFloodingTimer: 10,
-    tradeChatFloodingMessage: "",
+    tradeChatFloodingMessage: '',
     tradeChatFloodingTimer: 10,
-    groupChatFloodingMessage: "",
+    groupChatFloodingMessage: '',
     groupChatFloodingTimer: 10,
-    clanChatFloodingMessage: "",
+    clanChatFloodingMessage: '',
     clanChatFloodingTimer: 10,
-    allianceChatFloodingMessage: "",
+    allianceChatFloodingMessage: '',
     allianceChatFloodingTimer: 10
 }
 
@@ -33,8 +33,7 @@ export default async function dispatch(action: ChatSettingsWindowActions, data?:
     render(initialState)
 }
 
-
-document.addEventListener('DOMContentLoaded', async () => {
+document.addEventListener('DOMContentLoaded', async() => {
     setupMode()
     dispatch(ChatSettingsWindowActions.LOAD_CONTENT)
     setupView()

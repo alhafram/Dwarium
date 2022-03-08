@@ -1,62 +1,62 @@
 export const Elements = {
-    autoResponderBox(): HTMLInputElement {
-        return document.getElementById('autoResponderEnabled') as HTMLInputElement
+    autoResponderInput(): HTMLInputElement {
+        return document.getElementById('autoResponderInput') as HTMLInputElement
     },
-    floodingBox(): HTMLInputElement {
-        return document.getElementById('floodingEnabled') as HTMLInputElement
+    floodingInput(): HTMLInputElement {
+        return document.getElementById('floodingInput') as HTMLInputElement
     },
-    inactiveTimerBox(): HTMLInputElement {
-        return document.getElementById('inactiveTimer') as HTMLInputElement
+    inactiveTimerInput(): HTMLInputElement {
+        return document.getElementById('inactiveTimerInput') as HTMLInputElement
     },
-    privateChatResponseBox(): HTMLInputElement {
-        return document.getElementById('privateChatResponse') as HTMLInputElement
+    privateChatResponseInput(): HTMLInputElement {
+        return document.getElementById('privateChatResponseInput') as HTMLInputElement
     },
-    commonChatResponseBox(): HTMLInputElement {
-        return document.getElementById('commonChatResponse') as HTMLInputElement
+    commonChatResponseInput(): HTMLInputElement {
+        return document.getElementById('commonChatResponseInput') as HTMLInputElement
     },
-    tradeChatResponseBox(): HTMLInputElement {
-        return document.getElementById('tradeChatResponse') as HTMLInputElement
+    tradeChatResponseInput(): HTMLInputElement {
+        return document.getElementById('tradeChatResponseInput') as HTMLInputElement
     },
-    groupChatResponseBox(): HTMLInputElement {
-        return document.getElementById('groupChatResponse') as HTMLInputElement
+    groupChatResponseInput(): HTMLInputElement {
+        return document.getElementById('groupChatResponseInput') as HTMLInputElement
     },
-    clanChatResponseBox(): HTMLInputElement {
-        return document.getElementById('clanChatResponse') as HTMLInputElement
+    clanChatResponseInput(): HTMLInputElement {
+        return document.getElementById('clanChatResponseInput') as HTMLInputElement
     },
-    allianceChatResponseBox(): HTMLInputElement {
-        return document.getElementById('allianceChatResponse') as HTMLInputElement
+    allianceChatResponseInput(): HTMLInputElement {
+        return document.getElementById('allianceChatResponseInput') as HTMLInputElement
     },
-    commonChatFloodingMessageBox(): HTMLInputElement {
-        return document.getElementById('commonChatFloodingMessage') as HTMLInputElement
+    commonChatFloodingMessageInput(): HTMLInputElement {
+        return document.getElementById('commonChatFloodingMessageInput') as HTMLInputElement
     },
-    commonChatFloodingTimerBox(): HTMLInputElement {
-        return document.getElementById('commonChatFloodingTimer') as HTMLInputElement
+    commonChatFloodingTimerInput(): HTMLInputElement {
+        return document.getElementById('commonChatFloodingTimerInput') as HTMLInputElement
     },
-    tradeChatFloodingMessageBox(): HTMLInputElement {
-        return document.getElementById('tradeChatFloodingMessage') as HTMLInputElement
+    tradeChatFloodingMessageInput(): HTMLInputElement {
+        return document.getElementById('tradeChatFloodingMessageInput') as HTMLInputElement
     },
-    tradeChatFloodingTimerBox(): HTMLInputElement {
-        return document.getElementById('tradeChatFloodingTimer') as HTMLInputElement
+    tradeChatFloodingTimerInput(): HTMLInputElement {
+        return document.getElementById('tradeChatFloodingTimerInput') as HTMLInputElement
     },
-    groupChatFloodingMessageBox(): HTMLInputElement {
-        return document.getElementById('groupChatFloodingMessage') as HTMLInputElement
+    groupChatFloodingMessageInput(): HTMLInputElement {
+        return document.getElementById('groupChatFloodingMessageInput') as HTMLInputElement
     },
-    groupChatFloodingTimerBox(): HTMLInputElement {
-        return document.getElementById('groupChatFloodingTimer') as HTMLInputElement
+    groupChatFloodingTimerInput(): HTMLInputElement {
+        return document.getElementById('groupChatFloodingTimerInput') as HTMLInputElement
     },
-    clanChatFloodingMessageBox(): HTMLInputElement {
-        return document.getElementById('clanChatFloodingMessage') as HTMLInputElement
+    clanChatFloodingMessageInput(): HTMLInputElement {
+        return document.getElementById('clanChatFloodingMessageInput') as HTMLInputElement
     },
-    clanChatFloodingTimerBox(): HTMLInputElement {
-        return document.getElementById('clanChatFloodingTimer') as HTMLInputElement
+    clanChatFloodingTimerInput(): HTMLInputElement {
+        return document.getElementById('clanChatFloodingTimerInput') as HTMLInputElement
     },
-    allianceChatFloodingMessageBox(): HTMLInputElement {
-        return document.getElementById('allianceChatFloodingMessage') as HTMLInputElement
+    allianceChatFloodingMessageInput(): HTMLInputElement {
+        return document.getElementById('allianceChatFloodingMessageInput') as HTMLInputElement
     },
-    allianceChatFloodingTimerBox(): HTMLInputElement {
-        return document.getElementById('allianceChatFloodingTimer') as HTMLInputElement
+    allianceChatFloodingTimerInput(): HTMLInputElement {
+        return document.getElementById('allianceChatFloodingTimerInput') as HTMLInputElement
     },
-    saveBox() {
-        return document.getElementById('save') as HTMLButtonElement
+    saveButton() {
+        return document.getElementById('saveButton') as HTMLButtonElement
     }
 }

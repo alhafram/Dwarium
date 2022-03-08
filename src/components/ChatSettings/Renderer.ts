@@ -1,143 +1,143 @@
-import { ipcRenderer } from "electron"
-import { Channel } from "../../Models/Channel"
-import dispatch from "./preload"
-import { ChatSettingsWindowActions } from "./Actions"
-import { ChatSettingsWindowState } from "./ChatSettingsWindowState"
-import { Elements } from "./Elements"
+import { ipcRenderer } from 'electron'
+import { Channel } from '../../Models/Channel'
+import dispatch from './preload'
+import { ChatSettingsWindowActions } from './Actions'
+import { ChatSettingsWindowState } from './ChatSettingsWindowState'
+import { Elements } from './Elements'
 
 function render(initialState: ChatSettingsWindowState) {
-    Elements.autoResponderBox().checked = initialState.autoResponderEnabled
-    Elements.floodingBox().checked = initialState.floodingEnabled
-    Elements.inactiveTimerBox().value = initialState.inactiveTimer.toString()
+    Elements.autoResponderInput().checked = initialState.autoResponderEnabled
+    Elements.floodingInput().checked = initialState.floodingEnabled
+    Elements.inactiveTimerInput().value = initialState.inactiveTimer.toString()
 
-    Elements.privateChatResponseBox().value = initialState.privateChatResponse.toString()
-    Elements.commonChatResponseBox().value = initialState.commonChatResponse.toString()
-    Elements.tradeChatResponseBox().value = initialState.tradeChatResponse.toString()
-    Elements.groupChatResponseBox().value = initialState.groupChatResponse.toString()
-    Elements.clanChatResponseBox().value = initialState.clanChatResponse.toString()
-    Elements.allianceChatResponseBox().value = initialState.allianceChatResponse.toString()
+    Elements.privateChatResponseInput().value = initialState.privateChatResponse.toString()
+    Elements.commonChatResponseInput().value = initialState.commonChatResponse.toString()
+    Elements.tradeChatResponseInput().value = initialState.tradeChatResponse.toString()
+    Elements.groupChatResponseInput().value = initialState.groupChatResponse.toString()
+    Elements.clanChatResponseInput().value = initialState.clanChatResponse.toString()
+    Elements.allianceChatResponseInput().value = initialState.allianceChatResponse.toString()
 
-    Elements.commonChatFloodingMessageBox().value = initialState.commonChatFloodingMessage.toString()
-    Elements.commonChatFloodingTimerBox().value = initialState.commonChatFloodingTimer.toString()
-    Elements.tradeChatFloodingMessageBox().value = initialState.tradeChatFloodingMessage.toString()
-    Elements.tradeChatFloodingTimerBox().value = initialState.tradeChatFloodingTimer.toString()
-    Elements.groupChatFloodingMessageBox().value = initialState.groupChatFloodingMessage.toString()
-    Elements.groupChatFloodingTimerBox().value = initialState.groupChatFloodingTimer.toString()
-    Elements.clanChatFloodingMessageBox().value = initialState.clanChatFloodingMessage.toString()
-    Elements.clanChatFloodingTimerBox().value = initialState.clanChatFloodingTimer.toString()
-    Elements.allianceChatFloodingMessageBox().value = initialState.allianceChatFloodingMessage.toString()
-    Elements.allianceChatFloodingTimerBox().value = initialState.allianceChatFloodingTimer.toString()
+    Elements.commonChatFloodingMessageInput().value = initialState.commonChatFloodingMessage.toString()
+    Elements.commonChatFloodingTimerInput().value = initialState.commonChatFloodingTimer.toString()
+    Elements.tradeChatFloodingMessageInput().value = initialState.tradeChatFloodingMessage.toString()
+    Elements.tradeChatFloodingTimerInput().value = initialState.tradeChatFloodingTimer.toString()
+    Elements.groupChatFloodingMessageInput().value = initialState.groupChatFloodingMessage.toString()
+    Elements.groupChatFloodingTimerInput().value = initialState.groupChatFloodingTimer.toString()
+    Elements.clanChatFloodingMessageInput().value = initialState.clanChatFloodingMessage.toString()
+    Elements.clanChatFloodingTimerInput().value = initialState.clanChatFloodingTimer.toString()
+    Elements.allianceChatFloodingMessageInput().value = initialState.allianceChatFloodingMessage.toString()
+    Elements.allianceChatFloodingTimerInput().value = initialState.allianceChatFloodingTimer.toString()
 }
 
 function setupView() {
-    Elements.autoResponderBox().onchange = () => {
+    Elements.autoResponderInput().onchange = () => {
         dispatch(ChatSettingsWindowActions.CHANGE_AUTO_RESPONDER_ENABLED)
     }
-    Elements.floodingBox().onchange = () => {
+    Elements.floodingInput().onchange = () => {
         dispatch(ChatSettingsWindowActions.CHANGE_FLOODING_ENABLED)
     }
-    Elements.inactiveTimerBox().onchange = () => {
+    Elements.inactiveTimerInput().onchange = () => {
         dispatch(ChatSettingsWindowActions.CHANGE_INACTIVE_TIMER)
     }
-    Elements.inactiveTimerBox().onkeyup = () => {
-        const value = parseInt(Elements.inactiveTimerBox().value)
+    Elements.inactiveTimerInput().onkeyup = () => {
+        const value = parseInt(Elements.inactiveTimerInput().value)
         if(value >= 0 && !isNaN(value)) {
             dispatch(ChatSettingsWindowActions.CHANGE_INACTIVE_TIMER)
         } else {
-            Elements.inactiveTimerBox().value = '0'
+            Elements.inactiveTimerInput().value = '0'
         }
     }
 
-    Elements.privateChatResponseBox().onchange = () => {
+    Elements.privateChatResponseInput().onchange = () => {
         dispatch(ChatSettingsWindowActions.CHANGE_PRIVATE_CHAT_RESPONSE)
     }
-    Elements.commonChatResponseBox().onchange = () => {
+    Elements.commonChatResponseInput().onchange = () => {
         dispatch(ChatSettingsWindowActions.CHANGE_COMMON_CHAT_RESPONSE)
     }
-    Elements.tradeChatResponseBox().onchange = () => {
+    Elements.tradeChatResponseInput().onchange = () => {
         dispatch(ChatSettingsWindowActions.CHANGE_TRADE_CHAT_RESPONSE)
     }
-    Elements.groupChatResponseBox().onchange = () => {
+    Elements.groupChatResponseInput().onchange = () => {
         dispatch(ChatSettingsWindowActions.CHANGE_GROUP_CHAT_RESPONSE)
     }
-    Elements.clanChatResponseBox().onchange = () => {
+    Elements.clanChatResponseInput().onchange = () => {
         dispatch(ChatSettingsWindowActions.CHANGE_CLAN_CHAT_RESPONSE)
     }
-    Elements.allianceChatResponseBox().onchange = () => {
+    Elements.allianceChatResponseInput().onchange = () => {
         dispatch(ChatSettingsWindowActions.CHANGE_ALLIANCE_CHAT_RESPONSE)
     }
 
-    Elements.commonChatFloodingMessageBox().onchange = () => {
+    Elements.commonChatFloodingMessageInput().onchange = () => {
         dispatch(ChatSettingsWindowActions.CHANGE_COMMON_CHAT_FLOODING_MESSAGE)
     }
-    Elements.commonChatFloodingTimerBox().onchange = () => {
+    Elements.commonChatFloodingTimerInput().onchange = () => {
         dispatch(ChatSettingsWindowActions.CHANGE_COMMON_CHAT_FLOODING_TIMER)
     }
-    Elements.commonChatFloodingTimerBox().onkeyup = () => {
-        const value = parseInt(Elements.commonChatFloodingTimerBox().value)
+    Elements.commonChatFloodingTimerInput().onkeyup = () => {
+        const value = parseInt(Elements.commonChatFloodingTimerInput().value)
         if(value >= 1 && !isNaN(value)) {
             dispatch(ChatSettingsWindowActions.CHANGE_COMMON_CHAT_FLOODING_TIMER)
         } else {
-            Elements.commonChatFloodingTimerBox().value = '1'
+            Elements.commonChatFloodingTimerInput().value = '1'
         }
     }
-    Elements.tradeChatFloodingMessageBox().onchange = () => {
+    Elements.tradeChatFloodingMessageInput().onchange = () => {
         dispatch(ChatSettingsWindowActions.CHANGE_TRADE_CHAT_FLOODING_MESSAGE)
     }
-    Elements.tradeChatFloodingTimerBox().onchange = () => {
+    Elements.tradeChatFloodingTimerInput().onchange = () => {
         dispatch(ChatSettingsWindowActions.CHANGE_TRADE_CHAT_FLOODING_TIMER)
     }
-    Elements.tradeChatFloodingTimerBox().onkeyup = () => {
-        const value = parseInt(Elements.tradeChatFloodingTimerBox().value)
+    Elements.tradeChatFloodingTimerInput().onkeyup = () => {
+        const value = parseInt(Elements.tradeChatFloodingTimerInput().value)
         if(value >= 1 && !isNaN(value)) {
             dispatch(ChatSettingsWindowActions.CHANGE_TRADE_CHAT_FLOODING_TIMER)
         } else {
-            Elements.tradeChatFloodingTimerBox().value = '1'
+            Elements.tradeChatFloodingTimerInput().value = '1'
         }
     }
-    Elements.groupChatFloodingMessageBox().onchange = () => {
+    Elements.groupChatFloodingMessageInput().onchange = () => {
         dispatch(ChatSettingsWindowActions.CHANGE_GROUP_CHAT_FLOODING_MESSAGE)
     }
-    Elements.groupChatFloodingTimerBox().onchange = () => {
+    Elements.groupChatFloodingTimerInput().onchange = () => {
         dispatch(ChatSettingsWindowActions.CHANGE_GROUP_CHAT_FLOODING_TIMER)
     }
-    Elements.groupChatFloodingTimerBox().onkeyup = () => {
-        const value = parseInt(Elements.groupChatFloodingTimerBox().value)
+    Elements.groupChatFloodingTimerInput().onkeyup = () => {
+        const value = parseInt(Elements.groupChatFloodingTimerInput().value)
         if(value >= 1 && !isNaN(value)) {
             dispatch(ChatSettingsWindowActions.CHANGE_GROUP_CHAT_FLOODING_TIMER)
         } else {
-            Elements.groupChatFloodingTimerBox().value = '1'
+            Elements.groupChatFloodingTimerInput().value = '1'
         }
     }
-    Elements.clanChatFloodingMessageBox().onchange = () => {
+    Elements.clanChatFloodingMessageInput().onchange = () => {
         dispatch(ChatSettingsWindowActions.CHANGE_CLAN_CHAT_FLOODING_MESSAGE)
     }
-    Elements.clanChatFloodingTimerBox().onchange = () => {
+    Elements.clanChatFloodingTimerInput().onchange = () => {
         dispatch(ChatSettingsWindowActions.CHANGE_CLAN_CHAT_FLOODING_TIMER)
     }
-    Elements.clanChatFloodingTimerBox().onkeyup = () => {
-        const value = parseInt(Elements.clanChatFloodingTimerBox().value)
+    Elements.clanChatFloodingTimerInput().onkeyup = () => {
+        const value = parseInt(Elements.clanChatFloodingTimerInput().value)
         if(value >= 1 && !isNaN(value)) {
             dispatch(ChatSettingsWindowActions.CHANGE_CLAN_CHAT_FLOODING_TIMER)
         } else {
-            Elements.clanChatFloodingTimerBox().value = '1'
+            Elements.clanChatFloodingTimerInput().value = '1'
         }
     }
-    Elements.allianceChatFloodingMessageBox().onchange = () => {
+    Elements.allianceChatFloodingMessageInput().onchange = () => {
         dispatch(ChatSettingsWindowActions.CHANGE_ALLIANCE_CHAT_FLOODING_MESSAGE)
     }
-    Elements.allianceChatFloodingTimerBox().onchange = () => {
+    Elements.allianceChatFloodingTimerInput().onchange = () => {
         dispatch(ChatSettingsWindowActions.CHANGE_ALLIANCE_CHAT_FLOODING_TIMER)
     }
-    Elements.allianceChatFloodingTimerBox().onkeyup = () => {
-        const value = parseInt(Elements.allianceChatFloodingTimerBox().value)
+    Elements.allianceChatFloodingTimerInput().onkeyup = () => {
+        const value = parseInt(Elements.allianceChatFloodingTimerInput().value)
         if(value >= 1 && !isNaN(value)) {
             dispatch(ChatSettingsWindowActions.CHANGE_ALLIANCE_CHAT_FLOODING_TIMER)
         } else {
-            Elements.allianceChatFloodingTimerBox().value = '1'
+            Elements.allianceChatFloodingTimerInput().value = '1'
         }
     }
-    Elements.saveBox().onclick = () => {
+    Elements.saveButton().onclick = () => {
         if(confirm('При включении автоответчика/флудилки, рекомендуем использовать UserAgent 4-й версии клиента. Открыть настройки клиента?')) {
             ipcRenderer.send(Channel.OPEN_SETTINGS)
         }
@@ -145,7 +145,4 @@ function setupView() {
     }
 }
 
-export {
-    render,
-    setupView
-}
+export { render, setupView }

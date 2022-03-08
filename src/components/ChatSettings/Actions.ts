@@ -26,6 +26,6 @@ export enum ChatSettingsWindowActions {
 
     CHANGE_ALLIANCE_CHAT_FLOODING_MESSAGE,
     CHANGE_ALLIANCE_CHAT_FLOODING_TIMER,
-    
+
     SAVE
 }
