@@ -230,6 +230,7 @@ ipcMain.on(Channel.SWITCH_MODE, () => {
     beltWindow?.webContents.send(Channel.SWITCH_MODE)
     dressingWindow?.webContents.send(Channel.SWITCH_MODE)
     chatLogWindow?.webContents.send(Channel.SWITCH_MODE)
+    chatSettingsWindow?.webContents.send(Channel.SWITCH_MODE)
 })
 
 ipcMain.handle(Channel.GET_URL, () => {

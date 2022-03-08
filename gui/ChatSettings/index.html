@@ -2,101 +2,122 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-        <link rel="stylesheet" href="./style.css" />
+        <link rel="stylesheet" href="../../out/main.css" />
 
-        <script>
-            var exports = {}
-        </script>
-        <script src="../../out/Components/ChatSettings/index.js"></script>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
+            rel="stylesheet" />
+
+            <style>
+                input:checked ~ .dot {
+                    transform: translateX(130%);
+                }
+                label {
+                    padding-right: 10px;
+                }
+            </style>
     </head>
 
-    <body>
-        <div class="main">
-            <div>
-                <h2>Настройки автоответчика</h2>
-                <div class="field">
-                    <label for="autoResponderEnabled">Включить автоответчик</label>
-                    <input type="checkbox" id="autoResponderEnabled" />
+    <body class="bg-white dark:bg-dark">
+        <div class="flex">
+            <div class="ml-8 mt-8">
+                <p class="font-montserrat text-secondaryLightDark dark:text-secondaryLight font-extrabold">Настройки автоответчика</p>
+
+                <div class="flex text-secondaryLightDark text-xs font-montserrat font-extrabold mt-8">
+                    <div class="flex">
+                        <label for="autoResponderEnabled" class="flex items-center cursor-pointer relative">
+                            <input type="checkbox" id="autoResponderEnabled" class="sr-only">
+                            <div class="block bg-secondaryLightDark dark:bg-secondaryLight w-14 h-7 rounded-full"></div>
+                            <div class="dot absolute left-1 top-1 bg-light dark:bg-dark w-5 h-5 rounded-full"></div>
+                        </label>
+                    </div>
+                    <label class="my-auto text-secondaryLightDark dark:text-secondaryLight" for="autoResponderEnabled">Включить автоответчик</label>
                 </div>
-                <br />
-                <div class="field">
-                    <label for="inactiveTimer">Время ухода в инактив</label>
-                    <input type="number" min="0" placeholder="В минутах" id="inactiveTimer" />
-                </div>
-                <br />
-                <div class="field">
-                    <label for="privateChatResponse">Ответ в приват</label>
-                    <input type="text" id="privateChatResponse" />
-                </div>
-                <br />
-                <div class="field">
-                    <label for="commonChatResponse">Ответ в основной чат</label>
-                    <input type="text" id="commonChatResponse" />
-                </div>
-                <br />
-                <div class="field">
-                    <label for="tradeChatResponse">Ответ в торговый</label>
-                    <input type="text" id="tradeChatResponse" />
-                </div>
-                <br />
-                <div class="field">
-                    <label for="groupChatResponse">Ответ в группу</label>
-                    <input type="text" id="groupChatResponse" />
-                </div>
-                <br />
-                <div class="field">
-                    <label for="clanChatResponse">Ответ в клан</label>
-                    <input type="text" id="clanChatResponse" />
-                </div>
-                <br />
-                <div class="field">
-                    <label for="allianceChatResponse">Ответ в альянс</label>
-                    <input type="text" id="allianceChatResponse" />
+
+                <div class="mt-8 ml-1">
+                    <div class="chatSettingsAutoresponderContainer">
+                        <label class="chatSettingslabel" for="inactiveTimer">Время ухода в инактив</label>
+                        <input class="chatSettingsAutoresponderInput" type="number" min="0" placeholder="В минутах" id="inactiveTimer" />
+                    </div>
+
+                    <div class="chatSettingsAutoresponderContainer">
+                        <label class="chatSettingslabel" for="privateChatResponse">Ответ в приват</label>
+                        <input class="chatSettingsAutoresponderInput" type="text" id="privateChatResponse" />
+                    </div>
+
+                    <div class="chatSettingsAutoresponderContainer">
+                        <label class="chatSettingslabel" for="commonChatResponse">Ответ в основной чат</label>
+                        <input class="chatSettingsAutoresponderInput" type="text" id="commonChatResponse" />
+                    </div>
+
+                    <div class="chatSettingsAutoresponderContainer">
+                        <label class="chatSettingslabel" for="tradeChatResponse">Ответ в торговый</label>
+                        <input class="chatSettingsAutoresponderInput" type="text" id="tradeChatResponse" />
+                    </div>
+
+                    <div class="chatSettingsAutoresponderContainer">
+                        <label class="chatSettingslabel" for="groupChatResponse">Ответ в группу</label>
+                        <input class="chatSettingsAutoresponderInput" type="text" id="groupChatResponse" />
+                    </div>
+
+                    <div class="chatSettingsAutoresponderContainer">
+                        <label class="chatSettingslabel" for="clanChatResponse">Ответ в клан</label>
+                        <input class="chatSettingsAutoresponderInput" type="text" id="clanChatResponse" />
+                    </div>
+
+                    <div class="chatSettingsAutoresponderContainer">
+                        <label class="chatSettingslabel" for="allianceChatResponse">Ответ в альянс</label>
+                        <input class="chatSettingsAutoresponderInput" type="text" id="allianceChatResponse" />
+                    </div>
                 </div>
             </div>
-            <div style="margin-left: 50px">
-                <h2>Настройки флудилки</h2>
-                <div class="field">
-                    <label for="floodingEnabled">Включить флудилку</label>
-                    <input type="checkbox" id="floodingEnabled" />
+            <div class="ml-8 mt-8">
+                <p class="font-montserrat text-secondaryLightDark dark:text-secondaryLight font-extrabold">Настройки флудилки</p>
+                <div class="flex text-secondaryLightDark text-xs font-montserrat font-extrabold mt-8">
+                    <div class="flex">
+                        <label for="floodingEnabled" class="flex items-center cursor-pointer relative">
+                            <input type="checkbox" id="floodingEnabled" class="sr-only">
+                            <div class="block bg-secondaryLightDark dark:bg-secondaryLight w-14 h-7 rounded-full"></div>
+                            <div class="dot absolute left-1 top-1 bg-light dark:bg-dark w-5 h-5 rounded-full transition"></div>
+                        </label>
+                    </div>
+                    <label class="my-auto text-secondaryLightDark dark:text-secondaryLight" for="autoResponderEnabled">Включить флудилку</label>
                 </div>
-                <br />
-                <br />
-                <div class="field">
-                    <label for="commonChatFloodingMessage">Основной чат</label>
-                    <input type="text" id="commonChatFloodingMessage" />
-                    <input type="number" min="1" value="10" placeholder="Мин." class="time" id="commonChatFloodingTimer" />
+
+                <div class="chatSettingsAutoresponderContainer">
+                    <label class="chatSettingslabel" for="commonChatFloodingMessage">Основной чат</label>
+                    <input class="chatSettingsFloodingInput" type="text" id="commonChatFloodingMessage" />
+                    <input type="number" min="1" value="10" placeholder="Мин." class="chatSettingsFloodingTimerInput" id="commonChatFloodingTimer" />
                 </div>
-                <br />
-                <div class="field">
-                    <label for="tradeChatFloodingMessage">Торговый чат</label>
-                    <input type="text" id="tradeChatFloodingMessage" />
-                    <input type="number" min="1" value="10" placeholder="Мин." class="time" id="tradeChatFloodingTimer" />
+                
+                <div class="chatSettingsAutoresponderContainer">
+                    <label class="chatSettingslabel" for="tradeChatFloodingMessage">Торговый чат</label>
+                    <input class="chatSettingsFloodingInput" type="text" id="tradeChatFloodingMessage" />
+                    <input type="number" min="1" value="10" placeholder="Мин." class="chatSettingsFloodingTimerInput" id="tradeChatFloodingTimer" />
                 </div>
-                <br />
-                <div class="field">
-                    <label for="groupChatFloodingMessage">Чат группы</label>
-                    <input type="text" id="groupChatFloodingMessage" />
-                    <input type="number" min="1" value="10" placeholder="Мин." class="time" id="groupChatFloodingTimer" />
+
+                <div class="chatSettingsAutoresponderContainer">
+                    <label class="chatSettingslabel" for="groupChatFloodingMessage">Торговый чат</label>
+                    <input class="chatSettingsFloodingInput" type="text" id="groupChatFloodingMessage" />
+                    <input type="number" min="1" value="10" placeholder="Мин." class="chatSettingsFloodingTimerInput" id="groupChatFloodingTimer" />
                 </div>
-                <br />
-                <div class="field">
-                    <label for="clanChatFloodingMessage">Чат клана</label>
-                    <input type="text" id="clanChatFloodingMessage" />
-                    <input type="number" min="1" value="10" placeholder="Мин." class="time" id="clanChatFloodingTimer" />
+
+                <div class="chatSettingsAutoresponderContainer">
+                    <label class="chatSettingslabel" for="clanChatFloodingMessage">Торговый чат</label>
+                    <input class="chatSettingsFloodingInput" type="text" id="clanChatFloodingMessage" />
+                    <input type="number" min="1" value="10" placeholder="Мин." class="chatSettingsFloodingTimerInput" id="clanChatFloodingTimer" />
                 </div>
-                <br />
-                <div class="field">
-                    <label for="allianceChatFloodingMessage">Чат альянса</label>
-                    <input type="text" id="allianceChatFloodingMessage" />
-                    <input type="number" min="1" value="10" placeholder="Мин." class="time" id="allianceChatFloodingTimer" />
+
+                <div class="chatSettingsAutoresponderContainer">
+                    <label class="chatSettingslabel" for="allianceChatFloodingMessage">Торговый чат</label>
+                    <input class="chatSettingsFloodingInput" type="text" id="allianceChatFloodingMessage" />
+                    <input type="number" min="1" value="10" placeholder="Мин." class="chatSettingsFloodingTimerInput" id="allianceChatFloodingTimer" />
                 </div>
+
             </div>
         </div>
-        <br />
-        <button id="save">Сохранить</button>
+        <button class="defaultButton mt-8 ml-8" id="save">Сохранить</button>
     </body>
 </html>
