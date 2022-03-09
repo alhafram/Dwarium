@@ -5,7 +5,7 @@ import ChatService from '../../services/ChatService'
 import FoodService from '../../services/FoodService'
 import ScriptInjectService from '../../services/ScriptInjectedService'
 
-window.addEventListener('DOMContentLoaded', async () => {
+window.addEventListener('DOMContentLoaded', async() => {
     ChatService.setupShortcut()
     ChatService.setupAutoResponder()
     ChatService.setupFlooding()
@@ -25,6 +25,7 @@ document.addEventListener('MessageDom', (event) => {
 })
 
 ipcRenderer.on(Channel.USER_PRV, function(event, nick) {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     userPrvTag(nick)
 })

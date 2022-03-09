@@ -5,7 +5,6 @@ import { generateRandomId } from '../Utils'
 import { WindowType } from '../../Models/WindowModels'
 import FavouriteLinkService from '../../services/FavouriteLinksService'
 
-
 const Elements = {
     serverSwitcher(): HTMLInputElement {
         return document.getElementById('serverSwitcher') as HTMLInputElement
@@ -102,7 +101,7 @@ const Elements = {
     }
 }
 
-window.addEventListener('DOMContentLoaded', async () => {
+window.addEventListener('DOMContentLoaded', async() => {
     handleMode()
     await setupFavourite()
 
@@ -148,7 +147,7 @@ window.addEventListener('DOMContentLoaded', async () => {
     Elements.updateApplicationButton().addEventListener('click', () => {
         ipcRenderer.send(Channel.UPDATE_APPLICATION)
     })
-    Elements.userInfoButton().addEventListener('click', async () => {
+    Elements.userInfoButton().addEventListener('click', async() => {
         const nick = Elements.nicknameInput().value
         if(nick.length != 0) {
             if(ConfigService.getSettings().windowOpenNewTab) {
@@ -232,7 +231,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 })
 
 async function isCurrentLinkFavourite(): Promise<boolean> {
-    const urlString = await ipcRenderer.invoke(Channel.GET_URL) as string
+    const urlString = (await ipcRenderer.invoke(Channel.GET_URL)) as string
     if(urlString.length == 0) {
         return false
     }
@@ -241,12 +240,12 @@ async function isCurrentLinkFavourite(): Promise<boolean> {
 }
 
 async function saveFavouriteLink(value: boolean | null) {
-    const urlString = await ipcRenderer.invoke(Channel.GET_URL) as string
+    const urlString = (await ipcRenderer.invoke(Channel.GET_URL)) as string
     if(urlString.length == 0) {
         return false
     }
     const url = new URL(urlString).href
-    const title = await ipcRenderer.invoke(Channel.GET_TITLE) as string
+    const title = (await ipcRenderer.invoke(Channel.GET_TITLE)) as string
     const isFavourite = FavouriteLinkService.isFavouriteLink(url)
     FavouriteLinkService.saveFavouriteLink(title, url, !isFavourite ? true : null)
     await setupFavourite()
@@ -293,7 +292,7 @@ function createNewTab(id?: string) {
     const closeButton = newTab.children[1] as HTMLButtonElement
     closeButton.onclick = closeTab
 
-    document.querySelectorAll('.activeTab,.activeTabMain').forEach(item => {
+    document.querySelectorAll('.activeTab,.activeTabMain').forEach((item) => {
         item.classList.replace('activeTab', 'inactiveTab')
         item.classList.replace('activeTabMain', 'inactiveTab')
     })
@@ -308,17 +307,23 @@ function createNewTab(id?: string) {
 
 function drawDividers() {
     const tabs = Array.from(Elements.tabsDiv().children) as HTMLElement[]
-    const tabsNeedToAddDividers = tabs.filter(tab => {
+    const tabsNeedToAddDividers = tabs.filter((tab) => {
         const index = tabs.indexOf(tab)
         const prevTab = tabs[index - 1]
         const nextTab = tabs[index + 1]
         tab.style.borderRightWidth = '0px'
-        return tab.id != 'addTabButton' && !tab.classList.contains('activeTab') && !tab.classList.contains('activeTabMain') && !prevTab?.classList.contains('activeTab') && !nextTab?.classList.contains('activeTab')
+        return (
+            tab.id != 'addTabButton' &&
+            !tab.classList.contains('activeTab') &&
+            !tab.classList.contains('activeTabMain') &&
+            !prevTab?.classList.contains('activeTab') &&
+            !nextTab?.classList.contains('activeTab')
+        )
     })
-    tabsNeedToAddDividers.forEach(tab => {
+    tabsNeedToAddDividers.forEach((tab) => {
         tab.style.borderRightWidth = '1px'
     })
-    const activeTab = tabs.find(item => item.classList.contains('activeTab'))
+    const activeTab = tabs.find((item) => item.classList.contains('activeTab'))
     if(activeTab) {
         const nextAfterActiveTabIndex = tabs.indexOf(activeTab) + 1
         const nextAfterActiveTab = tabs[nextAfterActiveTabIndex]
@@ -329,9 +334,9 @@ function drawDividers() {
 }
 
 function createTabButton(html: string) {
-    var t = document.createElement('template')
+    const t = document.createElement('template')
     t.innerHTML = html
-    let but1 = t.content.children[0]
+    const but1 = t.content.children[0]
     but1.appendChild(t.content.children[1])
     return but1
 }
@@ -340,7 +345,7 @@ function makeActive(evt: Event) {
     resetTabClasses()
     const target = evt.currentTarget as HTMLElement
     target.lastElementChild?.classList.replace('closeButtonInactiveTab', 'closeButtonActiveTab')
-    let id = target.id
+    const id = target.id
     if(id == 'main') {
         target.classList.replace('inactiveTab', 'activeTabMain')
     } else {
@@ -356,7 +361,7 @@ function makeActiveWith(id: string) {
     const target = document.getElementById(id)
     if(target) {
         target.lastElementChild?.classList.replace('closeButtonInactiveTab', 'closeButtonActiveTab')
-        let id = target.id
+        const id = target.id
         if(id == 'main') {
             target.classList.replace('inactiveTab', 'activeTabMain')
         } else {
@@ -368,7 +373,7 @@ function makeActiveWith(id: string) {
 }
 
 function resetTabClasses() {
-    document.querySelectorAll('.activeTab,.activeTabMain,.inactiveTab').forEach(item => {
+    document.querySelectorAll('.activeTab,.activeTabMain,.inactiveTab').forEach((item) => {
         item?.lastElementChild?.classList.replace('closeButtonActiveTab', 'closeButtonInactiveTab')
         item.classList.replace('activeTab', 'inactiveTab')
         item.classList.replace('activeTabMain', 'inactiveTab')
@@ -395,9 +400,9 @@ function closeTab(evt: Event) {
     evt.stopPropagation()
 }
 
-ipcRenderer.on(Channel.URL, async (event, url, id) => {
-    const isBackEnabled = await ipcRenderer.invoke(Channel.IS_BACK_ENABLED) as boolean
-    const isForwardEnabled = await ipcRenderer.invoke(Channel.IS_FORWARD_ENABLED) as boolean
+ipcRenderer.on(Channel.URL, async(event, url, id) => {
+    const isBackEnabled = (await ipcRenderer.invoke(Channel.IS_BACK_ENABLED)) as boolean
+    const isForwardEnabled = (await ipcRenderer.invoke(Channel.IS_FORWARD_ENABLED)) as boolean
     Elements.backButton().disabled = !isBackEnabled
     if(!isBackEnabled) {
         Elements.backButtonSvg().classList.replace('buttonIcon', 'buttonIconDisabled')
@@ -416,7 +421,7 @@ ipcRenderer.on(Channel.URL, async (event, url, id) => {
 })
 
 ipcRenderer.on(Channel.FINISH_LOAD_URL, (event, id, title) => {
-    let element = document.getElementById(id) as HTMLButtonElement
+    const element = document.getElementById(id) as HTMLButtonElement
     if(element && element.firstElementChild) {
         element.firstElementChild.textContent = title
     }
@@ -428,12 +433,12 @@ ipcRenderer.on(Channel.NEW_TAB, (event, url) => {
 })
 
 ipcRenderer.on(Channel.CLOSE_TAB, (evt, id) => {
-    let currentTabs = Array.from(Elements.tabsDiv().children)
+    const currentTabs = Array.from(Elements.tabsDiv().children)
     currentTabs.pop()
-    let currentTab = currentTabs.filter(t => t.id == id)[0]
+    const currentTab = currentTabs.filter((t) => t.id == id)[0]
     if(currentTab) {
-        Elements.tabsDiv().removeChild(currentTab);
-        (currentTabs[0] as HTMLElement).click()
+        Elements.tabsDiv().removeChild(currentTab)
+        ;(currentTabs[0] as HTMLElement).click()
         ipcRenderer.send(Channel.REMOVE_VIEW, id)
     }
 })
@@ -477,7 +482,7 @@ ipcRenderer.on(Channel.MAKE_ACTIVE, (evt, id) => {
 })
 
 function getElementIdBy(type: WindowType): HTMLElement | undefined {
-    switch(type) {
+    switch (type) {
         case WindowType.FOOD:
             return Elements.foodButton()
         case WindowType.SCREENSHOT:
@@ -492,20 +497,22 @@ function getElementIdBy(type: WindowType): HTMLElement | undefined {
             return Elements.chatLogButton()
         case WindowType.SETTINGS:
             return Elements.settingsButton()
-            case WindowType.CHAT_SETTINGS:
+        case WindowType.CHAT_SETTINGS:
             return Elements.chatSettingsButton()
         case WindowType.NOTIFICATIONS_SETTINGS:
             return Elements.notificationsButton()
     }
 }
 
-async function getNoredir(nick: string): Promise<string|null> {
+async function getNoredir(nick: string): Promise<string | null> {
     const baseMainUrl = await ipcRenderer.invoke(Channel.GET_MAIN_URL)
     const req = await fetch(`${baseMainUrl}/user_info.php?nick=${nick}`)
     const text = await req.text()
     const parser = new DOMParser()
     const doc = parser.parseFromString(text, 'text/html')
-    const onclickValue = doc.querySelector("body > table > tbody > tr:nth-child(1) > td > table > tbody > tr:nth-child(2) > td > div > div.bg-l > div > div > div > div > div > div > div > p > b > b > input[type=button]")?.getAttribute('onclick')
+    const onclickValue = doc
+        .querySelector('body > table > tbody > tr:nth-child(1) > td > table > tbody > tr:nth-child(2) > td > div > div.bg-l > div > div > div > div > div > div > div > p > b > b > input[type=button]')
+        ?.getAttribute('onclick')
     if(onclickValue) {
         const splittedValue = onclickValue.split('=')
         const noredir = splittedValue.slice(-1)[0].slice(0, -2)

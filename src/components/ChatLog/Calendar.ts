@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { filterLog } from './preload'
 
 let calendar: any
@@ -127,12 +128,8 @@ function setupCalendar() {
     calendar = new Calendar()
 }
 
-
 function getCalendar(): any {
     return calendar
 }
 
-export {
-    setupCalendar,
-    getCalendar
-}
+export { setupCalendar, getCalendar }

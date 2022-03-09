@@ -19,14 +19,14 @@ ipcRenderer.on(Channel.FAVOURITE_UPDATED, () => {
 })
 
 function renderFavouriteLinks() {
-    Array.from(Elements.linksDiv().children).forEach(linkDiv => {
+    Array.from(Elements.linksDiv().children).forEach((linkDiv) => {
         Elements.linksDiv().removeChild(linkDiv)
     })
     const favouriteLinks = FavouriteLinksService.getLinks()
-    favouriteLinks.forEach(link => {
+    favouriteLinks.forEach((link) => {
         const title = link.title
         const url = link.url.slice(0, 21)
-        let favouriteLinkElement = `
+        const favouriteLinkElement = `
             <div class="cursor-pointer h-10 w-full hover:bg-lightGrey dark:hover:bg-lightBlack">
                 <div class="float-left">
                     <input class="ml-9 bg-transparent text-dark w-32 outline-none dark:text-secondaryLightGrey font-montserrat text-sm font-medium" value='${title}' type="text" />
@@ -58,7 +58,7 @@ function renderFavouriteLinks() {
         node.onclick = function(e) {
             if(e.target != titleInput) {
                 ipcRenderer.send(Channel.NEW_TAB_WITH_URL, link.url)
-            } 
+            }
         }
         const removeButton = node.lastElementChild as HTMLButtonElement
         if(removeButton) {

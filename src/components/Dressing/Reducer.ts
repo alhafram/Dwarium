@@ -50,6 +50,7 @@ export default async function reduce(state: DressingWindowState, action: Dressin
                 .map((key) => parsedWearedItems[key])
                 .flat() as InventoryItem[]
             const repeatableItems = parse(currentEquipedItems)
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
             allItems = allItems.concat(currentEquipedItems).sort((a, b) => a.kind_id - b.kind_id)
             allItems.forEach((item) => {

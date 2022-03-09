@@ -4,7 +4,6 @@ import { getTitle, SettingsWindowState, UserAgentType } from './SettingsWindowSt
 import setupMode from '../../services/DarkModeHandler'
 import { render, setupView } from './Renderer'
 
-
 let initialState: SettingsWindowState = {
     userAgents: Object.keys(UserAgentType).map((key) => {
         return {
