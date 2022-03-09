@@ -35,3 +35,24 @@ export enum UserAgentType {
     CLIENT_V4 = 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.110 Client/4.0.53/AuthCheck Safari/537.36',
     OWN = ''
 }
+
+export function getTitle(type: UserAgentType): string {
+    switch (type) {
+        case UserAgentType.DEFAULT:
+            return 'Windows 10 - Chrome'
+        case UserAgentType.WIN10_FIREFOX:
+            return 'Windows 10 - Firefox'
+        case UserAgentType.WIN10_OPERA:
+            return 'Windows 10 - Opera'
+        case UserAgentType.MAC_CHROME:
+            return 'MacOS - Chrome'
+        case UserAgentType.MAC_SAFARI:
+            return 'MacOS - Safari'
+        case UserAgentType.MAC_FIREFOX:
+            return 'MacOS - Firefox'
+        case UserAgentType.CLIENT_V4:
+            return 'Client - v4'
+        case UserAgentType.OWN:
+            return 'Ввести вручную'
+    }
+}
