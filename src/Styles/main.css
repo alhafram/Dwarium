@@ -188,3 +188,11 @@
 .chatSettingsFloodingTimerInput {
     @apply h-8 w-24 rounded-full border-2 border-lightMediumGrey bg-transparent p-3 font-montserrat text-xss font-extrabold text-secondaryLightDark outline-none dark:text-secondaryLight;
 }
+
+.settingsSpeedButton {
+    @apply bg-lightMediumGrey dark:bg-secondaryBlack text-secondaryLightDark dark:text-secondaryLight;
+}
+
+.settingsSpeedButtonSelected {
+    @apply bg-secondaryLightDark dark:bg-secondaryLight text-white dark:text-dark;
+}

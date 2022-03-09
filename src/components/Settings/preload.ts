@@ -3,6 +3,7 @@ import { Elements } from './Elements'
 import { SettingsWindowActions } from './Actions'
 import reduce from './Reducer'
 import { SettingsWindowState, UserAgentType } from './SettingsWindowState'
+import setupMode from '../../services/DarkModeHandler'
 
 function getTitle(type: UserAgentType): string {
     switch (type) {
@@ -45,7 +46,7 @@ function setupListeners() {
         dispatch(SettingsWindowActions.CHANGE_HIDE_TOP_PANEL_IN_FULL_SCREEN)
     }
     Elements.animationSpeedTypes().forEach((speedType) => {
-        speedType.onchange = () => {
+        speedType.onclick = () => {
             dispatch(SettingsWindowActions.CHANGE_ANIMATION_SPEED_TYPE, speedType.id)
         }
     })
@@ -55,33 +56,9 @@ function setupListeners() {
     Elements.mailServerBox().onclick = function() {
         dispatch(SettingsWindowActions.CHANGE_MAIL_SERVER)
     }
-    Elements.fightNotificationsSystemBox().onchange = () => {
-        dispatch(SettingsWindowActions.CHANGE_FIGHT_NOTIFICATIONS_SYSTEM)
-    }
-    Elements.fightNotificationsIngameBox().onchange = () => {
-        dispatch(SettingsWindowActions.CHANGE_FIGHT_NOTIFICATIONS_INGAME)
-    }
-    Elements.battlegroundNotificationsSystemBox().onchange = () => {
-        dispatch(SettingsWindowActions.CHANGE_BATTLEGROUND_NOTIFICATIONS_SYSTEM)
-    }
-    Elements.battlegroundNotificationsIngameBox().onchange = () => {
-        dispatch(SettingsWindowActions.CHANGE_BATTLEGROUND_NOTIFICATIONS_INGAME)
-    }
-    Elements.messageNotificationsSystemBox().onchange = () => {
-        dispatch(SettingsWindowActions.CHANGE_MESSAGE_NOTIFICATIONS_SYSTEM)
-    }
-    Elements.messageNotificationsIngameBox().onchange = () => {
-        dispatch(SettingsWindowActions.CHANGE_MESSAGE_NOTIFICATIONS_INGAME)
-    }
-    Elements.mailNotificationsSystemBox().onchange = () => {
-        dispatch(SettingsWindowActions.CHANGE_MAIL_NOTIFICATIONS_SYSTEM)
-    }
-    Elements.mailNotificationsIngameBox().onchange = () => {
-        dispatch(SettingsWindowActions.CHANGE_MAIL_NOTIFICATIONS_INGAME)
-    }
     Elements.updateChannelBoxes().forEach((updateChannel) => {
-        updateChannel.onchange = () => {
-            dispatch(SettingsWindowActions.CHANGE_UPDATE_CHANNEL, updateChannel.value)
+        updateChannel.onclick = () => {
+            dispatch(SettingsWindowActions.CHANGE_UPDATE_CHANNEL, updateChannel.id)
         }
     })
 }
@@ -151,9 +128,12 @@ function render(): void {
     Elements.windowOpenNewTab().checked = initialState.windowOpenNewTab
     Elements.maximizeOnStart().checked = initialState.maximizeOnStart
     Elements.hideTopPanelInFullScreenBox().checked = initialState.hideTopPanelInFullScreen
+
     Elements.animationSpeedTypes().forEach((speedType) => {
         if(speedType.id == initialState.animationSpeedType) {
-            speedType.checked = true
+            speedType.classList.replace('settingsSpeedButton', 'settingsSpeedButtonSelected')
+        } else {
+            speedType.classList.replace('settingsSpeedButtonSelected', 'settingsSpeedButton')
         }
     })
     Elements.mailServerBox().checked = initialState.mailServer
@@ -161,17 +141,11 @@ function render(): void {
     Elements.screenshotsFolderPathBox().value = initialState.screenshotsFolderPath
     Elements.ownServerBox().value = initialState.ownServer
 
-    Elements.fightNotificationsSystemBox().checked = initialState.fightNotificationsSystem
-    Elements.fightNotificationsIngameBox().checked = initialState.fightNotificationsIngame
-    Elements.battlegroundNotificationsSystemBox().checked = initialState.battlegroundNotificationsSystem
-    Elements.battlegroundNotificationsIngameBox().checked = initialState.battlegroundNotificationsIngame
-    Elements.messageNotificationsSystemBox().checked = initialState.messageNotificationsSystem
-    Elements.messageNotificationsIngameBox().checked = initialState.messageNotificationsIngame
-    Elements.mailNotificationsSystemBox().checked = initialState.mailNotificationsSystem
-    Elements.mailNotificationsIngameBox().checked = initialState.mailNotificationsIngame
     Elements.updateChannelBoxes().forEach((channel) => {
-        if(channel.value == initialState.updateChannel) {
-            channel.checked = true
+        if(channel.id == initialState.updateChannel) {
+            channel.classList.replace('settingsSpeedButton', 'settingsSpeedButtonSelected')
+        } else {
+            channel.classList.replace('settingsSpeedButtonSelected', 'settingsSpeedButton')
         }
     })
 }
@@ -179,4 +153,5 @@ function render(): void {
 document.addEventListener('DOMContentLoaded', async() => {
     dispatch(SettingsWindowActions.LOAD_SETTINGS)
     setupListeners()
+    setupMode()
 })

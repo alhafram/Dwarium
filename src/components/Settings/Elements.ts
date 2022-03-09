@@ -20,8 +20,8 @@ export const Elements = {
     hideTopPanelInFullScreenBox(): HTMLInputElement {
         return document.getElementById('hideTopPanelInFullScreen') as HTMLInputElement
     },
-    animationSpeedTypes(): HTMLInputElement[] {
-        return document.getElementsByName('animationSpeed') as unknown as HTMLInputElement[]
+    animationSpeedTypes(): HTMLButtonElement[] {
+        return document.getElementsByName('animationSpeed') as unknown as HTMLButtonElement[]
     },
     screenshotsFolderPathBox(): HTMLTextAreaElement {
         return document.getElementById('screenshotsFolderPath') as HTMLTextAreaElement
@@ -35,31 +35,7 @@ export const Elements = {
     ownServerBox(): HTMLInputElement {
         return document.getElementById('ownServer') as HTMLInputElement
     },
-    fightNotificationsSystemBox(): HTMLInputElement {
-        return document.getElementById('fightNotificationsSystem') as HTMLInputElement
-    },
-    fightNotificationsIngameBox(): HTMLInputElement {
-        return document.getElementById('fightNotificationsIngame') as HTMLInputElement
-    },
-    battlegroundNotificationsSystemBox(): HTMLInputElement {
-        return document.getElementById('battlegroundNotificationsSystem') as HTMLInputElement
-    },
-    battlegroundNotificationsIngameBox(): HTMLInputElement {
-        return document.getElementById('battlegroundNotificationsIngame') as HTMLInputElement
-    },
-    messageNotificationsSystemBox(): HTMLInputElement {
-        return document.getElementById('messageNotificationsSystem') as HTMLInputElement
-    },
-    messageNotificationsIngameBox(): HTMLInputElement {
-        return document.getElementById('messageNotificationsIngame') as HTMLInputElement
-    },
-    mailNotificationsSystemBox(): HTMLInputElement {
-        return document.getElementById('mailNotificationsSystem') as HTMLInputElement
-    },
-    mailNotificationsIngameBox(): HTMLInputElement {
-        return document.getElementById('mailNotificationsIngame') as HTMLInputElement
-    },
-    updateChannelBoxes(): HTMLInputElement[] {
-        return Array.from(document.getElementsByName('updateChannel')) as HTMLInputElement[]
+    updateChannelBoxes(): HTMLButtonElement[] {
+        return document.getElementsByName('updateChannel') as unknown as HTMLButtonElement[]
     }
 }

@@ -103,46 +103,6 @@ export default function reduce(state: SettingsWindowState, action: SettingsWindo
                 ...state,
                 mailServer: Elements.mailServerBox().checked
             }
-        case SettingsWindowActions.CHANGE_FIGHT_NOTIFICATIONS_SYSTEM:
-            return {
-                ...state,
-                fightNotificationsSystem: Elements.fightNotificationsSystemBox().checked
-            }
-        case SettingsWindowActions.CHANGE_FIGHT_NOTIFICATIONS_INGAME:
-            return {
-                ...state,
-                fightNotificationsIngame: Elements.fightNotificationsIngameBox().checked
-            }
-        case SettingsWindowActions.CHANGE_BATTLEGROUND_NOTIFICATIONS_SYSTEM:
-            return {
-                ...state,
-                battlegroundNotificationsSystem: Elements.battlegroundNotificationsSystemBox().checked
-            }
-        case SettingsWindowActions.CHANGE_BATTLEGROUND_NOTIFICATIONS_INGAME:
-            return {
-                ...state,
-                battlegroundNotificationsIngame: Elements.battlegroundNotificationsIngameBox().checked
-            }
-        case SettingsWindowActions.CHANGE_MESSAGE_NOTIFICATIONS_SYSTEM:
-            return {
-                ...state,
-                messageNotificationsSystem: Elements.messageNotificationsSystemBox().checked
-            }
-        case SettingsWindowActions.CHANGE_MESSAGE_NOTIFICATIONS_INGAME:
-            return {
-                ...state,
-                messageNotificationsIngame: Elements.messageNotificationsIngameBox().checked
-            }
-        case SettingsWindowActions.CHANGE_MAIL_NOTIFICATIONS_SYSTEM:
-            return {
-                ...state,
-                mailNotificationsSystem: Elements.mailNotificationsSystemBox().checked
-            }
-        case SettingsWindowActions.CHANGE_MAIL_NOTIFICATIONS_INGAME:
-            return {
-                ...state,
-                mailNotificationsIngame: Elements.mailNotificationsIngameBox().checked
-            }
         case SettingsWindowActions.CHANGE_UPDATE_CHANNEL:
             return {
                 ...state,
