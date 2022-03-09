@@ -190,9 +190,9 @@
 }
 
 .settingsSpeedButton {
-    @apply bg-lightMediumGrey dark:bg-secondaryBlack text-secondaryLightDark dark:text-secondaryLight;
+    @apply bg-lightMediumGrey text-secondaryLightDark dark:bg-secondaryBlack dark:text-secondaryLight;
 }
 
 .settingsSpeedButtonSelected {
-    @apply bg-secondaryLightDark dark:bg-secondaryLight text-white dark:text-dark;
+    @apply bg-secondaryLightDark text-white dark:bg-secondaryLight dark:text-dark;
 }
