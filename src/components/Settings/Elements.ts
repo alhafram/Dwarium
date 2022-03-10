@@ -1,65 +1,41 @@
 export const Elements = {
-    windowsAboveAppElement(): HTMLInputElement {
-        return document.getElementById('windowsAboveApp') as HTMLInputElement
+    windowsAboveAppInput(): HTMLInputElement {
+        return document.getElementById('windowsAboveAppInput') as HTMLInputElement
     },
-    windowOpenNewTab(): HTMLInputElement {
-        return document.getElementById('windowOpenNewTab') as HTMLInputElement
+    windowOpenNewTabInput(): HTMLInputElement {
+        return document.getElementById('windowOpenNewTabInput') as HTMLInputElement
     },
-    maximizeOnStart(): HTMLInputElement {
-        return document.getElementById('maximizeOnStart') as HTMLInputElement
+    maximizeOnStartInput(): HTMLInputElement {
+        return document.getElementById('maximizeOnStartInput') as HTMLInputElement
     },
     userAgentsSelect(): HTMLSelectElement {
-        return document.getElementById('userAgents') as HTMLSelectElement
+        return document.getElementById('userAgentsSelect') as HTMLSelectElement
     },
-    save(): HTMLButtonElement {
-        return document.getElementById('save') as HTMLButtonElement
+    saveButton(): HTMLButtonElement {
+        return document.getElementById('saveButton') as HTMLButtonElement
     },
-    userAgentTextValue(): HTMLInputElement {
-        return document.getElementById('userAgentText') as HTMLInputElement
+    userAgentTextInput(): HTMLInputElement {
+        return document.getElementById('userAgentTextInput') as HTMLInputElement
     },
-    hideTopPanelInFullScreenBox(): HTMLInputElement {
-        return document.getElementById('hideTopPanelInFullScreen') as HTMLInputElement
+    hideTopPanelInFullScreenInput(): HTMLInputElement {
+        return document.getElementById('hideTopPanelInFullScreenInput') as HTMLInputElement
     },
-    animationSpeedTypes(): HTMLInputElement[] {
-        return document.getElementsByName('animationSpeed') as unknown as HTMLInputElement[]
+    animationSpeedButtons(): HTMLButtonElement[] {
+        return document.getElementsByName('animationSpeedButton') as unknown as HTMLButtonElement[]
     },
-    screenshotsFolderPathBox(): HTMLTextAreaElement {
-        return document.getElementById('screenshotsFolderPath') as HTMLTextAreaElement
+    screenshotsFolderPathTextarea(): HTMLTextAreaElement {
+        return document.getElementById('screenshotsFolderPathTextarea') as HTMLTextAreaElement
     },
-    screenshotsFolderBox(): HTMLButtonElement {
-        return document.getElementById('screenshotsFolder') as HTMLButtonElement
+    screenshotsFolderButton(): HTMLButtonElement {
+        return document.getElementById('screenshotsFolderButton') as HTMLButtonElement
     },
-    mailServerBox(): HTMLInputElement {
-        return document.getElementById('mailServer') as HTMLInputElement
+    mailServerInput(): HTMLInputElement {
+        return document.getElementById('mailServerInput') as HTMLInputElement
     },
-    ownServerBox(): HTMLInputElement {
-        return document.getElementById('ownServer') as HTMLInputElement
+    ownServerInput(): HTMLInputElement {
+        return document.getElementById('ownServerInput') as HTMLInputElement
     },
-    fightNotificationsSystemBox(): HTMLInputElement {
-        return document.getElementById('fightNotificationsSystem') as HTMLInputElement
-    },
-    fightNotificationsIngameBox(): HTMLInputElement {
-        return document.getElementById('fightNotificationsIngame') as HTMLInputElement
-    },
-    battlegroundNotificationsSystemBox(): HTMLInputElement {
-        return document.getElementById('battlegroundNotificationsSystem') as HTMLInputElement
-    },
-    battlegroundNotificationsIngameBox(): HTMLInputElement {
-        return document.getElementById('battlegroundNotificationsIngame') as HTMLInputElement
-    },
-    messageNotificationsSystemBox(): HTMLInputElement {
-        return document.getElementById('messageNotificationsSystem') as HTMLInputElement
-    },
-    messageNotificationsIngameBox(): HTMLInputElement {
-        return document.getElementById('messageNotificationsIngame') as HTMLInputElement
-    },
-    mailNotificationsSystemBox(): HTMLInputElement {
-        return document.getElementById('mailNotificationsSystem') as HTMLInputElement
-    },
-    mailNotificationsIngameBox(): HTMLInputElement {
-        return document.getElementById('mailNotificationsIngame') as HTMLInputElement
-    },
-    updateChannelBoxes(): HTMLInputElement[] {
-        return Array.from(document.getElementsByName('updateChannel')) as HTMLInputElement[]
+    updateChannelButtons(): HTMLButtonElement[] {
+        return document.getElementsByName('updateChannelButton') as unknown as HTMLButtonElement[]
     }
 }

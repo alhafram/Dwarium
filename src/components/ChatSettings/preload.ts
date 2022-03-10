@@ -1,36 +1,40 @@
-import {
-    ipcRenderer,
-    contextBridge
-} from 'electron'
-import { Channel } from '../../Models/Channel'
-import { ChatSettingsConfig } from '../../Models/ChatSettingsConfig'
-import ChatSettingsService from '../../services/ChatSettingsService'
+import { ChatSettingsWindowActions } from './Actions'
+import { ChatSettingsWindowState } from './ChatSettingsWindowState'
+import reduce from './Reducer'
+import setupMode from '../../services/DarkModeHandler'
+import { render, setupView } from './Renderer'
 
-contextBridge.exposeInMainWorld('chatSettingsAPI', {
-    save: (userConfig: ChatSettingsConfig, id: number) => {
-        ChatSettingsService.save(userConfig, id)
-        ipcRenderer.send(Channel.CHAT_SETTINGS_CHANGED)
-    },
-    getUserId: async () => {
-        return await ipcRenderer.invoke(Channel.GET_ID)
-    },
-    getChatSettingsConfig: (id: number) => {
-        return ChatSettingsService.get(id)
-    },
-    openSettings: () => {
-        ipcRenderer.send(Channel.OPEN_SETTINGS)
-    }
+let initialState: ChatSettingsWindowState = {
+    autoResponderEnabled: false,
+    floodingEnabled: false,
+    inactiveTimer: 0,
+
+    privateChatResponse: '',
+    commonChatResponse: '',
+    tradeChatResponse: '',
+    groupChatResponse: '',
+    clanChatResponse: '',
+    allianceChatResponse: '',
+
+    commonChatFloodingMessage: '',
+    commonChatFloodingTimer: 10,
+    tradeChatFloodingMessage: '',
+    tradeChatFloodingTimer: 10,
+    groupChatFloodingMessage: '',
+    groupChatFloodingTimer: 10,
+    clanChatFloodingMessage: '',
+    clanChatFloodingTimer: 10,
+    allianceChatFloodingMessage: '',
+    allianceChatFloodingTimer: 10
+}
+
+export default async function dispatch(action: ChatSettingsWindowActions, data?: any) {
+    initialState = await reduce(initialState, action, data)
+    render(initialState)
+}
+
+document.addEventListener('DOMContentLoaded', async() => {
+    setupMode()
+    dispatch(ChatSettingsWindowActions.LOAD_CONTENT)
+    setupView()
 })
-
-export interface ChatSettingsAPI {
-    save: (userConfig: ChatSettingsConfig, id: number) => void
-    getUserId: () => any
-    getChatSettingsConfig: (id: number) => ChatSettingsConfig
-    openSettings: () => void
-}
-
-declare global {
-    interface Window {
-        chatSettingsAPI: ChatSettingsAPI
-    }
-}

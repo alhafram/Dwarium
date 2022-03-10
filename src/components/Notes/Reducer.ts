@@ -3,7 +3,7 @@ import { NotesWindowActions } from './Actions'
 import { Elements } from './Elements'
 import { NotesWindowState, Note } from './NotesWindowState'
 import '../Common/Utils'
-import { generateRandomId } from '../Utils'
+import Utils from '../Common/Utils'
 
 function saveNote(note: any) {
     NotesService.writeData(note.id, JSON.stringify(note))
@@ -94,5 +94,5 @@ export default async function reduce(state: NotesWindowState, action: NotesWindo
 }
 
 function generateNoteId() {
-    return 'note_' + generateRandomId()
+    return 'note_' + Utils.generateRandomId()
 }

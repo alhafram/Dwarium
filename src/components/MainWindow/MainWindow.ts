@@ -8,7 +8,6 @@ import setupContextMenu from '../../services/ContextMenu'
 import { getBrowserWindowPosition, getClientWindowPosition, saveBrowserWindowPosition, saveClientWindowPosition } from '../../services/WindowSizeManager'
 
 export default class MainWindowContainer {
-
     browserView: BrowserView | null | undefined
     mainWindow: BrowserWindow
     isFullscreen = false
@@ -36,7 +35,7 @@ export default class MainWindowContainer {
         this.mainWindow.on('close', () => {
             saveClientWindowPosition(WindowType.MAIN, this.mainWindow.getBounds())
         })
-        require("@electron/remote/main").enable(this.mainWindow.webContents)
+        require('@electron/remote/main').enable(this.mainWindow.webContents)
         this.mainWindow.setMenu(null)
         this.mainWindow.on('enter-full-screen', () => {
             const bounds = this.mainWindow.getBounds()
@@ -59,7 +58,7 @@ export default class MainWindowContainer {
         })
 
         this.mainWindow.webContents.on('did-finish-load', () => {
-            let currentServer = ConfigService.getSettings().server
+            const currentServer = ConfigService.getSettings().server
             this.mainWindow.webContents.send(Channel.SERVER, currentServer)
         })
 
@@ -76,12 +75,12 @@ export default class MainWindowContainer {
             globalShortcut.register('CommandOrControl+O', () => {
                 TabsController.currentTab().webContents.openDevTools()
             })
-            globalShortcut.register('CommandOrControl+Shift+K', async () => {
-                await session.defaultSession.clearStorageData({  storages: ['appcache', 'filesystem', 'indexdb', 'shadercache', 'cachestorage'] })
+            globalShortcut.register('CommandOrControl+Shift+K', async() => {
+                await session.defaultSession.clearStorageData({ storages: ['appcache', 'filesystem', 'indexdb', 'shadercache', 'cachestorage'] })
                 TabsController.currentTab().webContents.reload()
             })
             globalShortcut.register('CommandOrControl+Shift+C', () => {
-                let url = BrowserWindow.getFocusedWindow()?.webContents.getURL()
+                const url = BrowserWindow.getFocusedWindow()?.webContents.getURL()
                 if(url) {
                     clipboard.writeText(url)
                 }
@@ -137,15 +136,35 @@ export default class MainWindowContainer {
 
     parseFeatures(features: string): Rectangle {
         const splittedFeatures = features.split(',')
-        const x = parseInt(splittedFeatures.find(str => str.startsWith('left'))?.split('=').pop() ?? '')
-        const y = parseInt(splittedFeatures.find(str => str.startsWith('top'))?.split('=').pop() ?? '')
-        const width = parseInt(splittedFeatures.find(str => str.startsWith('width'))?.split('=').pop() ?? '')
-        const height = parseInt(splittedFeatures.find(str => str.startsWith('height'))?.split('=').pop() ?? '')
-        return { 
-            x: x, 
-            y: y, 
-            width: width, 
-            height: height 
+        const x = parseInt(
+            splittedFeatures
+                .find((str) => str.startsWith('left'))
+                ?.split('=')
+                .pop() ?? ''
+        )
+        const y = parseInt(
+            splittedFeatures
+                .find((str) => str.startsWith('top'))
+                ?.split('=')
+                .pop() ?? ''
+        )
+        const width = parseInt(
+            splittedFeatures
+                .find((str) => str.startsWith('width'))
+                ?.split('=')
+                .pop() ?? ''
+        )
+        const height = parseInt(
+            splittedFeatures
+                .find((str) => str.startsWith('height'))
+                ?.split('=')
+                .pop() ?? ''
+        )
+        return {
+            x: x,
+            y: y,
+            width: width,
+            height: height
         }
     }
 
@@ -153,6 +172,7 @@ export default class MainWindowContainer {
         this.browserView = this.createMainBrowserView()
         this.mainWindow.setBrowserView(this.browserView)
 
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore - TS - FIX
         this.browserView.webContents.setWindowOpenHandler(({ url, features }) => {
             const excludedUrls = [
@@ -170,16 +190,16 @@ export default class MainWindowContainer {
                             parent: ConfigService.getSettings().windowsAboveApp ? TabsController.mainWindow : null,
                             x: windowPosition?.x ?? (defaultPosition.x > 0 ? defaultPosition.x : 0),
                             y: windowPosition?.y ?? (defaultPosition.y > 0 ? defaultPosition.y : 0),
-                            width:  windowPosition?.width ?? defaultPosition.width,
-                            height:  windowPosition?.height ?? defaultPosition.height,
-                            resizable: true, 
+                            width: windowPosition?.width ?? defaultPosition.width,
+                            height: windowPosition?.height ?? defaultPosition.height,
+                            resizable: true,
                             movable: true,
                             fullscreen: false
                         }
                     }
                 }
             }
-            if(ConfigService.getSettings().windowOpenNewTab && !features.includes('location=no') || TabsController.currentTab() == TabsController.getMain() && !features) {
+            if((ConfigService.getSettings().windowOpenNewTab && !features.includes('location=no')) || (TabsController.currentTab() == TabsController.getMain() && !features)) {
                 this.mainWindow.webContents.send(Channel.NEW_TAB, url)
                 return {
                     action: 'deny'
@@ -191,9 +211,9 @@ export default class MainWindowContainer {
                         parent: ConfigService.getSettings().windowsAboveApp ? TabsController.mainWindow : null,
                         x: windowPosition?.x ?? (defaultPosition.x > 0 ? defaultPosition.x : 0),
                         y: windowPosition?.y ?? (defaultPosition.y > 0 ? defaultPosition.y : 0),
-                        width:  windowPosition?.width ?? defaultPosition.width,
-                        height:  windowPosition?.height ?? defaultPosition.height,
-                        resizable: true, 
+                        width: windowPosition?.width ?? defaultPosition.width,
+                        height: windowPosition?.height ?? defaultPosition.height,
+                        resizable: true,
                         movable: true,
                         fullscreen: false,
                         webPreferences: {
@@ -264,7 +284,7 @@ export default class MainWindowContainer {
     }
 
     getControlBounds() {
-        const contentBounds = this.mainWindow.getContentBounds();
+        const contentBounds = this.mainWindow.getContentBounds()
         return {
             x: 0,
             y: 0,
@@ -292,7 +312,7 @@ export default class MainWindowContainer {
     }
 
     start() {
-        this.mainWindow.show();
+        this.mainWindow.show()
         if(ConfigService.getSettings().maximizeOnStart) {
             this.mainWindow.maximize()
         }
@@ -300,7 +320,7 @@ export default class MainWindowContainer {
     }
 
     createMainBrowserView() {
-        let browserView = new BrowserView({
+        const browserView = new BrowserView({
             webPreferences: {
                 enablePreferredSizeMode: true,
                 preload: path.join(__dirname, 'MainBrowserViewPreload.js'),

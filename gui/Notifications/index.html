@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <link href="../../out/main.css" rel="stylesheet" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
+            rel="stylesheet" />
+
+        <style>
+            input:checked ~ .dot {
+                transform: translateX(130%);
+            }
+            label {
+                padding-right: 10px;
+            }
+        </style>
+    </head>
+
+    <body class="bg-white dark:bg-dark">
+        <div class="flex">
+            <div class="my-8 ml-8 w-1/2">
+                <p class="font-montserrat text-lg font-extrabold text-secondaryLightDark dark:text-secondaryLight">Настройки оповещений</p>
+
+                <div class="mt-7 flex font-montserrat text-xs font-extrabold text-secondaryLightDark">
+                    <div class="flex">
+                        <label for="fightNotificationsSystemInput" class="relative flex cursor-pointer items-center">
+                            <input type="checkbox" id="fightNotificationsSystemInput" class="sr-only" />
+                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="dot absolute left-1 top-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
+                        </label>
+                    </div>
+                    <label class="my-auto">(System)</label>
+                    <div class="flex">
+                        <label for="fightNotificationsIngameInput" class="relative flex cursor-pointer items-center">
+                            <input type="checkbox" id="fightNotificationsIngameInput" class="sr-only" />
+                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="dot absolute left-1 top-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
+                        </label>
+                    </div>
+                    <label class="my-auto">(Ingame)</label>
+                    <label class="my-auto text-secondaryLightDark dark:text-secondaryLight">Оповещения о нападении</label>
+                </div>
+
+                <div class="mt-7 flex font-montserrat text-xs font-extrabold text-secondaryLightDark">
+                    <div class="flex">
+                        <label for="battlegroundNotificationsSystemInput" class="relative flex cursor-pointer items-center">
+                            <input type="checkbox" id="battlegroundNotificationsSystemInput" class="sr-only" />
+                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="dot absolute left-1 top-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
+                        </label>
+                    </div>
+                    <label class="my-auto">(System)</label>
+                    <div class="flex">
+                        <label for="battlegroundNotificationsIngameInput" class="relative flex cursor-pointer items-center">
+                            <input type="checkbox" id="battlegroundNotificationsIngameInput" class="sr-only" />
+                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="dot absolute left-1 top-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
+                        </label>
+                    </div>
+                    <label class="my-auto">(Ingame)</label>
+                    <label class="my-auto text-secondaryLightDark dark:text-secondaryLight">Оповещения о сюдашке</label>
+                </div>
+
+                <div class="mt-7 flex font-montserrat text-xs font-extrabold text-secondaryLightDark">
+                    <div class="flex">
+                        <label for="messageNotificationsSystemInput" class="relative flex cursor-pointer items-center">
+                            <input type="checkbox" id="messageNotificationsSystemInput" class="sr-only" />
+                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="dot absolute left-1 top-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
+                        </label>
+                    </div>
+                    <label class="my-auto">(System)</label>
+                    <div class="flex">
+                        <label for="messageNotificationsIngameInput" class="relative flex cursor-pointer items-center">
+                            <input type="checkbox" id="messageNotificationsIngameInput" class="sr-only" />
+                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="dot absolute left-1 top-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
+                        </label>
+                    </div>
+                    <label class="my-auto">(Ingame)</label>
+                    <label class="my-auto text-secondaryLightDark dark:text-secondaryLight">Оповещения о сообщениях</label>
+                </div>
+
+                <div class="mt-7 flex font-montserrat text-xs font-extrabold text-secondaryLightDark">
+                    <div class="flex">
+                        <label for="mailNotificationsSystemInput" class="relative flex cursor-pointer items-center">
+                            <input type="checkbox" id="mailNotificationsSystemInput" class="sr-only" />
+                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="dot absolute left-1 top-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
+                        </label>
+                    </div>
+                    <label class="my-auto">(System)</label>
+                    <div class="flex">
+                        <label for="mailNotificationsIngameInput" class="relative flex cursor-pointer items-center">
+                            <input type="checkbox" id="mailNotificationsIngameInput" class="sr-only" />
+                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="dot absolute left-1 top-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
+                        </label>
+                    </div>
+                    <label class="my-auto">(Ingame)</label>
+                    <label class="my-auto text-secondaryLightDark dark:text-secondaryLight">Оповещения о почте</label>
+                </div>
+
+                <button class="defaultButton mt-8" id="saveButton">Сохранить</button>
+            </div>
+        </div>
+    </body>
+</html>

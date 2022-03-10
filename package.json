@@ -1,6 +1,6 @@
 {
     "name": "Dwarium",
-    "version": "2.5.0",
+    "version": "2.6.0",
     "description": "",
     "main": "out/main.js",
     "scripts": {
@@ -18,7 +18,9 @@
         "compileCSS": "npx tailwindcss -i ./src/Styles/main.css -o ./out/main.css",
         "compileChatLogCSS": "npx tailwindcss -i ./src/Styles/ChatLog.css -o ./out/ChatLog.css",
         "prettierHTML": "npx prettier ./gui/**/*.html --write --print-width=200 --bracket-same-line=true --tab-width=4 --single-quote=true --no-semi",
-        "prettierCSS": "npx prettier ./src/Styles/main.css --write --print-width=200 --bracket-same-line=true --tab-width=4 --single-quote=true --no-semi"
+        "prettierCSS": "npx prettier ./src/Styles/main.css --write --print-width=200 --bracket-same-line=true --tab-width=4 --single-quote=true --no-semi",
+        "linter": "npx prettier ./src --write --print-width=200 --tab-width=4 --single-quote=true --no-semi --trailing-comma=none && eslint ./src --fix",
+        "beautify": "yarn run prettierHTML && yarn run prettierCSS && yarn run linter"
     },
     "author": "",
     "license": "ISC",

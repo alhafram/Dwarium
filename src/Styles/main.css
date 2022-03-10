@@ -168,3 +168,31 @@
 .dressingBoxBgHighlighted {
     @apply fill-secondaryLightDark  dark:fill-secondaryLight;
 }
+
+.chatSettingslabel {
+    @apply pt-2 text-xs text-secondaryLightDark dark:text-secondaryLight;
+}
+
+.chatSettingsAutoresponderInput {
+    @apply float-right h-8  w-48 rounded-full border-2 border-lightMediumGrey bg-transparent p-3 font-montserrat text-xss font-extrabold text-secondaryLightDark outline-none dark:text-secondaryLight;
+}
+
+.chatSettingsAutoresponderContainer {
+    @apply mt-5 h-8 font-montserrat font-extrabold text-secondaryLightDark;
+}
+
+.chatSettingsFloodingInput {
+    @apply h-8 w-48  rounded-full border-2 border-lightMediumGrey bg-transparent p-3 font-montserrat text-xss font-extrabold text-secondaryLightDark outline-none dark:text-secondaryLight;
+}
+
+.chatSettingsFloodingTimerInput {
+    @apply h-8 w-24 rounded-full border-2 border-lightMediumGrey bg-transparent p-3 font-montserrat text-xss font-extrabold text-secondaryLightDark outline-none dark:text-secondaryLight;
+}
+
+.settingsSpeedButton {
+    @apply bg-lightMediumGrey text-secondaryLightDark dark:bg-secondaryBlack dark:text-secondaryLight;
+}
+
+.settingsSpeedButtonSelected {
+    @apply bg-secondaryLightDark text-white dark:bg-secondaryLight dark:text-dark;
+}

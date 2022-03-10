@@ -1,5 +1,5 @@
 import { handleDragOver } from '../Common/EventBuilder'
-import { DressingFilterColor, generateRandomId, getQuality } from '../Utils'
+import Utils, { DressingFilterColor } from '../Common/Utils'
 import { DressingWindowActions } from './Actions'
 import { DressingWindowState } from './DressingWindowState'
 import { Elements } from './Elements'
@@ -98,7 +98,7 @@ function render(initialState: DressingWindowState): void {
     }
     let visibleItems = allItemDivs.filter((item) => item.style.display != 'none' && !equipedItemsIds.includes(item.getAttribute('itemid') ?? ''))
     for(const filter of initialState.activeFilters) {
-        const filterQuality = getQuality(filter)
+        const filterQuality = Utils.getQuality(filter)
         const items = visibleItems.filter((e) => e.getAttribute('quality') == filterQuality)
         items.forEach((item) => (item.style.display = 'none'))
     }
@@ -361,7 +361,7 @@ function createNoteElement(note: DressingSet, isActive = false) {
 }
 
 function generateSetId() {
-    return 'set_' + generateRandomId()
+    return 'set_' + Utils.generateRandomId()
 }
 
 function addNewSet(): DressingSet {

@@ -24,6 +24,7 @@ export enum Channel {
     OPEN_NOTES = 'openNotes',
     OPEN_FOOD = 'openFood',
     OPEN_WINDOW = 'openWindow',
+    OPEN_NOTIFICATIONS = 'openNotifications',
     FINISH_LOAD_URL = 'finishLoadUrl',
     URL = 'url',
     SERVER = 'server',

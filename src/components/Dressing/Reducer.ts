@@ -1,8 +1,7 @@
 import { DressingSet } from '../../Models/DressingSet'
 import { InventoryItem } from '../../Models/InventoryItem'
 import { getType, InventoryItemType } from '../Common/ItemBuilder'
-import Utils from '../Common/Utils'
-import { DressingFilterColor, generateRandomId } from '../Utils'
+import Utils, { DressingFilterColor } from '../Common/Utils'
 import { DressingWindowActions } from './Actions'
 import { DressingWindowState } from './DressingWindowState'
 import { Elements } from './Elements'
@@ -50,6 +49,7 @@ export default async function reduce(state: DressingWindowState, action: Dressin
                 .map((key) => parsedWearedItems[key])
                 .flat() as InventoryItem[]
             const repeatableItems = parse(currentEquipedItems)
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
             allItems = allItems.concat(currentEquipedItems).sort((a, b) => a.kind_id - b.kind_id)
             allItems.forEach((item) => {
@@ -412,5 +412,5 @@ function difference(setA: string[], setB: string[]): Set<string> {
 }
 
 function generateSetId() {
-    return 'set_' + generateRandomId()
+    return 'set_' + Utils.generateRandomId()
 }

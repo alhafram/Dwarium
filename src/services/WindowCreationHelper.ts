@@ -12,9 +12,9 @@ export function createWindowAndLoad(windowType: WindowType, htmlPath?: HTMLPath,
     const window: BrowserWindow | null = new BrowserWindow({
         x: windowPosition?.x ?? 0,
         y: windowPosition?.y ?? 0,
-        width: windowPosition?.width ?? 900,
+        width: windowPosition?.width ?? 1100,
         height: windowPosition?.height ?? 700,
-        minWidth: 900,
+        minWidth: 1100,
         minHeight: 700,
         parent: ConfigService.getSettings().windowsAboveApp ? TabsController.mainWindow ?? undefined : undefined,
         webPreferences: {

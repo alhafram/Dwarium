@@ -2,118 +2,266 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
+        <link href="../../out/main.css" rel="stylesheet" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
+            rel="stylesheet" />
+
         <style>
-            li {
-                margin-top: 5px;
+            input:checked ~ .dot {
+                transform: translateX(130%);
+            }
+            label {
+                padding-right: 10px;
             }
         </style>
     </head>
 
-    <body>
-        <div style="display: flex">
-            <div style="width: 50%">
-                <h3>Выберите User-Agent</h3>
-                <select id="userAgents" style="width: 200px" id="useragents"></select>
-                <br /><br />
-                <textarea id="userAgentText" rows="5" style="width: 95%; min-width: 95%; max-width: 95%" type="text" disabled></textarea>
+    <body class="bg-white dark:bg-dark">
+        <div class="flex">
+            <div class="my-8 ml-8 w-1/2">
+                <p class="font-montserrat text-lg font-extrabold text-secondaryLightDark dark:text-secondaryLight">Выберите User-Agent</p>
 
-                <input id="windowOpenNewTab" type="checkbox" />
-                <label for="windowOpenNewTab">Открывать окна в новых вкладках(По умолчанию в новом окне)</label>
-                <br />
-                <input id="windowsAboveApp" type="checkbox" />
-                <label for="windowsAboveApp">Диалоговые окна всегда поверх клиента</label>
-                <br />
-                <input id="maximizeOnStart" type="checkbox" />
-                <label for="maximizeOnStart">Открывать клиент в полный экран</label>
-                <br />
-                <input id="hideTopPanelInFullScreen" type="checkbox" />
-                <label for="hideTopPanelInFullScreen">Скрывать верхнюю панель в fullsreen(F11)</label>
-                <br />
-                <input id="mailServer" type="checkbox" />
-                <label for="mailServer">Подключаться к mail-серверам</label>
-                <br />
-                <h4>Ускорение анимации</h4>
-                <input name="animationSpeed" id="gameSpeed" checked type="radio" />
-                <label for="gameSpeed">Игровое</label>
+                <select
+                    id="userAgentsSelect"
+                    class="mt-7 rounded-full border-2 border-lightMediumGrey bg-transparent p-2 font-montserrat text-xss font-extrabold text-secondaryLightDark outline-none dark:border-secondaryDark dark:text-secondaryLight"
+                    id="useragents"></select>
 
-                <input name="animationSpeed" id="x2Speed" type="radio" />
-                <label for="x2Speed">Ускорение - x2</label>
+                <textarea
+                    id="userAgentTextInput"
+                    rows="5"
+                    style="width: 95%; min-width: 95%"
+                    class="mt-5 h-16 resize-none rounded-2xl border border-light bg-transparent p-3 font-montserrat text-xss font-extrabold text-secondaryLightDark dark:border-secondaryBlack dark:text-secondaryLight"
+                    type="text"
+                    disabled></textarea>
 
-                <input name="animationSpeed" id="x3Speed" type="radio" />
-                <label for="x3Speed">Ускорение - x3</label>
-                <br />
-                <br />
-                <label for="ownServer">Свой сервер</label>
-                <input style="width: 95%; min-width: 95%; max-width: 95%" id="ownServer" type="url" placeholder="https://w2.dwar.ru" />
-                <br />
-                <h3>Настройка оповещений</h3>
-
-                <input id="fightNotificationsSystem" type="checkbox" />
-                <span>(System)</span>
-                <input id="fightNotificationsIngame" type="checkbox" />
-                <span>(Ingame)</span>
-                <label>Оповещения о нападении</label>
-
-                <br />
-
-                <input id="battlegroundNotificationsSystem" type="checkbox" />
-                <span>(System)</span>
-                <input id="battlegroundNotificationsIngame" type="checkbox" />
-                <span>(Ingame)</span>
-                <label>Оповещения о сюдашке</label>
-
-                <br />
-
-                <input id="messageNotificationsSystem" type="checkbox" />
-                <span>(System)</span>
-                <input id="messageNotificationsIngame" type="checkbox" />
-                <span>(Ingame)</span>
-                <label>Оповещения о сообщениях</label>
-
-                <br />
-
-                <input id="mailNotificationsSystem" type="checkbox" />
-                <span>(System)</span>
-                <input id="mailNotificationsIngame" type="checkbox" />
-                <span>(Ingame)</span>
-                <label>Оповещения о почте</label>
-
-                <br />
-                <br />
-                <h4>Канал обновлений</h4>
-                <label for="stableChasnnel">Stable</label>
-                <input type="radio" checked name="updateChannel" value="stable" id="stableChannel" />
-                <label for="alphaChannel">Alpha</label>
-                <input type="radio" name="updateChannel" value="alpha" id="alphaChannel" />
-                <br />
-                <br />
-                <button id="save">Сохранить</button>
-                <br />
-                <br />
-                <br />
-                <label for="screenshotsFolder">Папка со скриншотами</label>
-                <div style="display: flex">
-                    <textarea id="screenshotsFolderPath" rows="2" style="width: 85%; margin-right: 5px; resize: none" type="text" disabled></textarea>
-                    <button id="screenshotsFolder">Открыть</button>
+                <div class="mt-7 flex font-montserrat text-xs font-extrabold text-secondaryLightDark">
+                    <div class="flex">
+                        <label for="windowOpenNewTabInput" class="relative flex cursor-pointer items-center">
+                            <input type="checkbox" id="windowOpenNewTabInput" class="sr-only" />
+                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="dot absolute left-1 top-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
+                        </label>
+                    </div>
+                    <label class="my-auto text-secondaryLightDark dark:text-secondaryLight">Открывать окна в новых вкладках</label>
                 </div>
-                <br />
+
+                <div class="mt-5 flex font-montserrat text-xs font-extrabold text-secondaryLightDark">
+                    <div class="flex">
+                        <label for="windowsAboveAppInput" class="relative flex cursor-pointer items-center">
+                            <input type="checkbox" id="windowsAboveAppInput" class="sr-only" />
+                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="dot absolute left-1 top-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
+                        </label>
+                    </div>
+                    <label class="my-auto text-secondaryLightDark dark:text-secondaryLight">Диалоговые окна всегда поверх клиента</label>
+                </div>
+
+                <div class="mt-5 flex font-montserrat text-xs font-extrabold text-secondaryLightDark">
+                    <div class="flex">
+                        <label for="maximizeOnStartInput" class="relative flex cursor-pointer items-center">
+                            <input type="checkbox" id="maximizeOnStartInput" class="sr-only" />
+                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="dot absolute left-1 top-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
+                        </label>
+                    </div>
+                    <label class="my-auto text-secondaryLightDark dark:text-secondaryLight">Открывать клиент в полный экран</label>
+                </div>
+
+                <div class="mt-5 flex font-montserrat text-xs font-extrabold text-secondaryLightDark">
+                    <div class="flex">
+                        <label for="hideTopPanelInFullScreenInput" class="relative flex cursor-pointer items-center">
+                            <input type="checkbox" id="hideTopPanelInFullScreenInput" class="sr-only" />
+                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="dot absolute left-1 top-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
+                        </label>
+                    </div>
+                    <label class="my-auto text-secondaryLightDark dark:text-secondaryLight">Скрывать верхнюю панель в fullsreen</label>
+                </div>
+
+                <div class="mt-5 flex font-montserrat text-xs font-extrabold text-secondaryLightDark">
+                    <div class="flex">
+                        <label for="mailServerInput" class="relative flex cursor-pointer items-center">
+                            <input type="checkbox" id="mailServerInput" class="sr-only" />
+                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="dot absolute left-1 top-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
+                        </label>
+                    </div>
+                    <label class="my-auto text-secondaryLightDark dark:text-secondaryLight">Подключаться к mail-серверам</label>
+                </div>
+
+                <div class="mt-5 inline-flex rounded-full">
+                    <button name="animationSpeedButton" id="gameSpeed" class="settingsSpeedButton rounded-l-full py-2 px-4 font-montserrat text-xs font-extrabold">Откл.</button>
+                    <button name="animationSpeedButton" id="x2Speed" class="settingsSpeedButton py-2 px-4 font-montserrat text-xs font-extrabold">x2</button>
+                    <button name="animationSpeedButton" id="x3Speed" class="settingsSpeedButton rounded-r-full py-2 px-4 font-montserrat text-xs font-extrabold">x3</button>
+                </div>
+
+                <div class="mt-8 flex">
+                    <span for="ownServerInput" class="my-auto font-montserrat text-xs font-extrabold text-secondaryLightDark dark:text-secondaryLight">Свой сервер</span>
+                    <input
+                        class="ml-3 h-8 w-64 rounded-2xl border-2 border-lightMediumGrey bg-transparent p-2 font-montserrat text-xss font-extrabold text-secondaryLightDark outline-none dark:border-secondaryDark dark:text-secondaryLight"
+                        id="ownServerInput"
+                        type="url"
+                        placeholder="https://w2.dwar.ru" />
+                </div>
+
+                <p class="mt-8 font-montserrat text-lg font-extrabold text-secondaryLightDark dark:text-secondaryLight">Канал обновлений</p>
+                <div class="mt-5 inline-flex rounded-full">
+                    <button name="updateChannelButton" id="stable" class="settingsSpeedButton rounded-l-full py-2 px-4 font-montserrat text-xs font-extrabold">Stable</button>
+                    <button name="updateChannelButton" id="alpha" class="settingsSpeedButton rounded-r-full py-2 px-4 font-montserrat text-xs font-extrabold">Alpha</button>
+                </div>
+
+                <p class="mt-8 font-montserrat text-xs font-extrabold text-secondaryLightDark dark:text-secondaryLight" for="screenshotsFolder">Папка со скриншотами</p>
+                <div class="mt-3 flex">
+                    <input
+                        type="text"
+                        id="screenshotsFolderPathTextarea"
+                        class="h-8 w-3/4 rounded-2xl border-2 border-lightMediumGrey bg-transparent p-2 font-montserrat text-xss font-extrabold text-secondaryLightDark outline-none dark:border-secondaryDark dark:text-secondaryLight"
+                        type="text"
+                        disabled />
+                    <button class="innerButtonWithImage" id="screenshotsFolderButton">
+                        <svg class="buttonIcon" width="12" height="9" viewBox="0 0 12 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M11.8603 4.09148C11.6781 3.80689 11.3558 3.63705 10.9982 3.63705H10.1056V2.05336C10.1056 1.67109 9.77215 1.3602 9.36236 1.3602H4.99264C4.98623 1.3602 4.98193 1.35843 4.98019 1.35736L4.19815 0.299472C4.05945 0.111926 3.83075 0 3.5863 0H0.743225C0.333343 0 0 0.310983 0 0.693159V8.29046C0 8.68167 0.341492 9 0.761352 9H9.6058C9.74359 9 9.8626 8.92305 9.92019 8.81139L9.92047 8.81148L11.9024 4.96147C12.0461 4.68245 12.0303 4.35722 11.8603 4.09148ZM0.743225 0.680054H3.5863C3.60736 0.680054 3.62164 0.688997 3.62613 0.695107L4.40936 1.7545C4.54156 1.93337 4.75964 2.04025 4.99264 2.04025H9.36236C9.3869 2.04025 9.39935 2.05141 9.40246 2.05539V3.63705H3.03982C2.64523 3.63705 2.28635 3.85213 2.12549 4.18508L0.703125 7.12906V0.695196C0.706237 0.691211 0.718689 0.680054 0.743225 0.680054ZM11.273 4.65837L9.38809 8.31986H0.9039L2.76251 4.47304C2.80755 4.3798 2.91907 4.3171 3.03982 4.3171H10.9982C11.1106 4.3171 11.2093 4.3666 11.2624 4.44948C11.2923 4.49615 11.3183 4.57026 11.273 4.65837Z"
+                                fill="#7D7D7D" />
+                        </svg>
+                    </button>
+                </div>
+
+                <button class="defaultButton mt-8" id="saveButton">Сохранить</button>
             </div>
-            <div style="width: 50%">
-                <h3>Список shortcut-ов</h3>
-                <ul>
-                    <li>F11(Windows/Linux), Fn + F(macOS) - Перейти в fullscreen</li>
-                    <li>Ctrl(Cmd) + T - Открыть новый таб</li>
-                    <li>Ctrl(Cmd) + W - Закрыть текущий таб</li>
-                    <li>F7 - Открыть/Закрыть окно с чатом</li>
-                    <li>Ctrl(Cmd) + Shift + C - Скопировать url страницы, открытой в диалоговом окне</li>
-                    <li>Ctrl(Cmd) + Shift + K - Очистить кэш и остальные ресурсы(Сбрасывает логин)</li>
-                    <li>F9(Windows/Linux), Cmd + F(macOS) - Скриншот</li>
-                </ul>
-                <h3>Dev shortcuts</h3>
-                <ul>
-                    <li>Ctrl(Cmd) + O - Открыть dev tools для webview</li>
-                    <li>Ctrl(Cmd) + Alt + I - Открыть dev tools для window</li>
-                </ul>
+
+            <div class="my-8 ml-8 w-1/2">
+                <p class="font-montserrat text-lg font-extrabold text-secondaryLightDark dark:text-secondaryLight">Список горячих клавиш</p>
+
+                <div class="mt-4 flex">
+                    <div class="w-40">
+                        <div class="font-montserrat text-xss font-extrabold text-secondaryLightDark dark:text-secondaryLight">
+                            <span class="rounded-md border-2 border-lightMediumGrey py-1 px-2 dark:border-secondaryDark">F11</span>
+                            <span>Windows/Linux</span>
+                        </div>
+                        <div class="mt-4 font-montserrat text-xss font-extrabold text-secondaryLightDark dark:text-secondaryLight">
+                            <span class="rounded-md border-2 border-lightMediumGrey py-1 px-2 dark:border-secondaryDark">Fn</span>
+                            <span>+</span>
+                            <span class="rounded-md border-2 border-lightMediumGrey py-1 px-2 dark:border-secondaryDark">F</span>
+                            <span>MacOS</span>
+                        </div>
+                    </div>
+                    <span class="my-auto ml-12 font-montserrat text-sm font-extrabold text-secondaryLightDark dark:text-secondaryLight">Перейти в FullScreen</span>
+                </div>
+
+                <div class="mt-2 mr-8 h-px bg-lightMediumGrey"></div>
+
+                <div class="mt-4 flex">
+                    <div class="w-40">
+                        <div class="font-montserrat text-xss font-extrabold text-secondaryLightDark dark:text-secondaryLight">
+                            <span class="rounded-md border-2 border-lightMediumGrey py-1 px-2 dark:border-secondaryDark">Ctrl</span>
+                            <span>+</span>
+                            <span class="rounded-md border-2 border-lightMediumGrey py-1 px-2 dark:border-secondaryDark">T</span>
+                        </div>
+                    </div>
+                    <span class="my-auto ml-12 font-montserrat text-sm font-extrabold text-secondaryLightDark dark:text-secondaryLight">Открыть новый таб</span>
+                </div>
+
+                <div class="mt-2 mr-8 h-px bg-lightMediumGrey"></div>
+
+                <div class="mt-4 flex">
+                    <div class="w-40">
+                        <div class="font-montserrat text-xss font-extrabold text-secondaryLightDark dark:text-secondaryLight">
+                            <span class="rounded-md border-2 border-lightMediumGrey py-1 px-2 dark:border-secondaryDark">Ctrl</span>
+                            <span>+</span>
+                            <span class="rounded-md border-2 border-lightMediumGrey py-1 px-2 dark:border-secondaryDark">W</span>
+                        </div>
+                    </div>
+                    <span class="my-auto ml-12 font-montserrat text-sm font-extrabold text-secondaryLightDark dark:text-secondaryLight">Закрыть текущий таб</span>
+                </div>
+
+                <div class="mt-2 mr-8 h-px bg-lightMediumGrey"></div>
+
+                <div class="mt-4 flex">
+                    <div class="w-40">
+                        <div class="font-montserrat text-xss font-extrabold text-secondaryLightDark dark:text-secondaryLight">
+                            <span class="rounded-md border-2 border-lightMediumGrey py-1 px-2 dark:border-secondaryDark">F7</span>
+                        </div>
+                    </div>
+                    <span class="my-auto ml-12 font-montserrat text-sm font-extrabold text-secondaryLightDark dark:text-secondaryLight">Открыть/Закрыть окно с чатом</span>
+                </div>
+
+                <div class="mt-2 mr-8 h-px bg-lightMediumGrey"></div>
+
+                <div class="mt-4 flex">
+                    <div class="w-40">
+                        <div class="font-montserrat text-xss font-extrabold text-secondaryLightDark dark:text-secondaryLight">
+                            <span class="rounded-md border-2 border-lightMediumGrey py-1 px-2 dark:border-secondaryDark">Ctrl</span>
+                            <span>+</span>
+                            <span class="rounded-md border-2 border-lightMediumGrey py-1 px-2 dark:border-secondaryDark">Shift</span>
+                            <span>+</span>
+                            <span class="rounded-md border-2 border-lightMediumGrey py-1 px-2 dark:border-secondaryDark">C</span>
+                        </div>
+                    </div>
+                    <span class="my-auto ml-12 font-montserrat text-sm font-extrabold text-secondaryLightDark dark:text-secondaryLight">Скопировать URL страницы</span>
+                </div>
+
+                <div class="mt-2 mr-8 h-px bg-lightMediumGrey"></div>
+
+                <div class="mt-4 flex">
+                    <div class="w-40">
+                        <div class="font-montserrat text-xss font-extrabold text-secondaryLightDark dark:text-secondaryLight">
+                            <span class="rounded-md border-2 border-lightMediumGrey py-1 px-2 dark:border-secondaryDark">Ctrl</span>
+                            <span>+</span>
+                            <span class="rounded-md border-2 border-lightMediumGrey py-1 px-2 dark:border-secondaryDark">Shift</span>
+                            <span>+</span>
+                            <span class="rounded-md border-2 border-lightMediumGrey py-1 px-2 dark:border-secondaryDark">K</span>
+                        </div>
+                    </div>
+                    <span class="my-auto ml-12 font-montserrat text-sm font-extrabold text-secondaryLightDark dark:text-secondaryLight">Очистить кэш</span>
+                </div>
+
+                <div class="mt-2 mr-8 h-px bg-lightMediumGrey"></div>
+
+                <div class="mt-4 flex">
+                    <div class="w-40">
+                        <div class="font-montserrat text-xss font-extrabold text-secondaryLightDark dark:text-secondaryLight">
+                            <span class="rounded-md border-2 border-lightMediumGrey py-1 px-2 dark:border-secondaryDark">F9</span>
+                            <span>Windows/Linux</span>
+                        </div>
+                        <div class="mt-4 font-montserrat text-xss font-extrabold text-secondaryLightDark dark:text-secondaryLight">
+                            <span class="rounded-md border-2 border-lightMediumGrey py-1 px-2 dark:border-secondaryDark">Cmd</span>
+                            <span>+</span>
+                            <span class="rounded-md border-2 border-lightMediumGrey py-1 px-2 dark:border-secondaryDark">F</span>
+                            <span>MacOS</span>
+                        </div>
+                    </div>
+                    <span class="my-auto ml-12 font-montserrat text-sm font-extrabold text-secondaryLightDark dark:text-secondaryLight">Скриншот</span>
+                </div>
+
+                <p class="mt-8 font-montserrat text-lg font-extrabold text-secondaryLightDark dark:text-secondaryLight">Dev shortcuts</p>
+
+                <div class="mt-4 flex">
+                    <div class="w-40">
+                        <div class="font-montserrat text-xss font-extrabold text-secondaryLightDark dark:text-secondaryLight">
+                            <span class="rounded-md border-2 border-lightMediumGrey py-1 px-2 dark:border-secondaryDark">Ctrl/Cmd</span>
+                            <span>+</span>
+                            <span class="rounded-md border-2 border-lightMediumGrey py-1 px-2 dark:border-secondaryDark">O</span>
+                        </div>
+                    </div>
+                    <span class="my-auto ml-12 font-montserrat text-sm font-extrabold text-secondaryLightDark dark:text-secondaryLight">Открыть dev tools для webview</span>
+                </div>
+
+                <div class="mt-2 mr-8 h-px bg-lightMediumGrey"></div>
+
+                <div class="mt-4 flex">
+                    <div class="w-40">
+                        <div class="font-montserrat text-xss font-extrabold text-secondaryLightDark dark:text-secondaryLight">
+                            <span class="rounded-md border-2 border-lightMediumGrey py-1 px-2 dark:border-secondaryDark">Ctrl/Cmd</span>
+                            <span>+</span>
+                            <span class="rounded-md border-2 border-lightMediumGrey py-1 px-2 dark:border-secondaryDark">Alt</span>
+                            <span>+</span>
+                            <span class="rounded-md border-2 border-lightMediumGrey py-1 px-2 dark:border-secondaryDark">I</span>
+                        </div>
+                    </div>
+                    <span class="my-auto ml-12 font-montserrat text-sm font-extrabold text-secondaryLightDark dark:text-secondaryLight">Открыть dev tools для window</span>
+                </div>
             </div>
         </div>
     </body>
