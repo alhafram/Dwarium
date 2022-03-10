@@ -53,9 +53,9 @@
     global-tunnel-ng "^2.7.1"
 
 "@electron/remote@^2.0.1":
-  version "2.0.5"
-  resolved "https://registry.yarnpkg.com/@electron/remote/-/remote-2.0.5.tgz#d38bcd2ad2825cca42c5ea4c92efafa99720c52a"
-  integrity sha512-Ot8VsYCwAJ+9DgqRuYCiAobS8TVKvnXJMncR14/28ORso1iWFG0X6geyk3hc13N48Oc/WJnPYlYI3o7g5Ja2Qg==
+  version "2.0.7"
+  resolved "https://registry.yarnpkg.com/@electron/remote/-/remote-2.0.7.tgz#9b02adf5cc21d91d648fff68770d390597509b4c"
+  integrity sha512-IjtMlSrkSmWNSnsvM0l2PQ3a50xFjco4M+arRi6BiziimgctNF8w8LB5NcRTs43OQZG91U/KGTWd89G1Fw7muA==
 
 "@electron/universal@1.0.5":
   version "1.0.5"
@@ -1155,9 +1155,9 @@ electron-reload@^2.0.0-alpha.1:
     chokidar "^3.5.2"
 
 electron-to-chromium@^1.4.76:
-  version "1.4.78"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.78.tgz#7a1cf853efafde2c4cf6e86facf3e5792d3541a5"
-  integrity sha512-o61+D/Lx7j/E0LIin/efOqeHpXhwi1TaQco9vUcRmr91m25SfZY6L5hWJDv/r+6kNjboFKgBw1LbfM0lbhuK6Q==
+  version "1.4.80"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.4.80.tgz#299a1ea3e32810934b4e3c2e4d4cb53136fdab3f"
+  integrity sha512-COsbJCGVYCc/aAY4cd94x1Js3q0r406YKGbdL8LXHg0O9dEjuFEFU/vZneRxBxKo/f1lLHi0YyAR7sbFM+i8Bg==
 
 electron-updater@^4.6.1:
   version "4.6.5"
@@ -1174,9 +1174,9 @@ electron-updater@^4.6.1:
     semver "^7.3.5"
 
 electron@^16.0.8:
-  version "16.0.10"
-  resolved "https://registry.yarnpkg.com/electron/-/electron-16.0.10.tgz#300fe18c0f8096d337e241a2503522011429326b"
-  integrity sha512-QSxkVpvSpLzhSVlPRVOoJc/O/ZsbZm64qvSJeXsYfaH4rQjqBJwAFPuHhbhxzrBDWjH6FrBiNNzWZufSoTz1QQ==
+  version "16.1.0"
+  resolved "https://registry.yarnpkg.com/electron/-/electron-16.1.0.tgz#2e161bb32dfc67d37719743143a41af73f2a5e20"
+  integrity sha512-G4fpHmE3sgd497e0zEier/AmZ4fyReX8ozYAl468+FaI5kb44+69igRHQwRUtmPzv+fCn/Jm4wJQPfLe60WmUQ==
   dependencies:
     "@electron/get" "^1.13.0"
     "@types/node" "^14.6.2"
