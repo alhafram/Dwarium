@@ -232,6 +232,7 @@ ipcMain.on(Channel.SWITCH_MODE, () => {
     chatLogWindow?.webContents.send(Channel.SWITCH_MODE)
     chatSettingsWindow?.webContents.send(Channel.SWITCH_MODE)
     settingsWindow?.webContents.send(Channel.SWITCH_MODE)
+    notificationsWindow?.webContents.send(Channel.SWITCH_MODE)
 })
 
 ipcMain.handle(Channel.GET_URL, () => {
@@ -277,6 +278,18 @@ ipcMain.on(Channel.OPEN_SETTINGS, () => {
     settingsWindow = createWindowAndLoad(WindowType.SETTINGS, HTMLPath.SETTINGS, Preload.SETTINGS, true)
     setupCloseLogic(settingsWindow, WindowType.SETTINGS, function() {
         settingsWindow = null
+    })
+})
+
+let notificationsWindow: BrowserWindow | null
+ipcMain.on(Channel.OPEN_NOTIFICATIONS, () => {
+    if(notificationsWindow) {
+        notificationsWindow.show()
+        return
+    }
+    notificationsWindow = createWindowAndLoad(WindowType.NOTIFICATIONS, HTMLPath.NOTIFICATIONS, Preload.NOTIFICATIONS, true)
+    setupCloseLogic(notificationsWindow, WindowType.NOTIFICATIONS, function() {
+        notificationsWindow = null
     })
 })
 

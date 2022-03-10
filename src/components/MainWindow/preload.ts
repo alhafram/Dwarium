@@ -139,6 +139,9 @@ window.addEventListener('DOMContentLoaded', async() => {
     Elements.settingsButton().addEventListener('click', () => {
         ipcRenderer.send(Channel.OPEN_SETTINGS)
     })
+    Elements.notificationsButton().addEventListener('click', () => {
+        ipcRenderer.send(Channel.OPEN_NOTIFICATIONS)
+    })
     Elements.urlInput().addEventListener('keyup', (e: KeyboardEvent) => {
         if(e.key == 'Enter') {
             ipcRenderer.send(Channel.GO_URL, Elements.urlInput().value)
@@ -499,7 +502,7 @@ function getElementIdBy(type: WindowType): HTMLElement | undefined {
             return Elements.settingsButton()
         case WindowType.CHAT_SETTINGS:
             return Elements.chatSettingsButton()
-        case WindowType.NOTIFICATIONS_SETTINGS:
+        case WindowType.NOTIFICATIONS:
             return Elements.notificationsButton()
     }
 }
