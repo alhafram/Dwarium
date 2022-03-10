@@ -1,4 +1,3 @@
-import '../Utils'
 import { BeltDressingWindowState } from './BeltDressingWindowState'
 import { BeltDressingWindowActions } from './Actions'
 import setupMode from '../../services/DarkModeHandler'
