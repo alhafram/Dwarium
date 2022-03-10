@@ -1,5 +1,5 @@
 import { ipcRenderer } from 'electron'
-import { generateRandomId } from '../Components/Utils'
+import Utils from '../Components/Common/Utils'
 import { Channel } from '../Models/Channel'
 import { buildPath, ConfigPath } from '../Models/ConfigPathes'
 import { FavouriteLink } from '../Models/FavouriteLink'
@@ -12,7 +12,7 @@ function saveFavouriteLink(title: string, url: string, value: boolean | null): v
     const favouriteLink = {
         title,
         url,
-        id: generateRandomId()
+        id: Utils.generateRandomId()
     } as FavouriteLink
     if(value) {
         links.push(favouriteLink)
@@ -44,7 +44,7 @@ function getLinks(): FavouriteLink[] {
     }
     links.forEach((link) => {
         if(!link.id) {
-            link.id = generateRandomId()
+            link.id = Utils.generateRandomId()
         }
     })
     return links

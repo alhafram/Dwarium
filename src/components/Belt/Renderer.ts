@@ -1,4 +1,4 @@
-import { DressingFilterColor, generateRandomId, getFilterColor } from '../Utils'
+import Utils, { DressingFilterColor } from '../Common/Utils'
 import { BeltDressingWindowActions } from './Actions'
 import { BeltDressingSet, BeltDressingWindowState } from './BeltDressingWindowState'
 import { Elements } from './Elements'
@@ -114,7 +114,7 @@ function renderSlots(slotsCount: number, variantSlots: number) {
 }
 
 function generateSetId() {
-    return 'belt_set_' + generateRandomId()
+    return 'belt_set_' + Utils.generateRandomId()
 }
 
 function createDivPotionStr(variant: boolean) {
@@ -142,7 +142,7 @@ export function render(state: BeltDressingWindowState): void {
     renderSlots(state.slots, state.variants)
     const allItemDivs = state.allItems
         .map((item) => {
-            if(!state.activeFilters.includes(getFilterColor(item.quality))) {
+            if(!state.activeFilters.includes(Utils.getFilterColor(item.quality))) {
                 return convertItemIntoDiv(item, undefined)
             }
         })

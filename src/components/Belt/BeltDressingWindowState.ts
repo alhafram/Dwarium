@@ -1,6 +1,6 @@
 import { InventoryItem } from '../../Models/InventoryItem'
 import { UserConfig } from '../../Models/UserConfig'
-import { DressingFilterColor } from '../Utils'
+import { DressingFilterColor } from '../Common/Utils'
 
 export type BeltDressingSet = {
     id: string

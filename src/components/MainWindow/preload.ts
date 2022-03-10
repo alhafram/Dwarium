@@ -1,7 +1,7 @@
 import { ipcRenderer } from 'electron'
 import ConfigService from '../../services/ConfigService'
 import { Channel } from '../../Models/Channel'
-import { generateRandomId } from '../Utils'
+import Utils from '../Common/Utils'
 import { WindowType } from '../../Models/WindowModels'
 import FavouriteLinkService from '../../services/FavouriteLinksService'
 
@@ -288,7 +288,7 @@ function createNewTab(id?: string) {
     `
     const newTab = createTabButton(newTabString) as HTMLButtonElement
     if(!id) {
-        id = generateRandomId()
+        id = Utils.generateRandomId()
     }
     newTab.id = id
     newTab.onclick = makeActive

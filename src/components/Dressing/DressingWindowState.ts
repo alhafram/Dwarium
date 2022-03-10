@@ -1,7 +1,7 @@
 import { DressingSet } from '../../Models/DressingSet'
 import { InventoryItem } from '../../Models/InventoryItem'
 import { UserConfig } from '../../Models/UserConfig'
-import { DressingFilterColor } from '../Utils'
+import { DressingFilterColor } from '../Common/Utils'
 
 export type DressingWindowState = {
     selectedStaticItemId: string | null

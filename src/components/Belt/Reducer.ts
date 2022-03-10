@@ -1,11 +1,10 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { InventoryItem } from '../../Models/InventoryItem'
-import Utils from '../Common/Utils'
+import Utils, { DressingFilterColor } from '../Common/Utils'
 import { BeltDressingWindowActions } from './Actions'
 import { BeltDressingWindowState, BeltDressingSet, BeltDressingSetPotion } from './BeltDressingWindowState'
 import { Elements } from './Elements'
 import SimpleAlt from '../../Scripts/simple_alt'
-import { DressingFilterColor, generateRandomId } from '../Utils'
 import Requests from './Requests'
 import { disableButtons, SetElements } from '../Common/Set/Elements'
 
@@ -52,7 +51,7 @@ function copyInventoryItemWithoutBox(item: InventoryItem, potion: EquipedPotion 
 }
 
 function generateSetId() {
-    return 'belt_set_' + generateRandomId()
+    return 'belt_set_' + Utils.generateRandomId()
 }
 
 async function parseEquipedPotions() {

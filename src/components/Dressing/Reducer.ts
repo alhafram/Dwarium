@@ -1,8 +1,7 @@
 import { DressingSet } from '../../Models/DressingSet'
 import { InventoryItem } from '../../Models/InventoryItem'
 import { getType, InventoryItemType } from '../Common/ItemBuilder'
-import Utils from '../Common/Utils'
-import { DressingFilterColor, generateRandomId } from '../Utils'
+import Utils, { DressingFilterColor } from '../Common/Utils'
 import { DressingWindowActions } from './Actions'
 import { DressingWindowState } from './DressingWindowState'
 import { Elements } from './Elements'
@@ -413,5 +412,5 @@ function difference(setA: string[], setB: string[]): Set<string> {
 }
 
 function generateSetId() {
-    return 'set_' + generateRandomId()
+    return 'set_' + Utils.generateRandomId()
 }
