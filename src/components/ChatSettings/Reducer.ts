@@ -21,7 +21,7 @@ export default async function reduce(state: ChatSettingsWindowState, action: Cha
         case ChatSettingsWindowActions.LOAD_CONTENT: {
             const userId = (await Utils.getUserId()) as number
             if(!userId) {
-                console.log('Не найден user id пользователя, попробуйте авторизоваться и заново открыть настройки чата!')
+                alert('Не найден user id пользователя, попробуйте авторизоваться и заново открыть настройки чата!')
                 return state
             }
             const chatSettingsConfig = getChatSettingsConfig(userId)
@@ -126,7 +126,7 @@ export default async function reduce(state: ChatSettingsWindowState, action: Cha
         case ChatSettingsWindowActions.SAVE: {
             const userId1 = (await Utils.getUserId()) as number
             if(!userId1) {
-                console.log('Не найден user id пользователя, попробуйте авторизоваться и заново открыть настройки чата!')
+                alert('Не найден user id пользователя, попробуйте авторизоваться и заново открыть настройки чата!')
                 return state
             }
             save(state, userId1)

@@ -20,7 +20,7 @@ export default async function reduce(state: EffectSetsWindowState, action: Effec
 
             const userId = (await Utils.getUserId()) as number
             if(!userId) {
-                console.log('Не найден user id пользователя, попробуйте авторизоваться и заново открыть автопоедалку!')
+                alert('Не найден user id пользователя, попробуйте авторизоваться и заново открыть автопоедалку!')
                 return state
             }
             const userConfig = Utils.getUserConfig(userId)
@@ -75,7 +75,6 @@ export default async function reduce(state: EffectSetsWindowState, action: Effec
             sets.push(newSet)
             state.userConfig!.effectSets = sets
             Utils.save(state.userConfig!)
-            console.log(state.userConfig)
             return {
                 ...state,
                 currentSet: newSet,
@@ -109,7 +108,6 @@ export default async function reduce(state: EffectSetsWindowState, action: Effec
         case EffectSetsWindowActions.SAVE_SET: {
             let set = state.currentSet
             const sets = state.sets
-            console.log('HERE')
             if(set) {
                 set.title = SetElements.setTitleInput().value
                 set.ids = state.currentItems.map(item => item.id)

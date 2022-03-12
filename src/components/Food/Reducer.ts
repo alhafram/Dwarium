@@ -53,7 +53,7 @@ export default async function reduce(state: FoodWindowState, action: FoodWindowA
                 .filter((item): item is InventoryItem => !!item)
             const userId = await Utils.getUserId()
             if(!userId) {
-                console.log('Не найден user id пользователя, попробуйте авторизоваться и заново открыть автопоедалку!')
+                alert('Не найден user id пользователя, попробуйте авторизоваться и заново открыть автопоедалку!')
                 return state
             }
             const userConfig = Utils.getUserConfig(userId)
