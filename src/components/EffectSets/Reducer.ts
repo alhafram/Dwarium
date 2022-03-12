@@ -15,7 +15,9 @@ export default async function reduce(state: EffectSetsWindowState, action: Effec
         case EffectSetsWindowActions.LOAD_CONTENT: {
             const result = await ipcRenderer.invoke('LoadSetItems', ['effectSetsItems'])
             const loadedItems = result.effectSetsItems
-            const availableItems = Object.keys(loadedItems).filter(key => key.startsWith('AA_')).map(key => loadedItems[key]) as InventoryItem[]
+            const availableItems = Object.keys(loadedItems)
+                .filter((key) => key.startsWith('AA_'))
+                .map((key) => loadedItems[key]) as InventoryItem[]
             SimpleAlt.setupArtAlt(loadedItems)
 
             const userId = (await Utils.getUserId()) as number
@@ -42,7 +44,7 @@ export default async function reduce(state: EffectSetsWindowState, action: Effec
             return state
         case EffectSetsWindowActions.ADD_EFFECT: {
             const itemid = data as string
-            const item = state.allItems.find(item => item.id == itemid)
+            const item = state.allItems.find((item) => item.id == itemid)
             if(!item) {
                 alert('ШО ТО НЕ ТАК!!! Напиши в группу')
                 return state
@@ -58,7 +60,7 @@ export default async function reduce(state: EffectSetsWindowState, action: Effec
         }
         case EffectSetsWindowActions.REMOVE_EFFECT: {
             const itemid = data as string
-            const item = state.allItems.find(item => item.id == itemid)
+            const item = state.allItems.find((item) => item.id == itemid)
             if(!item) {
                 alert('ШО ТО НЕ ТАК!!! Напиши в группу')
                 return state
@@ -110,13 +112,13 @@ export default async function reduce(state: EffectSetsWindowState, action: Effec
             const sets = state.sets
             if(set) {
                 set.title = SetElements.setTitleInput().value
-                set.ids = state.currentItems.map(item => item.id)
+                set.ids = state.currentItems.map((item) => item.id)
                 sets[sets.indexOf(set)] = set
             } else {
                 set = {
                     id: generateSetId(),
                     title: SetElements.setTitleInput().value,
-                    ids: state.currentItems.map(item => item.id)
+                    ids: state.currentItems.map((item) => item.id)
                 }
                 sets.push(set)
             }
@@ -130,7 +132,7 @@ export default async function reduce(state: EffectSetsWindowState, action: Effec
         }
         case EffectSetsWindowActions.SELECT_SET: {
             const selectedSet = data as EffectSet
-            const selectedSetItems = state.allItems.filter(item => selectedSet.ids.includes(item.id))
+            const selectedSetItems = state.allItems.filter((item) => selectedSet.ids.includes(item.id))
             return {
                 ...state,
                 currentSet: selectedSet,
@@ -139,7 +141,6 @@ export default async function reduce(state: EffectSetsWindowState, action: Effec
         }
     }
 }
-
 
 function generateSetId() {
     return 'effect_set_' + Utils.generateRandomId()

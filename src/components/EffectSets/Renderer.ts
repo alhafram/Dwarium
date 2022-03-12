@@ -10,10 +10,8 @@ import { ListElements } from '../Common/List/Elements'
 import { EffectSet } from '../../Models/EffectSet'
 
 function render(state: EffectSetsWindowState): void {
-
     let parent = SetElements.allItemsDiv()
     Array.from(parent.children ?? []).forEach((item) => parent.removeChild(item))
-    
     state.allItems.forEach((item) => {
         const divItem = convertItemIntoDiv(item, undefined)
         setupEquipableItemEvents(divItem)
@@ -29,7 +27,6 @@ function render(state: EffectSetsWindowState): void {
         setupEquipableItemEvents(divItem)
         parent?.appendChild(divItem)
     })
-    
     Array.from(ListElements.setsDiv().children)
         .filter((element) => element.id.startsWith('effect_set_'))
         .forEach((element) => ListElements.setsDiv().removeChild(element))
@@ -68,7 +65,6 @@ function setupView() {
         dispatch(EffectSetsWindowActions.REMOVE_SET, dragableSet)
     }
     ListElements.removeSetDiv().ondragover = handleDragOver
-    
 }
 
 let dragableItem: HTMLDivElement | null = null
