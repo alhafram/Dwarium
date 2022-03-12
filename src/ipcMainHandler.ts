@@ -99,7 +99,7 @@ ipcMain.on(Channel.CLOSE_TAB, (evt, id) => {
     TabsController.mainWindow?.webContents.send(Channel.CLOSE_TAB, id)
 })
 
-ipcMain.handle('MakeWebRequest', async(evt, req) => {
+ipcMain.handle('makeWebRequest', async(evt, req) => {
     const result = await TabsController.mainWindowContainer?.browserView?.webContents.executeJavaScript(req)
     return result
 })
@@ -131,6 +131,10 @@ ipcMain.handle('LoadSetItems', async(evt, args: [string]) => {
         },
         otherItems: {
             url: `${ConfigService.getSettings().baseUrl}/user_iframe.php?group=3`,
+            script: 'art_alt'
+        },
+        effectSetsItems: {
+            url: `${ConfigService.getSettings().baseUrl}/user.php?mode=effects_set`,
             script: 'art_alt'
         }
     }
@@ -233,6 +237,7 @@ ipcMain.on(Channel.SWITCH_MODE, () => {
     chatSettingsWindow?.webContents.send(Channel.SWITCH_MODE)
     settingsWindow?.webContents.send(Channel.SWITCH_MODE)
     notificationsWindow?.webContents.send(Channel.SWITCH_MODE)
+    effectSetsWindow?.webContents.send(Channel.SWITCH_MODE)
 })
 
 ipcMain.handle(Channel.GET_URL, () => {
@@ -362,6 +367,18 @@ ipcMain.on(Channel.OPEN_CHAT_SETTINGS, () => {
     chatSettingsWindow = createWindowAndLoad(WindowType.CHAT_SETTINGS, HTMLPath.CHAT_SETTINGS, Preload.CHAT_SETTINGS, true)
     setupCloseLogic(chatSettingsWindow, WindowType.CHAT_SETTINGS, function() {
         chatSettingsWindow = null
+    })
+})
+
+let effectSetsWindow: BrowserWindow | null
+ipcMain.on(Channel.OPEN_EFFECT_SETS, () => {
+    if(effectSetsWindow) {
+        effectSetsWindow.show()
+        return
+    }
+    effectSetsWindow = createWindowAndLoad(WindowType.EFFECT_SETS, HTMLPath.EFFECT_SETS, Preload.EFFECT_SETS, true)
+    setupCloseLogic(effectSetsWindow, WindowType.SETTINGS, function() {
+        effectSetsWindow = null
     })
 })
 

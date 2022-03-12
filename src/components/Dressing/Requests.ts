@@ -1,4 +1,5 @@
 import { ipcRenderer } from 'electron'
+import { Channel } from '../../Models/Channel'
 import ConfigService from '../../services/ConfigService'
 
 function getMagicSchools(zikkuratId: string) {
@@ -17,7 +18,7 @@ function getMagicSchools(zikkuratId: string) {
             'mode': 'cors',
             'credentials': 'include'
         }).then(resp => resp.text())`
-    return ipcRenderer.invoke('MakeWebRequest', req)
+    return ipcRenderer.invoke(Channel.MAKE_WEB_REQUEST, req)
 }
 function changeStyle(zikkuratId: string, styleId: number) {
     const req = `fetch('${ConfigService.getSettings().baseUrl}/action_run.php', {
@@ -34,7 +35,7 @@ function changeStyle(zikkuratId: string, styleId: number) {
         'mode': 'cors',
         'credentials': 'include'
         }).then(resp => resp.text())`
-    return ipcRenderer.invoke('MakeWebRequest', req)
+    return ipcRenderer.invoke(Channel.MAKE_WEB_REQUEST, req)
 }
 
 function equipRequest(id: string) {
@@ -54,7 +55,7 @@ function equipRequest(id: string) {
             'mode': 'cors',
             'credentials': 'include'
         }).then(resp => resp.text())`
-    return ipcRenderer.invoke('MakeWebRequest', req)
+    return ipcRenderer.invoke(Channel.MAKE_WEB_REQUEST, req)
 }
 
 function unequipRequest(id: string) {
@@ -74,7 +75,7 @@ function unequipRequest(id: string) {
         'mode': 'cors',
         'credentials': 'include'
         }).then(resp => resp.text())`
-    return ipcRenderer.invoke('MakeWebRequest', req)
+    return ipcRenderer.invoke(Channel.MAKE_WEB_REQUEST, req)
 }
 
 export default {

@@ -7,10 +7,11 @@ import SimpleAlt from '../../Scripts/simple_alt'
 import { FoodSettings } from '../../Models/FoodSettings'
 import { Elements } from './Elements'
 import Utils from '../Common/Utils'
+import { Channel } from '../../Models/Channel'
 
 async function fetchFood() {
     const req = `fetch('${ConfigService.getSettings().baseUrl}/user_conf.php?mode=food').then(resp => resp.text())`
-    return await ipcRenderer.invoke('MakeWebRequest', req)
+    return await ipcRenderer.invoke(Channel.MAKE_WEB_REQUEST, req)
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

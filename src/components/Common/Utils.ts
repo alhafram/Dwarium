@@ -1,6 +1,7 @@
 import { ipcRenderer } from 'electron'
 import { Channel } from '../../Models/Channel'
 import { UserConfig } from '../../Models/UserConfig'
+import ConfigService from '../../services/ConfigService'
 import UserConfigService from '../../services/UserConfigService'
 
 async function getUserId() {
@@ -105,6 +106,19 @@ function generateRandomId() {
     return (Math.random() + 1).toString(36).substring(2)
 }
 
+function instapocketUseRequest(id: string) {
+    return `fetch("${ConfigService.getSettings().baseUrl}/action_form.php?${Math.random()}&in[param_success][url_close]=1&artifact_id=${id}&in[external]=1&in[noconfirm]=1", {
+        "headers": {
+            "upgrade-insecure-requests": "1"
+        },
+        "referrer": "${ConfigService.getSettings().baseUrl}/main_frame.php",
+        "referrerPolicy": "no-referrer-when-downgrade",
+        "body": null,
+        "method": "GET",
+        "mode": "cors",
+        "credentials": "include"
+    }).then(resp => resp.text())`
+}
 
 export default {
     getUserId,
@@ -113,5 +127,6 @@ export default {
     loadItemsData,
     generateRandomId,
     getQuality,
-    getFilterColor
+    getFilterColor,
+    instapocketUseRequest
 }

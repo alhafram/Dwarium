@@ -6,7 +6,8 @@ export enum Preload {
     NOTES = '../Components/Notes/preload.js',
     FOOD = '../Components/Food/preload.js',
     CHAT_SETTINGS = '../Components/ChatSettings/preload.js',
-    NOTIFICATIONS = '../Components/Notifications/preload.js'
+    NOTIFICATIONS = '../Components/Notifications/preload.js',
+    EFFECT_SETS = '../Components/EffectSets/preload.js'
 }
 
 export enum HTMLPath {
@@ -17,7 +18,8 @@ export enum HTMLPath {
     NOTES = '../../gui/Notes/index.html',
     FOOD = '../../gui/Food/index.html',
     CHAT_SETTINGS = '../../gui/ChatSettings/index.html',
-    NOTIFICATIONS = '../../gui/Notifications/index.html'
+    NOTIFICATIONS = '../../gui/Notifications/index.html',
+    EFFECT_SETS = '../../gui/EffectSets/index.html'
 }
 
 export enum WindowType {
@@ -33,5 +35,6 @@ export enum WindowType {
     USER_INFO = 'userInfo',
     USER_EFFECTS = 'userEffects',
     FAVOURITE_LIST = 'favouriteList',
-    NOTIFICATIONS = 'notifications'
+    NOTIFICATIONS = 'notifications',
+    EFFECT_SETS = 'notifications'
 }
