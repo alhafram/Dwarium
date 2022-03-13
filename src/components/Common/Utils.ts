@@ -110,6 +110,10 @@ function instapocketUseRequest(id: string) {
     return `top[0].instapocketUse(${id})`
 }
 
+function delay(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 export default {
     getUserId,
     getUserConfig,
@@ -118,5 +122,6 @@ export default {
     generateRandomId,
     getQuality,
     getFilterColor,
-    instapocketUseRequest
+    instapocketUseRequest,
+    delay
 }

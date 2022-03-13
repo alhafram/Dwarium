@@ -42,6 +42,7 @@ export default async function reduce(state: EffectSetsWindowState, action: Effec
             for(const item of state.currentItems) {
                 const request = Utils.instapocketUseRequest(item.id)
                 await ipcRenderer.invoke(Channel.MAKE_WEB_REQUEST, request)
+                await Utils.delay(500)
             }
             Elements.useEffectsButton().disabled = false
             return state
