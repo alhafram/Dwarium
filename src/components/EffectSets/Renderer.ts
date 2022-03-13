@@ -8,12 +8,21 @@ import { EffectSetsWindowActions } from './Actions'
 import { SetElements } from '../Common/Set/Elements'
 import { ListElements } from '../Common/List/Elements'
 import { EffectSet } from '../../Models/EffectSet'
+import Utils, { DressingFilterColor } from '../Common/Utils'
 
 function render(state: EffectSetsWindowState): void {
     let parent = SetElements.allItemsDiv()
     Array.from(parent.children ?? []).forEach((item) => parent.removeChild(item))
-    state.allItems.forEach((item) => {
-        const divItem = convertItemIntoDiv(item, undefined)
+
+    const allItemDivs = state.allItems
+        .map((item) => {
+            if(!state.activeFilters.includes(Utils.getFilterColor(item.quality))) {
+                return convertItemIntoDiv(item, undefined)
+            }
+        })
+        .filter((div) => div) as HTMLDivElement[]
+
+    allItemDivs.forEach((divItem) => {
         setupEquipableItemEvents(divItem)
         parent?.appendChild(divItem)
     })
@@ -126,4 +135,20 @@ function createNoteElement(note: EffectSet, isActive = false) {
     return newNoteDiv
 }
 
-export { render, setupView }
+function setupFilters() {
+    for(const key of Object.values(DressingFilterColor)) {
+        const element = document.getElementById(key) as HTMLInputElement
+        element.onclick = function() {
+            const checked = document.getElementById(key)?.getAttribute('checked') == 'true'
+            if(checked) {
+                document.getElementById(key)?.removeAttribute('checked')
+                dispatch(EffectSetsWindowActions.REMOVE_FILTER, key)
+            } else {
+                document.getElementById(key)?.setAttribute('checked', 'true')
+                dispatch(EffectSetsWindowActions.ADD_FILTER, key)
+            }
+        }
+    }
+}
+
+export { render, setupView, setupFilters }

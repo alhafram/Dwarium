@@ -15,9 +15,12 @@ export default async function reduce(state: EffectSetsWindowState, action: Effec
         case EffectSetsWindowActions.LOAD_CONTENT: {
             const result = await ipcRenderer.invoke('LoadSetItems', ['effectSetsItems'])
             const loadedItems = result.effectSetsItems
-            const availableItems = Object.keys(loadedItems)
+            let availableItems = Object.keys(loadedItems)
                 .filter((key) => key.startsWith('AA_'))
                 .map((key) => loadedItems[key]) as InventoryItem[]
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore
+            availableItems = availableItems.sort((a, b) => a.quality - b.quality)
             SimpleAlt.setupArtAlt(loadedItems)
 
             const userId = (await Utils.getUserId()) as number
@@ -137,6 +140,22 @@ export default async function reduce(state: EffectSetsWindowState, action: Effec
                 ...state,
                 currentSet: selectedSet,
                 currentItems: selectedSetItems
+            }
+        }
+        case EffectSetsWindowActions.ADD_FILTER: {
+            const newFilters = state.activeFilters
+            newFilters.push(data)
+            return {
+                ...state,
+                activeFilters: newFilters
+            }
+        }
+        case EffectSetsWindowActions.REMOVE_FILTER: {
+            let newFilters = state.activeFilters
+            newFilters = newFilters.removeItem(data)
+            return {
+                ...state,
+                activeFilters: newFilters
             }
         }
     }

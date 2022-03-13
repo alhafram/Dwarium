@@ -9,5 +9,8 @@ export enum EffectSetsWindowActions {
     ADD_EFFECT,
     REMOVE_EFFECT,
 
-    USE_EFFECTS
+    USE_EFFECTS,
+
+    ADD_FILTER,
+    REMOVE_FILTER
 }

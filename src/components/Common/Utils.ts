@@ -107,17 +107,7 @@ function generateRandomId() {
 }
 
 function instapocketUseRequest(id: string) {
-    return `fetch("${ConfigService.getSettings().baseUrl}/action_form.php?${Math.random()}&in[param_success][url_close]=1&artifact_id=${id}&in[external]=1&in[noconfirm]=1", {
-        "headers": {
-            "upgrade-insecure-requests": "1"
-        },
-        "referrer": "${ConfigService.getSettings().baseUrl}/main_frame.php",
-        "referrerPolicy": "no-referrer-when-downgrade",
-        "body": null,
-        "method": "GET",
-        "mode": "cors",
-        "credentials": "include"
-    }).then(resp => resp.text())`
+    return `top[0].instapocketUse(${id})`
 }
 
 export default {
