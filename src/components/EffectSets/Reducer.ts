@@ -138,7 +138,8 @@ export default async function reduce(state: EffectSetsWindowState, action: Effec
         }
         case EffectSetsWindowActions.SELECT_SET: {
             const selectedSet = data as EffectSet
-            const selectedSetItems = state.allItems.filter((item) => selectedSet.items.map(item => item.id).includes(item.id))
+            console.log(selectedSet)
+            const selectedSetItems = state.allItems.filter((item) => selectedSet.items.map((item) => item.id).includes(item.id))
             return {
                 ...state,
                 currentSet: selectedSet,
@@ -215,16 +216,16 @@ function createNewEffectSet(): EffectSet {
 async function parseEffectItems(inventoryItems: InventoryItem[]): Promise<EffectItem[]> {
     const items: EffectItem[] = []
     for(const item of inventoryItems) {
-        const res = await loadItem(item.id) as string
+        const res = (await loadItem(item.id)) as string
         const doc = res.toDocument()
-        const inputs = Array.from(doc.getElementsByTagName('input')).filter(input => input.type == 'hidden')
-        const parsedInputs = inputs.map(input => {
+        const inputs = Array.from(doc.getElementsByTagName('input')).filter((input) => input.type == 'hidden')
+        const parsedInputs = inputs.map((input) => {
             return {
                 name: input.name,
                 value: input.value
             }
         })
-        const nickInput = Array.from(doc.getElementsByTagName('input')).find(item => item.name == 'in[target_nick]')
+        const nickInput = Array.from(doc.getElementsByTagName('input')).find((item) => item.name == 'in[target_nick]')
         if(nickInput) {
             const nick = await ipcRenderer.invoke(Channel.GET_NICK)
             parsedInputs.push({
@@ -232,7 +233,7 @@ async function parseEffectItems(inventoryItems: InventoryItem[]): Promise<Effect
                 value: nick
             })
         }
-        const body = parsedInputs.map(parsedInput => `${parsedInput.name}=${parsedInput.value}`).join('&')
+        const body = parsedInputs.map((parsedInput) => `${parsedInput.name}=${parsedInput.value}`).join('&')
         console.log(body)
         items.push({
             id: item.id,
