@@ -227,6 +227,10 @@ ipcMain.handle(Channel.GET_ID, async() => {
     return await TabsController.mainWindowContainer?.browserView?.webContents.executeJavaScript('top._top().myId')
 })
 
+ipcMain.handle(Channel.GET_NICK, async() => {
+    return await TabsController.mainWindowContainer?.browserView?.webContents.executeJavaScript('top._top().myNick')
+})
+
 ipcMain.on(Channel.SWITCH_MODE, () => {
     favouriteListBrowserView?.webContents.send(Channel.SWITCH_MODE)
     foodWindow?.webContents.send(Channel.SWITCH_MODE)
@@ -377,7 +381,7 @@ ipcMain.on(Channel.OPEN_EFFECT_SETS, () => {
         return
     }
     effectSetsWindow = createWindowAndLoad(WindowType.EFFECT_SETS, HTMLPath.EFFECT_SETS, Preload.EFFECT_SETS, true)
-    setupCloseLogic(effectSetsWindow, WindowType.SETTINGS, function() {
+    setupCloseLogic(effectSetsWindow, WindowType.EFFECT_SETS, function() {
         effectSetsWindow = null
     })
 })

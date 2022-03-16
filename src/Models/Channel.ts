@@ -33,6 +33,7 @@ export enum Channel {
     FOOD_CHANGED = 'foodChanged',
     CHAT_SETTINGS_CHANGED = 'chatSettingsChanged',
     GET_ID = 'getId',
+    GET_NICK = 'getNick',
     GET_URL = 'getURL',
     GET_MAIN_URL = 'getMainURL',
     GET_TITLE = 'getTitle',

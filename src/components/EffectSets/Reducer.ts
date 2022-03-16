@@ -1,8 +1,9 @@
 import { ipcRenderer } from 'electron'
 import { Channel } from '../../Models/Channel'
-import { EffectSet } from '../../Models/EffectSet'
+import { EffectItem, EffectSet } from '../../Models/EffectSet'
 import { InventoryItem } from '../../Models/InventoryItem'
 import SimpleAlt from '../../Scripts/simple_alt'
+import ConfigService from '../../services/ConfigService'
 import { SetElements } from '../Common/Set/Elements'
 import Utils from '../Common/Utils'
 import { EffectSetsWindowActions } from './Actions'
@@ -37,15 +38,15 @@ export default async function reduce(state: EffectSetsWindowState, action: Effec
                 userConfig: userConfig
             }
         }
-        case EffectSetsWindowActions.USE_EFFECTS:
+        case EffectSetsWindowActions.USE_EFFECTS: {
+            const items = state.currentSet?.items ?? []
             Elements.useEffectsButton().disabled = true
-            for(const item of state.currentItems) {
-                const request = Utils.instapocketUseRequest(item.id)
-                await ipcRenderer.invoke(Channel.MAKE_WEB_REQUEST, request)
-                await Utils.delay(500)
+            for(const item of items) {
+                await useItem(item.id, item.body)
             }
             Elements.useEffectsButton().disabled = false
             return state
+        }
         case EffectSetsWindowActions.ADD_EFFECT: {
             const itemid = data as string
             const item = state.allItems.find((item) => item.id == itemid)
@@ -114,15 +115,16 @@ export default async function reduce(state: EffectSetsWindowState, action: Effec
         case EffectSetsWindowActions.SAVE_SET: {
             let set = state.currentSet
             const sets = state.sets
+            const items = await parseEffectItems(state.currentItems)
             if(set) {
                 set.title = SetElements.setTitleInput().value
-                set.ids = state.currentItems.map((item) => item.id)
+                set.items = items
                 sets[sets.indexOf(set)] = set
             } else {
                 set = {
                     id: generateSetId(),
                     title: SetElements.setTitleInput().value,
-                    ids: state.currentItems.map((item) => item.id)
+                    items: items
                 }
                 sets.push(set)
             }
@@ -136,7 +138,7 @@ export default async function reduce(state: EffectSetsWindowState, action: Effec
         }
         case EffectSetsWindowActions.SELECT_SET: {
             const selectedSet = data as EffectSet
-            const selectedSetItems = state.allItems.filter((item) => selectedSet.ids.includes(item.id))
+            const selectedSetItems = state.allItems.filter((item) => selectedSet.items.map(item => item.id).includes(item.id))
             return {
                 ...state,
                 currentSet: selectedSet,
@@ -162,6 +164,40 @@ export default async function reduce(state: EffectSetsWindowState, action: Effec
     }
 }
 
+function loadItem(id: string) {
+    const req = `fetch(
+        '${ConfigService.getSettings().baseUrl}/action_form.php?${Math.random()}&artifact_id=${id}&in[param_success][url_close]=user.php%3Fmode%3Dpersonage%26group%3D2%26update_swf%3D1', {
+            'headers': {
+                'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+                'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8,ru;q=0.7',
+                'cache-control': 'max-age=0',
+                'upgrade-insecure-requests': '1'
+            },
+            'referrer': '${ConfigService.getSettings().baseUrl}/user_iframe.php?group=2',
+            'referrerPolicy': 'no-referrer-when-downgrade',
+            'body': null,
+            'method': 'GET',
+            'mode': 'cors',
+            'credentials': 'include'
+        }).then(resp => resp.text())`
+    return ipcRenderer.invoke(Channel.MAKE_WEB_REQUEST, req)
+}
+
+async function useItem(id: string, body: string) {
+    const req = `fetch('${ConfigService.getSettings().baseUrl}/action_run.php', {
+        headers: {
+            'content-type': 'application/x-www-form-urlencoded'
+        },
+        'referrer': '${ConfigService.getSettings().baseUrl}/action_form.php?${Math.random()}&artifact_id=${id}&in[param_success][url_close]=user.php%3Fmode%3Dpersonage%26group%3D1%26update_swf%3D1',
+        'referrerPolicy': 'no-referrer-when-downgrade',
+        'body': '${body}',
+        'method': 'POST',
+        'mode': 'cors',
+        'credentials': 'include'
+    }).then(resp => resp.text())`
+    return ipcRenderer.invoke(Channel.MAKE_WEB_REQUEST, req)
+}
+
 function generateSetId() {
     return 'effect_set_' + Utils.generateRandomId()
 }
@@ -171,7 +207,38 @@ function createNewEffectSet(): EffectSet {
     const newSet: EffectSet = {
         id: id,
         title: 'Default set',
-        ids: []
+        items: []
     }
     return newSet
+}
+
+async function parseEffectItems(inventoryItems: InventoryItem[]): Promise<EffectItem[]> {
+    const items: EffectItem[] = []
+    for(const item of inventoryItems) {
+        const res = await loadItem(item.id) as string
+        const doc = res.toDocument()
+        const inputs = Array.from(doc.getElementsByTagName('input')).filter(input => input.type == 'hidden')
+        const parsedInputs = inputs.map(input => {
+            return {
+                name: input.name,
+                value: input.value
+            }
+        })
+        const nickInput = Array.from(doc.getElementsByTagName('input')).find(item => item.name == 'in[target_nick]')
+        if(nickInput) {
+            const nick = await ipcRenderer.invoke(Channel.GET_NICK)
+            parsedInputs.push({
+                name: nickInput.name,
+                value: nick
+            })
+        }
+        const body = parsedInputs.map(parsedInput => `${parsedInput.name}=${parsedInput.value}`).join('&')
+        console.log(body)
+        items.push({
+            id: item.id,
+            body,
+            title: item.title
+        })
+    }
+    return items
 }

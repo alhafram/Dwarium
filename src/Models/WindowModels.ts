@@ -36,5 +36,5 @@ export enum WindowType {
     USER_EFFECTS = 'userEffects',
     FAVOURITE_LIST = 'favouriteList',
     NOTIFICATIONS = 'notifications',
-    EFFECT_SETS = 'notifications'
+    EFFECT_SETS = 'effectSets'
 }

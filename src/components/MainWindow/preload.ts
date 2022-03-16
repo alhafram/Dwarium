@@ -457,6 +457,7 @@ ipcRenderer.on(Channel.UPDATE_APPLICATION_AVAILABLE, () => {
 })
 
 ipcRenderer.on(Channel.OPEN_WINDOW, (_evt, id, active) => {
+    console.log(id)
     const element = getElementIdBy(id)
     if(active) {
         element?.classList.add('selectedButton')
@@ -510,6 +511,8 @@ function getElementIdBy(type: WindowType): HTMLElement | undefined {
             return Elements.chatSettingsButton()
         case WindowType.NOTIFICATIONS:
             return Elements.notificationsButton()
+        case WindowType.EFFECT_SETS:
+            return Elements.effectSetsButton()
     }
 }
 

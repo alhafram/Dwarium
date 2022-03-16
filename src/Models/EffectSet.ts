@@ -1,5 +1,11 @@
 export type EffectSet = {
     id: string
     title: string
-    ids: string[]
+    items: EffectItem[]
+}
+
+export type EffectItem = {
+    id: string
+    body: string
+    title: string
 }
