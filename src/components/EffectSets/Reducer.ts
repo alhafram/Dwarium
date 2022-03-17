@@ -1,6 +1,6 @@
 import { ipcRenderer } from 'electron'
 import { Channel } from '../../Models/Channel'
-import { EffectItem, EffectSet } from '../../Models/EffectSet'
+import { EffectSet } from '../../Models/EffectSet'
 import { InventoryItem } from '../../Models/InventoryItem'
 import SimpleAlt from '../../Scripts/simple_alt'
 import ConfigService from '../../services/ConfigService'
@@ -39,10 +39,11 @@ export default async function reduce(state: EffectSetsWindowState, action: Effec
             }
         }
         case EffectSetsWindowActions.USE_EFFECTS: {
-            const items = state.currentSet?.items ?? []
+            const items = state.currentItems
             Elements.useEffectsButton().disabled = true
             for(const item of items) {
-                await useItem(item.id, item.body)
+                const body = await parseBody(item)
+                await useItem(item.id, body)
             }
             Elements.useEffectsButton().disabled = false
             return state
@@ -115,16 +116,15 @@ export default async function reduce(state: EffectSetsWindowState, action: Effec
         case EffectSetsWindowActions.SAVE_SET: {
             let set = state.currentSet
             const sets = state.sets
-            const items = await parseEffectItems(state.currentItems)
             if(set) {
                 set.title = SetElements.setTitleInput().value
-                set.items = items
+                set.items = state.currentItems
                 sets[sets.indexOf(set)] = set
             } else {
                 set = {
                     id: generateSetId(),
                     title: SetElements.setTitleInput().value,
-                    items: items
+                    items: state.currentItems
                 }
                 sets.push(set)
             }
@@ -138,8 +138,21 @@ export default async function reduce(state: EffectSetsWindowState, action: Effec
         }
         case EffectSetsWindowActions.SELECT_SET: {
             const selectedSet = data as EffectSet
-            console.log(selectedSet)
-            const selectedSetItems = state.allItems.filter((item) => selectedSet.items.map((item) => item.id).includes(item.id))
+            const selectedSetItems = selectedSet.items.filter((item) => {
+                if(state.allItems.map((item) => item.id).includes(item.id ?? '')) {
+                    return item
+                } else {
+                    const foundedItemByTitle = state.allItems.find(inventoryItem => inventoryItem.title == item.title)
+                    if(foundedItemByTitle) {
+                        return foundedItemByTitle
+                    }
+                }
+            }).map(effectItem => {
+                const foundedItem = state.allItems.find(item => item.title == effectItem.title)
+                if(foundedItem) {
+                    return foundedItem
+                }
+            }).filter(item => item) as InventoryItem[]
             return {
                 ...state,
                 currentSet: selectedSet,
@@ -213,33 +226,24 @@ function createNewEffectSet(): EffectSet {
     return newSet
 }
 
-async function parseEffectItems(inventoryItems: InventoryItem[]): Promise<EffectItem[]> {
-    const items: EffectItem[] = []
-    for(const item of inventoryItems) {
-        const res = (await loadItem(item.id)) as string
-        const doc = res.toDocument()
-        const inputs = Array.from(doc.getElementsByTagName('input')).filter((input) => input.type == 'hidden')
-        const parsedInputs = inputs.map((input) => {
-            return {
-                name: input.name,
-                value: input.value
-            }
-        })
-        const nickInput = Array.from(doc.getElementsByTagName('input')).find((item) => item.name == 'in[target_nick]')
-        if(nickInput) {
-            const nick = await ipcRenderer.invoke(Channel.GET_NICK)
-            parsedInputs.push({
-                name: nickInput.name,
-                value: nick
-            })
+async function parseBody(inventoryItem: InventoryItem): Promise<string> {
+    const res = (await loadItem(inventoryItem.id)) as string
+    const doc = res.toDocument()
+    const inputs = Array.from(doc.getElementsByTagName('input')).filter((input) => input.type == 'hidden')
+    const parsedInputs = inputs.map((input) => {
+        return {
+            name: input.name,
+            value: input.value
         }
-        const body = parsedInputs.map((parsedInput) => `${parsedInput.name}=${parsedInput.value}`).join('&')
-        console.log(body)
-        items.push({
-            id: item.id,
-            body,
-            title: item.title
+    })
+    const nickInput = Array.from(doc.getElementsByTagName('input')).find((item) => item.name == 'in[target_nick]')
+    if(nickInput) {
+        const nick = await ipcRenderer.invoke(Channel.GET_NICK)
+        parsedInputs.push({
+            name: nickInput.name,
+            value: nick
         })
     }
-    return items
+    const body = parsedInputs.map((parsedInput) => `${parsedInput.name}=${parsedInput.value}`).join('&')
+    return body
 }

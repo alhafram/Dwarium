@@ -6,6 +6,5 @@ export type EffectSet = {
 
 export type EffectItem = {
     id: string
-    body: string
     title: string
 }
