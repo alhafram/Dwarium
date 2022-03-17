@@ -138,21 +138,24 @@ export default async function reduce(state: EffectSetsWindowState, action: Effec
         }
         case EffectSetsWindowActions.SELECT_SET: {
             const selectedSet = data as EffectSet
-            const selectedSetItems = selectedSet.items.filter((item) => {
-                if(state.allItems.map((item) => item.id).includes(item.id ?? '')) {
-                    return item
-                } else {
-                    const foundedItemByTitle = state.allItems.find(inventoryItem => inventoryItem.title == item.title)
-                    if(foundedItemByTitle) {
-                        return foundedItemByTitle
+            const selectedSetItems = selectedSet.items
+                .filter((item) => {
+                    if(state.allItems.map((item) => item.id).includes(item.id ?? '')) {
+                        return item
+                    } else {
+                        const foundedItemByTitle = state.allItems.find((inventoryItem) => inventoryItem.title == item.title)
+                        if(foundedItemByTitle) {
+                            return foundedItemByTitle
+                        }
                     }
-                }
-            }).map(effectItem => {
-                const foundedItem = state.allItems.find(item => item.title == effectItem.title)
-                if(foundedItem) {
-                    return foundedItem
-                }
-            }).filter(item => item) as InventoryItem[]
+                })
+                .map((effectItem) => {
+                    const foundedItem = state.allItems.find((item) => item.title == effectItem.title)
+                    if(foundedItem) {
+                        return foundedItem
+                    }
+                })
+                .filter((item) => item) as InventoryItem[]
             return {
                 ...state,
                 currentSet: selectedSet,
