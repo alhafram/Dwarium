@@ -273,7 +273,6 @@ function logMessage(message: any) {
     html = html.replaceAll('href="/artifact_info.php', `href="${ConfigService.getSettings().baseUrl}/artifact_info.php`)
     logStream.write(html + '\n', (error) => {
         if(error) {
-            console.log(error)
             alert('Произошла ошибка, при записи в лог! Напишите в группу!' + error.message)
         }
     })

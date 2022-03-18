@@ -13,7 +13,7 @@ export const SetElements = {
     },
     allItemsDiv(): HTMLDivElement {
         return document.getElementById('allItemsDiv') as HTMLDivElement
-    },
+    }
 }
 
 export function disableButtons(disabled: boolean) {

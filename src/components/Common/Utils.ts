@@ -1,6 +1,7 @@
 import { ipcRenderer } from 'electron'
 import { Channel } from '../../Models/Channel'
 import { UserConfig } from '../../Models/UserConfig'
+import ConfigService from '../../services/ConfigService'
 import UserConfigService from '../../services/UserConfigService'
 
 async function getUserId() {
@@ -105,6 +106,13 @@ function generateRandomId() {
     return (Math.random() + 1).toString(36).substring(2)
 }
 
+function instapocketUseRequest(id: string) {
+    return `top[0].instapocketUse(${id})`
+}
+
+function delay(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
 
 export default {
     getUserId,
@@ -113,5 +121,7 @@ export default {
     loadItemsData,
     generateRandomId,
     getQuality,
-    getFilterColor
+    getFilterColor,
+    instapocketUseRequest,
+    delay
 }

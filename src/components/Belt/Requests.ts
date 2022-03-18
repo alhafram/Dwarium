@@ -1,4 +1,5 @@
 import { ipcRenderer } from 'electron'
+import { Channel } from '../../Models/Channel'
 import ConfigService from '../../services/ConfigService'
 
 async function loadItemsData(types: string[]) {
@@ -7,22 +8,22 @@ async function loadItemsData(types: string[]) {
 
 async function getEquipedPotionsAlt() {
     const req = 'top[0].art_alt'
-    return ipcRenderer.invoke('MakeWebRequest', req)
+    return ipcRenderer.invoke(Channel.MAKE_WEB_REQUEST, req)
 }
 async function updateSlot(num: string, type: string) {
     const req = `top[0].canvas.app.leftMenu.model.${type}[${num}] = null; top[0].canvas.app.leftMenu.model.main.view.update();`
-    return ipcRenderer.invoke('MakeWebRequest', req)
+    return ipcRenderer.invoke(Channel.MAKE_WEB_REQUEST, req)
 }
 
 async function getSlots() {
     const req = '[top[0].canvas.app.leftMenu.model.slotsCount, top[0].canvas.app.leftMenu.model.variantSlotsCount]'
-    const res = await ipcRenderer.invoke('MakeWebRequest', req)
+    const res = await ipcRenderer.invoke(Channel.MAKE_WEB_REQUEST, req)
     return [res[0], res[1]] as number[]
 }
 
 async function refreshLeftMenu() {
     const req = 'top[0].window.location.reload()'
-    return ipcRenderer.invoke('MakeWebRequest', req)
+    return ipcRenderer.invoke(Channel.MAKE_WEB_REQUEST, req)
 }
 
 async function unequipRequest(id: string) {
@@ -42,7 +43,7 @@ async function unequipRequest(id: string) {
         'mode': 'cors',
         'credentials': 'include'
         }).then(resp => resp.text())`
-    return ipcRenderer.invoke('MakeWebRequest', req)
+    return ipcRenderer.invoke(Channel.MAKE_WEB_REQUEST, req)
 }
 
 async function equipPotionRequest(id: string, slotNum: string, variantNum: string) {
@@ -62,17 +63,17 @@ async function equipPotionRequest(id: string, slotNum: string, variantNum: strin
         'mode': 'cors',
         'credentials': 'include'
         }).then(resp => resp.text())`
-    return ipcRenderer.invoke('MakeWebRequest', req)
+    return ipcRenderer.invoke(Channel.MAKE_WEB_REQUEST, req)
 }
 
 function fetchItem(id: string) {
     const req = `fetch('${ConfigService.getSettings().baseUrl}/artifact_info.php?artifact_id=${id}').then(resp => resp.text())`
-    return ipcRenderer.invoke('MakeWebRequest', req)
+    return ipcRenderer.invoke(Channel.MAKE_WEB_REQUEST, req)
 }
 
 async function getEquipedPotions() {
     const req = '[top[0].canvas.app.leftMenu.model.items, top[0].canvas.app.leftMenu.model.variantItems]'
-    return ipcRenderer.invoke('MakeWebRequest', req)
+    return ipcRenderer.invoke(Channel.MAKE_WEB_REQUEST, req)
 }
 
 export default {

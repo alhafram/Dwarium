@@ -72,6 +72,9 @@ const Elements = {
     notificationsButton(): HTMLButtonElement {
         return document.getElementById('notificationsButton') as HTMLButtonElement
     },
+    effectSetsButton(): HTMLButtonElement {
+        return document.getElementById('effectSetsButton') as HTMLButtonElement
+    },
     updateApplicationButton(): HTMLButtonElement {
         return document.getElementById('updateApplicationButton') as HTMLButtonElement
     },
@@ -141,6 +144,9 @@ window.addEventListener('DOMContentLoaded', async() => {
     })
     Elements.notificationsButton().addEventListener('click', () => {
         ipcRenderer.send(Channel.OPEN_NOTIFICATIONS)
+    })
+    Elements.effectSetsButton().addEventListener('click', () => {
+        ipcRenderer.send(Channel.OPEN_EFFECT_SETS)
     })
     Elements.urlInput().addEventListener('keyup', (e: KeyboardEvent) => {
         if(e.key == 'Enter') {
@@ -504,6 +510,8 @@ function getElementIdBy(type: WindowType): HTMLElement | undefined {
             return Elements.chatSettingsButton()
         case WindowType.NOTIFICATIONS:
             return Elements.notificationsButton()
+        case WindowType.EFFECT_SETS:
+            return Elements.effectSetsButton()
     }
 }
 

@@ -13,7 +13,8 @@ function get(id: number): UserConfig {
             hpFood: null,
             mpFood: null,
             sets: [],
-            beltSets: []
+            beltSets: [],
+            effectSets: []
         }
         save(newUserConfig)
     }

@@ -7,10 +7,11 @@ import SimpleAlt from '../../Scripts/simple_alt'
 import { FoodSettings } from '../../Models/FoodSettings'
 import { Elements } from './Elements'
 import Utils from '../Common/Utils'
+import { Channel } from '../../Models/Channel'
 
 async function fetchFood() {
     const req = `fetch('${ConfigService.getSettings().baseUrl}/user_conf.php?mode=food').then(resp => resp.text())`
-    return await ipcRenderer.invoke('MakeWebRequest', req)
+    return await ipcRenderer.invoke(Channel.MAKE_WEB_REQUEST, req)
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -52,7 +53,7 @@ export default async function reduce(state: FoodWindowState, action: FoodWindowA
                 .filter((item): item is InventoryItem => !!item)
             const userId = await Utils.getUserId()
             if(!userId) {
-                console.log('Не найден user id пользователя, попробуйте авторизоваться и заново открыть автопоедалку!')
+                alert('Не найден user id пользователя, попробуйте авторизоваться и заново открыть автопоедалку!')
                 return state
             }
             const userConfig = Utils.getUserConfig(userId)

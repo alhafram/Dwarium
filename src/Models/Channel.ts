@@ -10,6 +10,7 @@ export enum Channel {
     OPEN_CHAT_LOG = 'openChatLog',
     OPEN_CHAT_SETTINGS = 'openChatSettings',
     OPEN_SETTINGS = 'openSettings',
+    OPEN_EFFECT_SETS = 'openEffectSets',
     NEW_TAB = 'new_tab',
     NEW_TAB_WITH_URL = 'newTabWithUrl',
     REMOVE_VIEW = 'remove_view',
@@ -32,11 +33,13 @@ export enum Channel {
     FOOD_CHANGED = 'foodChanged',
     CHAT_SETTINGS_CHANGED = 'chatSettingsChanged',
     GET_ID = 'getId',
+    GET_NICK = 'getNick',
     GET_URL = 'getURL',
     GET_MAIN_URL = 'getMainURL',
     GET_TITLE = 'getTitle',
     FAVOURITE_LIST = 'favouriteList',
     SWITCH_MODE = 'switchMode',
     FAVOURITE_UPDATED = 'favouriteUpdated',
-    SWITCH_NEXT_TAB = 'switchNextTab'
+    SWITCH_NEXT_TAB = 'switchNextTab',
+    MAKE_WEB_REQUEST = 'makeWebRequest'
 }

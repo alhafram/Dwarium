@@ -84,7 +84,7 @@ export default async function reduce(state: BeltDressingWindowState, action: Bel
 
             const userId = (await Utils.getUserId()) as number
             if(!userId) {
-                console.log('Не найден user id пользователя, попробуйте авторизоваться и заново открыть автопоедалку!')
+                alert('Не найден user id пользователя, попробуйте авторизоваться и заново открыть автопоедалку!')
                 return state
             }
             const userConfig = Utils.getUserConfig(userId)
