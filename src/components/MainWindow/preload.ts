@@ -486,6 +486,10 @@ ipcRenderer.on(Channel.SWITCH_NEXT_TAB, () => {
     ipcRenderer.send(Channel.SWITCH_NEXT_TAB)
 })
 
+ipcRenderer.on(Channel.SWITCH_PREV_TAB, () => {
+    ipcRenderer.send(Channel.SWITCH_PREV_TAB)
+})
+
 ipcRenderer.on(Channel.MAKE_ACTIVE, (evt, id) => {
     makeActiveWith(id)
 })
