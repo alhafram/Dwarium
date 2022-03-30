@@ -124,13 +124,15 @@ export default class MainWindowContainer {
         globalShortcut.unregister('CommandOrControl+O')
         globalShortcut.unregister('CommandOrControl+Shift+K')
         globalShortcut.unregister('CommandOrControl+T')
-        globalShortcut.unregister('CommandOrControl+R')
         globalShortcut.unregister('Control+Tab')
+        globalShortcut.unregister('Control+Shift+Tab')
         if(process.platform == 'win32' || process.platform == 'linux') {
             globalShortcut.unregister('F11')
             globalShortcut.unregister('F9')
+            globalShortcut.unregister('F5')
         } else {
             globalShortcut.unregister('CommandOrControl+F')
+            globalShortcut.unregister('CommandOrControl+R')
         }
     }
 
