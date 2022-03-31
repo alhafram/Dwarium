@@ -24,7 +24,7 @@ export default async function reduce(state: ExpiringItemsSettingsWindowState, ac
                 return state
             }
             const userConfig = Utils.getUserConfig(userId)
-            const currentItems = expiringItems.filter(item => (userConfig.expiringItemIds ?? []).includes(item.id))
+            const currentItems = expiringItems.filter((item) => (userConfig.expiringItemIds ?? []).includes(item.id))
 
             return {
                 ...state,
@@ -79,7 +79,7 @@ export default async function reduce(state: ExpiringItemsSettingsWindowState, ac
             }
         }
         case ExpiringItemsSettingsWindowActions.SAVE_ITEMS: {
-            state.userConfig!.expiringItemIds = state.currentItems.map(item => item.id)
+            state.userConfig!.expiringItemIds = state.currentItems.map((item) => item.id)
             UserConfigService.save(state.userConfig!)
             ipcRenderer.send(Channel.EXPIRING_ITEMS_CHANGED)
             return state

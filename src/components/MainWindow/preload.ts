@@ -548,4 +548,3 @@ async function getNoredir(nick: string): Promise<string | null> {
     }
     return null
 }
-

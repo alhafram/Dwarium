@@ -9,6 +9,6 @@ export type UserConfig = {
     mpFood: FoodSettings | null
     sets: DressingSet[]
     beltSets: BeltDressingSet[]
-    effectSets: EffectSet[],
+    effectSets: EffectSet[]
     expiringItemIds: string[]
 }

@@ -17,7 +17,6 @@ export default async function dispatch(action: ExpiringItemsSettingsWindowAction
     render(initialState)
 }
 
-
 window.addEventListener('DOMContentLoaded', async() => {
     setupMode()
     setupView()
