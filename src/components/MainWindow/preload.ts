@@ -4,6 +4,7 @@ import { Channel } from '../../Models/Channel'
 import Utils from '../Common/Utils'
 import { WindowType } from '../../Models/WindowModels'
 import FavouriteLinkService from '../../services/FavouriteLinksService'
+import sendNotification, { NotificationType } from '../../services/Notifications'
 
 const Elements = {
     serverSwitcher(): HTMLInputElement {
@@ -500,6 +501,9 @@ ipcRenderer.on(Channel.MAKE_ACTIVE, (evt, id) => {
 })
 
 ipcRenderer.on(Channel.EXPIRING_ITEMS_FOUND, (event, found: boolean) => {
+    if(found) {
+        sendNotification(null, NotificationType.EXPIRING_ITEMS)
+    }
     Elements.expiringItemsSettingsSvg().style.fill = found ? '#FF0000' : ''
 })
 

@@ -23,6 +23,12 @@ export const Elements = {
     mailNotificationsIngameInput(): HTMLInputElement {
         return document.getElementById('mailNotificationsIngameInput') as HTMLInputElement
     },
+    expiringItemsNotificationsSystemInput(): HTMLInputElement {
+        return document.getElementById('expiringItemsNotificationsSystemInput') as HTMLInputElement
+    },
+    expiringItemsNotificationsIngameInput(): HTMLInputElement {
+        return document.getElementById('expiringItemsNotificationsIngameInput') as HTMLInputElement
+    },
     saveButton(): HTMLButtonElement {
         return document.getElementById('saveButton') as HTMLButtonElement
     }

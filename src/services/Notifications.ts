@@ -15,11 +15,12 @@ export type ChatMessage = {
 
 const notificationTitle = 'Оповещение!'
 
-enum NotificationType {
+export enum NotificationType {
     ATTACKED = 'На вас совершено нападение!',
     BATTLEGROUND = 'Получена сюдашка на поле боя!',
     MESSAGE = 'Получено новое сообщение!',
-    MAIL = 'Получено новое письмо!'
+    MAIL = 'Получено новое письмо!',
+    EXPIRING_ITEMS = 'Горят шмотки, посмотри!'
 }
 
 function getSoundFor(notificationType: NotificationType) {
@@ -32,10 +33,12 @@ function getSoundFor(notificationType: NotificationType) {
             return 'message.ogg'
         case NotificationType.MAIL:
             return 'mail.ogg'
+        case NotificationType.EXPIRING_ITEMS:
+            return 'expiring_items.ogg'
     }
 }
 
-export default function sendNotification(message: ChatMessage | null) {
+export default function sendNotification(message: ChatMessage | null, type: NotificationType | undefined = undefined) {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     const nickname = top[0]?.canvas?.app?.avatar?.model?.login ?? ''
@@ -82,6 +85,18 @@ export default function sendNotification(message: ChatMessage | null) {
             }
             if(ConfigService.getSettings().messageNotificationsIngame) {
                 playIngameNotificationSound(NotificationType.MESSAGE)
+            }
+        }
+    }
+
+    if(message == null && type) {
+        if(type == NotificationType.EXPIRING_ITEMS) {
+            setupBounce('informational')
+            if(ConfigService.getSettings().expiringItemsNotificationsSystem && currentWindowNotFocused()) {
+                new Notification({ title: notificationTitle, body: NotificationType.EXPIRING_ITEMS }).show()
+            }
+            if(ConfigService.getSettings().expiringItemsNotificationsIngame) {
+                playIngameNotificationSound(NotificationType.EXPIRING_ITEMS)
             }
         }
     }
