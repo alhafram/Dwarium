@@ -101,6 +101,12 @@ const Elements = {
     },
     favouriteButtonImage(): HTMLElement {
         return document.getElementById('favouriteButtonImage') as HTMLElement
+    },
+    expiringItemsSettingsButton(): HTMLButtonElement {
+        return document.getElementById('expiringItemsSettingsButton') as HTMLButtonElement
+    },
+    expiringItemsSettingsSvg(): HTMLElement {
+        return document.getElementById('expiringItemsSettingsSvg') as HTMLElement
     }
 }
 
@@ -225,6 +231,9 @@ window.addEventListener('DOMContentLoaded', async() => {
     Elements.favouriteButton().onclick = async function() {
         const isFavourite = await isCurrentLinkFavourite()
         saveFavouriteLink(isFavourite)
+    }
+    Elements.expiringItemsSettingsButton().onclick = async function() {
+        ipcRenderer.send(Channel.OPEN_EXPIRING_ITEMS_SETTINGS)
     }
 
     document.addEventListener('make_active', (evt) => {
@@ -490,6 +499,10 @@ ipcRenderer.on(Channel.MAKE_ACTIVE, (evt, id) => {
     makeActiveWith(id)
 })
 
+ipcRenderer.on(Channel.EXPIRING_ITEMS_FOUND, (event, found: boolean) => {
+    Elements.expiringItemsSettingsSvg().style.fill = found ? '#FF0000' : ''
+})
+
 function getElementIdBy(type: WindowType): HTMLElement | undefined {
     switch (type) {
         case WindowType.FOOD:
@@ -532,4 +545,3 @@ async function getNoredir(nick: string): Promise<string | null> {
     return null
 }
 
-ipcRenderer.send

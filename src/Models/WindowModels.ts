@@ -7,7 +7,8 @@ export enum Preload {
     FOOD = '../Components/Food/preload.js',
     CHAT_SETTINGS = '../Components/ChatSettings/preload.js',
     NOTIFICATIONS = '../Components/Notifications/preload.js',
-    EFFECT_SETS = '../Components/EffectSets/preload.js'
+    EFFECT_SETS = '../Components/EffectSets/preload.js',
+    EXPIRING_ITEMS_SETTINGS = '../Components/ExpiringItemsSettings/preload.js'
 }
 
 export enum HTMLPath {
@@ -19,7 +20,8 @@ export enum HTMLPath {
     FOOD = '../../gui/Food/index.html',
     CHAT_SETTINGS = '../../gui/ChatSettings/index.html',
     NOTIFICATIONS = '../../gui/Notifications/index.html',
-    EFFECT_SETS = '../../gui/EffectSets/index.html'
+    EFFECT_SETS = '../../gui/EffectSets/index.html',
+    EXPIRING_ITEMS_SETTINGS = '../../gui/ExpiringItemsSettings/index.html'
 }
 
 export enum WindowType {
@@ -36,5 +38,6 @@ export enum WindowType {
     USER_EFFECTS = 'userEffects',
     FAVOURITE_LIST = 'favouriteList',
     NOTIFICATIONS = 'notifications',
-    EFFECT_SETS = 'effectSets'
+    EFFECT_SETS = 'effectSets',
+    EXPIRING_ITEMS_SETTINGS = 'expiringItemsSettings'
 }

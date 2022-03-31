@@ -4,12 +4,14 @@ import sendNotification from '../../services/Notifications'
 import ChatService from '../../services/ChatService'
 import FoodService from '../../services/FoodService'
 import ScriptInjectService from '../../services/ScriptInjectedService'
+import { setupCheckingItemsService } from '../../services/ExpiringItemsLoader'
 
 window.addEventListener('DOMContentLoaded', async() => {
     ChatService.setupShortcut()
     ChatService.setupAutoResponder()
     ChatService.setupFlooding()
     ScriptInjectService.setupSpeed()
+    setupCheckingItemsService()
 })
 
 document.addEventListener('Message', (event) => {
@@ -32,4 +34,8 @@ ipcRenderer.on(Channel.USER_PRV, function(event, nick) {
 
 ipcRenderer.on(Channel.FOOD_CHANGED, function(event, nick) {
     FoodService.reset()
+})
+
+ipcRenderer.on(Channel.EXPIRING_ITEMS_CHANGED, () => {
+    setupCheckingItemsService()
 })
