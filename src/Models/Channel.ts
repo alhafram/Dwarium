@@ -44,5 +44,6 @@ export enum Channel {
     SWITCH_MODE = 'switchMode',
     FAVOURITE_UPDATED = 'favouriteUpdated',
     SWITCH_NEXT_TAB = 'switchNextTab',
+    SWITCH_PREV_TAB = 'switchPrevTab',
     MAKE_WEB_REQUEST = 'makeWebRequest'
 }

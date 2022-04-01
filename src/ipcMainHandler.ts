@@ -297,6 +297,15 @@ ipcMain.on(Channel.SWITCH_NEXT_TAB, () => {
     }
 })
 
+ipcMain.on(Channel.SWITCH_PREV_TAB, () => {
+    const currentTabIndex = TabsController.tabsList.indexOf(TabsController.current_tab_id)
+    if(currentTabIndex != -1 && TabsController.tabsList.length > 1) {
+        const prevIndex = currentTabIndex == 0 ? TabsController.tabsList.length - 1 : currentTabIndex - 1
+        const prevTabId = TabsController.tabsList[prevIndex]
+        TabsController.mainWindow?.webContents.send(Channel.MAKE_ACTIVE, prevTabId)
+    }
+})
+
 /// WINDOWS
 
 let settingsWindow: BrowserWindow | null

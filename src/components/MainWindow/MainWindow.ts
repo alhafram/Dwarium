@@ -88,11 +88,11 @@ export default class MainWindowContainer {
             globalShortcut.register('CommandOrControl+T', () => {
                 this.mainWindow.webContents.send(Channel.NEW_TAB)
             })
-            globalShortcut.register('CommandOrControl+R', () => {
-                this.mainWindow.webContents.send(Channel.RELOAD)
-            })
             globalShortcut.register('Control+Tab', () => {
                 this.mainWindow.webContents.send(Channel.SWITCH_NEXT_TAB)
+            })
+            globalShortcut.register('Control+Shift+Tab', () => {
+                this.mainWindow.webContents.send(Channel.SWITCH_PREV_TAB)
             })
             if(process.platform == 'win32' || process.platform == 'linux') {
                 globalShortcut.register('F11', () => {
@@ -101,9 +101,15 @@ export default class MainWindowContainer {
                 globalShortcut.register('F9', () => {
                     this.mainWindow.webContents.send(Channel.TAKE_SCREENSHOT)
                 })
+                globalShortcut.register('F5', () => {
+                    this.mainWindow.webContents.send(Channel.RELOAD)
+                })
             } else {
                 globalShortcut.register('CommandOrControl+F', () => {
                     this.mainWindow.webContents.send(Channel.TAKE_SCREENSHOT)
+                })
+                globalShortcut.register('CommandOrControl+R', () => {
+                    this.mainWindow.webContents.send(Channel.RELOAD)
                 })
             }
         })
@@ -118,13 +124,15 @@ export default class MainWindowContainer {
         globalShortcut.unregister('CommandOrControl+O')
         globalShortcut.unregister('CommandOrControl+Shift+K')
         globalShortcut.unregister('CommandOrControl+T')
-        globalShortcut.unregister('CommandOrControl+R')
         globalShortcut.unregister('Control+Tab')
+        globalShortcut.unregister('Control+Shift+Tab')
         if(process.platform == 'win32' || process.platform == 'linux') {
             globalShortcut.unregister('F11')
             globalShortcut.unregister('F9')
+            globalShortcut.unregister('F5')
         } else {
             globalShortcut.unregister('CommandOrControl+F')
+            globalShortcut.unregister('CommandOrControl+R')
         }
     }
 
