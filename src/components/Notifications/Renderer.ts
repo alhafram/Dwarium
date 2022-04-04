@@ -28,6 +28,15 @@ export function setupView() {
     Elements.mailNotificationsIngameInput().onchange = () => {
         dispatch(NotificationsWindowActions.CHANGE_MAIL_NOTIFICATIONS_INGAME)
     }
+    Elements.mailNotificationsSystemInput().onchange = () => {
+        dispatch(NotificationsWindowActions.CHANGE_MAIL_NOTIFICATIONS_SYSTEM)
+    }
+    Elements.expiringItemsNotificationsSystemInput().onchange = () => {
+        dispatch(NotificationsWindowActions.CHANGE_EXPIRING_ITEMS_NOTIFICATIONS_SYSTEM)
+    }
+    Elements.expiringItemsNotificationsIngameInput().onchange = () => {
+        dispatch(NotificationsWindowActions.CHANGE_EXPIRING_ITEMS_NOTIFICATIONS_INGAME)
+    }
     Elements.saveButton().onclick = () => {
         dispatch(NotificationsWindowActions.SAVE_SETTINGS)
     }
@@ -42,4 +51,6 @@ export function render(initialState: NotificationsWindowState) {
     Elements.messageNotificationsIngameInput().checked = initialState.messageNotificationsIngame
     Elements.mailNotificationsSystemInput().checked = initialState.mailNotificationsSystem
     Elements.mailNotificationsIngameInput().checked = initialState.mailNotificationsIngame
+    Elements.expiringItemsNotificationsSystemInput().checked = initialState.expiringItemsNotificationsSystem
+    Elements.expiringItemsNotificationsIngameInput().checked = initialState.expiringItemsNotificationsIngame
 }

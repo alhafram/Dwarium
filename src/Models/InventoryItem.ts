@@ -15,6 +15,8 @@ export type InventoryItem = {
     slot: string | undefined | null
     variant: string | undefined | null
     picture: string | undefined | null
+    time_expire: string | undefined | null
+    storage_type: string | undefined | null
 }
 
 type EnchantMode = {

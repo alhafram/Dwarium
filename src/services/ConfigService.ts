@@ -26,6 +26,8 @@ function getSettings(): ClientSettings {
         messageNotificationsIngame: messageNotificationsIngame(),
         mailNotificationsSystem: mailNotificationsSystem(),
         mailNotificationsIngame: mailNotificationsIngame(),
+        expiringItemsNotificationsSystem: expiringItemsNotificationsSystem(),
+        expiringItemsNotificationsIngame: expiringItemsNotificationsIngame(),
         updateChannel: updateChannel()
     }
     return settings
@@ -196,6 +198,24 @@ function mailNotificationsIngame(): boolean {
     if(settings) {
         settings = JSON.parse(settings)
         return settings.mailNotificationsIngame ?? false
+    }
+    return false
+}
+
+function expiringItemsNotificationsSystem(): boolean {
+    let settings = readData('settings')
+    if(settings) {
+        settings = JSON.parse(settings)
+        return settings.expiringItemsNotificationsSystem ?? false
+    }
+    return false
+}
+
+function expiringItemsNotificationsIngame(): boolean {
+    let settings = readData('settings')
+    if(settings) {
+        settings = JSON.parse(settings)
+        return settings.expiringItemsNotificationsIngame ?? false
     }
     return false
 }

@@ -10,4 +10,5 @@ export type UserConfig = {
     sets: DressingSet[]
     beltSets: BeltDressingSet[]
     effectSets: EffectSet[]
+    expiringItemIds: string[]
 }

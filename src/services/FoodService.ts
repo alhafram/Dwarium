@@ -117,7 +117,7 @@ function isGhost(): boolean {
 }
 
 function isBacon(item: FoodItem): boolean {
-    return item.picture == 'food_bacon_n_eggs_violet.gif'
+    return item.picture == 'food_bacon_n_eggs_violet.gif' || item.picture == 'tort_mentory_15.gif'
 }
 
 async function useItem(item: FoodItem): Promise<void> {

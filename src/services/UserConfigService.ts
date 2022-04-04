@@ -14,7 +14,8 @@ function get(id: number): UserConfig {
             mpFood: null,
             sets: [],
             beltSets: [],
-            effectSets: []
+            effectSets: [],
+            expiringItemIds: []
         }
         save(newUserConfig)
     }

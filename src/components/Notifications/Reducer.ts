@@ -19,7 +19,9 @@ export default function reduce(state: NotificationsWindowState, action: Notifica
                     messageNotificationsSystem: loadedSettings.messageNotificationsSystem,
                     messageNotificationsIngame: loadedSettings.messageNotificationsIngame,
                     mailNotificationsSystem: loadedSettings.mailNotificationsSystem,
-                    mailNotificationsIngame: loadedSettings.mailNotificationsIngame
+                    mailNotificationsIngame: loadedSettings.mailNotificationsIngame,
+                    expiringItemsNotificationsSystem: loadedSettings.expiringItemsNotificationsSystem,
+                    expiringItemsNotificationsIngame: loadedSettings.expiringItemsNotificationsIngame
                 }
             }
         }
@@ -63,6 +65,16 @@ export default function reduce(state: NotificationsWindowState, action: Notifica
                 ...state,
                 mailNotificationsIngame: Elements.mailNotificationsIngameInput().checked
             }
+        case NotificationsWindowActions.CHANGE_EXPIRING_ITEMS_NOTIFICATIONS_SYSTEM:
+            return {
+                ...state,
+                expiringItemsNotificationsSystem: Elements.expiringItemsNotificationsSystemInput().checked
+            }
+        case NotificationsWindowActions.CHANGE_EXPIRING_ITEMS_NOTIFICATIONS_INGAME:
+            return {
+                ...state,
+                expiringItemsNotificationsIngame: Elements.expiringItemsNotificationsIngameInput().checked
+            }
         case NotificationsWindowActions.SAVE_SETTINGS: {
             const clientSettings = ConfigService.getSettings()
             clientSettings.fightNotificationsSystem = state.fightNotificationsSystem
@@ -73,6 +85,8 @@ export default function reduce(state: NotificationsWindowState, action: Notifica
             clientSettings.messageNotificationsIngame = state.messageNotificationsIngame
             clientSettings.mailNotificationsSystem = state.mailNotificationsSystem
             clientSettings.mailNotificationsIngame = state.mailNotificationsIngame
+            clientSettings.expiringItemsNotificationsSystem = state.expiringItemsNotificationsSystem
+            clientSettings.expiringItemsNotificationsIngame = state.expiringItemsNotificationsIngame
             ConfigService.writeData('settings', JSON.stringify(clientSettings))
             return {
                 ...state

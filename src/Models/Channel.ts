@@ -11,6 +11,7 @@ export enum Channel {
     OPEN_CHAT_SETTINGS = 'openChatSettings',
     OPEN_SETTINGS = 'openSettings',
     OPEN_EFFECT_SETS = 'openEffectSets',
+    OPEN_EXPIRING_ITEMS_SETTINGS = 'openExpiringItemsSettings',
     NEW_TAB = 'new_tab',
     NEW_TAB_WITH_URL = 'newTabWithUrl',
     REMOVE_VIEW = 'remove_view',
@@ -32,6 +33,8 @@ export enum Channel {
     UPDATE_APPLICATION_AVAILABLE = 'updateApplicationAvailable',
     FOOD_CHANGED = 'foodChanged',
     CHAT_SETTINGS_CHANGED = 'chatSettingsChanged',
+    EXPIRING_ITEMS_CHANGED = 'expiringItemsChanged',
+    EXPIRING_ITEMS_FOUND = 'expiringItemsFound',
     GET_ID = 'getId',
     GET_NICK = 'getNick',
     GET_URL = 'getURL',
@@ -41,5 +44,6 @@ export enum Channel {
     SWITCH_MODE = 'switchMode',
     FAVOURITE_UPDATED = 'favouriteUpdated',
     SWITCH_NEXT_TAB = 'switchNextTab',
+    SWITCH_PREV_TAB = 'switchPrevTab',
     MAKE_WEB_REQUEST = 'makeWebRequest'
 }

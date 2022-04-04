@@ -136,6 +136,18 @@ ipcMain.handle('LoadSetItems', async(evt, args: [string]) => {
         effectSetsItems: {
             url: `${ConfigService.getSettings().baseUrl}/user.php?mode=effects_set`,
             script: 'art_alt'
+        },
+        questItems: {
+            url: `${ConfigService.getSettings().baseUrl}/user_iframe.php?group=4`,
+            script: 'art_alt'
+        },
+        elementsItems: {
+            url: `${ConfigService.getSettings().baseUrl}/user_iframe.php?group=6`,
+            script: 'art_alt'
+        },
+        bankItems: {
+            url: `${ConfigService.getSettings().baseUrl}/area_banks.php?mode=cell&submode=view`,
+            script: 'art_alt'
         }
     }
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -231,6 +243,14 @@ ipcMain.handle(Channel.GET_NICK, async() => {
     return await TabsController.mainWindowContainer?.browserView?.webContents.executeJavaScript('top._top().myNick')
 })
 
+ipcMain.on(Channel.EXPIRING_ITEMS_FOUND, (event, found) => {
+    TabsController.mainWindow?.webContents.send(Channel.EXPIRING_ITEMS_FOUND, found)
+})
+
+ipcMain.on(Channel.EXPIRING_ITEMS_CHANGED, () => {
+    TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.EXPIRING_ITEMS_CHANGED)
+})
+
 ipcMain.on(Channel.SWITCH_MODE, () => {
     favouriteListBrowserView?.webContents.send(Channel.SWITCH_MODE)
     foodWindow?.webContents.send(Channel.SWITCH_MODE)
@@ -242,6 +262,7 @@ ipcMain.on(Channel.SWITCH_MODE, () => {
     settingsWindow?.webContents.send(Channel.SWITCH_MODE)
     notificationsWindow?.webContents.send(Channel.SWITCH_MODE)
     effectSetsWindow?.webContents.send(Channel.SWITCH_MODE)
+    expiringItemsSettings?.webContents.send(Channel.SWITCH_MODE)
 })
 
 ipcMain.handle(Channel.GET_URL, () => {
@@ -273,6 +294,15 @@ ipcMain.on(Channel.SWITCH_NEXT_TAB, () => {
         const nextIndex = TabsController.tabsList.length - 1 != currentTabIndex ? currentTabIndex + 1 : 0
         const nextTabId = TabsController.tabsList[nextIndex]
         TabsController.mainWindow?.webContents.send(Channel.MAKE_ACTIVE, nextTabId)
+    }
+})
+
+ipcMain.on(Channel.SWITCH_PREV_TAB, () => {
+    const currentTabIndex = TabsController.tabsList.indexOf(TabsController.current_tab_id)
+    if(currentTabIndex != -1 && TabsController.tabsList.length > 1) {
+        const prevIndex = currentTabIndex == 0 ? TabsController.tabsList.length - 1 : currentTabIndex - 1
+        const prevTabId = TabsController.tabsList[prevIndex]
+        TabsController.mainWindow?.webContents.send(Channel.MAKE_ACTIVE, prevTabId)
     }
 })
 
@@ -383,6 +413,18 @@ ipcMain.on(Channel.OPEN_EFFECT_SETS, () => {
     effectSetsWindow = createWindowAndLoad(WindowType.EFFECT_SETS, HTMLPath.EFFECT_SETS, Preload.EFFECT_SETS, true)
     setupCloseLogic(effectSetsWindow, WindowType.EFFECT_SETS, function() {
         effectSetsWindow = null
+    })
+})
+
+let expiringItemsSettings: BrowserWindow | null
+ipcMain.on(Channel.OPEN_EXPIRING_ITEMS_SETTINGS, () => {
+    if(expiringItemsSettings) {
+        expiringItemsSettings.show()
+        return
+    }
+    expiringItemsSettings = createWindowAndLoad(WindowType.EXPIRING_ITEMS_SETTINGS, HTMLPath.EXPIRING_ITEMS_SETTINGS, Preload.EXPIRING_ITEMS_SETTINGS, true)
+    setupCloseLogic(expiringItemsSettings, WindowType.EFFECT_SETS, function() {
+        expiringItemsSettings = null
     })
 })
 

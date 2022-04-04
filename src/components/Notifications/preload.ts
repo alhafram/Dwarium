@@ -12,7 +12,9 @@ let initialState: NotificationsWindowState = {
     messageNotificationsSystem: false,
     messageNotificationsIngame: false,
     mailNotificationsSystem: false,
-    mailNotificationsIngame: false
+    mailNotificationsIngame: false,
+    expiringItemsNotificationsSystem: false,
+    expiringItemsNotificationsIngame: false
 }
 
 export default async function dispatch(action: NotificationsWindowActions) {
