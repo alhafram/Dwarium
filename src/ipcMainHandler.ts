@@ -466,7 +466,7 @@ ipcMain.on(Channel.FAVOURITE_LIST, () => {
         x: TabsController.mainWindow.getBounds().width - marginRight,
         y: 72,
         width: 208,
-        height: 208
+        height: 350
     })
     require('@electron/remote/main').enable(favouriteListBrowserView.webContents)
 
@@ -477,7 +477,7 @@ ipcMain.on(Channel.FAVOURITE_LIST, () => {
                 x: frame.width - marginRight,
                 y: 72,
                 width: 215,
-                height: 208
+                height: 350
             })
         }
     })
