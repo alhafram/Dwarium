@@ -34,7 +34,8 @@ export default function reduce(state: SettingsWindowState, action: SettingsWindo
                     messageNotificationsIngame: loadedSettings.messageNotificationsIngame,
                     mailNotificationsSystem: loadedSettings.mailNotificationsSystem,
                     mailNotificationsIngame: loadedSettings.mailNotificationsIngame,
-                    updateChannel: loadedSettings.updateChannel
+                    updateChannel: loadedSettings.updateChannel,
+                    needToRestoreUrls: loadedSettings.needToRestoreUrls
                 }
             }
         }
@@ -107,6 +108,11 @@ export default function reduce(state: SettingsWindowState, action: SettingsWindo
             return {
                 ...state,
                 updateChannel: data as string
+            }
+        case SettingsWindowActions.CHANGE_NEED_TO_RESTORE_URLS:
+            return {
+                ...state,
+                needToRestoreUrls: Elements.needToRestoreUrlsInput().checked
             }
     }
 }

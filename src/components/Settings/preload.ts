@@ -30,7 +30,8 @@ let initialState: SettingsWindowState = {
     messageNotificationsIngame: false,
     mailNotificationsSystem: false,
     mailNotificationsIngame: false,
-    updateChannel: 'stable'
+    updateChannel: 'stable',
+    needToRestoreUrls: false
 }
 
 export function dispatch(action: SettingsWindowActions, data?: unknown): void {

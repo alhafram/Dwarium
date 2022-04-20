@@ -28,7 +28,9 @@ function getSettings(): ClientSettings {
         mailNotificationsIngame: mailNotificationsIngame(),
         expiringItemsNotificationsSystem: expiringItemsNotificationsSystem(),
         expiringItemsNotificationsIngame: expiringItemsNotificationsIngame(),
-        updateChannel: updateChannel()
+        updateChannel: updateChannel(),
+        needToRestoreUrls: needToRestoreUrls(),
+        restoreUrls: restoreUrls()
     }
     return settings
 }
@@ -227,6 +229,24 @@ function updateChannel(): string {
         return settings.updateChannel ?? 'stable'
     }
     return 'stable'
+}
+
+function needToRestoreUrls(): boolean {
+    let settings = readData('settings')
+    if(settings) {
+        settings = JSON.parse(settings)
+        return settings.needToRestoreUrls ?? false
+    }
+    return false
+}
+
+function restoreUrls(): string[] {
+    let settings = readData('settings')
+    if(settings) {
+        settings = JSON.parse(settings)
+        return settings.restoreUrls ?? []
+    }
+    return []
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

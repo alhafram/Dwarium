@@ -20,5 +20,7 @@ export type ClientSettings = {
     mailNotificationsIngame: boolean
     expiringItemsNotificationsSystem: boolean
     expiringItemsNotificationsIngame: boolean
-    updateChannel: string
+    updateChannel: string,
+    needToRestoreUrls: boolean
+    restoreUrls: string[]
 }
