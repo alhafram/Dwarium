@@ -58,6 +58,8 @@ export function render(initialState: SettingsWindowState) {
             updateChannelButton.classList.replace('settingsSpeedButtonSelected', 'settingsSpeedButton')
         }
     })
+
+    Elements.needToRestoreUrlsInput().checked = initialState.needToRestoreUrls
 }
 
 export function setupView() {
@@ -95,4 +97,7 @@ export function setupView() {
             dispatch(SettingsWindowActions.CHANGE_UPDATE_CHANNEL, updateChannelButton.id)
         }
     })
+    Elements.needToRestoreUrlsInput().onchange = () => {
+        dispatch(SettingsWindowActions.CHANGE_NEED_TO_RESTORE_URLS)
+    }
 }

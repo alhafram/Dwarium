@@ -12,7 +12,6 @@ export default async function reduce(state: ExpiringItemsSettingsWindowState, ac
     switch (action) {
         case ExpiringItemsSettingsWindowActions.LOAD_CONTENT: {
             const expiringItemsContainer = await loadExpiringItems()
-            console.log(expiringItemsContainer.allItems)
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
             const expiringItems = expiringItemsContainer.allItems.sort((a, b) => a.quality - b.quality)

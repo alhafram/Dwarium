@@ -86,8 +86,26 @@ function createWindow() {
 app.on('ready', createWindow)
 
 app.on('window-all-closed', function() {
+    const tabKeys = Object.keys(TabsController.tabs)
+    const restoreUrls: string[] = []
+    tabKeys.forEach((key) => {
+        if(key != 'main') {
+            const tab = TabsController.tabs[key].webContents as any
+            if(tab) {
+                restoreUrls.push(tab.getURL())
+                tab.destroy()
+            }
+        }
+    })
+    const clientSettings = ConfigService.getSettings()
+    if(clientSettings.needToRestoreUrls) {
+        clientSettings.restoreUrls = restoreUrls
+        ConfigService.writeData('settings', JSON.stringify(clientSettings))
+    }
     if(process.platform !== 'darwin') {
         app.quit()
+    } else {
+        TabsController.setupCurrent('main')
     }
 })
 

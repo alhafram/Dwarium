@@ -29,8 +29,8 @@ function renderFavouriteLinks() {
         const favouriteLinkElement = `
             <div class="cursor-pointer h-10 w-full hover:bg-lightGrey dark:hover:bg-lightBlack">
                 <div class="float-left">
-                    <input class="ml-9 bg-transparent text-dark w-32 outline-none dark:text-secondaryLightGrey font-montserrat text-sm font-medium" value='${title}' type="text" />
-                    <p class="ml-9 text-dark font-montserrat dark:text-secondaryLightGrey text-xs font-light">${url}</p>
+                    <input class="ml-6 bg-transparent text-dark w-32 outline-none dark:text-secondaryLightGrey font-montserrat text-sm font-medium" value='${title}' type="text" />
+                    <p class="ml-6 text-dark font-montserrat dark:text-secondaryLightGrey text-xs font-light">${url}</p>
                 </div>
                 <button class="relative top-2 right-3 float-right w-6 h-6 hover:bg-white dark:hover:bg-dark rounded-full">
                     <svg class="buttonIcon" width="9" height="9" viewBox="0 0 9 9" xmlns="http://www.w3.org/2000/svg">

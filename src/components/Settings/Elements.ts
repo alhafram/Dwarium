@@ -37,5 +37,8 @@ export const Elements = {
     },
     updateChannelButtons(): HTMLButtonElement[] {
         return document.getElementsByName('updateChannelButton') as unknown as HTMLButtonElement[]
+    },
+    needToRestoreUrlsInput(): HTMLInputElement {
+        return document.getElementById('needToRestoreUrlsInput') as HTMLInputElement
     }
 }

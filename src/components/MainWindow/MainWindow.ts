@@ -11,6 +11,7 @@ export default class MainWindowContainer {
     browserView: BrowserView | null | undefined
     mainWindow: BrowserWindow
     isFullscreen = false
+    restoreUrls: string[] = []
 
     constructor() {
         const mainWindowPosition = getClientWindowPosition(WindowType.MAIN)
@@ -19,7 +20,7 @@ export default class MainWindowContainer {
             y: mainWindowPosition?.y ?? 0,
             width: mainWindowPosition?.width ?? 1400,
             height: mainWindowPosition?.height ?? 900,
-            minWidth: 1100,
+            minWidth: 1200,
             minHeight: 500,
             title: 'Dwarium',
             icon: __dirname + '/icon.icns',
@@ -31,6 +32,8 @@ export default class MainWindowContainer {
             show: false,
             paintWhenInitiallyHidden: true
         })
+        const settings = ConfigService.getSettings()
+        this.restoreUrls = settings.needToRestoreUrls ? settings.restoreUrls : []
         this.mainWindow.webContents.incrementCapturerCount()
         this.mainWindow.on('close', () => {
             saveClientWindowPosition(WindowType.MAIN, this.mainWindow.getBounds())
@@ -338,8 +341,13 @@ export default class MainWindowContainer {
             }
         })
         setupContextMenu(browserView)
+
         browserView.webContents.on('did-finish-load', () => {
             this.mainWindow.webContents.send(Channel.URL, browserView.webContents.getURL(), 'main')
+            this.restoreUrls.forEach((url) => {
+                TabsController.mainWindow?.webContents.send(Channel.NEW_TAB_WITH_URL, url)
+            })
+            this.restoreUrls = []
         })
         browserView.webContents.setZoomFactor(0.9)
         browserView.setAutoResize({

@@ -23,6 +23,7 @@ export interface SettingsWindowState {
     mailNotificationsSystem: boolean
     mailNotificationsIngame: boolean
     updateChannel: string
+    needToRestoreUrls: boolean
 }
 
 export enum UserAgentType {
