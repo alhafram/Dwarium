@@ -58,7 +58,7 @@ export function render(initialState: SettingsWindowState) {
             updateChannelButton.classList.replace('settingsSpeedButtonSelected', 'settingsSpeedButton')
         }
     })
-    
+
     Elements.needToRestoreUrlsInput().checked = initialState.needToRestoreUrls
 }
 

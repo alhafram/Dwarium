@@ -88,9 +88,9 @@ app.on('ready', createWindow)
 app.on('window-all-closed', function() {
     const tabKeys = Object.keys(TabsController.tabs)
     const restoreUrls: string[] = []
-    tabKeys.forEach(key => {
+    tabKeys.forEach((key) => {
         if(key != 'main') {
-            const tab = (TabsController.tabs[key].webContents as any)
+            const tab = TabsController.tabs[key].webContents as any
             if(tab) {
                 restoreUrls.push(tab.getURL())
                 tab.destroy()

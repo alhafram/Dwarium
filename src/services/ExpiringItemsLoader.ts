@@ -11,7 +11,7 @@ export type ExpiringItemsContainer = {
 async function loadExpiringItems(): Promise<ExpiringItemsContainer> {
     const res = (await ipcRenderer.invoke('LoadSetItems', ['allPotions', 'allItems', 'otherItems', 'questItems', 'elementsItems', 'bankItems'])) as Record<string, any>
     const items = Object.values(res)
-        .filter(item => item)
+        .filter((item) => item)
         .map((item) => Object.values(item))
         .flat() as InventoryItem[]
     const altItems = Object.assign({}, res.allPotions, res.allItems, res.otherItems, res.questItems, res.elementsItems, res.bankItems)

@@ -344,7 +344,7 @@ export default class MainWindowContainer {
 
         browserView.webContents.on('did-finish-load', () => {
             this.mainWindow.webContents.send(Channel.URL, browserView.webContents.getURL(), 'main')
-            this.restoreUrls.forEach(url => {
+            this.restoreUrls.forEach((url) => {
                 TabsController.mainWindow?.webContents.send(Channel.NEW_TAB_WITH_URL, url)
             })
             this.restoreUrls = []
