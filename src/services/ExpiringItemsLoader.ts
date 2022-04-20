@@ -28,7 +28,7 @@ async function setupCheckingItemsService() {
     await handleExpiringItems()
     checkingItemsInverval = setInterval(async() => {
         await handleExpiringItems()
-    }, 1000 * 20)
+    }, 1000 * 60 * 60 * 3)
 }
 
 async function handleExpiringItems() {
