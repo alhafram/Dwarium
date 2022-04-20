@@ -19,7 +19,7 @@ export default class MainWindowContainer {
             y: mainWindowPosition?.y ?? 0,
             width: mainWindowPosition?.width ?? 1400,
             height: mainWindowPosition?.height ?? 900,
-            minWidth: 1100,
+            minWidth: 1200,
             minHeight: 500,
             title: 'Dwarium',
             icon: __dirname + '/icon.icns',
