@@ -26,8 +26,10 @@ async function setupCheckingItemsService() {
     clearInterval(checkingItemsInverval)
     await handleExpiringItems()
     checkingItemsInverval = setInterval(async() => {
+        console.log('start')
         await handleExpiringItems()
-    }, 1000 * 60 * 3)
+        console.log('end')
+    }, 1000 * 20)
 }
 
 async function handleExpiringItems() {

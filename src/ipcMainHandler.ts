@@ -183,9 +183,13 @@ function getMainBaseUrl(): string {
 async function fetch(request: { url: string; script: string }) {
     const bw = new BrowserView()
     await bw.webContents.loadURL(request.url)
-    const result = await bw.webContents.executeJavaScript(request.script)
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    ;(bw.webContents as any).destroy()
+    let result: any
+    try {
+        result = await bw.webContents.executeJavaScript(request.script)
+    } catch (error) {
+        console.log('ERROR', error)
+    }
+    (bw.webContents as any).destroy()
     return result
 }
 
