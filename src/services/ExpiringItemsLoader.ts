@@ -11,6 +11,7 @@ export type ExpiringItemsContainer = {
 async function loadExpiringItems(): Promise<ExpiringItemsContainer> {
     const res = (await ipcRenderer.invoke('LoadSetItems', ['allPotions', 'allItems', 'otherItems', 'questItems', 'elementsItems', 'bankItems'])) as Record<string, any>
     const items = Object.values(res)
+        .filter(item => item)
         .map((item) => Object.values(item))
         .flat() as InventoryItem[]
     const altItems = Object.assign({}, res.allPotions, res.allItems, res.otherItems, res.questItems, res.elementsItems, res.bankItems)
@@ -26,9 +27,7 @@ async function setupCheckingItemsService() {
     clearInterval(checkingItemsInverval)
     await handleExpiringItems()
     checkingItemsInverval = setInterval(async() => {
-        console.log('start')
         await handleExpiringItems()
-        console.log('end')
     }, 1000 * 20)
 }
 
@@ -38,8 +37,7 @@ async function handleExpiringItems() {
     if(number) {
         const config = UserConfigService.get(number)
         // 5 days burning items
-        const burnItems = result.allItems.filter((item) => item.time_expire! < '432000' && config.expiringItemIds.includes(item.id))
-        console.log(burnItems, config.expiringItemIds)
+        const burnItems = result.allItems.filter((item) => item.time_expire! < '432000' && (config.expiringItemIds ?? []).includes(item.id))
         ipcRenderer.send(Channel.EXPIRING_ITEMS_FOUND, burnItems.length != 0)
     }
 }
