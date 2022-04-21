@@ -17,7 +17,12 @@ function render(state: EffectSetsWindowState): void {
     const allItemDivs = state.allItems
         .map((item) => {
             if(!state.activeFilters.includes(Utils.getFilterColor(item.quality))) {
-                return convertItemIntoDiv(item, undefined)
+                const foundedItem = state.currentItems.find(currentItem => currentItem.id == item.id)
+                const divItem = convertItemIntoDiv(item, undefined)
+                if(foundedItem) {
+                    divItem.style.opacity = '0.2'
+                }
+                return divItem
             }
         })
         .filter((div) => div) as HTMLDivElement[]
@@ -79,6 +84,7 @@ function setupView() {
 let dragableItem: HTMLDivElement | null = null
 
 function handleDragStartEquipableItem(this: any) {
+    // eslint-disable-next-line @typescript-eslint/no-this-alias
     dragableItem = this
     this.style.opacity = '0.4'
     SimpleAlt.artifactAltSimple(this.getAttribute('itemid'), 0, this)
