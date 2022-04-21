@@ -178,6 +178,13 @@ export default async function reduce(state: EffectSetsWindowState, action: Effec
                 activeFilters: newFilters
             }
         }
+        case EffectSetsWindowActions.SEARCH_EFFECT: {
+            const searchString = Elements.searchEffectInput().value
+            return {
+                ...state,
+                searchEffect: searchString
+            }
+        }
     }
 }
 

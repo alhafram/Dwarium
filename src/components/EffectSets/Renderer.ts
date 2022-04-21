@@ -16,7 +16,7 @@ function render(state: EffectSetsWindowState): void {
 
     const allItemDivs = state.allItems
         .map((item) => {
-            if(!state.activeFilters.includes(Utils.getFilterColor(item.quality))) {
+            if(!state.activeFilters.includes(Utils.getFilterColor(item.quality)) && item.title.includes(state.searchEffect)) {
                 const foundedItem = state.currentItems.find(currentItem => currentItem.id == item.id)
                 const divItem = convertItemIntoDiv(item, undefined)
                 if(foundedItem) {
@@ -62,6 +62,9 @@ function setupView() {
     }
     Elements.useEffectsButton().onclick = function() {
         dispatch(EffectSetsWindowActions.USE_EFFECTS)
+    }
+    Elements.searchEffectInput().onkeyup = function() {
+        dispatch(EffectSetsWindowActions.SEARCH_EFFECT)
     }
     SetElements.saveSetButton().onclick = function() {
         dispatch(EffectSetsWindowActions.SAVE_SET)

@@ -10,7 +10,8 @@ let initialState: EffectSetsWindowState = {
     currentSet: null,
     sets: [],
     userConfig: null,
-    activeFilters: []
+    activeFilters: [],
+    searchEffect: ''
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
