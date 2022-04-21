@@ -7,4 +7,5 @@ export type ExpiringItemsSettingsWindowState = {
     currentItems: InventoryItem[]
     activeFilters: DressingFilterColor[]
     userConfig: UserConfig | null
+    searchEffect: string
 }

@@ -16,7 +16,7 @@ function render(state: EffectSetsWindowState): void {
 
     const allItemDivs = state.allItems
         .map((item) => {
-            if(!state.activeFilters.includes(Utils.getFilterColor(item.quality)) && item.title.includes(state.searchEffect)) {
+            if(!state.activeFilters.includes(Utils.getFilterColor(item.quality)) && item.title.toLowerCase().includes(state.searchEffect)) {
                 const foundedItem = state.currentItems.find(currentItem => currentItem.id == item.id)
                 const divItem = convertItemIntoDiv(item, undefined)
                 if(foundedItem) {

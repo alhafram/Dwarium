@@ -5,6 +5,7 @@ import { loadExpiringItems } from '../../services/ExpiringItemsLoader'
 import UserConfigService from '../../services/UserConfigService'
 import Utils from '../Common/Utils'
 import { ExpiringItemsSettingsWindowActions } from './Actions'
+import { Elements } from './Elements'
 import { ExpiringItemsSettingsWindowState } from './ExpiringItemsSettingsWindowState'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -82,6 +83,13 @@ export default async function reduce(state: ExpiringItemsSettingsWindowState, ac
             UserConfigService.save(state.userConfig!)
             ipcRenderer.send(Channel.EXPIRING_ITEMS_CHANGED)
             return state
+        }
+        case ExpiringItemsSettingsWindowActions.SEARCH_EFFECT: {
+            const searchString = Elements.searchEffectInput().value
+            return {
+                ...state,
+                searchEffect: searchString
+            }
         }
     }
 }
