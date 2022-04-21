@@ -8,10 +8,10 @@ let initialState: ExpiringItemsSettingsWindowState = {
     allItems: [],
     currentItems: [],
     activeFilters: [],
-    userConfig: null
+    userConfig: null,
+    searchEffect: ''
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default async function dispatch(action: ExpiringItemsSettingsWindowActions, data?: any) {
     initialState = await reduce(initialState, action, data)
     render(initialState)

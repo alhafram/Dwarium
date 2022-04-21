@@ -6,5 +6,7 @@ export enum ExpiringItemsSettingsWindowActions {
     REMOVE_ITEM,
 
     ADD_FILTER,
-    REMOVE_FILTER
+    REMOVE_FILTER,
+
+    SEARCH_EFFECT
 }

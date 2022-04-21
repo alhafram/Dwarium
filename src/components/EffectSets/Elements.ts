@@ -4,5 +4,8 @@ export const Elements = {
     },
     useEffectsButton(): HTMLButtonElement {
         return document.getElementById('useEffectsButton') as HTMLButtonElement
+    },
+    searchEffectInput(): HTMLInputElement {
+        return document.getElementById('searchEffectInput') as HTMLInputElement
     }
 }

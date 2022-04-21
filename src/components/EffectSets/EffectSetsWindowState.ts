@@ -10,4 +10,5 @@ export type EffectSetsWindowState = {
     sets: EffectSet[]
     userConfig: UserConfig | null
     activeFilters: DressingFilterColor[]
+    searchEffect: string
 }

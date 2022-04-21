@@ -16,7 +16,6 @@ let initialState: FoodWindowState = {
     userConfig: null
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 async function dispatch(action: FoodWindowActions, data?: any) {
     initialState = await reduce(initialState, action, data)
     render(initialState)
@@ -51,7 +50,6 @@ window.addEventListener('DOMContentLoaded', async() => {
     }
 })
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function handleDropEquipableItemOnStaticItemBox(this: any, e: DragEvent) {
     e.stopPropagation()
     dispatch(FoodWindowActions.EQUIP, [getDragableItem(), this])

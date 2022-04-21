@@ -12,5 +12,7 @@ export enum EffectSetsWindowActions {
     USE_EFFECTS,
 
     ADD_FILTER,
-    REMOVE_FILTER
+    REMOVE_FILTER,
+
+    SEARCH_EFFECT
 }

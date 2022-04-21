@@ -10,10 +10,10 @@ let initialState: EffectSetsWindowState = {
     currentSet: null,
     sets: [],
     userConfig: null,
-    activeFilters: []
+    activeFilters: [],
+    searchEffect: ''
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default async function dispatch(action: EffectSetsWindowActions, data?: any) {
     initialState = await reduce(initialState, action, data)
     render(initialState)

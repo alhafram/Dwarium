@@ -4,5 +4,8 @@ export const Elements = {
     },
     saveItemsButton(): HTMLButtonElement {
         return document.getElementById('saveItemsButton') as HTMLButtonElement
+    },
+    searchEffectInput(): HTMLInputElement {
+        return document.getElementById('searchEffectInput') as HTMLInputElement
     }
 }

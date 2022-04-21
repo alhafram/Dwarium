@@ -15,9 +15,12 @@ function render(state: ExpiringItemsSettingsWindowState): void {
 
     const allItemDivs = state.allItems
         .map((item) => {
-            if(!state.activeFilters.includes(Utils.getFilterColor(item.quality))) {
+            if(!state.activeFilters.includes(Utils.getFilterColor(item.quality)) && item.title.toLowerCase().includes(state.searchEffect)) {
+                const foundedItem = state.currentItems.find((currentItem) => currentItem.id == item.id)
                 const divItem = convertItemIntoDiv(item, undefined)
-                setupBurningItemBorder(item, divItem)
+                if(foundedItem) {
+                    divItem.style.opacity = '0.2'
+                }
                 return divItem
             }
         })
@@ -53,6 +56,9 @@ function setupView() {
         const itemId = dragableItem?.getAttribute('itemid')
         dispatch(ExpiringItemsSettingsWindowActions.ADD_ITEM, itemId)
     }
+    Elements.searchEffectInput().onkeyup = function() {
+        dispatch(ExpiringItemsSettingsWindowActions.SEARCH_EFFECT)
+    }
     SetElements.allItemsDiv().ondragover = handleDragOver
     SetElements.allItemsDiv().ondrop = function() {
         const itemId = dragableItem?.getAttribute('itemid')
@@ -66,6 +72,7 @@ function setupView() {
 let dragableItem: HTMLDivElement | null = null
 
 function handleDragStartEquipableItem(this: any) {
+    // eslint-disable-next-line @typescript-eslint/no-this-alias
     dragableItem = this
     this.style.opacity = '0.4'
     SimpleAlt.artifactAltSimple(this.getAttribute('itemid'), 0, this)

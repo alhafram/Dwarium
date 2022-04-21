@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import SimpleAlt from '../../Scripts/simple_alt'
 
 function handleDragOver(e: Event) {

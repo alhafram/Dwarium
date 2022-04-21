@@ -17,7 +17,6 @@ export class TabsController {
     }
     static deleteTab(id: string): void {
         if(!this.tabs[id]?.webContents.isDestroyed()) {
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             (this.tabs[id].webContents as any).destroy()
         }
         const index = this.tabsList.indexOf(id)

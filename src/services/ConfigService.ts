@@ -249,7 +249,6 @@ function restoreUrls(): string[] {
     return []
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function writeData(key: string, value: any): void {
     const contents = FileOperationsService.parseData(path) as any
     contents[key] = value
@@ -261,7 +260,6 @@ function writeData(key: string, value: any): void {
     FileOperationsService.writeData(path, JSON.stringify(contents))
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function readData(key: string): any {
     const contents = FileOperationsService.parseData(path) as any
     return contents[key]
