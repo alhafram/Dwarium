@@ -438,7 +438,6 @@ function closeFavouriteListBrowserView() {
     if(favouriteListBrowserView) {
         if(!favouriteListBrowserView.webContents.isDestroyed()) {
             TabsController.mainWindow?.removeBrowserView(favouriteListBrowserView)
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             ;(favouriteListBrowserView.webContents as any).destroy()
         }
         favouriteListBrowserView = null

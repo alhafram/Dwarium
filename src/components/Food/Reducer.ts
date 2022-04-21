@@ -14,7 +14,6 @@ async function fetchFood() {
     return await ipcRenderer.invoke(Channel.MAKE_WEB_REQUEST, req)
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default async function reduce(state: FoodWindowState, action: FoodWindowActions, data?: any): Promise<FoodWindowState> {
     let allItems = state.allItems
     switch (action) {

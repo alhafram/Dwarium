@@ -10,7 +10,6 @@ import { EffectSetsWindowActions } from './Actions'
 import { EffectSetsWindowState } from './EffectSetsWindowState'
 import { Elements } from './Elements'
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default async function reduce(state: EffectSetsWindowState, action: EffectSetsWindowActions, data?: any): Promise<EffectSetsWindowState> {
     switch (action) {
         case EffectSetsWindowActions.LOAD_CONTENT: {

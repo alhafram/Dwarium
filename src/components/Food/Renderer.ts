@@ -60,6 +60,7 @@ function render(state: FoodWindowState): void {
 let dragableItem: HTMLDivElement | null = null
 
 function handleDragStartEquipableItem(this: any) {
+    // eslint-disable-next-line @typescript-eslint/no-this-alias
     dragableItem = this
     this.style.opacity = '0.4'
     SimpleAlt.artifactAltSimple(this.getAttribute('itemid'), 0, this)

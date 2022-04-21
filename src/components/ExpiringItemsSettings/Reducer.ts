@@ -8,7 +8,6 @@ import { ExpiringItemsSettingsWindowActions } from './Actions'
 import { Elements } from './Elements'
 import { ExpiringItemsSettingsWindowState } from './ExpiringItemsSettingsWindowState'
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default async function reduce(state: ExpiringItemsSettingsWindowState, action: ExpiringItemsSettingsWindowActions, data?: any): Promise<ExpiringItemsSettingsWindowState> {
     switch (action) {
         case ExpiringItemsSettingsWindowActions.LOAD_CONTENT: {

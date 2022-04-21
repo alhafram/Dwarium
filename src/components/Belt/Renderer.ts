@@ -47,6 +47,7 @@ function setupEquipableItemEvents(item: HTMLElement) {
 
 let dragableItem: HTMLDivElement | null = null
 function handleDragStartEquipableItem(this: any) {
+    // eslint-disable-next-line @typescript-eslint/no-this-alias
     dragableItem = this
     this.style.opacity = '0.4'
     dismissAlt(this)

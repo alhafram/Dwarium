@@ -196,7 +196,6 @@ function getAutoResponceForChannel(channel: ChatChannel) {
 
 const prevReceivers: Set<string>[] = []
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function handleMessage(message: any) {
     const chatMessage = message as ChatMessage
     if(chatMessage) {
@@ -258,7 +257,6 @@ function handleMessage(message: any) {
 
 let chatHidden = false
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function logMessage(message: any) {
     const node = $(message).get()[0].cloneNode(true) as HTMLElement
     node.removeAttribute('original-msg-object')

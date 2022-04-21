@@ -183,6 +183,7 @@ function setupInteractionEvents(initialState: DressingWindowState) {
 let dragableItem: HTMLDivElement | null = null
 
 function handleDragStartEquipableItem(this: any) {
+    // eslint-disable-next-line @typescript-eslint/no-this-alias
     dragableItem = this
     SimpleAlt.artifactAltSimple(this.getAttribute('itemid'), 0, this)
     highlightDressingBox(this)
