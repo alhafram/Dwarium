@@ -18,6 +18,7 @@ function render(state: ExpiringItemsSettingsWindowState): void {
             if(!state.activeFilters.includes(Utils.getFilterColor(item.quality)) && item.title.toLowerCase().includes(state.searchEffect)) {
                 const foundedItem = state.currentItems.find((currentItem) => currentItem.id == item.id)
                 const divItem = convertItemIntoDiv(item, undefined)
+                setupBurningItemBorder(item, divItem)
                 if(foundedItem) {
                     divItem.style.opacity = '0.2'
                 }
