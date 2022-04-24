@@ -14,5 +14,6 @@ export enum EffectSetsWindowActions {
     ADD_FILTER,
     REMOVE_FILTER,
 
-    SEARCH_EFFECT
+    SEARCH_EFFECT,
+    CHANGE_ORDER
 }
