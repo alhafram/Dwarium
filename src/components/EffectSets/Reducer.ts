@@ -184,6 +184,21 @@ export default async function reduce(state: EffectSetsWindowState, action: Effec
                 searchEffect: searchString
             }
         }
+        case EffectSetsWindowActions.CHANGE_ORDER: {
+            const replacedItemId = data[0] as string | undefined
+            const draggableItemId = data[1] as string | undefined
+            if(replacedItemId && draggableItemId) {
+                const replacedItem = state.currentItems.find(item => item.id == replacedItemId)
+                const draggableItem = state.currentItems.find(item => item.id == draggableItemId)
+                if(replacedItem && draggableItem) {
+                    const replacedItemIndex = state.currentItems.indexOf(replacedItem)
+                    const draggableItemIndex = state.currentItems.indexOf(draggableItem)
+                    state.currentItems[replacedItemIndex] = draggableItem
+                    state.currentItems[draggableItemIndex] = replacedItem
+                }
+            }
+            return state
+        }
     }
 }
 
