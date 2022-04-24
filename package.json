@@ -1,6 +1,6 @@
 {
     "name": "Dwarium",
-    "version": "2.9.2",
+    "version": "2.9.3",
     "description": "",
     "main": "out/main.js",
     "scripts": {
