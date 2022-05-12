@@ -208,7 +208,7 @@ window.addEventListener('DOMContentLoaded', async() => {
         ipcRenderer.send(Channel.OPEN_NOTES)
     }
     Elements.screenshotButton().onclick = function() {
-        ipcRenderer.send(Channel.TAKE_SCREENSHOT)
+        ipcRenderer.send(Channel.MAKE_SCREENSHOT)
     }
     Elements.foodButton().onclick = function() {
         ipcRenderer.send(Channel.OPEN_FOOD)
@@ -475,10 +475,6 @@ ipcRenderer.on(Channel.OPEN_WINDOW, (_evt, id, active) => {
     }
 })
 
-ipcRenderer.on(Channel.TAKE_SCREENSHOT, () => {
-    ipcRenderer.send(Channel.TAKE_SCREENSHOT)
-})
-
 ipcRenderer.on(Channel.FAVOURITE_UPDATED, () => {
     setupFavourite()
 })
@@ -552,3 +548,10 @@ async function getNoredir(nick: string): Promise<string | null> {
     }
     return null
 }
+
+const channels = [Channel.OPEN_FOOD, Channel.OPEN_NOTES, Channel.OPEN_DRESSING_ROOM, Channel.OPEN_BELT_POTION_ROOM, Channel.OPEN_CHAT_LOG, Channel.OPEN_CHAT_SETTINGS, Channel.OPEN_NOTIFICATIONS, Channel.OPEN_EFFECT_SETS, Channel.OPEN_EXPIRING_ITEMS_SETTINGS, Channel.MAKE_SCREENSHOT, Channel.OPEN_SETTINGS]
+channels.forEach(channel => {
+    ipcRenderer.on(channel, () => {
+        ipcRenderer.send(channel)
+    })
+})

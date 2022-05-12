@@ -6,6 +6,7 @@ import { Channel } from '../../Models/Channel'
 import { WindowType } from '../../Models/WindowModels'
 import setupContextMenu from '../../services/ContextMenu'
 import { getBrowserWindowPosition, getClientWindowPosition, saveBrowserWindowPosition, saveClientWindowPosition } from '../../services/WindowSizeManager'
+import ShortcutService from '../../services/ShortcutService'
 
 export default class MainWindowContainer {
     browserView: BrowserView | null | undefined
@@ -101,20 +102,11 @@ export default class MainWindowContainer {
                 globalShortcut.register('F11', () => {
                     this.mainWindow.setFullScreen(!this.mainWindow.isFullScreen())
                 })
-                globalShortcut.register('F9', () => {
-                    this.mainWindow.webContents.send(Channel.TAKE_SCREENSHOT)
-                })
-                globalShortcut.register('F5', () => {
-                    this.mainWindow.webContents.send(Channel.RELOAD)
-                })
-            } else {
-                globalShortcut.register('CommandOrControl+F', () => {
-                    this.mainWindow.webContents.send(Channel.TAKE_SCREENSHOT)
-                })
-                globalShortcut.register('CommandOrControl+R', () => {
-                    this.mainWindow.webContents.send(Channel.RELOAD)
-                })
             }
+            globalShortcut.register('CommandOrControl+R', () => {
+                this.mainWindow.webContents.send(Channel.RELOAD)
+            })
+            ShortcutService.registerShortcuts()
         })
 
         this.mainWindow.on('blur', () => {
@@ -129,14 +121,10 @@ export default class MainWindowContainer {
         globalShortcut.unregister('CommandOrControl+T')
         globalShortcut.unregister('Control+Tab')
         globalShortcut.unregister('Control+Shift+Tab')
-        if(process.platform == 'win32' || process.platform == 'linux') {
-            globalShortcut.unregister('F11')
-            globalShortcut.unregister('F9')
-            globalShortcut.unregister('F5')
-        } else {
-            globalShortcut.unregister('CommandOrControl+F')
-            globalShortcut.unregister('CommandOrControl+R')
-        }
+        globalShortcut.unregister('CommandOrControl+F')
+        globalShortcut.unregister('CommandOrControl+R')
+        globalShortcut.unregister('F11')
+        ShortcutService.unregisterShortcuts()
     }
 
     getPositionFor(url: string): Rectangle | undefined {
@@ -241,6 +229,12 @@ export default class MainWindowContainer {
         this.browserView?.webContents.on('did-create-window', (window) => {
             this.setupCreatedWindow(window)
             setupContextMenu(window)
+            window.on('focus', () => {
+                ShortcutService.registerShortcuts()
+            })
+            window.on('blur', () => {
+                ShortcutService.unregisterShortcuts()
+            })
         })
     }
 
@@ -262,6 +256,12 @@ export default class MainWindowContainer {
                 height: windowPosition?.height ?? defaultPosition.height,
                 parent: ConfigService.getSettings().windowsAboveApp ? this.mainWindow : undefined,
                 fullscreen: false
+            })
+            newWindow.on('focus', () => {
+                ShortcutService.registerShortcuts()
+            })
+            newWindow.on('blur', () => {
+                ShortcutService.unregisterShortcuts()
             })
             setupContextMenu(newWindow)
             this.setupOpenHandler(newWindow)

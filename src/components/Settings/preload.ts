@@ -3,6 +3,7 @@ import reduce from './Reducer'
 import { getTitle, SettingsWindowState, UserAgentType } from './SettingsWindowState'
 import setupMode from '../../services/DarkModeHandler'
 import { render, setupView } from './Renderer'
+import ShortcutService from '../../services/ShortcutService'
 
 let initialState: SettingsWindowState = {
     userAgents: Object.keys(UserAgentType).map((key) => {
@@ -31,7 +32,8 @@ let initialState: SettingsWindowState = {
     mailNotificationsSystem: false,
     mailNotificationsIngame: false,
     updateChannel: 'stable',
-    needToRestoreUrls: false
+    needToRestoreUrls: false,
+    shortcuts: ShortcutService.getShortcuts()
 }
 
 export function dispatch(action: SettingsWindowActions, data?: unknown): void {

@@ -60,6 +60,21 @@ export function render(initialState: SettingsWindowState) {
     })
 
     Elements.needToRestoreUrlsInput().checked = initialState.needToRestoreUrls
+    setupShortcuts()
+}
+
+function setupShortcuts() {
+    Elements.openFoodShortcutInput().value = state.shortcuts.openFood
+    Elements.openNotesShortcutInput().value = state.shortcuts.openNotes
+    Elements.openDressingRoomShortcutInput().value = state.shortcuts.openDressingRoom
+    Elements.openBeltPotionRoomShortcutInput().value = state.shortcuts.openBeltPotionRoom
+    Elements.openChatLogShortcutInput().value = state.shortcuts.openChatLog
+    Elements.openChatSettingsShortcutInput().value = state.shortcuts.openChatSettings
+    Elements.openNotificationsShortcutInput().value = state.shortcuts.openNotifications
+    Elements.openEffectSetsShortcutInput().value = state.shortcuts.openEffectSets
+    Elements.openExpiringItemsSettingsShortcutInput().value = state.shortcuts.openExpiringItems
+    Elements.makeScreenshotShortcutInput().value = state.shortcuts.makeScreenshot
+    Elements.openSettingsShortcutInput().value = state.shortcuts.openSettings
 }
 
 export function setupView() {
@@ -100,4 +115,48 @@ export function setupView() {
     Elements.needToRestoreUrlsInput().onchange = () => {
         dispatch(SettingsWindowActions.CHANGE_NEED_TO_RESTORE_URLS)
     }
+
+    [
+        Elements.openFoodShortcutInput(),
+        Elements.openNotesShortcutInput(),
+        Elements.openDressingRoomShortcutInput(),
+        Elements.openBeltPotionRoomShortcutInput(),
+        Elements.openChatLogShortcutInput(),
+        Elements.openChatSettingsShortcutInput(),
+        Elements.openNotificationsShortcutInput(),
+        Elements.openEffectSetsShortcutInput(),
+        Elements.openExpiringItemsSettingsShortcutInput(),
+        Elements.makeScreenshotShortcutInput(),
+        Elements.openSettingsShortcutInput()
+    ].forEach(element => {
+        element.onfocus = function() {
+            element.style.borderColor = '#000'
+        }
+        element.onblur = function() {
+            element.style.borderColor = ''
+        }
+        element.onkeyup = function(event) {
+            const comboKeys = ['Control', 'Meta', 'Alt', 'Shift', 'Escape', 'Enter', 'Tab', ' ']
+            if(comboKeys.includes(event.key)) {
+                return
+            }
+            let combination = ''
+            if(event.ctrlKey) {
+                combination += 'Ctrl+'
+            }
+            if(event.shiftKey) {
+                combination += 'Shift+'
+            }
+            if(event.altKey) {
+                combination += 'Alt+'
+            }
+            combination += event.key.toUpperCase()
+            element.value = combination
+            console.log(event)
+            element.blur()
+        }
+        element.onkeydown = function(event) {
+            event.stopPropagation()
+        }
+    })
 }

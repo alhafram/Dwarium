@@ -21,7 +21,7 @@ export enum Channel {
     UPDATE_APPLICATION = 'updateApplication',
     FIND_CHARACTER = 'findCharacter',
     USER_PRV = 'userPrv',
-    TAKE_SCREENSHOT = 'takeScreenshot',
+    MAKE_SCREENSHOT = 'makeScreenshot',
     FIND_EFFECTS = 'findEffects',
     OPEN_NOTES = 'openNotes',
     OPEN_FOOD = 'openFood',

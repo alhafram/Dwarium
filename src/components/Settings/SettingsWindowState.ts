@@ -1,3 +1,5 @@
+import { Shortcuts } from '../../services/ShortcutService'
+
 export interface SettingsWindowState {
     userAgents?: {
         id: string
@@ -24,6 +26,7 @@ export interface SettingsWindowState {
     mailNotificationsIngame: boolean
     updateChannel: string
     needToRestoreUrls: boolean
+    shortcuts: Shortcuts
 }
 
 export enum UserAgentType {

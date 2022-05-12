@@ -1,5 +1,6 @@
 import { app } from '@electron/remote'
 import ConfigService from '../../services/ConfigService'
+import ShortcutService, { ShortcutKeys } from '../../services/ShortcutService'
 import { SettingsWindowActions } from './Actions'
 import { Elements } from './Elements'
 import { SettingsWindowState, UserAgentType } from './SettingsWindowState'
@@ -50,6 +51,7 @@ export default function reduce(state: SettingsWindowState, action: SettingsWindo
                 return state
             }
             ConfigService.writeData('settings', JSON.stringify(savedSettings))
+            saveShortCuts()
             if(confirm('Для того что бы настройки вступили в силу, необходимо перезапустить клиент!')) {
                 app.relaunch()
                 app.quit()
@@ -115,4 +117,18 @@ export default function reduce(state: SettingsWindowState, action: SettingsWindo
                 needToRestoreUrls: Elements.needToRestoreUrlsInput().checked
             }
     }
+}
+
+function saveShortCuts() {
+    ShortcutService.writeData(ShortcutKeys.OPEN_FOOD, Elements.openFoodShortcutInput().value)
+    ShortcutService.writeData(ShortcutKeys.OPEN_NOTES, Elements.openNotesShortcutInput().value)
+    ShortcutService.writeData(ShortcutKeys.OPEN_DRESSING_ROOM, Elements.openDressingRoomShortcutInput().value)
+    ShortcutService.writeData(ShortcutKeys.OPEN_BELT_POTION_ROOM, Elements.openBeltPotionRoomShortcutInput().value)
+    ShortcutService.writeData(ShortcutKeys.OPEN_CHAT_LOG, Elements.openChatLogShortcutInput().value)
+    ShortcutService.writeData(ShortcutKeys.OPEN_CHAT_SETTINGS, Elements.openChatSettingsShortcutInput().value)
+    ShortcutService.writeData(ShortcutKeys.OPEN_NOTIFICATIONS, Elements.openNotificationsShortcutInput().value)
+    ShortcutService.writeData(ShortcutKeys.OPEN_EFFECT_SETS, Elements.openEffectSetsShortcutInput().value)
+    ShortcutService.writeData(ShortcutKeys.OPEN_EXPIRING_ITEMS_SETTINGS, Elements.openExpiringItemsSettingsShortcutInput().value)
+    ShortcutService.writeData(ShortcutKeys.MAKE_SCREENSHOT, Elements.makeScreenshotShortcutInput().value)
+    ShortcutService.writeData(ShortcutKeys.OPEN_SETTINGS, Elements.openSettingsShortcutInput().value)
 }
