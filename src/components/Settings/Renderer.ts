@@ -116,7 +116,7 @@ export function setupView() {
         dispatch(SettingsWindowActions.CHANGE_NEED_TO_RESTORE_URLS)
     }
 
-    [
+    ;[
         Elements.openFoodShortcutInput(),
         Elements.openNotesShortcutInput(),
         Elements.openDressingRoomShortcutInput(),
@@ -128,7 +128,7 @@ export function setupView() {
         Elements.openExpiringItemsSettingsShortcutInput(),
         Elements.makeScreenshotShortcutInput(),
         Elements.openSettingsShortcutInput()
-    ].forEach(element => {
+    ].forEach((element) => {
         element.onfocus = function() {
             element.style.borderColor = '#000'
         }

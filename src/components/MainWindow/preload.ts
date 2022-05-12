@@ -549,8 +549,20 @@ async function getNoredir(nick: string): Promise<string | null> {
     return null
 }
 
-const channels = [Channel.OPEN_FOOD, Channel.OPEN_NOTES, Channel.OPEN_DRESSING_ROOM, Channel.OPEN_BELT_POTION_ROOM, Channel.OPEN_CHAT_LOG, Channel.OPEN_CHAT_SETTINGS, Channel.OPEN_NOTIFICATIONS, Channel.OPEN_EFFECT_SETS, Channel.OPEN_EXPIRING_ITEMS_SETTINGS, Channel.MAKE_SCREENSHOT, Channel.OPEN_SETTINGS]
-channels.forEach(channel => {
+const channels = [
+    Channel.OPEN_FOOD,
+    Channel.OPEN_NOTES,
+    Channel.OPEN_DRESSING_ROOM,
+    Channel.OPEN_BELT_POTION_ROOM,
+    Channel.OPEN_CHAT_LOG,
+    Channel.OPEN_CHAT_SETTINGS,
+    Channel.OPEN_NOTIFICATIONS,
+    Channel.OPEN_EFFECT_SETS,
+    Channel.OPEN_EXPIRING_ITEMS_SETTINGS,
+    Channel.MAKE_SCREENSHOT,
+    Channel.OPEN_SETTINGS
+]
+channels.forEach((channel) => {
     ipcRenderer.on(channel, () => {
         ipcRenderer.send(channel)
     })
