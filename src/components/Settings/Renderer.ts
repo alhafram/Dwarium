@@ -65,6 +65,24 @@ export function render(initialState: SettingsWindowState) {
     setupShortcuts()
 }
 
+function getShortcutInputs(): HTMLInputElement[] {
+    return [
+        Elements.openFoodShortcutInput(),
+        Elements.openNotesShortcutInput(),
+        Elements.openDressingRoomShortcutInput(),
+        Elements.openBeltPotionRoomShortcutInput(),
+        Elements.openChatLogShortcutInput(),
+        Elements.openChatSettingsShortcutInput(),
+        Elements.openNotificationsShortcutInput(),
+        Elements.openEffectSetsShortcutInput(),
+        Elements.openExpiringItemsSettingsShortcutInput(),
+        Elements.makeScreenshotShortcutInput(),
+        Elements.openSettingsShortcutInput(),
+        Elements.hideShowChatShortcutInput(),
+        Elements.fullscreenShortcutInput()
+    ]
+}
+
 function setupShortcuts() {
     Elements.openFoodShortcutInput().value = state.shortcuts.openFood
     Elements.openNotesShortcutInput().value = state.shortcuts.openNotes
@@ -77,24 +95,14 @@ function setupShortcuts() {
     Elements.openExpiringItemsSettingsShortcutInput().value = state.shortcuts.openExpiringItems
     Elements.makeScreenshotShortcutInput().value = state.shortcuts.makeScreenshot
     Elements.openSettingsShortcutInput().value = state.shortcuts.openSettings
+    Elements.hideShowChatShortcutInput().value = state.shortcuts.hideShowChat
+    Elements.fullscreenShortcutInput().value = state.shortcuts.fullscreen
 
-    const inputs = [
-        Elements.openFoodShortcutInput(),
-        Elements.openNotesShortcutInput(),
-        Elements.openDressingRoomShortcutInput(),
-        Elements.openBeltPotionRoomShortcutInput(),
-        Elements.openChatLogShortcutInput(),
-        Elements.openChatSettingsShortcutInput(),
-        Elements.openNotificationsShortcutInput(),
-        Elements.openEffectSetsShortcutInput(),
-        Elements.openExpiringItemsSettingsShortcutInput(),
-        Elements.makeScreenshotShortcutInput(),
-        Elements.openSettingsShortcutInput()
-    ]
-    inputs.forEach(element => {
+    const inputs = getShortcutInputs()
+    inputs.forEach((element) => {
         element.style.borderColor = ''
     })
-    inputs.forEach(element => {
+    inputs.forEach((element) => {
         const excludedElementInputs = inputs.removeItem(element)
         for(const excludedElement of excludedElementInputs) {
             if(excludedElement.value == element.value) {
@@ -144,19 +152,8 @@ export function setupView() {
         dispatch(SettingsWindowActions.CHANGE_NEED_TO_RESTORE_URLS)
     }
 
-    ;[
-        Elements.openFoodShortcutInput(),
-        Elements.openNotesShortcutInput(),
-        Elements.openDressingRoomShortcutInput(),
-        Elements.openBeltPotionRoomShortcutInput(),
-        Elements.openChatLogShortcutInput(),
-        Elements.openChatSettingsShortcutInput(),
-        Elements.openNotificationsShortcutInput(),
-        Elements.openEffectSetsShortcutInput(),
-        Elements.openExpiringItemsSettingsShortcutInput(),
-        Elements.makeScreenshotShortcutInput(),
-        Elements.openSettingsShortcutInput()
-    ].forEach((element) => {
+    const inputs = getShortcutInputs()
+    inputs.forEach((element) => {
         element.onfocus = function() {
             element.style.borderColor = '#000'
             ShortcutService.unregisterShortcuts()

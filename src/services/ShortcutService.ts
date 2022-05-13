@@ -18,6 +18,8 @@ export type Shortcuts = {
     openExpiringItems: string
     makeScreenshot: string
     openSettings: string
+    hideShowChat: string
+    fullscreen: string
 }
 
 export enum ShortcutKeys {
@@ -31,7 +33,9 @@ export enum ShortcutKeys {
     OPEN_EFFECT_SETS = 'openEffectSets',
     OPEN_EXPIRING_ITEMS_SETTINGS = 'openExpiringItemsSettings',
     MAKE_SCREENSHOT = 'makeScreenshot',
-    OPEN_SETTINGS = 'openSettings'
+    OPEN_SETTINGS = 'openSettings',
+    HIDE_SHOW_CHAT = 'hideShowChat',
+    FULLSCREEN = 'fullscreen'
 }
 
 function getShortcuts(): Shortcuts {
@@ -46,7 +50,9 @@ function getShortcuts(): Shortcuts {
         openEffectSets: readData(ShortcutKeys.OPEN_EFFECT_SETS) ?? 'F8',
         openExpiringItems: readData(ShortcutKeys.OPEN_EXPIRING_ITEMS_SETTINGS) ?? 'F9',
         makeScreenshot: readData(ShortcutKeys.MAKE_SCREENSHOT) ?? 'F10',
-        openSettings: readData(ShortcutKeys.OPEN_SETTINGS) ?? 'F12'
+        openSettings: readData(ShortcutKeys.OPEN_SETTINGS) ?? 'F12',
+        hideShowChat: readData(ShortcutKeys.HIDE_SHOW_CHAT) ?? 'Shift+P',
+        fullscreen: readData(ShortcutKeys.FULLSCREEN) ?? 'F11'
     }
     return settings
 }
@@ -69,38 +75,44 @@ function readData(key: string): any {
 
 function registerShortcuts() {
     const shortcuts = getShortcuts()
-    globalShortcut.register(shortcuts.openFood, async() => {
+    globalShortcut.register(shortcuts.openFood, () => {
         TabsController.mainWindow?.webContents.send(Channel.OPEN_FOOD)
     })
-    globalShortcut.register(shortcuts.openNotes, async() => {
+    globalShortcut.register(shortcuts.openNotes, () => {
         TabsController.mainWindow?.webContents.send(Channel.OPEN_NOTES)
     })
-    globalShortcut.register(shortcuts.openDressingRoom, async() => {
+    globalShortcut.register(shortcuts.openDressingRoom, () => {
         TabsController.mainWindow?.webContents.send(Channel.OPEN_DRESSING_ROOM)
     })
-    globalShortcut.register(shortcuts.openBeltPotionRoom, async() => {
+    globalShortcut.register(shortcuts.openBeltPotionRoom, () => {
         TabsController.mainWindow?.webContents.send(Channel.OPEN_BELT_POTION_ROOM)
     })
-    globalShortcut.register(shortcuts.openChatLog, async() => {
+    globalShortcut.register(shortcuts.openChatLog, () => {
         TabsController.mainWindow?.webContents.send(Channel.OPEN_CHAT_LOG)
     })
-    globalShortcut.register(shortcuts.openChatSettings, async() => {
+    globalShortcut.register(shortcuts.openChatSettings, () => {
         TabsController.mainWindow?.webContents.send(Channel.OPEN_CHAT_SETTINGS)
     })
-    globalShortcut.register(shortcuts.openNotifications, async() => {
+    globalShortcut.register(shortcuts.openNotifications, () => {
         TabsController.mainWindow?.webContents.send(Channel.OPEN_NOTIFICATIONS)
     })
-    globalShortcut.register(shortcuts.openEffectSets, async() => {
+    globalShortcut.register(shortcuts.openEffectSets, () => {
         TabsController.mainWindow?.webContents.send(Channel.OPEN_EFFECT_SETS)
     })
-    globalShortcut.register(shortcuts.openExpiringItems, async() => {
+    globalShortcut.register(shortcuts.openExpiringItems, () => {
         TabsController.mainWindow?.webContents.send(Channel.OPEN_EXPIRING_ITEMS_SETTINGS)
     })
-    globalShortcut.register(shortcuts.makeScreenshot, async() => {
+    globalShortcut.register(shortcuts.makeScreenshot, () => {
         TabsController.mainWindow?.webContents.send(Channel.MAKE_SCREENSHOT)
     })
-    globalShortcut.register(shortcuts.openSettings, async() => {
+    globalShortcut.register(shortcuts.openSettings, () => {
         TabsController.mainWindow?.webContents.send(Channel.OPEN_SETTINGS)
+    })
+    globalShortcut.register(shortcuts.hideShowChat, () => {
+        TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.HIDE_SHOW_CHAT)
+    })
+    globalShortcut.register(shortcuts.fullscreen, () => {
+        TabsController.mainWindowContainer?.mainWindow.setFullScreen(!TabsController.mainWindowContainer?.mainWindow.isFullScreen())
     })
 }
 
@@ -120,7 +132,7 @@ function unregisterShortcuts() {
 }
 
 function isExcludedKey(event: KeyboardEvent): boolean {
-    const comboKeys = ['Control', 'Meta', 'Alt', 'Shift', 'Escape', 'Enter', 'Tab', ' ', 'Backspace', 'Backquote', 'Comma', 'Period', 'BracketLeft', 'BracketRight', 'Backslash', 'Quote', 'Semicolon']     
+    const comboKeys = ['Control', 'Meta', 'Alt', 'Shift', 'Escape', 'Enter', 'Tab', ' ', 'Backspace', 'Backquote', 'Comma', 'Period', 'BracketLeft', 'BracketRight', 'Backslash', 'Quote', 'Semicolon']
     if(comboKeys.includes(event.key) || comboKeys.includes(event.code)) {
         return true
     }
