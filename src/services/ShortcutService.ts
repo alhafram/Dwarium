@@ -1,4 +1,4 @@
-import { globalShortcut } from 'electron'
+const { globalShortcut } = process.type === 'browser' ? require('electron') : require('@electron/remote')
 import { Channel } from '../Models/Channel'
 import { buildPath, ConfigPath } from '../Models/ConfigPathes'
 import FileOperationsService from './FileOperationsService'
@@ -119,9 +119,42 @@ function unregisterShortcuts() {
     globalShortcut.unregister(shortcuts.openSettings)
 }
 
+function isExcludedKey(event: KeyboardEvent): boolean {
+    const comboKeys = ['Control', 'Meta', 'Alt', 'Shift', 'Escape', 'Enter', 'Tab', ' ', 'Backspace', 'Backquote', 'Comma', 'Period', 'BracketLeft', 'BracketRight', 'Backslash', 'Quote', 'Semicolon']     
+    if(comboKeys.includes(event.key) || comboKeys.includes(event.code)) {
+        return true
+    }
+    return false
+}
+
+function parseCombination(event: KeyboardEvent): string {
+    let combination = ''
+    if(event.ctrlKey) {
+        combination += 'Ctrl+'
+    }
+    if(event.shiftKey) {
+        combination += 'Shift+'
+    }
+    if(event.altKey) {
+        combination += 'Alt+'
+    }
+    let realKey: string = event.code
+    if(realKey.includes('Digit')) {
+        realKey = realKey.substring(5)
+    } else if(realKey.includes('Key')) {
+        realKey = realKey.substring(3)
+    } else {
+        realKey = event.key
+    }
+    combination += realKey.toUpperCase()
+    return combination
+}
+
 export default {
     getShortcuts,
     writeData,
     registerShortcuts,
-    unregisterShortcuts
+    unregisterShortcuts,
+    isExcludedKey,
+    parseCombination
 }

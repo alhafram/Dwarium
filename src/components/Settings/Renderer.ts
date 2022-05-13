@@ -1,8 +1,10 @@
 import { shell } from 'electron'
+import ShortcutService from '../../services/ShortcutService'
 import { SettingsWindowActions } from './Actions'
 import { Elements } from './Elements'
 import { dispatch } from './preload'
 import { SettingsWindowState, UserAgentType } from './SettingsWindowState'
+import '../Common/Utils'
 
 let state: SettingsWindowState
 
@@ -75,6 +77,32 @@ function setupShortcuts() {
     Elements.openExpiringItemsSettingsShortcutInput().value = state.shortcuts.openExpiringItems
     Elements.makeScreenshotShortcutInput().value = state.shortcuts.makeScreenshot
     Elements.openSettingsShortcutInput().value = state.shortcuts.openSettings
+
+    const inputs = [
+        Elements.openFoodShortcutInput(),
+        Elements.openNotesShortcutInput(),
+        Elements.openDressingRoomShortcutInput(),
+        Elements.openBeltPotionRoomShortcutInput(),
+        Elements.openChatLogShortcutInput(),
+        Elements.openChatSettingsShortcutInput(),
+        Elements.openNotificationsShortcutInput(),
+        Elements.openEffectSetsShortcutInput(),
+        Elements.openExpiringItemsSettingsShortcutInput(),
+        Elements.makeScreenshotShortcutInput(),
+        Elements.openSettingsShortcutInput()
+    ]
+    inputs.forEach(element => {
+        element.style.borderColor = ''
+    })
+    inputs.forEach(element => {
+        const excludedElementInputs = inputs.removeItem(element)
+        for(const excludedElement of excludedElementInputs) {
+            if(excludedElement.value == element.value) {
+                element.style.borderColor = '#FF0000'
+                excludedElement.style.borderColor = '#FF0000'
+            }
+        }
+    })
 }
 
 export function setupView() {
@@ -131,32 +159,22 @@ export function setupView() {
     ].forEach((element) => {
         element.onfocus = function() {
             element.style.borderColor = '#000'
+            ShortcutService.unregisterShortcuts()
         }
         element.onblur = function() {
             element.style.borderColor = ''
+            dispatch(SettingsWindowActions.SAVE_SHORTCUTS)
+            ShortcutService.registerShortcuts()
         }
         element.onkeyup = function(event) {
-            const comboKeys = ['Control', 'Meta', 'Alt', 'Shift', 'Escape', 'Enter', 'Tab', ' ']
-            if(comboKeys.includes(event.key)) {
+            if(ShortcutService.isExcludedKey(event)) {
                 return
             }
-            let combination = ''
-            if(event.ctrlKey) {
-                combination += 'Ctrl+'
-            }
-            if(event.shiftKey) {
-                combination += 'Shift+'
-            }
-            if(event.altKey) {
-                combination += 'Alt+'
-            }
-            combination += event.key.toUpperCase()
-            element.value = combination
-            console.log(event)
+            element.value = ShortcutService.parseCombination(event)
             element.blur()
         }
-        element.onkeydown = function(event) {
-            event.stopPropagation()
+        element.onkeydown = function() {
+            return false
         }
     })
 }
