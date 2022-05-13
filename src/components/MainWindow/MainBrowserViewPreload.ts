@@ -7,7 +7,6 @@ import ScriptInjectService from '../../services/ScriptInjectedService'
 import { setupCheckingItemsService } from '../../services/ExpiringItemsLoader'
 
 window.addEventListener('DOMContentLoaded', async() => {
-    ChatService.setupShortcut()
     ChatService.setupAutoResponder()
     ChatService.setupFlooding()
     ScriptInjectService.setupSpeed()

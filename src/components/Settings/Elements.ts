@@ -74,5 +74,11 @@ export const Elements = {
     },
     openSettingsShortcutInput(): HTMLInputElement {
         return document.getElementById('openSettingsShortcutInput') as HTMLInputElement
+    },
+    hideShowChatShortcutInput(): HTMLInputElement {
+        return document.getElementById('hideShowChatShortcutInput') as HTMLInputElement
+    },
+    fullscreenShortcutInput(): HTMLInputElement {
+        return document.getElementById('fullscreenShortcutInput') as HTMLInputElement
     }
 }

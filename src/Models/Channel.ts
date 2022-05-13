@@ -45,5 +45,7 @@ export enum Channel {
     FAVOURITE_UPDATED = 'favouriteUpdated',
     SWITCH_NEXT_TAB = 'switchNextTab',
     SWITCH_PREV_TAB = 'switchPrevTab',
-    MAKE_WEB_REQUEST = 'makeWebRequest'
+    MAKE_WEB_REQUEST = 'makeWebRequest',
+    HIDE_SHOW_CHAT = 'hideShowChat',
+    FULLSCREEN = 'fullscreen'
 }

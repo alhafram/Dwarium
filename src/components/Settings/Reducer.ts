@@ -138,4 +138,6 @@ function saveShortCuts() {
     ShortcutService.writeData(ShortcutKeys.OPEN_EXPIRING_ITEMS_SETTINGS, Elements.openExpiringItemsSettingsShortcutInput().value)
     ShortcutService.writeData(ShortcutKeys.MAKE_SCREENSHOT, Elements.makeScreenshotShortcutInput().value)
     ShortcutService.writeData(ShortcutKeys.OPEN_SETTINGS, Elements.openSettingsShortcutInput().value)
+    ShortcutService.writeData(ShortcutKeys.HIDE_SHOW_CHAT, Elements.hideShowChatShortcutInput().value)
+    ShortcutService.writeData(ShortcutKeys.FULLSCREEN, Elements.fullscreenShortcutInput().value)
 }
