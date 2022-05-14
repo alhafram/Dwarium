@@ -32,6 +32,12 @@ async function setupCheckingItemsService() {
 }
 
 async function handleExpiringItems() {
+    const baseUrl = await ipcRenderer.invoke(Channel.GET_MAIN_URL) as string
+    const battleServerUrl = 'https://battle.dwar.ru'
+    if(baseUrl == battleServerUrl) {
+        return
+    }
+    console.log('start laoding')
     const result = await loadExpiringItems()
     const number = (await ipcRenderer.invoke(Channel.GET_ID)) as number | undefined
     if(number) {
