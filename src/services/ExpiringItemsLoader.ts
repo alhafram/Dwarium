@@ -37,7 +37,6 @@ async function handleExpiringItems() {
     if(baseUrl == battleServerUrl) {
         return
     }
-    console.log('start laoding')
     const result = await loadExpiringItems()
     const number = (await ipcRenderer.invoke(Channel.GET_ID)) as number | undefined
     if(number) {
