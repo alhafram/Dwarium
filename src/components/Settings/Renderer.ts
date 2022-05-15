@@ -79,7 +79,23 @@ function getShortcutInputs(): HTMLInputElement[] {
         Elements.makeScreenshotShortcutInput(),
         Elements.openSettingsShortcutInput(),
         Elements.hideShowChatShortcutInput(),
-        Elements.fullscreenShortcutInput()
+        Elements.fullscreenShortcutInput(),
+
+        Elements.bowSkill1ShortcutInput(),
+        Elements.bowSkill2ShortcutInput(),
+        Elements.bowSkill3ShortcutInput(),
+        Elements.bowSkill4ShortcutInput(),
+        Elements.bowSkill5ShortcutInput(),
+        Elements.bowSkill6ShortcutInput(),
+        Elements.bowSkill7ShortcutInput(),
+        Elements.bowSkill8ShortcutInput(),
+        Elements.bowSkill9ShortcutInput(),
+        Elements.bowSkill10ShortcutInput(),
+        Elements.bowSkill11ShortcutInput(),
+        Elements.bowSkill12ShortcutInput(),
+        Elements.bowSkill13ShortcutInput(),
+        Elements.bowSkill14ShortcutInput(),
+        Elements.bowSkill15ShortcutInput()
     ]
 }
 
@@ -97,6 +113,23 @@ function setupShortcuts() {
     Elements.openSettingsShortcutInput().value = state.shortcuts.openSettings
     Elements.hideShowChatShortcutInput().value = state.shortcuts.hideShowChat
     Elements.fullscreenShortcutInput().value = state.shortcuts.fullscreen
+
+    console.log(state.shortcuts.bowSkill1)
+    Elements.bowSkill1ShortcutInput().value = state.shortcuts.bowSkill1
+    Elements.bowSkill2ShortcutInput().value = state.shortcuts.bowSkill2
+    Elements.bowSkill3ShortcutInput().value = state.shortcuts.bowSkill3
+    Elements.bowSkill4ShortcutInput().value = state.shortcuts.bowSkill4
+    Elements.bowSkill5ShortcutInput().value = state.shortcuts.bowSkill5
+    Elements.bowSkill6ShortcutInput().value = state.shortcuts.bowSkill6
+    Elements.bowSkill7ShortcutInput().value = state.shortcuts.bowSkill7
+    Elements.bowSkill8ShortcutInput().value = state.shortcuts.bowSkill8
+    Elements.bowSkill9ShortcutInput().value = state.shortcuts.bowSkill9
+    Elements.bowSkill10ShortcutInput().value = state.shortcuts.bowSkill10
+    Elements.bowSkill11ShortcutInput().value = state.shortcuts.bowSkill11
+    Elements.bowSkill12ShortcutInput().value = state.shortcuts.bowSkill12
+    Elements.bowSkill13ShortcutInput().value = state.shortcuts.bowSkill13
+    Elements.bowSkill14ShortcutInput().value = state.shortcuts.bowSkill14
+    Elements.bowSkill15ShortcutInput().value = state.shortcuts.bowSkill15
 
     const inputs = getShortcutInputs()
     inputs.forEach((element) => {

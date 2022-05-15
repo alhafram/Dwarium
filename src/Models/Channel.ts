@@ -47,5 +47,6 @@ export enum Channel {
     SWITCH_PREV_TAB = 'switchPrevTab',
     MAKE_WEB_REQUEST = 'makeWebRequest',
     HIDE_SHOW_CHAT = 'hideShowChat',
-    FULLSCREEN = 'fullscreen'
+    FULLSCREEN = 'fullscreen',
+    BOW_SKILL = 'bowSkill'
 }

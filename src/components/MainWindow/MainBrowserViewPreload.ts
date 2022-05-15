@@ -1,3 +1,5 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
 import { ipcRenderer } from 'electron'
 import { Channel } from '../../Models/Channel'
 import sendNotification from '../../services/Notifications'
@@ -26,15 +28,31 @@ document.addEventListener('MessageDom', (event) => {
 })
 
 ipcRenderer.on(Channel.USER_PRV, function(event, nick) {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
     userPrvTag(nick)
 })
 
-ipcRenderer.on(Channel.FOOD_CHANGED, function(event, nick) {
+ipcRenderer.on(Channel.FOOD_CHANGED, () => {
     FoodService.reset()
 })
 
 ipcRenderer.on(Channel.EXPIRING_ITEMS_CHANGED, () => {
     setupCheckingItemsService()
+})
+
+function getSpells(): any[] {
+    if(top && top[0] && top[0][1] && top[0][1].canvas && top[0][1].canvas.app && top[0][1].canvas.app.battle && top[0][1].canvas.app.battle.model && top[0][1].canvas.app.battle.model.spellsBow) {
+        return Object.values(top[0][1].canvas.app.battle.model.spellsBow).sort(function(t, e) {
+            return t.index - e.index
+        })
+    }
+    return []
+}
+
+ipcRenderer.on(Channel.BOW_SKILL, (event, data) => {
+    const spells = getSpells()
+    const spellNumber = data as number
+    const spell = spells[spellNumber - 1]
+    if(spell) {
+        top[0][1].document.game.main.mFunc.useEffect(spell.effId)
+    }
 })

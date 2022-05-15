@@ -80,5 +80,50 @@ export const Elements = {
     },
     fullscreenShortcutInput(): HTMLInputElement {
         return document.getElementById('fullscreenShortcutInput') as HTMLInputElement
+    },
+    bowSkill1ShortcutInput(): HTMLInputElement {
+        return document.getElementById('bowSkill1ShortcutInput') as HTMLInputElement
+    },
+    bowSkill2ShortcutInput(): HTMLInputElement {
+        return document.getElementById('bowSkill2ShortcutInput') as HTMLInputElement
+    },
+    bowSkill3ShortcutInput(): HTMLInputElement {
+        return document.getElementById('bowSkill3ShortcutInput') as HTMLInputElement
+    },
+    bowSkill4ShortcutInput(): HTMLInputElement {
+        return document.getElementById('bowSkill4ShortcutInput') as HTMLInputElement
+    },
+    bowSkill5ShortcutInput(): HTMLInputElement {
+        return document.getElementById('bowSkill5ShortcutInput') as HTMLInputElement
+    },
+    bowSkill6ShortcutInput(): HTMLInputElement {
+        return document.getElementById('bowSkill6ShortcutInput') as HTMLInputElement
+    },
+    bowSkill7ShortcutInput(): HTMLInputElement {
+        return document.getElementById('bowSkill7ShortcutInput') as HTMLInputElement
+    },
+    bowSkill8ShortcutInput(): HTMLInputElement {
+        return document.getElementById('bowSkill8ShortcutInput') as HTMLInputElement
+    },
+    bowSkill9ShortcutInput(): HTMLInputElement {
+        return document.getElementById('bowSkill9ShortcutInput') as HTMLInputElement
+    },
+    bowSkill10ShortcutInput(): HTMLInputElement {
+        return document.getElementById('bowSkill10ShortcutInput') as HTMLInputElement
+    },
+    bowSkill11ShortcutInput(): HTMLInputElement {
+        return document.getElementById('bowSkill11ShortcutInput') as HTMLInputElement
+    },
+    bowSkill12ShortcutInput(): HTMLInputElement {
+        return document.getElementById('bowSkill12ShortcutInput') as HTMLInputElement
+    },
+    bowSkill13ShortcutInput(): HTMLInputElement {
+        return document.getElementById('bowSkill13ShortcutInput') as HTMLInputElement
+    },
+    bowSkill14ShortcutInput(): HTMLInputElement {
+        return document.getElementById('bowSkill14ShortcutInput') as HTMLInputElement
+    },
+    bowSkill15ShortcutInput(): HTMLInputElement {
+        return document.getElementById('bowSkill15ShortcutInput') as HTMLInputElement
     }
 }
