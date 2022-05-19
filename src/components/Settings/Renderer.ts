@@ -137,7 +137,7 @@ function setupShortcuts() {
     inputs.forEach((element) => {
         const excludedElementInputs = inputs.removeItem(element)
         for(const excludedElement of excludedElementInputs) {
-            if(excludedElement.value == element.value) {
+            if(excludedElement.value == element.value && excludedElement.value != '') {
                 element.style.borderColor = '#FF0000'
                 excludedElement.style.borderColor = '#FF0000'
             }
@@ -207,7 +207,11 @@ export function setupView() {
             if(ShortcutService.isExcludedKey(event)) {
                 return
             }
-            element.value = ShortcutService.parseCombination(event)
+            if(ShortcutService.isClearKey(event)) {
+                element.value = ''
+            } else {
+                element.value = ShortcutService.parseCombination(event)
+            }
             element.blur()
         }
         element.onkeydown = function() {

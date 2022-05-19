@@ -121,128 +121,162 @@ function readData(key: string): any {
 
 function registerShortcuts() {
     const shortcuts = getShortcuts()
-    globalShortcut.register(shortcuts.openFood, () => {
-        TabsController.mainWindow?.webContents.send(Channel.OPEN_FOOD)
-    })
-    globalShortcut.register(shortcuts.openNotes, () => {
-        TabsController.mainWindow?.webContents.send(Channel.OPEN_NOTES)
-    })
-    globalShortcut.register(shortcuts.openDressingRoom, () => {
-        TabsController.mainWindow?.webContents.send(Channel.OPEN_DRESSING_ROOM)
-    })
-    globalShortcut.register(shortcuts.openBeltPotionRoom, () => {
-        TabsController.mainWindow?.webContents.send(Channel.OPEN_BELT_POTION_ROOM)
-    })
-    globalShortcut.register(shortcuts.openChatLog, () => {
-        TabsController.mainWindow?.webContents.send(Channel.OPEN_CHAT_LOG)
-    })
-    globalShortcut.register(shortcuts.openChatSettings, () => {
-        TabsController.mainWindow?.webContents.send(Channel.OPEN_CHAT_SETTINGS)
-    })
-    globalShortcut.register(shortcuts.openNotifications, () => {
-        TabsController.mainWindow?.webContents.send(Channel.OPEN_NOTIFICATIONS)
-    })
-    globalShortcut.register(shortcuts.openEffectSets, () => {
-        TabsController.mainWindow?.webContents.send(Channel.OPEN_EFFECT_SETS)
-    })
-    globalShortcut.register(shortcuts.openExpiringItems, () => {
-        TabsController.mainWindow?.webContents.send(Channel.OPEN_EXPIRING_ITEMS_SETTINGS)
-    })
-    globalShortcut.register(shortcuts.makeScreenshot, () => {
-        TabsController.mainWindow?.webContents.send(Channel.MAKE_SCREENSHOT)
-    })
-    globalShortcut.register(shortcuts.openSettings, () => {
-        TabsController.mainWindow?.webContents.send(Channel.OPEN_SETTINGS)
-    })
-    globalShortcut.register(shortcuts.hideShowChat, () => {
-        TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.HIDE_SHOW_CHAT)
-    })
-    globalShortcut.register(shortcuts.fullscreen, () => {
-        TabsController.mainWindowContainer?.mainWindow.setFullScreen(!TabsController.mainWindowContainer?.mainWindow.isFullScreen())
-    })
+    if(shortcuts.openFood != '') {
+        globalShortcut.register(shortcuts.openFood, () => {
+            TabsController.mainWindow?.webContents.send(Channel.OPEN_FOOD)
+        })
+    }
+    if(shortcuts.openNotes != '') {
+        globalShortcut.register(shortcuts.openNotes, () => {
+            TabsController.mainWindow?.webContents.send(Channel.OPEN_NOTES)
+        })
+    }
+    if(shortcuts.openDressingRoom != '') {
+        globalShortcut.register(shortcuts.openDressingRoom, () => {
+            TabsController.mainWindow?.webContents.send(Channel.OPEN_DRESSING_ROOM)
+        })
+    }
+    if(shortcuts.openBeltPotionRoom != '') {
+        globalShortcut.register(shortcuts.openBeltPotionRoom, () => {
+            TabsController.mainWindow?.webContents.send(Channel.OPEN_BELT_POTION_ROOM)
+        })
+    }
+    if(shortcuts.openChatLog != '') {
+        globalShortcut.register(shortcuts.openChatLog, () => {
+            TabsController.mainWindow?.webContents.send(Channel.OPEN_CHAT_LOG)
+        })
+    }
+    if(shortcuts.openChatSettings != '') {
+        globalShortcut.register(shortcuts.openChatSettings, () => {
+            TabsController.mainWindow?.webContents.send(Channel.OPEN_CHAT_SETTINGS)
+        })
+    }
+    if(shortcuts.openNotifications != '') {
+        globalShortcut.register(shortcuts.openNotifications, () => {
+            TabsController.mainWindow?.webContents.send(Channel.OPEN_NOTIFICATIONS)
+        })
+    }
+    if(shortcuts.openEffectSets != '') {
+        globalShortcut.register(shortcuts.openEffectSets, () => {
+            TabsController.mainWindow?.webContents.send(Channel.OPEN_EFFECT_SETS)
+        })
+    }
+    if(shortcuts.openExpiringItems != '') {
+        globalShortcut.register(shortcuts.openExpiringItems, () => {
+            TabsController.mainWindow?.webContents.send(Channel.OPEN_EXPIRING_ITEMS_SETTINGS)
+        })
+    }
+    if(shortcuts.makeScreenshot != '') {
+        globalShortcut.register(shortcuts.makeScreenshot, () => {
+            TabsController.mainWindow?.webContents.send(Channel.MAKE_SCREENSHOT)
+        })
+    }
+    if(shortcuts.openSettings != '') {
+        globalShortcut.register(shortcuts.openSettings, () => {
+            TabsController.mainWindow?.webContents.send(Channel.OPEN_SETTINGS)
+        })
+    }
+    if(shortcuts.hideShowChat != '') {
+        globalShortcut.register(shortcuts.hideShowChat, () => {
+            TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.HIDE_SHOW_CHAT)
+        })
+    }
+    if(shortcuts.fullscreen != '') {
+        globalShortcut.register(shortcuts.fullscreen, () => {
+            TabsController.mainWindowContainer?.mainWindow.setFullScreen(!TabsController.mainWindowContainer?.mainWindow.isFullScreen())
+        })
+    }
 
-    globalShortcut.register(shortcuts.bowSkill1, () => {
-        TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 1)
-    })
-    globalShortcut.register(shortcuts.bowSkill2, () => {
-        TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 2)
-    })
-    globalShortcut.register(shortcuts.bowSkill3, () => {
-        TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 3)
-    })
-    globalShortcut.register(shortcuts.bowSkill4, () => {
-        TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 4)
-    })
-    globalShortcut.register(shortcuts.bowSkill5, () => {
-        TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 5)
-    })
-    globalShortcut.register(shortcuts.bowSkill6, () => {
-        TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 6)
-    })
-    globalShortcut.register(shortcuts.bowSkill7, () => {
-        TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 7)
-    })
-    globalShortcut.register(shortcuts.bowSkill8, () => {
-        TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 8)
-    })
-    globalShortcut.register(shortcuts.bowSkill9, () => {
-        TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 9)
-    })
-    globalShortcut.register(shortcuts.bowSkill10, () => {
-        TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 10)
-    })
-    globalShortcut.register(shortcuts.bowSkill11, () => {
-        TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 11)
-    })
-    globalShortcut.register(shortcuts.bowSkill12, () => {
-        TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 12)
-    })
-    globalShortcut.register(shortcuts.bowSkill13, () => {
-        TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 13)
-    })
-    globalShortcut.register(shortcuts.bowSkill14, () => {
-        TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 14)
-    })
-    globalShortcut.register(shortcuts.bowSkill15, () => {
-        TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 15)
-    })
+    if(shortcuts.bowSkill1 != '') {
+        globalShortcut.register(shortcuts.bowSkill1, () => {
+            TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 1)
+        })
+    }
+    if(shortcuts.bowSkill2 != '') {
+        globalShortcut.register(shortcuts.bowSkill2, () => {
+            TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 2)
+        })
+    }
+    if(shortcuts.bowSkill3 != '') {
+        globalShortcut.register(shortcuts.bowSkill3, () => {
+            TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 3)
+        })
+    }
+    if(shortcuts.bowSkill4 != '') {
+        globalShortcut.register(shortcuts.bowSkill4, () => {
+            TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 4)
+        })
+    }
+    if(shortcuts.bowSkill5 != '') {
+        globalShortcut.register(shortcuts.bowSkill5, () => {
+            TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 5)
+        })
+    }
+    if(shortcuts.bowSkill6 != '') {
+        globalShortcut.register(shortcuts.bowSkill6, () => {
+            TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 6)
+        })
+    }
+    if(shortcuts.bowSkill7 != '') {
+        globalShortcut.register(shortcuts.bowSkill7, () => {
+            TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 7)
+        })
+    }
+    if(shortcuts.bowSkill8 != '') {
+        globalShortcut.register(shortcuts.bowSkill8, () => {
+            TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 8)
+        })
+    }
+    if(shortcuts.bowSkill9 != '') {
+        globalShortcut.register(shortcuts.bowSkill9, () => {
+            TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 9)
+        })
+    }
+    if(shortcuts.bowSkill10 != '') {
+        globalShortcut.register(shortcuts.bowSkill10, () => {
+            TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 10)
+        })
+    }
+    if(shortcuts.bowSkill11 != '') {
+        globalShortcut.register(shortcuts.bowSkill11, () => {
+            TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 11)
+        })
+    }
+    if(shortcuts.bowSkill12 != '') {
+        globalShortcut.register(shortcuts.bowSkill12, () => {
+            TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 12)
+        })
+    }
+    if(shortcuts.bowSkill13 != '') {
+        globalShortcut.register(shortcuts.bowSkill13, () => {
+            TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 13)
+        })
+    }
+    if(shortcuts.bowSkill14 != '') {
+        globalShortcut.register(shortcuts.bowSkill14, () => {
+            TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 14)
+        })
+    }
+    if(shortcuts.bowSkill15 != '') {
+        globalShortcut.register(shortcuts.bowSkill15, () => {
+            TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 15)
+        })
+    }
 }
 
 function unregisterShortcuts() {
-    const shortcuts = getShortcuts()
-    globalShortcut.unregister(shortcuts.openFood)
-    globalShortcut.unregister(shortcuts.openNotes)
-    globalShortcut.unregister(shortcuts.openDressingRoom)
-    globalShortcut.unregister(shortcuts.openBeltPotionRoom)
-    globalShortcut.unregister(shortcuts.openChatLog)
-    globalShortcut.unregister(shortcuts.openChatSettings)
-    globalShortcut.unregister(shortcuts.openNotifications)
-    globalShortcut.unregister(shortcuts.openEffectSets)
-    globalShortcut.unregister(shortcuts.openExpiringItems)
-    globalShortcut.unregister(shortcuts.makeScreenshot)
-    globalShortcut.unregister(shortcuts.openSettings)
-    globalShortcut.unregister(shortcuts.hideShowChat)
-    globalShortcut.unregister(shortcuts.fullscreen)
+    globalShortcut.unregisterAll()
+}
 
-    globalShortcut.unregister(shortcuts.bowSkill1)
-    globalShortcut.unregister(shortcuts.bowSkill2)
-    globalShortcut.unregister(shortcuts.bowSkill3)
-    globalShortcut.unregister(shortcuts.bowSkill4)
-    globalShortcut.unregister(shortcuts.bowSkill5)
-    globalShortcut.unregister(shortcuts.bowSkill6)
-    globalShortcut.unregister(shortcuts.bowSkill7)
-    globalShortcut.unregister(shortcuts.bowSkill8)
-    globalShortcut.unregister(shortcuts.bowSkill9)
-    globalShortcut.unregister(shortcuts.bowSkill10)
-    globalShortcut.unregister(shortcuts.bowSkill11)
-    globalShortcut.unregister(shortcuts.bowSkill12)
-    globalShortcut.unregister(shortcuts.bowSkill13)
-    globalShortcut.unregister(shortcuts.bowSkill14)
-    globalShortcut.unregister(shortcuts.bowSkill15)
+function isClearKey(event: KeyboardEvent): boolean {
+    if(event.key == 'Escape' || event.code == 'Escape') {
+        return true
+    }
+    return false
 }
 
 function isExcludedKey(event: KeyboardEvent): boolean {
-    const comboKeys = ['Control', 'Meta', 'Alt', 'Shift', 'Escape', 'Enter', 'Tab', ' ', 'Backspace', 'Backquote', 'Comma', 'Period', 'BracketLeft', 'BracketRight', 'Backslash', 'Quote', 'Semicolon']
+    const comboKeys = ['Control', 'Meta', 'Alt', 'Shift', 'Enter', 'Tab', ' ', 'Backspace', 'Backquote', 'Comma', 'Period', 'BracketLeft', 'BracketRight', 'Backslash', 'Quote', 'Semicolon']
     if(comboKeys.includes(event.key) || comboKeys.includes(event.code)) {
         return true
     }
@@ -283,5 +317,6 @@ export default {
     unregisterShortcuts,
     isExcludedKey,
     parseCombination,
-    resetShortcuts
+    resetShortcuts,
+    isClearKey
 }
