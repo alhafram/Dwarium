@@ -83,7 +83,7 @@ export enum ShortcutKeys {
     BOW_SKILL_12 = 'bowSkill12',
     BOW_SKILL_13 = 'bowSkill13',
     BOW_SKILL_14 = 'bowSkill14',
-    BOW_SKILL_15 = 'bowSkill15',
+    BOW_SKILL_15 = 'bowSkill15'
 }
 
 function getShortcuts(): Shortcuts {
@@ -123,7 +123,7 @@ function getShortcuts(): Shortcuts {
         bowSkill12: readData(ShortcutKeys.BOW_SKILL_12) ?? 'Alt+W',
         bowSkill13: readData(ShortcutKeys.BOW_SKILL_13) ?? 'Alt+E',
         bowSkill14: readData(ShortcutKeys.BOW_SKILL_14) ?? 'Alt+R',
-        bowSkill15: readData(ShortcutKeys.BOW_SKILL_15) ?? 'Alt+T',
+        bowSkill15: readData(ShortcutKeys.BOW_SKILL_15) ?? 'Alt+T'
     }
     return settings
 }

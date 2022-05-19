@@ -127,7 +127,6 @@ export default function reduce(state: SettingsWindowState, action: SettingsWindo
 }
 
 function saveShortCuts() {
-
     ShortcutService.writeData(ShortcutKeys.OPEN_DEV_TOOLS, Elements.openDevToolsShortcutInput().value)
     ShortcutService.writeData(ShortcutKeys.PREV_TAB, Elements.prevTabShortcutInput().value)
     ShortcutService.writeData(ShortcutKeys.NEXT_TAB, Elements.nextTabShortcutInput().value)
