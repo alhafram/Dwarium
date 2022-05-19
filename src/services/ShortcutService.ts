@@ -1,4 +1,4 @@
-const { globalShortcut } = process.type === 'browser' ? require('electron') : require('@electron/remote')
+const { globalShortcut, session, BrowserWindow, clipboard } = process.type === 'browser' ? require('electron') : require('@electron/remote')
 import { Channel } from '../Models/Channel'
 import { buildPath, ConfigPath } from '../Models/ConfigPathes'
 import FileOperationsService from './FileOperationsService'
@@ -7,6 +7,14 @@ import { TabsController } from './TabsController'
 const path = buildPath(ConfigPath.SHORTCUTS)
 
 export type Shortcuts = {
+    openDevTools: string
+    prevTab: string
+    nextTab: string
+    newTab: string
+    reload: string
+    closeTab: string
+    clearCache: string
+    copyWindowUrl: string
     openFood: string
     openNotes: string
     openDressingRoom: string
@@ -38,6 +46,15 @@ export type Shortcuts = {
 }
 
 export enum ShortcutKeys {
+    OPEN_DEV_TOOLS = 'openDevTools',
+    PREV_TAB = 'prevTab',
+    NEXT_TAB = 'nextTab',
+    NEW_TAB = 'newTab',
+    RELOAD = 'reload',
+    CLOSE_TAB = 'closeTab',
+    CLEAR_CACHE = 'clearCache',
+    COPY_WINDOW_URL = 'copyWindowUrl',
+
     OPEN_FOOD = 'openFood',
     OPEN_NOTES = 'openNotes',
     OPEN_DRESSING_ROOM = 'openDressingRoom',
@@ -71,6 +88,14 @@ export enum ShortcutKeys {
 
 function getShortcuts(): Shortcuts {
     const settings = {
+        openDevTools: readData(ShortcutKeys.OPEN_DEV_TOOLS) ?? 'CommandOrControl+O',
+        prevTab: readData(ShortcutKeys.PREV_TAB) ?? 'Control+Shift+Tab',
+        nextTab: readData(ShortcutKeys.NEXT_TAB) ?? 'Control+Tab',
+        newTab: readData(ShortcutKeys.NEW_TAB) ?? 'CommandOrControl+T',
+        reload: readData(ShortcutKeys.RELOAD) ?? 'CommandOrControl+R',
+        closeTab: readData(ShortcutKeys.CLOSE_TAB) ?? 'CommandOrControl+W',
+        clearCache: readData(ShortcutKeys.CLEAR_CACHE) ?? 'CommandOrControl+Shift+K',
+        copyWindowUrl: readData(ShortcutKeys.COPY_WINDOW_URL) ?? 'CommandOrControl+Shift+C',
         openFood: readData(ShortcutKeys.OPEN_FOOD) ?? 'F1',
         openNotes: readData(ShortcutKeys.OPEN_NOTES) ?? 'F2',
         openDressingRoom: readData(ShortcutKeys.OPEN_DRESSING_ROOM) ?? 'F3',
@@ -121,6 +146,56 @@ function readData(key: string): any {
 
 function registerShortcuts() {
     const shortcuts = getShortcuts()
+    if(shortcuts.openDevTools != '') {
+        globalShortcut.register(shortcuts.openDevTools, () => {
+            TabsController.currentTab().webContents.openDevTools()
+        })
+    }
+    if(shortcuts.prevTab != '') {
+        globalShortcut.register(shortcuts.prevTab, () => {
+            TabsController.mainWindow?.webContents.send(Channel.SWITCH_PREV_TAB)
+        })
+    }
+    if(shortcuts.nextTab != '') {
+        globalShortcut.register(shortcuts.nextTab, () => {
+            TabsController.mainWindow?.webContents.send(Channel.SWITCH_NEXT_TAB)
+        })
+    }
+    if(shortcuts.newTab != '') {
+        globalShortcut.register(shortcuts.newTab, () => {
+            TabsController.mainWindow?.webContents.send(Channel.NEW_TAB)
+        })
+    }
+    if(shortcuts.reload != '') {
+        globalShortcut.register(shortcuts.reload, () => {
+            TabsController.mainWindow?.webContents.send(Channel.RELOAD)
+        })
+    }
+    if(shortcuts.closeTab != '') {
+        globalShortcut.register(shortcuts.closeTab, () => {
+            if(TabsController.currentTab() != TabsController.getMain()) {
+                TabsController.mainWindow?.webContents.send(Channel.CLOSE_TAB, TabsController.current_tab_id)
+            }
+            if(TabsController.onlyMain()) {
+                TabsController.mainWindow?.close()
+            }
+        })
+    }
+    if(shortcuts.clearCache != '') {
+        globalShortcut.register(shortcuts.clearCache, async() => {
+            await session.defaultSession.clearStorageData({ storages: ['appcache', 'filesystem', 'indexdb', 'shadercache', 'cachestorage'] })
+            TabsController.currentTab().webContents.reload()
+        })
+    }
+    if(shortcuts.copyWindowUrl != '') {
+        globalShortcut.register(shortcuts.copyWindowUrl, async() => {
+            const url = BrowserWindow.getFocusedWindow()?.webContents.getURL()
+            if(url) {
+                clipboard.writeText(url)
+            }
+        })
+    }
+
     if(shortcuts.openFood != '') {
         globalShortcut.register(shortcuts.openFood, () => {
             TabsController.mainWindow?.webContents.send(Channel.OPEN_FOOD)
@@ -276,7 +351,7 @@ function isClearKey(event: KeyboardEvent): boolean {
 }
 
 function isExcludedKey(event: KeyboardEvent): boolean {
-    const comboKeys = ['Control', 'Meta', 'Alt', 'Shift', 'Enter', 'Tab', ' ', 'Backspace', 'Backquote', 'Comma', 'Period', 'BracketLeft', 'BracketRight', 'Backslash', 'Quote', 'Semicolon']
+    const comboKeys = ['Control', 'Meta', 'Alt', 'Shift', 'Enter', ' ', 'Backspace', 'Backquote', 'Comma', 'Period', 'BracketLeft', 'BracketRight', 'Backslash', 'Quote', 'Semicolon']
     if(comboKeys.includes(event.key) || comboKeys.includes(event.code)) {
         return true
     }

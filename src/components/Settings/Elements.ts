@@ -41,6 +41,31 @@ export const Elements = {
     needToRestoreUrlsInput(): HTMLInputElement {
         return document.getElementById('needToRestoreUrlsInput') as HTMLInputElement
     },
+    // Client shortcuts
+    openDevToolsShortcutInput(): HTMLInputElement {
+        return document.getElementById('openDevToolsShortcutInput') as HTMLInputElement
+    },
+    prevTabShortcutInput(): HTMLInputElement {
+        return document.getElementById('prevTabShortcutInput') as HTMLInputElement
+    },
+    nextTabShortcutInput(): HTMLInputElement {
+        return document.getElementById('nextTabShortcutInput') as HTMLInputElement
+    },
+    newTabShortcutInput(): HTMLInputElement {
+        return document.getElementById('newTabShortcutInput') as HTMLInputElement
+    },
+    reloadShortcutInput(): HTMLInputElement {
+        return document.getElementById('reloadShortcutInput') as HTMLInputElement
+    },
+    closeTabShortcutInput(): HTMLInputElement {
+        return document.getElementById('closeTabShortcutInput') as HTMLInputElement
+    },
+    clearCacheShortcutInput(): HTMLInputElement {
+        return document.getElementById('clearCacheShortcutInput') as HTMLInputElement
+    },
+    copyWindowUrlShortcutInput(): HTMLInputElement {
+        return document.getElementById('copyWindowUrlShortcutInput') as HTMLInputElement
+    },
     // Plugin shortcuts
     openFoodShortcutInput(): HTMLInputElement {
         return document.getElementById('openFoodShortcutInput') as HTMLInputElement
@@ -81,6 +106,7 @@ export const Elements = {
     fullscreenShortcutInput(): HTMLInputElement {
         return document.getElementById('fullscreenShortcutInput') as HTMLInputElement
     },
+    // Bow shortcuts
     bowSkill1ShortcutInput(): HTMLInputElement {
         return document.getElementById('bowSkill1ShortcutInput') as HTMLInputElement
     },

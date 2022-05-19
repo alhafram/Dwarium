@@ -1,4 +1,4 @@
-import { BrowserView, BrowserWindow, globalShortcut, session, clipboard, Rectangle, app } from 'electron'
+import { BrowserView, BrowserWindow, Rectangle, app } from 'electron'
 import path from 'path'
 import ConfigService from '../../services/ConfigService'
 import { TabsController } from '../../services/TabsController'
@@ -58,7 +58,7 @@ export default class MainWindowContainer {
         this.mainWindow.on('closed', () => {
             (this.browserView?.webContents as any).destroy()
             this.browserView = null
-            this.unregisterShortcuts()
+            ShortcutService.unregisterShortcuts()
         })
 
         this.mainWindow.webContents.on('did-finish-load', () => {
@@ -68,57 +68,12 @@ export default class MainWindowContainer {
 
         this.mainWindow.on('focus', () => {
             this.browserView?.webContents.focus()
-            globalShortcut.register('CommandOrControl+W', () => {
-                if(TabsController.currentTab() != TabsController.getMain()) {
-                    this.mainWindow.webContents.send(Channel.CLOSE_TAB, TabsController.current_tab_id)
-                }
-                if(TabsController.onlyMain()) {
-                    this.mainWindow.close()
-                }
-            })
-            globalShortcut.register('CommandOrControl+O', () => {
-                TabsController.currentTab().webContents.openDevTools()
-            })
-            globalShortcut.register('CommandOrControl+Shift+K', async() => {
-                await session.defaultSession.clearStorageData({ storages: ['appcache', 'filesystem', 'indexdb', 'shadercache', 'cachestorage'] })
-                TabsController.currentTab().webContents.reload()
-            })
-            globalShortcut.register('CommandOrControl+Shift+C', () => {
-                const url = BrowserWindow.getFocusedWindow()?.webContents.getURL()
-                if(url) {
-                    clipboard.writeText(url)
-                }
-            })
-            globalShortcut.register('CommandOrControl+T', () => {
-                this.mainWindow.webContents.send(Channel.NEW_TAB)
-            })
-            globalShortcut.register('Control+Tab', () => {
-                this.mainWindow.webContents.send(Channel.SWITCH_NEXT_TAB)
-            })
-            globalShortcut.register('Control+Shift+Tab', () => {
-                this.mainWindow.webContents.send(Channel.SWITCH_PREV_TAB)
-            })
-            globalShortcut.register('CommandOrControl+R', () => {
-                this.mainWindow.webContents.send(Channel.RELOAD)
-            })
             ShortcutService.registerShortcuts()
         })
 
         this.mainWindow.on('blur', () => {
-            this.unregisterShortcuts()
+            ShortcutService.unregisterShortcuts()
         })
-    }
-
-    unregisterShortcuts() {
-        globalShortcut.unregister('CommandOrControl+W')
-        globalShortcut.unregister('CommandOrControl+O')
-        globalShortcut.unregister('CommandOrControl+Shift+K')
-        globalShortcut.unregister('CommandOrControl+T')
-        globalShortcut.unregister('Control+Tab')
-        globalShortcut.unregister('Control+Shift+Tab')
-        globalShortcut.unregister('CommandOrControl+F')
-        globalShortcut.unregister('CommandOrControl+R')
-        ShortcutService.unregisterShortcuts()
     }
 
     getPositionFor(url: string): Rectangle | undefined {

@@ -67,6 +67,15 @@ export function render(initialState: SettingsWindowState) {
 
 function getShortcutInputs(): HTMLInputElement[] {
     return [
+        Elements.openDevToolsShortcutInput(),
+        Elements.prevTabShortcutInput(),
+        Elements.nextTabShortcutInput(),
+        Elements.newTabShortcutInput(),
+        Elements.reloadShortcutInput(),
+        Elements.closeTabShortcutInput(),
+        Elements.clearCacheShortcutInput(),
+        Elements.copyWindowUrlShortcutInput(),
+
         Elements.openFoodShortcutInput(),
         Elements.openNotesShortcutInput(),
         Elements.openDressingRoomShortcutInput(),
@@ -100,6 +109,15 @@ function getShortcutInputs(): HTMLInputElement[] {
 }
 
 function setupShortcuts() {
+    Elements.openDevToolsShortcutInput().value = state.shortcuts.openDevTools
+    Elements.prevTabShortcutInput().value = state.shortcuts.prevTab
+    Elements.nextTabShortcutInput().value = state.shortcuts.nextTab
+    Elements.newTabShortcutInput().value = state.shortcuts.newTab
+    Elements.reloadShortcutInput().value = state.shortcuts.reload
+    Elements.closeTabShortcutInput().value = state.shortcuts.closeTab
+    Elements.clearCacheShortcutInput().value = state.shortcuts.clearCache
+    Elements.copyWindowUrlShortcutInput().value = state.shortcuts.copyWindowUrl
+
     Elements.openFoodShortcutInput().value = state.shortcuts.openFood
     Elements.openNotesShortcutInput().value = state.shortcuts.openNotes
     Elements.openDressingRoomShortcutInput().value = state.shortcuts.openDressingRoom
