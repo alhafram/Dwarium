@@ -125,5 +125,8 @@ export const Elements = {
     },
     bowSkill15ShortcutInput(): HTMLInputElement {
         return document.getElementById('bowSkill15ShortcutInput') as HTMLInputElement
+    },
+    resetShortcutsButton(): HTMLButtonElement {
+        return document.getElementById('resetShortcutsButton') as HTMLButtonElement
     }
 }

@@ -98,7 +98,7 @@ function getShortcuts(): Shortcuts {
         bowSkill12: readData(ShortcutKeys.BOW_SKILL_12) ?? 'Alt+W',
         bowSkill13: readData(ShortcutKeys.BOW_SKILL_13) ?? 'Alt+E',
         bowSkill14: readData(ShortcutKeys.BOW_SKILL_14) ?? 'Alt+R',
-        bowSkill15: readData(ShortcutKeys.BOW_SKILL_14) ?? 'Alt+T',
+        bowSkill15: readData(ShortcutKeys.BOW_SKILL_15) ?? 'Alt+T',
     }
     return settings
 }
@@ -272,11 +272,16 @@ function parseCombination(event: KeyboardEvent): string {
     return combination
 }
 
+function resetShortcuts(): void {
+    FileOperationsService.deleteFile(path)
+}
+
 export default {
     getShortcuts,
     writeData,
     registerShortcuts,
     unregisterShortcuts,
     isExcludedKey,
-    parseCombination
+    parseCombination,
+    resetShortcuts
 }

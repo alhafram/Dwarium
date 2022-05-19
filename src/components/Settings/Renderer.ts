@@ -114,7 +114,6 @@ function setupShortcuts() {
     Elements.hideShowChatShortcutInput().value = state.shortcuts.hideShowChat
     Elements.fullscreenShortcutInput().value = state.shortcuts.fullscreen
 
-    console.log(state.shortcuts.bowSkill1)
     Elements.bowSkill1ShortcutInput().value = state.shortcuts.bowSkill1
     Elements.bowSkill2ShortcutInput().value = state.shortcuts.bowSkill2
     Elements.bowSkill3ShortcutInput().value = state.shortcuts.bowSkill3
@@ -183,6 +182,14 @@ export function setupView() {
     })
     Elements.needToRestoreUrlsInput().onchange = () => {
         dispatch(SettingsWindowActions.CHANGE_NEED_TO_RESTORE_URLS)
+    }
+    Elements.resetShortcutsButton().onclick = function() {
+        ShortcutService.unregisterShortcuts()
+        ShortcutService.resetShortcuts()
+        setTimeout(() => {
+            document.location.reload()
+            ShortcutService.registerShortcuts()
+        }, 500)
     }
 
     const inputs = getShortcutInputs()
