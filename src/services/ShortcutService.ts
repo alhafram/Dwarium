@@ -173,6 +173,11 @@ function registerShortcuts() {
     }
     if(shortcuts.closeTab != '') {
         globalShortcut.register(shortcuts.closeTab, () => {
+            const openedWindow = BrowserWindow.getFocusedWindow()
+            if(openedWindow && openedWindow != TabsController.mainWindow) {
+                openedWindow.close()
+                return
+            }
             if(TabsController.currentTab() != TabsController.getMain()) {
                 TabsController.mainWindow?.webContents.send(Channel.CLOSE_TAB, TabsController.current_tab_id)
             }
