@@ -7,7 +7,8 @@ enum ConfigPath {
     WINDOW_SIZE = 'windows.json',
     NOTES = 'notes.json',
     CHAT_LOG = 'chat.log',
-    SHORTCUTS = 'shortcuts.json'
+    SHORTCUTS = 'shortcuts.json',
+    GAME_FLAGS = 'gameFlags.json',
 }
 
 enum Folder {

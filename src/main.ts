@@ -74,6 +74,12 @@ function createWindow() {
                 })
                 return
             }
+            if(details.url.includes('canvas.all.js')) {
+                callback({
+                    redirectURL: `file://${app.getAppPath()}/src/Scripts/canvas.all.js`
+                })
+                return
+            }
         }
         callback({})
     })

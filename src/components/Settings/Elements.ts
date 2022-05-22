@@ -41,6 +41,22 @@ export const Elements = {
     needToRestoreUrlsInput(): HTMLInputElement {
         return document.getElementById('needToRestoreUrlsInput') as HTMLInputElement
     },
+    // Game flags
+    hideCasinoInput(): HTMLInputElement {
+        return document.getElementById('hideCasinoInput') as HTMLInputElement
+    },
+    hideActivitiesInput(): HTMLInputElement {
+        return document.getElementById('hideActivitiesInput') as HTMLInputElement
+    },
+    hidePromotionsInput(): HTMLInputElement {
+        return document.getElementById('hidePromotionsInput') as HTMLInputElement
+    },
+    hideDiceGameInput(): HTMLInputElement {
+        return document.getElementById('hideDiceGameInput') as HTMLInputElement
+    },
+    hideWheelFortuneInput(): HTMLInputElement {
+        return document.getElementById('hideWheelFortuneInput') as HTMLInputElement
+    },
     // Game shortcuts
     openHuntShortcutInput(): HTMLInputElement {
         return document.getElementById('openHuntShortcutInput') as HTMLInputElement

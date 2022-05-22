@@ -102,7 +102,8 @@
                 </div>
 
                 <div class="mt-5 inline-flex rounded-full">
-                    <button name="animationSpeedButton" id="gameSpeed" class="settingsSpeedButton rounded-l-full py-2 px-4 font-montserrat text-xs font-extrabold">Откл.</button>
+                    <span class="my-auto font-montserrat text-xs font-extrabold text-secondaryLightDark dark:text-secondaryLight">Скорость анимации</span>
+                    <button name="animationSpeedButton" id="gameSpeed" class="settingsSpeedButton ml-3 rounded-l-full py-2 px-4 font-montserrat text-xs font-extrabold">Откл.</button>
                     <button name="animationSpeedButton" id="x2Speed" class="settingsSpeedButton py-2 px-4 font-montserrat text-xs font-extrabold">x2</button>
                     <button name="animationSpeedButton" id="x3Speed" class="settingsSpeedButton rounded-r-full py-2 px-4 font-montserrat text-xs font-extrabold">x3</button>
                 </div>
@@ -137,6 +138,65 @@
                                 fill="#7D7D7D" />
                         </svg>
                     </button>
+                </div>
+
+                <p class="mt-4 font-montserrat text-xs font-extrabold text-secondaryLightDark dark:text-secondaryLight">Игровые настройки</p>
+
+
+
+                <div class="mt-5 flex font-montserrat text-xs font-extrabold text-secondaryLightDark">
+                    <div class="flex">
+                        <label for="hideCasinoInput" class="relative flex cursor-pointer items-center">
+                            <input type="checkbox" id="hideCasinoInput" class="sr-only" />
+                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="dot absolute left-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
+                        </label>
+                    </div>
+                    <label class="my-auto text-secondaryLightDark dark:text-secondaryLight">Скрывать бандита</label>
+                </div>
+
+                <div class="mt-5 flex font-montserrat text-xs font-extrabold text-secondaryLightDark">
+                    <div class="flex">
+                        <label for="hideActivitiesInput" class="relative flex cursor-pointer items-center">
+                            <input type="checkbox" id="hideActivitiesInput" class="sr-only" />
+                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="dot absolute left-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
+                        </label>
+                    </div>
+                    <label class="my-auto text-secondaryLightDark dark:text-secondaryLight">Скрывать активности</label>
+                </div>
+
+                <div class="mt-5 flex font-montserrat text-xs font-extrabold text-secondaryLightDark">
+                    <div class="flex">
+                        <label for="hidePromotionsInput" class="relative flex cursor-pointer items-center">
+                            <input type="checkbox" id="hidePromotionsInput" class="sr-only" />
+                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="dot absolute left-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
+                        </label>
+                    </div>
+                    <label class="my-auto text-secondaryLightDark dark:text-secondaryLight">Скрывать акции</label>
+                </div>
+
+                <div class="mt-5 flex font-montserrat text-xs font-extrabold text-secondaryLightDark">
+                    <div class="flex">
+                        <label for="hideDiceGameInput" class="relative flex cursor-pointer items-center">
+                            <input type="checkbox" id="hideDiceGameInput" class="sr-only" />
+                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="dot absolute left-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
+                        </label>
+                    </div>
+                    <label class="my-auto text-secondaryLightDark dark:text-secondaryLight">Скрывать дар небес</label>
+                </div>
+
+                <div class="mt-5 flex font-montserrat text-xs font-extrabold text-secondaryLightDark">
+                    <div class="flex">
+                        <label for="hideWheelFortuneInput" class="relative flex cursor-pointer items-center">
+                            <input type="checkbox" id="hideWheelFortuneInput" class="sr-only" />
+                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="dot absolute left-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
+                        </label>
+                    </div>
+                    <label class="my-auto text-secondaryLightDark dark:text-secondaryLight">Скрывать колесо удачи</label>
                 </div>
 
                 <button class="defaultButton mt-8" id="saveButton">Сохранить</button>

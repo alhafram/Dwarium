@@ -63,6 +63,7 @@ export function render(initialState: SettingsWindowState) {
 
     Elements.needToRestoreUrlsInput().checked = initialState.needToRestoreUrls
     setupShortcuts()
+    setupGameFlags()
 }
 
 function getShortcutInputs(): HTMLInputElement[] {
@@ -244,4 +245,12 @@ export function setupView() {
             return false
         }
     })
+}
+
+function setupGameFlags() {
+    Elements.hideCasinoInput().checked = state.gameFlags.hideCasino
+    Elements.hideActivitiesInput().checked = state.gameFlags.hideCasino
+    Elements.hidePromotionsInput().checked = state.gameFlags.hidePromotions
+    Elements.hideDiceGameInput().checked = state.gameFlags.hideDiceGame
+    Elements.hideWheelFortuneInput().checked = state.gameFlags.hideWheelFortune
 }
