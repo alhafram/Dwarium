@@ -41,6 +41,16 @@ export const Elements = {
     needToRestoreUrlsInput(): HTMLInputElement {
         return document.getElementById('needToRestoreUrlsInput') as HTMLInputElement
     },
+    // Game shortcuts
+    openHuntShortcutInput(): HTMLInputElement {
+        return document.getElementById('openHuntShortcutInput') as HTMLInputElement
+    },
+    openBackpackShortcutInput(): HTMLInputElement {
+        return document.getElementById('openBackpackShortcutInput') as HTMLInputElement
+    },
+    openLocationShortcutInput(): HTMLInputElement {
+        return document.getElementById('openLocationShortcutInput') as HTMLInputElement
+    },
     // Client shortcuts
     openDevToolsShortcutInput(): HTMLInputElement {
         return document.getElementById('openDevToolsShortcutInput') as HTMLInputElement

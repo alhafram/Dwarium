@@ -7,6 +7,10 @@ import { TabsController } from './TabsController'
 const path = buildPath(ConfigPath.SHORTCUTS)
 
 export type Shortcuts = {
+    openHunt: string
+    openBackpack: string
+    openLocation: string
+
     openDevTools: string
     prevTab: string
     nextTab: string
@@ -28,6 +32,7 @@ export type Shortcuts = {
     openSettings: string
     hideShowChat: string
     fullscreen: string
+
     bowSkill1: string
     bowSkill2: string
     bowSkill3: string
@@ -46,6 +51,10 @@ export type Shortcuts = {
 }
 
 export enum ShortcutKeys {
+    OPEN_HUNT = 'openHunt',
+    OPEN_BACKPACK = 'openBackpack',
+    OPEN_LOCATION = 'openLocation',
+
     OPEN_DEV_TOOLS = 'openDevTools',
     PREV_TAB = 'prevTab',
     NEXT_TAB = 'nextTab',
@@ -88,6 +97,10 @@ export enum ShortcutKeys {
 
 function getShortcuts(): Shortcuts {
     const settings = {
+        openHunt: readData(ShortcutKeys.OPEN_HUNT) ?? 'Alt+A',
+        openBackpack: readData(ShortcutKeys.OPEN_BACKPACK) ?? 'Alt+S',
+        openLocation: readData(ShortcutKeys.OPEN_LOCATION) ?? 'Alt+D',
+
         openDevTools: readData(ShortcutKeys.OPEN_DEV_TOOLS) ?? 'CommandOrControl+O',
         prevTab: readData(ShortcutKeys.PREV_TAB) ?? 'Control+Shift+Tab',
         nextTab: readData(ShortcutKeys.NEXT_TAB) ?? 'Control+Tab',
@@ -109,6 +122,7 @@ function getShortcuts(): Shortcuts {
         openSettings: readData(ShortcutKeys.OPEN_SETTINGS) ?? 'F12',
         hideShowChat: readData(ShortcutKeys.HIDE_SHOW_CHAT) ?? 'Shift+P',
         fullscreen: readData(ShortcutKeys.FULLSCREEN) ?? 'F11',
+
         bowSkill1: readData(ShortcutKeys.BOW_SKILL_1) ?? 'Alt+1',
         bowSkill2: readData(ShortcutKeys.BOW_SKILL_2) ?? 'Alt+2',
         bowSkill3: readData(ShortcutKeys.BOW_SKILL_3) ?? 'Alt+3',
@@ -146,6 +160,25 @@ function readData(key: string): any {
 
 function registerShortcuts() {
     const shortcuts = getShortcuts()
+
+    if(shortcuts.openHunt != '') {
+        globalShortcut.register(shortcuts.openHunt, () => {
+            TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.OPEN_HUNT)
+        })
+    }
+
+    if(shortcuts.openBackpack != '') {
+        globalShortcut.register(shortcuts.openBackpack, () => {
+            TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.OPEN_BACKPACK)
+        })
+    }
+
+    if(shortcuts.openLocation != '') {
+        globalShortcut.register(shortcuts.openLocation, () => {
+            TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.OPEN_LOCATION)
+        })
+    }
+
     if(shortcuts.openDevTools != '') {
         globalShortcut.register(shortcuts.openDevTools, () => {
             TabsController.currentTab().webContents.openDevTools()

@@ -67,6 +67,10 @@ export function render(initialState: SettingsWindowState) {
 
 function getShortcutInputs(): HTMLInputElement[] {
     return [
+        Elements.openHuntShortcutInput(),
+        Elements.openBackpackShortcutInput(),
+        Elements.openLocationShortcutInput(),
+
         Elements.openDevToolsShortcutInput(),
         Elements.prevTabShortcutInput(),
         Elements.nextTabShortcutInput(),
@@ -109,6 +113,10 @@ function getShortcutInputs(): HTMLInputElement[] {
 }
 
 function setupShortcuts() {
+    Elements.openHuntShortcutInput().value = state.shortcuts.openHunt
+    Elements.openBackpackShortcutInput().value = state.shortcuts.openBackpack
+    Elements.openLocationShortcutInput().value = state.shortcuts.openLocation
+
     Elements.openDevToolsShortcutInput().value = state.shortcuts.openDevTools
     Elements.prevTabShortcutInput().value = state.shortcuts.prevTab
     Elements.nextTabShortcutInput().value = state.shortcuts.nextTab
