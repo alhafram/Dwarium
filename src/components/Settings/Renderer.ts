@@ -253,4 +253,6 @@ function setupGameFlags() {
     Elements.hidePromotionsInput().checked = state.gameFlags.hidePromotions
     Elements.hideDiceGameInput().checked = state.gameFlags.hideDiceGame
     Elements.hideWheelFortuneInput().checked = state.gameFlags.hideWheelFortune
+    Elements.hideNPCEventsInput().checked = state.gameFlags.hideNPCEvents
+    Elements.hideCurrentEventInput().checked = state.gameFlags.hideCurrentEvent
 }

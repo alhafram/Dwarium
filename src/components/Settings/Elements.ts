@@ -57,6 +57,12 @@ export const Elements = {
     hideWheelFortuneInput(): HTMLInputElement {
         return document.getElementById('hideWheelFortuneInput') as HTMLInputElement
     },
+    hideNPCEventsInput(): HTMLInputElement {
+        return document.getElementById('hideNPCEventsInput') as HTMLInputElement
+    },
+    hideCurrentEventInput(): HTMLInputElement {
+        return document.getElementById('hideCurrentEventInput') as HTMLInputElement
+    },
     // Game shortcuts
     openHuntShortcutInput(): HTMLInputElement {
         return document.getElementById('openHuntShortcutInput') as HTMLInputElement

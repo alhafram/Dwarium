@@ -22136,6 +22136,9 @@ canvas.app.location.View.prototype.buildAll = function() {
 }
 ,
 canvas.app.location.View.prototype.buildEvent = function() {
+    if(top?.document.gameFlags.hideCurrentEvent) {
+        return
+    }
     var t = canvas.app.location.model;
     this.eventBtn && (canvas.EventManager.removeEventListener(canvas.ui.ButtonEvent.EVENT_CLICK, this.eventBtn, this.refreshEventHandler, this),
     this.eventBtn.destroy(),
@@ -23603,11 +23606,13 @@ canvas.app.location.view.LocSide = function() {
     this.eventsContainer = new canvas.px.Container,
     this.addChild(this.eventsContainer),
     this.eventsContainer.position.set(15, 70);
-    for (var a = 0; a < e.NPCEvents.length; a++)
+    if(top?.document.gameFlags.hideNPCEvents == false) {
+        for (var a = 0; a < e.NPCEvents.length; a++)
         t = e.NPCEvents[a],
         t = new canvas.app.location.view.popups.NPCEventBtn(t),
         this.eventsContainer.addChild(t);
-    this.updateNPCEvents(),
+        this.updateNPCEvents()
+    }
     canvas.EventManager.addEventListener(canvas.app.location.Event.UPDATE_NPC_EVENTS, null, this.updateNPCEvents, this),
     canvas.EventManager.addEventListener(canvas.app.location.Event.MOVE_TO_ANIM, null, this.moveToAnimHandler, this)
 }

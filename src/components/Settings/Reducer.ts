@@ -179,4 +179,6 @@ function saveGameFlags() {
     GameFlagsService.writeData(GameFlagsKeys.HIDE_PROMOTIONS, Elements.hidePromotionsInput().checked)
     GameFlagsService.writeData(GameFlagsKeys.HIDE_DICE_GAME, Elements.hideDiceGameInput().checked)
     GameFlagsService.writeData(GameFlagsKeys.HIDE_WHEEL_FORTUNE, Elements.hideWheelFortuneInput().checked)
+    GameFlagsService.writeData(GameFlagsKeys.HIDE_NPC_EVENTS, Elements.hideNPCEventsInput().checked)
+    GameFlagsService.writeData(GameFlagsKeys.HIDE_CURRENT_EVENT, Elements.hideCurrentEventInput().checked)
 }
