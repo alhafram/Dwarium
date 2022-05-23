@@ -12,6 +12,7 @@ export type GameFlags = {
     hideNPCEvents: boolean
     hideCurrentEvent: boolean
     hideFronts: boolean
+    hideMiniMap: boolean
 }
 
 export enum GameFlagsKeys {
@@ -22,7 +23,8 @@ export enum GameFlagsKeys {
     HIDE_WHEEL_FORTUNE = 'hideWheelFortune',
     HIDE_NPC_EVENTS = 'hideNPCEvents',
     HIDE_CURRENT_EVENT = 'hideCurrentEvent',
-    HIDE_FRONTS = 'hideFronts'
+    HIDE_FRONTS = 'hideFronts',
+    HIDE_MINI_MAP = 'hideMiniMap'
 }
 
 function getGameFlags(): GameFlags {
@@ -34,7 +36,8 @@ function getGameFlags(): GameFlags {
         hideWheelFortune: readData(GameFlagsKeys.HIDE_WHEEL_FORTUNE) ?? false,
         hideNPCEvents: readData(GameFlagsKeys.HIDE_NPC_EVENTS) ?? false,
         hideCurrentEvent: readData(GameFlagsKeys.HIDE_CURRENT_EVENT) ?? false,
-        hideFronts: readData(GameFlagsKeys.HIDE_FRONTS) ?? false
+        hideFronts: readData(GameFlagsKeys.HIDE_FRONTS) ?? false,
+        hideMiniMap: readData(GameFlagsKeys.HIDE_MINI_MAP) ?? false
     }
     return settings
 }

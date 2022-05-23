@@ -256,4 +256,5 @@ function setupGameFlags() {
     Elements.hideNPCEventsInput().checked = state.gameFlags.hideNPCEvents
     Elements.hideCurrentEventInput().checked = state.gameFlags.hideCurrentEvent
     Elements.hideFrontsInput().checked = state.gameFlags.hideFronts
+    Elements.hideMiniMapInput().checked = state.gameFlags.hideMiniMap
 }

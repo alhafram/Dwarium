@@ -22028,8 +22028,7 @@ canvas.app.location.View.prototype.resize = function() {
     this.listSide.x = this.locSide.x + this.locSide._width - 25,
     this.popupWin && (this.popupWin.x = this.locSide.x + Math.round((this.locSide._width - this.popupWin.width) / 2)),
     this.progressWin && (this.progressWin.x = Math.round((this.locSide._width - this.progressWin.width) / 2)),
-    this.miniMapBtn.scale.x = this.mapSide.visible ? 1 : -1,
-    this.miniMapBtn.position.set(this.mapSide.visible ? this.mapSide.width - 30 : 30, Math.round((this.hh - this.miniMapBtn.height) / 2)),
+    this.setupMapButtonPosition(),
     this.fightBtn && (this.fightBtn.x = this.mapSide.visible ? this.mapSide._width - 16 : 8),
     this.x = Math.abs(Math.round((t.width - ((this.mapSide.visible ? this.mapSide._width - 25 : 0) + this.locSide._width + this.listSide._width - 25)) / 2)),
     null != this.frontsIcon && this.frontsIcon.position.set(this.locSide.x + 15 + (t.CasinoLink ? 90 : 0), this.locSide._height - 65),
@@ -22041,6 +22040,13 @@ canvas.app.location.View.prototype.resize = function() {
     this.popupsExtContainer.position.set(this.locSide.x + Math.round(.5 * (this.locSide._width - this.popupsExtContainer.width)), 19),
     this.m_awardCnt && this.m_awardCnt.position.set(Math.round((this.locSide._width - (this.m_awardTf.width + 20)) / 2), 15),
     this.resizeStarted = !1)
+},
+canvas.app.location.View.prototype.setupMapButtonPosition = function() {
+    if(top?.document.gameFlags.hideMiniMap) {
+        return
+    }
+    this.miniMapBtn.scale.x = this.mapSide.visible ? 1 : -1,
+    this.miniMapBtn.position.set(this.mapSide.visible ? this.mapSide.width - 30 : 30, Math.round((this.hh - this.miniMapBtn.height) / 2))
 }
 ,
 canvas.app.location.View.prototype.get_ww = function() {
@@ -22100,20 +22106,7 @@ canvas.app.location.View.prototype.buildAll = function() {
     "1" == a.OBJ_TOWN.weather && (this.snow || (this.snow = new canvas.app.location.view.elements.Snow,
     this.snow.init(2e3, a.MAX_STAGE_HEIGHT)),
     this.locSide.setSnow(this.snow)),
-    this.miniMapBtn || (this.miniMapBtn = new canvas.ui.SimpleButton(canvas.ResourceLoader.getImage("ui", "mini_map_btn")),
-    canvas.EventManager.addEventListener(canvas.ui.ButtonEvent.EVENT_CLICK, this.miniMapBtn, this.miniMapBtnDownHandler, this),
-    this.miniMapBtn.y = Math.round((a.MIN_STAGE_HEIGHT - this.miniMapBtn.height) / 2),
-    new canvas.app.view.MappingHint(a.STRINGS_ARR[a.S_OPEN_MAP]),
-    this.miniMapHint = new canvas.app.view.MappingHint(a.STRINGS_ARR[a.S_OPEN_MAP]),
-    canvas.EventManager.dispatchEvent(canvas.app.location.Event.HINT_ADD, null, {
-        target: this.miniMapBtn,
-        params: new canvas.utils.HintParams(this.miniMapHint)
-    }),
-    this.addChild(this.miniMapBtn)),
-    this.miniMapBtn.interactiveChildren = a.WITH_MAP,
-    this.miniMapBtn.filters = a.WITH_MAP ? [] : [canvas.Functions.getGreyScale(.5)],
-    this.miniMapBtn.parent && (this.getChildIndex(this.listSide) > this.getChildIndex(this.miniMapBtn) && this.swapChildren(this.miniMapBtn, this.listSide),
-    this.getChildIndex(this.locSide) > this.getChildIndex(this.miniMapBtn) && this.swapChildren(this.miniMapBtn, this.locSide)),
+    this.buildMapButton(),
     this.getChildIndex(this.listSide) > this.getChildIndex(this.locSide) && this.swapChildren(this.locSide, this.listSide),
     this.buildEvent(),
     this.buildFight(),
@@ -22136,6 +22129,26 @@ canvas.app.location.View.prototype.buildAll = function() {
     a.fronts.frontsEnabled && this.main.loadFrontsData(),
     this.resize(),
     this.main.hintManager.hide()
+},
+canvas.app.location.View.prototype.buildMapButton = function() {
+    if(top?.document.gameFlags.hideMiniMap) {
+        return
+    }
+    var t, e, a = canvas.app.location.model;
+    this.miniMapBtn || (this.miniMapBtn = new canvas.ui.SimpleButton(canvas.ResourceLoader.getImage("ui", "mini_map_btn")),
+    canvas.EventManager.addEventListener(canvas.ui.ButtonEvent.EVENT_CLICK, this.miniMapBtn, this.miniMapBtnDownHandler, this),
+    this.miniMapBtn.y = Math.round((a.MIN_STAGE_HEIGHT - this.miniMapBtn.height) / 2),
+    new canvas.app.view.MappingHint(a.STRINGS_ARR[a.S_OPEN_MAP]),
+    this.miniMapHint = new canvas.app.view.MappingHint(a.STRINGS_ARR[a.S_OPEN_MAP]),
+    canvas.EventManager.dispatchEvent(canvas.app.location.Event.HINT_ADD, null, {
+        target: this.miniMapBtn,
+        params: new canvas.utils.HintParams(this.miniMapHint)
+    }),
+    this.addChild(this.miniMapBtn)),
+    this.miniMapBtn.interactiveChildren = a.WITH_MAP,
+    this.miniMapBtn.filters = a.WITH_MAP ? [] : [canvas.Functions.getGreyScale(.5)],
+    this.miniMapBtn.parent && (this.getChildIndex(this.listSide) > this.getChildIndex(this.miniMapBtn) && this.swapChildren(this.miniMapBtn, this.listSide),
+    this.getChildIndex(this.locSide) > this.getChildIndex(this.miniMapBtn) && this.swapChildren(this.miniMapBtn, this.locSide))
 }
 ,
 canvas.app.location.View.prototype.buildEvent = function() {
