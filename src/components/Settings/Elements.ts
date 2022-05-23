@@ -63,6 +63,9 @@ export const Elements = {
     hideCurrentEventInput(): HTMLInputElement {
         return document.getElementById('hideCurrentEventInput') as HTMLInputElement
     },
+    hideFrontsInput(): HTMLInputElement {
+        return document.getElementById('hideFrontsInput') as HTMLInputElement
+    },
     // Game shortcuts
     openHuntShortcutInput(): HTMLInputElement {
         return document.getElementById('openHuntShortcutInput') as HTMLInputElement

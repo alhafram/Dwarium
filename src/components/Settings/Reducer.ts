@@ -181,4 +181,5 @@ function saveGameFlags() {
     GameFlagsService.writeData(GameFlagsKeys.HIDE_WHEEL_FORTUNE, Elements.hideWheelFortuneInput().checked)
     GameFlagsService.writeData(GameFlagsKeys.HIDE_NPC_EVENTS, Elements.hideNPCEventsInput().checked)
     GameFlagsService.writeData(GameFlagsKeys.HIDE_CURRENT_EVENT, Elements.hideCurrentEventInput().checked)
+    GameFlagsService.writeData(GameFlagsKeys.HIDE_FRONTS, Elements.hideFrontsInput().checked)
 }

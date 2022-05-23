@@ -255,4 +255,5 @@ function setupGameFlags() {
     Elements.hideWheelFortuneInput().checked = state.gameFlags.hideWheelFortune
     Elements.hideNPCEventsInput().checked = state.gameFlags.hideNPCEvents
     Elements.hideCurrentEventInput().checked = state.gameFlags.hideCurrentEvent
+    Elements.hideFrontsInput().checked = state.gameFlags.hideFronts
 }

@@ -22129,8 +22129,10 @@ canvas.app.location.View.prototype.buildAll = function() {
     this.addChild(this.popupsExtContainer),
     this.addChild(this.popupsContainer),
     this.addChild(this.clocks),
-    this.campaignInfo && this.addChild(this.campaignInfo),
-    a.fronts.frontsEnabled && this.main.loadFrontsData(),
+    this.campaignInfo && this.addChild(this.campaignInfo)
+    if(top?.document.gameFlags.hideFronts == false) {
+        a.fronts.frontsEnabled && this.main.loadFrontsData()
+    }
     this.resize(),
     this.main.hintManager.hide()
 }
