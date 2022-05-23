@@ -21552,6 +21552,9 @@ canvas.app.location.Main.prototype.timer60Handler = function() {
 }
 ,
 canvas.app.location.Main.prototype.loadFrontsData = function(t, e) {
+    if(top?.document.gameFlags.hideFronts == true) {
+        return
+    }
     if (null == t && (t = "conf"),
     null == e && (e = ""),
     this.model.frontsAction = t,
@@ -22129,10 +22132,8 @@ canvas.app.location.View.prototype.buildAll = function() {
     this.addChild(this.popupsExtContainer),
     this.addChild(this.popupsContainer),
     this.addChild(this.clocks),
-    this.campaignInfo && this.addChild(this.campaignInfo)
-    if(top?.document.gameFlags.hideFronts == false) {
-        a.fronts.frontsEnabled && this.main.loadFrontsData()
-    }
+    this.campaignInfo && this.addChild(this.campaignInfo),
+    a.fronts.frontsEnabled && this.main.loadFrontsData(),
     this.resize(),
     this.main.hintManager.hide()
 }
@@ -22240,6 +22241,9 @@ canvas.app.location.View.prototype.timerDoneHandler = function() {
 }
 ,
 canvas.app.location.View.prototype.updateFronts = function() {
+    if(top?.document.gameFlags.hideFronts == true) {
+        return
+    }
     var t = canvas.app.location.model;
     t.fronts.frontsEnabled ? (this.addChild(this.frontsIcon),
     this.frontsIcon.update()) : this.frontsIcon.parent == this && this.removeChild(this.frontsIcon),
@@ -34477,6 +34481,9 @@ canvas.app.world.Main.prototype.timerHandler = function() {
 }
 ,
 canvas.app.world.Main.prototype.loadFrontsData = function(t, e) {
+    if(top?.document.gameFlags.hideFronts == true) {
+        return
+    }
     front_locations()
 }
 ,
@@ -35005,6 +35012,9 @@ canvas.app.world.View.prototype.updateTreasure = function() {
 }
 ,
 canvas.app.world.View.prototype.updateFronts = function() {
+    if(top?.document.gameFlags.hideFronts == true) {
+        return
+    }
     var t, e, a, s, i, n = canvas.app.world.model;
     for (i in n.AREAS)
         if (null != (t = n.AREAS[i]).sen)
