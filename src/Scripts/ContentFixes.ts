@@ -10,8 +10,8 @@ export function userInfoAchieventFix(): string {
 export function ergamFix(): string {
     return `
     setTimeout(() => {
-        const elem = document.game.main.children[0]?.location.children[1]
-        if(elem) {
+        if(document && document.game && document.game.main && document.game.main.children && document.game.main.children[0] && document.game.main.children[0]?.location && document.game.main.children[0]?.location.children &&  document.game.main.children[0]?.location.children[1]) {
+            const elem = document.game.main.children[0].location.children[1]
             var scale = 282 / document.game.main.children[0].location.children[1].width
             if(document.game.main.children[0].location.children[1].width > 300) {
                 document.game.main.children[0].location.children[1].transform.scale.x = scale

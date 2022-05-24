@@ -168,7 +168,8 @@ export default class MainWindowContainer {
                             contextIsolation: false,
                             nativeWindowOpen: true,
                             nodeIntegrationInSubFrames: true,
-                            enablePreferredSizeMode: true
+                            enablePreferredSizeMode: true,
+                            webSecurity: false
                         }
                     }
                 }

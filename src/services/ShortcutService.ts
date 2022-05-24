@@ -201,7 +201,12 @@ function registerShortcuts() {
     }
     if(shortcuts.reload != '') {
         globalShortcut.register(shortcuts.reload, () => {
-            TabsController.mainWindow?.webContents.send(Channel.RELOAD)
+            const window = BrowserWindow.getFocusedWindow()
+            if(window == TabsController.mainWindow) {
+                TabsController.currentTab().webContents.reload()
+            } else {
+                window?.webContents.reload()
+            }
         })
     }
     if(shortcuts.closeTab != '') {
