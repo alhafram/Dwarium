@@ -181,7 +181,12 @@ function registerShortcuts() {
 
     if(shortcuts.openDevTools != '') {
         globalShortcut.register(shortcuts.openDevTools, () => {
-            TabsController.currentTab().webContents.openDevTools()
+            const window = BrowserWindow.getFocusedWindow()
+            if(window == TabsController.mainWindow) {
+                TabsController.currentTab().webContents.openDevTools()
+            } else {
+                window?.webContents.openDevTools()
+            }
         })
     }
     if(shortcuts.prevTab != '') {
