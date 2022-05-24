@@ -142,7 +142,10 @@ export default class MainWindowContainer {
                             height: windowPosition?.height ?? defaultPosition.height,
                             resizable: true,
                             movable: true,
-                            fullscreen: false
+                            fullscreen: false,
+                            webPreferences: {
+                                webSecurity: false
+                            }
                         }
                     }
                 }
@@ -205,7 +208,10 @@ export default class MainWindowContainer {
                 width: windowPosition?.width ?? defaultPosition.width,
                 height: windowPosition?.height ?? defaultPosition.height,
                 parent: ConfigService.getSettings().windowsAboveApp ? this.mainWindow : undefined,
-                fullscreen: false
+                fullscreen: false,
+                webPreferences: {
+                    webSecurity: false
+                }
             })
             newWindow.on('focus', () => {
                 ShortcutService.registerShortcuts()

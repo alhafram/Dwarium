@@ -21552,7 +21552,7 @@ canvas.app.location.Main.prototype.timer60Handler = function() {
 }
 ,
 canvas.app.location.Main.prototype.loadFrontsData = function(t, e) {
-    if(top?.document.gameFlags.hideFronts == true) {
+    if(top?.document.gameFlags?.hideFronts == true) {
         return
     }
     if (null == t && (t = "conf"),
@@ -21993,13 +21993,13 @@ canvas.app.location.View = function(t) {
     canvas.EventManager.addEventListener(canvas.ui.ButtonEvent.EVENT_CLICK, this.unlinkBtn, this.onCloseBrillContainer, this)),
     null != e.par.time_bonus_online && this.popupsContainer.init(canvas.app.location.Const.POPUP_ZERO_LEVEL, e.par),
     this.popupsContainer.children.length < 1 && e.activityURL && this.popupsContainer.init(canvas.app.location.Const.POPUP_ACTIVITY, e.activityURL)
-    if(top?.document.gameFlags.hidePromotions == false) {
+    if(top?.document.gameFlags?.hidePromotions == false) {
         e.campaignData && (this.campaignInfo = new canvas.app.location.view.elements.CampaignInfo,
             this.campaignInfo.data = e.campaignData,
             this.addChild(this.campaignInfo),
             this.campaignInfo.y = 28)
     }
-    if(top?.document.gameFlags.hideWheelFortune == false) {
+    if(top?.document.gameFlags?.hideWheelFortune == false) {
         e.wfEnabled && (this.popupWheelFortune = this.popupsExtContainer.addChild(new canvas.app.location.view.popups.PopupWheelFortune(e.wfMsg,e.wfExpireTime,e.wfUrl))),
         "1" == e.localStorage.get("MapSide") && e.WITH_MAP && this.miniMapBtnDownHandler()
     }
@@ -22042,7 +22042,7 @@ canvas.app.location.View.prototype.resize = function() {
     this.resizeStarted = !1)
 },
 canvas.app.location.View.prototype.setupMapButtonPosition = function() {
-    if(top?.document.gameFlags.hideMiniMap) {
+    if(top?.document.gameFlags?.hideMiniMap) {
         return
     }
     this.miniMapBtn.scale.x = this.mapSide.visible ? 1 : -1,
@@ -22131,7 +22131,7 @@ canvas.app.location.View.prototype.buildAll = function() {
     this.main.hintManager.hide()
 },
 canvas.app.location.View.prototype.buildMapButton = function() {
-    if(top?.document.gameFlags.hideMiniMap) {
+    if(top?.document.gameFlags?.hideMiniMap) {
         return
     }
     var t, e, a = canvas.app.location.model;
@@ -22152,7 +22152,7 @@ canvas.app.location.View.prototype.buildMapButton = function() {
 }
 ,
 canvas.app.location.View.prototype.buildEvent = function() {
-    if(top?.document.gameFlags.hideCurrentEvent) {
+    if(top?.document.gameFlags?.hideCurrentEvent) {
         return
     }
     var t = canvas.app.location.model;
@@ -22254,7 +22254,7 @@ canvas.app.location.View.prototype.timerDoneHandler = function() {
 }
 ,
 canvas.app.location.View.prototype.updateFronts = function() {
-    if(top?.document.gameFlags.hideFronts == true) {
+    if(top?.document.gameFlags?.hideFronts == true) {
         return
     }
     var t = canvas.app.location.model;
@@ -23580,7 +23580,7 @@ canvas.app.location.view.LocSide = function() {
     canvas.EventManager.addEventListener(canvas.ui.ScrollEvent.EVENT_SCROLL, this.scrollV, this.scrollVHandler, this),
     this.techBtn = new canvas.app.location.view.popups.TechBtn(e.par,canvas.app.location.Event.ENTER_FRAME),
     this.infoBtn = new canvas.app.location.view.popups.InfoBtn(e.par)
-    if(top?.document.gameFlags.hideCasino == false) {
+    if(top?.document.gameFlags?.hideCasino == false) {
         e.CasinoLink && (this.casinoBtn = new canvas.ui.SimpleButton(canvas.ResourceLoader.getImage("ui", "casino")),
         this.casinoBtn.position.set(13, 207),
         this.casinoBtn.sprite.hitArea = new canvas.px.Circle(38,58,27),
@@ -23590,7 +23590,7 @@ canvas.app.location.view.LocSide = function() {
         }),
         canvas.EventManager.addEventListener(canvas.ui.ButtonEvent.EVENT_CLICK, this.casinoBtn, this.onCasionClick, this))
     }
-    if(top?.document.gameFlags.hideDiceGame == false) {
+    if(top?.document.gameFlags?.hideDiceGame == false) {
         e.diceGameEnabled && (this.diceGameButton = new canvas.ui.SimpleButton(canvas.ResourceLoader.getImage("ui", "dice_game")),
         this.diceGameButton.sprite.hitArea = new canvas.px.Circle(46,46,36),
         canvas.EventManager.dispatchEvent(canvas.app.location.Event.HINT_ADD, null, {
@@ -23625,7 +23625,7 @@ canvas.app.location.view.LocSide = function() {
     this.eventsContainer = new canvas.px.Container,
     this.addChild(this.eventsContainer),
     this.eventsContainer.position.set(15, 70);
-    if(top?.document.gameFlags.hideNPCEvents == false) {
+    if(top?.document.gameFlags?.hideNPCEvents == false) {
         for (var a = 0; a < e.NPCEvents.length; a++)
         t = e.NPCEvents[a],
         t = new canvas.app.location.view.popups.NPCEventBtn(t),
@@ -25039,7 +25039,7 @@ canvas.app.location.view.popups.Popups.prototype.init = function(t, e) {
             return this.addChild(a);
         break;
     case canvas.app.location.Const.POPUP_ACTIVITY:
-        if(top?.document.gameFlags.hideActivities == false) {
+        if(top?.document.gameFlags?.hideActivities == false) {
             if (a = new canvas.app.location.view.popups.PopupActivity(e),
             s = new canvas.app.view.MappingHint(canvas.Translator.getText(733)),
             canvas.EventManager.dispatchEvent(this.hintEvent.HINT_ADD, null, {
@@ -34494,7 +34494,7 @@ canvas.app.world.Main.prototype.timerHandler = function() {
 }
 ,
 canvas.app.world.Main.prototype.loadFrontsData = function(t, e) {
-    if(top?.document.gameFlags.hideFronts == true) {
+    if(top?.document.gameFlags?.hideFronts == true) {
         return
     }
     front_locations()
@@ -35025,7 +35025,7 @@ canvas.app.world.View.prototype.updateTreasure = function() {
 }
 ,
 canvas.app.world.View.prototype.updateFronts = function() {
-    if(top?.document.gameFlags.hideFronts == true) {
+    if(top?.document.gameFlags?.hideFronts == true) {
         return
     }
     var t, e, a, s, i, n = canvas.app.world.model;

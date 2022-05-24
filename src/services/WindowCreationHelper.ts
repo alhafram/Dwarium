@@ -20,7 +20,8 @@ export function createWindowAndLoad(windowType: WindowType, htmlPath?: HTMLPath,
         parent: ConfigService.getSettings().windowsAboveApp ? TabsController.mainWindow ?? undefined : undefined,
         webPreferences: {
             preload: preloadPath ? path.join(__dirname, preloadPath) : undefined,
-            contextIsolation: contextIsolation
+            contextIsolation: contextIsolation,
+            webSecurity: false
         },
         fullscreen: false
     })

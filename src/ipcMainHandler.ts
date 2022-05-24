@@ -48,7 +48,8 @@ function createNewTab(url: string, id: string) {
     url = url ?? 'https://google.com'
     const browserView = new BrowserView({
         webPreferences: {
-            enablePreferredSizeMode: true
+            enablePreferredSizeMode: true,
+            webSecurity: false
         }
     })
     setupContextMenu(browserView)
