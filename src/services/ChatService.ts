@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { powerMonitor, globalShortcut } from '@electron/remote'
+import { powerMonitor } from '@electron/remote'
 import ConfigService from './ConfigService'
 import ChatSettingsService from './ChatSettingsService'
 import { ipcRenderer } from 'electron'
@@ -255,8 +255,6 @@ function handleMessage(message: any) {
     }
 }
 
-let chatHidden = false
-
 function logMessage(message: any) {
     const node = $(message).get()[0].cloneNode(true) as HTMLElement
     node.removeAttribute('original-msg-object')
@@ -276,40 +274,37 @@ function logMessage(message: any) {
     })
 }
 
-function setupShortcut() {
-    globalShortcut.unregister('F7')
-    globalShortcut.register('F7', () => {
-        if(chatHidden) {
-            // @ts-ignore
-            _top().gebi('chat_TD').height = '30%'
-            // @ts-ignore
-            _top().gebi('main_frame_TD').height = '70%'
-            // @ts-ignore
-            _top().gebi('chat_TD').style.display = 'block'
-            // @ts-ignore
-            _top().gebi('chat_TD').style.display = ''
-            // @ts-ignore
-        } else {
-            // @ts-ignore
-            _top().gebi('chat_TD').height = '0%'
-            // @ts-ignore
-            _top().gebi('main_frame_TD').height = '100%'
-            // @ts-ignore
-            _top().gebi('chat_TD').style.display = 'none'
-        }
-        chatHidden = !chatHidden
-    })
-}
-
 ipcRenderer.on(Channel.CHAT_SETTINGS_CHANGED, async() => {
     await loadConfig()
     restartFlooding()
 })
 
+let chatHidden = false
+ipcRenderer.on(Channel.HIDE_SHOW_CHAT, async() => {
+    if(chatHidden) {
+        // @ts-ignore
+        _top().gebi('chat_TD').height = '30%'
+        // @ts-ignore
+        _top().gebi('main_frame_TD').height = '70%'
+        // @ts-ignore
+        _top().gebi('chat_TD').style.display = 'block'
+        // @ts-ignore
+        _top().gebi('chat_TD').style.display = ''
+        // @ts-ignore
+    } else {
+        // @ts-ignore
+        _top().gebi('chat_TD').height = '0%'
+        // @ts-ignore
+        _top().gebi('main_frame_TD').height = '100%'
+        // @ts-ignore
+        _top().gebi('chat_TD').style.display = 'none'
+    }
+    chatHidden = !chatHidden
+})
+
 export default {
     handleMessage,
     logMessage,
-    setupShortcut,
     setupAutoResponder,
     setupFlooding
 }

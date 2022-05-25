@@ -1,8 +1,10 @@
 import { shell } from 'electron'
+import ShortcutService from '../../services/ShortcutService'
 import { SettingsWindowActions } from './Actions'
 import { Elements } from './Elements'
 import { dispatch } from './preload'
 import { SettingsWindowState, UserAgentType } from './SettingsWindowState'
+import '../Common/Utils'
 
 let state: SettingsWindowState
 
@@ -60,6 +62,114 @@ export function render(initialState: SettingsWindowState) {
     })
 
     Elements.needToRestoreUrlsInput().checked = initialState.needToRestoreUrls
+    setupShortcuts()
+    setupGameFlags()
+}
+
+function getShortcutInputs(): HTMLInputElement[] {
+    return [
+        Elements.openHuntShortcutInput(),
+        Elements.openBackpackShortcutInput(),
+        Elements.openLocationShortcutInput(),
+
+        Elements.openDevToolsShortcutInput(),
+        Elements.prevTabShortcutInput(),
+        Elements.nextTabShortcutInput(),
+        Elements.newTabShortcutInput(),
+        Elements.reloadShortcutInput(),
+        Elements.closeTabShortcutInput(),
+        Elements.clearCacheShortcutInput(),
+        Elements.copyWindowUrlShortcutInput(),
+
+        Elements.openFoodShortcutInput(),
+        Elements.openNotesShortcutInput(),
+        Elements.openDressingRoomShortcutInput(),
+        Elements.openBeltPotionRoomShortcutInput(),
+        Elements.openChatLogShortcutInput(),
+        Elements.openChatSettingsShortcutInput(),
+        Elements.openNotificationsShortcutInput(),
+        Elements.openEffectSetsShortcutInput(),
+        Elements.openExpiringItemsSettingsShortcutInput(),
+        Elements.makeScreenshotShortcutInput(),
+        Elements.openSettingsShortcutInput(),
+        Elements.hideShowChatShortcutInput(),
+        Elements.fullscreenShortcutInput(),
+
+        Elements.bowSkill1ShortcutInput(),
+        Elements.bowSkill2ShortcutInput(),
+        Elements.bowSkill3ShortcutInput(),
+        Elements.bowSkill4ShortcutInput(),
+        Elements.bowSkill5ShortcutInput(),
+        Elements.bowSkill6ShortcutInput(),
+        Elements.bowSkill7ShortcutInput(),
+        Elements.bowSkill8ShortcutInput(),
+        Elements.bowSkill9ShortcutInput(),
+        Elements.bowSkill10ShortcutInput(),
+        Elements.bowSkill11ShortcutInput(),
+        Elements.bowSkill12ShortcutInput(),
+        Elements.bowSkill13ShortcutInput(),
+        Elements.bowSkill14ShortcutInput(),
+        Elements.bowSkill15ShortcutInput()
+    ]
+}
+
+function setupShortcuts() {
+    Elements.openHuntShortcutInput().value = state.shortcuts.openHunt
+    Elements.openBackpackShortcutInput().value = state.shortcuts.openBackpack
+    Elements.openLocationShortcutInput().value = state.shortcuts.openLocation
+
+    Elements.openDevToolsShortcutInput().value = state.shortcuts.openDevTools
+    Elements.prevTabShortcutInput().value = state.shortcuts.prevTab
+    Elements.nextTabShortcutInput().value = state.shortcuts.nextTab
+    Elements.newTabShortcutInput().value = state.shortcuts.newTab
+    Elements.reloadShortcutInput().value = state.shortcuts.reload
+    Elements.closeTabShortcutInput().value = state.shortcuts.closeTab
+    Elements.clearCacheShortcutInput().value = state.shortcuts.clearCache
+    Elements.copyWindowUrlShortcutInput().value = state.shortcuts.copyWindowUrl
+
+    Elements.openFoodShortcutInput().value = state.shortcuts.openFood
+    Elements.openNotesShortcutInput().value = state.shortcuts.openNotes
+    Elements.openDressingRoomShortcutInput().value = state.shortcuts.openDressingRoom
+    Elements.openBeltPotionRoomShortcutInput().value = state.shortcuts.openBeltPotionRoom
+    Elements.openChatLogShortcutInput().value = state.shortcuts.openChatLog
+    Elements.openChatSettingsShortcutInput().value = state.shortcuts.openChatSettings
+    Elements.openNotificationsShortcutInput().value = state.shortcuts.openNotifications
+    Elements.openEffectSetsShortcutInput().value = state.shortcuts.openEffectSets
+    Elements.openExpiringItemsSettingsShortcutInput().value = state.shortcuts.openExpiringItems
+    Elements.makeScreenshotShortcutInput().value = state.shortcuts.makeScreenshot
+    Elements.openSettingsShortcutInput().value = state.shortcuts.openSettings
+    Elements.hideShowChatShortcutInput().value = state.shortcuts.hideShowChat
+    Elements.fullscreenShortcutInput().value = state.shortcuts.fullscreen
+
+    Elements.bowSkill1ShortcutInput().value = state.shortcuts.bowSkill1
+    Elements.bowSkill2ShortcutInput().value = state.shortcuts.bowSkill2
+    Elements.bowSkill3ShortcutInput().value = state.shortcuts.bowSkill3
+    Elements.bowSkill4ShortcutInput().value = state.shortcuts.bowSkill4
+    Elements.bowSkill5ShortcutInput().value = state.shortcuts.bowSkill5
+    Elements.bowSkill6ShortcutInput().value = state.shortcuts.bowSkill6
+    Elements.bowSkill7ShortcutInput().value = state.shortcuts.bowSkill7
+    Elements.bowSkill8ShortcutInput().value = state.shortcuts.bowSkill8
+    Elements.bowSkill9ShortcutInput().value = state.shortcuts.bowSkill9
+    Elements.bowSkill10ShortcutInput().value = state.shortcuts.bowSkill10
+    Elements.bowSkill11ShortcutInput().value = state.shortcuts.bowSkill11
+    Elements.bowSkill12ShortcutInput().value = state.shortcuts.bowSkill12
+    Elements.bowSkill13ShortcutInput().value = state.shortcuts.bowSkill13
+    Elements.bowSkill14ShortcutInput().value = state.shortcuts.bowSkill14
+    Elements.bowSkill15ShortcutInput().value = state.shortcuts.bowSkill15
+
+    const inputs = getShortcutInputs()
+    inputs.forEach((element) => {
+        element.style.borderColor = ''
+    })
+    inputs.forEach((element) => {
+        const excludedElementInputs = inputs.removeItem(element)
+        for(const excludedElement of excludedElementInputs) {
+            if(excludedElement.value == element.value && excludedElement.value != '') {
+                element.style.borderColor = '#FF0000'
+                excludedElement.style.borderColor = '#FF0000'
+            }
+        }
+    })
 }
 
 export function setupView() {
@@ -100,4 +210,51 @@ export function setupView() {
     Elements.needToRestoreUrlsInput().onchange = () => {
         dispatch(SettingsWindowActions.CHANGE_NEED_TO_RESTORE_URLS)
     }
+    Elements.resetShortcutsButton().onclick = function() {
+        ShortcutService.unregisterShortcuts()
+        ShortcutService.resetShortcuts()
+        setTimeout(() => {
+            document.location.reload()
+            ShortcutService.registerShortcuts()
+        }, 500)
+    }
+
+    const inputs = getShortcutInputs()
+    inputs.forEach((element) => {
+        element.onfocus = function() {
+            element.style.borderColor = '#000'
+            ShortcutService.unregisterShortcuts()
+        }
+        element.onblur = function() {
+            element.style.borderColor = ''
+            dispatch(SettingsWindowActions.SAVE_SHORTCUTS)
+            ShortcutService.registerShortcuts()
+        }
+        element.onkeyup = function(event) {
+            if(ShortcutService.isExcludedKey(event)) {
+                return
+            }
+            if(ShortcutService.isClearKey(event)) {
+                element.value = ''
+            } else {
+                element.value = ShortcutService.parseCombination(event)
+            }
+            element.blur()
+        }
+        element.onkeydown = function() {
+            return false
+        }
+    })
+}
+
+function setupGameFlags() {
+    Elements.hideCasinoInput().checked = state.gameFlags.hideCasino
+    Elements.hideActivitiesInput().checked = state.gameFlags.hideCasino
+    Elements.hidePromotionsInput().checked = state.gameFlags.hidePromotions
+    Elements.hideDiceGameInput().checked = state.gameFlags.hideDiceGame
+    Elements.hideWheelFortuneInput().checked = state.gameFlags.hideWheelFortune
+    Elements.hideNPCEventsInput().checked = state.gameFlags.hideNPCEvents
+    Elements.hideCurrentEventInput().checked = state.gameFlags.hideCurrentEvent
+    Elements.hideFrontsInput().checked = state.gameFlags.hideFronts
+    Elements.hideMiniMapInput().checked = state.gameFlags.hideMiniMap
 }

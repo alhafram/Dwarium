@@ -21,7 +21,7 @@ export enum Channel {
     UPDATE_APPLICATION = 'updateApplication',
     FIND_CHARACTER = 'findCharacter',
     USER_PRV = 'userPrv',
-    TAKE_SCREENSHOT = 'takeScreenshot',
+    MAKE_SCREENSHOT = 'makeScreenshot',
     FIND_EFFECTS = 'findEffects',
     OPEN_NOTES = 'openNotes',
     OPEN_FOOD = 'openFood',
@@ -45,5 +45,11 @@ export enum Channel {
     FAVOURITE_UPDATED = 'favouriteUpdated',
     SWITCH_NEXT_TAB = 'switchNextTab',
     SWITCH_PREV_TAB = 'switchPrevTab',
-    MAKE_WEB_REQUEST = 'makeWebRequest'
+    MAKE_WEB_REQUEST = 'makeWebRequest',
+    HIDE_SHOW_CHAT = 'hideShowChat',
+    FULLSCREEN = 'fullscreen',
+    BOW_SKILL = 'bowSkill',
+    OPEN_HUNT = 'openHunt',
+    OPEN_BACKPACK = 'openBackpack',
+    OPEN_LOCATION = 'openLocation'
 }

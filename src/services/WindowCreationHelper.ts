@@ -6,6 +6,7 @@ import { Channel } from '../Models/Channel'
 import setupContextMenu from './ContextMenu'
 import { WindowType, HTMLPath } from '../Models/WindowModels'
 import { getClientWindowPosition, saveClientWindowPosition } from './WindowSizeManager'
+import ShortcutService from './ShortcutService'
 
 export function createWindowAndLoad(windowType: WindowType, htmlPath?: HTMLPath, preloadPath?: string, enableRemote = false, contextIsolation = true): BrowserWindow {
     const windowPosition = getClientWindowPosition(windowType)
@@ -19,7 +20,8 @@ export function createWindowAndLoad(windowType: WindowType, htmlPath?: HTMLPath,
         parent: ConfigService.getSettings().windowsAboveApp ? TabsController.mainWindow ?? undefined : undefined,
         webPreferences: {
             preload: preloadPath ? path.join(__dirname, preloadPath) : undefined,
-            contextIsolation: contextIsolation
+            contextIsolation: contextIsolation,
+            webSecurity: false
         },
         fullscreen: false
     })
@@ -31,6 +33,12 @@ export function createWindowAndLoad(windowType: WindowType, htmlPath?: HTMLPath,
         require('@electron/remote/main').enable(window.webContents)
     }
     TabsController.mainWindow?.webContents.send(Channel.OPEN_WINDOW, windowType, true)
+    window.on('focus', () => {
+        ShortcutService.registerShortcuts()
+    })
+    window.on('blur', () => {
+        ShortcutService.unregisterShortcuts()
+    })
     return window
 }
 

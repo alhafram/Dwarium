@@ -102,7 +102,8 @@
                 </div>
 
                 <div class="mt-5 inline-flex rounded-full">
-                    <button name="animationSpeedButton" id="gameSpeed" class="settingsSpeedButton rounded-l-full py-2 px-4 font-montserrat text-xs font-extrabold">Откл.</button>
+                    <span class="my-auto font-montserrat text-xs font-extrabold text-secondaryLightDark dark:text-secondaryLight">Скорость анимации</span>
+                    <button name="animationSpeedButton" id="gameSpeed" class="settingsSpeedButton ml-3 rounded-l-full py-2 px-4 font-montserrat text-xs font-extrabold">Откл.</button>
                     <button name="animationSpeedButton" id="x2Speed" class="settingsSpeedButton py-2 px-4 font-montserrat text-xs font-extrabold">x2</button>
                     <button name="animationSpeedButton" id="x3Speed" class="settingsSpeedButton rounded-r-full py-2 px-4 font-montserrat text-xs font-extrabold">x3</button>
                 </div>
@@ -139,140 +140,512 @@
                     </button>
                 </div>
 
+                <p class="mt-4 font-montserrat text-xs font-extrabold text-secondaryLightDark dark:text-secondaryLight">Игровые настройки</p>
+
+                <div class="mt-5 flex font-montserrat text-xs font-extrabold text-secondaryLightDark">
+                    <div class="flex">
+                        <label for="hideCasinoInput" class="relative flex cursor-pointer items-center">
+                            <input type="checkbox" id="hideCasinoInput" class="sr-only" />
+                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="dot absolute left-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
+                        </label>
+                    </div>
+                    <label class="my-auto text-secondaryLightDark dark:text-secondaryLight">Скрывать бандита</label>
+                </div>
+
+                <div class="mt-5 flex font-montserrat text-xs font-extrabold text-secondaryLightDark">
+                    <div class="flex">
+                        <label for="hideActivitiesInput" class="relative flex cursor-pointer items-center">
+                            <input type="checkbox" id="hideActivitiesInput" class="sr-only" />
+                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="dot absolute left-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
+                        </label>
+                    </div>
+                    <label class="my-auto text-secondaryLightDark dark:text-secondaryLight">Скрывать активности</label>
+                </div>
+
+                <div class="mt-5 flex font-montserrat text-xs font-extrabold text-secondaryLightDark">
+                    <div class="flex">
+                        <label for="hidePromotionsInput" class="relative flex cursor-pointer items-center">
+                            <input type="checkbox" id="hidePromotionsInput" class="sr-only" />
+                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="dot absolute left-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
+                        </label>
+                    </div>
+                    <label class="my-auto text-secondaryLightDark dark:text-secondaryLight">Скрывать акции</label>
+                </div>
+
+                <div class="mt-5 flex font-montserrat text-xs font-extrabold text-secondaryLightDark">
+                    <div class="flex">
+                        <label for="hideDiceGameInput" class="relative flex cursor-pointer items-center">
+                            <input type="checkbox" id="hideDiceGameInput" class="sr-only" />
+                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="dot absolute left-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
+                        </label>
+                    </div>
+                    <label class="my-auto text-secondaryLightDark dark:text-secondaryLight">Скрывать дар небес</label>
+                </div>
+
+                <div class="mt-5 flex font-montserrat text-xs font-extrabold text-secondaryLightDark">
+                    <div class="flex">
+                        <label for="hideWheelFortuneInput" class="relative flex cursor-pointer items-center">
+                            <input type="checkbox" id="hideWheelFortuneInput" class="sr-only" />
+                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="dot absolute left-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
+                        </label>
+                    </div>
+                    <label class="my-auto text-secondaryLightDark dark:text-secondaryLight">Скрывать колесо удачи</label>
+                </div>
+
+                <div class="mt-5 flex font-montserrat text-xs font-extrabold text-secondaryLightDark">
+                    <div class="flex">
+                        <label for="hideNPCEventsInput" class="relative flex cursor-pointer items-center">
+                            <input type="checkbox" id="hideNPCEventsInput" class="sr-only" />
+                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="dot absolute left-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
+                        </label>
+                    </div>
+                    <label class="my-auto text-secondaryLightDark dark:text-secondaryLight">Скрывать иконки NPC событий</label>
+                </div>
+
+                <div class="mt-5 flex font-montserrat text-xs font-extrabold text-secondaryLightDark">
+                    <div class="flex">
+                        <label for="hideCurrentEventInput" class="relative flex cursor-pointer items-center">
+                            <input type="checkbox" id="hideCurrentEventInput" class="sr-only" />
+                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="dot absolute left-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
+                        </label>
+                    </div>
+                    <label class="my-auto text-secondaryLightDark dark:text-secondaryLight">Скрывать текущее событие</label>
+                </div>
+
+                <div class="mt-5 flex font-montserrat text-xs font-extrabold text-secondaryLightDark">
+                    <div class="flex">
+                        <label for="hideFrontsInput" class="relative flex cursor-pointer items-center">
+                            <input type="checkbox" id="hideFrontsInput" class="sr-only" />
+                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="dot absolute left-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
+                        </label>
+                    </div>
+                    <label class="my-auto text-secondaryLightDark dark:text-secondaryLight">Скрывать разломы</label>
+                </div>
+
+                <div class="mt-5 flex font-montserrat text-xs font-extrabold text-secondaryLightDark">
+                    <div class="flex">
+                        <label for="hideMiniMapInput" class="relative flex cursor-pointer items-center">
+                            <input type="checkbox" id="hideMiniMapInput" class="sr-only" />
+                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="dot absolute left-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
+                        </label>
+                    </div>
+                    <label class="my-auto text-secondaryLightDark dark:text-secondaryLight">Скрывать миникарту</label>
+                </div>
+
                 <button class="defaultButton mt-8" id="saveButton">Сохранить</button>
             </div>
 
             <div class="my-8 ml-8 w-1/2">
                 <p class="font-montserrat text-lg font-extrabold text-secondaryLightDark dark:text-secondaryLight">Список горячих клавиш</p>
 
-                <div class="mt-4 flex">
-                    <div class="w-40">
-                        <div class="font-montserrat text-xss font-extrabold text-secondaryLightDark dark:text-secondaryLight">
-                            <span class="rounded-md border-2 border-lightMediumGrey py-1 px-2 dark:border-secondaryDark">F11</span>
-                            <span>Windows/Linux</span>
-                        </div>
-                        <div class="mt-4 font-montserrat text-xss font-extrabold text-secondaryLightDark dark:text-secondaryLight">
-                            <span class="rounded-md border-2 border-lightMediumGrey py-1 px-2 dark:border-secondaryDark">Fn</span>
-                            <span>+</span>
-                            <span class="rounded-md border-2 border-lightMediumGrey py-1 px-2 dark:border-secondaryDark">F</span>
-                            <span>MacOS</span>
-                        </div>
+                <p class="mt-4 font-montserrat text-xs font-extrabold text-secondaryLightDark dark:text-secondaryLight">Список горячих клавиш для игры</p>
+
+                <div class="mt-4">
+                    <div class="font-montserrat text-xss font-extrabold text-secondaryLightDark dark:text-secondaryLight">
+                        <input
+                            id="openHuntShortcutInput"
+                            type="text"
+                            class="rounded-md border-2 border-lightMediumGrey bg-transparent py-1 px-2 caret-transparent outline-none dark:border-secondaryDark" />
+                        <span class="ml-4">Открыть охоту</span>
                     </div>
-                    <span class="my-auto ml-12 font-montserrat text-sm font-extrabold text-secondaryLightDark dark:text-secondaryLight">Перейти в FullScreen</span>
                 </div>
 
-                <div class="mt-2 mr-8 h-px bg-lightMediumGrey"></div>
-
-                <div class="mt-4 flex">
-                    <div class="w-40">
-                        <div class="font-montserrat text-xss font-extrabold text-secondaryLightDark dark:text-secondaryLight">
-                            <span class="rounded-md border-2 border-lightMediumGrey py-1 px-2 dark:border-secondaryDark">Ctrl</span>
-                            <span>+</span>
-                            <span class="rounded-md border-2 border-lightMediumGrey py-1 px-2 dark:border-secondaryDark">T</span>
-                        </div>
+                <div class="mt-4">
+                    <div class="font-montserrat text-xss font-extrabold text-secondaryLightDark dark:text-secondaryLight">
+                        <input
+                            id="openBackpackShortcutInput"
+                            type="text"
+                            class="rounded-md border-2 border-lightMediumGrey bg-transparent py-1 px-2 caret-transparent outline-none dark:border-secondaryDark" />
+                        <span class="ml-4">Открыть рюкзак</span>
                     </div>
-                    <span class="my-auto ml-12 font-montserrat text-sm font-extrabold text-secondaryLightDark dark:text-secondaryLight">Открыть новый таб</span>
                 </div>
 
-                <div class="mt-2 mr-8 h-px bg-lightMediumGrey"></div>
-
-                <div class="mt-4 flex">
-                    <div class="w-40">
-                        <div class="font-montserrat text-xss font-extrabold text-secondaryLightDark dark:text-secondaryLight">
-                            <span class="rounded-md border-2 border-lightMediumGrey py-1 px-2 dark:border-secondaryDark">Ctrl</span>
-                            <span>+</span>
-                            <span class="rounded-md border-2 border-lightMediumGrey py-1 px-2 dark:border-secondaryDark">W</span>
-                        </div>
+                <div class="mt-4">
+                    <div class="font-montserrat text-xss font-extrabold text-secondaryLightDark dark:text-secondaryLight">
+                        <input
+                            id="openLocationShortcutInput"
+                            type="text"
+                            class="rounded-md border-2 border-lightMediumGrey bg-transparent py-1 px-2 caret-transparent outline-none dark:border-secondaryDark" />
+                        <span class="ml-4">Открыть локацию</span>
                     </div>
-                    <span class="my-auto ml-12 font-montserrat text-sm font-extrabold text-secondaryLightDark dark:text-secondaryLight">Закрыть текущий таб</span>
                 </div>
 
-                <div class="mt-2 mr-8 h-px bg-lightMediumGrey"></div>
+                <p class="mt-4 font-montserrat text-xs font-extrabold text-secondaryLightDark dark:text-secondaryLight">Список горячих клавиш для клиента</p>
 
-                <div class="mt-4 flex">
-                    <div class="w-40">
-                        <div class="font-montserrat text-xss font-extrabold text-secondaryLightDark dark:text-secondaryLight">
-                            <span class="rounded-md border-2 border-lightMediumGrey py-1 px-2 dark:border-secondaryDark">F7</span>
-                        </div>
+                <div class="mt-4">
+                    <div class="font-montserrat text-xss font-extrabold text-secondaryLightDark dark:text-secondaryLight">
+                        <input
+                            id="openDevToolsShortcutInput"
+                            type="text"
+                            class="rounded-md border-2 border-lightMediumGrey bg-transparent py-1 px-2 caret-transparent outline-none dark:border-secondaryDark" />
+                        <span class="ml-4">Открыть Dev-tools</span>
                     </div>
-                    <span class="my-auto ml-12 font-montserrat text-sm font-extrabold text-secondaryLightDark dark:text-secondaryLight">Открыть/Закрыть окно с чатом</span>
                 </div>
 
-                <div class="mt-2 mr-8 h-px bg-lightMediumGrey"></div>
-
-                <div class="mt-4 flex">
-                    <div class="w-40">
-                        <div class="font-montserrat text-xss font-extrabold text-secondaryLightDark dark:text-secondaryLight">
-                            <span class="rounded-md border-2 border-lightMediumGrey py-1 px-2 dark:border-secondaryDark">Ctrl</span>
-                            <span>+</span>
-                            <span class="rounded-md border-2 border-lightMediumGrey py-1 px-2 dark:border-secondaryDark">Shift</span>
-                            <span>+</span>
-                            <span class="rounded-md border-2 border-lightMediumGrey py-1 px-2 dark:border-secondaryDark">C</span>
-                        </div>
+                <div class="mt-4">
+                    <div class="font-montserrat text-xss font-extrabold text-secondaryLightDark dark:text-secondaryLight">
+                        <input
+                            id="prevTabShortcutInput"
+                            type="text"
+                            class="rounded-md border-2 border-lightMediumGrey bg-transparent py-1 px-2 caret-transparent outline-none dark:border-secondaryDark" />
+                        <span class="ml-4">Перейти на предыдущую вкладку</span>
                     </div>
-                    <span class="my-auto ml-12 font-montserrat text-sm font-extrabold text-secondaryLightDark dark:text-secondaryLight">Скопировать URL страницы</span>
                 </div>
 
-                <div class="mt-2 mr-8 h-px bg-lightMediumGrey"></div>
-
-                <div class="mt-4 flex">
-                    <div class="w-40">
-                        <div class="font-montserrat text-xss font-extrabold text-secondaryLightDark dark:text-secondaryLight">
-                            <span class="rounded-md border-2 border-lightMediumGrey py-1 px-2 dark:border-secondaryDark">Ctrl</span>
-                            <span>+</span>
-                            <span class="rounded-md border-2 border-lightMediumGrey py-1 px-2 dark:border-secondaryDark">Shift</span>
-                            <span>+</span>
-                            <span class="rounded-md border-2 border-lightMediumGrey py-1 px-2 dark:border-secondaryDark">K</span>
-                        </div>
+                <div class="mt-4">
+                    <div class="font-montserrat text-xss font-extrabold text-secondaryLightDark dark:text-secondaryLight">
+                        <input
+                            id="nextTabShortcutInput"
+                            type="text"
+                            class="rounded-md border-2 border-lightMediumGrey bg-transparent py-1 px-2 caret-transparent outline-none dark:border-secondaryDark" />
+                        <span class="ml-4">Перейти на следующую вкладку</span>
                     </div>
-                    <span class="my-auto ml-12 font-montserrat text-sm font-extrabold text-secondaryLightDark dark:text-secondaryLight">Очистить кэш</span>
                 </div>
 
-                <div class="mt-2 mr-8 h-px bg-lightMediumGrey"></div>
-
-                <div class="mt-4 flex">
-                    <div class="w-40">
-                        <div class="font-montserrat text-xss font-extrabold text-secondaryLightDark dark:text-secondaryLight">
-                            <span class="rounded-md border-2 border-lightMediumGrey py-1 px-2 dark:border-secondaryDark">F9</span>
-                            <span>Windows/Linux</span>
-                        </div>
-                        <div class="mt-4 font-montserrat text-xss font-extrabold text-secondaryLightDark dark:text-secondaryLight">
-                            <span class="rounded-md border-2 border-lightMediumGrey py-1 px-2 dark:border-secondaryDark">Cmd</span>
-                            <span>+</span>
-                            <span class="rounded-md border-2 border-lightMediumGrey py-1 px-2 dark:border-secondaryDark">F</span>
-                            <span>MacOS</span>
-                        </div>
+                <div class="mt-4">
+                    <div class="font-montserrat text-xss font-extrabold text-secondaryLightDark dark:text-secondaryLight">
+                        <input
+                            id="newTabShortcutInput"
+                            type="text"
+                            class="rounded-md border-2 border-lightMediumGrey bg-transparent py-1 px-2 caret-transparent outline-none dark:border-secondaryDark" />
+                        <span class="ml-4">Открыть новую вкладку</span>
                     </div>
-                    <span class="my-auto ml-12 font-montserrat text-sm font-extrabold text-secondaryLightDark dark:text-secondaryLight">Скриншот</span>
                 </div>
 
-                <p class="mt-8 font-montserrat text-lg font-extrabold text-secondaryLightDark dark:text-secondaryLight">Dev shortcuts</p>
-
-                <div class="mt-4 flex">
-                    <div class="w-40">
-                        <div class="font-montserrat text-xss font-extrabold text-secondaryLightDark dark:text-secondaryLight">
-                            <span class="rounded-md border-2 border-lightMediumGrey py-1 px-2 dark:border-secondaryDark">Ctrl/Cmd</span>
-                            <span>+</span>
-                            <span class="rounded-md border-2 border-lightMediumGrey py-1 px-2 dark:border-secondaryDark">O</span>
-                        </div>
+                <div class="mt-4">
+                    <div class="font-montserrat text-xss font-extrabold text-secondaryLightDark dark:text-secondaryLight">
+                        <input
+                            id="reloadShortcutInput"
+                            type="text"
+                            class="rounded-md border-2 border-lightMediumGrey bg-transparent py-1 px-2 caret-transparent outline-none dark:border-secondaryDark" />
+                        <span class="ml-4">Обновить страницу</span>
                     </div>
-                    <span class="my-auto ml-12 font-montserrat text-sm font-extrabold text-secondaryLightDark dark:text-secondaryLight">Открыть dev tools для webview</span>
                 </div>
 
-                <div class="mt-2 mr-8 h-px bg-lightMediumGrey"></div>
-
-                <div class="mt-4 flex">
-                    <div class="w-40">
-                        <div class="font-montserrat text-xss font-extrabold text-secondaryLightDark dark:text-secondaryLight">
-                            <span class="rounded-md border-2 border-lightMediumGrey py-1 px-2 dark:border-secondaryDark">Ctrl/Cmd</span>
-                            <span>+</span>
-                            <span class="rounded-md border-2 border-lightMediumGrey py-1 px-2 dark:border-secondaryDark">Alt</span>
-                            <span>+</span>
-                            <span class="rounded-md border-2 border-lightMediumGrey py-1 px-2 dark:border-secondaryDark">I</span>
-                        </div>
+                <div class="mt-4">
+                    <div class="font-montserrat text-xss font-extrabold text-secondaryLightDark dark:text-secondaryLight">
+                        <input
+                            id="closeTabShortcutInput"
+                            type="text"
+                            class="rounded-md border-2 border-lightMediumGrey bg-transparent py-1 px-2 caret-transparent outline-none dark:border-secondaryDark" />
+                        <span class="ml-4">Закрыть вкладку</span>
                     </div>
-                    <span class="my-auto ml-12 font-montserrat text-sm font-extrabold text-secondaryLightDark dark:text-secondaryLight">Открыть dev tools для window</span>
                 </div>
+
+                <div class="mt-4">
+                    <div class="font-montserrat text-xss font-extrabold text-secondaryLightDark dark:text-secondaryLight">
+                        <input
+                            id="clearCacheShortcutInput"
+                            type="text"
+                            class="rounded-md border-2 border-lightMediumGrey bg-transparent py-1 px-2 caret-transparent outline-none dark:border-secondaryDark" />
+                        <span class="ml-4">Очистить кеш</span>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <div class="font-montserrat text-xss font-extrabold text-secondaryLightDark dark:text-secondaryLight">
+                        <input
+                            id="copyWindowUrlShortcutInput"
+                            type="text"
+                            class="rounded-md border-2 border-lightMediumGrey bg-transparent py-1 px-2 caret-transparent outline-none dark:border-secondaryDark" />
+                        <span class="ml-4">Скопировать URL окна</span>
+                    </div>
+                </div>
+
+                <p class="mt-4 font-montserrat text-xs font-extrabold text-secondaryLightDark dark:text-secondaryLight">Список горячих клавиш для открытия плагинов</p>
+
+                <div class="mt-4">
+                    <div class="font-montserrat text-xss font-extrabold text-secondaryLightDark dark:text-secondaryLight">
+                        <input
+                            id="openFoodShortcutInput"
+                            type="text"
+                            class="rounded-md border-2 border-lightMediumGrey bg-transparent py-1 px-2 caret-transparent outline-none dark:border-secondaryDark" />
+                        <span class="ml-4">Открыть поедалку</span>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <div class="font-montserrat text-xss font-extrabold text-secondaryLightDark dark:text-secondaryLight">
+                        <input
+                            id="openNotesShortcutInput"
+                            type="text"
+                            class="rounded-md border-2 border-lightMediumGrey bg-transparent py-1 px-2 caret-transparent outline-none dark:border-secondaryDark" />
+                        <span class="ml-4">Открыть блокнот</span>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <div class="font-montserrat text-xss font-extrabold text-secondaryLightDark dark:text-secondaryLight">
+                        <input
+                            id="openDressingRoomShortcutInput"
+                            type="text"
+                            class="rounded-md border-2 border-lightMediumGrey bg-transparent py-1 px-2 caret-transparent outline-none dark:border-secondaryDark" />
+                        <span class="ml-4">Открыть переодевалку</span>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <div class="font-montserrat text-xss font-extrabold text-secondaryLightDark dark:text-secondaryLight">
+                        <input
+                            id="openBeltPotionRoomShortcutInput"
+                            type="text"
+                            class="rounded-md border-2 border-lightMediumGrey bg-transparent py-1 px-2 caret-transparent outline-none dark:border-secondaryDark" />
+                        <span class="ml-4">Открыть переодевалку поясов</span>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <div class="font-montserrat text-xss font-extrabold text-secondaryLightDark dark:text-secondaryLight">
+                        <input
+                            id="openChatLogShortcutInput"
+                            type="text"
+                            class="rounded-md border-2 border-lightMediumGrey bg-transparent py-1 px-2 caret-transparent outline-none dark:border-secondaryDark" />
+                        <span class="ml-4">Открыть лог чата</span>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <div class="font-montserrat text-xss font-extrabold text-secondaryLightDark dark:text-secondaryLight">
+                        <input
+                            id="openChatSettingsShortcutInput"
+                            type="text"
+                            class="rounded-md border-2 border-lightMediumGrey bg-transparent py-1 px-2 caret-transparent outline-none dark:border-secondaryDark" />
+                        <span class="ml-4">Открыть настройки чата</span>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <div class="font-montserrat text-xss font-extrabold text-secondaryLightDark dark:text-secondaryLight">
+                        <input
+                            id="openNotificationsShortcutInput"
+                            type="text"
+                            class="rounded-md border-2 border-lightMediumGrey bg-transparent py-1 px-2 caret-transparent outline-none dark:border-secondaryDark" />
+                        <span class="ml-4">Открыть настройки оповещений</span>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <div class="font-montserrat text-xss font-extrabold text-secondaryLightDark dark:text-secondaryLight">
+                        <input
+                            id="openEffectSetsShortcutInput"
+                            type="text"
+                            class="rounded-md border-2 border-lightMediumGrey bg-transparent py-1 px-2 caret-transparent outline-none dark:border-secondaryDark" />
+                        <span class="ml-4">Открыть наборы эффектов</span>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <div class="font-montserrat text-xss font-extrabold text-secondaryLightDark dark:text-secondaryLight">
+                        <input
+                            id="openExpiringItemsSettingsShortcutInput"
+                            type="text"
+                            class="rounded-md border-2 border-lightMediumGrey bg-transparent py-1 px-2 caret-transparent outline-none dark:border-secondaryDark" />
+                        <span class="ml-4">Открыть настройки "горящих вещей"</span>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <div class="font-montserrat text-xss font-extrabold text-secondaryLightDark dark:text-secondaryLight">
+                        <input
+                            id="makeScreenshotShortcutInput"
+                            type="text"
+                            class="rounded-md border-2 border-lightMediumGrey bg-transparent py-1 px-2 caret-transparent outline-none dark:border-secondaryDark" />
+                        <span class="ml-4">Сделать скриншот</span>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <div class="font-montserrat text-xss font-extrabold text-secondaryLightDark dark:text-secondaryLight">
+                        <input
+                            id="openSettingsShortcutInput"
+                            type="text"
+                            class="rounded-md border-2 border-lightMediumGrey bg-transparent py-1 px-2 caret-transparent outline-none dark:border-secondaryDark" />
+                        <span class="ml-4">Открыть настройки</span>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <div class="font-montserrat text-xss font-extrabold text-secondaryLightDark dark:text-secondaryLight">
+                        <input
+                            id="hideShowChatShortcutInput"
+                            type="text"
+                            class="rounded-md border-2 border-lightMediumGrey bg-transparent py-1 px-2 caret-transparent outline-none dark:border-secondaryDark" />
+                        <span class="ml-4">Скрыть/открыть чат</span>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <div class="font-montserrat text-xss font-extrabold text-secondaryLightDark dark:text-secondaryLight">
+                        <input
+                            id="fullscreenShortcutInput"
+                            type="text"
+                            class="rounded-md border-2 border-lightMediumGrey bg-transparent py-1 px-2 caret-transparent outline-none dark:border-secondaryDark" />
+                        <span class="ml-4">Fullscreen</span>
+                    </div>
+                </div>
+
+                <p class="mt-4 font-montserrat text-xs font-extrabold text-secondaryLightDark dark:text-secondaryLight">Список горячих клавиш для лука</p>
+
+                <div class="mt-4">
+                    <div class="font-montserrat text-xss font-extrabold text-secondaryLightDark dark:text-secondaryLight">
+                        <input
+                            id="bowSkill1ShortcutInput"
+                            type="text"
+                            class="rounded-md border-2 border-lightMediumGrey bg-transparent py-1 px-2 caret-transparent outline-none dark:border-secondaryDark" />
+                        <span class="ml-4">1-й скилл</span>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <div class="font-montserrat text-xss font-extrabold text-secondaryLightDark dark:text-secondaryLight">
+                        <input
+                            id="bowSkill2ShortcutInput"
+                            type="text"
+                            class="rounded-md border-2 border-lightMediumGrey bg-transparent py-1 px-2 caret-transparent outline-none dark:border-secondaryDark" />
+                        <span class="ml-4">2-й скилл</span>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <div class="font-montserrat text-xss font-extrabold text-secondaryLightDark dark:text-secondaryLight">
+                        <input
+                            id="bowSkill3ShortcutInput"
+                            type="text"
+                            class="rounded-md border-2 border-lightMediumGrey bg-transparent py-1 px-2 caret-transparent outline-none dark:border-secondaryDark" />
+                        <span class="ml-4">3-й скилл</span>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <div class="font-montserrat text-xss font-extrabold text-secondaryLightDark dark:text-secondaryLight">
+                        <input
+                            id="bowSkill4ShortcutInput"
+                            type="text"
+                            class="rounded-md border-2 border-lightMediumGrey bg-transparent py-1 px-2 caret-transparent outline-none dark:border-secondaryDark" />
+                        <span class="ml-4">4-й скилл</span>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <div class="font-montserrat text-xss font-extrabold text-secondaryLightDark dark:text-secondaryLight">
+                        <input
+                            id="bowSkill5ShortcutInput"
+                            type="text"
+                            class="rounded-md border-2 border-lightMediumGrey bg-transparent py-1 px-2 caret-transparent outline-none dark:border-secondaryDark" />
+                        <span class="ml-4">5-й скилл</span>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <div class="font-montserrat text-xss font-extrabold text-secondaryLightDark dark:text-secondaryLight">
+                        <input
+                            id="bowSkill6ShortcutInput"
+                            type="text"
+                            class="rounded-md border-2 border-lightMediumGrey bg-transparent py-1 px-2 caret-transparent outline-none dark:border-secondaryDark" />
+                        <span class="ml-4">6-й скилл</span>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <div class="font-montserrat text-xss font-extrabold text-secondaryLightDark dark:text-secondaryLight">
+                        <input
+                            id="bowSkill7ShortcutInput"
+                            type="text"
+                            class="rounded-md border-2 border-lightMediumGrey bg-transparent py-1 px-2 caret-transparent outline-none dark:border-secondaryDark" />
+                        <span class="ml-4">7-й скилл</span>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <div class="font-montserrat text-xss font-extrabold text-secondaryLightDark dark:text-secondaryLight">
+                        <input
+                            id="bowSkill8ShortcutInput"
+                            type="text"
+                            class="rounded-md border-2 border-lightMediumGrey bg-transparent py-1 px-2 caret-transparent outline-none dark:border-secondaryDark" />
+                        <span class="ml-4">8-й скилл</span>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <div class="font-montserrat text-xss font-extrabold text-secondaryLightDark dark:text-secondaryLight">
+                        <input
+                            id="bowSkill9ShortcutInput"
+                            type="text"
+                            class="rounded-md border-2 border-lightMediumGrey bg-transparent py-1 px-2 caret-transparent outline-none dark:border-secondaryDark" />
+                        <span class="ml-4">9-й скилл</span>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <div class="font-montserrat text-xss font-extrabold text-secondaryLightDark dark:text-secondaryLight">
+                        <input
+                            id="bowSkill10ShortcutInput"
+                            type="text"
+                            class="rounded-md border-2 border-lightMediumGrey bg-transparent py-1 px-2 caret-transparent outline-none dark:border-secondaryDark" />
+                        <span class="ml-4">10-й скилл</span>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <div class="font-montserrat text-xss font-extrabold text-secondaryLightDark dark:text-secondaryLight">
+                        <input
+                            id="bowSkill11ShortcutInput"
+                            type="text"
+                            class="rounded-md border-2 border-lightMediumGrey bg-transparent py-1 px-2 caret-transparent outline-none dark:border-secondaryDark" />
+                        <span class="ml-4">11-й скилл</span>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <div class="font-montserrat text-xss font-extrabold text-secondaryLightDark dark:text-secondaryLight">
+                        <input
+                            id="bowSkill12ShortcutInput"
+                            type="text"
+                            class="rounded-md border-2 border-lightMediumGrey bg-transparent py-1 px-2 caret-transparent outline-none dark:border-secondaryDark" />
+                        <span class="ml-4">12-й скилл</span>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <div class="font-montserrat text-xss font-extrabold text-secondaryLightDark dark:text-secondaryLight">
+                        <input
+                            id="bowSkill13ShortcutInput"
+                            type="text"
+                            class="rounded-md border-2 border-lightMediumGrey bg-transparent py-1 px-2 caret-transparent outline-none dark:border-secondaryDark" />
+                        <span class="ml-4">13-й скилл</span>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <div class="font-montserrat text-xss font-extrabold text-secondaryLightDark dark:text-secondaryLight">
+                        <input
+                            id="bowSkill14ShortcutInput"
+                            type="text"
+                            class="rounded-md border-2 border-lightMediumGrey bg-transparent py-1 px-2 caret-transparent outline-none dark:border-secondaryDark" />
+                        <span class="ml-4">14-й скилл</span>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <div class="font-montserrat text-xss font-extrabold text-secondaryLightDark dark:text-secondaryLight">
+                        <input
+                            id="bowSkill15ShortcutInput"
+                            type="text"
+                            class="rounded-md border-2 border-lightMediumGrey bg-transparent py-1 px-2 caret-transparent outline-none dark:border-secondaryDark" />
+                        <span class="ml-4">15-й скилл</span>
+                    </div>
+                </div>
+
+                <button style="width: 200px" class="defaultButton mt-8" id="resetShortcutsButton">Восстановить по умолчанию</button>
             </div>
         </div>
     </body>

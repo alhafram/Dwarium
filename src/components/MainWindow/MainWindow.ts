@@ -1,4 +1,4 @@
-import { BrowserView, BrowserWindow, globalShortcut, session, clipboard, Rectangle, app } from 'electron'
+import { BrowserView, BrowserWindow, Rectangle, app } from 'electron'
 import path from 'path'
 import ConfigService from '../../services/ConfigService'
 import { TabsController } from '../../services/TabsController'
@@ -6,6 +6,7 @@ import { Channel } from '../../Models/Channel'
 import { WindowType } from '../../Models/WindowModels'
 import setupContextMenu from '../../services/ContextMenu'
 import { getBrowserWindowPosition, getClientWindowPosition, saveBrowserWindowPosition, saveClientWindowPosition } from '../../services/WindowSizeManager'
+import ShortcutService from '../../services/ShortcutService'
 
 export default class MainWindowContainer {
     browserView: BrowserView | null | undefined
@@ -57,7 +58,7 @@ export default class MainWindowContainer {
         this.mainWindow.on('closed', () => {
             (this.browserView?.webContents as any).destroy()
             this.browserView = null
-            this.unregisterShortcuts()
+            ShortcutService.unregisterShortcuts()
         })
 
         this.mainWindow.webContents.on('did-finish-load', () => {
@@ -67,76 +68,12 @@ export default class MainWindowContainer {
 
         this.mainWindow.on('focus', () => {
             this.browserView?.webContents.focus()
-            globalShortcut.register('CommandOrControl+W', () => {
-                if(TabsController.currentTab() != TabsController.getMain()) {
-                    this.mainWindow.webContents.send(Channel.CLOSE_TAB, TabsController.current_tab_id)
-                }
-                if(TabsController.onlyMain()) {
-                    this.mainWindow.close()
-                }
-            })
-            globalShortcut.register('CommandOrControl+O', () => {
-                TabsController.currentTab().webContents.openDevTools()
-            })
-            globalShortcut.register('CommandOrControl+Shift+K', async() => {
-                await session.defaultSession.clearStorageData({ storages: ['appcache', 'filesystem', 'indexdb', 'shadercache', 'cachestorage'] })
-                TabsController.currentTab().webContents.reload()
-            })
-            globalShortcut.register('CommandOrControl+Shift+C', () => {
-                const url = BrowserWindow.getFocusedWindow()?.webContents.getURL()
-                if(url) {
-                    clipboard.writeText(url)
-                }
-            })
-            globalShortcut.register('CommandOrControl+T', () => {
-                this.mainWindow.webContents.send(Channel.NEW_TAB)
-            })
-            globalShortcut.register('Control+Tab', () => {
-                this.mainWindow.webContents.send(Channel.SWITCH_NEXT_TAB)
-            })
-            globalShortcut.register('Control+Shift+Tab', () => {
-                this.mainWindow.webContents.send(Channel.SWITCH_PREV_TAB)
-            })
-            if(process.platform == 'win32' || process.platform == 'linux') {
-                globalShortcut.register('F11', () => {
-                    this.mainWindow.setFullScreen(!this.mainWindow.isFullScreen())
-                })
-                globalShortcut.register('F9', () => {
-                    this.mainWindow.webContents.send(Channel.TAKE_SCREENSHOT)
-                })
-                globalShortcut.register('F5', () => {
-                    this.mainWindow.webContents.send(Channel.RELOAD)
-                })
-            } else {
-                globalShortcut.register('CommandOrControl+F', () => {
-                    this.mainWindow.webContents.send(Channel.TAKE_SCREENSHOT)
-                })
-                globalShortcut.register('CommandOrControl+R', () => {
-                    this.mainWindow.webContents.send(Channel.RELOAD)
-                })
-            }
+            ShortcutService.registerShortcuts()
         })
 
         this.mainWindow.on('blur', () => {
-            this.unregisterShortcuts()
+            ShortcutService.unregisterShortcuts()
         })
-    }
-
-    unregisterShortcuts() {
-        globalShortcut.unregister('CommandOrControl+W')
-        globalShortcut.unregister('CommandOrControl+O')
-        globalShortcut.unregister('CommandOrControl+Shift+K')
-        globalShortcut.unregister('CommandOrControl+T')
-        globalShortcut.unregister('Control+Tab')
-        globalShortcut.unregister('Control+Shift+Tab')
-        if(process.platform == 'win32' || process.platform == 'linux') {
-            globalShortcut.unregister('F11')
-            globalShortcut.unregister('F9')
-            globalShortcut.unregister('F5')
-        } else {
-            globalShortcut.unregister('CommandOrControl+F')
-            globalShortcut.unregister('CommandOrControl+R')
-        }
     }
 
     getPositionFor(url: string): Rectangle | undefined {
@@ -205,7 +142,10 @@ export default class MainWindowContainer {
                             height: windowPosition?.height ?? defaultPosition.height,
                             resizable: true,
                             movable: true,
-                            fullscreen: false
+                            fullscreen: false,
+                            webPreferences: {
+                                webSecurity: false
+                            }
                         }
                     }
                 }
@@ -231,7 +171,8 @@ export default class MainWindowContainer {
                             contextIsolation: false,
                             nativeWindowOpen: true,
                             nodeIntegrationInSubFrames: true,
-                            enablePreferredSizeMode: true
+                            enablePreferredSizeMode: true,
+                            webSecurity: false
                         }
                     }
                 }
@@ -241,6 +182,12 @@ export default class MainWindowContainer {
         this.browserView?.webContents.on('did-create-window', (window) => {
             this.setupCreatedWindow(window)
             setupContextMenu(window)
+            window.on('focus', () => {
+                ShortcutService.registerShortcuts()
+            })
+            window.on('blur', () => {
+                ShortcutService.unregisterShortcuts()
+            })
         })
     }
 
@@ -261,7 +208,16 @@ export default class MainWindowContainer {
                 width: windowPosition?.width ?? defaultPosition.width,
                 height: windowPosition?.height ?? defaultPosition.height,
                 parent: ConfigService.getSettings().windowsAboveApp ? this.mainWindow : undefined,
-                fullscreen: false
+                fullscreen: false,
+                webPreferences: {
+                    webSecurity: false
+                }
+            })
+            newWindow.on('focus', () => {
+                ShortcutService.registerShortcuts()
+            })
+            newWindow.on('blur', () => {
+                ShortcutService.unregisterShortcuts()
             })
             setupContextMenu(newWindow)
             this.setupOpenHandler(newWindow)

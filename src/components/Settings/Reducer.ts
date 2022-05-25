@@ -1,5 +1,7 @@
 import { app } from '@electron/remote'
 import ConfigService from '../../services/ConfigService'
+import GameFlagsService, { GameFlagsKeys } from '../../services/GameFlagsService'
+import ShortcutService, { ShortcutKeys } from '../../services/ShortcutService'
 import { SettingsWindowActions } from './Actions'
 import { Elements } from './Elements'
 import { SettingsWindowState, UserAgentType } from './SettingsWindowState'
@@ -50,6 +52,8 @@ export default function reduce(state: SettingsWindowState, action: SettingsWindo
                 return state
             }
             ConfigService.writeData('settings', JSON.stringify(savedSettings))
+            saveShortCuts()
+            saveGameFlags()
             if(confirm('Для того что бы настройки вступили в силу, необходимо перезапустить клиент!')) {
                 app.relaunch()
                 app.quit()
@@ -57,6 +61,13 @@ export default function reduce(state: SettingsWindowState, action: SettingsWindo
             return {
                 ...state,
                 selectedUserAgentValue: savedSettings.selectedUserAgentValue
+            }
+        }
+        case SettingsWindowActions.SAVE_SHORTCUTS: {
+            saveShortCuts()
+            return {
+                ...state,
+                shortcuts: ShortcutService.getShortcuts()
             }
         }
         case SettingsWindowActions.CHANGE_USER_AGENT: {
@@ -115,4 +126,61 @@ export default function reduce(state: SettingsWindowState, action: SettingsWindo
                 needToRestoreUrls: Elements.needToRestoreUrlsInput().checked
             }
     }
+}
+
+function saveShortCuts() {
+    ShortcutService.writeData(ShortcutKeys.OPEN_HUNT, Elements.openHuntShortcutInput().value)
+    ShortcutService.writeData(ShortcutKeys.OPEN_BACKPACK, Elements.openBackpackShortcutInput().value)
+    ShortcutService.writeData(ShortcutKeys.OPEN_LOCATION, Elements.openLocationShortcutInput().value)
+
+    ShortcutService.writeData(ShortcutKeys.OPEN_DEV_TOOLS, Elements.openDevToolsShortcutInput().value)
+    ShortcutService.writeData(ShortcutKeys.PREV_TAB, Elements.prevTabShortcutInput().value)
+    ShortcutService.writeData(ShortcutKeys.NEXT_TAB, Elements.nextTabShortcutInput().value)
+    ShortcutService.writeData(ShortcutKeys.NEW_TAB, Elements.newTabShortcutInput().value)
+    ShortcutService.writeData(ShortcutKeys.RELOAD, Elements.reloadShortcutInput().value)
+    ShortcutService.writeData(ShortcutKeys.CLOSE_TAB, Elements.closeTabShortcutInput().value)
+    ShortcutService.writeData(ShortcutKeys.CLEAR_CACHE, Elements.clearCacheShortcutInput().value)
+    ShortcutService.writeData(ShortcutKeys.COPY_WINDOW_URL, Elements.copyWindowUrlShortcutInput().value)
+
+    ShortcutService.writeData(ShortcutKeys.OPEN_FOOD, Elements.openFoodShortcutInput().value)
+    ShortcutService.writeData(ShortcutKeys.OPEN_NOTES, Elements.openNotesShortcutInput().value)
+    ShortcutService.writeData(ShortcutKeys.OPEN_DRESSING_ROOM, Elements.openDressingRoomShortcutInput().value)
+    ShortcutService.writeData(ShortcutKeys.OPEN_BELT_POTION_ROOM, Elements.openBeltPotionRoomShortcutInput().value)
+    ShortcutService.writeData(ShortcutKeys.OPEN_CHAT_LOG, Elements.openChatLogShortcutInput().value)
+    ShortcutService.writeData(ShortcutKeys.OPEN_CHAT_SETTINGS, Elements.openChatSettingsShortcutInput().value)
+    ShortcutService.writeData(ShortcutKeys.OPEN_NOTIFICATIONS, Elements.openNotificationsShortcutInput().value)
+    ShortcutService.writeData(ShortcutKeys.OPEN_EFFECT_SETS, Elements.openEffectSetsShortcutInput().value)
+    ShortcutService.writeData(ShortcutKeys.OPEN_EXPIRING_ITEMS_SETTINGS, Elements.openExpiringItemsSettingsShortcutInput().value)
+    ShortcutService.writeData(ShortcutKeys.MAKE_SCREENSHOT, Elements.makeScreenshotShortcutInput().value)
+    ShortcutService.writeData(ShortcutKeys.OPEN_SETTINGS, Elements.openSettingsShortcutInput().value)
+    ShortcutService.writeData(ShortcutKeys.HIDE_SHOW_CHAT, Elements.hideShowChatShortcutInput().value)
+    ShortcutService.writeData(ShortcutKeys.FULLSCREEN, Elements.fullscreenShortcutInput().value)
+
+    ShortcutService.writeData(ShortcutKeys.BOW_SKILL_1, Elements.bowSkill1ShortcutInput().value)
+    ShortcutService.writeData(ShortcutKeys.BOW_SKILL_2, Elements.bowSkill2ShortcutInput().value)
+    ShortcutService.writeData(ShortcutKeys.BOW_SKILL_3, Elements.bowSkill3ShortcutInput().value)
+    ShortcutService.writeData(ShortcutKeys.BOW_SKILL_4, Elements.bowSkill4ShortcutInput().value)
+    ShortcutService.writeData(ShortcutKeys.BOW_SKILL_5, Elements.bowSkill5ShortcutInput().value)
+    ShortcutService.writeData(ShortcutKeys.BOW_SKILL_6, Elements.bowSkill6ShortcutInput().value)
+    ShortcutService.writeData(ShortcutKeys.BOW_SKILL_7, Elements.bowSkill7ShortcutInput().value)
+    ShortcutService.writeData(ShortcutKeys.BOW_SKILL_8, Elements.bowSkill8ShortcutInput().value)
+    ShortcutService.writeData(ShortcutKeys.BOW_SKILL_9, Elements.bowSkill9ShortcutInput().value)
+    ShortcutService.writeData(ShortcutKeys.BOW_SKILL_10, Elements.bowSkill10ShortcutInput().value)
+    ShortcutService.writeData(ShortcutKeys.BOW_SKILL_11, Elements.bowSkill11ShortcutInput().value)
+    ShortcutService.writeData(ShortcutKeys.BOW_SKILL_12, Elements.bowSkill12ShortcutInput().value)
+    ShortcutService.writeData(ShortcutKeys.BOW_SKILL_13, Elements.bowSkill13ShortcutInput().value)
+    ShortcutService.writeData(ShortcutKeys.BOW_SKILL_14, Elements.bowSkill14ShortcutInput().value)
+    ShortcutService.writeData(ShortcutKeys.BOW_SKILL_15, Elements.bowSkill15ShortcutInput().value)
+}
+
+function saveGameFlags() {
+    GameFlagsService.writeData(GameFlagsKeys.HIDE_CASINO, Elements.hideCasinoInput().checked)
+    GameFlagsService.writeData(GameFlagsKeys.HIDE_ACTIVITIES, Elements.hideActivitiesInput().checked)
+    GameFlagsService.writeData(GameFlagsKeys.HIDE_PROMOTIONS, Elements.hidePromotionsInput().checked)
+    GameFlagsService.writeData(GameFlagsKeys.HIDE_DICE_GAME, Elements.hideDiceGameInput().checked)
+    GameFlagsService.writeData(GameFlagsKeys.HIDE_WHEEL_FORTUNE, Elements.hideWheelFortuneInput().checked)
+    GameFlagsService.writeData(GameFlagsKeys.HIDE_NPC_EVENTS, Elements.hideNPCEventsInput().checked)
+    GameFlagsService.writeData(GameFlagsKeys.HIDE_CURRENT_EVENT, Elements.hideCurrentEventInput().checked)
+    GameFlagsService.writeData(GameFlagsKeys.HIDE_FRONTS, Elements.hideFrontsInput().checked)
+    GameFlagsService.writeData(GameFlagsKeys.HIDE_MINI_MAP, Elements.hideMiniMapInput().checked)
 }

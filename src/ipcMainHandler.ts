@@ -48,7 +48,8 @@ function createNewTab(url: string, id: string) {
     url = url ?? 'https://google.com'
     const browserView = new BrowserView({
         webPreferences: {
-            enablePreferredSizeMode: true
+            enablePreferredSizeMode: true,
+            webSecurity: false
         }
     })
     setupContextMenu(browserView)
@@ -198,7 +199,7 @@ ipcMain.on(Channel.USER_PRV, (event, nick) => {
 })
 
 let screenIsMaking = false
-ipcMain.on(Channel.TAKE_SCREENSHOT, async() => {
+ipcMain.on(Channel.MAKE_SCREENSHOT, async() => {
     if(screenIsMaking) {
         return
     }
