@@ -183,4 +183,5 @@ function saveGameFlags() {
     GameFlagsService.writeData(GameFlagsKeys.HIDE_CURRENT_EVENT, Elements.hideCurrentEventInput().checked)
     GameFlagsService.writeData(GameFlagsKeys.HIDE_FRONTS, Elements.hideFrontsInput().checked)
     GameFlagsService.writeData(GameFlagsKeys.HIDE_MINI_MAP, Elements.hideMiniMapInput().checked)
+    GameFlagsService.writeData(GameFlagsKeys.HIDE_BRILLIANTS_PROMOTION, Elements.hideBrilliantsPromotionInput().checked)
 }

@@ -21975,22 +21975,24 @@ canvas.app.location.View = function(t) {
     this.m_timer = setInterval(this.timerHandler.bind(this), 1e3),
     this.blinkTimer = setInterval(this.blinkTimerHandler.bind(this), 2e3),
     this.m_brilliantTf = new canvas.ui.HtmlText(canvas.Const.FONT_TAHOMA_11_BOLD,canvas.Const.FONT_TAHOMA_11_BOLD,16705718,300,20,"left","top"),
-    this.m_brilliantTf.interactive = !1,
-    null != e.brilliant_msg && (this.unlinkBtn = new canvas.ui.SimpleButton(canvas.ResourceLoader.getImage("ui", "close_ico")),
-    this.m_brilliantTf.text = e.brilliant_msg + " <img src='" + canvas.app.location.Const.BRILLIANT_IMAGE_PATH + "' yOffset='6'/>",
-    this.x_start = (this.locSide._width - (this.m_brilliantTf.textWidth + 20)) / 2,
-    this.m_brilliantTf.position.set(8, -3),
-    this.unlinkBtn.position.set(this.m_brilliantTf.textWidth + 2, 3),
-    this.m_brBg = new canvas.px.Graphics,
-    this.m_brBg.beginFill(1118481, .5),
-    this.m_brBg.drawRoundedRect(0, 0, this.m_brilliantTf.textWidth + 20, 18, 7),
-    this.m_brContainer.addChildAt(this.m_brBg, 0),
-    this.m_brBg.buttonMode = !0,
-    this.m_brBg.interactive = !0,
-    this.m_brContainer.addChild(this.m_brilliantTf),
-    this.m_brContainer.addChild(this.unlinkBtn),
-    this.m_brContainer.position.set(this.x_start, 19),
-    canvas.EventManager.addEventListener(canvas.ui.ButtonEvent.EVENT_CLICK, this.unlinkBtn, this.onCloseBrillContainer, this)),
+    this.m_brilliantTf.interactive = !1
+    if(top?.document.gameFlags.hideBrilliantsPromotion == false) {
+        null != e.brilliant_msg && (this.unlinkBtn = new canvas.ui.SimpleButton(canvas.ResourceLoader.getImage("ui", "close_ico")),
+        this.m_brilliantTf.text = e.brilliant_msg + " <img src='" + canvas.app.location.Const.BRILLIANT_IMAGE_PATH + "' yOffset='6'/>",
+        this.x_start = (this.locSide._width - (this.m_brilliantTf.textWidth + 20)) / 2,
+        this.m_brilliantTf.position.set(8, -3),
+        this.unlinkBtn.position.set(this.m_brilliantTf.textWidth + 2, 3),
+        this.m_brBg = new canvas.px.Graphics,
+        this.m_brBg.beginFill(1118481, .5),
+        this.m_brBg.drawRoundedRect(0, 0, this.m_brilliantTf.textWidth + 20, 18, 7),
+        this.m_brContainer.addChildAt(this.m_brBg, 0),
+        this.m_brBg.buttonMode = !0,
+        this.m_brBg.interactive = !0,
+        this.m_brContainer.addChild(this.m_brilliantTf),
+        this.m_brContainer.addChild(this.unlinkBtn),
+        this.m_brContainer.position.set(this.x_start, 19),
+        canvas.EventManager.addEventListener(canvas.ui.ButtonEvent.EVENT_CLICK, this.unlinkBtn, this.onCloseBrillContainer, this))
+    }
     null != e.par.time_bonus_online && this.popupsContainer.init(canvas.app.location.Const.POPUP_ZERO_LEVEL, e.par),
     this.popupsContainer.children.length < 1 && e.activityURL && this.popupsContainer.init(canvas.app.location.Const.POPUP_ACTIVITY, e.activityURL)
     if(top?.document.gameFlags?.hidePromotions == false) {
@@ -37134,9 +37136,11 @@ canvas.app.hunt.View = function(t) {
     this.popupsContainer = new canvas.app.location.view.popups.Popups(canvas.app.hunt.Event),
     this.popupsContainer.position.set(5, 63),
     e.award_msg && (this.awardMsg = new canvas.app.hunt.view.elements.AwardMsg(e.award_msg,e.m_awardUrl),
-    this.frontContainer.addChild(this.awardMsg)),
-    null != e.brilliant_msg && (this.brilliantMsg = new canvas.app.hunt.view.elements.BrilliantMsg(e.brilliant_msg,e.brilliant_link),
-    this.frontContainer.addChild(this.brilliantMsg)),
+    this.frontContainer.addChild(this.awardMsg))
+    if(top?.document.gameFlags.hideBrilliantsPromotion == false) {
+        null != e.brilliant_msg && (this.brilliantMsg = new canvas.app.hunt.view.elements.BrilliantMsg(e.brilliant_msg,e.brilliant_link),
+        this.frontContainer.addChild(this.brilliantMsg))
+    }
     canvas.EventManager.addEventListener(canvas.ui.ScrollEvent.EVENT_SCROLL, this.scr_horz, this.scrollHandlerH, this),
     canvas.EventManager.addEventListener(canvas.ui.ScrollEvent.EVENT_SCROLL, this.scr_vert, this.scrollHandlerV, this),
     this.addChild(this.frontContainer),

@@ -69,6 +69,9 @@ export const Elements = {
     hideMiniMapInput(): HTMLInputElement {
         return document.getElementById('hideMiniMapInput') as HTMLInputElement
     },
+    hideBrilliantsPromotionInput(): HTMLInputElement {
+        return document.getElementById('hideBrilliantsPromotionInput') as HTMLInputElement
+    },
     // Game shortcuts
     openHuntShortcutInput(): HTMLInputElement {
         return document.getElementById('openHuntShortcutInput') as HTMLInputElement
