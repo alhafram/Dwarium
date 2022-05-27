@@ -30,7 +30,7 @@ function get(id: number): ChatSettingsConfig {
             clanChatFloodingTimer: 10,
             allianceChatFloodingMessage: '',
             allianceChatFloodingTimer: 10,
-            
+
             hideAttackedMessage: false,
             hideEndFightMessage: false,
             hideGiftPetMessage: false,

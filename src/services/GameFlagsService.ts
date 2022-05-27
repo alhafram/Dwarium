@@ -40,7 +40,7 @@ function getGameFlags(): GameFlags {
         hideCurrentEvent: readData(GameFlagsKeys.HIDE_CURRENT_EVENT) ?? false,
         hideFronts: readData(GameFlagsKeys.HIDE_FRONTS) ?? false,
         hideMiniMap: readData(GameFlagsKeys.HIDE_MINI_MAP) ?? false,
-        hideBrilliantsPromotion: readData(GameFlagsKeys.HIDE_BRILLIANTS_PROMOTION) ?? false,
+        hideBrilliantsPromotion: readData(GameFlagsKeys.HIDE_BRILLIANTS_PROMOTION) ?? false
     }
     return settings
 }
