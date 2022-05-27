@@ -10,12 +10,13 @@ import ShortcutService from './ShortcutService'
 
 export function createWindowAndLoad(windowType: WindowType, htmlPath?: HTMLPath, preloadPath?: string, enableRemote = false, contextIsolation = true): BrowserWindow {
     const windowPosition = getClientWindowPosition(windowType)
+    const minWidth = windowType == WindowType.CHAT_SETTINGS ? 1300 : 1100
     const window: BrowserWindow | null = new BrowserWindow({
         x: windowPosition?.x ?? 0,
         y: windowPosition?.y ?? 0,
         width: windowPosition?.width ?? 1100,
         height: windowPosition?.height ?? 700,
-        minWidth: 1100,
+        minWidth: minWidth,
         minHeight: 700,
         parent: ConfigService.getSettings().windowsAboveApp ? TabsController.mainWindow ?? undefined : undefined,
         webPreferences: {

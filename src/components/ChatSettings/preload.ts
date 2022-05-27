@@ -1,10 +1,10 @@
 import { ChatSettingsWindowActions } from './Actions'
-import { ChatSettingsWindowState } from './ChatSettingsWindowState'
 import reduce from './Reducer'
 import setupMode from '../../services/DarkModeHandler'
 import { render, setupView } from './Renderer'
+import { ChatSettingsConfig } from '../../Models/ChatSettingsConfig'
 
-let initialState: ChatSettingsWindowState = {
+let initialState: ChatSettingsConfig = {
     autoResponderEnabled: false,
     floodingEnabled: false,
     inactiveTimer: 0,
@@ -25,7 +25,25 @@ let initialState: ChatSettingsWindowState = {
     clanChatFloodingMessage: '',
     clanChatFloodingTimer: 10,
     allianceChatFloodingMessage: '',
-    allianceChatFloodingTimer: 10
+    allianceChatFloodingTimer: 10,
+
+    hideAttackedMessage: false,
+    hideEndFightMessage: false,
+    hideGiftPetMessage: false,
+    hideSocialInvitesMessage: false,
+    hideMeridianVaultsMessage: false,
+    hideUpgradeMountMessage: false,
+    hideContestMessage: false,
+    hideGuardiansMessage: false,
+    hideChaoticFightMessage: false,
+    hideCrusibleFightMessage: false,
+    hideHeavenFightMessage: false,
+    hideKesariMessage: false,
+    hideNewsMessage: false,
+    hideEventsMessage: false,
+    hideBoxPrizeMessage: false,
+    hideMedalsMessage: false,
+    hideMentorsMessage: false
 }
 
 export default async function dispatch(action: ChatSettingsWindowActions, data?: any) {

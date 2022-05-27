@@ -4,7 +4,6 @@ import { ChatSettingsConfig } from '../../Models/ChatSettingsConfig'
 import ChatSettingsService from '../../services/ChatSettingsService'
 import Utils from '../Common/Utils'
 import { ChatSettingsWindowActions } from './Actions'
-import { ChatSettingsWindowState } from './ChatSettingsWindowState'
 import { Elements } from './Elements'
 
 function save(userConfig: ChatSettingsConfig, id: number) {
@@ -16,7 +15,7 @@ function getChatSettingsConfig(id: number) {
     return ChatSettingsService.get(id)
 }
 
-export default async function reduce(state: ChatSettingsWindowState, action: ChatSettingsWindowActions, data?: any): Promise<ChatSettingsWindowState> {
+export default async function reduce(state: ChatSettingsConfig, action: ChatSettingsWindowActions, data?: any): Promise<ChatSettingsConfig> {
     switch (action) {
         case ChatSettingsWindowActions.LOAD_CONTENT: {
             const userId = (await Utils.getUserId()) as number
@@ -28,107 +27,49 @@ export default async function reduce(state: ChatSettingsWindowState, action: Cha
             state = chatSettingsConfig
             return state
         }
-        case ChatSettingsWindowActions.CHANGE_AUTO_RESPONDER_ENABLED:
-            return {
-                ...state,
-                autoResponderEnabled: Elements.autoResponderInput().checked
-            }
-        case ChatSettingsWindowActions.CHANGE_FLOODING_ENABLED:
-            return {
-                ...state,
-                floodingEnabled: Elements.floodingInput().checked
-            }
-        case ChatSettingsWindowActions.CHANGE_INACTIVE_TIMER:
-            return {
-                ...state,
-                inactiveTimer: parseInt(Elements.inactiveTimerInput().value)
-            }
-        case ChatSettingsWindowActions.CHANGE_PRIVATE_CHAT_RESPONSE:
-            return {
-                ...state,
-                privateChatResponse: Elements.privateChatResponseInput().value
-            }
-        case ChatSettingsWindowActions.CHANGE_COMMON_CHAT_RESPONSE:
-            return {
-                ...state,
-                commonChatResponse: Elements.commonChatResponseInput().value
-            }
-        case ChatSettingsWindowActions.CHANGE_TRADE_CHAT_RESPONSE:
-            return {
-                ...state,
-                tradeChatResponse: Elements.tradeChatResponseInput().value
-            }
-        case ChatSettingsWindowActions.CHANGE_GROUP_CHAT_RESPONSE:
-            return {
-                ...state,
-                groupChatResponse: Elements.groupChatResponseInput().value
-            }
-        case ChatSettingsWindowActions.CHANGE_CLAN_CHAT_RESPONSE:
-            return {
-                ...state,
-                clanChatResponse: Elements.clanChatResponseInput().value
-            }
-        case ChatSettingsWindowActions.CHANGE_ALLIANCE_CHAT_RESPONSE:
-            return {
-                ...state,
-                allianceChatResponse: Elements.allianceChatResponseInput().value
-            }
-        case ChatSettingsWindowActions.CHANGE_COMMON_CHAT_FLOODING_MESSAGE:
-            return {
-                ...state,
-                commonChatFloodingMessage: Elements.commonChatFloodingMessageInput().value
-            }
-        case ChatSettingsWindowActions.CHANGE_COMMON_CHAT_FLOODING_TIMER:
-            return {
-                ...state,
-                commonChatFloodingTimer: parseInt(Elements.commonChatFloodingTimerInput().value)
-            }
-        case ChatSettingsWindowActions.CHANGE_TRADE_CHAT_FLOODING_MESSAGE:
-            return {
-                ...state,
-                tradeChatFloodingMessage: Elements.tradeChatFloodingMessageInput().value
-            }
-        case ChatSettingsWindowActions.CHANGE_TRADE_CHAT_FLOODING_TIMER:
-            return {
-                ...state,
-                tradeChatFloodingTimer: parseInt(Elements.tradeChatFloodingTimerInput().value)
-            }
-        case ChatSettingsWindowActions.CHANGE_GROUP_CHAT_FLOODING_MESSAGE:
-            return {
-                ...state,
-                groupChatFloodingMessage: Elements.groupChatFloodingMessageInput().value
-            }
-        case ChatSettingsWindowActions.CHANGE_GROUP_CHAT_FLOODING_TIMER:
-            return {
-                ...state,
-                groupChatFloodingTimer: parseInt(Elements.groupChatFloodingTimerInput().value)
-            }
-        case ChatSettingsWindowActions.CHANGE_CLAN_CHAT_FLOODING_MESSAGE:
-            return {
-                ...state,
-                clanChatFloodingMessage: Elements.clanChatFloodingMessageInput().value
-            }
-        case ChatSettingsWindowActions.CHANGE_CLAN_CHAT_FLOODING_TIMER:
-            return {
-                ...state,
-                clanChatFloodingTimer: parseInt(Elements.clanChatFloodingTimerInput().value)
-            }
-        case ChatSettingsWindowActions.CHANGE_ALLIANCE_CHAT_FLOODING_MESSAGE:
-            return {
-                ...state,
-                allianceChatFloodingMessage: Elements.allianceChatFloodingMessageInput().value
-            }
-        case ChatSettingsWindowActions.CHANGE_ALLIANCE_CHAT_FLOODING_TIMER:
-            return {
-                ...state,
-                allianceChatFloodingTimer: parseInt(Elements.allianceChatFloodingTimerInput().value)
-            }
         case ChatSettingsWindowActions.SAVE: {
             const userId1 = (await Utils.getUserId()) as number
             if(!userId1) {
                 alert('Не найден user id пользователя, попробуйте авторизоваться и заново открыть настройки чата!')
                 return state
             }
+            state.autoResponderEnabled = Elements.autoResponderInput().checked
+            state.floodingEnabled = Elements.floodingInput().checked
+            state.inactiveTimer = parseInt(Elements.inactiveTimerInput().value)
+            state.privateChatResponse = Elements.privateChatResponseInput().value
+            state.commonChatResponse = Elements.commonChatResponseInput().value
+            state.tradeChatResponse = Elements.tradeChatResponseInput().value
+            state.groupChatResponse = Elements.groupChatResponseInput().value
+            state.clanChatResponse = Elements.clanChatResponseInput().value
+            state.allianceChatResponse = Elements.allianceChatResponseInput().value
+            state.commonChatFloodingMessage = Elements.commonChatFloodingMessageInput().value
+            state.commonChatFloodingTimer = parseInt(Elements.commonChatFloodingTimerInput().value)
+            state.tradeChatFloodingMessage = Elements.tradeChatFloodingMessageInput().value
+            state.tradeChatFloodingTimer = parseInt(Elements.tradeChatFloodingTimerInput().value)
+            state.groupChatFloodingMessage = Elements.groupChatFloodingMessageInput().value
+            state.groupChatFloodingTimer = parseInt(Elements.groupChatFloodingTimerInput().value)
+            state.clanChatFloodingMessage = Elements.clanChatFloodingMessageInput().value
+            state.clanChatFloodingTimer = parseInt(Elements.clanChatFloodingTimerInput().value)
+            state.allianceChatFloodingMessage = Elements.allianceChatFloodingMessageInput().value
+            state.allianceChatFloodingTimer = parseInt(Elements.allianceChatFloodingTimerInput().value)
+
+            state.hideAttackedMessage = Elements.hideAttackedMessageInput().checked
+            state.hideEndFightMessage = Elements.hideEndFightMessageInput().checked
+            state.hideGiftPetMessage = Elements.hideGiftPetMessageInput().checked
+            state.hideSocialInvitesMessage = Elements.hideSocialInvitesMessageInput().checked
+            state.hideMeridianVaultsMessage = Elements.hideMeridianVaultsMessageInput().checked
+            state.hideUpgradeMountMessage = Elements.hideUpgradeMountMessageInput().checked
+            state.hideContestMessage = Elements.hideContestMessageInput().checked
+            state.hideGuardiansMessage = Elements.hideGuardiansMessageInput().checked
+            state.hideChaoticFightMessage = Elements.hideChaoticFightMessageInput().checked
+            state.hideCrusibleFightMessage = Elements.hideCrusibleFightMessageInput().checked
+            state.hideHeavenFightMessage = Elements.hideHeavenFightMessageInput().checked
+            state.hideKesariMessage = Elements.hideKesariMessageInput().checked
+            state.hideNewsMessage = Elements.hideNewsMessageInput().checked
+            state.hideEventsMessage = Elements.hideEventsMessageInput().checked
+            state.hideBoxPrizeMessage = Elements.hideBoxPrizeMessageInput().checked
+            state.hideMedalsMessage = Elements.hideMedalsMessageInput().checked
+            state.hideMentorsMessage = Elements.hideMentorsMessageInput().checked
             save(state, userId1)
             return state
         }
