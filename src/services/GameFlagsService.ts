@@ -107,7 +107,7 @@ function getGameFlags(): GameFlags {
         hideBank: readData(GameTopMenuFlagsKeys.HIDE_BANK) ?? false,
         hideAuction: readData(GameTopMenuFlagsKeys.HIDE_AUCTION) ?? false,
         hideFights: readData(GameTopMenuFlagsKeys.HIDE_FIGHTS) ?? false,
-        hideInfoPortal: readData(GameTopMenuFlagsKeys.HIDE_INFOPORTAL) ?? false,
+        hideInfoPortal: readData(GameTopMenuFlagsKeys.HIDE_INFOPORTAL) ?? false
     }
     const gameRightMenuFlags = {
         hideMail: readData(GameRightMenuFlagsKeys.HIDE_MAIL) ?? false,

@@ -42,5 +42,5 @@ export enum WindowType {
     NOTIFICATIONS = 'notifications',
     EFFECT_SETS = 'effectSets',
     EXPIRING_ITEMS_SETTINGS = 'expiringItemsSettings',
-    GAME_SETTINGS = 'gameSettings',
+    GAME_SETTINGS = 'gameSettings'
 }
