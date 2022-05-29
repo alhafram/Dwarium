@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <link href="../../out/main.css" rel="stylesheet" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
+            rel="stylesheet" />
+
+        <style>
+            input:checked ~ .dot {
+                transform: translateX(130%);
+            }
+            label {
+                padding-right: 10px;
+            }
+        </style>
+    </head>
+
+    <body class="bg-white dark:bg-dark">
+        <div class="flex mt-4 ml-4">
+            <div>
+                <h1 class="font-montserrat text-xs font-extrabold text-secondaryLightDark dark:text-secondaryLight">Игровые настройки</h1>
+
+                <div class="mt-5 flex font-montserrat text-xs font-extrabold text-secondaryLightDark">
+                    <div class="flex">
+                        <label for="hideCasinoInput" class="relative flex cursor-pointer items-center">
+                            <input type="checkbox" id="hideCasinoInput" class="sr-only" />
+                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="dot absolute left-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
+                        </label>
+                    </div>
+                    <label class="my-auto text-secondaryLightDark dark:text-secondaryLight">Скрывать бандита</label>
+                </div>
+
+                <div class="mt-5 flex font-montserrat text-xs font-extrabold text-secondaryLightDark">
+                    <div class="flex">
+                        <label for="hideActivitiesInput" class="relative flex cursor-pointer items-center">
+                            <input type="checkbox" id="hideActivitiesInput" class="sr-only" />
+                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="dot absolute left-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
+                        </label>
+                    </div>
+                    <label class="my-auto text-secondaryLightDark dark:text-secondaryLight">Скрывать активности</label>
+                </div>
+
+                <div class="mt-5 flex font-montserrat text-xs font-extrabold text-secondaryLightDark">
+                    <div class="flex">
+                        <label for="hidePromotionsInput" class="relative flex cursor-pointer items-center">
+                            <input type="checkbox" id="hidePromotionsInput" class="sr-only" />
+                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="dot absolute left-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
+                        </label>
+                    </div>
+                    <label class="my-auto text-secondaryLightDark dark:text-secondaryLight">Скрывать акции</label>
+                </div>
+
+                <div class="mt-5 flex font-montserrat text-xs font-extrabold text-secondaryLightDark">
+                    <div class="flex">
+                        <label for="hideDiceGameInput" class="relative flex cursor-pointer items-center">
+                            <input type="checkbox" id="hideDiceGameInput" class="sr-only" />
+                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="dot absolute left-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
+                        </label>
+                    </div>
+                    <label class="my-auto text-secondaryLightDark dark:text-secondaryLight">Скрывать дар небес</label>
+                </div>
+
+                <div class="mt-5 flex font-montserrat text-xs font-extrabold text-secondaryLightDark">
+                    <div class="flex">
+                        <label for="hideWheelFortuneInput" class="relative flex cursor-pointer items-center">
+                            <input type="checkbox" id="hideWheelFortuneInput" class="sr-only" />
+                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="dot absolute left-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
+                        </label>
+                    </div>
+                    <label class="my-auto text-secondaryLightDark dark:text-secondaryLight">Скрывать колесо удачи</label>
+                </div>
+
+                <div class="mt-5 flex font-montserrat text-xs font-extrabold text-secondaryLightDark">
+                    <div class="flex">
+                        <label for="hideNPCEventsInput" class="relative flex cursor-pointer items-center">
+                            <input type="checkbox" id="hideNPCEventsInput" class="sr-only" />
+                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="dot absolute left-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
+                        </label>
+                    </div>
+                    <label class="my-auto text-secondaryLightDark dark:text-secondaryLight">Скрывать иконки NPC событий</label>
+                </div>
+
+                <div class="mt-5 flex font-montserrat text-xs font-extrabold text-secondaryLightDark">
+                    <div class="flex">
+                        <label for="hideCurrentEventInput" class="relative flex cursor-pointer items-center">
+                            <input type="checkbox" id="hideCurrentEventInput" class="sr-only" />
+                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="dot absolute left-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
+                        </label>
+                    </div>
+                    <label class="my-auto text-secondaryLightDark dark:text-secondaryLight">Скрывать текущее событие</label>
+                </div>
+
+                <div class="mt-5 flex font-montserrat text-xs font-extrabold text-secondaryLightDark">
+                    <div class="flex">
+                        <label for="hideFrontsInput" class="relative flex cursor-pointer items-center">
+                            <input type="checkbox" id="hideFrontsInput" class="sr-only" />
+                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="dot absolute left-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
+                        </label>
+                    </div>
+                    <label class="my-auto text-secondaryLightDark dark:text-secondaryLight">Скрывать разломы</label>
+                </div>
+
+                <div class="mt-5 flex font-montserrat text-xs font-extrabold text-secondaryLightDark">
+                    <div class="flex">
+                        <label for="hideMiniMapInput" class="relative flex cursor-pointer items-center">
+                            <input type="checkbox" id="hideMiniMapInput" class="sr-only" />
+                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="dot absolute left-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
+                        </label>
+                    </div>
+                    <label class="my-auto text-secondaryLightDark dark:text-secondaryLight">Скрывать миникарту</label>
+                </div>
+
+                <div class="mt-5 flex font-montserrat text-xs font-extrabold text-secondaryLightDark">
+                    <div class="flex">
+                        <label for="hideBrilliantsPromotionInput" class="relative flex cursor-pointer items-center">
+                            <input type="checkbox" id="hideBrilliantsPromotionInput" class="sr-only" />
+                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="dot absolute left-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
+                        </label>
+                    </div>
+                    <label class="my-auto text-secondaryLightDark dark:text-secondaryLight">Скрывать акцию с бриллиантами</label>
+                </div>
+
+                <button class="defaultButton mt-8" id="saveButton">Сохранить</button>
+            </div>
+        </div>
+    </body>
+</html>

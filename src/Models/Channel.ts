@@ -12,6 +12,7 @@ export enum Channel {
     OPEN_SETTINGS = 'openSettings',
     OPEN_EFFECT_SETS = 'openEffectSets',
     OPEN_EXPIRING_ITEMS_SETTINGS = 'openExpiringItemsSettings',
+    OPEN_GAME_SETTINGS = 'openGameSettings',
     NEW_TAB = 'new_tab',
     NEW_TAB_WITH_URL = 'newTabWithUrl',
     REMOVE_VIEW = 'remove_view',

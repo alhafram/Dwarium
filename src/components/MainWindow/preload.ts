@@ -108,6 +108,9 @@ const Elements = {
     },
     expiringItemsSettingsSvg(): HTMLElement {
         return document.getElementById('expiringItemsSettingsSvg') as HTMLElement
+    },
+    gameSettingsButton(): HTMLButtonElement {
+        return document.getElementById('gameSettingsButton') as HTMLButtonElement
     }
 }
 
@@ -154,6 +157,9 @@ window.addEventListener('DOMContentLoaded', async() => {
     })
     Elements.effectSetsButton().addEventListener('click', () => {
         ipcRenderer.send(Channel.OPEN_EFFECT_SETS)
+    })
+    Elements.gameSettingsButton().addEventListener('click', () => {
+        ipcRenderer.send(Channel.OPEN_GAME_SETTINGS)
     })
     Elements.urlInput().addEventListener('keyup', (e: KeyboardEvent) => {
         if(e.key == 'Enter') {

@@ -4,7 +4,6 @@ import { getTitle, SettingsWindowState, UserAgentType } from './SettingsWindowSt
 import setupMode from '../../services/DarkModeHandler'
 import { render, setupView } from './Renderer'
 import ShortcutService from '../../services/ShortcutService'
-import GameFlagsService from '../../services/GameFlagsService'
 
 let initialState: SettingsWindowState = {
     userAgents: Object.keys(UserAgentType).map((key) => {
@@ -34,8 +33,7 @@ let initialState: SettingsWindowState = {
     mailNotificationsIngame: false,
     updateChannel: 'stable',
     needToRestoreUrls: false,
-    shortcuts: ShortcutService.getShortcuts(),
-    gameFlags: GameFlagsService.getGameFlags()
+    shortcuts: ShortcutService.getShortcuts()
 }
 
 export function dispatch(action: SettingsWindowActions, data?: unknown): void {

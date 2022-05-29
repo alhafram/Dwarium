@@ -421,6 +421,18 @@ ipcMain.on(Channel.OPEN_EFFECT_SETS, () => {
     })
 })
 
+let gameSettingsWindow: BrowserWindow | null
+ipcMain.on(Channel.OPEN_GAME_SETTINGS, () => {
+    if(gameSettingsWindow) {
+        gameSettingsWindow.show()
+        return
+    }
+    gameSettingsWindow = createWindowAndLoad(WindowType.GAME_SETTINGS, HTMLPath.GAME_SETTINGS, Preload.GAME_SETTINGS, true)
+    setupCloseLogic(gameSettingsWindow, WindowType.GAME_SETTINGS, function() {
+        gameSettingsWindow = null
+    })
+})
+
 let expiringItemsSettings: BrowserWindow | null
 ipcMain.on(Channel.OPEN_EXPIRING_ITEMS_SETTINGS, () => {
     if(expiringItemsSettings) {
