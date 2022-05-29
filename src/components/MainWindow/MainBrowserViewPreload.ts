@@ -11,7 +11,8 @@ import GameFlagsService from '../../services/GameFlagsService'
 import ChatSettingsService from '../../services/ChatSettingsService'
 import Utils from '../Common/Utils'
 
-document.gameFlags = GameFlagsService.getGameFlags()
+document.gameLocationFlags = GameFlagsService.getGameFlags().gameLocationFlags
+document.gameTopMenuFlags = GameFlagsService.getGameFlags().gameTopMenuFlags
 
 window.addEventListener('DOMContentLoaded', async() => {
     ChatService.setupAutoResponder()

@@ -5,8 +5,10 @@ import { render, setupView } from './Renderer'
 import GameFlagsService from '../../services/GameFlagsService'
 import { GameSettingsWindowState } from './GameSettingsWindowState'
 
+const flags = GameFlagsService.getGameFlags()
 let initialState: GameSettingsWindowState = {
-    gameFlags: GameFlagsService.getGameFlags()
+    gameLocationFlags: flags.gameLocationFlags,
+    gameTopMenuFlags: flags.gameTopMenuFlags
 }
 
 export function dispatch(action: GameSettingsWindowActions, data?: unknown): void {

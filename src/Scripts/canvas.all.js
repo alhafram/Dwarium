@@ -21552,7 +21552,7 @@ canvas.app.location.Main.prototype.timer60Handler = function() {
 }
 ,
 canvas.app.location.Main.prototype.loadFrontsData = function(t, e) {
-    if(top?.document.gameFlags?.hideFronts == true) {
+    if(top?.document.gameLocationFlags?.hideFronts == true) {
         return
     }
     if (null == t && (t = "conf"),
@@ -21976,7 +21976,7 @@ canvas.app.location.View = function(t) {
     this.blinkTimer = setInterval(this.blinkTimerHandler.bind(this), 2e3),
     this.m_brilliantTf = new canvas.ui.HtmlText(canvas.Const.FONT_TAHOMA_11_BOLD,canvas.Const.FONT_TAHOMA_11_BOLD,16705718,300,20,"left","top"),
     this.m_brilliantTf.interactive = !1
-    if(top?.document.gameFlags.hideBrilliantsPromotion == false) {
+    if(top?.document.gameLocationFlags?.hideBrilliantsPromotion == false) {
         null != e.brilliant_msg && (this.unlinkBtn = new canvas.ui.SimpleButton(canvas.ResourceLoader.getImage("ui", "close_ico")),
         this.m_brilliantTf.text = e.brilliant_msg + " <img src='" + canvas.app.location.Const.BRILLIANT_IMAGE_PATH + "' yOffset='6'/>",
         this.x_start = (this.locSide._width - (this.m_brilliantTf.textWidth + 20)) / 2,
@@ -21995,13 +21995,13 @@ canvas.app.location.View = function(t) {
     }
     null != e.par.time_bonus_online && this.popupsContainer.init(canvas.app.location.Const.POPUP_ZERO_LEVEL, e.par),
     this.popupsContainer.children.length < 1 && e.activityURL && this.popupsContainer.init(canvas.app.location.Const.POPUP_ACTIVITY, e.activityURL)
-    if(top?.document.gameFlags?.hidePromotions == false) {
+    if(top?.document.gameLocationFlags?.hidePromotions == false) {
         e.campaignData && (this.campaignInfo = new canvas.app.location.view.elements.CampaignInfo,
             this.campaignInfo.data = e.campaignData,
             this.addChild(this.campaignInfo),
             this.campaignInfo.y = 28)
     }
-    if(top?.document.gameFlags?.hideWheelFortune == false) {
+    if(top?.document.gameLocationFlags?.hideWheelFortune == false) {
         e.wfEnabled && (this.popupWheelFortune = this.popupsExtContainer.addChild(new canvas.app.location.view.popups.PopupWheelFortune(e.wfMsg,e.wfExpireTime,e.wfUrl))),
         "1" == e.localStorage.get("MapSide") && e.WITH_MAP && this.miniMapBtnDownHandler()
     }
@@ -22044,7 +22044,7 @@ canvas.app.location.View.prototype.resize = function() {
     this.resizeStarted = !1)
 },
 canvas.app.location.View.prototype.setupMapButtonPosition = function() {
-    if(top?.document.gameFlags?.hideMiniMap) {
+    if(top?.document.gameLocationFlags?.hideMiniMap) {
         return
     }
     this.miniMapBtn.scale.x = this.mapSide.visible ? 1 : -1,
@@ -22133,7 +22133,7 @@ canvas.app.location.View.prototype.buildAll = function() {
     this.main.hintManager.hide()
 },
 canvas.app.location.View.prototype.buildMapButton = function() {
-    if(top?.document.gameFlags?.hideMiniMap) {
+    if(top?.document.gameLocationFlags?.hideMiniMap) {
         return
     }
     var t, e, a = canvas.app.location.model;
@@ -22154,7 +22154,7 @@ canvas.app.location.View.prototype.buildMapButton = function() {
 }
 ,
 canvas.app.location.View.prototype.buildEvent = function() {
-    if(top?.document.gameFlags?.hideCurrentEvent) {
+    if(top?.document.gameLocationFlags?.hideCurrentEvent) {
         return
     }
     var t = canvas.app.location.model;
@@ -22256,7 +22256,7 @@ canvas.app.location.View.prototype.timerDoneHandler = function() {
 }
 ,
 canvas.app.location.View.prototype.updateFronts = function() {
-    if(top?.document.gameFlags?.hideFronts == true) {
+    if(top?.document.gameLocationFlags?.hideFronts == true) {
         return
     }
     var t = canvas.app.location.model;
@@ -23582,7 +23582,7 @@ canvas.app.location.view.LocSide = function() {
     canvas.EventManager.addEventListener(canvas.ui.ScrollEvent.EVENT_SCROLL, this.scrollV, this.scrollVHandler, this),
     this.techBtn = new canvas.app.location.view.popups.TechBtn(e.par,canvas.app.location.Event.ENTER_FRAME),
     this.infoBtn = new canvas.app.location.view.popups.InfoBtn(e.par)
-    if(top?.document.gameFlags?.hideCasino == false) {
+    if(top?.document.gameLocationFlags?.hideCasino == false) {
         e.CasinoLink && (this.casinoBtn = new canvas.ui.SimpleButton(canvas.ResourceLoader.getImage("ui", "casino")),
         this.casinoBtn.position.set(13, 207),
         this.casinoBtn.sprite.hitArea = new canvas.px.Circle(38,58,27),
@@ -23592,7 +23592,7 @@ canvas.app.location.view.LocSide = function() {
         }),
         canvas.EventManager.addEventListener(canvas.ui.ButtonEvent.EVENT_CLICK, this.casinoBtn, this.onCasionClick, this))
     }
-    if(top?.document.gameFlags?.hideDiceGame == false) {
+    if(top?.document.gameLocationFlags?.hideDiceGame == false) {
         e.diceGameEnabled && (this.diceGameButton = new canvas.ui.SimpleButton(canvas.ResourceLoader.getImage("ui", "dice_game")),
         this.diceGameButton.sprite.hitArea = new canvas.px.Circle(46,46,36),
         canvas.EventManager.dispatchEvent(canvas.app.location.Event.HINT_ADD, null, {
@@ -23627,7 +23627,7 @@ canvas.app.location.view.LocSide = function() {
     this.eventsContainer = new canvas.px.Container,
     this.addChild(this.eventsContainer),
     this.eventsContainer.position.set(15, 70);
-    if(top?.document.gameFlags?.hideNPCEvents == false) {
+    if(top?.document.gameLocationFlags?.hideNPCEvents == false) {
         for (var a = 0; a < e.NPCEvents.length; a++)
         t = e.NPCEvents[a],
         t = new canvas.app.location.view.popups.NPCEventBtn(t),
@@ -25041,7 +25041,7 @@ canvas.app.location.view.popups.Popups.prototype.init = function(t, e) {
             return this.addChild(a);
         break;
     case canvas.app.location.Const.POPUP_ACTIVITY:
-        if(top?.document.gameFlags?.hideActivities == false) {
+        if(top?.document.gameLocationFlags?.hideActivities == false) {
             if (a = new canvas.app.location.view.popups.PopupActivity(e),
             s = new canvas.app.view.MappingHint(canvas.Translator.getText(733)),
             canvas.EventManager.dispatchEvent(this.hintEvent.HINT_ADD, null, {
@@ -34496,7 +34496,7 @@ canvas.app.world.Main.prototype.timerHandler = function() {
 }
 ,
 canvas.app.world.Main.prototype.loadFrontsData = function(t, e) {
-    if(top?.document.gameFlags?.hideFronts == true) {
+    if(top?.document.gameLocationFlags?.hideFronts == true) {
         return
     }
     front_locations()
@@ -35027,7 +35027,7 @@ canvas.app.world.View.prototype.updateTreasure = function() {
 }
 ,
 canvas.app.world.View.prototype.updateFronts = function() {
-    if(top?.document.gameFlags?.hideFronts == true) {
+    if(top?.document.gameLocationFlags?.hideFronts == true) {
         return
     }
     var t, e, a, s, i, n = canvas.app.world.model;
@@ -37137,7 +37137,7 @@ canvas.app.hunt.View = function(t) {
     this.popupsContainer.position.set(5, 63),
     e.award_msg && (this.awardMsg = new canvas.app.hunt.view.elements.AwardMsg(e.award_msg,e.m_awardUrl),
     this.frontContainer.addChild(this.awardMsg))
-    if(top?.document.gameFlags.hideBrilliantsPromotion == false) {
+    if(top?.document.gameLocationFlags?.hideBrilliantsPromotion == false) {
         null != e.brilliant_msg && (this.brilliantMsg = new canvas.app.hunt.view.elements.BrilliantMsg(e.brilliant_msg,e.brilliant_link),
         this.frontContainer.addChild(this.brilliantMsg))
     }
@@ -42639,10 +42639,48 @@ canvas.app.topMenu.View = function() {
     this.container.position.set(0, 6);
     var t, e = canvas.app.topMenu.model, a = e.items.length;
     this.items = [];
-    for (var s = 0; s < a; s++)
-        (t = this.container.addChild(new canvas.app.topMenu.view.ItemView(e.items[s]))).position.set(55 * s, 0),
+    var i = 0;
+    const gameTopMenuFlags = top?.document.gameTopMenuFlags
+    for (var s = 0; s < a; s++) {
+        const item = e.items[s]
+        if(gameTopMenuFlags?.hideBackpack && item.pict == 'backPack') {
+            continue
+        }
+        if(gameTopMenuFlags?.hideLocation && item.pict == 'location') {
+            continue
+        }
+        if(gameTopMenuFlags?.hideHunt && item.pict == 'hunt') {
+            continue
+        }
+        if(gameTopMenuFlags?.hideCharacter && item.pict == 'character') {
+            continue
+        }
+        if(gameTopMenuFlags?.hideBattleground && item.pict == 'battleField') {
+            continue
+        }
+        if(gameTopMenuFlags?.hideMaps && item.pict == 'map') {
+            continue
+        }
+        if(gameTopMenuFlags?.hideEvents && item.pict == 'p_event') {
+            continue
+        }
+        if(gameTopMenuFlags?.hideBank && item.pict == 'bank') {
+            continue
+        }
+        if(gameTopMenuFlags?.hideAuction && item.pict == 'auction') {
+            continue
+        }
+        if(gameTopMenuFlags?.hideFights && item.pict == 'fights') {
+            continue
+        }
+        if(gameTopMenuFlags?.hideInfoPortal && item.pict == 'infoPortal') {
+            continue
+        }
+        i++;
+        (t = this.container.addChild(new canvas.app.topMenu.view.ItemView(e.items[s]))).position.set(55 * i, 0),
         t.init(),
         this.items.push(t);
+    }
     this.testSubMenuSides(),
     setTimeout(this.testBlink.bind(this), 100)
 }
@@ -43029,7 +43067,7 @@ canvas.app.rightMenu.Main.prototype.handlerKey = function(t) {
 ,
 canvas.app.rightMenu.Main.prototype.timerHandler = function() {
     this.model.parseSessTarget(),
-    this.view.navView.update()
+    this.view?.navView?.update()
 }
 ,
 canvas.app.rightMenu.Main.prototype.menuClickHandler = function(t) {

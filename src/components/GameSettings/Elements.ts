@@ -31,5 +31,38 @@ export const Elements = {
     },
     saveButton(): HTMLButtonElement {
         return document.getElementById('saveButton') as HTMLButtonElement
+    },
+    hideBackpackInput(): HTMLInputElement {
+        return document.getElementById('hideBackpackInput') as HTMLInputElement
+    },
+    hideLocationInput(): HTMLInputElement {
+        return document.getElementById('hideLocationInput') as HTMLInputElement
+    },
+    hideHuntInput(): HTMLInputElement {
+        return document.getElementById('hideHuntInput') as HTMLInputElement
+    },
+    hideCharacterInput(): HTMLInputElement {
+        return document.getElementById('hideCharacterInput') as HTMLInputElement
+    },
+    hideBattlegroundInput(): HTMLInputElement {
+        return document.getElementById('hideBattlegroundInput') as HTMLInputElement
+    },
+    hideMapsInput(): HTMLInputElement {
+        return document.getElementById('hideMapsInput') as HTMLInputElement
+    },
+    hideEventsInput(): HTMLInputElement {
+        return document.getElementById('hideEventsInput') as HTMLInputElement
+    },
+    hideBankInput(): HTMLInputElement {
+        return document.getElementById('hideBankInput') as HTMLInputElement
+    },
+    hideAuctionInput(): HTMLInputElement {
+        return document.getElementById('hideAuctionInput') as HTMLInputElement
+    },
+    hideFightsInput(): HTMLInputElement {
+        return document.getElementById('hideFightsInput') as HTMLInputElement
+    },
+    hideInfoPortalInput(): HTMLInputElement {
+        return document.getElementById('hideInfoPortalInput') as HTMLInputElement
     }
 }

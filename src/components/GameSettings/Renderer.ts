@@ -12,16 +12,28 @@ export function render(initialState: GameSettingsWindowState) {
 }
 
 function setupGameFlags() {
-    Elements.hideCasinoInput().checked = state.gameFlags.hideCasino
-    Elements.hideActivitiesInput().checked = state.gameFlags.hideActivities
-    Elements.hidePromotionsInput().checked = state.gameFlags.hidePromotions
-    Elements.hideDiceGameInput().checked = state.gameFlags.hideDiceGame
-    Elements.hideWheelFortuneInput().checked = state.gameFlags.hideWheelFortune
-    Elements.hideNPCEventsInput().checked = state.gameFlags.hideNPCEvents
-    Elements.hideCurrentEventInput().checked = state.gameFlags.hideCurrentEvent
-    Elements.hideFrontsInput().checked = state.gameFlags.hideFronts
-    Elements.hideMiniMapInput().checked = state.gameFlags.hideMiniMap
-    Elements.hideBrilliantsPromotionInput().checked = state.gameFlags.hideBrilliantsPromotion
+    Elements.hideCasinoInput().checked = state.gameLocationFlags.hideCasino
+    Elements.hideActivitiesInput().checked = state.gameLocationFlags.hideActivities
+    Elements.hidePromotionsInput().checked = state.gameLocationFlags.hidePromotions
+    Elements.hideDiceGameInput().checked = state.gameLocationFlags.hideDiceGame
+    Elements.hideWheelFortuneInput().checked = state.gameLocationFlags.hideWheelFortune
+    Elements.hideNPCEventsInput().checked = state.gameLocationFlags.hideNPCEvents
+    Elements.hideCurrentEventInput().checked = state.gameLocationFlags.hideCurrentEvent
+    Elements.hideFrontsInput().checked = state.gameLocationFlags.hideFronts
+    Elements.hideMiniMapInput().checked = state.gameLocationFlags.hideMiniMap
+    Elements.hideBrilliantsPromotionInput().checked = state.gameLocationFlags.hideBrilliantsPromotion
+
+    Elements.hideBackpackInput().checked = state.gameTopMenuFlags.hideBackpack
+    Elements.hideLocationInput().checked = state.gameTopMenuFlags.hideLocation
+    Elements.hideHuntInput().checked = state.gameTopMenuFlags.hideHunt
+    Elements.hideCharacterInput().checked = state.gameTopMenuFlags.hideCharacter
+    Elements.hideBattlegroundInput().checked = state.gameTopMenuFlags.hideBattleground
+    Elements.hideMapsInput().checked = state.gameTopMenuFlags.hideMaps
+    Elements.hideEventsInput().checked = state.gameTopMenuFlags.hideEvents
+    Elements.hideBankInput().checked = state.gameTopMenuFlags.hideBank
+    Elements.hideAuctionInput().checked = state.gameTopMenuFlags.hideAuction
+    Elements.hideFightsInput().checked = state.gameTopMenuFlags.hideFights
+    Elements.hideInfoPortalInput().checked = state.gameTopMenuFlags.hideInfoPortal
 }
 
 export function setupView() {
