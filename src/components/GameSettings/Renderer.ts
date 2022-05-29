@@ -34,6 +34,14 @@ function setupGameFlags() {
     Elements.hideAuctionInput().checked = state.gameTopMenuFlags.hideAuction
     Elements.hideFightsInput().checked = state.gameTopMenuFlags.hideFights
     Elements.hideInfoPortalInput().checked = state.gameTopMenuFlags.hideInfoPortal
+
+    Elements.hideMailInput().checked = state.gameRightMenuFlags.hideMail
+    Elements.hideExternalBackpackInput().checked = state.gameRightMenuFlags.hideExternalBackpack
+    Elements.hideMountInput().checked = state.gameRightMenuFlags.hideMount
+    Elements.hideCompasInput().checked = state.gameRightMenuFlags.hideCompas
+    Elements.hideProfessionInput().checked = state.gameRightMenuFlags.hideProfession
+    Elements.hideQuestsInput().checked = state.gameRightMenuFlags.hideQuests
+    Elements.hideFriendsInput().checked = state.gameRightMenuFlags.hideFriends
 }
 
 export function setupView() {

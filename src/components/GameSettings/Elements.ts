@@ -1,4 +1,5 @@
 export const Elements = {
+    // Location flags
     hideCasinoInput(): HTMLInputElement {
         return document.getElementById('hideCasinoInput') as HTMLInputElement
     },
@@ -32,6 +33,7 @@ export const Elements = {
     saveButton(): HTMLButtonElement {
         return document.getElementById('saveButton') as HTMLButtonElement
     },
+    // Top menu flags
     hideBackpackInput(): HTMLInputElement {
         return document.getElementById('hideBackpackInput') as HTMLInputElement
     },
@@ -64,5 +66,27 @@ export const Elements = {
     },
     hideInfoPortalInput(): HTMLInputElement {
         return document.getElementById('hideInfoPortalInput') as HTMLInputElement
+    },
+    // Right menu flags
+    hideMailInput(): HTMLInputElement {
+        return document.getElementById('hideMailInput') as HTMLInputElement
+    },
+    hideExternalBackpackInput(): HTMLInputElement {
+        return document.getElementById('hideExternalBackpackInput') as HTMLInputElement
+    },
+    hideMountInput(): HTMLInputElement {
+        return document.getElementById('hideMountInput') as HTMLInputElement
+    },
+    hideCompasInput(): HTMLInputElement {
+        return document.getElementById('hideCompasInput') as HTMLInputElement
+    },
+    hideProfessionInput(): HTMLInputElement {
+        return document.getElementById('hideProfessionInput') as HTMLInputElement
+    },
+    hideQuestsInput(): HTMLInputElement {
+        return document.getElementById('hideQuestsInput') as HTMLInputElement
+    },
+    hideFriendsInput(): HTMLInputElement {
+        return document.getElementById('hideFriendsInput') as HTMLInputElement
     }
 }

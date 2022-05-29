@@ -8,7 +8,8 @@ import { GameSettingsWindowState } from './GameSettingsWindowState'
 const flags = GameFlagsService.getGameFlags()
 let initialState: GameSettingsWindowState = {
     gameLocationFlags: flags.gameLocationFlags,
-    gameTopMenuFlags: flags.gameTopMenuFlags
+    gameTopMenuFlags: flags.gameTopMenuFlags,
+    gameRightMenuFlags: flags.gameRightMenuFlags
 }
 
 export function dispatch(action: GameSettingsWindowActions, data?: unknown): void {

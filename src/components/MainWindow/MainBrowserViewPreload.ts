@@ -13,6 +13,7 @@ import Utils from '../Common/Utils'
 
 document.gameLocationFlags = GameFlagsService.getGameFlags().gameLocationFlags
 document.gameTopMenuFlags = GameFlagsService.getGameFlags().gameTopMenuFlags
+document.gameRightMenuFlags = GameFlagsService.getGameFlags().gameRightMenuFlags
 
 window.addEventListener('DOMContentLoaded', async() => {
     ChatService.setupAutoResponder()

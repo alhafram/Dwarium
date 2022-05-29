@@ -30,6 +30,16 @@ export type GameTopMenuFlags = {
     hideInfoPortal: boolean
 }
 
+export type GameRightMenuFlags = {
+    hideMail: boolean
+    hideExternalBackpack: boolean
+    hideMount: boolean
+    hideCompas: boolean
+    hideProfession: boolean
+    hideQuests: boolean
+    hideFriends: boolean
+}
+
 export enum GameLocationFlagsKeys {
     HIDE_CASINO = 'hideCasino',
     HIDE_ACTIVITIES = 'hideActivities',
@@ -57,9 +67,20 @@ export enum GameTopMenuFlagsKeys {
     HIDE_INFOPORTAL = 'hideInfoPortal'
 }
 
+export enum GameRightMenuFlagsKeys {
+    HIDE_MAIL = 'hideMail',
+    HIDE_EXTERNAL_BACKPACK = 'hideExternalBackpack',
+    HIDE_MOUNT = 'hideMount',
+    HIDE_COMPAS = 'hideCompas',
+    HIDE_PROFESSTION = 'hideProfession',
+    HIDE_QUESTS = 'hideQuests',
+    HIDE_FRIENDS = 'hideFriends'
+}
+
 export type GameFlags = {
     gameLocationFlags: GameLocationFlags
     gameTopMenuFlags: GameTopMenuFlags
+    gameRightMenuFlags: GameRightMenuFlags
 }
 
 function getGameFlags(): GameFlags {
@@ -88,13 +109,23 @@ function getGameFlags(): GameFlags {
         hideFights: readData(GameTopMenuFlagsKeys.HIDE_FIGHTS) ?? false,
         hideInfoPortal: readData(GameTopMenuFlagsKeys.HIDE_INFOPORTAL) ?? false,
     }
+    const gameRightMenuFlags = {
+        hideMail: readData(GameRightMenuFlagsKeys.HIDE_MAIL) ?? false,
+        hideExternalBackpack: readData(GameRightMenuFlagsKeys.HIDE_EXTERNAL_BACKPACK) ?? false,
+        hideMount: readData(GameRightMenuFlagsKeys.HIDE_MOUNT) ?? false,
+        hideCompas: readData(GameRightMenuFlagsKeys.HIDE_COMPAS) ?? false,
+        hideProfession: readData(GameRightMenuFlagsKeys.HIDE_PROFESSTION) ?? false,
+        hideQuests: readData(GameRightMenuFlagsKeys.HIDE_QUESTS) ?? false,
+        hideFriends: readData(GameRightMenuFlagsKeys.HIDE_FRIENDS) ?? false
+    }
     return {
         gameLocationFlags,
-        gameTopMenuFlags
+        gameTopMenuFlags,
+        gameRightMenuFlags
     }
 }
 
-function writeData(key: GameLocationFlagsKeys | GameTopMenuFlagsKeys, value: any): void {
+function writeData(key: GameLocationFlagsKeys | GameTopMenuFlagsKeys | GameRightMenuFlagsKeys, value: any): void {
     const contents = FileOperationsService.parseData(path) as any
     contents[key] = value
     Object.keys(contents).forEach((key) => {

@@ -43160,13 +43160,29 @@ canvas.app.rightMenu.View = function() {
     this.itemsContainer = this.addChild(new canvas.px.Container),
     this.items = [];
     var t = canvas.app.rightMenu.model;
-    this.createMenuItem(canvas.app.rightMenu.Const.MENU_TYPE_MAIL),
-    this.createMenuItem(canvas.app.rightMenu.Const.MENU_TYPE_BAG),
-    this.createMenuItem(canvas.app.rightMenu.Const.MENU_TYPE_MOUNT),
-    this.createMenuItem(canvas.app.rightMenu.Const.MENU_TYPE_NAV),
-    this.createMenuItem(canvas.app.rightMenu.Const.MENU_TYPE_PROF),
-    this.createMenuItem(canvas.app.rightMenu.Const.MENU_TYPE_QUEST),
-    t.friendsVisible && this.createMenuItem(canvas.app.rightMenu.Const.MENU_TYPE_FRIENDS);
+    const gameRightMenuFlags = top?.document.gameRightMenuFlags
+    if(!gameRightMenuFlags?.hideMail) {
+        this.createMenuItem(canvas.app.rightMenu.Const.MENU_TYPE_MAIL)
+    }
+    if(!gameRightMenuFlags?.hideExternalBackpack) {
+        this.createMenuItem(canvas.app.rightMenu.Const.MENU_TYPE_BAG)
+    }
+    if(!gameRightMenuFlags?.hideMount) {
+        this.createMenuItem(canvas.app.rightMenu.Const.MENU_TYPE_MOUNT)
+    }
+    if(!gameRightMenuFlags?.hideCompas) {
+        this.createMenuItem(canvas.app.rightMenu.Const.MENU_TYPE_NAV)
+    }
+    if(!gameRightMenuFlags?.hideProfession) {
+        this.createMenuItem(canvas.app.rightMenu.Const.MENU_TYPE_PROF)
+    }
+    if(!gameRightMenuFlags?.hideQuests) {
+        this.createMenuItem(canvas.app.rightMenu.Const.MENU_TYPE_QUEST)
+    }
+    if(!gameRightMenuFlags?.hideFriends) {
+        t.friendsVisible && this.createMenuItem(canvas.app.rightMenu.Const.MENU_TYPE_FRIENDS)
+    }
+    
     for (var e = this.items.length, a = 0; a < e; a++)
         this.items[a].y = 46 * a;
     this.switchButton = new canvas.app.rightMenu.view.SwitchButton,

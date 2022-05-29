@@ -1,6 +1,6 @@
 import { ipcRenderer } from 'electron'
 import { Channel } from '../../Models/Channel'
-import GameFlagsService, { GameLocationFlagsKeys, GameTopMenuFlagsKeys } from '../../services/GameFlagsService'
+import GameFlagsService, { GameLocationFlagsKeys, GameRightMenuFlagsKeys, GameTopMenuFlagsKeys } from '../../services/GameFlagsService'
 import { GameSettingsWindowActions } from './Actions'
 import { Elements } from './Elements'
 import { GameSettingsWindowState } from './GameSettingsWindowState'
@@ -17,7 +17,8 @@ export default function reduce(state: GameSettingsWindowState, action: GameSetti
             return {
                 ...state,
                 gameLocationFlags: flags.gameLocationFlags,
-                gameTopMenuFlags: flags.gameTopMenuFlags
+                gameTopMenuFlags: flags.gameTopMenuFlags,
+                gameRightMenuFlags: flags.gameRightMenuFlags
             }
         }
     }
@@ -46,4 +47,12 @@ function saveGameFlags() {
     GameFlagsService.writeData(GameTopMenuFlagsKeys.HIDE_AUCTION, Elements.hideAuctionInput().checked)
     GameFlagsService.writeData(GameTopMenuFlagsKeys.HIDE_FIGHTS, Elements.hideFightsInput().checked)
     GameFlagsService.writeData(GameTopMenuFlagsKeys.HIDE_INFOPORTAL, Elements.hideInfoPortalInput().checked)
+
+    GameFlagsService.writeData(GameRightMenuFlagsKeys.HIDE_MAIL, Elements.hideMailInput().checked)
+    GameFlagsService.writeData(GameRightMenuFlagsKeys.HIDE_EXTERNAL_BACKPACK, Elements.hideExternalBackpackInput().checked)
+    GameFlagsService.writeData(GameRightMenuFlagsKeys.HIDE_MOUNT, Elements.hideMountInput().checked)
+    GameFlagsService.writeData(GameRightMenuFlagsKeys.HIDE_COMPAS, Elements.hideCompasInput().checked)
+    GameFlagsService.writeData(GameRightMenuFlagsKeys.HIDE_PROFESSTION, Elements.hideProfessionInput().checked)
+    GameFlagsService.writeData(GameRightMenuFlagsKeys.HIDE_QUESTS, Elements.hideQuestsInput().checked)
+    GameFlagsService.writeData(GameRightMenuFlagsKeys.HIDE_FRIENDS, Elements.hideFriendsInput().checked)
 }
