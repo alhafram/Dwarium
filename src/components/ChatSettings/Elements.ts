@@ -110,5 +110,11 @@ export const Elements = {
     },
     hideMentorsMessageInput(): HTMLInputElement {
         return document.getElementById('hideMentorsMessageInput') as HTMLInputElement
+    },
+    hideBanditMessageInput(): HTMLInputElement {
+        return document.getElementById('hideBanditMessageInput') as HTMLInputElement
+    },
+    hidePitMessageInput(): HTMLInputElement {
+        return document.getElementById('hidePitMessageInput') as HTMLInputElement
     }
 }

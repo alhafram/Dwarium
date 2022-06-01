@@ -43,7 +43,9 @@ let initialState: ChatSettingsConfig = {
     hideEventsMessage: false,
     hideBoxPrizeMessage: false,
     hideMedalsMessage: false,
-    hideMentorsMessage: false
+    hideMentorsMessage: false,
+    hideBanditMessage: false,
+    hidePitMessage: false
 }
 
 export default async function dispatch(action: ChatSettingsWindowActions, data?: any) {

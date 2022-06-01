@@ -714,71 +714,79 @@ function chatReceiveMessage(msg) {
 
 function attachMessageToChat(opt, msg_dom, msg) {
 	const attackMessage = 'Вы совершили нападение на'
-	if(top?.document.chatFlags.hideAttackedMessage == true && msg.msg_text.includes(attackMessage) && msg.channel == 2 && !msg.user_id) {
+	if(top?.document.chatFlags?.hideAttackedMessage == true && msg.msg_text.includes(attackMessage) && msg.channel == 2 && !msg.user_id) {
 		return
 	}
 	const endFightMessage = 'Окончен бой'
-	if(top?.document.chatFlags.hideEndFightMessage == true && msg.msg_text.includes(endFightMessage) && msg.channel == 2 && !msg.user_id) {
+	if(top?.document.chatFlags?.hideEndFightMessage == true && msg.msg_text.includes(endFightMessage) && msg.channel == 2 && !msg.user_id) {
 		return
 	}
 	const giftPetMessage = 'вручил персонажу'
-	if(top?.document.chatFlags.hideGiftPetMessage == true && msg.msg_text.includes(giftPetMessage) && msg.channel == 1 && !msg.user_id) {
+	if(top?.document.chatFlags?.hideGiftPetMessage == true && msg.msg_text.includes(giftPetMessage) && msg.channel == 1 && !msg.user_id) {
 		return
 	}
 	const socialInvitesMessage = 'Приглашаем вас посетить наши группы в социальных'
-	if(top?.document.chatFlags.hideSocialInvitesMessage == true && msg.msg_text.includes(socialInvitesMessage) && msg.channel == 1 && !msg.user_id) {
+	if(top?.document.chatFlags?.hideSocialInvitesMessage == true && msg.msg_text.includes(socialInvitesMessage) && msg.channel == 1 && !msg.user_id) {
 		return
 	}
 	const meridianVaultsMessage = 'Началось формирование команд из бойцов'
-	if(top?.document.chatFlags.hideMeridianVaultsMessage == true && msg.msg_text.includes(meridianVaultsMessage) && msg.channel == 1 && !msg.user_id) {
+	if(top?.document.chatFlags?.hideMeridianVaultsMessage == true && msg.msg_text.includes(meridianVaultsMessage) && msg.channel == 1 && !msg.user_id) {
 		return
 	}
 	const upgradeMountMessage = 'воспользовавшись помощью кузнеца'
-	if(top?.document.chatFlags.hideUpgradeMountMessage == true && msg.msg_text.includes(upgradeMountMessage) && msg.channel == 1 && !msg.user_id) {
+	if(top?.document.chatFlags?.hideUpgradeMountMessage == true && msg.msg_text.includes(upgradeMountMessage) && msg.channel == 1 && !msg.user_id) {
 		return
 	}
 	const contestMessage = 'Конкурс:'
-	if(top?.document.chatFlags.hideContestMessage == true && msg.msg_text.includes(contestMessage) && msg.channel == 1 && !msg.user_id) {
+	if(top?.document.chatFlags?.hideContestMessage == true && msg.msg_text.includes(contestMessage) && msg.channel == 1 && !msg.user_id) {
 		return
 	}
 	const guardiansMessage = 'Опасайтесь стать жертвой мошенников!'
-	if(top?.document.chatFlags.hideGuardiansMessage == true && msg.msg_text.includes(guardiansMessage) && msg.channel == 1 && !msg.user_id) {
+	if(top?.document.chatFlags?.hideGuardiansMessage == true && msg.msg_text.includes(guardiansMessage) && msg.channel == 1 && !msg.user_id) {
 		return
 	}
 	const chaoticFightMessage = 'Начинается подготовка к сражению «Хаотичная битва»'
-	if(top?.document.chatFlags.hideChaoticFightMessage == true && msg.msg_text.includes(chaoticFightMessage) && msg.chaotic_request == 1 && !msg.user_id) {
+	if(top?.document.chatFlags?.hideChaoticFightMessage == true && msg.msg_text.includes(chaoticFightMessage) && msg.chaotic_request == 1 && !msg.user_id) {
 		return
 	}
 	const crusibleFightMessage = 'Начинается подготовка к сражению «Горнило войны»'
-	if(top?.document.chatFlags.hideCrusibleFightMessage == true && msg.msg_text.includes(crusibleFightMessage) && msg.chaotic_request == 1 && !msg.user_id) {
+	if(top?.document.chatFlags?.hideCrusibleFightMessage == true && msg.msg_text.includes(crusibleFightMessage) && msg.chaotic_request == 1 && !msg.user_id) {
 		return
 	}
 	const heavenFight = 'за Длань небес'
-	if(top?.document.chatFlags.hideHeavenFightMessage == true && msg.msg_text.includes(heavenFight) && msg.channel == 1 && !msg.user_id) {
+	if(top?.document.chatFlags?.hideHeavenFightMessage == true && msg.msg_text.includes(heavenFight) && msg.channel == 1 && !msg.user_id) {
 		return
 	}
 	const kesariMessage = 'ниспослал благословение'
-	if(top?.document.chatFlags.hideKesariMessage == true && msg.msg_text.includes(kesariMessage) && msg.channel == 1 && !msg.user_id) {
+	if(top?.document.chatFlags?.hideKesariMessage == true && msg.msg_text.includes(kesariMessage) && msg.channel == 1 && !msg.user_id) {
 		return
 	}
 	const newsMessage = '<b>Новость</b>:'
-	if(top?.document.chatFlags.hideNewsMessage == true && msg.msg_text.includes(newsMessage) && msg.channel == 1 && !msg.user_id) {
+	if(top?.document.chatFlags?.hideNewsMessage == true && msg.msg_text.includes(newsMessage) && msg.channel == 1 && !msg.user_id) {
 		return
 	}
 	const disableEventMessages = true
-	if(top?.document.chatFlags.hideEventsMessage == true && msg.event_id && msg.channel == 1 && !msg.user_id && disableEventMessages) {
+	if(top?.document.chatFlags?.hideEventsMessage == true && msg.event_id && msg.channel == 1 && !msg.user_id && disableEventMessages) {
 		return
 	}
 	const boxPrizeMessage = 'Открыв один из сундучков, купленных на Городской ярмарке'
-	if(top?.document.chatFlags.hideBoxPrizeMessage == true && msg.msg_text.includes(boxPrizeMessage) && msg.channel == 1 && !msg.user_id) {
+	if(top?.document.chatFlags?.hideBoxPrizeMessage == true && msg.msg_text.includes(boxPrizeMessage) && msg.channel == 1 && !msg.user_id) {
 		return
 	}
 	const medalMessage = 'Медаль «Поклонения»'
-	if(top?.document.chatFlags.hideMedalsMessage == true && msg.msg_text.includes(medalMessage) && msg.channel == 1 && !msg.user_id) {
+	if(top?.document.chatFlags?.hideMedalsMessage == true && msg.msg_text.includes(medalMessage) && msg.channel == 1 && !msg.user_id) {
 		return
 	}
 	const mentorMessage = 'Если у вас есть вопросы по игре'
-	if(top?.document.chatFlags.hideMentorsMessage == true && msg.msg_text.includes(mentorMessage) && msg.channel == 1 && !msg.user_id) {
+	if(top?.document.chatFlags?.hideMentorsMessage == true && msg.msg_text.includes(mentorMessage) && msg.channel == 1 && !msg.user_id) {
+		return
+	}
+	const banditMessage = 'выиграл у Однорукого Бандита'
+	if(top?.document.chatFlags?.hideBanditMessage == true && msg.msg_text.includes(banditMessage) && msg.channel == 1 && !msg.user_id) {
+		return
+	}
+	const pitMessage = 'Пожертвовав горсть монет высшим силам, притаившимся в Колодце удачи'
+	if(top?.document.chatFlags?.hidePitMessage == true && msg.msg_text.includes(pitMessage) && msg.channel == 1 && !msg.user_id) {
 		return
 	}
 	opt.data.append($(msg_dom).clone())

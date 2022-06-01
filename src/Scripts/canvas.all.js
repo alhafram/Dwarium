@@ -22217,8 +22217,10 @@ canvas.app.location.View.prototype.startFarming = function(t, e, a, s) {
     canvas.EventManager.addEventListener(canvas.app.location.Event.PROGRESS_DONE, null, this.doneFarming, this),
     this.progressWin.position.set(Math.round((this.locSide._width - this.progressWin.width) / 2), Math.round((this.locSide._height - this.progressWin.height) / 2)),
     this.windowsContainer.addChild(this.progressWin),
-    "1" == i.localStorage.get("MapSide") && this.miniMapBtnDownHandler(),
-    this.miniMapBtn.enabled = !1,
+    "1" == i.localStorage.get("MapSide") && this.miniMapBtnDownHandler()
+    if(top?.document.gameLocationFlags?.hideMiniMap == false) {
+        this.miniMapBtn.enabled = !1
+    }
     this.enableContent = this.listSide.active = this.locSide.active = !1,
     this.progressWin.startProgress()
 }
@@ -22239,8 +22241,10 @@ canvas.app.location.View.prototype.closeFarming = function() {
     this.progressWin && (this.progressWin.destroy(),
     this.progressWin = null),
     this.enableContent = this.locSide.active = !0,
-    canvas.app.location.model.TRANSITION_POSSIBLE && (this.listSide.active = !0),
-    this.miniMapBtn.enabled = !0
+    canvas.app.location.model.TRANSITION_POSSIBLE && (this.listSide.active = !0)
+    if(top?.document.gameLocationFlags?.hideMiniMap == false) {
+        this.miniMapBtn.enabled = !0
+    }
 }
 ,
 canvas.app.location.View.prototype.itemOverHandler = function(t) {

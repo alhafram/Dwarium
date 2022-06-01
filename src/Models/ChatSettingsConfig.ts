@@ -38,4 +38,6 @@ export type ChatSettingsConfig = {
     hideBoxPrizeMessage: boolean
     hideMedalsMessage: boolean
     hideMentorsMessage: boolean
+    hideBanditMessage: boolean
+    hidePitMessage: boolean
 }

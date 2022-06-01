@@ -44,6 +44,8 @@ function render(initialState: ChatSettingsConfig) {
     Elements.hideBoxPrizeMessageInput().checked = initialState.hideBoxPrizeMessage
     Elements.hideMedalsMessageInput().checked = initialState.hideMedalsMessage
     Elements.hideMentorsMessageInput().checked = initialState.hideMentorsMessage
+    Elements.hideBanditMessageInput().checked = initialState.hideBanditMessage
+    Elements.hidePitMessageInput().checked = initialState.hidePitMessage
 }
 
 function setupView() {
@@ -88,6 +90,7 @@ function setupView() {
             ipcRenderer.send(Channel.OPEN_SETTINGS)
         }
         dispatch(ChatSettingsWindowActions.SAVE)
+        ipcRenderer.send(Channel.RELOAD)
     }
 }
 
