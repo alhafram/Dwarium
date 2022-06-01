@@ -769,7 +769,7 @@ function attachMessageToChat(opt, msg_dom, msg) {
 	if(top?.document.chatFlags?.hideEventsMessage == true && msg.event_id && msg.channel == 1 && !msg.user_id && disableEventMessages) {
 		return
 	}
-	const boxPrizeMessages = ['Открыв один из особых драгоценных сундучков, купленных на Городской ярмарке', 'Открыв один из сундучков, купленных на Городской ярмарке', 'с интересом продолжил исследовать содержимое сундука']
+	const boxPrizeMessages = ['Открыв один из особых драгоценных сундучков, купленных на Городской ярмарке', 'Открыв один из сундучков, купленных на Городской ярмарке', 'с интересом продолжил  исследовать содержимое сундука']
 	let prizeMessageIncludes = false
 	for(const boxPrizeMessage of boxPrizeMessages) {
 		if(msg.msg_text.includes(boxPrizeMessage)) {
