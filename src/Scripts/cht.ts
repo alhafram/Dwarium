@@ -753,7 +753,7 @@ function attachMessageToChat(opt, msg_dom, msg) {
 	if(top?.document.chatFlags?.hideCrusibleFightMessage == true && msg.msg_text.includes(crusibleFightMessage) && msg.chaotic_request == 1 && !msg.user_id) {
 		return
 	}
-	const heavenFight = 'за Длань небес'
+	const heavenFight = 'за Длань'
 	if(top?.document.chatFlags?.hideHeavenFightMessage == true && msg.msg_text.includes(heavenFight) && msg.channel == 1 && !msg.user_id) {
 		return
 	}
@@ -769,8 +769,15 @@ function attachMessageToChat(opt, msg_dom, msg) {
 	if(top?.document.chatFlags?.hideEventsMessage == true && msg.event_id && msg.channel == 1 && !msg.user_id && disableEventMessages) {
 		return
 	}
-	const boxPrizeMessage = 'Открыв один из сундучков, купленных на Городской ярмарке'
-	if(top?.document.chatFlags?.hideBoxPrizeMessage == true && msg.msg_text.includes(boxPrizeMessage) && msg.channel == 1 && !msg.user_id) {
+	const boxPrizeMessages = ['Открыв один из особых драгоценных сундучков, купленных на Городской ярмарке', 'Открыв один из сундучков, купленных на Городской ярмарке', 'с интересом продолжил исследовать содержимое сундука']
+	let prizeMessageIncludes = false
+	for(const boxPrizeMessage of boxPrizeMessages) {
+		if(msg.msg_text.includes(boxPrizeMessage)) {
+			prizeMessageIncludes = true
+			break
+		}
+	}
+	if(top?.document.chatFlags?.hideBoxPrizeMessage == true && prizeMessageIncludes && msg.channel == 1 && !msg.user_id) {
 		return
 	}
 	const medalMessage = 'Медаль «Поклонения»'
