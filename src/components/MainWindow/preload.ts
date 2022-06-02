@@ -1,4 +1,4 @@
-import { ipcRenderer } from 'electron'
+import { ipcRenderer, shell } from 'electron'
 import ConfigService from '../../services/ConfigService'
 import { Channel } from '../../Models/Channel'
 import Utils from '../Common/Utils'
@@ -111,12 +111,19 @@ const Elements = {
     },
     gameSettingsButton(): HTMLButtonElement {
         return document.getElementById('gameSettingsButton') as HTMLButtonElement
+    },
+    quizButton(): HTMLButtonElement {
+        return document.getElementById('quizButton') as HTMLButtonElement
+    },
+    quizButtonBadgeSpan(): HTMLSpanElement {
+        return document.getElementById('quizButtonBadgeSpan') as HTMLSpanElement 
     }
 }
 
 window.addEventListener('DOMContentLoaded', async() => {
     handleMode()
     await setupFavourite()
+    Elements.quizButtonBadgeSpan().style.display = localStorage.getItem('quizTapped') == 'true' ? 'none' : 'absolute'
 
     Elements.mainTab().onclick = makeActive
     Elements.serverSwitcher().onchange = function() {
@@ -253,6 +260,10 @@ window.addEventListener('DOMContentLoaded', async() => {
     document.addEventListener('goUrl', (evt) => {
         ipcRenderer.send(Channel.GO_URL, (<CustomEvent>evt).detail)
     })
+    Elements.quizButton().onclick = function() {
+        shell.openExternal('https://forms.gle/Csr838uWyw8W6J8HA')
+        localStorage.setItem('quizTapped', 'true')
+    }
 })
 
 async function isCurrentLinkFavourite(): Promise<boolean> {
