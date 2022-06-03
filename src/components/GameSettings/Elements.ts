@@ -30,6 +30,9 @@ export const Elements = {
     hideBrilliantsPromotionInput(): HTMLInputElement {
         return document.getElementById('hideBrilliantsPromotionInput') as HTMLInputElement
     },
+    hideMirrorInput(): HTMLInputElement {
+        return document.getElementById('hideMirrorInput') as HTMLInputElement
+    },
     saveButton(): HTMLButtonElement {
         return document.getElementById('saveButton') as HTMLButtonElement
     },

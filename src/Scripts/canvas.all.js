@@ -23605,14 +23605,16 @@ canvas.app.location.view.LocSide = function() {
         }),
         canvas.EventManager.addEventListener(canvas.ui.ButtonEvent.EVENT_CLICK, this.diceGameButton, this.onDiceGameClick, this))
     }
-    this.magicMirrorButton = new canvas.ui.SimpleButton(canvas.ResourceLoader.getImage("ui", "icon_mirror")),
-    this.magicMirrorButton.x = 10,
-    this.magicMirrorButton.visible = e.magicMirrorEndTime > e.serverTime.getTime(),
-    canvas.EventManager.dispatchEvent(canvas.app.location.Event.HINT_ADD, null, {
-        target: this.magicMirrorButton,
-        params: new canvas.utils.HintParams(new canvas.app.view.MappingHint(canvas.Translator.getText(732)))
-    }),
-    canvas.EventManager.addEventListener(canvas.ui.ButtonEvent.EVENT_CLICK, this.magicMirrorButton, this.onMagicMirrorClick, this),
+    if(top?.document.gameLocationFlags?.hideMirror == false) {
+        this.magicMirrorButton = new canvas.ui.SimpleButton(canvas.ResourceLoader.getImage("ui", "icon_mirror")),
+        this.magicMirrorButton.x = 10,
+        this.magicMirrorButton.visible = e.magicMirrorEndTime > e.serverTime.getTime(),
+        canvas.EventManager.dispatchEvent(canvas.app.location.Event.HINT_ADD, null, {
+            target: this.magicMirrorButton,
+            params: new canvas.utils.HintParams(new canvas.app.view.MappingHint(canvas.Translator.getText(732)))
+        }),
+        canvas.EventManager.addEventListener(canvas.ui.ButtonEvent.EVENT_CLICK, this.magicMirrorButton, this.onMagicMirrorClick, this)
+    }
     this.addChild(this.cont2),
     this.cont2.addChild(this.cont),
     this.addChild(this.location_mask),
@@ -23626,8 +23628,10 @@ canvas.app.location.view.LocSide = function() {
     this.addChild(this.infoBtn),
     this.infoBtn.position.set(1080, 105),
     this.addChild(this.scroll),
-    this.addChild(this.scrollV),
-    this.addChild(this.magicMirrorButton),
+    this.addChild(this.scrollV)
+    if(top?.document.gameLocationFlags?.hideMirror == false) {
+        this.addChild(this.magicMirrorButton)
+    }
     this.eventsContainer = new canvas.px.Container,
     this.addChild(this.eventsContainer),
     this.eventsContainer.position.set(15, 70);

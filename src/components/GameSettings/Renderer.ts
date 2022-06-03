@@ -22,6 +22,7 @@ function setupGameFlags() {
     Elements.hideFrontsInput().checked = state.gameLocationFlags.hideFronts
     Elements.hideMiniMapInput().checked = state.gameLocationFlags.hideMiniMap
     Elements.hideBrilliantsPromotionInput().checked = state.gameLocationFlags.hideBrilliantsPromotion
+    Elements.hideMirrorInput().checked = state.gameLocationFlags.hideMirror
 
     Elements.hideBackpackInput().checked = state.gameTopMenuFlags.hideBackpack
     Elements.hideLocationInput().checked = state.gameTopMenuFlags.hideLocation

@@ -14,6 +14,7 @@ export type GameLocationFlags = {
     hideFronts: boolean
     hideMiniMap: boolean
     hideBrilliantsPromotion: boolean
+    hideMirror: boolean
 }
 
 export type GameTopMenuFlags = {
@@ -50,7 +51,8 @@ export enum GameLocationFlagsKeys {
     HIDE_CURRENT_EVENT = 'hideCurrentEvent',
     HIDE_FRONTS = 'hideFronts',
     HIDE_MINI_MAP = 'hideMiniMap',
-    HIDE_BRILLIANTS_PROMOTION = 'hideBrilliantsPromotion'
+    HIDE_BRILLIANTS_PROMOTION = 'hideBrilliantsPromotion',
+    HIDE_MIRROR = 'hideMirror'
 }
 
 export enum GameTopMenuFlagsKeys {
@@ -94,7 +96,8 @@ function getGameFlags(): GameFlags {
         hideCurrentEvent: readData(GameLocationFlagsKeys.HIDE_CURRENT_EVENT) ?? false,
         hideFronts: readData(GameLocationFlagsKeys.HIDE_FRONTS) ?? false,
         hideMiniMap: readData(GameLocationFlagsKeys.HIDE_MINI_MAP) ?? false,
-        hideBrilliantsPromotion: readData(GameLocationFlagsKeys.HIDE_BRILLIANTS_PROMOTION) ?? false
+        hideBrilliantsPromotion: readData(GameLocationFlagsKeys.HIDE_BRILLIANTS_PROMOTION) ?? false,
+        hideMirror: readData(GameLocationFlagsKeys.HIDE_MIRROR) ?? false
     }
     const gameTopMenuFlags = {
         hideBackpack: readData(GameTopMenuFlagsKeys.HIDE_BACKPACK) ?? false,

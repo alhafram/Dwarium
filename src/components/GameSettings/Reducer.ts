@@ -35,6 +35,7 @@ function saveGameFlags() {
     GameFlagsService.writeData(GameLocationFlagsKeys.HIDE_FRONTS, Elements.hideFrontsInput().checked)
     GameFlagsService.writeData(GameLocationFlagsKeys.HIDE_MINI_MAP, Elements.hideMiniMapInput().checked)
     GameFlagsService.writeData(GameLocationFlagsKeys.HIDE_BRILLIANTS_PROMOTION, Elements.hideBrilliantsPromotionInput().checked)
+    GameFlagsService.writeData(GameLocationFlagsKeys.HIDE_MIRROR, Elements.hideMirrorInput().checked)
 
     GameFlagsService.writeData(GameTopMenuFlagsKeys.HIDE_BACKPACK, Elements.hideBackpackInput().checked)
     GameFlagsService.writeData(GameTopMenuFlagsKeys.HIDE_LOCATION, Elements.hideLocationInput().checked)
