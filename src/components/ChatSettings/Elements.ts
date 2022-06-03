@@ -116,5 +116,8 @@ export const Elements = {
     },
     hidePitMessageInput(): HTMLInputElement {
         return document.getElementById('hidePitMessageInput') as HTMLInputElement
+    },
+    hideMirrorMessageInput(): HTMLInputElement {
+        return document.getElementById('hideMirrorMessageInput') as HTMLInputElement
     }
 }

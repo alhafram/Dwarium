@@ -796,6 +796,10 @@ function attachMessageToChat(opt, msg_dom, msg) {
 	if(top?.document.chatFlags?.hidePitMessage == true && msg.msg_text.includes(pitMessage) && msg.channel == 1 && !msg.user_id) {
 		return
 	}
+	const mirrorMessage = 'Обыграв духов Зазеркалья'
+	if(top?.document.chatFlags?.hideMirrorMessage == true && msg.msg_text.includes(mirrorMessage) && msg.channel == 1 && !msg.user_id) {
+		return
+	}
 	opt.data.append($(msg_dom).clone())
 }
 

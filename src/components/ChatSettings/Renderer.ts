@@ -46,6 +46,7 @@ function render(initialState: ChatSettingsConfig) {
     Elements.hideMentorsMessageInput().checked = initialState.hideMentorsMessage
     Elements.hideBanditMessageInput().checked = initialState.hideBanditMessage
     Elements.hidePitMessageInput().checked = initialState.hidePitMessage
+    Elements.hideMirrorMessageInput().checked = initialState.hideMirrorMessage
 }
 
 function setupView() {

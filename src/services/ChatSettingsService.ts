@@ -49,7 +49,8 @@ function get(id: number): ChatSettingsConfig {
             hideMedalsMessage: false,
             hideMentorsMessage: false,
             hideBanditMessage: false,
-            hidePitMessage: false
+            hidePitMessage: false,
+            hideMirrorMessage: false
         }
         save(newChatSettingsConfig, id)
     }

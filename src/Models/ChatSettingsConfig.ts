@@ -40,4 +40,5 @@ export type ChatSettingsConfig = {
     hideMentorsMessage: boolean
     hideBanditMessage: boolean
     hidePitMessage: boolean
+    hideMirrorMessage: boolean
 }
