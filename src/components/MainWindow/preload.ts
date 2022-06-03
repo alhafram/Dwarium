@@ -116,7 +116,7 @@ const Elements = {
         return document.getElementById('quizButton') as HTMLButtonElement
     },
     quizButtonBadgeSpan(): HTMLSpanElement {
-        return document.getElementById('quizButtonBadgeSpan') as HTMLSpanElement 
+        return document.getElementById('quizButtonBadgeSpan') as HTMLSpanElement
     }
 }
 
