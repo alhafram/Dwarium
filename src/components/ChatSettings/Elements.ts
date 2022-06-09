@@ -119,5 +119,9 @@ export const Elements = {
     },
     hideMirrorMessageInput(): HTMLInputElement {
         return document.getElementById('hideMirrorMessageInput') as HTMLInputElement
+    },
+
+    newLootSystemInput(): HTMLInputElement {
+        return document.getElementById('newLootSystemInput') as HTMLInputElement
     }
 }

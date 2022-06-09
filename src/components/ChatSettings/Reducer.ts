@@ -73,6 +73,8 @@ export default async function reduce(state: ChatSettingsConfig, action: ChatSett
             state.hideBanditMessage = Elements.hideBanditMessageInput().checked
             state.hidePitMessage = Elements.hidePitMessageInput().checked
             state.hideMirrorMessage = Elements.hideMirrorMessageInput().checked
+
+            state.newLootSystem = Elements.newLootSystemInput().checked
             save(state, userId1)
             return state
         }

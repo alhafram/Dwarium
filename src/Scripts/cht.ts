@@ -712,12 +712,73 @@ function chatReceiveMessage(msg) {
 	return true;
 }
 
+var lastFightMessages: string[] = []
+var lastFightMessageIds: Number[] = []
+var lastFightTimeout: TimerHandler | null
+var lastFightTimeoutRunning = false
+
 function attachMessageToChat(opt, msg_dom, msg) {
+	const endFightMessage = 'Окончен бой'
+	if(top?.document.chatFlags?.newLootSystem) {
+		if(!msg.msg_text.includes(endFightMessage) && lastFightTimeoutRunning) {
+			if(lastFightMessageIds.includes(msg.id)) {
+				return
+			}
+			if(!msg.user_id && (msg.msg_text.includes('Вами получено') || msg.msg_text.includes('Вы получили') || msg.msg_text.includes('Получено:') || msg.macros_list && Object.keys(msg.macros_list).length > 0)) {
+				lastFightMessages.push(msg)
+				lastFightMessageIds.push(msg.id)
+				return
+			}
+		}
+		if(msg.msg_text.includes(endFightMessage) && !lastFightTimeoutRunning) {
+			lastFightTimeoutRunning = true
+			lastFightTimeout = setTimeout(() => {
+				for(var lastFightMessage of lastFightMessages) {
+					if(lastFightMessage.msg_text.includes('Вы получили') && lastFightMessage.msg_text.includes('энергии')) {
+						lastFightMessage.msg_text = '<span>' + lastFightMessage.msg_text.replace(/\D/g, '') + ' <img src="images/work.gif" width="7" height="8"></span>'
+					}
+					lastFightMessage.msg_text = lastFightMessage.msg_text.replace('Получено:', '').replace('<STRONG>Получено:</STRONG>', '')
+					lastFightMessage.msg_text = lastFightMessage.msg_text.replace('Вами получено:', '').replace('Вами получено', '')
+					lastFightMessage.msg_text = lastFightMessage.msg_text.replace('Вы получили: ', '').replace('(сумма уменьшена из-за разницы в уровне с монстром)', '')
+					if(lastFightMessage.msg_text.includes('Благодаря магическим эффектам, вы сумели обогатиться еще на')) {
+						lastFightMessage.msg_text = lastFightMessage.msg_text.replace('Благодаря магическим эффектам, вы сумели обогатиться еще на', '( + ') + ' )'
+					}
+				}
+				 let lootMessage = lastFightMessages.map(msg => msg.msg_text).join(' ')
+				
+				var all_channels = 0;
+				for (var i in chatOpts) {
+					all_channels |= chatOpts[i].channel;
+				}
+				var res = {
+					type: msg_type.system,
+					urgent: true,
+					msg_text: lootMessage,
+					channel: all_channels, 
+					stime: current_server_time()
+				}
+				const domMessage = chatFormatMessage(res)
+				
+				for (var i in chatOpts) {
+					var opt = chatOpts[i];
+					for (var k in chatDependent) {
+						if (opt.channel & k) {
+							opt.channel |= chatDependent[k];
+						}
+					}
+					opt.data.append($(domMessage).clone())
+				}
+				lastFightTimeoutRunning = false
+				lastFightMessages = []
+				lastFightMessageIds = []
+				return
+			}, 2000)
+		}
+	}
 	const attackMessage = 'Вы совершили нападение на'
 	if(top?.document.chatFlags?.hideAttackedMessage == true && msg.msg_text.includes(attackMessage) && msg.channel == 2 && !msg.user_id) {
 		return
 	}
-	const endFightMessage = 'Окончен бой'
 	if(top?.document.chatFlags?.hideEndFightMessage == true && msg.msg_text.includes(endFightMessage) && msg.channel == 2 && !msg.user_id) {
 		return
 	}

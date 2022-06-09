@@ -46,7 +46,9 @@ let initialState: ChatSettingsConfig = {
     hideMentorsMessage: false,
     hideBanditMessage: false,
     hidePitMessage: false,
-    hideMirrorMessage: false
+    hideMirrorMessage: false,
+
+    newLootSystem: false
 }
 
 export default async function dispatch(action: ChatSettingsWindowActions, data?: any) {

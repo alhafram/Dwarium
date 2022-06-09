@@ -41,4 +41,6 @@ export type ChatSettingsConfig = {
     hideBanditMessage: boolean
     hidePitMessage: boolean
     hideMirrorMessage: boolean
+
+    newLootSystem: boolean
 }

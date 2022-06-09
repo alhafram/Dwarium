@@ -50,7 +50,9 @@ function get(id: number): ChatSettingsConfig {
             hideMentorsMessage: false,
             hideBanditMessage: false,
             hidePitMessage: false,
-            hideMirrorMessage: false
+            hideMirrorMessage: false,
+
+            newLootSystem: false
         }
         save(newChatSettingsConfig, id)
     }
