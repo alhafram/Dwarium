@@ -802,12 +802,16 @@ function attachMessageToChat(opt, msg_dom, msg) {
 		return
 	}
 	const endFightMessage = 'Окончен бой'
-	if(top?.document.chatFlags?.newLootSystem) {
+	const isNotParty = top[1].document.getElementsByClassName('party hid').length == 1
+	if(top?.document.chatFlags?.newLootSystem && isNotParty) {
+		if(msg.msg_text.startsWith('<a href="#" onClick="userPrvTag(')) {
+			return
+		}
 		if(!msg.msg_text.includes(endFightMessage) && lastFightTimeoutRunning) {
 			if(lastFightMessageIds.includes(msg.id)) {
 				return
 			}
-			if(!msg.user_id && (msg.msg_text.includes('Вами получено') || msg.msg_text.includes('Вы получили') || msg.msg_text.includes('Получено:') || msg.macros_list && Object.keys(msg.macros_list).length > 0)) {
+			if(!msg.user_id && (msg.msg_text.includes('Вами получено') || msg.msg_text.includes('Вы получили') || msg.msg_text.includes('Получено:')) || (msg.msg_text.startsWith('<a class="artifact_info') && msg.msg_text.endsWith('шт</b>'))) {
 				lastFightMessages.push(msg)
 				lastFightMessageIds.push(msg.id)
 				return
@@ -853,6 +857,7 @@ function attachMessageToChat(opt, msg_dom, msg) {
 						}
 					}
 					opt.data.append($(domMessage).clone())
+					_top().frames['chat'].frames['chat_text'].scrollTo(0, 65535);
 				}
 				lastFightTimeoutRunning = false
 				lastFightMessages = []
