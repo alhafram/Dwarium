@@ -9,7 +9,8 @@ const flags = GameFlagsService.getGameFlags()
 let initialState: GameSettingsWindowState = {
     gameLocationFlags: flags.gameLocationFlags,
     gameTopMenuFlags: flags.gameTopMenuFlags,
-    gameRightMenuFlags: flags.gameRightMenuFlags
+    gameRightMenuFlags: flags.gameRightMenuFlags,
+    huntFlags: flags.huntFlags
 }
 
 export function dispatch(action: GameSettingsWindowActions, data?: unknown): void {

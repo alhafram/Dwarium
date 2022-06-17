@@ -41,6 +41,13 @@ export type GameRightMenuFlags = {
     hideFriends: boolean
 }
 
+export type HuntFlags = {
+    hideHuntMinimap: boolean
+    hideHuntLeftAction: boolean
+    hideHuntRightAction: boolean
+    hideHuntFilter: boolean
+}
+
 export enum GameLocationFlagsKeys {
     HIDE_CASINO = 'hideCasino',
     HIDE_ACTIVITIES = 'hideActivities',
@@ -79,10 +86,18 @@ export enum GameRightMenuFlagsKeys {
     HIDE_FRIENDS = 'hideFriends'
 }
 
+export enum HuntFlagsKeys {
+    HIDE_HUNT_MINIMAP = 'hideHuntMinimap',
+    HIDE_HUNT_LEFT_ACTION = 'hideHuntLeftAction',
+    HIDE_HUNT_RIGHT_ACTION = 'hideHuntRightAction',
+    HIDE_HUNT_FILTER = 'hideHuntFilter'
+}
+
 export type GameFlags = {
     gameLocationFlags: GameLocationFlags
     gameTopMenuFlags: GameTopMenuFlags
     gameRightMenuFlags: GameRightMenuFlags
+    huntFlags: HuntFlags
 }
 
 function getGameFlags(): GameFlags {
@@ -121,14 +136,21 @@ function getGameFlags(): GameFlags {
         hideQuests: readData(GameRightMenuFlagsKeys.HIDE_QUESTS) ?? false,
         hideFriends: readData(GameRightMenuFlagsKeys.HIDE_FRIENDS) ?? false
     }
+    const huntFlags = {
+        hideHuntMinimap: readData(HuntFlagsKeys.HIDE_HUNT_MINIMAP) ?? false,
+        hideHuntLeftAction: readData(HuntFlagsKeys.HIDE_HUNT_LEFT_ACTION) ?? false,
+        hideHuntRightAction: readData(HuntFlagsKeys.HIDE_HUNT_RIGHT_ACTION) ?? false,
+        hideHuntFilter: readData(HuntFlagsKeys.HIDE_HUNT_FILTER) ?? false
+    }
     return {
         gameLocationFlags,
         gameTopMenuFlags,
-        gameRightMenuFlags
+        gameRightMenuFlags,
+        huntFlags
     }
 }
 
-function writeData(key: GameLocationFlagsKeys | GameTopMenuFlagsKeys | GameRightMenuFlagsKeys, value: any): void {
+function writeData(key: GameLocationFlagsKeys | GameTopMenuFlagsKeys | GameRightMenuFlagsKeys | HuntFlagsKeys, value: any): void {
     const contents = FileOperationsService.parseData(path) as any
     contents[key] = value
     Object.keys(contents).forEach((key) => {

@@ -11,9 +11,11 @@ import GameFlagsService from '../../services/GameFlagsService'
 import ChatSettingsService from '../../services/ChatSettingsService'
 import Utils from '../Common/Utils'
 
-document.gameLocationFlags = GameFlagsService.getGameFlags().gameLocationFlags
-document.gameTopMenuFlags = GameFlagsService.getGameFlags().gameTopMenuFlags
-document.gameRightMenuFlags = GameFlagsService.getGameFlags().gameRightMenuFlags
+const flags = GameFlagsService.getGameFlags()
+document.gameLocationFlags = flags.gameLocationFlags
+document.gameTopMenuFlags = flags.gameTopMenuFlags
+document.gameRightMenuFlags = flags.gameRightMenuFlags
+document.huntFlags = flags.huntFlags
 
 window.addEventListener('DOMContentLoaded', async() => {
     ChatService.setupAutoResponder()

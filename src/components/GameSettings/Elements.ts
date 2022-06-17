@@ -91,5 +91,18 @@ export const Elements = {
     },
     hideFriendsInput(): HTMLInputElement {
         return document.getElementById('hideFriendsInput') as HTMLInputElement
+    },
+    // Hunt flags
+    hideHuntMinimapInput(): HTMLInputElement {
+        return document.getElementById('hideHuntMinimapInput') as HTMLInputElement
+    },
+    hideHuntLeftActionInput(): HTMLInputElement {
+        return document.getElementById('hideHuntLeftActionInput') as HTMLInputElement
+    },
+    hideHuntRightActionInput(): HTMLInputElement {
+        return document.getElementById('hideHuntRightActionInput') as HTMLInputElement
+    },
+    hideHuntFilterInput(): HTMLInputElement {
+        return document.getElementById('hideHuntFilterInput') as HTMLInputElement
     }
 }

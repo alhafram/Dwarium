@@ -1,7 +1,8 @@
-import { GameLocationFlags, GameRightMenuFlags, GameTopMenuFlags } from '../../services/GameFlagsService'
+import { GameLocationFlags, GameRightMenuFlags, GameTopMenuFlags, HuntFlags } from '../../services/GameFlagsService'
 
 export interface GameSettingsWindowState {
     gameLocationFlags: GameLocationFlags
     gameTopMenuFlags: GameTopMenuFlags
     gameRightMenuFlags: GameRightMenuFlags
+    huntFlags: HuntFlags
 }

@@ -43,6 +43,11 @@ function setupGameFlags() {
     Elements.hideProfessionInput().checked = state.gameRightMenuFlags.hideProfession
     Elements.hideQuestsInput().checked = state.gameRightMenuFlags.hideQuests
     Elements.hideFriendsInput().checked = state.gameRightMenuFlags.hideFriends
+
+    Elements.hideHuntMinimapInput().checked = state.huntFlags.hideHuntMinimap
+    Elements.hideHuntLeftActionInput().checked = state.huntFlags.hideHuntLeftAction
+    Elements.hideHuntRightActionInput().checked = state.huntFlags.hideHuntRightAction
+    Elements.hideHuntFilterInput().checked = state.huntFlags.hideHuntFilter
 }
 
 export function setupView() {

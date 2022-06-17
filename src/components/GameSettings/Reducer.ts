@@ -1,6 +1,6 @@
 import { ipcRenderer } from 'electron'
 import { Channel } from '../../Models/Channel'
-import GameFlagsService, { GameLocationFlagsKeys, GameRightMenuFlagsKeys, GameTopMenuFlagsKeys } from '../../services/GameFlagsService'
+import GameFlagsService, { GameLocationFlagsKeys, GameRightMenuFlagsKeys, GameTopMenuFlagsKeys, HuntFlagsKeys } from '../../services/GameFlagsService'
 import { GameSettingsWindowActions } from './Actions'
 import { Elements } from './Elements'
 import { GameSettingsWindowState } from './GameSettingsWindowState'
@@ -18,7 +18,8 @@ export default function reduce(state: GameSettingsWindowState, action: GameSetti
                 ...state,
                 gameLocationFlags: flags.gameLocationFlags,
                 gameTopMenuFlags: flags.gameTopMenuFlags,
-                gameRightMenuFlags: flags.gameRightMenuFlags
+                gameRightMenuFlags: flags.gameRightMenuFlags,
+                huntFlags: flags.huntFlags
             }
         }
     }
@@ -56,4 +57,9 @@ function saveGameFlags() {
     GameFlagsService.writeData(GameRightMenuFlagsKeys.HIDE_PROFESSTION, Elements.hideProfessionInput().checked)
     GameFlagsService.writeData(GameRightMenuFlagsKeys.HIDE_QUESTS, Elements.hideQuestsInput().checked)
     GameFlagsService.writeData(GameRightMenuFlagsKeys.HIDE_FRIENDS, Elements.hideFriendsInput().checked)
+
+    GameFlagsService.writeData(HuntFlagsKeys.HIDE_HUNT_MINIMAP, Elements.hideHuntMinimapInput().checked)
+    GameFlagsService.writeData(HuntFlagsKeys.HIDE_HUNT_LEFT_ACTION, Elements.hideHuntLeftActionInput().checked)
+    GameFlagsService.writeData(HuntFlagsKeys.HIDE_HUNT_RIGHT_ACTION, Elements.hideHuntRightActionInput().checked)
+    GameFlagsService.writeData(HuntFlagsKeys.HIDE_HUNT_FILTER, Elements.hideHuntFilterInput().checked)
 }
