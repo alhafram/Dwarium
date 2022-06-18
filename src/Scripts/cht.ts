@@ -824,6 +824,7 @@ function attachMessageToChat(opt, msg_dom, msg) {
 			lastFightTimeoutRunning = true
 			lastFightTimeout = setTimeout(() => {
 				if(lastFightMessages.length == 0) {
+					clearLastFightInfo()
 					return
 				}
 				for(var lastFightMessage of lastFightMessages) {
@@ -837,7 +838,7 @@ function attachMessageToChat(opt, msg_dom, msg) {
 						lastFightMessage.msg_text = lastFightMessage.msg_text.replace('Благодаря магическим эффектам, вы сумели обогатиться еще на', '( + ') + ' )'
 					}
 				}
-				 let lootMessage = lastFightMessages.map(msg => msg.msg_text).join(' ')
+				let lootMessage = lastFightMessages.map(msg => msg.msg_text).join(' ')
 				
 				var all_channels = 0;
 				for (var i in chatOpts) {
@@ -862,17 +863,21 @@ function attachMessageToChat(opt, msg_dom, msg) {
 					opt.data.append($(domMessage).clone())
 					_top().frames['chat'].frames['chat_text'].scrollTo(0, 65535);
 				}
-				lastFightTimeoutRunning = false
-				lastFightMessages = []
-				lastFightMessageIds = []
+				clearLastFightInfo()
 				return
-			}, 2000)
+			}, 2500)
 		}
 	}
 	if(top?.document.chatFlags?.hideEndFightMessage == true && msg.msg_text.includes(endFightMessage) && msg.channel == 2 && !msg.user_id) {
 		return
 	}
 	opt.data.append($(msg_dom).clone())
+}
+
+function clearLastFightInfo() {
+	lastFightTimeoutRunning = false
+	lastFightMessages = []
+	lastFightMessageIds = []
 }
 
 var scrollLock = false;
