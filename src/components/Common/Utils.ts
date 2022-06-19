@@ -1,7 +1,6 @@
 import { ipcRenderer } from 'electron'
 import { Channel } from '../../Models/Channel'
 import { UserConfig } from '../../Models/UserConfig'
-import ConfigService from '../../services/ConfigService'
 import UserConfigService from '../../services/UserConfigService'
 
 async function getUserId() {

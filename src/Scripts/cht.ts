@@ -3,6 +3,16 @@
 
 var debugLog = function(str, lock) { }
 
+function removeItems(array, elements) {
+    for(var element of elements) {
+        var index = array.indexOf(element)
+        if(index != -1) {
+            array.splice(index, 1)
+        }
+    }
+    return array
+}
+
 var chatButtonState = {};
 var chatButtons = {
 	'party_btn'  : [CHAT.locale_path+'images/chat_btn/partyman-inact.gif', CHAT.locale_path+'images/chat_btn/partyman-act.gif', CHAT.locale_path+'images/chat_btn/partyman-wrt.gif', CHAT.locale_path+'images/chat_btn/partyman-wrt.gif'],
@@ -827,6 +837,16 @@ function attachMessageToChat(opt, msg_dom, msg) {
 					clearLastFightInfo()
 					return
 				}
+				const moneyMessages = lastFightMessages.filter(r => {
+					let keys = Object.keys(r.macros_list)
+					if(keys.length > 0) {
+						let isGold = r.macros_list[keys[0]].name == 'MONEY'
+						return isGold
+					}
+					return false
+				})
+				lastFightMessages = removeItems(lastFightMessages, moneyMessages)
+				lastFightMessages = moneyMessages.concat(lastFightMessages)
 				for(var lastFightMessage of lastFightMessages) {
 					if(lastFightMessage.msg_text.includes('Вы получили') && lastFightMessage.msg_text.includes('энергии')) {
 						lastFightMessage.msg_text = '<span>' + lastFightMessage.msg_text.replace(/\D/g, '') + ' <img src="images/work.gif" width="7" height="8"></span>'
@@ -836,6 +856,7 @@ function attachMessageToChat(opt, msg_dom, msg) {
 					lastFightMessage.msg_text = lastFightMessage.msg_text.replace('Вы получили: ', '').replace('(сумма уменьшена из-за разницы в уровне с монстром)', '')
 					if(lastFightMessage.msg_text.includes('Благодаря магическим эффектам, вы сумели обогатиться еще на')) {
 						lastFightMessage.msg_text = lastFightMessage.msg_text.replace('Благодаря магическим эффектам, вы сумели обогатиться еще на', '( + ') + ' )'
+						lastFightMessage.msg_text = lastFightMessage.msg_text.slice(0, lastFightMessage.msg_text.length - 3) + ' )'
 					}
 				}
 				let lootMessage = lastFightMessages.map(msg => msg.msg_text).join(' ')
