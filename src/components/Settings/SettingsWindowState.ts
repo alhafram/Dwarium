@@ -1,4 +1,3 @@
-import { GameFlags } from '../../services/GameFlagsService'
 import { Shortcuts } from '../../services/ShortcutService'
 
 export interface SettingsWindowState {
@@ -28,7 +27,6 @@ export interface SettingsWindowState {
     updateChannel: string
     needToRestoreUrls: boolean
     shortcuts: Shortcuts
-    gameFlags: GameFlags
 }
 
 export enum UserAgentType {

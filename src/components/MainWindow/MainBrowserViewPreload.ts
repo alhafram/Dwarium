@@ -8,14 +8,23 @@ import FoodService from '../../services/FoodService'
 import ScriptInjectService from '../../services/ScriptInjectedService'
 import { setupCheckingItemsService } from '../../services/ExpiringItemsLoader'
 import GameFlagsService from '../../services/GameFlagsService'
+import ChatSettingsService from '../../services/ChatSettingsService'
+import Utils from '../Common/Utils'
 
-document.gameFlags = GameFlagsService.getGameFlags()
+const flags = GameFlagsService.getGameFlags()
+document.gameLocationFlags = flags.gameLocationFlags
+document.gameTopMenuFlags = flags.gameTopMenuFlags
+document.gameRightMenuFlags = flags.gameRightMenuFlags
+document.huntFlags = flags.huntFlags
 
 window.addEventListener('DOMContentLoaded', async() => {
     ChatService.setupAutoResponder()
     ChatService.setupFlooding()
     ScriptInjectService.setupSpeed()
     setupCheckingItemsService()
+    const userId = (await Utils.getUserId()) as number
+    const settings = ChatSettingsService.get(userId)
+    document.chatFlags = settings
 })
 
 document.addEventListener('Message', (event) => {

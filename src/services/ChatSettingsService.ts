@@ -29,7 +29,30 @@ function get(id: number): ChatSettingsConfig {
             clanChatFloodingMessage: '',
             clanChatFloodingTimer: 10,
             allianceChatFloodingMessage: '',
-            allianceChatFloodingTimer: 10
+            allianceChatFloodingTimer: 10,
+
+            hideAttackedMessage: false,
+            hideEndFightMessage: false,
+            hideGiftPetMessage: false,
+            hideSocialInvitesMessage: false,
+            hideMeridianVaultsMessage: false,
+            hideUpgradeMountMessage: false,
+            hideContestMessage: false,
+            hideGuardiansMessage: false,
+            hideChaoticFightMessage: false,
+            hideCrusibleFightMessage: false,
+            hideHeavenFightMessage: false,
+            hideKesariMessage: false,
+            hideNewsMessage: false,
+            hideEventsMessage: false,
+            hideBoxPrizeMessage: false,
+            hideMedalsMessage: false,
+            hideMentorsMessage: false,
+            hideBanditMessage: false,
+            hidePitMessage: false,
+            hideMirrorMessage: false,
+
+            newLootSystem: false
         }
         save(newChatSettingsConfig, id)
     }

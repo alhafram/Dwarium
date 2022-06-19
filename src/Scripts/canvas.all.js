@@ -21552,7 +21552,7 @@ canvas.app.location.Main.prototype.timer60Handler = function() {
 }
 ,
 canvas.app.location.Main.prototype.loadFrontsData = function(t, e) {
-    if(top?.document.gameFlags?.hideFronts == true) {
+    if(top?.document.gameLocationFlags?.hideFronts == true) {
         return
     }
     if (null == t && (t = "conf"),
@@ -21975,31 +21975,33 @@ canvas.app.location.View = function(t) {
     this.m_timer = setInterval(this.timerHandler.bind(this), 1e3),
     this.blinkTimer = setInterval(this.blinkTimerHandler.bind(this), 2e3),
     this.m_brilliantTf = new canvas.ui.HtmlText(canvas.Const.FONT_TAHOMA_11_BOLD,canvas.Const.FONT_TAHOMA_11_BOLD,16705718,300,20,"left","top"),
-    this.m_brilliantTf.interactive = !1,
-    null != e.brilliant_msg && (this.unlinkBtn = new canvas.ui.SimpleButton(canvas.ResourceLoader.getImage("ui", "close_ico")),
-    this.m_brilliantTf.text = e.brilliant_msg + " <img src='" + canvas.app.location.Const.BRILLIANT_IMAGE_PATH + "' yOffset='6'/>",
-    this.x_start = (this.locSide._width - (this.m_brilliantTf.textWidth + 20)) / 2,
-    this.m_brilliantTf.position.set(8, -3),
-    this.unlinkBtn.position.set(this.m_brilliantTf.textWidth + 2, 3),
-    this.m_brBg = new canvas.px.Graphics,
-    this.m_brBg.beginFill(1118481, .5),
-    this.m_brBg.drawRoundedRect(0, 0, this.m_brilliantTf.textWidth + 20, 18, 7),
-    this.m_brContainer.addChildAt(this.m_brBg, 0),
-    this.m_brBg.buttonMode = !0,
-    this.m_brBg.interactive = !0,
-    this.m_brContainer.addChild(this.m_brilliantTf),
-    this.m_brContainer.addChild(this.unlinkBtn),
-    this.m_brContainer.position.set(this.x_start, 19),
-    canvas.EventManager.addEventListener(canvas.ui.ButtonEvent.EVENT_CLICK, this.unlinkBtn, this.onCloseBrillContainer, this)),
+    this.m_brilliantTf.interactive = !1
+    if(top?.document.gameLocationFlags?.hideBrilliantsPromotion == false) {
+        null != e.brilliant_msg && (this.unlinkBtn = new canvas.ui.SimpleButton(canvas.ResourceLoader.getImage("ui", "close_ico")),
+        this.m_brilliantTf.text = e.brilliant_msg + " <img src='" + canvas.app.location.Const.BRILLIANT_IMAGE_PATH + "' yOffset='6'/>",
+        this.x_start = (this.locSide._width - (this.m_brilliantTf.textWidth + 20)) / 2,
+        this.m_brilliantTf.position.set(8, -3),
+        this.unlinkBtn.position.set(this.m_brilliantTf.textWidth + 2, 3),
+        this.m_brBg = new canvas.px.Graphics,
+        this.m_brBg.beginFill(1118481, .5),
+        this.m_brBg.drawRoundedRect(0, 0, this.m_brilliantTf.textWidth + 20, 18, 7),
+        this.m_brContainer.addChildAt(this.m_brBg, 0),
+        this.m_brBg.buttonMode = !0,
+        this.m_brBg.interactive = !0,
+        this.m_brContainer.addChild(this.m_brilliantTf),
+        this.m_brContainer.addChild(this.unlinkBtn),
+        this.m_brContainer.position.set(this.x_start, 19),
+        canvas.EventManager.addEventListener(canvas.ui.ButtonEvent.EVENT_CLICK, this.unlinkBtn, this.onCloseBrillContainer, this))
+    }
     null != e.par.time_bonus_online && this.popupsContainer.init(canvas.app.location.Const.POPUP_ZERO_LEVEL, e.par),
     this.popupsContainer.children.length < 1 && e.activityURL && this.popupsContainer.init(canvas.app.location.Const.POPUP_ACTIVITY, e.activityURL)
-    if(top?.document.gameFlags?.hidePromotions == false) {
+    if(top?.document.gameLocationFlags?.hidePromotions == false) {
         e.campaignData && (this.campaignInfo = new canvas.app.location.view.elements.CampaignInfo,
             this.campaignInfo.data = e.campaignData,
             this.addChild(this.campaignInfo),
             this.campaignInfo.y = 28)
     }
-    if(top?.document.gameFlags?.hideWheelFortune == false) {
+    if(top?.document.gameLocationFlags?.hideWheelFortune == false) {
         e.wfEnabled && (this.popupWheelFortune = this.popupsExtContainer.addChild(new canvas.app.location.view.popups.PopupWheelFortune(e.wfMsg,e.wfExpireTime,e.wfUrl))),
         "1" == e.localStorage.get("MapSide") && e.WITH_MAP && this.miniMapBtnDownHandler()
     }
@@ -22042,7 +22044,7 @@ canvas.app.location.View.prototype.resize = function() {
     this.resizeStarted = !1)
 },
 canvas.app.location.View.prototype.setupMapButtonPosition = function() {
-    if(top?.document.gameFlags?.hideMiniMap) {
+    if(top?.document.gameLocationFlags?.hideMiniMap) {
         return
     }
     this.miniMapBtn.scale.x = this.mapSide.visible ? 1 : -1,
@@ -22131,7 +22133,7 @@ canvas.app.location.View.prototype.buildAll = function() {
     this.main.hintManager.hide()
 },
 canvas.app.location.View.prototype.buildMapButton = function() {
-    if(top?.document.gameFlags?.hideMiniMap) {
+    if(top?.document.gameLocationFlags?.hideMiniMap) {
         return
     }
     var t, e, a = canvas.app.location.model;
@@ -22152,7 +22154,7 @@ canvas.app.location.View.prototype.buildMapButton = function() {
 }
 ,
 canvas.app.location.View.prototype.buildEvent = function() {
-    if(top?.document.gameFlags?.hideCurrentEvent) {
+    if(top?.document.gameLocationFlags?.hideCurrentEvent) {
         return
     }
     var t = canvas.app.location.model;
@@ -22215,8 +22217,10 @@ canvas.app.location.View.prototype.startFarming = function(t, e, a, s) {
     canvas.EventManager.addEventListener(canvas.app.location.Event.PROGRESS_DONE, null, this.doneFarming, this),
     this.progressWin.position.set(Math.round((this.locSide._width - this.progressWin.width) / 2), Math.round((this.locSide._height - this.progressWin.height) / 2)),
     this.windowsContainer.addChild(this.progressWin),
-    "1" == i.localStorage.get("MapSide") && this.miniMapBtnDownHandler(),
-    this.miniMapBtn.enabled = !1,
+    "1" == i.localStorage.get("MapSide") && this.miniMapBtnDownHandler()
+    if(top?.document.gameLocationFlags?.hideMiniMap == false) {
+        this.miniMapBtn.enabled = !1
+    }
     this.enableContent = this.listSide.active = this.locSide.active = !1,
     this.progressWin.startProgress()
 }
@@ -22237,8 +22241,10 @@ canvas.app.location.View.prototype.closeFarming = function() {
     this.progressWin && (this.progressWin.destroy(),
     this.progressWin = null),
     this.enableContent = this.locSide.active = !0,
-    canvas.app.location.model.TRANSITION_POSSIBLE && (this.listSide.active = !0),
-    this.miniMapBtn.enabled = !0
+    canvas.app.location.model.TRANSITION_POSSIBLE && (this.listSide.active = !0)
+    if(top?.document.gameLocationFlags?.hideMiniMap == false) {
+        this.miniMapBtn.enabled = !0
+    }
 }
 ,
 canvas.app.location.View.prototype.itemOverHandler = function(t) {
@@ -22254,7 +22260,7 @@ canvas.app.location.View.prototype.timerDoneHandler = function() {
 }
 ,
 canvas.app.location.View.prototype.updateFronts = function() {
-    if(top?.document.gameFlags?.hideFronts == true) {
+    if(top?.document.gameLocationFlags?.hideFronts == true) {
         return
     }
     var t = canvas.app.location.model;
@@ -23580,7 +23586,7 @@ canvas.app.location.view.LocSide = function() {
     canvas.EventManager.addEventListener(canvas.ui.ScrollEvent.EVENT_SCROLL, this.scrollV, this.scrollVHandler, this),
     this.techBtn = new canvas.app.location.view.popups.TechBtn(e.par,canvas.app.location.Event.ENTER_FRAME),
     this.infoBtn = new canvas.app.location.view.popups.InfoBtn(e.par)
-    if(top?.document.gameFlags?.hideCasino == false) {
+    if(top?.document.gameLocationFlags?.hideCasino == false) {
         e.CasinoLink && (this.casinoBtn = new canvas.ui.SimpleButton(canvas.ResourceLoader.getImage("ui", "casino")),
         this.casinoBtn.position.set(13, 207),
         this.casinoBtn.sprite.hitArea = new canvas.px.Circle(38,58,27),
@@ -23590,7 +23596,7 @@ canvas.app.location.view.LocSide = function() {
         }),
         canvas.EventManager.addEventListener(canvas.ui.ButtonEvent.EVENT_CLICK, this.casinoBtn, this.onCasionClick, this))
     }
-    if(top?.document.gameFlags?.hideDiceGame == false) {
+    if(top?.document.gameLocationFlags?.hideDiceGame == false) {
         e.diceGameEnabled && (this.diceGameButton = new canvas.ui.SimpleButton(canvas.ResourceLoader.getImage("ui", "dice_game")),
         this.diceGameButton.sprite.hitArea = new canvas.px.Circle(46,46,36),
         canvas.EventManager.dispatchEvent(canvas.app.location.Event.HINT_ADD, null, {
@@ -23599,14 +23605,16 @@ canvas.app.location.view.LocSide = function() {
         }),
         canvas.EventManager.addEventListener(canvas.ui.ButtonEvent.EVENT_CLICK, this.diceGameButton, this.onDiceGameClick, this))
     }
-    this.magicMirrorButton = new canvas.ui.SimpleButton(canvas.ResourceLoader.getImage("ui", "icon_mirror")),
-    this.magicMirrorButton.x = 10,
-    this.magicMirrorButton.visible = e.magicMirrorEndTime > e.serverTime.getTime(),
-    canvas.EventManager.dispatchEvent(canvas.app.location.Event.HINT_ADD, null, {
-        target: this.magicMirrorButton,
-        params: new canvas.utils.HintParams(new canvas.app.view.MappingHint(canvas.Translator.getText(732)))
-    }),
-    canvas.EventManager.addEventListener(canvas.ui.ButtonEvent.EVENT_CLICK, this.magicMirrorButton, this.onMagicMirrorClick, this),
+    if(top?.document.gameLocationFlags?.hideMirror == false) {
+        this.magicMirrorButton = new canvas.ui.SimpleButton(canvas.ResourceLoader.getImage("ui", "icon_mirror")),
+        this.magicMirrorButton.x = 10,
+        this.magicMirrorButton.visible = e.magicMirrorEndTime > e.serverTime.getTime(),
+        canvas.EventManager.dispatchEvent(canvas.app.location.Event.HINT_ADD, null, {
+            target: this.magicMirrorButton,
+            params: new canvas.utils.HintParams(new canvas.app.view.MappingHint(canvas.Translator.getText(732)))
+        }),
+        canvas.EventManager.addEventListener(canvas.ui.ButtonEvent.EVENT_CLICK, this.magicMirrorButton, this.onMagicMirrorClick, this)
+    }
     this.addChild(this.cont2),
     this.cont2.addChild(this.cont),
     this.addChild(this.location_mask),
@@ -23620,12 +23628,14 @@ canvas.app.location.view.LocSide = function() {
     this.addChild(this.infoBtn),
     this.infoBtn.position.set(1080, 105),
     this.addChild(this.scroll),
-    this.addChild(this.scrollV),
-    this.addChild(this.magicMirrorButton),
+    this.addChild(this.scrollV)
+    if(top?.document.gameLocationFlags?.hideMirror == false) {
+        this.addChild(this.magicMirrorButton)
+    }
     this.eventsContainer = new canvas.px.Container,
     this.addChild(this.eventsContainer),
     this.eventsContainer.position.set(15, 70);
-    if(top?.document.gameFlags?.hideNPCEvents == false) {
+    if(top?.document.gameLocationFlags?.hideNPCEvents == false) {
         for (var a = 0; a < e.NPCEvents.length; a++)
         t = e.NPCEvents[a],
         t = new canvas.app.location.view.popups.NPCEventBtn(t),
@@ -25039,7 +25049,7 @@ canvas.app.location.view.popups.Popups.prototype.init = function(t, e) {
             return this.addChild(a);
         break;
     case canvas.app.location.Const.POPUP_ACTIVITY:
-        if(top?.document.gameFlags?.hideActivities == false) {
+        if(top?.document.gameLocationFlags?.hideActivities == false) {
             if (a = new canvas.app.location.view.popups.PopupActivity(e),
             s = new canvas.app.view.MappingHint(canvas.Translator.getText(733)),
             canvas.EventManager.dispatchEvent(this.hintEvent.HINT_ADD, null, {
@@ -34494,7 +34504,7 @@ canvas.app.world.Main.prototype.timerHandler = function() {
 }
 ,
 canvas.app.world.Main.prototype.loadFrontsData = function(t, e) {
-    if(top?.document.gameFlags?.hideFronts == true) {
+    if(top?.document.gameLocationFlags?.hideFronts == true) {
         return
     }
     front_locations()
@@ -35025,7 +35035,7 @@ canvas.app.world.View.prototype.updateTreasure = function() {
 }
 ,
 canvas.app.world.View.prototype.updateFronts = function() {
-    if(top?.document.gameFlags?.hideFronts == true) {
+    if(top?.document.gameLocationFlags?.hideFronts == true) {
         return
     }
     var t, e, a, s, i, n = canvas.app.world.model;
@@ -37124,19 +37134,27 @@ canvas.app.hunt.View = function(t) {
     this.prepare_scroll(),
     this.border = new canvas.px.SlicedSprite(canvas.ResourceLoader.getImage("ui", "border"),100,4,100,23),
     this.border.y = 60,
-    this.addChild(this.border),
-    this.bor_T = new canvas.app.hunt.view.FrameBorT(this),
-    this.addChild(this.bor_T),
-    this.corner_TL = new canvas.app.hunt.view.FrameCornerTL(this),
-    this.addChild(this.corner_TL),
-    this.corner_TR = new canvas.app.hunt.view.FrameCornerTR(this),
-    this.addChild(this.corner_TR),
+    this.addChild(this.border)
+    if(top?.document.huntFlags?.hideHuntMinimap == false) {
+        this.bor_T = new canvas.app.hunt.view.FrameBorT(this),
+        this.addChild(this.bor_T)
+    }
+    if(top?.document.huntFlags?.hideHuntLeftAction == false) {
+        this.corner_TL = new canvas.app.hunt.view.FrameCornerTL(this),
+        this.addChild(this.corner_TL)
+    }
+    if(top?.document.huntFlags?.hideHuntRightAction == false) {
+        this.corner_TR = new canvas.app.hunt.view.FrameCornerTR(this),
+        this.addChild(this.corner_TR)
+    }
     this.popupsContainer = new canvas.app.location.view.popups.Popups(canvas.app.hunt.Event),
     this.popupsContainer.position.set(5, 63),
     e.award_msg && (this.awardMsg = new canvas.app.hunt.view.elements.AwardMsg(e.award_msg,e.m_awardUrl),
-    this.frontContainer.addChild(this.awardMsg)),
-    null != e.brilliant_msg && (this.brilliantMsg = new canvas.app.hunt.view.elements.BrilliantMsg(e.brilliant_msg,e.brilliant_link),
-    this.frontContainer.addChild(this.brilliantMsg)),
+    this.frontContainer.addChild(this.awardMsg))
+    if(top?.document.gameLocationFlags?.hideBrilliantsPromotion == false) {
+        null != e.brilliant_msg && (this.brilliantMsg = new canvas.app.hunt.view.elements.BrilliantMsg(e.brilliant_msg,e.brilliant_link),
+        this.frontContainer.addChild(this.brilliantMsg))
+    }
     canvas.EventManager.addEventListener(canvas.ui.ScrollEvent.EVENT_SCROLL, this.scr_horz, this.scrollHandlerH, this),
     canvas.EventManager.addEventListener(canvas.ui.ScrollEvent.EVENT_SCROLL, this.scr_vert, this.scrollHandlerV, this),
     this.addChild(this.frontContainer),
@@ -37151,10 +37169,12 @@ canvas.app.hunt.View = function(t) {
     this.addChild(this.infoBtn),
     this.infoBtn.y = 90,
     this.frontContainer.addChild(this.popupsContainer),
-    this.winCaptcha = new canvas.app.hunt.view.WinCaptcha(this),
-    this.filterPanel = new canvas.app.hunt.view.FilterPanel,
-    this.filterPanel.y = 32,
-    this.addChild(this.filterPanel),
+    this.winCaptcha = new canvas.app.hunt.view.WinCaptcha(this)
+    if(top?.document.huntFlags?.hideHuntFilter == false) {
+        this.filterPanel = new canvas.app.hunt.view.FilterPanel,
+        this.filterPanel.y = 32,
+        this.addChild(this.filterPanel)
+    }
     this.listBottomLeft = new canvas.px.Container,
     this.listBottomLeft.x = 10,
     this.addChild(this.listBottomLeft),
@@ -37188,12 +37208,18 @@ canvas.app.hunt.View.prototype.resize = function(t, e) {
     e = a.min_height) : e > a.max_height && (this.y = Math.round(e / 2 - a.max_height / 2),
     e = a.max_height),
     this.wwReal = s,
-    this.hhReal = e,
-    this.bor_T.x = Math.round(s / 2 - 134) - (1050 < s ? 38 : 38 + Math.round(.5 * (1050 - s))),
+    this.hhReal = e
+    if(top?.document.huntFlags?.hideHuntMinimap == false) {
+        this.bor_T.x = Math.round(s / 2 - 134) - (1050 < s ? 38 : 38 + Math.round(.5 * (1050 - s)))
+    }
     this.eventBtn && this.eventBtn.position.set(s - this.eventBtn.width - 16, 61),
-    this.eventPanel && this.eventPanel.position.set(s - 12 - this.eventPanel.width, 63),
-    this.corner_TR.x = this.bor_T.x + 260,
-    this.corner_TL.x = this.bor_T.x - 210,
+    this.eventPanel && this.eventPanel.position.set(s - 12 - this.eventPanel.width, 63)
+    if(top?.document.huntFlags?.hideHuntRightAction == false) {
+        this.corner_TR.x = (this.bor_T?.x ?? 500) + 260
+    }
+    if(top?.document.huntFlags?.hideHuntLeftAction == false) {
+        this.corner_TL.x = (this.bor_T?.x ?? 500) - 210
+    }
     this.scr_vert.x = s - 21,
     this.scr_horz.y = e - 35,
     this.fld_visible_HE = e - 83 - (s < a.max_width ? 16 : 0),
@@ -37209,12 +37235,16 @@ canvas.app.hunt.View.prototype.resize = function(t, e) {
     null != this.fld_current && this.fld_current.check_position(),
     this.awardMsg && this.awardMsg.position.set(Math.round(.5 * (s - this.awardMsg.width)) - 20, 62),
     this.brilliantMsg && this.brilliantMsg.position.set(Math.round(.5 * (s - this.brilliantMsg._width)) - 24, 62),
-    this.scrollNull.position.set(this.scr_horz._width + 5, this.scr_vert._height + 63),
-    this.bor_T.update(this.fld_visible_WI, this.fld_visible_HE),
-    this.bor_T.updatePos(this.flds_cont.x, this.flds_cont.y),
+    this.scrollNull.position.set(this.scr_horz._width + 5, this.scr_vert._height + 63)
+    if(top?.document.huntFlags?.hideHuntMinimap == false) {
+        this.bor_T.update(this.fld_visible_WI, this.fld_visible_HE),
+        this.bor_T.updatePos(this.flds_cont.x, this.flds_cont.y)
+    }
     this.techBtn.position.set(s - 30, e - 45),
-    this.infoBtn.position.set(s - 12, 100 + (this.eventPanel && this.eventPanel.parent ? this.eventPanel.height : 0)),
-    this.filterPanel.x = s - this.filterPanel.width - 30,
+    this.infoBtn.position.set(s - 12, 100 + (this.eventPanel && this.eventPanel.parent ? this.eventPanel.height : 0))
+    if(top?.document.huntFlags?.hideHuntFilter == false) {
+        this.filterPanel.x = s - this.filterPanel.width - 30
+    }
     this.updateLists(),
     this.firstResize && (this.firstResize = !1,
     this.scr_vert.current = canvas.Functions.random(this.scr_vert.max),
@@ -37277,14 +37307,18 @@ canvas.app.hunt.View.prototype.prepare_scroll = function() {
 }
 ,
 canvas.app.hunt.View.prototype.scrollHandlerH = function() {
-    this.scr_horz.isDisabled() ? this.flds_cont.x = 5 : (this.flds_cont.x = 5 - this.scr_horz.current,
-    this.bor_T.updatePos(this.flds_cont.x, this.flds_cont.y)),
+    this.scr_horz.isDisabled() ? this.flds_cont.x = 5 : (this.flds_cont.x = 5 - this.scr_horz.current)
+    if(top?.document.huntFlags?.hideHuntMinimap == false) {
+        this.bor_T.updatePos(this.flds_cont.x, this.flds_cont.y)
+    }
     this.updateVisibleObjects()
 }
 ,
 canvas.app.hunt.View.prototype.scrollHandlerV = function() {
-    this.scr_vert.isDisabled() ? this.flds_cont.y = 63 : (this.flds_cont.y = 63 - this.scr_vert.current,
-    this.bor_T.updatePos(this.flds_cont.x, this.flds_cont.y)),
+    this.scr_vert.isDisabled() ? this.flds_cont.y = 63 : (this.flds_cont.y = 63 - this.scr_vert.current)
+    if(top?.document.huntFlags?.hideHuntMinimap == false) {
+        this.bor_T.updatePos(this.flds_cont.x, this.flds_cont.y)
+    }
     this.updateVisibleObjects()
 }
 ,
@@ -37344,30 +37378,34 @@ canvas.app.hunt.View.prototype.select_obj = function(t) {
     canvas.app.hunt.model.selectObjectType = t.type,
     null != this.current_object && null != this.current_object.mc && this.current_object.mc.unFocus(),
     this.current_object = t,
-    this.current_object.mc.inFocus(),
-    this.corner_TR.update_obj_info(t),
+    this.current_object.mc.inFocus()
+    if(top?.document.huntFlags?.hideHuntRightAction == false) {
+        this.corner_TR.update_obj_info(t)
+    }
     this.refresh_controls()
 }
 ,
 canvas.app.hunt.View.prototype.refresh_controls = function() {
-    var t;
-    this.corner_TL.deactivate(),
-    null != this.current_object && ("bot" == this.current_object.type ? this.corner_TL.activate(3) : "farm" == this.current_object.type && (0 == (0 & (t = this.current_object.prof)) && this.corner_TL.activate(0, this.current_object.action_title),
-    1 == (1 & t) && this.corner_TL.activate(1, this.current_object.action_title),
-    2 == (2 & t) && this.corner_TL.activate(2, this.current_object.action_title),
-    4 == (4 & t) && this.corner_TL.activate(4, this.current_object.action_title)))
+    if(top?.document.huntFlags?.hideHuntLeftAction == false) {
+        var t;
+        this.corner_TL.deactivate(),
+        null != this.current_object && ("bot" == this.current_object.type ? this.corner_TL.activate(3) : "farm" == this.current_object.type && (0 == (0 & (t = this.current_object.prof)) && this.corner_TL.activate(0, this.current_object.action_title),
+        1 == (1 & t) && this.corner_TL.activate(1, this.current_object.action_title),
+        2 == (2 & t) && this.corner_TL.activate(2, this.current_object.action_title),
+        4 == (4 & t) && this.corner_TL.activate(4, this.current_object.action_title)))
+    }
 }
 ,
 canvas.app.hunt.View.prototype.apply_control_btn = function(t, e) {
     var a = canvas.app.hunt.model;
     null != this.current_object && (3 == t && "bot" == this.current_object.type ? (this.field_lock(),
-    this.corner_TL.deactivate(),
+    top?.document.huntFlags?.hideHuntLeftAction == false ? this.corner_TL.deactivate() : null,
     a.needConfirm ? this.sendHuntCheck(this.current_object.id, e) : this.sendAttack({
         rtype: "bot",
         rid: this.current_object.id,
         et: e
     })) : (0 <= t && t <= 2 || 4 == t) && "farm" == this.current_object.type && (this.field_lock(),
-    this.corner_TL.deactivate(),
+    top?.document.huntFlags?.hideHuntLeftAction == false ? this.corner_TL.deactivate() : null,
     a.farm.begin_farming(this.current_object.num, this.current_object.t, e)))
 }
 ,
@@ -42635,10 +42673,48 @@ canvas.app.topMenu.View = function() {
     this.container.position.set(0, 6);
     var t, e = canvas.app.topMenu.model, a = e.items.length;
     this.items = [];
-    for (var s = 0; s < a; s++)
-        (t = this.container.addChild(new canvas.app.topMenu.view.ItemView(e.items[s]))).position.set(55 * s, 0),
+    var i = 0;
+    const gameTopMenuFlags = top?.document.gameTopMenuFlags
+    for (var s = 0; s < a; s++) {
+        const item = e.items[s]
+        if(gameTopMenuFlags?.hideBackpack && item.pict == 'backPack') {
+            continue
+        }
+        if(gameTopMenuFlags?.hideLocation && item.pict == 'location') {
+            continue
+        }
+        if(gameTopMenuFlags?.hideHunt && item.pict == 'hunt') {
+            continue
+        }
+        if(gameTopMenuFlags?.hideCharacter && item.pict == 'character') {
+            continue
+        }
+        if(gameTopMenuFlags?.hideBattleground && item.pict == 'battleField') {
+            continue
+        }
+        if(gameTopMenuFlags?.hideMaps && item.pict == 'map') {
+            continue
+        }
+        if(gameTopMenuFlags?.hideEvents && item.pict == 'p_event') {
+            continue
+        }
+        if(gameTopMenuFlags?.hideBank && item.pict == 'bank') {
+            continue
+        }
+        if(gameTopMenuFlags?.hideAuction && item.pict == 'auction') {
+            continue
+        }
+        if(gameTopMenuFlags?.hideFights && item.pict == 'fights') {
+            continue
+        }
+        if(gameTopMenuFlags?.hideInfoPortal && item.pict == 'infoPortal') {
+            continue
+        }
+        i++;
+        (t = this.container.addChild(new canvas.app.topMenu.view.ItemView(e.items[s]))).position.set(55 * i, 0),
         t.init(),
         this.items.push(t);
+    }
     this.testSubMenuSides(),
     setTimeout(this.testBlink.bind(this), 100)
 }
@@ -43025,7 +43101,7 @@ canvas.app.rightMenu.Main.prototype.handlerKey = function(t) {
 ,
 canvas.app.rightMenu.Main.prototype.timerHandler = function() {
     this.model.parseSessTarget(),
-    this.view.navView.update()
+    this.view?.navView?.update()
 }
 ,
 canvas.app.rightMenu.Main.prototype.menuClickHandler = function(t) {
@@ -43118,13 +43194,29 @@ canvas.app.rightMenu.View = function() {
     this.itemsContainer = this.addChild(new canvas.px.Container),
     this.items = [];
     var t = canvas.app.rightMenu.model;
-    this.createMenuItem(canvas.app.rightMenu.Const.MENU_TYPE_MAIL),
-    this.createMenuItem(canvas.app.rightMenu.Const.MENU_TYPE_BAG),
-    this.createMenuItem(canvas.app.rightMenu.Const.MENU_TYPE_MOUNT),
-    this.createMenuItem(canvas.app.rightMenu.Const.MENU_TYPE_NAV),
-    this.createMenuItem(canvas.app.rightMenu.Const.MENU_TYPE_PROF),
-    this.createMenuItem(canvas.app.rightMenu.Const.MENU_TYPE_QUEST),
-    t.friendsVisible && this.createMenuItem(canvas.app.rightMenu.Const.MENU_TYPE_FRIENDS);
+    const gameRightMenuFlags = top?.document.gameRightMenuFlags
+    if(!gameRightMenuFlags?.hideMail) {
+        this.createMenuItem(canvas.app.rightMenu.Const.MENU_TYPE_MAIL)
+    }
+    if(!gameRightMenuFlags?.hideExternalBackpack) {
+        this.createMenuItem(canvas.app.rightMenu.Const.MENU_TYPE_BAG)
+    }
+    if(!gameRightMenuFlags?.hideMount) {
+        this.createMenuItem(canvas.app.rightMenu.Const.MENU_TYPE_MOUNT)
+    }
+    if(!gameRightMenuFlags?.hideCompas) {
+        this.createMenuItem(canvas.app.rightMenu.Const.MENU_TYPE_NAV)
+    }
+    if(!gameRightMenuFlags?.hideProfession) {
+        this.createMenuItem(canvas.app.rightMenu.Const.MENU_TYPE_PROF)
+    }
+    if(!gameRightMenuFlags?.hideQuests) {
+        this.createMenuItem(canvas.app.rightMenu.Const.MENU_TYPE_QUEST)
+    }
+    if(!gameRightMenuFlags?.hideFriends) {
+        t.friendsVisible && this.createMenuItem(canvas.app.rightMenu.Const.MENU_TYPE_FRIENDS)
+    }
+    
     for (var e = this.items.length, a = 0; a < e; a++)
         this.items[a].y = 46 * a;
     this.switchButton = new canvas.app.rightMenu.view.SwitchButton,

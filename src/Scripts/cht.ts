@@ -3,6 +3,16 @@
 
 var debugLog = function(str, lock) { }
 
+function removeItems(array, elements) {
+    for(var element of elements) {
+        var index = array.indexOf(element)
+        if(index != -1) {
+            array.splice(index, 1)
+        }
+    }
+    return array
+}
+
 var chatButtonState = {};
 var chatButtons = {
 	'party_btn'  : [CHAT.locale_path+'images/chat_btn/partyman-inact.gif', CHAT.locale_path+'images/chat_btn/partyman-act.gif', CHAT.locale_path+'images/chat_btn/partyman-wrt.gif', CHAT.locale_path+'images/chat_btn/partyman-wrt.gif'],
@@ -677,7 +687,7 @@ function chatReceiveMessage(msg) {
 
 			if (chatButtonState['priv_btn'] && msg.chaotic_request || !chatButtonState['priv_btn'] || (msg.channel == channels.user) || !chatButtonState['priv_btn'] && (msg.type == msg_type.system) || (msg.user_id == session.id)
 					|| (msg.to_user_ids && inarray(msg.to_user_ids, session.id)) || msg.type == msg_type.broadcast || (msg.type == msg_type.system && msg.event_notify) ) {
-				opt.data.append($(msg_dom).clone());
+				attachMessageToChat(opt, msg_dom, msg)
 			}
 		}
 	}
@@ -710,6 +720,185 @@ function chatReceiveMessage(msg) {
 	}
 	if (msie7) chatUpdateDataAttach();
 	return true;
+}
+
+var lastFightMessages: string[] = []
+var lastFightMessageIds: Number[] = []
+var lastFightTimeout: TimerHandler | null
+var lastFightTimeoutRunning = false
+
+function attachMessageToChat(opt, msg_dom, msg) {
+	const attackMessage = 'Вы совершили нападение на'
+	if(top?.document.chatFlags?.hideAttackedMessage == true && msg.msg_text.includes(attackMessage) && msg.channel == 2 && !msg.user_id) {
+		return
+	}
+	const giftPetMessage = 'вручил персонажу'
+	if(top?.document.chatFlags?.hideGiftPetMessage == true && msg.msg_text.includes(giftPetMessage) && msg.channel == 1 && !msg.user_id) {
+		return
+	}
+	const socialInvitesMessage = 'Приглашаем вас посетить наши группы в социальных'
+	if(top?.document.chatFlags?.hideSocialInvitesMessage == true && msg.msg_text.includes(socialInvitesMessage) && msg.channel == 1 && !msg.user_id) {
+		return
+	}
+	const meridianVaultsMessage = 'Началось формирование команд из бойцов'
+	if(top?.document.chatFlags?.hideMeridianVaultsMessage == true && msg.msg_text.includes(meridianVaultsMessage) && msg.channel == 1 && !msg.user_id) {
+		return
+	}
+	const upgradeMountMessage = 'воспользовавшись помощью кузнеца'
+	if(top?.document.chatFlags?.hideUpgradeMountMessage == true && msg.msg_text.includes(upgradeMountMessage) && msg.channel == 1 && !msg.user_id) {
+		return
+	}
+	const contestMessage = 'Конкурс:'
+	if(top?.document.chatFlags?.hideContestMessage == true && msg.msg_text.includes(contestMessage) && msg.channel == 1 && !msg.user_id) {
+		return
+	}
+	const guardiansMessage = 'Опасайтесь стать жертвой мошенников!'
+	if(top?.document.chatFlags?.hideGuardiansMessage == true && msg.msg_text.includes(guardiansMessage) && msg.channel == 1 && !msg.user_id) {
+		return
+	}
+	const chaoticFightMessage = 'Начинается подготовка к сражению «Хаотичная битва»'
+	if(top?.document.chatFlags?.hideChaoticFightMessage == true && msg.msg_text.includes(chaoticFightMessage) && msg.chaotic_request == 1 && !msg.user_id) {
+		return
+	}
+	const crusibleFightMessage = 'Начинается подготовка к сражению «Горнило войны»'
+	if(top?.document.chatFlags?.hideCrusibleFightMessage == true && msg.msg_text.includes(crusibleFightMessage) && msg.chaotic_request == 1 && !msg.user_id) {
+		return
+	}
+	const heavenFight = 'за Длань'
+	if(top?.document.chatFlags?.hideHeavenFightMessage == true && msg.msg_text.includes(heavenFight) && msg.channel == 1 && !msg.user_id) {
+		return
+	}
+	const kesariMessage = 'ниспослал благословение'
+	if(top?.document.chatFlags?.hideKesariMessage == true && msg.msg_text.includes(kesariMessage) && msg.channel == 1 && !msg.user_id) {
+		return
+	}
+	const newsMessage = '<b>Новость</b>:'
+	if(top?.document.chatFlags?.hideNewsMessage == true && msg.msg_text.includes(newsMessage) && msg.channel == 1 && !msg.user_id) {
+		return
+	}
+	const disableEventMessages = true
+	if(top?.document.chatFlags?.hideEventsMessage == true && msg.event_id && msg.channel == 1 && !msg.user_id && disableEventMessages) {
+		return
+	}
+	const boxPrizeMessages = ['Открыв один из особых драгоценных сундучков, купленных на Городской ярмарке', 'Открыв один из сундучков, купленных на Городской ярмарке', 'с интересом продолжил  исследовать содержимое сундука']
+	let prizeMessageIncludes = false
+	for(const boxPrizeMessage of boxPrizeMessages) {
+		if(msg.msg_text.includes(boxPrizeMessage)) {
+			prizeMessageIncludes = true
+			break
+		}
+	}
+	if(top?.document.chatFlags?.hideBoxPrizeMessage == true && prizeMessageIncludes && msg.channel == 1 && !msg.user_id) {
+		return
+	}
+	const medalMessage = 'Медаль «Поклонения»'
+	if(top?.document.chatFlags?.hideMedalsMessage == true && msg.msg_text.includes(medalMessage) && msg.channel == 1 && !msg.user_id) {
+		return
+	}
+	const mentorMessage = 'Если у вас есть вопросы по игре'
+	if(top?.document.chatFlags?.hideMentorsMessage == true && msg.msg_text.includes(mentorMessage) && msg.channel == 1 && !msg.user_id) {
+		return
+	}
+	const banditMessage = 'выиграл у Однорукого Бандита'
+	if(top?.document.chatFlags?.hideBanditMessage == true && msg.msg_text.includes(banditMessage) && msg.channel == 1 && !msg.user_id) {
+		return
+	}
+	const pitMessage = 'Пожертвовав горсть монет высшим силам, притаившимся в Колодце удачи'
+	if(top?.document.chatFlags?.hidePitMessage == true && msg.msg_text.includes(pitMessage) && msg.channel == 1 && !msg.user_id) {
+		return
+	}
+	const mirrorMessage = 'Обыграв духов Зазеркалья'
+	if(top?.document.chatFlags?.hideMirrorMessage == true && msg.msg_text.includes(mirrorMessage) && msg.channel == 1 && !msg.user_id) {
+		return
+	}
+	const endFightMessage = 'Окончен бой'
+	const isNotParty = top[1].document.getElementsByClassName('party hid').length == 1
+	if(top?.document.chatFlags?.newLootSystem && isNotParty) {
+		if(msg.msg_text.startsWith('<a href="#" onClick="userPrvTag(')) {
+			return
+		}
+		if(!msg.msg_text.includes(endFightMessage) && lastFightTimeoutRunning) {
+			if(lastFightMessageIds.includes(msg.id)) {
+				return
+			}
+			if(!msg.user_id && (msg.msg_text.includes('Вами получено') || msg.msg_text.includes('Вы получили') || msg.msg_text.includes('Получено:')) || (msg.msg_text.startsWith('<a class="artifact_info') && msg.msg_text.endsWith('шт</b>')) || msg.msg_text.includes('Благодаря магическим эффектам')) {
+				if(msg.msg_text.includes('Сытость')) {
+					return
+				}
+				lastFightMessages.push(msg)
+				lastFightMessageIds.push(msg.id)
+				return
+			}
+		}
+		if(msg.msg_text.includes(endFightMessage) && !lastFightTimeoutRunning) {
+			lastFightTimeoutRunning = true
+			lastFightTimeout = setTimeout(() => {
+				if(lastFightMessages.length == 0) {
+					clearLastFightInfo()
+					return
+				}
+				const moneyMessages = lastFightMessages.filter(r => {
+					let keys = Object.keys(r.macros_list)
+					if(keys.length > 0) {
+						let isGold = r.macros_list[keys[0]].name == 'MONEY'
+						return isGold
+					}
+					return false
+				})
+				lastFightMessages = removeItems(lastFightMessages, moneyMessages)
+				lastFightMessages = moneyMessages.concat(lastFightMessages)
+				for(var lastFightMessage of lastFightMessages) {
+					if(lastFightMessage.msg_text.includes('Вы получили') && lastFightMessage.msg_text.includes('энергии')) {
+						lastFightMessage.msg_text = '<span>' + lastFightMessage.msg_text.replace(/\D/g, '') + ' <img src="images/work.gif" width="7" height="8"></span>'
+					}
+					lastFightMessage.msg_text = lastFightMessage.msg_text.replace('Получено:', '').replace('<STRONG>Получено:</STRONG>', '')
+					lastFightMessage.msg_text = lastFightMessage.msg_text.replace('Вами получено:', '').replace('Вами получено', '')
+					lastFightMessage.msg_text = lastFightMessage.msg_text.replace('Вы получили: ', '').replace('(сумма уменьшена из-за разницы в уровне с монстром)', '')
+					if(lastFightMessage.msg_text.includes('Благодаря магическим эффектам, вы сумели обогатиться еще на')) {
+						lastFightMessage.msg_text = lastFightMessage.msg_text.replace('Благодаря магическим эффектам, вы сумели обогатиться еще на', '( + ') + ' )'
+						lastFightMessage.msg_text = lastFightMessage.msg_text.slice(0, lastFightMessage.msg_text.length - 3) + ' )'
+					}
+				}
+				let lootMessage = lastFightMessages.map(msg => msg.msg_text).join(' ')
+				
+				var all_channels = 0;
+				for (var i in chatOpts) {
+					all_channels |= chatOpts[i].channel;
+				}
+				var res = {
+					type: msg_type.system,
+					urgent: true,
+					msg_text: lootMessage,
+					channel: all_channels, 
+					stime: current_server_time()
+				}
+				const domMessage = chatFormatMessage(res)
+				
+				for (var i in chatOpts) {
+					var opt = chatOpts[i];
+					for (var k in chatDependent) {
+						if (opt.channel & k) {
+							opt.channel |= chatDependent[k];
+						}
+					}
+					opt.data.append($(domMessage).clone())
+					_top().frames['chat'].frames['chat_text'].scrollTo(0, 65535);
+				}
+				clearLastFightInfo()
+				return
+			}, 2500)
+		}
+	}
+	if(top?.document.chatFlags?.hideEndFightMessage == true && msg.msg_text.includes(endFightMessage) && msg.channel == 2 && !msg.user_id) {
+		return
+	}
+	opt.data.append($(msg_dom).clone())
+}
+
+function clearLastFightInfo() {
+	lastFightTimeoutRunning = false
+	lastFightMessages = []
+	lastFightMessageIds = []
 }
 
 var scrollLock = false;

@@ -42,7 +42,8 @@ module.exports = {
             'purpleFilterBg': '#D6BFF3',
 
             'redFilterBorder': '#B77373',
-            'redFilterBg': '#F3BFBF'
+            'redFilterBg': '#F3BFBF',
+            'red': '#FF0000'
         },
         extend: {
             fontSize: {

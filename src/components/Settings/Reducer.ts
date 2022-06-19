@@ -1,6 +1,5 @@
 import { app } from '@electron/remote'
 import ConfigService from '../../services/ConfigService'
-import GameFlagsService, { GameFlagsKeys } from '../../services/GameFlagsService'
 import ShortcutService, { ShortcutKeys } from '../../services/ShortcutService'
 import { SettingsWindowActions } from './Actions'
 import { Elements } from './Elements'
@@ -53,7 +52,6 @@ export default function reduce(state: SettingsWindowState, action: SettingsWindo
             }
             ConfigService.writeData('settings', JSON.stringify(savedSettings))
             saveShortCuts()
-            saveGameFlags()
             if(confirm('Для того что бы настройки вступили в силу, необходимо перезапустить клиент!')) {
                 app.relaunch()
                 app.quit()
@@ -171,16 +169,4 @@ function saveShortCuts() {
     ShortcutService.writeData(ShortcutKeys.BOW_SKILL_13, Elements.bowSkill13ShortcutInput().value)
     ShortcutService.writeData(ShortcutKeys.BOW_SKILL_14, Elements.bowSkill14ShortcutInput().value)
     ShortcutService.writeData(ShortcutKeys.BOW_SKILL_15, Elements.bowSkill15ShortcutInput().value)
-}
-
-function saveGameFlags() {
-    GameFlagsService.writeData(GameFlagsKeys.HIDE_CASINO, Elements.hideCasinoInput().checked)
-    GameFlagsService.writeData(GameFlagsKeys.HIDE_ACTIVITIES, Elements.hideActivitiesInput().checked)
-    GameFlagsService.writeData(GameFlagsKeys.HIDE_PROMOTIONS, Elements.hidePromotionsInput().checked)
-    GameFlagsService.writeData(GameFlagsKeys.HIDE_DICE_GAME, Elements.hideDiceGameInput().checked)
-    GameFlagsService.writeData(GameFlagsKeys.HIDE_WHEEL_FORTUNE, Elements.hideWheelFortuneInput().checked)
-    GameFlagsService.writeData(GameFlagsKeys.HIDE_NPC_EVENTS, Elements.hideNPCEventsInput().checked)
-    GameFlagsService.writeData(GameFlagsKeys.HIDE_CURRENT_EVENT, Elements.hideCurrentEventInput().checked)
-    GameFlagsService.writeData(GameFlagsKeys.HIDE_FRONTS, Elements.hideFrontsInput().checked)
-    GameFlagsService.writeData(GameFlagsKeys.HIDE_MINI_MAP, Elements.hideMiniMapInput().checked)
 }
