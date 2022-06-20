@@ -732,6 +732,10 @@ function attachMessageToChat(opt, msg_dom, msg) {
 	if(top?.document.chatFlags?.hideAttackedMessage == true && msg.msg_text.includes(attackMessage) && msg.channel == 2 && !msg.user_id) {
 		return
 	}
+	const fightStartedMessage = 'Начался бой'
+	if(top?.document.chatFlags?.hideFightStartedMessage == true && msg.msg_text.includes(fightStartedMessage) && msg.channel == 2 && !msg.user_id) {
+		return
+	}
 	const giftPetMessage = 'вручил персонажу'
 	if(top?.document.chatFlags?.hideGiftPetMessage == true && msg.msg_text.includes(giftPetMessage) && msg.channel == 1 && !msg.user_id) {
 		return

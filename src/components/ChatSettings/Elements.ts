@@ -63,6 +63,9 @@ export const Elements = {
     hideAttackedMessageInput(): HTMLInputElement {
         return document.getElementById('hideAttackedMessageInput') as HTMLInputElement
     },
+    hideFightStartedMessageInput(): HTMLInputElement {
+        return document.getElementById('hideFightStartedMessageInput') as HTMLInputElement
+    },
     hideEndFightMessageInput(): HTMLInputElement {
         return document.getElementById('hideEndFightMessageInput') as HTMLInputElement
     },

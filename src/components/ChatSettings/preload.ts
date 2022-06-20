@@ -28,6 +28,7 @@ let initialState: ChatSettingsConfig = {
     allianceChatFloodingTimer: 10,
 
     hideAttackedMessage: false,
+    hideFightStartedMessage: false,
     hideEndFightMessage: false,
     hideGiftPetMessage: false,
     hideSocialInvitesMessage: false,
