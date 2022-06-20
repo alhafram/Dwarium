@@ -817,7 +817,7 @@ function attachMessageToChat(opt, msg_dom, msg) {
 	}
 	const endFightMessage = 'Окончен бой'
 	const isNotParty = top[1].document.getElementsByClassName('party hid').length == 1
-	if(top?.document.chatFlags?.newLootSystem && isNotParty) {
+	if(top?.document.chatFlags?.newLootSystem && isNotParty && !msg.user_id) {
 		if(msg.msg_text.startsWith('<a href="#" onClick="userPrvTag(')) {
 			return
 		}
