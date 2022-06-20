@@ -70,6 +70,17 @@ function createNewTab(url: string, id: string) {
                 action: 'deny'
             }
         })
+    } else {
+        browserView.webContents.setWindowOpenHandler(() => {
+            return {
+                action: 'allow',
+                overrideBrowserWindowOptions: {
+                    webPreferences: {
+                        webSecurity: false
+                    }
+                }
+            }
+        })
     }
     TabsController.addTab(tabId, browserView)
     closeFavouriteListBrowserView()
