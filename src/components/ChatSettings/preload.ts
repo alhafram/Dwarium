@@ -27,6 +27,7 @@ let initialState: ChatSettingsConfig = {
     allianceChatFloodingMessage: '',
     allianceChatFloodingTimer: 10,
 
+    newLootSystem: false,
     hideAttackedMessage: false,
     hideFightStartedMessage: false,
     hideEndFightMessage: false,
@@ -49,7 +50,15 @@ let initialState: ChatSettingsConfig = {
     hidePitMessage: false,
     hideMirrorMessage: false,
 
-    newLootSystem: false
+    redirectEnabled: false,
+    apiToken: '',
+    channelId: '',
+    redirectCommon: false,
+    redirectPrivate: false,
+    redirectTrade: false,
+    redirectClan: false,
+    redirectAlliance: false,
+    redirectGroup: false
 }
 
 export default async function dispatch(action: ChatSettingsWindowActions, data?: any) {

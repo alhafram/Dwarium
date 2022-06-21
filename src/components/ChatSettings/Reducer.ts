@@ -53,6 +53,7 @@ export default async function reduce(state: ChatSettingsConfig, action: ChatSett
             state.allianceChatFloodingMessage = Elements.allianceChatFloodingMessageInput().value
             state.allianceChatFloodingTimer = parseInt(Elements.allianceChatFloodingTimerInput().value)
 
+            state.newLootSystem = Elements.newLootSystemInput().checked
             state.hideAttackedMessage = Elements.hideAttackedMessageInput().checked
             state.hideFightStartedMessage = Elements.hideFightStartedMessageInput().checked
             state.hideEndFightMessage = Elements.hideEndFightMessageInput().checked
@@ -75,7 +76,16 @@ export default async function reduce(state: ChatSettingsConfig, action: ChatSett
             state.hidePitMessage = Elements.hidePitMessageInput().checked
             state.hideMirrorMessage = Elements.hideMirrorMessageInput().checked
 
-            state.newLootSystem = Elements.newLootSystemInput().checked
+            state.redirectEnabled = Elements.redirectEnabledInput().checked
+            state.apiToken = Elements.apiTokenInput().value
+            state.channelId = Elements.channelIdInput().value
+            state.redirectCommon = Elements.redirectCommonInput().checked
+            state.redirectPrivate = Elements.redirectPrivateInput().checked
+            state.redirectTrade = Elements.redirectTradeInput().checked
+            state.redirectClan = Elements.redirectClanInput().checked
+            state.redirectAlliance = Elements.redirectAllianceInput().checked
+            state.redirectGroup = Elements.redirectGroupInput().checked
+
             save(state, userId1)
             return state
         }

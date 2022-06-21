@@ -31,6 +31,7 @@ function get(id: number): ChatSettingsConfig {
             allianceChatFloodingMessage: '',
             allianceChatFloodingTimer: 10,
 
+            newLootSystem: false,
             hideAttackedMessage: false,
             hideFightStartedMessage: false,
             hideEndFightMessage: false,
@@ -53,7 +54,15 @@ function get(id: number): ChatSettingsConfig {
             hidePitMessage: false,
             hideMirrorMessage: false,
 
-            newLootSystem: false
+            redirectEnabled: false,
+            apiToken: '',
+            channelId: '',
+            redirectCommon: false,
+            redirectPrivate: false,
+            redirectTrade: false,
+            redirectClan: false,
+            redirectAlliance: false,
+            redirectGroup: false
         }
         save(newChatSettingsConfig, id)
     }

@@ -28,6 +28,7 @@ function render(initialState: ChatSettingsConfig) {
     Elements.allianceChatFloodingMessageInput().value = initialState.allianceChatFloodingMessage.toString()
     Elements.allianceChatFloodingTimerInput().value = initialState.allianceChatFloodingTimer.toString()
 
+    Elements.newLootSystemInput().checked = initialState.newLootSystem
     Elements.hideAttackedMessageInput().checked = initialState.hideAttackedMessage
     Elements.hideFightStartedMessageInput().checked = initialState.hideFightStartedMessage
     Elements.hideEndFightMessageInput().checked = initialState.hideEndFightMessage
@@ -49,8 +50,17 @@ function render(initialState: ChatSettingsConfig) {
     Elements.hidePitMessageInput().checked = initialState.hidePitMessage
     Elements.hideMirrorMessageInput().checked = initialState.hideMirrorMessage
 
-    Elements.newLootSystemInput().checked = initialState.newLootSystem
+    Elements.redirectEnabledInput().checked = initialState.redirectEnabled
+    Elements.apiTokenInput().value = initialState.apiToken
+    Elements.channelIdInput().value = initialState.channelId
+    Elements.redirectCommonInput().checked = initialState.redirectCommon
+    Elements.redirectPrivateInput().checked = initialState.redirectPrivate
+    Elements.redirectTradeInput().checked = initialState.redirectTrade
+    Elements.redirectClanInput().checked = initialState.redirectClan
+    Elements.redirectAllianceInput().checked = initialState.redirectAlliance
+    Elements.redirectGroupInput().checked = initialState.redirectGroup
 }
+
 
 function setupView() {
     Elements.inactiveTimerInput().onkeyup = () => {

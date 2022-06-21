@@ -255,6 +255,81 @@ function handleMessage(message: any) {
     }
 }
 
+function handleRedirect(message: any) {
+    const chatMessage = message as ChatMessage
+    console.log(chatMessage)
+    // @ts-ignore
+    const nickName = top[0].canvas.app.avatar.model.login
+    if(chatMessage && config && nickName && chatMessage.to_user_nicks) {
+        if(config.redirectEnabled) {
+            switch (chatMessage.channel) {
+                case ChatChannel.PRIVATE:
+                    if(config.redirectPrivate && chatMessage.msg_text) {
+                        if(Object.values(chatMessage.to_user_nicks).includes(nickName)) {
+                            sendTelegramMessage(message.user_nick + ' => (Prv) => ' + message.msg_text)
+                        }
+                    }
+                    break
+                case ChatChannel.COMMON:
+                    if(config.redirectCommon && chatMessage.to_user_nicks != undefined) {
+                        if(Object.values(chatMessage.to_user_nicks).includes(nickName)) {
+                            sendTelegramMessage(message.user_nick + ' => (Common) => ' + message.msg_text)
+                        }
+                    }
+                    break
+                case ChatChannel.TRADE:
+                    if(config.redirectTrade && chatMessage.to_user_nicks != undefined) {
+                        if(Object.values(chatMessage.to_user_nicks).includes(nickName)) {
+                            sendTelegramMessage(message.user_nick + ' => (Trade) => ' + message.msg_text)
+                        }
+                    }
+                    break
+                case ChatChannel.GROUP:
+                    if(config.redirectGroup && chatMessage.to_user_nicks != undefined) {
+                        if(Object.values(chatMessage.to_user_nicks).includes(nickName)) {
+                            sendTelegramMessage(message.user_nick + ' => (Group) => ' + message.msg_text)
+                        }
+                    }
+                    break
+                case ChatChannel.CLAN:
+                    if(config.redirectClan && chatMessage.to_user_nicks != undefined) {
+                        if(Object.values(chatMessage.to_user_nicks).includes(nickName)) {
+                            sendTelegramMessage(message.user_nick + ' => (Clan) => ' + message.msg_text)
+                        }
+                    }
+                    break
+                case ChatChannel.ALLIANCE:
+                    if(config.redirectAlliance && chatMessage.to_user_nicks != undefined) {
+                        if(Object.values(chatMessage.to_user_nicks).includes(nickName)) {
+                            sendTelegramMessage(message.user_nick + ' => (Alliance) => ' + message.msg_text)
+                        }
+                    }
+                    break
+            }
+        }
+    }
+}
+
+function sendTelegramMessage(message: string) {
+    if(!config) {
+        return
+    }
+    const apiToken = config.apiToken
+    const channelId = config.channelId
+    if(apiToken && channelId) {
+        fetch(`https://api.telegram.org/bot${apiToken}/sendMessage`, {
+            headers: {
+                'Content-Type': 'content-type: application/json',
+            },
+            method: 'POST',
+            body: JSON.stringify({
+                chat_id: `-${channelId}`,
+                text: message
+            })
+        })
+    }
+}
+
 function logMessage(message: any) {
     const node = $(message).get()[0].cloneNode(true) as HTMLElement
     node.removeAttribute('original-msg-object')
@@ -304,6 +379,7 @@ ipcRenderer.on(Channel.HIDE_SHOW_CHAT, async() => {
 
 export default {
     handleMessage,
+    handleRedirect,
     logMessage,
     setupAutoResponder,
     setupFlooding

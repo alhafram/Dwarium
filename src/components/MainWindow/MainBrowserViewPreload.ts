@@ -32,6 +32,7 @@ document.addEventListener('Message', (event) => {
     FoodService.eat(message)
     sendNotification(message)
     ChatService.handleMessage(message)
+    ChatService.handleRedirect(message)
 })
 
 document.addEventListener('MessageDom', (event) => {
