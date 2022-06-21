@@ -61,7 +61,6 @@ function render(initialState: ChatSettingsConfig) {
     Elements.redirectGroupInput().checked = initialState.redirectGroup
 }
 
-
 function setupView() {
     Elements.inactiveTimerInput().onkeyup = () => {
         const value = parseInt(Elements.inactiveTimerInput().value)

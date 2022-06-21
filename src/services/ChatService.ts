@@ -319,7 +319,7 @@ function sendTelegramMessage(message: string) {
     if(apiToken && channelId) {
         fetch(`https://api.telegram.org/bot${apiToken}/sendMessage`, {
             headers: {
-                'Content-Type': 'content-type: application/json',
+                'Content-Type': 'content-type: application/json'
             },
             method: 'POST',
             body: JSON.stringify({
