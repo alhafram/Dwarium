@@ -399,7 +399,7 @@ function isClearKey(event: KeyboardEvent): boolean {
 }
 
 function isExcludedKey(event: KeyboardEvent): boolean {
-    const comboKeys = ['Control', 'Meta', 'Alt', 'Shift', 'Enter', ' ', 'Backspace', 'Backquote', 'Comma', 'Period', 'BracketLeft', 'BracketRight', 'Backslash', 'Quote', 'Semicolon']
+    const comboKeys = ['Control', 'Meta', 'Alt', 'Shift', 'Enter', ' ', 'Backspace', 'Backquote', 'Comma', 'Period', 'BracketLeft', 'BracketRight', 'Backslash', 'Quote', 'Semicolon', 'ArrowDown', 'ArrowUp', 'ArrowLeft', 'ArrowRight']
     if(comboKeys.includes(event.key) || comboKeys.includes(event.code)) {
         return true
     }
