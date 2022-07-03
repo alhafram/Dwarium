@@ -10,6 +10,7 @@ import { setupCheckingItemsService } from '../../services/ExpiringItemsLoader'
 import GameFlagsService from '../../services/GameFlagsService'
 import ChatSettingsService from '../../services/ChatSettingsService'
 import Utils from '../Common/Utils'
+import DropService from '../../services/DropService'
 
 const flags = GameFlagsService.getGameFlags()
 document.gameLocationFlags = flags.gameLocationFlags
@@ -33,6 +34,11 @@ document.addEventListener('Message', (event) => {
     sendNotification(message)
     ChatService.handleMessage(message)
     ChatService.handleRedirect(message)
+})
+
+document.addEventListener('DropMessage', (event) => {
+    const dropmessages = (<CustomEvent>event).detail
+    DropService.saveDrop([...dropmessages])
 })
 
 document.addEventListener('MessageDom', (event) => {

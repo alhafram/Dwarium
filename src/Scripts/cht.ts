@@ -863,6 +863,9 @@ function attachMessageToChat(opt, msg_dom, msg) {
 						lastFightMessage.msg_text = lastFightMessage.msg_text.slice(0, lastFightMessage.msg_text.length - 3) + ')'
 					}
 				}
+				top?.document.dispatchEvent(new CustomEvent('DropMessage', {
+					detail: lastFightMessages
+				}))
 				let lootMessage = lastFightMessages.map(msg => msg.msg_text).join(' ')
 				
 				var all_channels = 0;

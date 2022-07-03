@@ -9,7 +9,8 @@ export enum Preload {
     NOTIFICATIONS = '../Components/Notifications/preload.js',
     EFFECT_SETS = '../Components/EffectSets/preload.js',
     EXPIRING_ITEMS_SETTINGS = '../Components/ExpiringItemsSettings/preload.js',
-    GAME_SETTINGS = '../Components/GameSettings/preload.js'
+    GAME_SETTINGS = '../Components/GameSettings/preload.js',
+    STATS = '../Components/Stats/preload.js'
 }
 
 export enum HTMLPath {
@@ -23,7 +24,8 @@ export enum HTMLPath {
     NOTIFICATIONS = '../../gui/Notifications/index.html',
     EFFECT_SETS = '../../gui/EffectSets/index.html',
     EXPIRING_ITEMS_SETTINGS = '../../gui/ExpiringItemsSettings/index.html',
-    GAME_SETTINGS = '../../gui/GameSettings/index.html'
+    GAME_SETTINGS = '../../gui/GameSettings/index.html',
+    STATS = '../../gui/Stats/index.html'
 }
 
 export enum WindowType {
@@ -42,5 +44,6 @@ export enum WindowType {
     NOTIFICATIONS = 'notifications',
     EFFECT_SETS = 'effectSets',
     EXPIRING_ITEMS_SETTINGS = 'expiringItemsSettings',
-    GAME_SETTINGS = 'gameSettings'
+    GAME_SETTINGS = 'gameSettings',
+    STATS = 'stats'
 }

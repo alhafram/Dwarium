@@ -257,7 +257,6 @@ function handleMessage(message: any) {
 
 function handleRedirect(message: any) {
     const chatMessage = message as ChatMessage
-    console.log(chatMessage)
     // @ts-ignore
     const nickName = top[0].canvas.app.avatar.model.login
     if(chatMessage && config && nickName && chatMessage.to_user_nicks) {

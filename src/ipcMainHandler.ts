@@ -456,8 +456,19 @@ ipcMain.on(Channel.OPEN_EXPIRING_ITEMS_SETTINGS, () => {
     })
 })
 
-let favouriteListBrowserView: BrowserView | null
+let statsWindow: BrowserWindow | null
+ipcMain.on(Channel.OPEN_STATS, () => {
+    if(statsWindow) {
+        statsWindow.show()
+        return
+    }
+    statsWindow = createWindowAndLoad(WindowType.STATS, HTMLPath.STATS, Preload.STATS, true)
+    setupCloseLogic(statsWindow, WindowType.STATS, function() {
+        statsWindow = null
+    })
+})
 
+let favouriteListBrowserView: BrowserView | null
 function closeFavouriteListBrowserView() {
     if(favouriteListBrowserView) {
         if(!favouriteListBrowserView.webContents.isDestroyed()) {
