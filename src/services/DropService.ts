@@ -37,6 +37,7 @@ function parseDropMessages(dropMessages: any[]) {
     dropMessages.splice(dropMessages.indexOf(moneyMessage), 1)
 
     const dropItems: { id: any; num: any; title: any }[] = []
+    dropMessages = dropMessages.filter(message => Object.keys(message.macros_list).length > 0)
     dropMessages.forEach((message) => {
         const macrosListKey = Object.keys(message.macros_list)[0]
         const data = message.macros_list[macrosListKey].data
