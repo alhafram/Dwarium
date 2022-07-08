@@ -32,9 +32,14 @@ function saveDrop(dropMessages: any[]) {
 }
 
 function parseDropMessages(dropMessages: any[]) {
-    const moneyMessage = dropMessages.find((message) => message.macros_list[Object.keys(message.macros_list)[0]].name == 'MONEY')
-    const money = moneyMessage.macros_list[Object.keys(moneyMessage.macros_list)[0]].data.money
-    dropMessages.splice(dropMessages.indexOf(moneyMessage), 1)
+    const moneyMessages = dropMessages.filter((message) => message.macros_list[Object.keys(message.macros_list)[0]]?.name == 'MONEY')
+    const money = moneyMessages.map(message => message.macros_list[Object.keys(message.macros_list)[0]].data.money).reduce((a, b) => parseFloat(a) + parseFloat(b))
+
+    moneyMessages.forEach(moneyMessage => {
+        const index = dropMessages.indexOf(moneyMessage)
+        dropMessages.splice(index, 1)
+    })
+    console.log(moneyMessages, dropMessages)
 
     const dropItems: { id: any; num: any; title: any }[] = []
     dropMessages = dropMessages.filter(message => Object.keys(message.macros_list).length > 0)
