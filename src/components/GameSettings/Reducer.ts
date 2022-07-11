@@ -62,4 +62,6 @@ function saveGameFlags() {
     GameFlagsService.writeData(HuntFlagsKeys.HIDE_HUNT_LEFT_ACTION, Elements.hideHuntLeftActionInput().checked)
     GameFlagsService.writeData(HuntFlagsKeys.HIDE_HUNT_RIGHT_ACTION, Elements.hideHuntRightActionInput().checked)
     GameFlagsService.writeData(HuntFlagsKeys.HIDE_HUNT_FILTER, Elements.hideHuntFilterInput().checked)
+    GameFlagsService.writeData(HuntFlagsKeys.HIDE_MOBS_FILTER, Elements.hideMobsFilterInput().checked)
+    GameFlagsService.writeData(HuntFlagsKeys.HIDE_NEW_RESOURCES_FILTER, Elements.hideNewResourcesFilterInput().checked)
 }
