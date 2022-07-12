@@ -37185,7 +37185,6 @@ canvas.app.hunt.View = function(t) {
     if(top?.document.huntFlags?.hideNewResourcesFilter == false) {
         this.resourcesFilter = new canvas.app.hunt.view.MobsFilter('farm')
         this.resourcesFilter.y = 0
-        this.resourcesFilter.x = getClientWidth() - 400
         this.addChild(this.resourcesFilter)
     }
 
@@ -37272,7 +37271,7 @@ canvas.app.hunt.View.prototype.resize = function(t, e) {
         if(top?.document.huntFlags?.hideHuntFilter) {
             a.filterValue = canvas.app.hunt.model.FILTER_VALUES.reduce((a, b) => a + b)
         }
-        this.resourcesFilter.position.x = t - (canvas.app.hunt.model.objects_updater.baseLnk.scr_horz.visible ? this.resourcesFilter.width : this.resourcesFilter.width + 200)
+        this.resourcesFilter.position.x = t - (canvas.app.hunt.model.objects_updater.baseLnk.scr_horz.visible ? this.resourcesFilter.width + 50 : this.resourcesFilter.width + 200)
     }
 }
 ,
