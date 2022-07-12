@@ -37271,7 +37271,15 @@ canvas.app.hunt.View.prototype.resize = function(t, e) {
         if(top?.document.huntFlags?.hideHuntFilter) {
             a.filterValue = canvas.app.hunt.model.FILTER_VALUES.reduce((a, b) => a + b)
         }
-        this.resourcesFilter.position.x = t - (canvas.app.hunt.model.objects_updater.baseLnk.scr_horz.visible ? this.resourcesFilter.width + 50 : this.resourcesFilter.width + 200)
+        let settingInteraction = 0
+        const settingPositionInterval = setInterval(() => {
+            this.resourcesFilter.position.set(this.width - this.resourcesFilter.width, 0)
+            settingInteraction++
+            const done = settingInteraction >= 15
+            if(done) {
+                clearInterval(settingPositionInterval)
+            }
+        }, 50)
     }
 }
 ,
