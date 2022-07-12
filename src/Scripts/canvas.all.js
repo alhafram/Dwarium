@@ -37269,6 +37269,9 @@ canvas.app.hunt.View.prototype.resize = function(t, e) {
     this.main.windowsContainer.position.set(this.x, this.y)
 
     if(this.resourcesFilter) {
+        if(top?.document.huntFlags?.hideHuntFilter) {
+            a.filterValue = canvas.app.hunt.model.FILTER_VALUES.reduce((a, b) => a + b)
+        }
         this.resourcesFilter.position.x = t - (canvas.app.hunt.model.objects_updater.baseLnk.scr_horz.visible ? this.resourcesFilter.width : this.resourcesFilter.width + 200)
     }
 }
@@ -38205,7 +38208,12 @@ canvas.app.hunt.view.FieldObject = function(t, e, a) {
 
     const hiddenMobs = JSON.parse(localStorage.hiddenMobs ?? '[]')
     if(hiddenMobs.includes(canvas.app.hunt.model.PicPath + this.curObj.pic) || hiddenMobs.includes(canvas.app.hunt.model.FarmPicPath + this.curObj.pic)) {
-        this.curObj.mc.visible = false
+        if(top?.document.huntFlags?.hideMobsFilter == false && this.curObj.type == 'bot') {
+            this.curObj.mc.visible = false
+        }
+        if(top?.document.huntFlags?.hideNewResourcesFilter == false && this.curObj.type == 'farm') {
+            this.curObj.mc.visible = false
+        }
     }
 }
 ,
