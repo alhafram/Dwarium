@@ -37275,7 +37275,7 @@ canvas.app.hunt.View.prototype.resize = function(t, e) {
         const settingPositionInterval = setInterval(() => {
             this.resourcesFilter.position.set(this.width - this.resourcesFilter.width, 0)
             settingInteraction++
-            const done = settingInteraction >= 15
+            const done = settingInteraction >= 10
             if(done) {
                 clearInterval(settingPositionInterval)
             }
@@ -38421,6 +38421,7 @@ canvas.app.hunt.view.MobsFilter.prototype.renderFilters = function() {
             params: new canvas.utils.HintParams(new canvas.app.view.MappingHint(canvas.Translator.getText(447)))
         })
     }
+    this.parent.resize()
 }
 
 canvas.app.hunt.view.MobsFilter.prototype.createButton = function(t, pictureUrl, hideBorder) {
