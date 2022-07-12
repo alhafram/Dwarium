@@ -29,6 +29,12 @@ export const Elements = {
     expiringItemsNotificationsIngameInput(): HTMLInputElement {
         return document.getElementById('expiringItemsNotificationsIngameInput') as HTMLInputElement
     },
+    resourceFarmingFinishedNotificationsSystemInput(): HTMLInputElement {
+        return document.getElementById('resourceFarmingFinishedNotificationsSystemInput') as HTMLInputElement
+    },
+    resourceFarmingFinishedNotificationsIngameInput(): HTMLInputElement {
+        return document.getElementById('resourceFarmingFinishedNotificationsIngameInput') as HTMLInputElement
+    },
     saveButton(): HTMLButtonElement {
         return document.getElementById('saveButton') as HTMLButtonElement
     }

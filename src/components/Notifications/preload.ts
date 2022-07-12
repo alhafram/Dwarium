@@ -14,7 +14,9 @@ let initialState: NotificationsWindowState = {
     mailNotificationsSystem: false,
     mailNotificationsIngame: false,
     expiringItemsNotificationsSystem: false,
-    expiringItemsNotificationsIngame: false
+    expiringItemsNotificationsIngame: false,
+    resourceFarmingFinishedNotificationsSystem: false,
+    resourceFarmingFinishedNotificationsIngame: false
 }
 
 export default async function dispatch(action: NotificationsWindowActions) {

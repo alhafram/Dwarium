@@ -4,7 +4,6 @@ import FileOperationsService from './FileOperationsService'
 
 const path = buildPath(ConfigPath.CONFIG)
 
-// Refactor 2.3.0
 function getSettings(): ClientSettings {
     const settings = {
         server: server(),
@@ -28,6 +27,8 @@ function getSettings(): ClientSettings {
         mailNotificationsIngame: mailNotificationsIngame(),
         expiringItemsNotificationsSystem: expiringItemsNotificationsSystem(),
         expiringItemsNotificationsIngame: expiringItemsNotificationsIngame(),
+        resourceFarmingFinishedNotificationSystem: resourceFarmingFinishedNotificationSystem(),
+        resourceFarmingFinishedNotificationIngame: resourceFarmingFinishedNotificationIngame(),
         updateChannel: updateChannel(),
         needToRestoreUrls: needToRestoreUrls(),
         restoreUrls: restoreUrls()
@@ -218,6 +219,25 @@ function expiringItemsNotificationsIngame(): boolean {
     if(settings) {
         settings = JSON.parse(settings)
         return settings.expiringItemsNotificationsIngame ?? false
+    }
+    return false
+}
+
+
+function resourceFarmingFinishedNotificationSystem(): boolean {
+    let settings = readData('settings')
+    if(settings) {
+        settings = JSON.parse(settings)
+        return settings.resourceFarmingFinishedNotificationSystem ?? false
+    }
+    return false
+}
+
+function resourceFarmingFinishedNotificationIngame(): boolean {
+    let settings = readData('settings')
+    if(settings) {
+        settings = JSON.parse(settings)
+        return settings.resourceFarmingFinishedNotificationIngame ?? false
     }
     return false
 }

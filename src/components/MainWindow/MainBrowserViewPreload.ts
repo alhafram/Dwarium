@@ -2,7 +2,7 @@
 // @ts-nocheck
 import { ipcRenderer } from 'electron'
 import { Channel } from '../../Models/Channel'
-import sendNotification from '../../services/Notifications'
+import sendNotification, { NotificationType } from '../../services/Notifications'
 import ChatService from '../../services/ChatService'
 import FoodService from '../../services/FoodService'
 import ScriptInjectService from '../../services/ScriptInjectedService'
@@ -44,6 +44,10 @@ document.addEventListener('DropMessage', (event) => {
 document.addEventListener('MessageDom', (event) => {
     const messageDom = (<CustomEvent>event).detail
     ChatService.logMessage(messageDom)
+})
+
+document.addEventListener('ResourceFarmingFinished', () => {
+    sendNotification(null, NotificationType.RESOUCE_FARMING_FINISHED)
 })
 
 ipcRenderer.on(Channel.USER_PRV, function(event, nick) {

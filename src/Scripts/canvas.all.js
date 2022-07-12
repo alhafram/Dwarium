@@ -37675,6 +37675,7 @@ canvas.app.hunt.engine.FarmingUpdater.prototype.main_iteration = function() {
     this.canceling = !1;
     var t = this.reqCheck.replace(/%xy%/g, this._snum.toString());
     this.aLoader.load(t)
+    top?.document.dispatchEvent(new Event('ResourceFarmingFinished'))
 }
 ,
 canvas.app.hunt.engine.FarmingUpdater.prototype.begin_farming = function(t, e, a) {
