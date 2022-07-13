@@ -60,8 +60,14 @@ export const Elements = {
         return document.getElementById('saveButton') as HTMLButtonElement
     },
     // Hide chat messages options
+    newLootSystemInput(): HTMLInputElement {
+        return document.getElementById('newLootSystemInput') as HTMLInputElement
+    },
     hideAttackedMessageInput(): HTMLInputElement {
         return document.getElementById('hideAttackedMessageInput') as HTMLInputElement
+    },
+    hideFightStartedMessageInput(): HTMLInputElement {
+        return document.getElementById('hideFightStartedMessageInput') as HTMLInputElement
     },
     hideEndFightMessageInput(): HTMLInputElement {
         return document.getElementById('hideEndFightMessageInput') as HTMLInputElement
@@ -120,8 +126,32 @@ export const Elements = {
     hideMirrorMessageInput(): HTMLInputElement {
         return document.getElementById('hideMirrorMessageInput') as HTMLInputElement
     },
-
-    newLootSystemInput(): HTMLInputElement {
-        return document.getElementById('newLootSystemInput') as HTMLInputElement
+    // Redirect messages
+    redirectEnabledInput(): HTMLInputElement {
+        return document.getElementById('redirectEnabledInput') as HTMLInputElement
+    },
+    apiTokenInput(): HTMLInputElement {
+        return document.getElementById('apiTokenInput') as HTMLInputElement
+    },
+    channelIdInput(): HTMLInputElement {
+        return document.getElementById('channelIdInput') as HTMLInputElement
+    },
+    redirectCommonInput(): HTMLInputElement {
+        return document.getElementById('redirectCommonInput') as HTMLInputElement
+    },
+    redirectPrivateInput(): HTMLInputElement {
+        return document.getElementById('redirectPrivateInput') as HTMLInputElement
+    },
+    redirectTradeInput(): HTMLInputElement {
+        return document.getElementById('redirectTradeInput') as HTMLInputElement
+    },
+    redirectClanInput(): HTMLInputElement {
+        return document.getElementById('redirectClanInput') as HTMLInputElement
+    },
+    redirectAllianceInput(): HTMLInputElement {
+        return document.getElementById('redirectAllianceInput') as HTMLInputElement
+    },
+    redirectGroupInput(): HTMLInputElement {
+        return document.getElementById('redirectGroupInput') as HTMLInputElement
     }
 }

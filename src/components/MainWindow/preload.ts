@@ -112,6 +112,9 @@ const Elements = {
     gameSettingsButton(): HTMLButtonElement {
         return document.getElementById('gameSettingsButton') as HTMLButtonElement
     },
+    statsButton(): HTMLButtonElement {
+        return document.getElementById('statsButton') as HTMLButtonElement
+    },
     quizButton(): HTMLButtonElement {
         return document.getElementById('quizButton') as HTMLButtonElement
     },
@@ -260,6 +263,9 @@ window.addEventListener('DOMContentLoaded', async() => {
     document.addEventListener('goUrl', (evt) => {
         ipcRenderer.send(Channel.GO_URL, (<CustomEvent>evt).detail)
     })
+    Elements.statsButton().onclick = function() {
+        ipcRenderer.send(Channel.OPEN_STATS)
+    }
     Elements.quizButton().onclick = function() {
         shell.openExternal('https://forms.gle/Csr838uWyw8W6J8HA')
         localStorage.setItem('quizTapped', 'true')

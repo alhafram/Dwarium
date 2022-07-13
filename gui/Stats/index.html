@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
+            rel="stylesheet" />
+        <link rel="stylesheet" href="../../out/main.css" />
+        <link rel="stylesheet" href="../main.css" />
+        <link rel="stylesheet" href="https://unpkg.com/flowbite@1.4.7/dist/flowbite.min.css" />
+        <script src="https://unpkg.com/flowbite@1.4.7/dist/flowbite.js"></script>
+
+        <style>
+            *::-webkit-scrollbar {
+                display: none;
+            }
+        </style>
+    </head>
+
+    <body class="bg-white dark:bg-dark">
+        <div class="m-5 flex">
+            <div>
+                <input
+                    id="datePickerInput"
+                    type="date"
+                    class="bg-gray-50 border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500 datepicker-input block w-full rounded-lg border p-2.5 pl-10 dark:text-white sm:text-sm" />
+            </div>
+
+            <div class="ml-5 w-full">
+                <p class="text-secondaryLightDark dark:text-secondaryLight">Золото: <span id="moneySpan"></span></p>
+
+                <div class="w-full">
+                    <div class="mt-3 grid h-fit grid-cols-auto-fit gap-5 rounded-3xl border-2 border-lightGrey pt-5 pb-5 pl-8 pr-8 dark:border-allFooBorderDark" id="selectedDayDropDiv"></div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -9,4 +9,6 @@ export type NotificationsWindowState = {
     mailNotificationsIngame: boolean
     expiringItemsNotificationsSystem: boolean
     expiringItemsNotificationsIngame: boolean
+    resourceFarmingFinishedNotificationsSystem: boolean
+    resourceFarmingFinishedNotificationsIngame: boolean
 }

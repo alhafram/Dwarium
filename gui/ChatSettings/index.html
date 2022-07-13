@@ -72,6 +72,114 @@
                         <input class="chatSettingsAutoresponderInput" type="text" id="allianceChatResponseInput" />
                     </div>
                 </div>
+                <div class="mt-8">
+                    <p class="font-montserrat font-extrabold text-secondaryLightDark dark:text-secondaryLight">Настройки редиректа сообщений в tg</p>
+
+                    <div class="mt-8 flex font-montserrat text-xs font-extrabold text-secondaryLightDark">
+                        <div class="flex">
+                            <label for="redirectEnabledInput" class="relative flex cursor-pointer items-center">
+                                <input type="checkbox" id="redirectEnabledInput" class="sr-only" />
+                                <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                                <div class="dot absolute left-1 top-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
+                            </label>
+                        </div>
+                        <label class="my-auto text-secondaryLightDark dark:text-secondaryLight" for="redirectEnabledInput">Включить редирект</label>
+                    </div>
+
+                    <div class="chatSettingsAutoresponderContainer">
+                        <input
+                            class="float-left h-8 w-48 rounded-full border-2 border-lightMediumGrey bg-transparent p-3 font-montserrat text-xss font-extrabold text-secondaryLightDark outline-none dark:text-secondaryLight"
+                            type="text"
+                            placeholder="Telegram BOT Token"
+                            id="apiTokenInput" />
+                    </div>
+
+                    <div class="chatSettingsAutoresponderContainer">
+                        <input
+                            class="float-left h-8 w-48 rounded-full border-2 border-lightMediumGrey bg-transparent p-3 font-montserrat text-xss font-extrabold text-secondaryLightDark outline-none dark:text-secondaryLight"
+                            type="text"
+                            placeholder="Channel ID"
+                            id="channelIdInput" />
+                    </div>
+
+                    <div class="mt-8">
+                        <div class="mt-8 flex font-montserrat text-xs font-extrabold text-secondaryLightDark">
+                            <div class="flex">
+                                <label for="redirectCommonInput" class="relative flex cursor-pointer items-center">
+                                    <input type="checkbox" id="redirectCommonInput" class="sr-only" />
+                                    <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                                    <div class="dot absolute left-1 top-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
+                                </label>
+                            </div>
+                            <label class="my-auto text-secondaryLightDark dark:text-secondaryLight" for="redirectCommonInput">Общий чат</label>
+                        </div>
+                    </div>
+
+                    <div class="mt-8">
+                        <div class="mt-8 flex font-montserrat text-xs font-extrabold text-secondaryLightDark">
+                            <div class="flex">
+                                <label for="redirectPrivateInput" class="relative flex cursor-pointer items-center">
+                                    <input type="checkbox" id="redirectPrivateInput" class="sr-only" />
+                                    <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                                    <div class="dot absolute left-1 top-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
+                                </label>
+                            </div>
+                            <label class="my-auto text-secondaryLightDark dark:text-secondaryLight" for="redirectPrivateInput">Приват</label>
+                        </div>
+                    </div>
+
+                    <div class="mt-8">
+                        <div class="mt-8 flex font-montserrat text-xs font-extrabold text-secondaryLightDark">
+                            <div class="flex">
+                                <label for="redirectTradeInput" class="relative flex cursor-pointer items-center">
+                                    <input type="checkbox" id="redirectTradeInput" class="sr-only" />
+                                    <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                                    <div class="dot absolute left-1 top-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
+                                </label>
+                            </div>
+                            <label class="my-auto text-secondaryLightDark dark:text-secondaryLight" for="redirectTradeInput">Торговый чат</label>
+                        </div>
+                    </div>
+
+                    <div class="mt-8">
+                        <div class="mt-8 flex font-montserrat text-xs font-extrabold text-secondaryLightDark">
+                            <div class="flex">
+                                <label for="redirectClanInput" class="relative flex cursor-pointer items-center">
+                                    <input type="checkbox" id="redirectClanInput" class="sr-only" />
+                                    <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                                    <div class="dot absolute left-1 top-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
+                                </label>
+                            </div>
+                            <label class="my-auto text-secondaryLightDark dark:text-secondaryLight" for="redirectClanInput">Клановый чат</label>
+                        </div>
+                    </div>
+
+                    <div class="mt-8">
+                        <div class="mt-8 flex font-montserrat text-xs font-extrabold text-secondaryLightDark">
+                            <div class="flex">
+                                <label for="redirectAllianceInput" class="relative flex cursor-pointer items-center">
+                                    <input type="checkbox" id="redirectAllianceInput" class="sr-only" />
+                                    <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                                    <div class="dot absolute left-1 top-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
+                                </label>
+                            </div>
+                            <label class="my-auto text-secondaryLightDark dark:text-secondaryLight" for="redirectAllianceInput">Чат альянса</label>
+                        </div>
+                    </div>
+
+                    <div class="mt-8">
+                        <div class="mt-8 flex font-montserrat text-xs font-extrabold text-secondaryLightDark">
+                            <div class="flex">
+                                <label for="redirectGroupInput" class="relative flex cursor-pointer items-center">
+                                    <input type="checkbox" id="redirectGroupInput" class="sr-only" />
+                                    <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                                    <div class="dot absolute left-1 top-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
+                                </label>
+                            </div>
+                            <label class="my-auto text-secondaryLightDark dark:text-secondaryLight" for="redirectGroupInput">Чат группы</label>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="ml-8 mt-8">
                 <p class="font-montserrat font-extrabold text-secondaryLightDark dark:text-secondaryLight">Настройки флудилки</p>
@@ -139,6 +247,17 @@
                         </label>
                     </div>
                     <label class="my-auto text-secondaryLightDark dark:text-secondaryLight" for="hideAttackedMessageInput">Скрыть "Вы совершили нападение..."</label>
+                </div>
+
+                <div class="mt-8 flex font-montserrat text-xs font-extrabold text-secondaryLightDark">
+                    <div class="flex">
+                        <label for="hideFightStartedMessageInput" class="relative flex cursor-pointer items-center">
+                            <input type="checkbox" id="hideFightStartedMessageInput" class="sr-only" />
+                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="dot absolute left-1 top-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
+                        </label>
+                    </div>
+                    <label class="my-auto text-secondaryLightDark dark:text-secondaryLight" for="hideFightStartedMessageInput">Скрыть "Начался бой..."</label>
                 </div>
 
                 <div class="mt-8 flex font-montserrat text-xs font-extrabold text-secondaryLightDark">

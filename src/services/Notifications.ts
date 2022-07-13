@@ -20,7 +20,8 @@ export enum NotificationType {
     BATTLEGROUND = 'Получена сюдашка на поле боя!',
     MESSAGE = 'Получено новое сообщение!',
     MAIL = 'Получено новое письмо!',
-    EXPIRING_ITEMS = 'Горят шмотки, посмотри!'
+    EXPIRING_ITEMS = 'Горят шмотки, посмотри!',
+    RESOUCE_FARMING_FINISHED = 'Добыча ресурса завершена!'
 }
 
 function getSoundFor(notificationType: NotificationType) {
@@ -35,6 +36,8 @@ function getSoundFor(notificationType: NotificationType) {
             return 'mail.ogg'
         case NotificationType.EXPIRING_ITEMS:
             return 'expiring_items.ogg'
+        case NotificationType.RESOUCE_FARMING_FINISHED:
+            return 'resource.ogg'
     }
 }
 
@@ -93,10 +96,19 @@ export default function sendNotification(message: ChatMessage | null, type: Noti
         if(type == NotificationType.EXPIRING_ITEMS) {
             setupBounce('informational')
             if(ConfigService.getSettings().expiringItemsNotificationsSystem && currentWindowNotFocused()) {
-                new Notification({ title: notificationTitle, body: NotificationType.EXPIRING_ITEMS }).show()
+                new Notification({ title: notificationTitle, body: type }).show()
             }
             if(ConfigService.getSettings().expiringItemsNotificationsIngame) {
-                playIngameNotificationSound(NotificationType.EXPIRING_ITEMS)
+                playIngameNotificationSound(type)
+            }
+        }
+        if(type == NotificationType.RESOUCE_FARMING_FINISHED) {
+            setupBounce('informational')
+            if(ConfigService.getSettings().resourceFarmingFinishedNotificationSystem && currentWindowNotFocused()) {
+                new Notification({ title: notificationTitle, body: type }).show()
+            }
+            if(ConfigService.getSettings().resourceFarmingFinishedNotificationIngame) {
+                playIngameNotificationSound(type)
             }
         }
     }

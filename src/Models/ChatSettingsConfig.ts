@@ -21,7 +21,9 @@ export type ChatSettingsConfig = {
     allianceChatFloodingMessage: string
     allianceChatFloodingTimer: number
 
+    newLootSystem: boolean
     hideAttackedMessage: boolean
+    hideFightStartedMessage: boolean
     hideEndFightMessage: boolean
     hideGiftPetMessage: boolean
     hideSocialInvitesMessage: boolean
@@ -42,5 +44,13 @@ export type ChatSettingsConfig = {
     hidePitMessage: boolean
     hideMirrorMessage: boolean
 
-    newLootSystem: boolean
+    redirectEnabled: boolean
+    apiToken: string
+    channelId: string
+    redirectCommon: boolean
+    redirectPrivate: boolean
+    redirectTrade: boolean
+    redirectClan: boolean
+    redirectAlliance: boolean
+    redirectGroup: boolean
 }

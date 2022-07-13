@@ -732,6 +732,10 @@ function attachMessageToChat(opt, msg_dom, msg) {
 	if(top?.document.chatFlags?.hideAttackedMessage == true && msg.msg_text.includes(attackMessage) && msg.channel == 2 && !msg.user_id) {
 		return
 	}
+	const fightStartedMessage = 'Начался бой'
+	if(top?.document.chatFlags?.hideFightStartedMessage == true && msg.msg_text.includes(fightStartedMessage) && msg.channel == 2 && !msg.user_id) {
+		return
+	}
 	const giftPetMessage = 'вручил персонажу'
 	if(top?.document.chatFlags?.hideGiftPetMessage == true && msg.msg_text.includes(giftPetMessage) && msg.channel == 1 && !msg.user_id) {
 		return
@@ -813,7 +817,7 @@ function attachMessageToChat(opt, msg_dom, msg) {
 	}
 	const endFightMessage = 'Окончен бой'
 	const isNotParty = top[1].document.getElementsByClassName('party hid').length == 1
-	if(top?.document.chatFlags?.newLootSystem && isNotParty) {
+	if(top?.document.chatFlags?.newLootSystem && isNotParty && !msg.user_id) {
 		if(msg.msg_text.startsWith('<a href="#" onClick="userPrvTag(')) {
 			return
 		}
@@ -856,9 +860,12 @@ function attachMessageToChat(opt, msg_dom, msg) {
 					lastFightMessage.msg_text = lastFightMessage.msg_text.replace('Вы получили: ', '').replace('(сумма уменьшена из-за разницы в уровне с монстром)', '')
 					if(lastFightMessage.msg_text.includes('Благодаря магическим эффектам, вы сумели обогатиться еще на')) {
 						lastFightMessage.msg_text = lastFightMessage.msg_text.replace('Благодаря магическим эффектам, вы сумели обогатиться еще на', '( + ') + ' )'
-						lastFightMessage.msg_text = lastFightMessage.msg_text.slice(0, lastFightMessage.msg_text.length - 3) + ' )'
+						lastFightMessage.msg_text = lastFightMessage.msg_text.slice(0, lastFightMessage.msg_text.length - 3) + ')'
 					}
 				}
+				top?.document.dispatchEvent(new CustomEvent('DropMessage', {
+					detail: lastFightMessages
+				}))
 				let lootMessage = lastFightMessages.map(msg => msg.msg_text).join(' ')
 				
 				var all_channels = 0;

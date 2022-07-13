@@ -8,7 +8,8 @@ enum ConfigPath {
     NOTES = 'notes.json',
     CHAT_LOG = 'chat.log',
     SHORTCUTS = 'shortcuts.json',
-    GAME_FLAGS = 'gameFlags.json'
+    GAME_FLAGS = 'gameFlags.json',
+    DROP_INFO = 'dropInfo.json'
 }
 
 enum Folder {

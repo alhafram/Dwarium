@@ -46,6 +46,8 @@ export type HuntFlags = {
     hideHuntLeftAction: boolean
     hideHuntRightAction: boolean
     hideHuntFilter: boolean
+    hideMobsFilter: boolean
+    hideNewResourcesFilter: boolean
 }
 
 export enum GameLocationFlagsKeys {
@@ -90,7 +92,9 @@ export enum HuntFlagsKeys {
     HIDE_HUNT_MINIMAP = 'hideHuntMinimap',
     HIDE_HUNT_LEFT_ACTION = 'hideHuntLeftAction',
     HIDE_HUNT_RIGHT_ACTION = 'hideHuntRightAction',
-    HIDE_HUNT_FILTER = 'hideHuntFilter'
+    HIDE_HUNT_FILTER = 'hideHuntFilter',
+    HIDE_MOBS_FILTER = 'hideMobsFilter',
+    HIDE_NEW_RESOURCES_FILTER = 'hideNewResourcesFilter'
 }
 
 export type GameFlags = {
@@ -140,7 +144,9 @@ function getGameFlags(): GameFlags {
         hideHuntMinimap: readData(HuntFlagsKeys.HIDE_HUNT_MINIMAP) ?? false,
         hideHuntLeftAction: readData(HuntFlagsKeys.HIDE_HUNT_LEFT_ACTION) ?? false,
         hideHuntRightAction: readData(HuntFlagsKeys.HIDE_HUNT_RIGHT_ACTION) ?? false,
-        hideHuntFilter: readData(HuntFlagsKeys.HIDE_HUNT_FILTER) ?? false
+        hideHuntFilter: readData(HuntFlagsKeys.HIDE_HUNT_FILTER) ?? false,
+        hideMobsFilter: readData(HuntFlagsKeys.HIDE_MOBS_FILTER) ?? false,
+        hideNewResourcesFilter: readData(HuntFlagsKeys.HIDE_NEW_RESOURCES_FILTER) ?? false
     }
     return {
         gameLocationFlags,

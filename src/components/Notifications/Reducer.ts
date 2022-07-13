@@ -21,75 +21,41 @@ export default function reduce(state: NotificationsWindowState, action: Notifica
                     mailNotificationsSystem: loadedSettings.mailNotificationsSystem,
                     mailNotificationsIngame: loadedSettings.mailNotificationsIngame,
                     expiringItemsNotificationsSystem: loadedSettings.expiringItemsNotificationsSystem,
-                    expiringItemsNotificationsIngame: loadedSettings.expiringItemsNotificationsIngame
+                    expiringItemsNotificationsIngame: loadedSettings.expiringItemsNotificationsIngame,
+                    resourceFarmingFinishedNotificationsSystem: loadedSettings.resourceFarmingFinishedNotificationSystem,
+                    resourceFarmingFinishedNotificationsIngame: loadedSettings.resourceFarmingFinishedNotificationIngame
                 }
             }
         }
-        case NotificationsWindowActions.CHANGE_FIGHT_NOTIFICATIONS_SYSTEM:
-            return {
-                ...state,
-                fightNotificationsSystem: Elements.fightNotificationsSystemInput().checked
-            }
-        case NotificationsWindowActions.CHANGE_FIGHT_NOTIFICATIONS_INGAME:
-            return {
-                ...state,
-                fightNotificationsIngame: Elements.fightNotificationsIngameInput().checked
-            }
-        case NotificationsWindowActions.CHANGE_BATTLEGROUND_NOTIFICATIONS_SYSTEM:
-            return {
-                ...state,
-                battlegroundNotificationsSystem: Elements.battlegroundNotificationsSystemInput().checked
-            }
-        case NotificationsWindowActions.CHANGE_BATTLEGROUND_NOTIFICATIONS_INGAME:
-            return {
-                ...state,
-                battlegroundNotificationsIngame: Elements.battlegroundNotificationsIngameInput().checked
-            }
-        case NotificationsWindowActions.CHANGE_MESSAGE_NOTIFICATIONS_SYSTEM:
-            return {
-                ...state,
-                messageNotificationsSystem: Elements.messageNotificationsSystemInput().checked
-            }
-        case NotificationsWindowActions.CHANGE_MESSAGE_NOTIFICATIONS_INGAME:
-            return {
-                ...state,
-                messageNotificationsIngame: Elements.messageNotificationsIngameInput().checked
-            }
-        case NotificationsWindowActions.CHANGE_MAIL_NOTIFICATIONS_SYSTEM:
-            return {
-                ...state,
-                mailNotificationsSystem: Elements.mailNotificationsSystemInput().checked
-            }
-        case NotificationsWindowActions.CHANGE_MAIL_NOTIFICATIONS_INGAME:
-            return {
-                ...state,
-                mailNotificationsIngame: Elements.mailNotificationsIngameInput().checked
-            }
-        case NotificationsWindowActions.CHANGE_EXPIRING_ITEMS_NOTIFICATIONS_SYSTEM:
-            return {
-                ...state,
-                expiringItemsNotificationsSystem: Elements.expiringItemsNotificationsSystemInput().checked
-            }
-        case NotificationsWindowActions.CHANGE_EXPIRING_ITEMS_NOTIFICATIONS_INGAME:
-            return {
-                ...state,
-                expiringItemsNotificationsIngame: Elements.expiringItemsNotificationsIngameInput().checked
-            }
         case NotificationsWindowActions.SAVE_SETTINGS: {
             const clientSettings = ConfigService.getSettings()
-            clientSettings.fightNotificationsSystem = state.fightNotificationsSystem
-            clientSettings.fightNotificationsIngame = state.fightNotificationsIngame
-            clientSettings.battlegroundNotificationsSystem = state.battlegroundNotificationsSystem
-            clientSettings.battlegroundNotificationsIngame = state.battlegroundNotificationsIngame
-            clientSettings.messageNotificationsSystem = state.messageNotificationsSystem
-            clientSettings.messageNotificationsIngame = state.messageNotificationsIngame
-            clientSettings.mailNotificationsSystem = state.mailNotificationsSystem
-            clientSettings.mailNotificationsIngame = state.mailNotificationsIngame
-            clientSettings.expiringItemsNotificationsSystem = state.expiringItemsNotificationsSystem
-            clientSettings.expiringItemsNotificationsIngame = state.expiringItemsNotificationsIngame
+            clientSettings.fightNotificationsSystem = Elements.fightNotificationsSystemInput().checked
+            clientSettings.fightNotificationsIngame = Elements.fightNotificationsIngameInput().checked
+            clientSettings.battlegroundNotificationsSystem = Elements.battlegroundNotificationsSystemInput().checked
+            clientSettings.battlegroundNotificationsIngame = Elements.battlegroundNotificationsIngameInput().checked
+            clientSettings.messageNotificationsSystem = Elements.messageNotificationsSystemInput().checked
+            clientSettings.messageNotificationsIngame = Elements.messageNotificationsIngameInput().checked
+            clientSettings.mailNotificationsSystem = Elements.mailNotificationsSystemInput().checked
+            clientSettings.mailNotificationsIngame = Elements.mailNotificationsIngameInput().checked
+            clientSettings.expiringItemsNotificationsSystem = Elements.expiringItemsNotificationsSystemInput().checked
+            clientSettings.expiringItemsNotificationsIngame = Elements.expiringItemsNotificationsIngameInput().checked
+            clientSettings.resourceFarmingFinishedNotificationSystem = Elements.resourceFarmingFinishedNotificationsSystemInput().checked
+            clientSettings.resourceFarmingFinishedNotificationIngame = Elements.resourceFarmingFinishedNotificationsIngameInput().checked
             ConfigService.writeData('settings', JSON.stringify(clientSettings))
             return {
-                ...state
+                ...state,
+                fightNotificationsSystem: clientSettings.fightNotificationsSystem,
+                fightNotificationsIngame: clientSettings.fightNotificationsIngame,
+                battlegroundNotificationsSystem: clientSettings.battlegroundNotificationsSystem,
+                battlegroundNotificationsIngame: clientSettings.battlegroundNotificationsIngame,
+                messageNotificationsSystem: clientSettings.messageNotificationsSystem,
+                messageNotificationsIngame: clientSettings.messageNotificationsIngame,
+                mailNotificationsSystem: clientSettings.mailNotificationsSystem,
+                mailNotificationsIngame: clientSettings.mailNotificationsIngame,
+                expiringItemsNotificationsSystem: clientSettings.expiringItemsNotificationsSystem,
+                expiringItemsNotificationsIngame: clientSettings.expiringItemsNotificationsIngame,
+                resourceFarmingFinishedNotificationsSystem: clientSettings.resourceFarmingFinishedNotificationSystem,
+                resourceFarmingFinishedNotificationsIngame: clientSettings.resourceFarmingFinishedNotificationIngame
             }
         }
     }

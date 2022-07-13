@@ -104,5 +104,11 @@ export const Elements = {
     },
     hideHuntFilterInput(): HTMLInputElement {
         return document.getElementById('hideHuntFilterInput') as HTMLInputElement
+    },
+    hideMobsFilterInput(): HTMLInputElement {
+        return document.getElementById('hideMobsFilterInput') as HTMLInputElement
+    },
+    hideNewResourcesFilterInput(): HTMLInputElement {
+        return document.getElementById('hideNewResourcesFilterInput') as HTMLInputElement
     }
 }
