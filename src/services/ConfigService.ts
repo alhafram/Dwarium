@@ -223,7 +223,6 @@ function expiringItemsNotificationsIngame(): boolean {
     return false
 }
 
-
 function resourceFarmingFinishedNotificationSystem(): boolean {
     let settings = readData('settings')
     if(settings) {
