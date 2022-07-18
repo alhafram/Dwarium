@@ -3,14 +3,12 @@
     <head>
         <meta charset="utf-8" />
         <link href="../../out/main.css" rel="stylesheet" />
+        <link href="../switcher.css" rel="stylesheet" />
         <link
             href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
             rel="stylesheet" />
 
         <style>
-            input:checked ~ .dot {
-                transform: translateX(130%);
-            }
             label {
                 padding-right: 10px;
             }
@@ -26,7 +24,7 @@
                     <div class="flex">
                         <label for="fightNotificationsSystemInput" class="relative flex cursor-pointer items-center">
                             <input type="checkbox" id="fightNotificationsSystemInput" class="sr-only" />
-                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="switcherBg block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
                             <div class="dot absolute left-1 top-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
                         </label>
                     </div>
@@ -34,7 +32,7 @@
                     <div class="flex">
                         <label for="fightNotificationsIngameInput" class="relative flex cursor-pointer items-center">
                             <input type="checkbox" id="fightNotificationsIngameInput" class="sr-only" />
-                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="switcherBg block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
                             <div class="dot absolute left-1 top-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
                         </label>
                     </div>
@@ -46,7 +44,7 @@
                     <div class="flex">
                         <label for="battlegroundNotificationsSystemInput" class="relative flex cursor-pointer items-center">
                             <input type="checkbox" id="battlegroundNotificationsSystemInput" class="sr-only" />
-                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="switcherBg block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
                             <div class="dot absolute left-1 top-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
                         </label>
                     </div>
@@ -54,7 +52,7 @@
                     <div class="flex">
                         <label for="battlegroundNotificationsIngameInput" class="relative flex cursor-pointer items-center">
                             <input type="checkbox" id="battlegroundNotificationsIngameInput" class="sr-only" />
-                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="switcherBg block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
                             <div class="dot absolute left-1 top-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
                         </label>
                     </div>
@@ -66,7 +64,7 @@
                     <div class="flex">
                         <label for="messageNotificationsSystemInput" class="relative flex cursor-pointer items-center">
                             <input type="checkbox" id="messageNotificationsSystemInput" class="sr-only" />
-                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="switcherBg block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
                             <div class="dot absolute left-1 top-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
                         </label>
                     </div>
@@ -74,7 +72,7 @@
                     <div class="flex">
                         <label for="messageNotificationsIngameInput" class="relative flex cursor-pointer items-center">
                             <input type="checkbox" id="messageNotificationsIngameInput" class="sr-only" />
-                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="switcherBg block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
                             <div class="dot absolute left-1 top-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
                         </label>
                     </div>
@@ -86,7 +84,7 @@
                     <div class="flex">
                         <label for="mailNotificationsSystemInput" class="relative flex cursor-pointer items-center">
                             <input type="checkbox" id="mailNotificationsSystemInput" class="sr-only" />
-                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="switcherBg block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
                             <div class="dot absolute left-1 top-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
                         </label>
                     </div>
@@ -94,7 +92,7 @@
                     <div class="flex">
                         <label for="mailNotificationsIngameInput" class="relative flex cursor-pointer items-center">
                             <input type="checkbox" id="mailNotificationsIngameInput" class="sr-only" />
-                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="switcherBg block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
                             <div class="dot absolute left-1 top-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
                         </label>
                     </div>
@@ -106,7 +104,7 @@
                     <div class="flex">
                         <label for="expiringItemsNotificationsSystemInput" class="relative flex cursor-pointer items-center">
                             <input type="checkbox" id="expiringItemsNotificationsSystemInput" class="sr-only" />
-                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="switcherBg block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
                             <div class="dot absolute left-1 top-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
                         </label>
                     </div>
@@ -114,7 +112,7 @@
                     <div class="flex">
                         <label for="expiringItemsNotificationsIngameInput" class="relative flex cursor-pointer items-center">
                             <input type="checkbox" id="expiringItemsNotificationsIngameInput" class="sr-only" />
-                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="switcherBg block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
                             <div class="dot absolute left-1 top-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
                         </label>
                     </div>
@@ -126,7 +124,7 @@
                     <div class="flex">
                         <label for="resourceFarmingFinishedNotificationsSystemInput" class="relative flex cursor-pointer items-center">
                             <input type="checkbox" id="resourceFarmingFinishedNotificationsSystemInput" class="sr-only" />
-                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="switcherBg block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
                             <div class="dot absolute left-1 top-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
                         </label>
                     </div>
@@ -134,7 +132,7 @@
                     <div class="flex">
                         <label for="resourceFarmingFinishedNotificationsIngameInput" class="relative flex cursor-pointer items-center">
                             <input type="checkbox" id="resourceFarmingFinishedNotificationsIngameInput" class="sr-only" />
-                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="switcherBg block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
                             <div class="dot absolute left-1 top-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
                         </label>
                     </div>

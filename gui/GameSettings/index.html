@@ -3,14 +3,13 @@
     <head>
         <meta charset="utf-8" />
         <link href="../../out/main.css" rel="stylesheet" />
+        <link href="../switcher.css" rel="stylesheet" />
+        
         <link
             href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
             rel="stylesheet" />
 
         <style>
-            input:checked ~ .dot {
-                transform: translateX(130%);
-            }
             label {
                 padding-right: 10px;
             }
@@ -28,7 +27,7 @@
                     <div class="flex">
                         <label for="hideCasinoInput" class="relative flex cursor-pointer items-center">
                             <input type="checkbox" id="hideCasinoInput" class="sr-only" />
-                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="switcherBg block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
                             <div class="dot absolute left-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
                         </label>
                     </div>
@@ -39,7 +38,7 @@
                     <div class="flex">
                         <label for="hideActivitiesInput" class="relative flex cursor-pointer items-center">
                             <input type="checkbox" id="hideActivitiesInput" class="sr-only" />
-                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="switcherBg block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
                             <div class="dot absolute left-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
                         </label>
                     </div>
@@ -50,7 +49,7 @@
                     <div class="flex">
                         <label for="hidePromotionsInput" class="relative flex cursor-pointer items-center">
                             <input type="checkbox" id="hidePromotionsInput" class="sr-only" />
-                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="switcherBg block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
                             <div class="dot absolute left-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
                         </label>
                     </div>
@@ -61,7 +60,7 @@
                     <div class="flex">
                         <label for="hideDiceGameInput" class="relative flex cursor-pointer items-center">
                             <input type="checkbox" id="hideDiceGameInput" class="sr-only" />
-                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="switcherBg block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
                             <div class="dot absolute left-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
                         </label>
                     </div>
@@ -72,7 +71,7 @@
                     <div class="flex">
                         <label for="hideWheelFortuneInput" class="relative flex cursor-pointer items-center">
                             <input type="checkbox" id="hideWheelFortuneInput" class="sr-only" />
-                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="switcherBg block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
                             <div class="dot absolute left-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
                         </label>
                     </div>
@@ -83,7 +82,7 @@
                     <div class="flex">
                         <label for="hideNPCEventsInput" class="relative flex cursor-pointer items-center">
                             <input type="checkbox" id="hideNPCEventsInput" class="sr-only" />
-                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="switcherBg block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
                             <div class="dot absolute left-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
                         </label>
                     </div>
@@ -94,7 +93,7 @@
                     <div class="flex">
                         <label for="hideCurrentEventInput" class="relative flex cursor-pointer items-center">
                             <input type="checkbox" id="hideCurrentEventInput" class="sr-only" />
-                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="switcherBg block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
                             <div class="dot absolute left-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
                         </label>
                     </div>
@@ -105,7 +104,7 @@
                     <div class="flex">
                         <label for="hideFrontsInput" class="relative flex cursor-pointer items-center">
                             <input type="checkbox" id="hideFrontsInput" class="sr-only" />
-                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="switcherBg block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
                             <div class="dot absolute left-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
                         </label>
                     </div>
@@ -116,7 +115,7 @@
                     <div class="flex">
                         <label for="hideMiniMapInput" class="relative flex cursor-pointer items-center">
                             <input type="checkbox" id="hideMiniMapInput" class="sr-only" />
-                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="switcherBg block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
                             <div class="dot absolute left-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
                         </label>
                     </div>
@@ -127,7 +126,7 @@
                     <div class="flex">
                         <label for="hideBrilliantsPromotionInput" class="relative flex cursor-pointer items-center">
                             <input type="checkbox" id="hideBrilliantsPromotionInput" class="sr-only" />
-                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="switcherBg block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
                             <div class="dot absolute left-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
                         </label>
                     </div>
@@ -138,7 +137,7 @@
                     <div class="flex">
                         <label for="hideMirrorInput" class="relative flex cursor-pointer items-center">
                             <input type="checkbox" id="hideMirrorInput" class="sr-only" />
-                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="switcherBg block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
                             <div class="dot absolute left-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
                         </label>
                     </div>
@@ -155,7 +154,7 @@
                     <div class="flex">
                         <label for="hideBackpackInput" class="relative flex cursor-pointer items-center">
                             <input type="checkbox" id="hideBackpackInput" class="sr-only" />
-                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="switcherBg block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
                             <div class="dot absolute left-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
                         </label>
                     </div>
@@ -166,7 +165,7 @@
                     <div class="flex">
                         <label for="hideLocationInput" class="relative flex cursor-pointer items-center">
                             <input type="checkbox" id="hideLocationInput" class="sr-only" />
-                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="switcherBg block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
                             <div class="dot absolute left-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
                         </label>
                     </div>
@@ -177,7 +176,7 @@
                     <div class="flex">
                         <label for="hideHuntInput" class="relative flex cursor-pointer items-center">
                             <input type="checkbox" id="hideHuntInput" class="sr-only" />
-                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="switcherBg block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
                             <div class="dot absolute left-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
                         </label>
                     </div>
@@ -188,7 +187,7 @@
                     <div class="flex">
                         <label for="hideCharacterInput" class="relative flex cursor-pointer items-center">
                             <input type="checkbox" id="hideCharacterInput" class="sr-only" />
-                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="switcherBg block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
                             <div class="dot absolute left-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
                         </label>
                     </div>
@@ -199,7 +198,7 @@
                     <div class="flex">
                         <label for="hideBattlegroundInput" class="relative flex cursor-pointer items-center">
                             <input type="checkbox" id="hideBattlegroundInput" class="sr-only" />
-                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="switcherBg block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
                             <div class="dot absolute left-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
                         </label>
                     </div>
@@ -210,7 +209,7 @@
                     <div class="flex">
                         <label for="hideMapsInput" class="relative flex cursor-pointer items-center">
                             <input type="checkbox" id="hideMapsInput" class="sr-only" />
-                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="switcherBg block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
                             <div class="dot absolute left-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
                         </label>
                     </div>
@@ -221,7 +220,7 @@
                     <div class="flex">
                         <label for="hideEventsInput" class="relative flex cursor-pointer items-center">
                             <input type="checkbox" id="hideEventsInput" class="sr-only" />
-                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="switcherBg block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
                             <div class="dot absolute left-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
                         </label>
                     </div>
@@ -232,7 +231,7 @@
                     <div class="flex">
                         <label for="hideBankInput" class="relative flex cursor-pointer items-center">
                             <input type="checkbox" id="hideBankInput" class="sr-only" />
-                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="switcherBg block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
                             <div class="dot absolute left-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
                         </label>
                     </div>
@@ -243,7 +242,7 @@
                     <div class="flex">
                         <label for="hideAuctionInput" class="relative flex cursor-pointer items-center">
                             <input type="checkbox" id="hideAuctionInput" class="sr-only" />
-                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="switcherBg block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
                             <div class="dot absolute left-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
                         </label>
                     </div>
@@ -254,7 +253,7 @@
                     <div class="flex">
                         <label for="hideFightsInput" class="relative flex cursor-pointer items-center">
                             <input type="checkbox" id="hideFightsInput" class="sr-only" />
-                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="switcherBg block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
                             <div class="dot absolute left-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
                         </label>
                     </div>
@@ -265,7 +264,7 @@
                     <div class="flex">
                         <label for="hideInfoPortalInput" class="relative flex cursor-pointer items-center">
                             <input type="checkbox" id="hideInfoPortalInput" class="sr-only" />
-                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="switcherBg block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
                             <div class="dot absolute left-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
                         </label>
                     </div>
@@ -280,7 +279,7 @@
                     <div class="flex">
                         <label for="hideMailInput" class="relative flex cursor-pointer items-center">
                             <input type="checkbox" id="hideMailInput" class="sr-only" />
-                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="switcherBg block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
                             <div class="dot absolute left-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
                         </label>
                     </div>
@@ -291,7 +290,7 @@
                     <div class="flex">
                         <label for="hideExternalBackpackInput" class="relative flex cursor-pointer items-center">
                             <input type="checkbox" id="hideExternalBackpackInput" class="sr-only" />
-                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="switcherBg block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
                             <div class="dot absolute left-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
                         </label>
                     </div>
@@ -302,7 +301,7 @@
                     <div class="flex">
                         <label for="hideMountInput" class="relative flex cursor-pointer items-center">
                             <input type="checkbox" id="hideMountInput" class="sr-only" />
-                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="switcherBg block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
                             <div class="dot absolute left-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
                         </label>
                     </div>
@@ -313,7 +312,7 @@
                     <div class="flex">
                         <label for="hideCompasInput" class="relative flex cursor-pointer items-center">
                             <input type="checkbox" id="hideCompasInput" class="sr-only" />
-                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="switcherBg block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
                             <div class="dot absolute left-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
                         </label>
                     </div>
@@ -324,7 +323,7 @@
                     <div class="flex">
                         <label for="hideProfessionInput" class="relative flex cursor-pointer items-center">
                             <input type="checkbox" id="hideProfessionInput" class="sr-only" />
-                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="switcherBg block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
                             <div class="dot absolute left-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
                         </label>
                     </div>
@@ -335,7 +334,7 @@
                     <div class="flex">
                         <label for="hideQuestsInput" class="relative flex cursor-pointer items-center">
                             <input type="checkbox" id="hideQuestsInput" class="sr-only" />
-                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="switcherBg block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
                             <div class="dot absolute left-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
                         </label>
                     </div>
@@ -346,7 +345,7 @@
                     <div class="flex">
                         <label for="hideFriendsInput" class="relative flex cursor-pointer items-center">
                             <input type="checkbox" id="hideFriendsInput" class="sr-only" />
-                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="switcherBg block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
                             <div class="dot absolute left-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
                         </label>
                     </div>
@@ -361,7 +360,7 @@
                     <div class="flex">
                         <label for="hideHuntMinimapInput" class="relative flex cursor-pointer items-center">
                             <input type="checkbox" id="hideHuntMinimapInput" class="sr-only" />
-                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="switcherBg block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
                             <div class="dot absolute left-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
                         </label>
                     </div>
@@ -372,7 +371,7 @@
                     <div class="flex">
                         <label for="hideHuntLeftActionInput" class="relative flex cursor-pointer items-center">
                             <input type="checkbox" id="hideHuntLeftActionInput" class="sr-only" />
-                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="switcherBg block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
                             <div class="dot absolute left-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
                         </label>
                     </div>
@@ -383,7 +382,7 @@
                     <div class="flex">
                         <label for="hideHuntRightActionInput" class="relative flex cursor-pointer items-center">
                             <input type="checkbox" id="hideHuntRightActionInput" class="sr-only" />
-                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="switcherBg block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
                             <div class="dot absolute left-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
                         </label>
                     </div>
@@ -394,7 +393,7 @@
                     <div class="flex">
                         <label for="hideHuntFilterInput" class="relative flex cursor-pointer items-center">
                             <input type="checkbox" id="hideHuntFilterInput" class="sr-only" />
-                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="switcherBg block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
                             <div class="dot absolute left-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
                         </label>
                     </div>
@@ -405,7 +404,7 @@
                     <div class="flex">
                         <label for="hideMobsFilterInput" class="relative flex cursor-pointer items-center">
                             <input type="checkbox" id="hideMobsFilterInput" class="sr-only" />
-                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="switcherBg block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
                             <div class="dot absolute left-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
                         </label>
                     </div>
@@ -416,7 +415,7 @@
                     <div class="flex">
                         <label for="hideNewResourcesFilterInput" class="relative flex cursor-pointer items-center">
                             <input type="checkbox" id="hideNewResourcesFilterInput" class="sr-only" />
-                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="switcherBg block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
                             <div class="dot absolute left-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
                         </label>
                     </div>

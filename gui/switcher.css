@@ -1,0 +1,7 @@
+input:checked ~ .dot {
+    background-color: #fff;
+    transform: translateX(130%);
+}
+input:checked ~ .switcherBg {
+    background-color: #0694E3;
+}

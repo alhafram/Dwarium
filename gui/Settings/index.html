@@ -3,14 +3,12 @@
     <head>
         <meta charset="utf-8" />
         <link href="../../out/main.css" rel="stylesheet" />
+        <link href="../switcher.css" rel="stylesheet" />
         <link
             href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
             rel="stylesheet" />
 
         <style>
-            input:checked ~ .dot {
-                transform: translateX(130%);
-            }
             label {
                 padding-right: 10px;
             }
@@ -39,7 +37,7 @@
                     <div class="flex">
                         <label for="windowOpenNewTabInput" class="relative flex cursor-pointer items-center">
                             <input type="checkbox" id="windowOpenNewTabInput" class="sr-only" />
-                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="switcherBg block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
                             <div class="dot absolute left-1 top-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
                         </label>
                     </div>
@@ -50,7 +48,7 @@
                     <div class="flex">
                         <label for="windowsAboveAppInput" class="relative flex cursor-pointer items-center">
                             <input type="checkbox" id="windowsAboveAppInput" class="sr-only" />
-                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="switcherBg block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
                             <div class="dot absolute left-1 top-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
                         </label>
                     </div>
@@ -61,7 +59,7 @@
                     <div class="flex">
                         <label for="maximizeOnStartInput" class="relative flex cursor-pointer items-center">
                             <input type="checkbox" id="maximizeOnStartInput" class="sr-only" />
-                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="switcherBg block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
                             <div class="dot absolute left-1 top-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
                         </label>
                     </div>
@@ -72,7 +70,7 @@
                     <div class="flex">
                         <label for="hideTopPanelInFullScreenInput" class="relative flex cursor-pointer items-center">
                             <input type="checkbox" id="hideTopPanelInFullScreenInput" class="sr-only" />
-                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="switcherBg block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
                             <div class="dot absolute left-1 top-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
                         </label>
                     </div>
@@ -83,7 +81,7 @@
                     <div class="flex">
                         <label for="mailServerInput" class="relative flex cursor-pointer items-center">
                             <input type="checkbox" id="mailServerInput" class="sr-only" />
-                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="switcherBg block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
                             <div class="dot absolute left-1 top-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
                         </label>
                     </div>
@@ -94,7 +92,7 @@
                     <div class="flex">
                         <label for="needToRestoreUrlsInput" class="relative flex cursor-pointer items-center">
                             <input type="checkbox" id="needToRestoreUrlsInput" class="sr-only" />
-                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="switcherBg block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
                             <div class="dot absolute left-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
                         </label>
                     </div>

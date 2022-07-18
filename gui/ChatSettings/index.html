@@ -5,15 +5,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
         <link rel="stylesheet" href="../../out/main.css" />
+        <link href="../switcher.css" rel="stylesheet" />
 
         <link
             href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
             rel="stylesheet" />
 
         <style>
-            input:checked ~ .dot {
-                transform: translateX(130%);
-            }
             label {
                 padding-right: 10px;
             }
@@ -29,7 +27,7 @@
                     <div class="flex">
                         <label for="autoResponderInput" class="relative flex cursor-pointer items-center">
                             <input type="checkbox" id="autoResponderInput" class="sr-only" />
-                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="switcherBg block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
                             <div class="dot absolute left-1 top-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
                         </label>
                     </div>
@@ -79,7 +77,7 @@
                         <div class="flex">
                             <label for="redirectEnabledInput" class="relative flex cursor-pointer items-center">
                                 <input type="checkbox" id="redirectEnabledInput" class="sr-only" />
-                                <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                                <div class="switcherBg block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
                                 <div class="dot absolute left-1 top-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
                             </label>
                         </div>
@@ -107,7 +105,7 @@
                             <div class="flex">
                                 <label for="redirectCommonInput" class="relative flex cursor-pointer items-center">
                                     <input type="checkbox" id="redirectCommonInput" class="sr-only" />
-                                    <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                                    <div class="switcherBg block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
                                     <div class="dot absolute left-1 top-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
                                 </label>
                             </div>
@@ -120,7 +118,7 @@
                             <div class="flex">
                                 <label for="redirectPrivateInput" class="relative flex cursor-pointer items-center">
                                     <input type="checkbox" id="redirectPrivateInput" class="sr-only" />
-                                    <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                                    <div class="switcherBg block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
                                     <div class="dot absolute left-1 top-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
                                 </label>
                             </div>
@@ -133,7 +131,7 @@
                             <div class="flex">
                                 <label for="redirectTradeInput" class="relative flex cursor-pointer items-center">
                                     <input type="checkbox" id="redirectTradeInput" class="sr-only" />
-                                    <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                                    <div class="switcherBg block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
                                     <div class="dot absolute left-1 top-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
                                 </label>
                             </div>
@@ -146,7 +144,7 @@
                             <div class="flex">
                                 <label for="redirectClanInput" class="relative flex cursor-pointer items-center">
                                     <input type="checkbox" id="redirectClanInput" class="sr-only" />
-                                    <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                                    <div class="switcherBg block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
                                     <div class="dot absolute left-1 top-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
                                 </label>
                             </div>
@@ -159,7 +157,7 @@
                             <div class="flex">
                                 <label for="redirectAllianceInput" class="relative flex cursor-pointer items-center">
                                     <input type="checkbox" id="redirectAllianceInput" class="sr-only" />
-                                    <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                                    <div class="switcherBg block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
                                     <div class="dot absolute left-1 top-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
                                 </label>
                             </div>
@@ -172,7 +170,7 @@
                             <div class="flex">
                                 <label for="redirectGroupInput" class="relative flex cursor-pointer items-center">
                                     <input type="checkbox" id="redirectGroupInput" class="sr-only" />
-                                    <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                                    <div class="switcherBg block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
                                     <div class="dot absolute left-1 top-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
                                 </label>
                             </div>
@@ -187,7 +185,7 @@
                     <div class="flex">
                         <label for="floodingInput" class="relative flex cursor-pointer items-center">
                             <input type="checkbox" id="floodingInput" class="sr-only" />
-                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="switcherBg block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
                             <div class="dot absolute left-1 top-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
                         </label>
                     </div>
@@ -231,7 +229,7 @@
                     <div class="flex">
                         <label for="newLootSystemInput" class="relative flex cursor-pointer items-center">
                             <input type="checkbox" id="newLootSystemInput" class="sr-only" />
-                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="switcherBg block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
                             <div class="dot absolute left-1 top-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
                         </label>
                     </div>
@@ -242,7 +240,7 @@
                     <div class="flex">
                         <label for="hideAttackedMessageInput" class="relative flex cursor-pointer items-center">
                             <input type="checkbox" id="hideAttackedMessageInput" class="sr-only" />
-                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="switcherBg block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
                             <div class="dot absolute left-1 top-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
                         </label>
                     </div>
@@ -253,7 +251,7 @@
                     <div class="flex">
                         <label for="hideFightStartedMessageInput" class="relative flex cursor-pointer items-center">
                             <input type="checkbox" id="hideFightStartedMessageInput" class="sr-only" />
-                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="switcherBg block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
                             <div class="dot absolute left-1 top-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
                         </label>
                     </div>
@@ -264,7 +262,7 @@
                     <div class="flex">
                         <label for="hideEndFightMessageInput" class="relative flex cursor-pointer items-center">
                             <input type="checkbox" id="hideEndFightMessageInput" class="sr-only" />
-                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="switcherBg block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
                             <div class="dot absolute left-1 top-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
                         </label>
                     </div>
@@ -275,7 +273,7 @@
                     <div class="flex">
                         <label for="hideGiftPetMessageInput" class="relative flex cursor-pointer items-center">
                             <input type="checkbox" id="hideGiftPetMessageInput" class="sr-only" />
-                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="switcherBg block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
                             <div class="dot absolute left-1 top-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
                         </label>
                     </div>
@@ -286,7 +284,7 @@
                     <div class="flex">
                         <label for="hideSocialInvitesMessageInput" class="relative flex cursor-pointer items-center">
                             <input type="checkbox" id="hideSocialInvitesMessageInput" class="sr-only" />
-                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="switcherBg block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
                             <div class="dot absolute left-1 top-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
                         </label>
                     </div>
@@ -297,7 +295,7 @@
                     <div class="flex">
                         <label for="hideMeridianVaultsMessageInput" class="relative flex cursor-pointer items-center">
                             <input type="checkbox" id="hideMeridianVaultsMessageInput" class="sr-only" />
-                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="switcherBg block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
                             <div class="dot absolute left-1 top-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
                         </label>
                     </div>
@@ -308,7 +306,7 @@
                     <div class="flex">
                         <label for="hideUpgradeMountMessageInput" class="relative flex cursor-pointer items-center">
                             <input type="checkbox" id="hideUpgradeMountMessageInput" class="sr-only" />
-                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="switcherBg block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
                             <div class="dot absolute left-1 top-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
                         </label>
                     </div>
@@ -319,7 +317,7 @@
                     <div class="flex">
                         <label for="hideContestMessageInput" class="relative flex cursor-pointer items-center">
                             <input type="checkbox" id="hideContestMessageInput" class="sr-only" />
-                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="switcherBg block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
                             <div class="dot absolute left-1 top-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
                         </label>
                     </div>
@@ -330,7 +328,7 @@
                     <div class="flex">
                         <label for="hideGuardiansMessageInput" class="relative flex cursor-pointer items-center">
                             <input type="checkbox" id="hideGuardiansMessageInput" class="sr-only" />
-                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="switcherBg block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
                             <div class="dot absolute left-1 top-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
                         </label>
                     </div>
@@ -341,7 +339,7 @@
                     <div class="flex">
                         <label for="hideChaoticFightMessageInput" class="relative flex cursor-pointer items-center">
                             <input type="checkbox" id="hideChaoticFightMessageInput" class="sr-only" />
-                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="switcherBg block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
                             <div class="dot absolute left-1 top-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
                         </label>
                     </div>
@@ -352,7 +350,7 @@
                     <div class="flex">
                         <label for="hideCrusibleFightMessageInput" class="relative flex cursor-pointer items-center">
                             <input type="checkbox" id="hideCrusibleFightMessageInput" class="sr-only" />
-                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="switcherBg block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
                             <div class="dot absolute left-1 top-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
                         </label>
                     </div>
@@ -363,7 +361,7 @@
                     <div class="flex">
                         <label for="hideHeavenFightMessageInput" class="relative flex cursor-pointer items-center">
                             <input type="checkbox" id="hideHeavenFightMessageInput" class="sr-only" />
-                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="switcherBg block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
                             <div class="dot absolute left-1 top-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
                         </label>
                     </div>
@@ -374,7 +372,7 @@
                     <div class="flex">
                         <label for="hideKesariMessageInput" class="relative flex cursor-pointer items-center">
                             <input type="checkbox" id="hideKesariMessageInput" class="sr-only" />
-                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="switcherBg block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
                             <div class="dot absolute left-1 top-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
                         </label>
                     </div>
@@ -385,7 +383,7 @@
                     <div class="flex">
                         <label for="hideNewsMessageInput" class="relative flex cursor-pointer items-center">
                             <input type="checkbox" id="hideNewsMessageInput" class="sr-only" />
-                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="switcherBg block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
                             <div class="dot absolute left-1 top-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
                         </label>
                     </div>
@@ -396,7 +394,7 @@
                     <div class="flex">
                         <label for="hideEventsMessageInput" class="relative flex cursor-pointer items-center">
                             <input type="checkbox" id="hideEventsMessageInput" class="sr-only" />
-                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="switcherBg block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
                             <div class="dot absolute left-1 top-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
                         </label>
                     </div>
@@ -407,7 +405,7 @@
                     <div class="flex">
                         <label for="hideBoxPrizeMessageInput" class="relative flex cursor-pointer items-center">
                             <input type="checkbox" id="hideBoxPrizeMessageInput" class="sr-only" />
-                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="switcherBg block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
                             <div class="dot absolute left-1 top-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
                         </label>
                     </div>
@@ -418,7 +416,7 @@
                     <div class="flex">
                         <label for="hideMedalsMessageInput" class="relative flex cursor-pointer items-center">
                             <input type="checkbox" id="hideMedalsMessageInput" class="sr-only" />
-                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="switcherBg block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
                             <div class="dot absolute left-1 top-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
                         </label>
                     </div>
@@ -429,7 +427,7 @@
                     <div class="flex">
                         <label for="hideMentorsMessageInput" class="relative flex cursor-pointer items-center">
                             <input type="checkbox" id="hideMentorsMessageInput" class="sr-only" />
-                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="switcherBg block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
                             <div class="dot absolute left-1 top-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
                         </label>
                     </div>
@@ -440,7 +438,7 @@
                     <div class="flex">
                         <label for="hideBanditMessageInput" class="relative flex cursor-pointer items-center">
                             <input type="checkbox" id="hideBanditMessageInput" class="sr-only" />
-                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="switcherBg block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
                             <div class="dot absolute left-1 top-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
                         </label>
                     </div>
@@ -451,7 +449,7 @@
                     <div class="flex">
                         <label for="hidePitMessageInput" class="relative flex cursor-pointer items-center">
                             <input type="checkbox" id="hidePitMessageInput" class="sr-only" />
-                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="switcherBg block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
                             <div class="dot absolute left-1 top-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
                         </label>
                     </div>
@@ -462,7 +460,7 @@
                     <div class="flex">
                         <label for="hideMirrorMessageInput" class="relative flex cursor-pointer items-center">
                             <input type="checkbox" id="hideMirrorMessageInput" class="sr-only" />
-                            <div class="block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
+                            <div class="switcherBg block h-7 w-14 rounded-full bg-secondaryLightDark dark:bg-secondaryLight"></div>
                             <div class="dot absolute left-1 top-1 h-5 w-5 rounded-full bg-light transition dark:bg-dark"></div>
                         </label>
                     </div>
