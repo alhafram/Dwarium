@@ -210,7 +210,7 @@ export default class MainWindowContainer {
                 parent: ConfigService.getSettings().windowsAboveApp ? this.mainWindow : undefined,
                 fullscreen: false,
                 webPreferences: {
-                    webSecurity: false
+                    webSecurity: true
                 }
             })
             newWindow.on('focus', () => {

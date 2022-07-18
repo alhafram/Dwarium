@@ -16,6 +16,7 @@ export type InventoryItem = {
     picture: string | undefined | null
     time_expire: string | undefined | null
     storage_type: string | undefined | null
+    disabled: boolean
 }
 
 type EnchantMode = {
