@@ -7,4 +7,5 @@ export type EffectSet = {
 export type EffectItem = {
     id: string
     title: string
+    disabled: boolean
 }

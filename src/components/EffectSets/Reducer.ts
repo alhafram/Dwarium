@@ -145,6 +145,8 @@ export default async function reduce(state: EffectSetsWindowState, action: Effec
                         const foundedItemByTitle = state.allItems.find((inventoryItem) => inventoryItem.title == item.title)
                         if(foundedItemByTitle) {
                             return foundedItemByTitle
+                        } else {
+                            return item
                         }
                     }
                 })
@@ -152,6 +154,9 @@ export default async function reduce(state: EffectSetsWindowState, action: Effec
                     const foundedItem = state.allItems.find((item) => item.title == effectItem.title)
                     if(foundedItem) {
                         return foundedItem
+                    } else {
+                        effectItem.disabled = true
+                        return effectItem
                     }
                 })
                 .filter((item) => item) as InventoryItem[]

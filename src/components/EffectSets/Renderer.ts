@@ -37,14 +37,18 @@ function render(state: EffectSetsWindowState): void {
     })
     state.currentItems.forEach((item) => {
         const divItem = convertItemIntoDiv(item, undefined)
-        divItem.setAttribute('equiped', 'true')
-        divItem.ondrop = function(event) {
-            event.stopPropagation()
-            const replacedItemId = divItem.getAttribute('itemid')
-            const draggableItemId = dragableItem?.getAttribute('itemid')
-            dispatch(EffectSetsWindowActions.CHANGE_ORDER, [replacedItemId, draggableItemId])
+        if(item.disabled) {
+            divItem.style.filter = 'grayscale(100%)'
+        } else {
+            setupEquipableItemEvents(divItem)
+            divItem.setAttribute('equiped', 'true')
+            divItem.ondrop = function(event) {
+                event.stopPropagation()
+                const replacedItemId = divItem.getAttribute('itemid')
+                const draggableItemId = dragableItem?.getAttribute('itemid')
+                dispatch(EffectSetsWindowActions.CHANGE_ORDER, [replacedItemId, draggableItemId])
+            }
         }
-        setupEquipableItemEvents(divItem)
         parent?.appendChild(divItem)
     })
     Array.from(ListElements.setsDiv().children)
