@@ -37,10 +37,10 @@ function render(state: EffectSetsWindowState): void {
     })
     state.currentItems.forEach((item) => {
         const divItem = convertItemIntoDiv(item, undefined)
+        setupEquipableItemEvents(divItem, !item.disabled)
         if(item.disabled) {
             divItem.style.filter = 'grayscale(100%)'
         } else {
-            setupEquipableItemEvents(divItem)
             divItem.setAttribute('equiped', 'true')
             divItem.ondrop = function(event) {
                 event.stopPropagation()
@@ -108,7 +108,7 @@ function handleDragEndEquipableItem(this: any) {
     this.style.opacity = '1'
 }
 
-function setupEquipableItemEvents(item: HTMLElement) {
+function setupEquipableItemEvents(item: HTMLElement, needSetupAltEvents = true) {
     item.addEventListener('dragstart', handleDragStartEquipableItem, false)
     item.addEventListener('dragend', handleDragEndEquipableItem, false)
     item.ondragover = handleDragOver
@@ -120,7 +120,9 @@ function setupEquipableItemEvents(item: HTMLElement) {
             dispatch(EffectSetsWindowActions.ADD_EFFECT, item.getAttribute('itemid'))
         }
     }
-    setupAltEvents(item)
+    if(needSetupAltEvents) {
+        setupAltEvents(item)
+    }
 }
 
 let dragableSet: HTMLElement | null = null

@@ -45,6 +45,8 @@ export default async function reduce(state: EffectSetsWindowState, action: Effec
                 await useItem(item.id, body)
             }
             Elements.useEffectsButton().disabled = false
+            state = await reduce(state, EffectSetsWindowActions.LOAD_CONTENT)
+            state = await reduce(state, EffectSetsWindowActions.SELECT_SET, state.currentSet)
             return state
         }
         case EffectSetsWindowActions.ADD_EFFECT: {
@@ -59,13 +61,11 @@ export default async function reduce(state: EffectSetsWindowState, action: Effec
                 return state
             }
             state.currentItems.push(item)
-            return {
-                ...state
-            }
+            return state
         }
         case EffectSetsWindowActions.REMOVE_EFFECT: {
-            const itemid = data as string
-            const item = state.allItems.find((item) => item.id == itemid)
+            const itemId = data as string
+            const item = state.currentItems.find((item) => item.id == itemId)
             if(!item) {
                 alert('ШО ТО НЕ ТАК!!! Напиши в группу')
                 return state
