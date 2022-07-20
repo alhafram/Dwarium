@@ -63,6 +63,10 @@ function createNewTab(url: string, id: string) {
         TabsController.mainWindow?.webContents.send(Channel.FINISH_LOAD_URL, tabId, title)
         TabsController.mainWindow?.webContents.send(Channel.URL, browserView.webContents.getURL(), tabId)
     })
+    browserView.webContents.on('did-create-window', (window) => {
+        setupContextMenu(window)
+        TabsController.mainWindowContainer?.setupOpenHandler(window)
+    })
     if(ConfigService.getSettings().windowOpenNewTab) {
         browserView.webContents.setWindowOpenHandler(({ url }) => {
             TabsController.mainWindow?.webContents.send(Channel.NEW_TAB, url)
