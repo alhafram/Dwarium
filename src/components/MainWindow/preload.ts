@@ -122,9 +122,6 @@ window.addEventListener('DOMContentLoaded', async() => {
         Elements.statsButtonBadgeSpan().style.display = 'none'
         ipcRenderer.send(Channel.OPEN_STATS)
     }
-    Elements.screenshotButton().onclick = function() {
-        ipcRenderer.send(Channel.MAKE_SCREENSHOT)
-    }
     ///
     Elements.urlInput().addEventListener('keyup', (e: KeyboardEvent) => {
         if(e.key == 'Enter') {
@@ -483,8 +480,6 @@ function getElementIdBy(type: WindowType): HTMLElement | undefined {
     switch (type) {
         case WindowType.FOOD:
             return Elements.foodButton()
-        case WindowType.SCREENSHOT:
-            return Elements.screenshotButton()
         case WindowType.NOTES:
             return Elements.notesButton()
         case WindowType.DRESSING_ROOM:

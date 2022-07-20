@@ -115,9 +115,6 @@ export const Elements = {
         return document.getElementById('statsButtonBadgeSpan') as HTMLSpanElement
     },
     //
-    screenshotButton(): HTMLButtonElement {
-        return document.getElementById('screenshotButton') as HTMLButtonElement
-    },
     updateApplicationButton(): HTMLButtonElement {
         return document.getElementById('updateApplicationButton') as HTMLButtonElement
     },
