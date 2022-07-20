@@ -5,121 +5,42 @@ import Utils from '../Common/Utils'
 import { WindowType } from '../../Models/WindowModels'
 import FavouriteLinkService from '../../services/FavouriteLinksService'
 import sendNotification, { NotificationType } from '../../services/Notifications'
+import { Elements } from './Elements'
 
-const Elements = {
-    serverSwitcher(): HTMLInputElement {
-        return document.getElementById('serverSwitcher') as HTMLInputElement
-    },
-    serverName(): HTMLSpanElement {
-        return document.getElementById('serverName') as HTMLSpanElement
-    },
-    backButton(): HTMLButtonElement {
-        return document.getElementById('backButton') as HTMLButtonElement
-    },
-    forwardButton(): HTMLButtonElement {
-        return document.getElementById('forwardButton') as HTMLButtonElement
-    },
-    backButtonSvg(): HTMLButtonElement {
-        return document.getElementById('backButtonSvg') as HTMLButtonElement
-    },
-    forwardButtonSvg(): HTMLButtonElement {
-        return document.getElementById('forwardButtonSvg') as HTMLButtonElement
-    },
-    reloadButton(): HTMLButtonElement {
-        return document.getElementById('reloadButton') as HTMLButtonElement
-    },
-    urlInput(): HTMLInputElement {
-        return document.getElementById('urlInput') as HTMLInputElement
-    },
-    favouriteButton(): HTMLButtonElement {
-        return document.getElementById('favouriteButton') as HTMLButtonElement
-    },
-    nicknameInput(): HTMLInputElement {
-        return document.getElementById('nicknameInput') as HTMLInputElement
-    },
-    userTagButton(): HTMLButtonElement {
-        return document.getElementById('userTagButton') as HTMLButtonElement
-    },
-    userInfoButton(): HTMLButtonElement {
-        return document.getElementById('userInfoButton') as HTMLButtonElement
-    },
-    findEffectsBox(): HTMLButtonElement {
-        return document.getElementById('userEffectsButton') as HTMLButtonElement
-    },
-    foodButton(): HTMLButtonElement {
-        return document.getElementById('foodButton') as HTMLButtonElement
-    },
-    screenshotButton(): HTMLButtonElement {
-        return document.getElementById('screenshotButton') as HTMLButtonElement
-    },
-    notesButton(): HTMLButtonElement {
-        return document.getElementById('notesButton') as HTMLButtonElement
-    },
-    dressingSetsButton(): HTMLButtonElement {
-        return document.getElementById('dressingSetsButton') as HTMLButtonElement
-    },
-    beltSetsButton(): HTMLButtonElement {
-        return document.getElementById('beltSetsButton') as HTMLButtonElement
-    },
-    chatLogButton(): HTMLButtonElement {
-        return document.getElementById('chatLogButton') as HTMLButtonElement
-    },
-    settingsButton(): HTMLButtonElement {
-        return document.getElementById('settingsButton') as HTMLButtonElement
-    },
-    chatSettingsButton(): HTMLButtonElement {
-        return document.getElementById('chatSettingsButton') as HTMLButtonElement
-    },
-    notificationsButton(): HTMLButtonElement {
-        return document.getElementById('notificationsButton') as HTMLButtonElement
-    },
-    effectSetsButton(): HTMLButtonElement {
-        return document.getElementById('effectSetsButton') as HTMLButtonElement
-    },
-    updateApplicationButton(): HTMLButtonElement {
-        return document.getElementById('updateApplicationButton') as HTMLButtonElement
-    },
-    modeSwitcherButton(): HTMLButtonElement {
-        return document.getElementById('modeSwitcherButton') as HTMLButtonElement
-    },
-    mainTab(): HTMLButtonElement {
-        return document.getElementById('main') as HTMLButtonElement
-    },
-    addTabButton(): HTMLButtonElement {
-        return document.getElementById('addTabButton') as HTMLButtonElement
-    },
-    tabsDiv(): HTMLDivElement {
-        return document.getElementById('tabsDiv') as HTMLDivElement
-    },
-    darkModeImage(): HTMLElement {
-        return document.getElementById('dark') as HTMLElement
-    },
-    lightModeImage(): HTMLElement {
-        return document.getElementById('light') as HTMLElement
-    },
-    favouriteListButton(): HTMLButtonElement {
-        return document.getElementById('favouriteListButton') as HTMLButtonElement
-    },
-    favouriteButtonImage(): HTMLElement {
-        return document.getElementById('favouriteButtonImage') as HTMLElement
-    },
-    expiringItemsSettingsButton(): HTMLButtonElement {
-        return document.getElementById('expiringItemsSettingsButton') as HTMLButtonElement
-    },
-    expiringItemsSettingsSvg(): HTMLElement {
-        return document.getElementById('expiringItemsSettingsSvg') as HTMLElement
-    },
-    gameSettingsButton(): HTMLButtonElement {
-        return document.getElementById('gameSettingsButton') as HTMLButtonElement
-    },
-    statsButton(): HTMLButtonElement {
-        return document.getElementById('statsButton') as HTMLButtonElement
-    }
+enum PluginConfigKeys {
+    foodButtonBadgeSpan = 'foodButtonBadgeSpan',
+    notesButtonBadgeSpan = 'notesButtonBadgeSpan',
+    dressingSetsButtonBadgeSpan = 'dressingSetsButtonBadgeSpan',
+    beltSetsButtonButtonBadgeSpan = 'beltSetsButtonButtonBadgeSpan',
+    chatLogButtonBadgeSpan = 'chatLogButtonBadgeSpan',
+    chatSettingsButtonBadgeSpan = 'chatSettingsButtonBadgeSpan',
+    notificationsButtonBadgeSpan = 'notificationsButtonBadgeSpan',
+    effectSetsButtonBadgeSpan = 'effectSetsButtonBadgeSpan',
+    expiringItemsSettingsButtonBadgeSpan = 'expiringItemsSettingsButtonBadgeSpan',
+    gameSettingsButtonBadgeSpan = 'gameSettingsButtonBadgeSpan',
+    settingsButtonBadgeSpan = 'settingsButtonBadgeSpan',
+    statsButtonBadgeSpan = 'statsButtonBadgeSpan'
+}
+
+type PluginConfig = {
+    foodButtonBadgeSpan: '',
+    notesButtonBadgeSpan: '',
+    dressingSetsButtonBadgeSpan: '',
+    beltSetsButtonButtonBadgeSpan: '',
+    chatLogButtonBadgeSpan: '',
+    chatSettingsButtonBadgeSpan: '',
+    notificationsButtonBadgeSpan: '',
+    effectSetsButtonBadgeSpan: '',
+    expiringItemsSettingsButtonBadgeSpan: '',
+    gameSettingsButtonBadgeSpan: '',
+    settingsButtonBadgeSpan: '',
+    statsButtonBadgeSpan: ''
 }
 
 window.addEventListener('DOMContentLoaded', async() => {
     handleMode()
     await setupFavourite()
+    const pluginConfig = await setupBadges()
 
     Elements.mainTab().onclick = makeActive
     Elements.serverSwitcher().onchange = function() {
@@ -140,30 +61,71 @@ window.addEventListener('DOMContentLoaded', async() => {
     Elements.forwardButton().addEventListener('click', () => {
         ipcRenderer.send(Channel.FORWARD)
     })
+    // Plugins
+    Elements.foodButton().onclick = function() {
+        localStorage.setItem(PluginConfigKeys.foodButtonBadgeSpan, pluginConfig.foodButtonBadgeSpan)
+        Elements.foodButtonBadgeSpan().style.display = 'none'
+        ipcRenderer.send(Channel.OPEN_FOOD)
+    }
+    Elements.notesButton().onclick = function() {
+        localStorage.setItem(PluginConfigKeys.notesButtonBadgeSpan, pluginConfig.notesButtonBadgeSpan)
+        Elements.notesButtonBadgeSpan().style.display = 'none'
+        ipcRenderer.send(Channel.OPEN_NOTES)
+    }
     Elements.dressingSetsButton().addEventListener('click', () => {
+        localStorage.setItem(PluginConfigKeys.dressingSetsButtonBadgeSpan, pluginConfig.dressingSetsButtonBadgeSpan)
+        Elements.dressingSetsButtonBadgeSpan().style.display = 'none'
         ipcRenderer.send(Channel.OPEN_DRESSING_ROOM)
     })
     Elements.beltSetsButton().addEventListener('click', () => {
+        localStorage.setItem(PluginConfigKeys.beltSetsButtonButtonBadgeSpan, pluginConfig.beltSetsButtonButtonBadgeSpan)
+        Elements.beltSetsButtonButtonBadgeSpan().style.display = 'none'
         ipcRenderer.send(Channel.OPEN_BELT_POTION_ROOM)
     })
     Elements.chatLogButton().addEventListener('click', () => {
+        localStorage.setItem(PluginConfigKeys.chatLogButtonBadgeSpan, pluginConfig.chatLogButtonBadgeSpan)
+        Elements.chatLogButtonBadgeSpan().style.display = 'none'
         ipcRenderer.send(Channel.OPEN_CHAT_LOG)
     })
     Elements.chatSettingsButton().addEventListener('click', () => {
+        localStorage.setItem(PluginConfigKeys.chatSettingsButtonBadgeSpan, pluginConfig.chatSettingsButtonBadgeSpan)
+        Elements.chatSettingsButtonBadgeSpan().style.display = 'none'
         ipcRenderer.send(Channel.OPEN_CHAT_SETTINGS)
     })
-    Elements.settingsButton().addEventListener('click', () => {
-        ipcRenderer.send(Channel.OPEN_SETTINGS)
-    })
     Elements.notificationsButton().addEventListener('click', () => {
+        localStorage.setItem(PluginConfigKeys.notificationsButtonBadgeSpan, pluginConfig.notificationsButtonBadgeSpan)
+        Elements.notificationsButtonBadgeSpan().style.display = 'none'
         ipcRenderer.send(Channel.OPEN_NOTIFICATIONS)
     })
     Elements.effectSetsButton().addEventListener('click', () => {
+        localStorage.setItem(PluginConfigKeys.effectSetsButtonBadgeSpan, pluginConfig.effectSetsButtonBadgeSpan)
+        Elements.effectSetsButtonBadgeSpan().style.display = 'none'
         ipcRenderer.send(Channel.OPEN_EFFECT_SETS)
     })
+    Elements.expiringItemsSettingsButton().onclick = async function() {
+        localStorage.setItem(PluginConfigKeys.expiringItemsSettingsButtonBadgeSpan, pluginConfig.expiringItemsSettingsButtonBadgeSpan)
+        Elements.expiringItemsSettingsButtonBadgeSpan().style.display = 'none'
+        ipcRenderer.send(Channel.OPEN_EXPIRING_ITEMS_SETTINGS)
+    }
     Elements.gameSettingsButton().addEventListener('click', () => {
+        localStorage.setItem(PluginConfigKeys.gameSettingsButtonBadgeSpan, pluginConfig.gameSettingsButtonBadgeSpan)
+        Elements.gameSettingsButtonBadgeSpan().style.display = 'none'
         ipcRenderer.send(Channel.OPEN_GAME_SETTINGS)
     })
+    Elements.settingsButton().addEventListener('click', () => {
+        localStorage.setItem(PluginConfigKeys.settingsButtonBadgeSpan, pluginConfig.settingsButtonBadgeSpan)
+        Elements.settingsButtonBadgeSpan().style.display = 'none'
+        ipcRenderer.send(Channel.OPEN_SETTINGS)
+    })
+    Elements.statsButton().onclick = function() {
+        localStorage.setItem(PluginConfigKeys.statsButtonBadgeSpan, pluginConfig.statsButtonBadgeSpan)
+        Elements.statsButtonBadgeSpan().style.display = 'none'
+        ipcRenderer.send(Channel.OPEN_STATS)
+    }
+    Elements.screenshotButton().onclick = function() {
+        ipcRenderer.send(Channel.MAKE_SCREENSHOT)
+    }
+    ///
     Elements.urlInput().addEventListener('keyup', (e: KeyboardEvent) => {
         if(e.key == 'Enter') {
             ipcRenderer.send(Channel.GO_URL, Elements.urlInput().value)
@@ -213,15 +175,6 @@ window.addEventListener('DOMContentLoaded', async() => {
             }
         }
     }
-    Elements.notesButton().onclick = function() {
-        ipcRenderer.send(Channel.OPEN_NOTES)
-    }
-    Elements.screenshotButton().onclick = function() {
-        ipcRenderer.send(Channel.MAKE_SCREENSHOT)
-    }
-    Elements.foodButton().onclick = function() {
-        ipcRenderer.send(Channel.OPEN_FOOD)
-    }
     Elements.modeSwitcherButton().onclick = function() {
         if(localStorage.darkMode == 'true') {
             localStorage.darkMode = false
@@ -242,9 +195,6 @@ window.addEventListener('DOMContentLoaded', async() => {
         const isFavourite = await isCurrentLinkFavourite()
         saveFavouriteLink(isFavourite)
     }
-    Elements.expiringItemsSettingsButton().onclick = async function() {
-        ipcRenderer.send(Channel.OPEN_EXPIRING_ITEMS_SETTINGS)
-    }
 
     document.addEventListener('make_active', (evt) => {
         makeActive(evt)
@@ -256,9 +206,6 @@ window.addEventListener('DOMContentLoaded', async() => {
     document.addEventListener('goUrl', (evt) => {
         ipcRenderer.send(Channel.GO_URL, (<CustomEvent>evt).detail)
     })
-    Elements.statsButton().onclick = function() {
-        ipcRenderer.send(Channel.OPEN_STATS)
-    }
 })
 
 async function isCurrentLinkFavourite(): Promise<boolean> {
@@ -289,6 +236,19 @@ async function setupFavourite() {
     } else {
         Elements.favouriteButtonImage().classList.replace('favouriteButtonSelected', 'favouriteButtonDefault')
     }
+}
+
+async function setupBadges(): Promise<PluginConfig> {
+    const pluginConfig = await fetch('https://raw.githubusercontent.com/alhafram/DwariumData/main/PluginHashes.json').then(data => data.json()) as PluginConfig
+    const keys = Object.keys(pluginConfig)
+    for(const key of keys) {
+        const element = eval(`Elements_1.Elements.${key}()`) as HTMLElement
+        const value = localStorage.getItem(key)
+        if(value == Object(pluginConfig)[key]) {
+            element.style.display = 'none'
+        }
+    }
+    return pluginConfig
 }
 
 function handleMode() {
