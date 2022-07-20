@@ -23,17 +23,17 @@ enum PluginConfigKeys {
 }
 
 type PluginConfig = {
-    foodButtonBadgeSpan: '',
-    notesButtonBadgeSpan: '',
-    dressingSetsButtonBadgeSpan: '',
-    beltSetsButtonButtonBadgeSpan: '',
-    chatLogButtonBadgeSpan: '',
-    chatSettingsButtonBadgeSpan: '',
-    notificationsButtonBadgeSpan: '',
-    effectSetsButtonBadgeSpan: '',
-    expiringItemsSettingsButtonBadgeSpan: '',
-    gameSettingsButtonBadgeSpan: '',
-    settingsButtonBadgeSpan: '',
+    foodButtonBadgeSpan: ''
+    notesButtonBadgeSpan: ''
+    dressingSetsButtonBadgeSpan: ''
+    beltSetsButtonButtonBadgeSpan: ''
+    chatLogButtonBadgeSpan: ''
+    chatSettingsButtonBadgeSpan: ''
+    notificationsButtonBadgeSpan: ''
+    effectSetsButtonBadgeSpan: ''
+    expiringItemsSettingsButtonBadgeSpan: ''
+    gameSettingsButtonBadgeSpan: ''
+    settingsButtonBadgeSpan: ''
     statsButtonBadgeSpan: ''
 }
 
@@ -189,8 +189,7 @@ window.addEventListener('DOMContentLoaded', async() => {
         ipcRenderer.send(Channel.FAVOURITE_LIST)
     }
     Elements.favouriteButton().onclick = async function() {
-        const isFavourite = await isCurrentLinkFavourite()
-        saveFavouriteLink(isFavourite)
+        saveFavouriteLink()
     }
 
     document.addEventListener('make_active', (evt) => {
@@ -214,7 +213,7 @@ async function isCurrentLinkFavourite(): Promise<boolean> {
     return FavouriteLinkService.isFavouriteLink(url)
 }
 
-async function saveFavouriteLink(value: boolean | null) {
+async function saveFavouriteLink() {
     const urlString = (await ipcRenderer.invoke(Channel.GET_URL)) as string
     if(urlString.length == 0) {
         return false
@@ -236,7 +235,7 @@ async function setupFavourite() {
 }
 
 async function setupBadges(): Promise<PluginConfig> {
-    const pluginConfig = await fetch('https://raw.githubusercontent.com/alhafram/DwariumData/main/PluginHashes.json').then(data => data.json()) as PluginConfig
+    const pluginConfig = (await fetch('https://raw.githubusercontent.com/alhafram/DwariumData/main/PluginHashes.json').then((data) => data.json())) as PluginConfig
     const keys = Object.keys(pluginConfig)
     for(const key of keys) {
         const element = eval(`Elements_1.Elements.${key}()`) as HTMLElement

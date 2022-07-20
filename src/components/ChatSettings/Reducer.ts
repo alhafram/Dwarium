@@ -15,7 +15,7 @@ function getChatSettingsConfig(id: number) {
     return ChatSettingsService.get(id)
 }
 
-export default async function reduce(state: ChatSettingsConfig, action: ChatSettingsWindowActions, data?: any): Promise<ChatSettingsConfig> {
+export default async function reduce(state: ChatSettingsConfig, action: ChatSettingsWindowActions): Promise<ChatSettingsConfig> {
     switch (action) {
         case ChatSettingsWindowActions.LOAD_CONTENT: {
             const userId = (await Utils.getUserId()) as number

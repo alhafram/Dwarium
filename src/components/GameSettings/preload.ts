@@ -13,8 +13,8 @@ let initialState: GameSettingsWindowState = {
     huntFlags: flags.huntFlags
 }
 
-export function dispatch(action: GameSettingsWindowActions, data?: unknown): void {
-    initialState = reduce(initialState, action, data)
+export function dispatch(action: GameSettingsWindowActions): void {
+    initialState = reduce(initialState, action)
     render(initialState)
 }
 

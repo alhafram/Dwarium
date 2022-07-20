@@ -62,8 +62,8 @@ let initialState: ChatSettingsConfig = {
     redirectGroup: false
 }
 
-export default async function dispatch(action: ChatSettingsWindowActions, data?: any) {
-    initialState = await reduce(initialState, action, data)
+export default async function dispatch(action: ChatSettingsWindowActions) {
+    initialState = await reduce(initialState, action)
     render(initialState)
 }
 
