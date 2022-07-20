@@ -22,6 +22,7 @@ export type ChatSettingsConfig = {
     allianceChatFloodingTimer: number
 
     newLootSystem: boolean
+    hideSatiety: boolean
     hideAttackedMessage: boolean
     hideFightStartedMessage: boolean
     hideEndFightMessage: boolean

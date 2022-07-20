@@ -16,6 +16,9 @@ export function createWindowAndLoad(windowType: WindowType, htmlPath?: HTMLPath,
         minWidth = 100
         minHeight = 100
     }
+    if(windowType == WindowType.CHAT_SETTINGS) {
+        minWidth = 1300
+    }
     const window: BrowserWindow | null = new BrowserWindow({
         x: windowPosition?.x ?? 0,
         y: windowPosition?.y ?? 0,

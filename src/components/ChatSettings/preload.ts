@@ -28,6 +28,7 @@ let initialState: ChatSettingsConfig = {
     allianceChatFloodingTimer: 10,
 
     newLootSystem: false,
+    hideSatiety: false,
     hideAttackedMessage: false,
     hideFightStartedMessage: false,
     hideEndFightMessage: false,

@@ -54,6 +54,7 @@ export default async function reduce(state: ChatSettingsConfig, action: ChatSett
             state.allianceChatFloodingTimer = parseInt(Elements.allianceChatFloodingTimerInput().value)
 
             state.newLootSystem = Elements.newLootSystemInput().checked
+            state.hideSatiety = Elements.hideSatietyInput().checked
             state.hideAttackedMessage = Elements.hideAttackedMessageInput().checked
             state.hideFightStartedMessage = Elements.hideFightStartedMessageInput().checked
             state.hideEndFightMessage = Elements.hideEndFightMessageInput().checked

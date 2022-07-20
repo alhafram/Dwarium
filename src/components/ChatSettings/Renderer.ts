@@ -29,6 +29,7 @@ function render(initialState: ChatSettingsConfig) {
     Elements.allianceChatFloodingTimerInput().value = initialState.allianceChatFloodingTimer.toString()
 
     Elements.newLootSystemInput().checked = initialState.newLootSystem
+    Elements.hideSatietyInput().checked = initialState.hideSatiety
     Elements.hideAttackedMessageInput().checked = initialState.hideAttackedMessage
     Elements.hideFightStartedMessageInput().checked = initialState.hideFightStartedMessage
     Elements.hideEndFightMessageInput().checked = initialState.hideEndFightMessage
