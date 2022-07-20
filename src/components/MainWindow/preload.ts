@@ -1,4 +1,4 @@
-import { ipcRenderer, shell } from 'electron'
+import { ipcRenderer } from 'electron'
 import ConfigService from '../../services/ConfigService'
 import { Channel } from '../../Models/Channel'
 import Utils from '../Common/Utils'
@@ -114,19 +114,12 @@ const Elements = {
     },
     statsButton(): HTMLButtonElement {
         return document.getElementById('statsButton') as HTMLButtonElement
-    },
-    quizButton(): HTMLButtonElement {
-        return document.getElementById('quizButton') as HTMLButtonElement
-    },
-    quizButtonBadgeSpan(): HTMLSpanElement {
-        return document.getElementById('quizButtonBadgeSpan') as HTMLSpanElement
     }
 }
 
 window.addEventListener('DOMContentLoaded', async() => {
     handleMode()
     await setupFavourite()
-    Elements.quizButtonBadgeSpan().style.display = localStorage.getItem('quizTapped') == 'true' ? 'none' : 'absolute'
 
     Elements.mainTab().onclick = makeActive
     Elements.serverSwitcher().onchange = function() {
@@ -265,10 +258,6 @@ window.addEventListener('DOMContentLoaded', async() => {
     })
     Elements.statsButton().onclick = function() {
         ipcRenderer.send(Channel.OPEN_STATS)
-    }
-    Elements.quizButton().onclick = function() {
-        shell.openExternal('https://forms.gle/Csr838uWyw8W6J8HA')
-        localStorage.setItem('quizTapped', 'true')
     }
 })
 
