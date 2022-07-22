@@ -28,6 +28,13 @@ function convertItemIntoDiv(item: InventoryItem, xmlFoodItem: Element | undefine
     if(item.dur == "0") {
         itemDiv.style.filter = 'grayscale(100%) brightness(40%) sepia(100%) hue-rotate(-50deg) saturate(600%) contrast(0.8)'
     }
+    if(item.enchant_icon) {
+        if(!item.enchant_icon.includes(ConfigService.getSettings().baseUrl)) {
+            item.enchant_icon = item.enchant_icon.replaceAll("/images/", `${ConfigService.getSettings().baseUrl}/images/`)
+        }
+        itemDiv.appendChild(document.createElementFromString(item.enchant_icon))
+        console.log(item.enchant_icon)
+    }
     if(item.kind_id == '12') {
         itemDiv.setAttribute('weapon', '2h')
     }
