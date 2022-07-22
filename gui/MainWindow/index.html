@@ -23,10 +23,43 @@
                 transform: translateX(120%);
                 background-color: #298cff;
             }
+
+            .contextMenu {
+                position: fixed;
+                z-index: 10000;
+                width: 150px;
+                background: #1b1a1a;
+                border-radius: 5px;
+                transform: scale(0);
+                transform-origin: top left;
+            }
+
+            .contextMenu.visible {
+                transform: scale(1);
+                transition: transform 200ms ease-in-out;
+            }
+
+            .contextMenu .item {
+                padding: 8px 10px;
+                font-size: 15px;
+                color: #eee;
+                cursor: pointer;
+                border-radius: inherit;
+            }
+
+            .contextMenu .item:hover {
+                background: #343434;
+            }
         </style>
     </head>
 
     <body class="select-none">
+        <div class="contextMenu" id="hideContextMenuDiv">
+            <div id="hidePluginDiv" class="item">Скрыть</div>
+        </div>
+        <div class="contextMenu" id="restoreContextMenuDiv">
+            <div id="restorePluginsDiv" class="item">Восстановить</div>
+        </div>
         <div class="bg-white dark:bg-dark">
             <div class="mt-auto flex h-10">
                 <label title="Переключатель сервера" class="relative ml-5 flex cursor-pointer items-center justify-between">

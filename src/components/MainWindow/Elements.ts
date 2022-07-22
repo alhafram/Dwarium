@@ -141,5 +141,17 @@ export const Elements = {
     },
     favouriteButtonImage(): HTMLElement {
         return document.getElementById('favouriteButtonImage') as HTMLElement
+    },
+    hideContextMenuDiv(): HTMLDivElement {
+        return document.getElementById('hideContextMenuDiv') as HTMLDivElement
+    },
+    hidePluginDiv(): HTMLDivElement {
+        return document.getElementById('hidePluginDiv') as HTMLDivElement
+    },
+    restoreContextMenuDiv(): HTMLDivElement {
+        return document.getElementById('restoreContextMenuDiv') as HTMLDivElement
+    },
+    restorePluginsDiv(): HTMLDivElement {
+        return document.getElementById('restorePluginsDiv') as HTMLDivElement
     }
 }

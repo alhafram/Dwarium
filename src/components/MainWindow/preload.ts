@@ -39,10 +39,68 @@ type PluginConfig = {
     statsButtonBadgeSpan: ''
 }
 
+let restoreContextMenuOpened = false
+let currentContextMenuTarget: HTMLElement | null
 window.addEventListener('DOMContentLoaded', async() => {
     handleMode()
     await setupFavourite()
     const pluginConfig = await setupBadges()
+
+    const pluginButtons = [
+        Elements.foodButton(),
+        Elements.notesButton(),
+        Elements.dressingSetsButton(),
+        Elements.beltSetsButton(),
+        Elements.chatLogButton(),
+        Elements.chatSettingsButton(),
+        Elements.notificationsButton(),
+        Elements.effectSetsButton(),
+        Elements.expiringItemsSettingsButton(),
+        Elements.gameSettingsButton(),
+        Elements.statsButton()
+    ]
+    pluginButtons.forEach(pluginButton => {
+        setupContextMenuForHidePlugins(pluginButton, Elements.hideContextMenuDiv())
+        const hiddenPluginIds = JSON.parse(localStorage.hiddenPlugins ?? '[]') as string[]
+        if(hiddenPluginIds.includes(pluginButton.id)) {
+            pluginButton.setAttribute('hiddenPlugin', 'true')
+            pluginButton.style.display = 'none'
+        }
+    })
+    setupContextMenuForHidePlugins(Elements.settingsButton(), Elements.restoreContextMenuDiv())
+
+    Elements.hidePluginDiv().onclick = function() {
+        hideContextMenu()
+        if(currentContextMenuTarget) {
+            const hiddenPluginIds = JSON.parse(localStorage.hiddenPlugins ?? '[]') as string[]
+            hiddenPluginIds.push(currentContextMenuTarget.id)
+            localStorage.hiddenPlugins = JSON.stringify(Array.from(new Set(hiddenPluginIds)))
+            currentContextMenuTarget.style.display = 'none'
+        }
+    }
+
+    Elements.restorePluginsDiv().onclick = function() {
+        const hiddenPluginIds = JSON.parse(localStorage.hiddenPlugins ?? '[]') as string[]
+        if(hiddenPluginIds.length == 0) {
+            hideContextMenu()
+            return
+        }
+        const hiddenPlugins = pluginButtons.filter(pluginButton => hiddenPluginIds.includes(pluginButton.id))
+        if(!restoreContextMenuOpened) {
+            hiddenPlugins.forEach(plugin => {
+                plugin.style.display = ''
+                plugin.style.border = '2px dashed red'
+                plugin.setAttribute('hiddenPlugin', 'true')
+            })
+        } else {
+            hiddenPlugins.forEach(plugin => {
+                plugin.style.display = 'none'
+                plugin.style.border = ''
+            })
+        }
+        hideContextMenu()
+        restoreContextMenuOpened = !restoreContextMenuOpened
+    }
 
     let userId = ''
     if(localStorage.userId) {
@@ -52,10 +110,10 @@ window.addEventListener('DOMContentLoaded', async() => {
         localStorage.userId = userId
     }
     const visitor = ua('UA-217573092-2', userId, { cid: userId, uid: userId })
-    visitor.screenview({ av: app.getVersion(), an: 'Dwarium', cd: 'OpenDwarium' }, callback => {
+    visitor.screenview({ av: app.getVersion(), an: 'Dwarium', cd: 'OpenDwarium' }, (callback) => {
         console.log(callback)
     })
-    visitor.event('Screen', 'Open', `Main_${app.getVersion()}`, callback => {
+    visitor.event('Screen', 'Open', `Main_${app.getVersion()}`, (callback) => {
         console.log(callback)
     })
 
@@ -80,61 +138,105 @@ window.addEventListener('DOMContentLoaded', async() => {
     })
     // Plugins
     Elements.foodButton().onclick = function() {
+        const value = pluginRestorationHandler(Elements.foodButton())
+        if(value) {
+            return true
+        }
         localStorage.setItem(PluginConfigKeys.foodButtonBadgeSpan, pluginConfig.foodButtonBadgeSpan)
         Elements.foodButtonBadgeSpan().style.display = 'none'
         ipcRenderer.send(Channel.OPEN_FOOD)
     }
     Elements.notesButton().onclick = function() {
+        const value = pluginRestorationHandler(Elements.notesButton())
+        if(value) {
+            return true
+        }
         localStorage.setItem(PluginConfigKeys.notesButtonBadgeSpan, pluginConfig.notesButtonBadgeSpan)
         Elements.notesButtonBadgeSpan().style.display = 'none'
         ipcRenderer.send(Channel.OPEN_NOTES)
     }
-    Elements.dressingSetsButton().addEventListener('click', () => {
+    Elements.dressingSetsButton().onclick = function() {
+        const value = pluginRestorationHandler(Elements.dressingSetsButton())
+        if(value) {
+            return true
+        }
         localStorage.setItem(PluginConfigKeys.dressingSetsButtonBadgeSpan, pluginConfig.dressingSetsButtonBadgeSpan)
         Elements.dressingSetsButtonBadgeSpan().style.display = 'none'
         ipcRenderer.send(Channel.OPEN_DRESSING_ROOM)
-    })
-    Elements.beltSetsButton().addEventListener('click', () => {
+    }
+    Elements.beltSetsButton().onclick = function() {
+        const value = pluginRestorationHandler(Elements.beltSetsButton())
+        if(value) {
+            return true
+        }
         localStorage.setItem(PluginConfigKeys.beltSetsButtonButtonBadgeSpan, pluginConfig.beltSetsButtonButtonBadgeSpan)
         Elements.beltSetsButtonButtonBadgeSpan().style.display = 'none'
         ipcRenderer.send(Channel.OPEN_BELT_POTION_ROOM)
-    })
-    Elements.chatLogButton().addEventListener('click', () => {
+    }
+    Elements.chatLogButton().onclick = function() {
+        const value = pluginRestorationHandler(Elements.chatLogButton())
+        if(value) {
+            return true
+        }
         localStorage.setItem(PluginConfigKeys.chatLogButtonBadgeSpan, pluginConfig.chatLogButtonBadgeSpan)
         Elements.chatLogButtonBadgeSpan().style.display = 'none'
         ipcRenderer.send(Channel.OPEN_CHAT_LOG)
-    })
-    Elements.chatSettingsButton().addEventListener('click', () => {
+    }
+    Elements.chatSettingsButton().onclick = function() {
+        const value = pluginRestorationHandler(Elements.chatSettingsButton())
+        if(value) {
+            return true
+        }
         localStorage.setItem(PluginConfigKeys.chatSettingsButtonBadgeSpan, pluginConfig.chatSettingsButtonBadgeSpan)
         Elements.chatSettingsButtonBadgeSpan().style.display = 'none'
         ipcRenderer.send(Channel.OPEN_CHAT_SETTINGS)
-    })
-    Elements.notificationsButton().addEventListener('click', () => {
+    }
+    Elements.notificationsButton().onclick = function() {
+        const value = pluginRestorationHandler(Elements.notificationsButton())
+        if(value) {
+            return true
+        }
         localStorage.setItem(PluginConfigKeys.notificationsButtonBadgeSpan, pluginConfig.notificationsButtonBadgeSpan)
         Elements.notificationsButtonBadgeSpan().style.display = 'none'
         ipcRenderer.send(Channel.OPEN_NOTIFICATIONS)
-    })
-    Elements.effectSetsButton().addEventListener('click', () => {
+    }
+    Elements.effectSetsButton().onclick = function() {
+        const value = pluginRestorationHandler(Elements.effectSetsButton())
+        if(value) {
+            return true
+        }
         localStorage.setItem(PluginConfigKeys.effectSetsButtonBadgeSpan, pluginConfig.effectSetsButtonBadgeSpan)
         Elements.effectSetsButtonBadgeSpan().style.display = 'none'
         ipcRenderer.send(Channel.OPEN_EFFECT_SETS)
-    })
-    Elements.expiringItemsSettingsButton().onclick = async function() {
+    }
+    Elements.expiringItemsSettingsButton().onclick = function() {
+        const value = pluginRestorationHandler(Elements.expiringItemsSettingsButton())
+        if(value) {
+            return true
+        }
         localStorage.setItem(PluginConfigKeys.expiringItemsSettingsButtonBadgeSpan, pluginConfig.expiringItemsSettingsButtonBadgeSpan)
         Elements.expiringItemsSettingsButtonBadgeSpan().style.display = 'none'
         ipcRenderer.send(Channel.OPEN_EXPIRING_ITEMS_SETTINGS)
     }
-    Elements.gameSettingsButton().addEventListener('click', () => {
+    Elements.gameSettingsButton().onclick = function() {
+        const value = pluginRestorationHandler(Elements.gameSettingsButton())
+        if(value) {
+            return true
+        }
         localStorage.setItem(PluginConfigKeys.gameSettingsButtonBadgeSpan, pluginConfig.gameSettingsButtonBadgeSpan)
         Elements.gameSettingsButtonBadgeSpan().style.display = 'none'
         ipcRenderer.send(Channel.OPEN_GAME_SETTINGS)
-    })
+    }
     Elements.settingsButton().addEventListener('click', () => {
         localStorage.setItem(PluginConfigKeys.settingsButtonBadgeSpan, pluginConfig.settingsButtonBadgeSpan)
         Elements.settingsButtonBadgeSpan().style.display = 'none'
         ipcRenderer.send(Channel.OPEN_SETTINGS)
     })
     Elements.statsButton().onclick = function() {
+        const value = pluginRestorationHandler(Elements.statsButton())
+        if(value) {
+            return true
+        }
         localStorage.setItem(PluginConfigKeys.statsButtonBadgeSpan, pluginConfig.statsButtonBadgeSpan)
         Elements.statsButtonBadgeSpan().style.display = 'none'
         ipcRenderer.send(Channel.OPEN_STATS)
@@ -219,7 +321,31 @@ window.addEventListener('DOMContentLoaded', async() => {
     document.addEventListener('goUrl', (evt) => {
         ipcRenderer.send(Channel.GO_URL, (<CustomEvent>evt).detail)
     })
+
+    document.body.onclick = function(e) {
+        const target = e.target as HTMLElement
+        if(target.offsetParent != Elements.hideContextMenuDiv() && target.offsetParent != Elements.restoreContextMenuDiv()) {
+            currentContextMenuTarget = null
+            hideContextMenu()
+        }
+    }
 })
+
+function pluginRestorationHandler(plugin: HTMLButtonElement) {
+    const hiddenPluginIds = JSON.parse(localStorage.hiddenPlugins ?? '[]') as string[]
+    if(plugin.getAttribute('hiddenPlugin') == 'true') {
+        hiddenPluginIds.removeItem(plugin.id)
+        localStorage.hiddenPlugins = JSON.stringify(hiddenPluginIds)
+        plugin.removeAttribute('hiddenPlugin')
+        plugin.style.display = ''
+        plugin.style.border = ''
+        if(hiddenPluginIds.length == 0) {
+            restoreContextMenuOpened = false
+        }
+        return true
+    }
+    return false
+}
 
 async function isCurrentLinkFavourite(): Promise<boolean> {
     const urlString = (await ipcRenderer.invoke(Channel.GET_URL)) as string
@@ -550,3 +676,63 @@ channels.forEach((channel) => {
         ipcRenderer.send(channel)
     })
 })
+
+
+function setupContextMenuForHidePlugins(scope: HTMLElement, contextMenu: HTMLElement) {
+
+    const normalizePozition = (mouseX: number, mouseY: number) => {
+        let { left: scopeOffsetX, top: scopeOffsetY } = scope.getBoundingClientRect()
+
+        scopeOffsetX = scopeOffsetX < 0 ? 0 : scopeOffsetX
+        scopeOffsetY = scopeOffsetY < 0 ? 0 : scopeOffsetY
+
+        const scopeX = mouseX - scopeOffsetX
+        const scopeY = mouseY - scopeOffsetY
+        const outOfBoundsOnX = scopeX + contextMenu.clientWidth > scope.clientWidth
+
+        const outOfBoundsOnY = scopeY + contextMenu.clientHeight > scope.clientHeight
+
+        let normalizedX = mouseX
+        let normalizedY = mouseY
+
+        if(outOfBoundsOnX) {
+            normalizedX = scopeOffsetX + scope.clientWidth - contextMenu.clientWidth
+        }
+
+        if(outOfBoundsOnY) {
+            normalizedY = scopeOffsetY + scope.clientHeight
+        }
+
+        return { normalizedX, normalizedY }
+    }
+
+    scope.addEventListener('contextmenu', (event) => {
+        if(contextMenu == Elements.restoreContextMenuDiv()) {
+            const hiddenPluginIds = JSON.parse(localStorage.hiddenPlugins ?? '[]') as string[]
+            if(hiddenPluginIds.length == 0) {
+                hideContextMenu()
+                return
+            }
+            Elements.restorePluginsDiv().textContent = restoreContextMenuOpened ? 'Скрыть' : 'Восстановить'
+        }
+        if(scope.getAttribute('hiddenPlugin') == 'true') {
+            return
+        }
+        currentContextMenuTarget = scope
+        event.preventDefault()
+        const { clientX: mouseX, clientY: mouseY } = event
+        const { normalizedX, normalizedY } = normalizePozition(mouseX, mouseY)
+        hideContextMenu()
+        contextMenu.style.top = `${normalizedY}px`
+        contextMenu.style.left = `${normalizedX}px`
+
+        setTimeout(() => {
+            contextMenu.classList.add('visible')
+        })
+    })
+}
+
+function hideContextMenu() {
+    Elements.hideContextMenuDiv().classList.remove('visible')
+    Elements.restoreContextMenuDiv().classList.remove('visible')
+}
