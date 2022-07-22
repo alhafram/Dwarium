@@ -6,6 +6,8 @@ import { WindowType } from '../../Models/WindowModels'
 import FavouriteLinkService from '../../services/FavouriteLinksService'
 import sendNotification, { NotificationType } from '../../services/Notifications'
 import { Elements } from './Elements'
+import ua from 'universal-analytics'
+import { app } from '@electron/remote'
 
 enum PluginConfigKeys {
     foodButtonBadgeSpan = 'foodButtonBadgeSpan',
@@ -41,6 +43,21 @@ window.addEventListener('DOMContentLoaded', async() => {
     handleMode()
     await setupFavourite()
     const pluginConfig = await setupBadges()
+
+    let userId = ''
+    if(localStorage.userId) {
+        userId = localStorage.userId
+    } else {
+        userId = window.crypto.randomUUID()
+        localStorage.userId = userId
+    }
+    const visitor = ua('UA-217573092-2', userId, { cid: userId, uid: userId })
+    visitor.screenview({ av: app.getVersion(), an: 'Dwarium', cd: 'OpenDwarium' }, callback => {
+        console.log(callback)
+    })
+    visitor.event('Screen', 'Open', `Main_${app.getVersion()}`, callback => {
+        console.log(callback)
+    })
 
     Elements.mainTab().onclick = makeActive
     Elements.serverSwitcher().onchange = function() {
