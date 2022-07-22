@@ -59,7 +59,7 @@ window.addEventListener('DOMContentLoaded', async() => {
         Elements.gameSettingsButton(),
         Elements.statsButton()
     ]
-    pluginButtons.forEach(pluginButton => {
+    pluginButtons.forEach((pluginButton) => {
         setupContextMenuForHidePlugins(pluginButton, Elements.hideContextMenuDiv())
         const hiddenPluginIds = JSON.parse(localStorage.hiddenPlugins ?? '[]') as string[]
         if(hiddenPluginIds.includes(pluginButton.id)) {
@@ -85,15 +85,15 @@ window.addEventListener('DOMContentLoaded', async() => {
             hideContextMenu()
             return
         }
-        const hiddenPlugins = pluginButtons.filter(pluginButton => hiddenPluginIds.includes(pluginButton.id))
+        const hiddenPlugins = pluginButtons.filter((pluginButton) => hiddenPluginIds.includes(pluginButton.id))
         if(!restoreContextMenuOpened) {
-            hiddenPlugins.forEach(plugin => {
+            hiddenPlugins.forEach((plugin) => {
                 plugin.style.display = ''
                 plugin.style.border = '2px dashed red'
                 plugin.setAttribute('hiddenPlugin', 'true')
             })
         } else {
-            hiddenPlugins.forEach(plugin => {
+            hiddenPlugins.forEach((plugin) => {
                 plugin.style.display = 'none'
                 plugin.style.border = ''
             })
@@ -677,9 +677,7 @@ channels.forEach((channel) => {
     })
 })
 
-
 function setupContextMenuForHidePlugins(scope: HTMLElement, contextMenu: HTMLElement) {
-
     const normalizePozition = (mouseX: number, mouseY: number) => {
         let { left: scopeOffsetX, top: scopeOffsetY } = scope.getBoundingClientRect()
 
