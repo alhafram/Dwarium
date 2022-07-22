@@ -63,6 +63,9 @@ export const Elements = {
     newLootSystemInput(): HTMLInputElement {
         return document.getElementById('newLootSystemInput') as HTMLInputElement
     },
+    hideSatietyInput(): HTMLInputElement {
+        return document.getElementById('hideSatietyInput') as HTMLInputElement
+    },
     hideAttackedMessageInput(): HTMLInputElement {
         return document.getElementById('hideAttackedMessageInput') as HTMLInputElement
     },

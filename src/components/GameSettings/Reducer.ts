@@ -5,7 +5,7 @@ import { GameSettingsWindowActions } from './Actions'
 import { Elements } from './Elements'
 import { GameSettingsWindowState } from './GameSettingsWindowState'
 
-export default function reduce(state: GameSettingsWindowState, action: GameSettingsWindowActions, data: unknown): GameSettingsWindowState {
+export default function reduce(state: GameSettingsWindowState, action: GameSettingsWindowActions): GameSettingsWindowState {
     switch (action) {
         case GameSettingsWindowActions.LOAD_SETTINGS: {
             return state

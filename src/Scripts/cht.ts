@@ -826,7 +826,7 @@ function attachMessageToChat(opt, msg_dom, msg) {
 				return
 			}
 			if(!msg.user_id && (msg.msg_text.includes('Вами получено') || msg.msg_text.includes('Вы получили') || msg.msg_text.includes('Получено:')) || (msg.msg_text.startsWith('<a class="artifact_info') && msg.msg_text.endsWith('шт</b>')) || msg.msg_text.includes('Благодаря магическим эффектам')) {
-				if(msg.msg_text.includes('Сытость')) {
+				if(top?.document.chatFlags?.hideSatiety && msg.msg_text.includes('Сытость')) {
 					return
 				}
 				lastFightMessages.push(msg)

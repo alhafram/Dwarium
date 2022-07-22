@@ -1,132 +1,121 @@
-import { ipcRenderer, shell } from 'electron'
+import { ipcRenderer } from 'electron'
 import ConfigService from '../../services/ConfigService'
 import { Channel } from '../../Models/Channel'
 import Utils from '../Common/Utils'
 import { WindowType } from '../../Models/WindowModels'
 import FavouriteLinkService from '../../services/FavouriteLinksService'
 import sendNotification, { NotificationType } from '../../services/Notifications'
+import { Elements } from './Elements'
+import ua from 'universal-analytics'
+import { app } from '@electron/remote'
 
-const Elements = {
-    serverSwitcher(): HTMLInputElement {
-        return document.getElementById('serverSwitcher') as HTMLInputElement
-    },
-    serverName(): HTMLSpanElement {
-        return document.getElementById('serverName') as HTMLSpanElement
-    },
-    backButton(): HTMLButtonElement {
-        return document.getElementById('backButton') as HTMLButtonElement
-    },
-    forwardButton(): HTMLButtonElement {
-        return document.getElementById('forwardButton') as HTMLButtonElement
-    },
-    backButtonSvg(): HTMLButtonElement {
-        return document.getElementById('backButtonSvg') as HTMLButtonElement
-    },
-    forwardButtonSvg(): HTMLButtonElement {
-        return document.getElementById('forwardButtonSvg') as HTMLButtonElement
-    },
-    reloadButton(): HTMLButtonElement {
-        return document.getElementById('reloadButton') as HTMLButtonElement
-    },
-    urlInput(): HTMLInputElement {
-        return document.getElementById('urlInput') as HTMLInputElement
-    },
-    favouriteButton(): HTMLButtonElement {
-        return document.getElementById('favouriteButton') as HTMLButtonElement
-    },
-    nicknameInput(): HTMLInputElement {
-        return document.getElementById('nicknameInput') as HTMLInputElement
-    },
-    userTagButton(): HTMLButtonElement {
-        return document.getElementById('userTagButton') as HTMLButtonElement
-    },
-    userInfoButton(): HTMLButtonElement {
-        return document.getElementById('userInfoButton') as HTMLButtonElement
-    },
-    findEffectsBox(): HTMLButtonElement {
-        return document.getElementById('userEffectsButton') as HTMLButtonElement
-    },
-    foodButton(): HTMLButtonElement {
-        return document.getElementById('foodButton') as HTMLButtonElement
-    },
-    screenshotButton(): HTMLButtonElement {
-        return document.getElementById('screenshotButton') as HTMLButtonElement
-    },
-    notesButton(): HTMLButtonElement {
-        return document.getElementById('notesButton') as HTMLButtonElement
-    },
-    dressingSetsButton(): HTMLButtonElement {
-        return document.getElementById('dressingSetsButton') as HTMLButtonElement
-    },
-    beltSetsButton(): HTMLButtonElement {
-        return document.getElementById('beltSetsButton') as HTMLButtonElement
-    },
-    chatLogButton(): HTMLButtonElement {
-        return document.getElementById('chatLogButton') as HTMLButtonElement
-    },
-    settingsButton(): HTMLButtonElement {
-        return document.getElementById('settingsButton') as HTMLButtonElement
-    },
-    chatSettingsButton(): HTMLButtonElement {
-        return document.getElementById('chatSettingsButton') as HTMLButtonElement
-    },
-    notificationsButton(): HTMLButtonElement {
-        return document.getElementById('notificationsButton') as HTMLButtonElement
-    },
-    effectSetsButton(): HTMLButtonElement {
-        return document.getElementById('effectSetsButton') as HTMLButtonElement
-    },
-    updateApplicationButton(): HTMLButtonElement {
-        return document.getElementById('updateApplicationButton') as HTMLButtonElement
-    },
-    modeSwitcherButton(): HTMLButtonElement {
-        return document.getElementById('modeSwitcherButton') as HTMLButtonElement
-    },
-    mainTab(): HTMLButtonElement {
-        return document.getElementById('main') as HTMLButtonElement
-    },
-    addTabButton(): HTMLButtonElement {
-        return document.getElementById('addTabButton') as HTMLButtonElement
-    },
-    tabsDiv(): HTMLDivElement {
-        return document.getElementById('tabsDiv') as HTMLDivElement
-    },
-    darkModeImage(): HTMLElement {
-        return document.getElementById('dark') as HTMLElement
-    },
-    lightModeImage(): HTMLElement {
-        return document.getElementById('light') as HTMLElement
-    },
-    favouriteListButton(): HTMLButtonElement {
-        return document.getElementById('favouriteListButton') as HTMLButtonElement
-    },
-    favouriteButtonImage(): HTMLElement {
-        return document.getElementById('favouriteButtonImage') as HTMLElement
-    },
-    expiringItemsSettingsButton(): HTMLButtonElement {
-        return document.getElementById('expiringItemsSettingsButton') as HTMLButtonElement
-    },
-    expiringItemsSettingsSvg(): HTMLElement {
-        return document.getElementById('expiringItemsSettingsSvg') as HTMLElement
-    },
-    gameSettingsButton(): HTMLButtonElement {
-        return document.getElementById('gameSettingsButton') as HTMLButtonElement
-    },
-    statsButton(): HTMLButtonElement {
-        return document.getElementById('statsButton') as HTMLButtonElement
-    },
-    quizButton(): HTMLButtonElement {
-        return document.getElementById('quizButton') as HTMLButtonElement
-    },
-    quizButtonBadgeSpan(): HTMLSpanElement {
-        return document.getElementById('quizButtonBadgeSpan') as HTMLSpanElement
-    }
+enum PluginConfigKeys {
+    foodButtonBadgeSpan = 'foodButtonBadgeSpan',
+    notesButtonBadgeSpan = 'notesButtonBadgeSpan',
+    dressingSetsButtonBadgeSpan = 'dressingSetsButtonBadgeSpan',
+    beltSetsButtonButtonBadgeSpan = 'beltSetsButtonButtonBadgeSpan',
+    chatLogButtonBadgeSpan = 'chatLogButtonBadgeSpan',
+    chatSettingsButtonBadgeSpan = 'chatSettingsButtonBadgeSpan',
+    notificationsButtonBadgeSpan = 'notificationsButtonBadgeSpan',
+    effectSetsButtonBadgeSpan = 'effectSetsButtonBadgeSpan',
+    expiringItemsSettingsButtonBadgeSpan = 'expiringItemsSettingsButtonBadgeSpan',
+    gameSettingsButtonBadgeSpan = 'gameSettingsButtonBadgeSpan',
+    settingsButtonBadgeSpan = 'settingsButtonBadgeSpan',
+    statsButtonBadgeSpan = 'statsButtonBadgeSpan'
 }
 
+type PluginConfig = {
+    foodButtonBadgeSpan: ''
+    notesButtonBadgeSpan: ''
+    dressingSetsButtonBadgeSpan: ''
+    beltSetsButtonButtonBadgeSpan: ''
+    chatLogButtonBadgeSpan: ''
+    chatSettingsButtonBadgeSpan: ''
+    notificationsButtonBadgeSpan: ''
+    effectSetsButtonBadgeSpan: ''
+    expiringItemsSettingsButtonBadgeSpan: ''
+    gameSettingsButtonBadgeSpan: ''
+    settingsButtonBadgeSpan: ''
+    statsButtonBadgeSpan: ''
+}
+
+let restoreContextMenuOpened = false
+let currentContextMenuTarget: HTMLElement | null
 window.addEventListener('DOMContentLoaded', async() => {
     handleMode()
     await setupFavourite()
-    Elements.quizButtonBadgeSpan().style.display = localStorage.getItem('quizTapped') == 'true' ? 'none' : 'absolute'
+    const pluginConfig = await setupBadges()
+
+    const pluginButtons = [
+        Elements.foodButton(),
+        Elements.notesButton(),
+        Elements.dressingSetsButton(),
+        Elements.beltSetsButton(),
+        Elements.chatLogButton(),
+        Elements.chatSettingsButton(),
+        Elements.notificationsButton(),
+        Elements.effectSetsButton(),
+        Elements.expiringItemsSettingsButton(),
+        Elements.gameSettingsButton(),
+        Elements.statsButton()
+    ]
+    pluginButtons.forEach((pluginButton) => {
+        setupContextMenuForHidePlugins(pluginButton, Elements.hideContextMenuDiv())
+        const hiddenPluginIds = JSON.parse(localStorage.hiddenPlugins ?? '[]') as string[]
+        if(hiddenPluginIds.includes(pluginButton.id)) {
+            pluginButton.setAttribute('hiddenPlugin', 'true')
+            pluginButton.style.display = 'none'
+        }
+    })
+    setupContextMenuForHidePlugins(Elements.settingsButton(), Elements.restoreContextMenuDiv())
+
+    Elements.hidePluginDiv().onclick = function() {
+        hideContextMenu()
+        if(currentContextMenuTarget) {
+            const hiddenPluginIds = JSON.parse(localStorage.hiddenPlugins ?? '[]') as string[]
+            hiddenPluginIds.push(currentContextMenuTarget.id)
+            localStorage.hiddenPlugins = JSON.stringify(Array.from(new Set(hiddenPluginIds)))
+            currentContextMenuTarget.style.display = 'none'
+        }
+    }
+
+    Elements.restorePluginsDiv().onclick = function() {
+        const hiddenPluginIds = JSON.parse(localStorage.hiddenPlugins ?? '[]') as string[]
+        if(hiddenPluginIds.length == 0) {
+            hideContextMenu()
+            return
+        }
+        const hiddenPlugins = pluginButtons.filter((pluginButton) => hiddenPluginIds.includes(pluginButton.id))
+        if(!restoreContextMenuOpened) {
+            hiddenPlugins.forEach((plugin) => {
+                plugin.style.display = ''
+                plugin.style.border = '2px dashed red'
+                plugin.setAttribute('hiddenPlugin', 'true')
+            })
+        } else {
+            hiddenPlugins.forEach((plugin) => {
+                plugin.style.display = 'none'
+                plugin.style.border = ''
+            })
+        }
+        hideContextMenu()
+        restoreContextMenuOpened = !restoreContextMenuOpened
+    }
+
+    let userId = ''
+    if(localStorage.userId) {
+        userId = localStorage.userId
+    } else {
+        userId = window.crypto.randomUUID()
+        localStorage.userId = userId
+    }
+    const visitor = ua('UA-217573092-2', userId, { cid: userId, uid: userId })
+    visitor.screenview({ av: app.getVersion(), an: 'Dwarium', cd: 'OpenDwarium' }, (callback) => {
+        console.log(callback)
+    })
+    visitor.event('Screen', 'Open', `Main_${app.getVersion()}`, (callback) => {
+        console.log(callback)
+    })
 
     Elements.mainTab().onclick = makeActive
     Elements.serverSwitcher().onchange = function() {
@@ -147,30 +136,112 @@ window.addEventListener('DOMContentLoaded', async() => {
     Elements.forwardButton().addEventListener('click', () => {
         ipcRenderer.send(Channel.FORWARD)
     })
-    Elements.dressingSetsButton().addEventListener('click', () => {
+    // Plugins
+    Elements.foodButton().onclick = function() {
+        const value = pluginRestorationHandler(Elements.foodButton())
+        if(value) {
+            return true
+        }
+        localStorage.setItem(PluginConfigKeys.foodButtonBadgeSpan, pluginConfig.foodButtonBadgeSpan)
+        Elements.foodButtonBadgeSpan().style.display = 'none'
+        ipcRenderer.send(Channel.OPEN_FOOD)
+    }
+    Elements.notesButton().onclick = function() {
+        const value = pluginRestorationHandler(Elements.notesButton())
+        if(value) {
+            return true
+        }
+        localStorage.setItem(PluginConfigKeys.notesButtonBadgeSpan, pluginConfig.notesButtonBadgeSpan)
+        Elements.notesButtonBadgeSpan().style.display = 'none'
+        ipcRenderer.send(Channel.OPEN_NOTES)
+    }
+    Elements.dressingSetsButton().onclick = function() {
+        const value = pluginRestorationHandler(Elements.dressingSetsButton())
+        if(value) {
+            return true
+        }
+        localStorage.setItem(PluginConfigKeys.dressingSetsButtonBadgeSpan, pluginConfig.dressingSetsButtonBadgeSpan)
+        Elements.dressingSetsButtonBadgeSpan().style.display = 'none'
         ipcRenderer.send(Channel.OPEN_DRESSING_ROOM)
-    })
-    Elements.beltSetsButton().addEventListener('click', () => {
+    }
+    Elements.beltSetsButton().onclick = function() {
+        const value = pluginRestorationHandler(Elements.beltSetsButton())
+        if(value) {
+            return true
+        }
+        localStorage.setItem(PluginConfigKeys.beltSetsButtonButtonBadgeSpan, pluginConfig.beltSetsButtonButtonBadgeSpan)
+        Elements.beltSetsButtonButtonBadgeSpan().style.display = 'none'
         ipcRenderer.send(Channel.OPEN_BELT_POTION_ROOM)
-    })
-    Elements.chatLogButton().addEventListener('click', () => {
+    }
+    Elements.chatLogButton().onclick = function() {
+        const value = pluginRestorationHandler(Elements.chatLogButton())
+        if(value) {
+            return true
+        }
+        localStorage.setItem(PluginConfigKeys.chatLogButtonBadgeSpan, pluginConfig.chatLogButtonBadgeSpan)
+        Elements.chatLogButtonBadgeSpan().style.display = 'none'
         ipcRenderer.send(Channel.OPEN_CHAT_LOG)
-    })
-    Elements.chatSettingsButton().addEventListener('click', () => {
+    }
+    Elements.chatSettingsButton().onclick = function() {
+        const value = pluginRestorationHandler(Elements.chatSettingsButton())
+        if(value) {
+            return true
+        }
+        localStorage.setItem(PluginConfigKeys.chatSettingsButtonBadgeSpan, pluginConfig.chatSettingsButtonBadgeSpan)
+        Elements.chatSettingsButtonBadgeSpan().style.display = 'none'
         ipcRenderer.send(Channel.OPEN_CHAT_SETTINGS)
-    })
+    }
+    Elements.notificationsButton().onclick = function() {
+        const value = pluginRestorationHandler(Elements.notificationsButton())
+        if(value) {
+            return true
+        }
+        localStorage.setItem(PluginConfigKeys.notificationsButtonBadgeSpan, pluginConfig.notificationsButtonBadgeSpan)
+        Elements.notificationsButtonBadgeSpan().style.display = 'none'
+        ipcRenderer.send(Channel.OPEN_NOTIFICATIONS)
+    }
+    Elements.effectSetsButton().onclick = function() {
+        const value = pluginRestorationHandler(Elements.effectSetsButton())
+        if(value) {
+            return true
+        }
+        localStorage.setItem(PluginConfigKeys.effectSetsButtonBadgeSpan, pluginConfig.effectSetsButtonBadgeSpan)
+        Elements.effectSetsButtonBadgeSpan().style.display = 'none'
+        ipcRenderer.send(Channel.OPEN_EFFECT_SETS)
+    }
+    Elements.expiringItemsSettingsButton().onclick = function() {
+        const value = pluginRestorationHandler(Elements.expiringItemsSettingsButton())
+        if(value) {
+            return true
+        }
+        localStorage.setItem(PluginConfigKeys.expiringItemsSettingsButtonBadgeSpan, pluginConfig.expiringItemsSettingsButtonBadgeSpan)
+        Elements.expiringItemsSettingsButtonBadgeSpan().style.display = 'none'
+        ipcRenderer.send(Channel.OPEN_EXPIRING_ITEMS_SETTINGS)
+    }
+    Elements.gameSettingsButton().onclick = function() {
+        const value = pluginRestorationHandler(Elements.gameSettingsButton())
+        if(value) {
+            return true
+        }
+        localStorage.setItem(PluginConfigKeys.gameSettingsButtonBadgeSpan, pluginConfig.gameSettingsButtonBadgeSpan)
+        Elements.gameSettingsButtonBadgeSpan().style.display = 'none'
+        ipcRenderer.send(Channel.OPEN_GAME_SETTINGS)
+    }
     Elements.settingsButton().addEventListener('click', () => {
+        localStorage.setItem(PluginConfigKeys.settingsButtonBadgeSpan, pluginConfig.settingsButtonBadgeSpan)
+        Elements.settingsButtonBadgeSpan().style.display = 'none'
         ipcRenderer.send(Channel.OPEN_SETTINGS)
     })
-    Elements.notificationsButton().addEventListener('click', () => {
-        ipcRenderer.send(Channel.OPEN_NOTIFICATIONS)
-    })
-    Elements.effectSetsButton().addEventListener('click', () => {
-        ipcRenderer.send(Channel.OPEN_EFFECT_SETS)
-    })
-    Elements.gameSettingsButton().addEventListener('click', () => {
-        ipcRenderer.send(Channel.OPEN_GAME_SETTINGS)
-    })
+    Elements.statsButton().onclick = function() {
+        const value = pluginRestorationHandler(Elements.statsButton())
+        if(value) {
+            return true
+        }
+        localStorage.setItem(PluginConfigKeys.statsButtonBadgeSpan, pluginConfig.statsButtonBadgeSpan)
+        Elements.statsButtonBadgeSpan().style.display = 'none'
+        ipcRenderer.send(Channel.OPEN_STATS)
+    }
+    ///
     Elements.urlInput().addEventListener('keyup', (e: KeyboardEvent) => {
         if(e.key == 'Enter') {
             ipcRenderer.send(Channel.GO_URL, Elements.urlInput().value)
@@ -220,15 +291,6 @@ window.addEventListener('DOMContentLoaded', async() => {
             }
         }
     }
-    Elements.notesButton().onclick = function() {
-        ipcRenderer.send(Channel.OPEN_NOTES)
-    }
-    Elements.screenshotButton().onclick = function() {
-        ipcRenderer.send(Channel.MAKE_SCREENSHOT)
-    }
-    Elements.foodButton().onclick = function() {
-        ipcRenderer.send(Channel.OPEN_FOOD)
-    }
     Elements.modeSwitcherButton().onclick = function() {
         if(localStorage.darkMode == 'true') {
             localStorage.darkMode = false
@@ -246,11 +308,7 @@ window.addEventListener('DOMContentLoaded', async() => {
         ipcRenderer.send(Channel.FAVOURITE_LIST)
     }
     Elements.favouriteButton().onclick = async function() {
-        const isFavourite = await isCurrentLinkFavourite()
-        saveFavouriteLink(isFavourite)
-    }
-    Elements.expiringItemsSettingsButton().onclick = async function() {
-        ipcRenderer.send(Channel.OPEN_EXPIRING_ITEMS_SETTINGS)
+        saveFavouriteLink()
     }
 
     document.addEventListener('make_active', (evt) => {
@@ -263,14 +321,31 @@ window.addEventListener('DOMContentLoaded', async() => {
     document.addEventListener('goUrl', (evt) => {
         ipcRenderer.send(Channel.GO_URL, (<CustomEvent>evt).detail)
     })
-    Elements.statsButton().onclick = function() {
-        ipcRenderer.send(Channel.OPEN_STATS)
-    }
-    Elements.quizButton().onclick = function() {
-        shell.openExternal('https://forms.gle/Csr838uWyw8W6J8HA')
-        localStorage.setItem('quizTapped', 'true')
+
+    document.body.onclick = function(e) {
+        const target = e.target as HTMLElement
+        if(target.offsetParent != Elements.hideContextMenuDiv() && target.offsetParent != Elements.restoreContextMenuDiv()) {
+            currentContextMenuTarget = null
+            hideContextMenu()
+        }
     }
 })
+
+function pluginRestorationHandler(plugin: HTMLButtonElement) {
+    const hiddenPluginIds = JSON.parse(localStorage.hiddenPlugins ?? '[]') as string[]
+    if(plugin.getAttribute('hiddenPlugin') == 'true') {
+        hiddenPluginIds.removeItem(plugin.id)
+        localStorage.hiddenPlugins = JSON.stringify(hiddenPluginIds)
+        plugin.removeAttribute('hiddenPlugin')
+        plugin.style.display = ''
+        plugin.style.border = ''
+        if(hiddenPluginIds.length == 0) {
+            restoreContextMenuOpened = false
+        }
+        return true
+    }
+    return false
+}
 
 async function isCurrentLinkFavourite(): Promise<boolean> {
     const urlString = (await ipcRenderer.invoke(Channel.GET_URL)) as string
@@ -281,7 +356,7 @@ async function isCurrentLinkFavourite(): Promise<boolean> {
     return FavouriteLinkService.isFavouriteLink(url)
 }
 
-async function saveFavouriteLink(value: boolean | null) {
+async function saveFavouriteLink() {
     const urlString = (await ipcRenderer.invoke(Channel.GET_URL)) as string
     if(urlString.length == 0) {
         return false
@@ -300,6 +375,19 @@ async function setupFavourite() {
     } else {
         Elements.favouriteButtonImage().classList.replace('favouriteButtonSelected', 'favouriteButtonDefault')
     }
+}
+
+async function setupBadges(): Promise<PluginConfig> {
+    const pluginConfig = (await fetch('https://raw.githubusercontent.com/alhafram/DwariumData/main/PluginHashes.json').then((data) => data.json())) as PluginConfig
+    const keys = Object.keys(pluginConfig)
+    for(const key of keys) {
+        const element = eval(`Elements_1.Elements.${key}()`) as HTMLElement
+        const value = localStorage.getItem(key)
+        if(value == Object(pluginConfig)[key]) {
+            element.style.display = 'none'
+        }
+    }
+    return pluginConfig
 }
 
 function handleMode() {
@@ -534,8 +622,6 @@ function getElementIdBy(type: WindowType): HTMLElement | undefined {
     switch (type) {
         case WindowType.FOOD:
             return Elements.foodButton()
-        case WindowType.SCREENSHOT:
-            return Elements.screenshotButton()
         case WindowType.NOTES:
             return Elements.notesButton()
         case WindowType.DRESSING_ROOM:
@@ -590,3 +676,61 @@ channels.forEach((channel) => {
         ipcRenderer.send(channel)
     })
 })
+
+function setupContextMenuForHidePlugins(scope: HTMLElement, contextMenu: HTMLElement) {
+    const normalizePozition = (mouseX: number, mouseY: number) => {
+        let { left: scopeOffsetX, top: scopeOffsetY } = scope.getBoundingClientRect()
+
+        scopeOffsetX = scopeOffsetX < 0 ? 0 : scopeOffsetX
+        scopeOffsetY = scopeOffsetY < 0 ? 0 : scopeOffsetY
+
+        const scopeX = mouseX - scopeOffsetX
+        const scopeY = mouseY - scopeOffsetY
+        const outOfBoundsOnX = scopeX + contextMenu.clientWidth > scope.clientWidth
+
+        const outOfBoundsOnY = scopeY + contextMenu.clientHeight > scope.clientHeight
+
+        let normalizedX = mouseX
+        let normalizedY = mouseY
+
+        if(outOfBoundsOnX) {
+            normalizedX = scopeOffsetX + scope.clientWidth - contextMenu.clientWidth
+        }
+
+        if(outOfBoundsOnY) {
+            normalizedY = scopeOffsetY + scope.clientHeight
+        }
+
+        return { normalizedX, normalizedY }
+    }
+
+    scope.addEventListener('contextmenu', (event) => {
+        if(contextMenu == Elements.restoreContextMenuDiv()) {
+            const hiddenPluginIds = JSON.parse(localStorage.hiddenPlugins ?? '[]') as string[]
+            if(hiddenPluginIds.length == 0) {
+                hideContextMenu()
+                return
+            }
+            Elements.restorePluginsDiv().textContent = restoreContextMenuOpened ? 'Скрыть' : 'Восстановить'
+        }
+        if(scope.getAttribute('hiddenPlugin') == 'true') {
+            return
+        }
+        currentContextMenuTarget = scope
+        event.preventDefault()
+        const { clientX: mouseX, clientY: mouseY } = event
+        const { normalizedX, normalizedY } = normalizePozition(mouseX, mouseY)
+        hideContextMenu()
+        contextMenu.style.top = `${normalizedY}px`
+        contextMenu.style.left = `${normalizedX}px`
+
+        setTimeout(() => {
+            contextMenu.classList.add('visible')
+        })
+    })
+}
+
+function hideContextMenu() {
+    Elements.hideContextMenuDiv().classList.remove('visible')
+    Elements.restoreContextMenuDiv().classList.remove('visible')
+}

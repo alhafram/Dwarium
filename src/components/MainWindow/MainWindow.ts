@@ -198,7 +198,8 @@ export default class MainWindowContainer {
     }
 
     setupOpenHandler(window: BrowserWindow) {
-        window.webContents.setWindowOpenHandler(({ url, features }) => {
+        window.webContents.setWindowOpenHandler(({ url, features, referrer }) => {
+            const myGamesUrl = 'https://account.my.games/'
             const windowPosition = this.getPositionFor(url)
             const defaultPosition = this.parseFeatures(features)
 
@@ -210,7 +211,7 @@ export default class MainWindowContainer {
                 parent: ConfigService.getSettings().windowsAboveApp ? this.mainWindow : undefined,
                 fullscreen: false,
                 webPreferences: {
-                    webSecurity: true
+                    webSecurity: referrer.url == myGamesUrl
                 }
             })
             newWindow.on('focus', () => {

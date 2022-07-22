@@ -1,6 +1,6 @@
 {
     "name": "Dwarium",
-    "version": "3.2.1",
+    "version": "3.2.2",
     "description": "",
     "main": "out/main.js",
     "scripts": {
@@ -26,6 +26,7 @@
     "license": "ISC",
     "devDependencies": {
         "@types/jquery": "^3.5.13",
+        "@types/universal-analytics": "^0.4.5",
         "@typescript-eslint/eslint-plugin": "^5.11.0",
         "@typescript-eslint/parser": "^5.11.0",
         "autoprefixer": "^10.4.2",
@@ -44,6 +45,7 @@
         "electron-context-menu": "^3.1.1",
         "electron-reload": "^2.0.0-alpha.1",
         "electron-updater": "^4.6.1",
+        "universal-analytics": "^0.5.3",
         "v8-compile-cache": "^2.3.0"
     },
     "build": {
