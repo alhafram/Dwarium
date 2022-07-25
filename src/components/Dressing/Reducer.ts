@@ -69,7 +69,7 @@ export default async function reduce(state: DressingWindowState, action: Dressin
             }
             const userId = (await Utils.getUserId()) as number
             if(!userId) {
-                alert('Не найден user id пользователя, попробуйте авторизоваться и заново открыть автопоедалку!')
+                alert('Не найден user id пользователя, попробуйте авторизоваться и заново открыть переодевалку!')
                 return state
             }
             const userConfig = Utils.getUserConfig(userId)
@@ -129,12 +129,18 @@ export default async function reduce(state: DressingWindowState, action: Dressin
             }
             const type = getType(equipedItem.kind_id)
             switch (type) {
-                case InventoryItemType.ARCAT:
+                case InventoryItemType.ARCAT: {
+                    const powerArcatTypeIds = ['153', '154', '155'] // 153 - мощь, 154 - вамп, 155 - кровь
+                    if(arcats.find(arcat => powerArcatTypeIds.includes(arcat.type_id)) && powerArcatTypeIds.includes(equipedItem.type_id)) {
+                        alert('Кажется, вы хотите надеть 2 боевых арката')
+                        return state
+                    }
                     if(arcats.length >= state.arcatsCount) {
                         currentEquipedItems = currentEquipedItems.removeItem(arcats.pop()!)
                     }
                     arcats.push(equipedItem)
                     break
+                }
                 case InventoryItemType.RING:
                     if(rings.length >= 2) {
                         currentEquipedItems = currentEquipedItems.removeItem(rings.pop()!)

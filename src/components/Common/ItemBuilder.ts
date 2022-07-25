@@ -33,7 +33,6 @@ function convertItemIntoDiv(item: InventoryItem, xmlFoodItem: Element | undefine
             item.enchant_icon = item.enchant_icon.replaceAll("/images/", `${ConfigService.getSettings().baseUrl}/images/`)
         }
         itemDiv.appendChild(document.createElementFromString(item.enchant_icon))
-        console.log(item.enchant_icon)
     }
     if(item.kind_id == '12') {
         itemDiv.setAttribute('weapon', '2h')
