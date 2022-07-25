@@ -725,7 +725,7 @@ function chatReceiveMessage(msg) {
 var lastFightMessages: string[] = []
 var lastFightMessageIds: Number[] = []
 var lastFightTimeout: TimerHandler | null
-var lastFightTimeoutRunning = false
+var fightStarted = false
 
 function attachMessageToChat(opt, msg_dom, msg) {
 	const attackMessage = 'Вы совершили нападение на'
@@ -733,8 +733,11 @@ function attachMessageToChat(opt, msg_dom, msg) {
 		return
 	}
 	const fightStartedMessage = 'Начался бой'
-	if(top?.document.chatFlags?.hideFightStartedMessage == true && msg.msg_text.includes(fightStartedMessage) && msg.channel == 2 && !msg.user_id) {
-		return
+	if(msg.msg_text.includes(fightStartedMessage) && msg.channel == 2 && !msg.user_id) {
+		fightStarted = true
+		if(top?.document.chatFlags?.hideFightStartedMessage == true) {
+			return
+		}
 	}
 	const giftPetMessage = 'вручил персонажу'
 	if(top?.document.chatFlags?.hideGiftPetMessage == true && msg.msg_text.includes(giftPetMessage) && msg.channel == 1 && !msg.user_id) {
@@ -816,16 +819,22 @@ function attachMessageToChat(opt, msg_dom, msg) {
 		return
 	}
 	const endFightMessage = 'Окончен бой'
-	const isNotParty = top[1].document.getElementsByClassName('party hid').length == 1
-	if(top?.document.chatFlags?.newLootSystem && isNotParty && !msg.user_id) {
-		if(msg.msg_text.startsWith('<a href="#" onClick="userPrvTag(')) {
+	if(top?.document.chatFlags?.newLootSystem && !msg.user_id && fightStarted) {
+		if(msg.msg_text.startsWith('<a href="#" onClick="userPrvTag(') || msg.msg_text.includes('Вашей группой найдено:')) {
 			return
 		}
-		if(!msg.msg_text.includes(endFightMessage) && lastFightTimeoutRunning) {
+		if(!msg.msg_text.includes(endFightMessage)) {
 			if(lastFightMessageIds.includes(msg.id)) {
 				return
 			}
-			if(!msg.user_id && (msg.msg_text.includes('Вами получено') || msg.msg_text.includes('Вы получили') || msg.msg_text.includes('Получено:')) || (msg.msg_text.startsWith('<a class="artifact_info') && msg.msg_text.endsWith('шт</b>')) || msg.msg_text.includes('Благодаря магическим эффектам')) {
+			const dropMessages = ['Вами получено', 'Вы получили', 'Получено:', 'Благодаря магическим эффектам', 'Вашей группой получено']
+			let neededMessage = false
+			dropMessages.forEach(message => {
+				if(msg.msg_text.includes(message)) {
+					neededMessage = true
+				}
+			})
+			if(!msg.user_id && neededMessage || (msg.msg_text.startsWith('<a class="artifact_info') && msg.msg_text.endsWith('шт</b>'))) {
 				if(top?.document.chatFlags?.hideSatiety && msg.msg_text.includes('Сытость')) {
 					return
 				}
@@ -834,8 +843,7 @@ function attachMessageToChat(opt, msg_dom, msg) {
 				return
 			}
 		}
-		if(msg.msg_text.includes(endFightMessage) && !lastFightTimeoutRunning) {
-			lastFightTimeoutRunning = true
+		if(msg.msg_text.includes(endFightMessage)) {
 			lastFightTimeout = setTimeout(() => {
 				if(lastFightMessages.length == 0) {
 					clearLastFightInfo()
@@ -851,12 +859,19 @@ function attachMessageToChat(opt, msg_dom, msg) {
 				})
 				lastFightMessages = removeItems(lastFightMessages, moneyMessages)
 				lastFightMessages = moneyMessages.concat(lastFightMessages)
+				const energyMessage = lastFightMessages.find(message => message.msg_text.includes('энергии'))
+				if(energyMessage) {
+					lastFightMessages = removeItems(lastFightMessages, [energyMessage])
+					lastFightMessages.splice(1, 0, energyMessage)
+				}
 				for(var lastFightMessage of lastFightMessages) {
 					if(lastFightMessage.msg_text.includes('Вы получили') && lastFightMessage.msg_text.includes('энергии')) {
 						lastFightMessage.msg_text = '<span>' + lastFightMessage.msg_text.replace(/\D/g, '') + ' <img src="images/work.gif" width="7" height="8"></span>'
 					}
 					lastFightMessage.msg_text = lastFightMessage.msg_text.replace('Получено:', '').replace('<STRONG>Получено:</STRONG>', '')
+					lastFightMessage.msg_text = lastFightMessage.msg_text.replace('Вашей группой получено', '').replace('Вашей группой получено ', '')
 					lastFightMessage.msg_text = lastFightMessage.msg_text.replace('Вами получено:', '').replace('Вами получено', '')
+					lastFightMessage.msg_text = lastFightMessage.msg_text.replace('Вы получили вещи ', '').replace('Вы получили вещи', '')
 					lastFightMessage.msg_text = lastFightMessage.msg_text.replace('Вы получили: ', '').replace('(сумма уменьшена из-за разницы в уровне с монстром)', '')
 					if(lastFightMessage.msg_text.includes('Благодаря магическим эффектам, вы сумели обогатиться еще на')) {
 						lastFightMessage.msg_text = lastFightMessage.msg_text.replace('Благодаря магическим эффектам, вы сумели обогатиться еще на', '( + ') + ' )'
@@ -882,6 +897,9 @@ function attachMessageToChat(opt, msg_dom, msg) {
 				const domMessage = chatFormatMessage(res)
 				
 				for (var i in chatOpts) {
+					if(i != 'fight') {
+						continue
+					}
 					var opt = chatOpts[i];
 					for (var k in chatDependent) {
 						if (opt.channel & k) {
@@ -903,9 +921,9 @@ function attachMessageToChat(opt, msg_dom, msg) {
 }
 
 function clearLastFightInfo() {
-	lastFightTimeoutRunning = false
 	lastFightMessages = []
 	lastFightMessageIds = []
+	fightStarted = false
 }
 
 var scrollLock = false;
