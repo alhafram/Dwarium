@@ -455,7 +455,7 @@ ipcMain.on(Channel.OPEN_EXPIRING_ITEMS_SETTINGS, () => {
         return
     }
     expiringItemsSettings = createWindowAndLoad(WindowType.EXPIRING_ITEMS_SETTINGS, HTMLPath.EXPIRING_ITEMS_SETTINGS, Preload.EXPIRING_ITEMS_SETTINGS, true)
-    setupCloseLogic(expiringItemsSettings, WindowType.EFFECT_SETS, function() {
+    setupCloseLogic(expiringItemsSettings, WindowType.EXPIRING_ITEMS_SETTINGS, function() {
         expiringItemsSettings = null
     })
 })
