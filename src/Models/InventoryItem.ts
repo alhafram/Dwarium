@@ -6,6 +6,8 @@ export type InventoryItem = {
     type_id: string
     skills: [{ value: any; title: string }]
     quality: string
+    dur: string
+    enchant_icon: string
     image: string
     trend: string | undefined
     enchant_mod?: EnchantMode

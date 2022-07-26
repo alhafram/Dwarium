@@ -39,6 +39,45 @@ type PluginConfig = {
     statsButtonBadgeSpan: ''
 }
 
+function addMinutes(numOfMinutes: number, date = new Date()) {
+    date.setMinutes(date.getMinutes() + numOfMinutes)
+    return date
+}
+
+function handleUserSession(visitor: ua.Visitor) {
+    type Session = {
+        sessionId: string
+        finishDate: Date
+    }
+    const newSession: Session = {
+        sessionId: window.crypto.randomUUID(),
+        finishDate: addMinutes(3, new Date())
+    }
+    const session = JSON.parse(localStorage.session ?? JSON.stringify(newSession)) as Session
+
+    let sessionId = ''
+    if(new Date(session.finishDate) > new Date()) {
+        sessionId = session.sessionId
+    } else {
+        sessionId = window.crypto.randomUUID()
+    }
+    session.sessionId = sessionId
+
+    sendActivityEvent()
+    setInterval(() => {
+        sendActivityEvent()
+    }, 1000 * 60 * 3)
+
+    function sendActivityEvent() {
+        visitor.event('Session', 'Start', `Activity_${sessionId}`, (callback) => {
+            if(callback == null) {
+                session.finishDate = addMinutes(3, new Date())
+                localStorage.session = JSON.stringify(session)
+            }
+        })
+    }
+}
+
 let restoreContextMenuOpened = false
 let currentContextMenuTarget: HTMLElement | null
 window.addEventListener('DOMContentLoaded', async() => {
@@ -116,6 +155,7 @@ window.addEventListener('DOMContentLoaded', async() => {
     visitor.event('Screen', 'Open', `Main_${app.getVersion()}`, (callback) => {
         console.log(callback)
     })
+    handleUserSession(visitor)
 
     Elements.mainTab().onclick = makeActive
     Elements.serverSwitcher().onchange = function() {
