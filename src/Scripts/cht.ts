@@ -807,8 +807,14 @@ function attachMessageToChat(opt, msg_dom, msg) {
 	if(top?.document.chatFlags?.hideMentorsMessage == true && msg.msg_text.includes(mentorMessage) && msg.channel == 1 && !msg.user_id) {
 		return
 	}
-	const banditMessage = 'выиграл у Однорукого Бандита'
-	if(top?.document.chatFlags?.hideBanditMessage == true && msg.msg_text.includes(banditMessage) && msg.channel == 1 && !msg.user_id) {
+	const banditMessages = ['выиграл у Однорукого Бандита', 'сорвал Джекпот', 'Бриллиантового Бандита', 'Золотого Бандита']
+	let isBanditMessage = false
+	banditMessages.forEach(message => {
+		if(msg.msg_text.includes(message)) {
+			isBanditMessage = true
+		}
+	})
+	if(top?.document.chatFlags?.hideBanditMessage == true && isBanditMessage && msg.channel == 1 && !msg.user_id) {
 		return
 	}
 	const pitMessage = 'Пожертвовав горсть монет высшим силам, притаившимся в Колодце удачи'
