@@ -891,11 +891,12 @@ function attachMessageToChat(opt, msg_dom, msg) {
 					return false
 				})
 				lastFightMessages = removeItems(lastFightMessages, moneyMessages)
-				lastFightMessages = moneyMessages.concat(lastFightMessages)
 				const energyMessage = lastFightMessages.find(message => message.msg_text.includes('энергии'))
 				if(energyMessage) {
 					lastFightMessages = removeItems(lastFightMessages, [energyMessage])
-					lastFightMessages.splice(1, 0, energyMessage)
+					lastFightMessages = moneyMessages.concat([energyMessage]).concat(lastFightMessages)
+				} else {
+					lastFightMessages = moneyMessages.concat(lastFightMessages)
 				}
 
                 for (const message of lastFightMessages) {
@@ -909,6 +910,11 @@ function attachMessageToChat(opt, msg_dom, msg) {
                         }
                     }
                 }
+				for(var lastFightMessage of lastFightMessages) {
+					if(lastFightMessage.msg_text.includes('Вы получили') && lastFightMessage.msg_text.includes('энергии')) {
+						lastFightMessage.msg_text = '<span>' + lastFightMessage.msg_text.replace(/\D/g, '') + ' <img src="images/work.gif" width="7" height="8"></span>'
+					}
+				}
 				top?.document.dispatchEvent(new CustomEvent('DropMessage', {
 					detail: lastFightMessages
 				}))
