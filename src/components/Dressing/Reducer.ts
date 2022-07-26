@@ -131,7 +131,7 @@ export default async function reduce(state: DressingWindowState, action: Dressin
             switch (type) {
                 case InventoryItemType.ARCAT: {
                     const powerArcatTypeIds = ['153', '154', '155'] // 153 - мощь, 154 - вамп, 155 - кровь
-                    if(arcats.find(arcat => powerArcatTypeIds.includes(arcat.type_id)) && powerArcatTypeIds.includes(equipedItem.type_id)) {
+                    if(arcats.find((arcat) => powerArcatTypeIds.includes(arcat.type_id)) && powerArcatTypeIds.includes(equipedItem.type_id)) {
                         alert('Кажется, вы хотите надеть 2 боевых арката')
                         return state
                     }

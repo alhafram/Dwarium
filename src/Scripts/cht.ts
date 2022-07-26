@@ -1517,7 +1517,6 @@ function chat_clock_time_shift(time) {
 
 function chat_channel_click(e) {
 	var channel = $(this).data('channel');
-	console.log(e)
 	return chatChangePreset(channel);
 };
 
