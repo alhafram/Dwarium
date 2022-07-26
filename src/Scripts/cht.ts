@@ -349,6 +349,7 @@ function chatToggleChBtnStyle(name, f) {
 }
 
 function chatChangePreset(i) {
+	localStorage.selectedTab = i
 	if (i == indx) return;
 	indx = i;
 	if (!chatOpts[indx]) return;
@@ -1434,7 +1435,7 @@ function chat_channel_init() {
 	}).disableSelection();
 	$channel_tabs.find('li').on('click', chat_channel_click);
 	$channel_tabs.find('li .settings').on('click', chat_channel_settings_click);
-	chatChangePreset(CHAT.selected_tab ? CHAT.selected_tab : 'main');
+	chatChangePreset(localStorage.selectedTab ? localStorage.selectedTab : 'main');
 	chat_content_init();
 	chat_message_blur();
 };
@@ -1481,6 +1482,7 @@ function chat_clock_time_shift(time) {
 
 function chat_channel_click(e) {
 	var channel = $(this).data('channel');
+	console.log(e)
 	return chatChangePreset(channel);
 };
 
