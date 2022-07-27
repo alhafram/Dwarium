@@ -39,7 +39,7 @@ export default async function reduce(state: EffectSetsWindowState, action: Effec
         }
         case EffectSetsWindowActions.USE_EFFECTS: {
             const items = state.currentItems
-            const existingItems = state.allItems.filter((item) => items.includes(item))
+            const existingItems = items.filter((item) => state.allItems.includes(item))
             Elements.useEffectsButton().disabled = true
             for(const item of existingItems) {
                 const body = await parseBody(item)
