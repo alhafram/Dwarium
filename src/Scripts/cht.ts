@@ -768,6 +768,10 @@ function attachMessageToChat(opt, msg_dom, msg) {
 			return
 		}
 	}
+	const interruptFightMessage = 'Прерван бой'
+	if(msg.msg_text.includes(interruptFightMessage) && !msg.user_id) {
+		fightStarted = false
+	}
 	const giftPetMessage = 'вручил персонажу'
 	if(top?.document.chatFlags?.hideGiftPetMessage == true && msg.msg_text.includes(giftPetMessage) && msg.channel == 1 && !msg.user_id) {
 		return
@@ -858,6 +862,9 @@ function attachMessageToChat(opt, msg_dom, msg) {
 		if(msg.msg_text.startsWith('<a href="#" onClick="userPrvTag(') || msg.msg_text.includes('Вашей группой найдено:') || msg.msg_text.includes('Вашей группой получено')) {
 			return
 		}
+		if (msg.msg_text.startsWith('Игрок <a href=\"#\" onClick=\"userPrvTag(') && msg.msg_text.includes('получил')) {
+            return;
+        }
 		if(!msg.msg_text.includes(endFightMessage)) {
 			if(lastFightMessageIds.includes(msg.id)) {
 				return
@@ -904,15 +911,20 @@ function attachMessageToChat(opt, msg_dom, msg) {
                 for (const message of lastFightMessages) {
 					const isAdditionalShadow = message.msg_text.includes("<STRONG>Магический") && message.msg_text.includes('помог вам получить дополнительные предметы.')
 					if(isAdditionalShadow) {
-						delete message.macros_list[Object.keys(message.macros_list)[0]]
+						const artKey = Object.keys(message.macros_list).find(key => message.macros_list[key].data.title == ' артефакт')
+                        delete message.macros_list[artKey];
 					}
-                    for (const key of Object.keys(message.macros_list)) {
+                    for(const key of Object.keys(message.macros_list)) {
                         let data = parseArtifactMacro(message.macros_list[key].name, message.macros_list[key].data);
-                        if (message.macros_list[key].name == 'MONEY' && lastFightMessages.indexOf(message) > 0) {
+                        if(message.macros_list[key].name == 'MONEY' && lastFightMessages.indexOf(message) > 0) {
                             data = `+ ( ${data})`
                         }
-                        if (data && data != '') {
-                            message.msg_text = data;
+                        if(data && data != '') {
+                            if(isAdditionalShadow) {
+                                message.msg_text = '<span>' + data + ' <img src="images/data/artifacts/shadow_seek_ring_red.gif" width="15" height="15"></span>'; 
+                            } else {
+                                message.msg_text = data;
+                            }
                         }
                     }
                 }
