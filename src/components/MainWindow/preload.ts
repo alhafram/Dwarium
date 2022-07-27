@@ -1,4 +1,4 @@
-import { ipcRenderer } from 'electron'
+import { ipcRenderer, shell } from 'electron'
 import ConfigService from '../../services/ConfigService'
 import { Channel } from '../../Models/Channel'
 import Utils from '../Common/Utils'
@@ -84,6 +84,18 @@ window.addEventListener('DOMContentLoaded', async() => {
     handleMode()
     await setupFavourite()
     const pluginConfig = await setupBadges()
+
+    Elements.shareTgButton().onclick = function() {
+        shell.openExternal('https://t.me/share?url=https://alhafram.github.io/DwariumLibrary/')
+    }
+
+    Elements.shareVkButton().onclick = function() {
+        shell.openExternal('https://vk.com/share.php?url=https://alhafram.github.io/DwariumLibrary/')
+    }
+
+    Elements.shareWAButton().onclick = function() {
+        shell.openExternal('whatsapp://send?text=https://alhafram.github.io/DwariumLibrary/')
+    }
 
     const pluginButtons = [
         Elements.foodButton(),

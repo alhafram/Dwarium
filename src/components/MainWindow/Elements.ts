@@ -153,5 +153,14 @@ export const Elements = {
     },
     restorePluginsDiv(): HTMLDivElement {
         return document.getElementById('restorePluginsDiv') as HTMLDivElement
+    },
+    shareTgButton(): HTMLButtonElement {
+        return document.getElementById('shareTgButton') as HTMLButtonElement
+    },
+    shareVkButton(): HTMLButtonElement {
+        return document.getElementById('shareVkButton') as HTMLButtonElement
+    },
+    shareWAButton(): HTMLButtonElement {
+        return document.getElementById('shareWAButton') as HTMLButtonElement
     }
 }
