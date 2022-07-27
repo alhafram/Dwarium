@@ -855,14 +855,14 @@ function attachMessageToChat(opt, msg_dom, msg) {
 	}
 	const endFightMessage = 'Окончен бой'
 	if(top?.document.chatFlags?.newLootSystem && !msg.user_id && fightStarted) {
-		if(msg.msg_text.startsWith('<a href="#" onClick="userPrvTag(') || msg.msg_text.includes('Вашей группой найдено:')) {
+		if(msg.msg_text.startsWith('<a href="#" onClick="userPrvTag(') || msg.msg_text.includes('Вашей группой найдено:') || msg.msg_text.includes('Вашей группой получено')) {
 			return
 		}
 		if(!msg.msg_text.includes(endFightMessage)) {
 			if(lastFightMessageIds.includes(msg.id)) {
 				return
 			}
-			const dropMessages = ['Вами получено', 'Вы получили', 'Получено:', 'Благодаря магическим эффектам', 'Вашей группой получено']
+			const dropMessages = ['Вами получено', 'Вы получили', 'Получено:', 'Благодаря магическим эффектам']
 			let neededMessage = false
 			dropMessages.forEach(message => {
 				if(msg.msg_text.includes(message)) {
@@ -949,9 +949,11 @@ function attachMessageToChat(opt, msg_dom, msg) {
 					_top().frames['chat'].frames['chat_text'].scrollTo(0, 65535);
 				}
 				clearLastFightInfo()
-				if(!top[0][1].canvas?.app?.battle?.model || top[0][1].canvas?.app?.battle?.model.fightResult == 1) {
-					fightStarted = false
-				}
+				setTimeout(() => {
+                    if (!top[0][1].canvas?.app?.battle?.model || top[0][1].canvas?.app?.battle?.model.fightResult == 1) {
+                        fightStarted = false;
+                    }
+                }, 2000)
 				return
 			}, 2500)
 		}
