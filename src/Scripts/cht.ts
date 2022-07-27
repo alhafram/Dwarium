@@ -902,6 +902,10 @@ function attachMessageToChat(opt, msg_dom, msg) {
 				}
 
                 for (const message of lastFightMessages) {
+					const isAdditionalShadow = message.msg_text.includes("<STRONG>Магический") && message.msg_text.includes('помог вам получить дополнительные предметы.')
+					if(isAdditionalShadow) {
+						delete message.macros_list[Object.keys(message.macros_list)[0]]
+					}
                     for (const key of Object.keys(message.macros_list)) {
                         let data = parseArtifactMacro(message.macros_list[key].name, message.macros_list[key].data);
                         if (message.macros_list[key].name == 'MONEY' && lastFightMessages.indexOf(message) > 0) {
