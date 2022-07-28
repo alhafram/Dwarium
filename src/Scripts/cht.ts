@@ -975,7 +975,7 @@ function attachMessageToChat(opt, msg_dom, msg) {
                     }
 					clearTimeout(fightStartedTimeout)
 					fightStartedTimeout = null
-                }, 2000)
+                }, 3000)
 				return
 			}, 2500)
 		}
