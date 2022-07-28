@@ -726,6 +726,7 @@ function chatReceiveMessage(msg) {
 var lastFightMessages: string[] = []
 var lastFightMessageIds: Number[] = []
 var fightStarted = false
+var fightStartedTimeout: NodeJS.Timeout | null = null
 
 function parseArtifactMacro(macro_name, macro_data) {
 	var html = html_add = '';
@@ -763,6 +764,9 @@ function attachMessageToChat(opt, msg_dom, msg) {
 	}
 	const fightStartedMessage = 'Начался бой'
 	if(msg.msg_text.includes(fightStartedMessage) && msg.channel == 2 && !msg.user_id) {
+		if(fightStartedTimeout) {
+			clearTimeout(fightStartedTimeout)
+		}
 		fightStarted = true
 		if(top?.document.chatFlags?.hideFightStartedMessage == true) {
 			return
@@ -965,10 +969,12 @@ function attachMessageToChat(opt, msg_dom, msg) {
 					_top().frames['chat'].frames['chat_text'].scrollTo(0, 65535);
 				}
 				clearLastFightInfo()
-				setTimeout(() => {
+				fightStartedTimeout = setTimeout(() => {
                     if (!top[0][1].canvas?.app?.battle?.model || top[0][1].canvas?.app?.battle?.model.fightResult == 1) {
                         fightStarted = false;
                     }
+					clearTimeout(fightStartedTimeout)
+					fightStartedTimeout = null
                 }, 2000)
 				return
 			}, 2500)
