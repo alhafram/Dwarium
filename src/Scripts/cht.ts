@@ -843,7 +843,7 @@ function attachMessageToChat(opt, msg_dom, msg) {
 	if(top?.document.chatFlags?.hideMentorsMessage == true && msg.msg_text.includes(mentorMessage) && msg.channel == 1 && !msg.user_id) {
 		return
 	}
-	const banditMessages = ['выиграл у Однорукого Бандита', 'сорвал Джекпот', 'Бриллиантового Бандита', 'Золотого Бандита']
+	const banditMessages = ['выиграл у Однорукого Бандита', 'сорвал Джекпот', 'Бриллиантового Бандита', 'Золотого Бандита', 'бандит']
 	let isBanditMessage = false
 	banditMessages.forEach(message => {
 		if(msg.msg_text.includes(message)) {
