@@ -38,10 +38,10 @@ function render(state: EffectSetsWindowState): void {
     state.currentItems.forEach((item) => {
         const divItem = convertItemIntoDiv(item, undefined)
         setupEquipableItemEvents(divItem, !item.disabled)
+        divItem.setAttribute('equiped', 'true')
         if(item.disabled) {
             divItem.style.filter = 'grayscale(100%)'
         } else {
-            divItem.setAttribute('equiped', 'true')
             divItem.ondrop = function(event) {
                 event.stopPropagation()
                 const replacedItemId = divItem.getAttribute('itemid')

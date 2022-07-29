@@ -726,6 +726,7 @@ function chatReceiveMessage(msg) {
 var lastFightMessages: string[] = []
 var lastFightMessageIds: Number[] = []
 var fightStarted = false
+var fightStartedTimeout: NodeJS.Timeout | null = null
 
 function parseArtifactMacro(macro_name, macro_data) {
 	var html = html_add = '';
@@ -763,13 +764,17 @@ function attachMessageToChat(opt, msg_dom, msg) {
 	}
 	const fightStartedMessage = 'Начался бой'
 	if(msg.msg_text.includes(fightStartedMessage) && msg.channel == 2 && !msg.user_id) {
-		fightStarted = true
+		if(opt.channel == 32768) {
+			clearTimeout(fightStartedTimeout)
+			fightStarted = true
+		}
 		if(top?.document.chatFlags?.hideFightStartedMessage == true) {
 			return
 		}
 	}
 	const interruptFightMessage = 'Прерван бой'
 	if(msg.msg_text.includes(interruptFightMessage) && !msg.user_id) {
+		clearTimeout(fightStartedTimeout)
 		fightStarted = false
 	}
 	const giftPetMessage = 'вручил персонажу'
@@ -839,7 +844,7 @@ function attachMessageToChat(opt, msg_dom, msg) {
 	if(top?.document.chatFlags?.hideMentorsMessage == true && msg.msg_text.includes(mentorMessage) && msg.channel == 1 && !msg.user_id) {
 		return
 	}
-	const banditMessages = ['выиграл у Однорукого Бандита', 'сорвал Джекпот', 'Бриллиантового Бандита', 'Золотого Бандита']
+	const banditMessages = ['выиграл у Однорукого Бандита', 'сорвал Джекпот', 'Бриллиантового Бандита', 'Золотого Бандита', 'бандит']
 	let isBanditMessage = false
 	banditMessages.forEach(message => {
 		if(msg.msg_text.includes(message)) {
@@ -965,13 +970,15 @@ function attachMessageToChat(opt, msg_dom, msg) {
 					_top().frames['chat'].frames['chat_text'].scrollTo(0, 65535);
 				}
 				clearLastFightInfo()
-				setTimeout(() => {
+				return
+			}, 2500)
+			if(opt.channel == 32768) {
+				fightStartedTimeout = setTimeout(() => {
                     if (!top[0][1].canvas?.app?.battle?.model || top[0][1].canvas?.app?.battle?.model.fightResult == 1) {
                         fightStarted = false;
                     }
-                }, 2000)
-				return
-			}, 2500)
+                }, 5000)
+			}
 		}
 	}
 	if(top?.document.chatFlags?.hideEndFightMessage == true && msg.msg_text.includes(endFightMessage) && msg.channel == 2 && !msg.user_id) {

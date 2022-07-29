@@ -6,8 +6,7 @@ import { WindowType } from '../../Models/WindowModels'
 import FavouriteLinkService from '../../services/FavouriteLinksService'
 import sendNotification, { NotificationType } from '../../services/Notifications'
 import { Elements } from './Elements'
-import ua from 'universal-analytics'
-import { app } from '@electron/remote'
+import { handleUserSession, openPage, setupService } from '../../services/AnalyticsService'
 
 enum PluginConfigKeys {
     foodButtonBadgeSpan = 'foodButtonBadgeSpan',
@@ -37,45 +36,6 @@ type PluginConfig = {
     gameSettingsButtonBadgeSpan: ''
     settingsButtonBadgeSpan: ''
     statsButtonBadgeSpan: ''
-}
-
-function addMinutes(numOfMinutes: number, date = new Date()) {
-    date.setMinutes(date.getMinutes() + numOfMinutes)
-    return date
-}
-
-function handleUserSession(visitor: ua.Visitor) {
-    type Session = {
-        sessionId: string
-        finishDate: Date
-    }
-    const newSession: Session = {
-        sessionId: window.crypto.randomUUID(),
-        finishDate: addMinutes(3, new Date())
-    }
-    const session = JSON.parse(localStorage.session ?? JSON.stringify(newSession)) as Session
-
-    let sessionId = ''
-    if(new Date(session.finishDate) > new Date()) {
-        sessionId = session.sessionId
-    } else {
-        sessionId = window.crypto.randomUUID()
-    }
-    session.sessionId = sessionId
-
-    sendActivityEvent()
-    setInterval(() => {
-        sendActivityEvent()
-    }, 1000 * 60 * 3)
-
-    function sendActivityEvent() {
-        visitor.event('Session', 'Start', `Activity_${sessionId}`, (callback) => {
-            if(callback == null) {
-                session.finishDate = addMinutes(3, new Date())
-                localStorage.session = JSON.stringify(session)
-            }
-        })
-    }
 }
 
 let restoreContextMenuOpened = false
@@ -153,21 +113,9 @@ window.addEventListener('DOMContentLoaded', async() => {
         restoreContextMenuOpened = !restoreContextMenuOpened
     }
 
-    let userId = ''
-    if(localStorage.userId) {
-        userId = localStorage.userId
-    } else {
-        userId = window.crypto.randomUUID()
-        localStorage.userId = userId
-    }
-    const visitor = ua('UA-217573092-2', userId, { cid: userId, uid: userId })
-    visitor.screenview({ av: app.getVersion(), an: 'Dwarium', cd: 'OpenDwarium' }, (callback) => {
-        console.log(callback)
-    })
-    visitor.event('Screen', 'Open', `Main_${app.getVersion()}`, (callback) => {
-        console.log(callback)
-    })
-    handleUserSession(visitor)
+    setupService()
+    handleUserSession()
+    openPage(WindowType.MAIN)
 
     Elements.mainTab().onclick = makeActive
     Elements.serverSwitcher().onchange = function() {
@@ -197,6 +145,7 @@ window.addEventListener('DOMContentLoaded', async() => {
         localStorage.setItem(PluginConfigKeys.foodButtonBadgeSpan, pluginConfig.foodButtonBadgeSpan)
         Elements.foodButtonBadgeSpan().style.display = 'none'
         ipcRenderer.send(Channel.OPEN_FOOD)
+        openPage(WindowType.FOOD)
     }
     Elements.notesButton().onclick = function() {
         const value = pluginRestorationHandler(Elements.notesButton())
@@ -206,6 +155,7 @@ window.addEventListener('DOMContentLoaded', async() => {
         localStorage.setItem(PluginConfigKeys.notesButtonBadgeSpan, pluginConfig.notesButtonBadgeSpan)
         Elements.notesButtonBadgeSpan().style.display = 'none'
         ipcRenderer.send(Channel.OPEN_NOTES)
+        openPage(WindowType.NOTES)
     }
     Elements.dressingSetsButton().onclick = function() {
         const value = pluginRestorationHandler(Elements.dressingSetsButton())
@@ -215,6 +165,7 @@ window.addEventListener('DOMContentLoaded', async() => {
         localStorage.setItem(PluginConfigKeys.dressingSetsButtonBadgeSpan, pluginConfig.dressingSetsButtonBadgeSpan)
         Elements.dressingSetsButtonBadgeSpan().style.display = 'none'
         ipcRenderer.send(Channel.OPEN_DRESSING_ROOM)
+        openPage(WindowType.DRESSING_ROOM)
     }
     Elements.beltSetsButton().onclick = function() {
         const value = pluginRestorationHandler(Elements.beltSetsButton())
@@ -224,6 +175,7 @@ window.addEventListener('DOMContentLoaded', async() => {
         localStorage.setItem(PluginConfigKeys.beltSetsButtonButtonBadgeSpan, pluginConfig.beltSetsButtonButtonBadgeSpan)
         Elements.beltSetsButtonButtonBadgeSpan().style.display = 'none'
         ipcRenderer.send(Channel.OPEN_BELT_POTION_ROOM)
+        openPage(WindowType.BELT_POTION_ROOM)
     }
     Elements.chatLogButton().onclick = function() {
         const value = pluginRestorationHandler(Elements.chatLogButton())
@@ -233,6 +185,7 @@ window.addEventListener('DOMContentLoaded', async() => {
         localStorage.setItem(PluginConfigKeys.chatLogButtonBadgeSpan, pluginConfig.chatLogButtonBadgeSpan)
         Elements.chatLogButtonBadgeSpan().style.display = 'none'
         ipcRenderer.send(Channel.OPEN_CHAT_LOG)
+        openPage(WindowType.CHAT_LOG)
     }
     Elements.chatSettingsButton().onclick = function() {
         const value = pluginRestorationHandler(Elements.chatSettingsButton())
@@ -242,6 +195,7 @@ window.addEventListener('DOMContentLoaded', async() => {
         localStorage.setItem(PluginConfigKeys.chatSettingsButtonBadgeSpan, pluginConfig.chatSettingsButtonBadgeSpan)
         Elements.chatSettingsButtonBadgeSpan().style.display = 'none'
         ipcRenderer.send(Channel.OPEN_CHAT_SETTINGS)
+        openPage(WindowType.CHAT_SETTINGS)
     }
     Elements.notificationsButton().onclick = function() {
         const value = pluginRestorationHandler(Elements.notificationsButton())
@@ -251,6 +205,7 @@ window.addEventListener('DOMContentLoaded', async() => {
         localStorage.setItem(PluginConfigKeys.notificationsButtonBadgeSpan, pluginConfig.notificationsButtonBadgeSpan)
         Elements.notificationsButtonBadgeSpan().style.display = 'none'
         ipcRenderer.send(Channel.OPEN_NOTIFICATIONS)
+        openPage(WindowType.NOTIFICATIONS)
     }
     Elements.effectSetsButton().onclick = function() {
         const value = pluginRestorationHandler(Elements.effectSetsButton())
@@ -260,6 +215,7 @@ window.addEventListener('DOMContentLoaded', async() => {
         localStorage.setItem(PluginConfigKeys.effectSetsButtonBadgeSpan, pluginConfig.effectSetsButtonBadgeSpan)
         Elements.effectSetsButtonBadgeSpan().style.display = 'none'
         ipcRenderer.send(Channel.OPEN_EFFECT_SETS)
+        openPage(WindowType.EFFECT_SETS)
     }
     Elements.expiringItemsSettingsButton().onclick = function() {
         const value = pluginRestorationHandler(Elements.expiringItemsSettingsButton())
@@ -269,6 +225,7 @@ window.addEventListener('DOMContentLoaded', async() => {
         localStorage.setItem(PluginConfigKeys.expiringItemsSettingsButtonBadgeSpan, pluginConfig.expiringItemsSettingsButtonBadgeSpan)
         Elements.expiringItemsSettingsButtonBadgeSpan().style.display = 'none'
         ipcRenderer.send(Channel.OPEN_EXPIRING_ITEMS_SETTINGS)
+        openPage(WindowType.EXPIRING_ITEMS_SETTINGS)
     }
     Elements.gameSettingsButton().onclick = function() {
         const value = pluginRestorationHandler(Elements.gameSettingsButton())
@@ -278,11 +235,13 @@ window.addEventListener('DOMContentLoaded', async() => {
         localStorage.setItem(PluginConfigKeys.gameSettingsButtonBadgeSpan, pluginConfig.gameSettingsButtonBadgeSpan)
         Elements.gameSettingsButtonBadgeSpan().style.display = 'none'
         ipcRenderer.send(Channel.OPEN_GAME_SETTINGS)
+        openPage(WindowType.GAME_SETTINGS)
     }
     Elements.settingsButton().addEventListener('click', () => {
         localStorage.setItem(PluginConfigKeys.settingsButtonBadgeSpan, pluginConfig.settingsButtonBadgeSpan)
         Elements.settingsButtonBadgeSpan().style.display = 'none'
         ipcRenderer.send(Channel.OPEN_SETTINGS)
+        openPage(WindowType.SETTINGS)
     })
     Elements.statsButton().onclick = function() {
         const value = pluginRestorationHandler(Elements.statsButton())
@@ -292,6 +251,7 @@ window.addEventListener('DOMContentLoaded', async() => {
         localStorage.setItem(PluginConfigKeys.statsButtonBadgeSpan, pluginConfig.statsButtonBadgeSpan)
         Elements.statsButtonBadgeSpan().style.display = 'none'
         ipcRenderer.send(Channel.OPEN_STATS)
+        openPage(WindowType.STATS)
     }
     ///
     Elements.urlInput().addEventListener('keyup', (e: KeyboardEvent) => {
