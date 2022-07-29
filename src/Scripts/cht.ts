@@ -764,16 +764,17 @@ function attachMessageToChat(opt, msg_dom, msg) {
 	}
 	const fightStartedMessage = 'Начался бой'
 	if(msg.msg_text.includes(fightStartedMessage) && msg.channel == 2 && !msg.user_id) {
-		if(fightStartedTimeout) {
+		if(opt.channel == 32768) {
 			clearTimeout(fightStartedTimeout)
+			fightStarted = true
 		}
-		fightStarted = true
 		if(top?.document.chatFlags?.hideFightStartedMessage == true) {
 			return
 		}
 	}
 	const interruptFightMessage = 'Прерван бой'
 	if(msg.msg_text.includes(interruptFightMessage) && !msg.user_id) {
+		clearTimeout(fightStartedTimeout)
 		fightStarted = false
 	}
 	const giftPetMessage = 'вручил персонажу'
@@ -969,15 +970,15 @@ function attachMessageToChat(opt, msg_dom, msg) {
 					_top().frames['chat'].frames['chat_text'].scrollTo(0, 65535);
 				}
 				clearLastFightInfo()
+				return
+			}, 2500)
+			if(opt.channel == 32768) {
 				fightStartedTimeout = setTimeout(() => {
                     if (!top[0][1].canvas?.app?.battle?.model || top[0][1].canvas?.app?.battle?.model.fightResult == 1) {
                         fightStarted = false;
                     }
-					clearTimeout(fightStartedTimeout)
-					fightStartedTimeout = null
-                }, 3000)
-				return
-			}, 2500)
+                }, 5000)
+			}
 		}
 	}
 	if(top?.document.chatFlags?.hideEndFightMessage == true && msg.msg_text.includes(endFightMessage) && msg.channel == 2 && !msg.user_id) {
