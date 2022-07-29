@@ -62,8 +62,4 @@ function addMinutes(numOfMinutes: number, date = new Date()) {
     return date
 }
 
-export {
-    handleUserSession,
-    setupService,
-    openPage
-}
+export { handleUserSession, setupService, openPage }
