@@ -764,7 +764,7 @@ function attachMessageToChat(opt, msg_dom, msg) {
 	}
 	const fightStartedMessage = 'Начался бой'
 	if(msg.msg_text.includes(fightStartedMessage) && msg.channel == 2 && !msg.user_id) {
-		if(opt.channel == 32768) {
+		if(CHAT.channel_settings.fight.channels == opt.channel) {
 			clearTimeout(fightStartedTimeout)
 			fightStarted = true
 		}
@@ -972,7 +972,7 @@ function attachMessageToChat(opt, msg_dom, msg) {
 				clearLastFightInfo()
 				return
 			}, 2500)
-			if(opt.channel == 32768) {
+			if(CHAT.channel_settings.fight.channels == opt.channel) {
 				fightStartedTimeout = setTimeout(() => {
                     if (!top[0][1].canvas?.app?.battle?.model || top[0][1].canvas?.app?.battle?.model.fightResult == 1) {
                         fightStarted = false;
