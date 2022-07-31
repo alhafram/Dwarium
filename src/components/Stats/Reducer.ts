@@ -1,8 +1,10 @@
+import { ipcRenderer } from 'electron'
+import { Channel } from '../../Models/Channel'
 import DropService from '../../services/DropService'
 import { StatsWindowActions } from './Actions'
 import { StatsWindowState } from './StatsWindowState'
 
-export default function reduce(state: StatsWindowState, action: StatsWindowActions, data?: unknown): StatsWindowState {
+export default async function reduce(state: StatsWindowState, action: StatsWindowActions, data?: unknown): Promise<StatsWindowState> {
     switch (action) {
         case StatsWindowActions.LOAD_SETTINGS: {
             const dropInfo = DropService.loadDropInfo()
@@ -16,11 +18,15 @@ export default function reduce(state: StatsWindowState, action: StatsWindowActio
                 day = '0' + day
             }
             const formattedDate = currentDate.getFullYear() + '-' + month + '-' + day
+            const baseUrl = await ipcRenderer.invoke(Channel.GET_MAIN_URL)
             return {
                 ...state,
                 dropInfo,
                 selectedDate: formattedDate,
-                selectedDateDrop: dropInfo[currentDate.toDateString()]
+                selectedDateMoney: dropInfo[currentDate.toDateString()].money,
+                selectedDateItems: dropInfo[currentDate.toDateString()].dropItems ?? [],
+                selectedDayFightIds: dropInfo[currentDate.toDateString()].fightIds ?? [],
+                baseUrl: baseUrl
             }
         }
         case StatsWindowActions.CHANGE_DATE: {
@@ -33,7 +39,9 @@ export default function reduce(state: StatsWindowState, action: StatsWindowActio
             return {
                 ...state,
                 selectedDate: data as string,
-                selectedDateDrop: state.dropInfo[selectedDate]
+                selectedDateMoney: state.dropInfo[selectedDate]?.money ?? 0,
+                selectedDateItems: state.dropInfo[selectedDate]?.dropItems ?? [],
+                selectedDayFightIds: state.dropInfo[selectedDate]?.fightIds ?? []
             }
         }
     }

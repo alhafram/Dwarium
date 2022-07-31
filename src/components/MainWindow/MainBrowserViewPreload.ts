@@ -37,8 +37,8 @@ document.addEventListener('Message', (event) => {
 })
 
 document.addEventListener('DropMessage', (event) => {
-    const dropmessages = (<CustomEvent>event).detail
-    DropService.saveDrop([...dropmessages])
+    const fightDetails = (<CustomEvent>event).detail as FightDetails
+    DropService.saveFightDetails(JSON.parse(JSON.stringify(fightDetails)))
 })
 
 document.addEventListener('MessageDom', (event) => {

@@ -1,5 +1,8 @@
 export interface StatsWindowState {
     dropInfo: any
     selectedDate: string
-    selectedDateDrop: any
+    selectedDateItems: any[]
+    selectedDateMoney: number
+    selectedDayFightIds: string[]
+    baseUrl: string
 }

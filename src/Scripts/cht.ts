@@ -764,7 +764,7 @@ function attachMessageToChat(opt, msg_dom, msg) {
 	}
 	const fightStartedMessage = 'Начался бой'
 	if(msg.msg_text.includes(fightStartedMessage) && msg.channel == 2 && !msg.user_id) {
-		if(CHAT.channel_settings.fight.channels == opt.channel) {
+		if(opt.channel == chatOpts.fight.channel) {
 			clearTimeout(fightStartedTimeout)
 			fightStarted = true
 		}
@@ -939,9 +939,13 @@ function attachMessageToChat(opt, msg_dom, msg) {
 					}
 				}
 				top?.document.dispatchEvent(new CustomEvent('DropMessage', {
-					detail: lastFightMessages
+					detail: {
+						fightId: _top().__lastFightId,
+						dropInfo: lastFightMessages
+					}
 				}))
 				let lootMessage = lastFightMessages.map(msg => msg.msg_text).join(' ')
+				lootMessage += ` <b><a href='#' onclick='showFightInfo(${_top().__lastFightId})'>Бой</a><b>`
 				
 				var all_channels = 0;
 				for (var i in chatOpts) {
@@ -972,7 +976,7 @@ function attachMessageToChat(opt, msg_dom, msg) {
 				clearLastFightInfo()
 				return
 			}, 2500)
-			if(CHAT.channel_settings.fight.channels == opt.channel) {
+			if(opt.channel == chatOpts.fight.channel) {
 				fightStartedTimeout = setTimeout(() => {
                     if (!top[0][1].canvas?.app?.battle?.model || top[0][1].canvas?.app?.battle?.model.fightResult == 1) {
                         fightStarted = false;
