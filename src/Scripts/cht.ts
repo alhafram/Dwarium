@@ -945,7 +945,7 @@ function attachMessageToChat(opt, msg_dom, msg) {
 					}
 				}))
 				let lootMessage = lastFightMessages.map(msg => msg.msg_text).join(' ')
-				lootMessage += ` <b><a href='#' onclick='showFightInfo(${_top().__lastFightId})'>Бой</a><b>`
+				lootMessage += ` <b><a href='javascript:void(0)' onclick='showFightInfo(${_top().__lastFightId})'>Бой</a><b>`
 				
 				var all_channels = 0;
 				for (var i in chatOpts) {
