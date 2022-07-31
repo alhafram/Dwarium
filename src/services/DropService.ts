@@ -8,12 +8,22 @@ function loadDropInfo() {
     return dropInfo
 }
 
-function saveDrop(dropMessages: any[]) {
+type FightDetails = {
+    fightId: string
+    dropInfo: any[]
+}
+
+function saveFightDetails(details: FightDetails) {
     const dropInfo = loadDropInfo()
     const dateString = new Date().toDateString()
-    const parsedDropInfo = parseDropMessages(dropMessages)
+    const parsedDropInfo = parseDropMessages(details.dropInfo)
     const dropInfoByDate = dropInfo[dateString]
     if(dropInfoByDate) {
+        if(dropInfoByDate.fightIds) {
+            dropInfoByDate.fightIds.push(details.fightId)
+        } else {
+            dropInfoByDate.fightIds = [details.fightId]
+        }
         dropInfoByDate.money = (parseFloat(dropInfoByDate.money) + parseFloat(parsedDropInfo.money)).toString()
         parsedDropInfo.dropItems.forEach((item) => {
             const savedDrop = dropInfoByDate.dropItems.find((element: { id: any }) => element.id == item.id)
@@ -26,7 +36,10 @@ function saveDrop(dropMessages: any[]) {
         })
         dropInfo[dateString] = dropInfoByDate
     } else {
-        dropInfo[dateString] = parsedDropInfo
+        dropInfo[dateString] = {
+            ...parsedDropInfo,
+            fightIds: [details.fightId]
+        }
     }
     FileOperationsService.writeData(path, JSON.stringify(dropInfo))
 }
@@ -62,5 +75,5 @@ function parseDropMessages(dropMessages: any[]) {
 
 export default {
     loadDropInfo,
-    saveDrop
+    saveFightDetails
 }

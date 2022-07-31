@@ -7,5 +7,11 @@ export const Elements = {
     },
     selectedDayDropDiv(): HTMLDivElement {
         return document.getElementById('selectedDayDropDiv') as HTMLDivElement
+    },
+    selectedDayFightsDiv():  HTMLDivElement {
+        return document.getElementById('selectedDayFightsDiv') as HTMLDivElement
+    },
+    fightsCountSpan(): HTMLSpanElement {
+        return document.getElementById('fightsCountSpan') as HTMLSpanElement
     }
 }

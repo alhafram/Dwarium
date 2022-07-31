@@ -7,11 +7,14 @@ import { StatsWindowState } from './StatsWindowState'
 let initialState: StatsWindowState = {
     dropInfo: null,
     selectedDate: Date(),
-    selectedDateDrop: []
+    selectedDateMoney: 0,
+    selectedDateItems: [],
+    selectedDayFightIds: [],
+    baseUrl: ''
 }
 
-export function dispatch(action: StatsWindowActions, data?: unknown): void {
-    initialState = reduce(initialState, action, data)
+export async function dispatch(action: StatsWindowActions, data?: unknown): Promise<void> {
+    initialState = await reduce(initialState, action, data)
     render(initialState)
 }
 
