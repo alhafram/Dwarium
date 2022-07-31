@@ -66,7 +66,7 @@ async function renderItems(initialState: StatsWindowState) {
 async function renderFights(initialState: StatsWindowState) {
     for(let i = 0; i < initialState.selectedDayFightIds.length; i++) {
         const id = initialState.selectedDayFightIds[i]
-        const fightUrl = `https://w2.dwar.ru/fight_info.php?fight_id=${id}`
+        const fightUrl = `${initialState.baseUrl}/fight_info.php?fight_id=${id}`
         const response = await fetch(fightUrl)
         const text = await response.text()
         const doc = text.toDocument()
