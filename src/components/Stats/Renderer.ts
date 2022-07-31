@@ -10,7 +10,6 @@ function showFightInfo(url: string) {
 }
 
 export async function render(initialState: StatsWindowState) {
-
     Elements.datePickerInput().value = initialState.selectedDate
     Elements.fightsCountSpan().textContent = '0'
     Array.from(Elements.selectedDayDropDiv().children).forEach((child) => {
@@ -72,9 +71,18 @@ async function renderFights(initialState: StatsWindowState) {
         const text = await response.text()
         const doc = text.toDocument()
 
-        const startDate = doc.querySelector('body > table > tbody > tr:nth-child(2) > td > div > div.bg-l > div > div > div > div > div > div > div > table > tbody > tr:nth-child(1) > td > div > table > tbody > tr > td:nth-child(1) > b')?.textContent ?? 'Worng date'
-        const title = doc.querySelector('body > table > tbody > tr:nth-child(2) > td > div > div.bg-l > div > div > div > div > div > div > div > table > tbody > tr:nth-child(1) > td > div > table > tbody > tr > td:nth-child(2) > b')?.textContent ?? 'Wrong name'
-        const duration = doc.querySelector('body > table > tbody > tr:nth-child(2) > td > div > div.bg-l > div > div > div > div > div > div > div > table > tbody > tr:nth-child(1) > td > div > table > tbody > tr > td:nth-child(5) > b')?.textContent ?? 'Wrong duration'
+        const startDate =
+            doc.querySelector(
+                'body > table > tbody > tr:nth-child(2) > td > div > div.bg-l > div > div > div > div > div > div > div > table > tbody > tr:nth-child(1) > td > div > table > tbody > tr > td:nth-child(1) > b'
+            )?.textContent ?? 'Worng date'
+        const title =
+            doc.querySelector(
+                'body > table > tbody > tr:nth-child(2) > td > div > div.bg-l > div > div > div > div > div > div > div > table > tbody > tr:nth-child(1) > td > div > table > tbody > tr > td:nth-child(2) > b'
+            )?.textContent ?? 'Wrong name'
+        const duration =
+            doc.querySelector(
+                'body > table > tbody > tr:nth-child(2) > td > div > div.bg-l > div > div > div > div > div > div > div > table > tbody > tr:nth-child(1) > td > div > table > tbody > tr > td:nth-child(5) > b'
+            )?.textContent ?? 'Wrong duration'
         const formattedDate = startDate.split(' ').splice(-1, 1)[0]
 
         const strignElement = `<p class="text-secondaryLightDark dark:text-secondaryLight">${formattedDate} <a id='${id}' href='#'>${title}</a> ${duration}</p>`
