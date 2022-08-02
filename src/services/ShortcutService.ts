@@ -120,7 +120,7 @@ function getShortcuts(): Shortcuts {
         openExpiringItems: readData(ShortcutKeys.OPEN_EXPIRING_ITEMS_SETTINGS) ?? 'F9',
         makeScreenshot: readData(ShortcutKeys.MAKE_SCREENSHOT) ?? 'F10',
         openSettings: readData(ShortcutKeys.OPEN_SETTINGS) ?? 'F12',
-        hideShowChat: readData(ShortcutKeys.HIDE_SHOW_CHAT) ?? 'Shift+P',
+        hideShowChat: readData(ShortcutKeys.HIDE_SHOW_CHAT) ?? 'Ctrl+/',
         fullscreen: readData(ShortcutKeys.FULLSCREEN) ?? 'F11',
 
         bowSkill1: readData(ShortcutKeys.BOW_SKILL_1) ?? 'Alt+1',
