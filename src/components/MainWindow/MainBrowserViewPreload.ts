@@ -5,12 +5,12 @@ import { Channel } from '../../Models/Channel'
 import sendNotification, { NotificationType } from '../../services/Notifications'
 import ChatService from '../../services/ChatService'
 import FoodService from '../../services/FoodService'
-import ScriptInjectService from '../../services/ScriptInjectedService'
 import { setupCheckingItemsService } from '../../services/ExpiringItemsLoader'
 import GameFlagsService from '../../services/GameFlagsService'
 import ChatSettingsService from '../../services/ChatSettingsService'
 import Utils from '../Common/Utils'
 import DropService from '../../services/DropService'
+import ConfigService from '../../services/ConfigService'
 
 const flags = GameFlagsService.getGameFlags()
 document.gameLocationFlags = flags.gameLocationFlags
@@ -21,11 +21,27 @@ document.huntFlags = flags.huntFlags
 window.addEventListener('DOMContentLoaded', async() => {
     ChatService.setupAutoResponder()
     ChatService.setupFlooding()
-    ScriptInjectService.setupSpeed()
     setupCheckingItemsService()
     const userId = (await Utils.getUserId()) as number
     const settings = ChatSettingsService.get(userId)
     document.chatFlags = settings
+    const animationSpeedType = ConfigService.getSettings().animationSpeedType
+    let fps = 20
+    switch (animationSpeedType) {
+        case 'gameSpeed': {
+            fps = 20
+            break
+        }
+        case 'x2Speed': {
+            fps = 40
+            break
+        }
+        case 'x3Speed': {
+            fps = 60
+            break
+        }
+    }
+    document.animationFPS = fps
 })
 
 document.addEventListener('Message', (event) => {
