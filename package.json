@@ -5,7 +5,7 @@
     "main": "out/main.js",
     "scripts": {
         "compile": "tsc",
-        "start": "yarn run compile && yarn run compileCSS && yarn run compileChatLogCSS && electron .",
+        "start": "yarn run compile && yarn run compileCSS && yarn run compileChatLogCSS && yarn run copyCanvas && electron .",
         "all": "yarn run prod && electron-builder -mwl",
         "mac": "yarn run prod && electron-builder -m",
         "win": "yarn run prod && electron-builder -w",
