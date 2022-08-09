@@ -38214,8 +38214,8 @@ canvas.app.hunt.view.FieldObject = function(t, e, a) {
     canvas.EventManager.addEventListener(canvas.app.hunt.Event.COLOR_CHANGE, null, this.handlerColorChange),
     this.curObj.mc = this
 
-    const hiddenMobs = JSON.parse(localStorage.hiddenMobs ?? '[]')
-    if(hiddenMobs.includes(canvas.app.hunt.model.PicPath + this.curObj.pic) || hiddenMobs.includes(canvas.app.hunt.model.FarmPicPath + this.curObj.pic)) {
+    const hiddenObjects = JSON.parse(localStorage.hiddenObjects ?? '[]')
+    if(hiddenObjects.includes(this.curObj.artikul_id)) {
         if(top?.document.huntFlags?.hideMobsFilter == false && this.curObj.type == 'bot') {
             this.curObj.mc.visible = false
         }
@@ -38390,19 +38390,19 @@ canvas.app.hunt.view.MobsFilter = function(type) {
     canvas.px.Container.call(this)
     this.type = type
     this.buttons = []
-    this.images = []
+    this.articuls = []
     this.borderMasks = []
 }
 
 canvas.app.hunt.view.MobsFilter.prototype = Object.create(canvas.px.Container.prototype)
 
 canvas.app.hunt.view.MobsFilter.prototype.renderFilters = function() {
-    const pics = Array.from(new Set(Object.values(canvas.app.hunt.model.Objects).filter(object => object.type == this.type && object.x < 1500 && object.y < 1500).map(bot => bot.pic)))
+    const articuls = Array.from(new Set(Object.values(canvas.app.hunt.model.Objects).filter(object => object.type == this.type && object.x < 1500 && object.y < 1500).map(bot => bot.artikul_id)))
     const areSetsEqual = (a, b) => a.size === b.size && [...a].every(value => b.has(value));
-    if(areSetsEqual(new Set(pics), new Set(this.images))) {
+    if(areSetsEqual(new Set(articuls), new Set(this.articuls))) {
         return
     }
-    this.images = pics
+    this.articuls = articuls
     this.buttons.forEach(button => {
         button.destroy()
     })
@@ -38411,11 +38411,12 @@ canvas.app.hunt.view.MobsFilter.prototype.renderFilters = function() {
         mask.destroy()
     })
     this.borderMasks = []
-    const hiddenMobs = JSON.parse(localStorage.hiddenMobs ?? '[]')
-    for (var t = 0; t < pics.length; t++) {
-        const pictureUrl = (this.type == 'bot' ? canvas.app.hunt.model.PicPath : canvas.app.hunt.model.FarmPicPath) + pics[t]
-        const isHiddenMob = hiddenMobs.includes(pictureUrl)
-        this.createButton(t, pictureUrl, isHiddenMob),
+    const hiddenObjects = JSON.parse(localStorage.hiddenObjects ?? '[]')
+    for (var t = 0; t < articuls.length; t++) {
+        const mob = Object.values(canvas.app.hunt.model.Objects).find(bot => bot.artikul_id == articuls[t])
+        const pictureUrl = (this.type == 'bot' ? canvas.app.hunt.model.PicPath : canvas.app.hunt.model.FarmPicPath) + mob.pic
+        const isHiddenObject = hiddenObjects.includes(articuls[t])
+        this.createButton(t, pictureUrl, isHiddenObject, mob.artikul_id)
         canvas.EventManager.dispatchEvent(canvas.app.hunt.Event.HINT_ADD, null, {
             target: this,
             params: new canvas.utils.HintParams(new canvas.app.view.MappingHint(canvas.Translator.getText(447)))
@@ -38424,7 +38425,7 @@ canvas.app.hunt.view.MobsFilter.prototype.renderFilters = function() {
     this.parent.resize()
 }
 
-canvas.app.hunt.view.MobsFilter.prototype.createButton = function(t, pictureUrl, hideBorder) {
+canvas.app.hunt.view.MobsFilter.prototype.createButton = function(t, pictureUrl, hideBorder, artikul_id) {
     this.borderMask = new canvas.px.Graphics,
     this.borderMask.beginFill(65535, 1),
     this.borderMask.drawCircle(0 + 60 * t, 32, 28),
@@ -38442,12 +38443,36 @@ canvas.app.hunt.view.MobsFilter.prototype.createButton = function(t, pictureUrl,
     this.pic = new canvas.ui.Image,
     this.pic.mask = this.pic_mask,
     this.pic_btn.sprite.addChild(this.pic)
+    this.pic_btn.artikul_id = artikul_id
     this.addChild(this.pic_btn)
 
     this.pic.setImage(pictureUrl)
 
     this.buttons.push(this.pic_btn)
     this.pic_btn.click = this.clickHandler.bind(this.pic_btn)
+
+    this.useTahoma = canvas.Translator.getLang() != canvas.Const.LANG_RU,
+    this.hintContainer = new canvas.px.Container;
+    this.text = new canvas.ui.Text(canvas.Const.FONT_TAHOMA_11_BOLD,16770730,170,18,"center")
+    this.hintContainer.addChild(this.text)
+    this.hintContainer.position.set(0 + 60 * t, 6)
+    this.hintContainer.visible = false
+    this.addChild(this.hintContainer)
+
+    this.pic_btn.mouseover = this.overHandler.bind(this, pictureUrl, this.pic_btn),
+    this.pic_btn.mouseout = this.outHandler.bind(this)
+}
+
+canvas.app.hunt.view.MobsFilter.prototype.overHandler = function(pictureUrl, button) {
+    this.text.text = Object.values(this.parent.main.model.Objects).find(object => button.artikul_id == object.artikul_id && object.pic == pictureUrl.split('/').at(-1)).name ?? 'NaN'
+    this.hintContainer.visible = true
+    this.hintContainer.position.set(button.position.x - 55, 70)
+    canvas.app.CanvasApp.prototype.handlerEnterFrame.call(this)
+}
+
+canvas.app.hunt.view.MobsFilter.prototype.outHandler = function() {
+    this.hintContainer.visible = false
+    canvas.app.CanvasApp.prototype.handlerEnterFrame.call(this)
 }
 
 canvas.app.hunt.view.MobsFilter.prototype.clickHandler = function(t) {
@@ -38456,29 +38481,29 @@ canvas.app.hunt.view.MobsFilter.prototype.clickHandler = function(t) {
     const isVisible = !mask.visible
     mask.visible = isVisible
 
-    const mobUrl = this.children[0].children[0].url
-    let hiddenMobs = JSON.parse(localStorage.hiddenMobs ?? '[]')
+    const artikulId = t.currentTarget.artikul_id
+    let hiddenObjects = JSON.parse(localStorage.hiddenObjects ?? '[]')
 
     if(isVisible) {
-        const index = hiddenMobs.indexOf(mobUrl)
-        hiddenMobs.splice(index, 1)
+        const index = hiddenObjects.indexOf(artikulId)
+        hiddenObjects.splice(index, 1)
     } else {
-        hiddenMobs.push(mobUrl)
+        hiddenObjects.push(artikulId)
     }
-    localStorage.hiddenMobs = JSON.stringify(hiddenMobs)
+    localStorage.hiddenObjects = JSON.stringify(hiddenObjects)
     this.parent.handeMobsVisibility()
 }
 
 canvas.app.hunt.view.MobsFilter.prototype.handeMobsVisibility = function() {
-    let hiddenMobs = JSON.parse(localStorage.hiddenMobs ?? '[]')
+    let hiddenObjects = JSON.parse(localStorage.hiddenObjects ?? '[]')
     const mobs = Object.values(canvas.app.hunt.model.Objects).filter(object => object.type == this.type)
     mobs.forEach(mob => {
         if(mob.mc) {
             mob.mc.visible = true
         }
     })
-    const needToBeHiddenMobs = mobs.filter(mob => hiddenMobs.includes((this.type == 'bot' ? canvas.app.hunt.model.PicPath : canvas.app.hunt.model.FarmPicPath) + mob.pic))
-    needToBeHiddenMobs.forEach(mob => {
+    const needToBeHiddenObjects= mobs.filter(mob => hiddenObjects.includes(mob.artikul_id))
+    needToBeHiddenObjects.forEach(mob => {
         if(mob.mc) {
             mob.mc.visible = false
         }
