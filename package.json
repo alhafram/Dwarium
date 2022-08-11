@@ -5,7 +5,7 @@
     "main": "out/main.js",
     "scripts": {
         "compile": "tsc",
-        "start": "yarn run compile && yarn run compileCSS && yarn run compileChatLogCSS && electron .",
+        "start": "yarn run compile && yarn run compileCSS && yarn run compileChatLogCSS && yarn run copyCanvas && electron .",
         "all": "yarn run prod && electron-builder -mwl",
         "mac": "yarn run prod && electron-builder -m",
         "win": "yarn run prod && electron-builder -w",
@@ -13,14 +13,15 @@
         "publish": "yarn run prod && electron-builder -mwl --publish always",
         "dev": "concurrently \"tsc -w\" \"electron .\" \"yarn run tailwind\"",
         "clean": "rm -rf ./out rm -rf ./dist",
-        "prod": "yarn run clean && yarn run compile && yarn run compileCSS && yarn run compileChatLogCSS",
+        "prod": "yarn run clean && yarn run compile && yarn run compileCSS && yarn run compileChatLogCSS && yarn run copyCanvas",
         "tailwind": "npx tailwindcss -i ./src/Styles/main.css -o ./out/main.css --watch",
         "compileCSS": "npx tailwindcss -i ./src/Styles/main.css -o ./out/main.css",
         "compileChatLogCSS": "npx tailwindcss -i ./src/Styles/ChatLog.css -o ./out/ChatLog.css",
         "prettierHTML": "npx prettier ./gui/**/*.html --write --print-width=200 --bracket-same-line=true --tab-width=4 --single-quote=true --no-semi",
         "prettierCSS": "npx prettier ./src/Styles/main.css --write --print-width=200 --bracket-same-line=true --tab-width=4 --single-quote=true --no-semi",
         "linter": "npx prettier ./src --write --print-width=200 --tab-width=4 --single-quote=true --no-semi --trailing-comma=none && eslint ./src --fix",
-        "beautify": "yarn run prettierHTML && yarn run prettierCSS && yarn run linter"
+        "beautify": "yarn run prettierHTML && yarn run prettierCSS && yarn run linter",
+        "copyCanvas": "cp ./src/Scripts/canvas.all.js ./out/Scripts/"
     },
     "author": "",
     "license": "ISC",

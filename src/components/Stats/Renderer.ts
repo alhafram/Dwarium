@@ -71,6 +71,8 @@ async function renderFights(initialState: StatsWindowState) {
         const text = await response.text()
         const doc = text.toDocument()
 
+        const isDeletedFight = doc.querySelector('body > table > tbody > tr:nth-child(2) > td > div > div.bg-l > div > div > div > div > div > div > div > p')?.textContent == '\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tБой не найден!\t\t\t\t\t\t\t\t\t\t\t\t\t\t'
+
         const startDate =
             doc.querySelector(
                 'body > table > tbody > tr:nth-child(2) > td > div > div.bg-l > div > div > div > div > div > div > div > table > tbody > tr:nth-child(1) > td > div > table > tbody > tr > td:nth-child(1) > b'
@@ -82,10 +84,12 @@ async function renderFights(initialState: StatsWindowState) {
         const duration =
             doc.querySelector(
                 'body > table > tbody > tr:nth-child(2) > td > div > div.bg-l > div > div > div > div > div > div > div > table > tbody > tr:nth-child(1) > td > div > table > tbody > tr > td:nth-child(5) > b'
+            )?.textContent ?? doc.querySelector(
+                'body > table > tbody > tr:nth-child(2) > td > div > div.bg-l > div > div > div > div > div > div > div > table > tbody > tr:nth-child(1) > td > div > table > tbody > tr > td:nth-child(4) > b'
             )?.textContent ?? 'Wrong duration'
         const formattedDate = startDate.split(' ').splice(-1, 1)[0]
 
-        const strignElement = `<p class="text-secondaryLightDark dark:text-secondaryLight">${formattedDate} <a id='${id}' href='#'>${title}</a> ${duration}</p>`
+        const strignElement = isDeletedFight ? `<p class="text-secondaryLightDark dark:text-secondaryLight"> <a id='${id}' href='#'>Бой удален</a></p>` : `<p class="text-secondaryLightDark dark:text-secondaryLight">${formattedDate} <a id='${id}' href='#'>${title}</a> ${duration}</p>`
         const parser = new DOMParser()
         const document = parser.parseFromString(strignElement, 'text/html')
         const fightInfoLink = document.getElementById(id) as HTMLLinkElement

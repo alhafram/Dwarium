@@ -23,9 +23,9 @@ export default async function reduce(state: StatsWindowState, action: StatsWindo
                 ...state,
                 dropInfo,
                 selectedDate: formattedDate,
-                selectedDateMoney: dropInfo[currentDate.toDateString()].money,
-                selectedDateItems: dropInfo[currentDate.toDateString()].dropItems ?? [],
-                selectedDayFightIds: dropInfo[currentDate.toDateString()].fightIds ?? [],
+                selectedDateMoney: dropInfo[currentDate.toDateString()]?.money ?? 0,
+                selectedDateItems: dropInfo[currentDate.toDateString()]?.dropItems ?? [],
+                selectedDayFightIds: dropInfo[currentDate.toDateString()]?.fightIds ?? [],
                 baseUrl: baseUrl
             }
         }

@@ -1,4 +1,4 @@
-import { BrowserView, BrowserWindow } from 'electron'
+import { BrowserView, BrowserWindow, clipboard } from 'electron'
 import contextMenu from 'electron-context-menu'
 
 export default function setupContextMenu(window: BrowserView | BrowserWindow) {
@@ -42,7 +42,14 @@ export default function setupContextMenu(window: BrowserView | BrowserWindow) {
             actions.saveImageAs({}),
             actions.copyImageAddress({}),
             actions.copyImage({}),
-            actions.copyLink({})
+            actions.copyLink({}),
+            {
+                label: 'Копировать URL страницы',
+                click: () => {
+                    const url = window.webContents.getURL()
+                    clipboard.writeText(url)
+                }
+            }
         ]
     })
 }

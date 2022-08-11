@@ -7,6 +7,7 @@ import FavouriteLinkService from '../../services/FavouriteLinksService'
 import sendNotification, { NotificationType } from '../../services/Notifications'
 import { Elements } from './Elements'
 import { handleUserSession, openPage, setupService } from '../../services/AnalyticsService'
+import { app } from '@electron/remote'
 
 enum PluginConfigKeys {
     foodButtonBadgeSpan = 'foodButtonBadgeSpan',
@@ -390,7 +391,7 @@ async function setupFavourite() {
 }
 
 async function setupBadges(): Promise<PluginConfig> {
-    const pluginConfig = (await fetch('https://raw.githubusercontent.com/alhafram/DwariumData/main/PluginHashes.json').then((data) => data.json())) as PluginConfig
+    const pluginConfig = (await fetch(`https://raw.githubusercontent.com/alhafram/DwariumData/main/PluginHashes_${app.getVersion()}.json`).then((data) => data.json())) as PluginConfig
     const keys = Object.keys(pluginConfig)
     for(const key of keys) {
         const element = eval(`Elements_1.Elements.${key}()`) as HTMLElement

@@ -275,14 +275,16 @@ ipcMain.on(Channel.SWITCH_MODE, () => {
     favouriteListBrowserView?.webContents.send(Channel.SWITCH_MODE)
     foodWindow?.webContents.send(Channel.SWITCH_MODE)
     notesWindow?.webContents.send(Channel.SWITCH_MODE)
-    beltWindow?.webContents.send(Channel.SWITCH_MODE)
     dressingWindow?.webContents.send(Channel.SWITCH_MODE)
+    beltWindow?.webContents.send(Channel.SWITCH_MODE)
     chatLogWindow?.webContents.send(Channel.SWITCH_MODE)
     chatSettingsWindow?.webContents.send(Channel.SWITCH_MODE)
-    settingsWindow?.webContents.send(Channel.SWITCH_MODE)
     notificationsWindow?.webContents.send(Channel.SWITCH_MODE)
     effectSetsWindow?.webContents.send(Channel.SWITCH_MODE)
     expiringItemsSettings?.webContents.send(Channel.SWITCH_MODE)
+    gameSettingsWindow?.webContents.send(Channel.SWITCH_MODE)
+    settingsWindow?.webContents.send(Channel.SWITCH_MODE)
+    statsWindow?.webContents.send(Channel.SWITCH_MODE)
 })
 
 ipcMain.handle(Channel.GET_URL, () => {

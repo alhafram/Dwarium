@@ -50,6 +50,7 @@ function setupGameFlags() {
     Elements.hideHuntFilterInput().checked = state.huntFlags.hideHuntFilter
     Elements.hideMobsFilterInput().checked = state.huntFlags.hideMobsFilter
     Elements.hideNewResourcesFilterInput().checked = state.huntFlags.hideNewResourcesFilter
+    Elements.hideHuntBackgroundInput().checked = state.huntFlags.hideHuntBackground
 }
 
 export function setupView() {
