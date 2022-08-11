@@ -37298,6 +37298,9 @@ canvas.app.hunt.View.prototype.prepare_field = function() {
         a[i][canvas.px.MovieClipProps.matrix] && (e.transform.localTransform = new canvas.px.Matrix(a[i][canvas.px.MovieClipProps.matrix].a,a[i][canvas.px.MovieClipProps.matrix].b,a[i][canvas.px.MovieClipProps.matrix].c,a[i][canvas.px.MovieClipProps.matrix].d,a[i][canvas.px.MovieClipProps.matrix].tx,a[i][canvas.px.MovieClipProps.matrix].ty)),
         e.alpha = null == a[i][canvas.px.MovieClipProps.alpha] ? 1 : a[i][canvas.px.MovieClipProps.alpha],
         this.full_map.addChild(e);
+    if(top?.document.huntFlags?.hideHuntBackground) {
+        this.full_map.alpha = 0
+    }
     this.fld_north = new canvas.app.hunt.view.Field(this,this.full_map,0),
     this.flds_cont.addChild(this.fld_north),
     this.fld_locker = new canvas.px.Mask(t.half_width,t.half_height,0,.3),
