@@ -30,7 +30,8 @@ export function createWindowAndLoad(windowType: WindowType, htmlPath?: HTMLPath,
         webPreferences: {
             preload: preloadPath ? path.join(__dirname, preloadPath) : undefined,
             contextIsolation: contextIsolation,
-            webSecurity: false
+            webSecurity: false,
+            nodeIntegration: true
         },
         fullscreen: false
     })

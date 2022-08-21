@@ -27,7 +27,9 @@ export default class MainWindowContainer {
             icon: __dirname + '/icon.icns',
             webPreferences: {
                 preload: path.join(__dirname, 'preload.js'),
-                backgroundThrottling: false
+                backgroundThrottling: false,
+                contextIsolation: false,
+                nodeIntegration: true
             },
             useContentSize: true,
             show: false,
@@ -211,7 +213,8 @@ export default class MainWindowContainer {
                 parent: ConfigService.getSettings().windowsAboveApp ? this.mainWindow : undefined,
                 fullscreen: false,
                 webPreferences: {
-                    webSecurity: referrer.url == myGamesUrl
+                    webSecurity: referrer.url == myGamesUrl,
+                    nodeIntegration: true
                 }
             })
             newWindow.on('focus', () => {
@@ -293,8 +296,8 @@ export default class MainWindowContainer {
                 enablePreferredSizeMode: true,
                 preload: path.join(__dirname, 'MainBrowserViewPreload.js'),
                 contextIsolation: false,
-                nativeWindowOpen: true,
-                webSecurity: false
+                webSecurity: false,
+                nodeIntegration: true
             }
         })
         setupContextMenu(browserView)

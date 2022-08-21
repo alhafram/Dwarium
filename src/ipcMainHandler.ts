@@ -49,7 +49,8 @@ function createNewTab(url: string, id: string) {
     const browserView = new BrowserView({
         webPreferences: {
             enablePreferredSizeMode: true,
-            webSecurity: false
+            webSecurity: false,
+            nodeIntegration: true
         }
     })
     setupContextMenu(browserView)
