@@ -1,0 +1,10 @@
+export enum FoodWindowActions {
+    LOAD_CONTENT,
+    EQUIP,
+    UNEQUIP,
+    SAVE,
+    MINUS_HP_PERCENTAGE,
+    PLUS_HP_PERCENTAGE,
+    MINUS_MP_PERCENTAGE,
+    PLUS_MP_PERCENTAGE
+}
