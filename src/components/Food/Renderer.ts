@@ -1,6 +1,6 @@
 import { Elements } from './Elements'
 import { FoodWindowState } from './FoodWindowState'
-import { setupAltEvents } from '../../Components/Common/EventBuilder'
+import { setupAltEvents } from '../Common/EventBuilder'
 import SimpleAlt from '../../Scripts/simple_alt'
 import { FoodType } from '../../Models/InventoryItem'
 import { convertItemIntoDiv } from '../Common/ItemBuilder'
