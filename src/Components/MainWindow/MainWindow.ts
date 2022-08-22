@@ -272,7 +272,7 @@ export default class MainWindowContainer {
             y = this.isFullscreen ? 0 : y
             controlBounds.height = this.isFullscreen ? 0 : controlBounds.height
         }
-        if(size) {
+        if(size && process.platform == 'win32') {
             size.width -= 15
         }
         if(tab) {
