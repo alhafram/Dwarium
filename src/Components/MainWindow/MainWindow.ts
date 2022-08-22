@@ -272,12 +272,15 @@ export default class MainWindowContainer {
             y = this.isFullscreen ? 0 : y
             controlBounds.height = this.isFullscreen ? 0 : controlBounds.height
         }
+        if(size) {
+            size.width -= 15
+        }
         if(tab) {
             tab.setBounds({
                 x: 0,
                 y: y,
-                width: size && process.platform == 'win32' ? size.width : contentWidth,
-                height: size && process.platform == 'win32' ? size.height : contentHeight - controlBounds.height
+                width: size?.width ?? contentWidth,
+                height: contentHeight - controlBounds.height
             })
         }
     }
