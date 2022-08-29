@@ -5,12 +5,21 @@ function convertItemIntoDiv(item: InventoryItem, xmlFoodItem: Element | undefine
     const url = item.image.includes(ConfigService.getSettings().baseUrl) ? item.image : `${ConfigService.getSettings().baseUrl}/${item.image}`
     const count = xmlFoodItem?.getAttribute('cnt') ?? item.cnt
     let counterElement = ''
+    let expElement = ''
     if(count) {
         counterElement = parseInt(count) > 1 ? `<p class=" h-5 w-12 border text-secondaryLightDark dark:text-secondaryLight font-extrabold font-montserrat text-xs leading-normal bg-white dark:bg-dark mt-auto ml-auto mr-auto rounded-full border-lightMediumGrey dark:border-secondaryDark text-center">${count}</p>` : ''
     }
     
+    if(item.exp) {
+        const splittedExp = item.exp.value.split(' ')
+        const firstComponent = splittedExp[0]
+        if(firstComponent) {
+            expElement = `<p class=" h-5 w-12 border text-secondaryLightDark dark:text-secondaryLight font-extrabold font-montserrat text-xs leading-normal bg-white dark:bg-dark ml-auto mr-auto rounded-full border-lightMediumGrey dark:border-secondaryDark text-center">${firstComponent}</p>`
+        }
+    }
     const html = `
     <div class="h-20 w-20 flex flex-col bg-no-repeat rounded-3xl bg-cover" style="background-image: url(${url})" draggable="true" itemid="${item.id}">
+        ${expElement}
         ${counterElement}
     </div>
     `
