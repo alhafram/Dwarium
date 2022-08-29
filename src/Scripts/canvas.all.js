@@ -11915,7 +11915,7 @@ canvas.app.CanvasBattle.prototype.ready = function() {
     this.main = new canvas.app.battle.Main(this.model,this.hintManager),
     this.root.addChild(this.main),
     this.main.resize(this.width, this.height),
-    this.fps = top?.document.animationFPS
+    this.fps = top?.document.animationFPS ?? this.model.fps
 }
 ,
 canvas.app.CanvasBattle.prototype.swfData = function(t, e) {

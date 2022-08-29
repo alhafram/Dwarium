@@ -27,10 +27,9 @@ window.addEventListener('DOMContentLoaded', async() => {
     const settings = ChatSettingsService.get(userId)
     document.chatFlags = settings
     const animationSpeedType = ConfigService.getSettings().animationSpeedType
-    let fps = 20
+    let fps = undefined
     switch (animationSpeedType) {
         case 'gameSpeed': {
-            fps = 20
             break
         }
         case 'x2Speed': {
