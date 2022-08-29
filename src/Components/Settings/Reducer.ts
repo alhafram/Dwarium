@@ -29,6 +29,8 @@ export default function reduce(state: SettingsWindowState, action: SettingsWindo
                     ownServer: loadedSettings.ownServer ?? '',
                     fightNotificationsSystem: loadedSettings.fightNotificationsSystem,
                     fightNotificationsIngame: loadedSettings.fightNotificationsIngame,
+                    fightFinishedNotificationsSystem: loadedSettings.fightFinishedNotificationsSystem,
+                    fightFinishedNotificationsIngame: loadedSettings.fightFinishedNotificationsIngame,
                     battlegroundNotificationsSystem: loadedSettings.battlegroundNotificationsSystem,
                     battlegroundNotificationsIngame: loadedSettings.battlegroundNotificationsIngame,
                     messageNotificationsSystem: loadedSettings.messageNotificationsSystem,

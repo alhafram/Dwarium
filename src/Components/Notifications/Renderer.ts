@@ -12,6 +12,8 @@ export function setupView() {
 export function render(initialState: NotificationsWindowState) {
     Elements.fightNotificationsSystemInput().checked = initialState.fightNotificationsSystem
     Elements.fightNotificationsIngameInput().checked = initialState.fightNotificationsIngame
+    Elements.fightFinishedNotificationsSystemInput().checked = initialState.fightFinishedNotificationsSystem
+    Elements.fightFinishedNotificationsIngameInput().checked = initialState.fightFinishedNotificationsIngame
     Elements.battlegroundNotificationsSystemInput().checked = initialState.battlegroundNotificationsSystem
     Elements.battlegroundNotificationsIngameInput().checked = initialState.battlegroundNotificationsIngame
     Elements.messageNotificationsSystemInput().checked = initialState.messageNotificationsSystem

@@ -1,6 +1,8 @@
 export type NotificationsWindowState = {
     fightNotificationsSystem: boolean
     fightNotificationsIngame: boolean
+    fightFinishedNotificationsSystem: boolean
+    fightFinishedNotificationsIngame: boolean
     battlegroundNotificationsSystem: boolean
     battlegroundNotificationsIngame: boolean
     messageNotificationsSystem: boolean

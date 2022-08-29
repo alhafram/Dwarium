@@ -14,6 +14,8 @@ export default function reduce(state: NotificationsWindowState, action: Notifica
                     ...state,
                     fightNotificationsSystem: loadedSettings.fightNotificationsSystem,
                     fightNotificationsIngame: loadedSettings.fightNotificationsIngame,
+                    fightFinishedNotificationsSystem: loadedSettings.fightFinishedNotificationsSystem,
+                    fightFinishedNotificationsIngame: loadedSettings.fightFinishedNotificationsIngame,
                     battlegroundNotificationsSystem: loadedSettings.battlegroundNotificationsSystem,
                     battlegroundNotificationsIngame: loadedSettings.battlegroundNotificationsIngame,
                     messageNotificationsSystem: loadedSettings.messageNotificationsSystem,
@@ -31,6 +33,8 @@ export default function reduce(state: NotificationsWindowState, action: Notifica
             const clientSettings = ConfigService.getSettings()
             clientSettings.fightNotificationsSystem = Elements.fightNotificationsSystemInput().checked
             clientSettings.fightNotificationsIngame = Elements.fightNotificationsIngameInput().checked
+            clientSettings.fightFinishedNotificationsSystem = Elements.fightFinishedNotificationsSystemInput().checked
+            clientSettings.fightFinishedNotificationsIngame = Elements.fightFinishedNotificationsIngameInput().checked
             clientSettings.battlegroundNotificationsSystem = Elements.battlegroundNotificationsSystemInput().checked
             clientSettings.battlegroundNotificationsIngame = Elements.battlegroundNotificationsIngameInput().checked
             clientSettings.messageNotificationsSystem = Elements.messageNotificationsSystemInput().checked
@@ -46,6 +50,8 @@ export default function reduce(state: NotificationsWindowState, action: Notifica
                 ...state,
                 fightNotificationsSystem: clientSettings.fightNotificationsSystem,
                 fightNotificationsIngame: clientSettings.fightNotificationsIngame,
+                fightFinishedNotificationsSystem: clientSettings.fightFinishedNotificationsSystem,
+                fightFinishedNotificationsIngame: clientSettings.fightFinishedNotificationsIngame,
                 battlegroundNotificationsSystem: clientSettings.battlegroundNotificationsSystem,
                 battlegroundNotificationsIngame: clientSettings.battlegroundNotificationsIngame,
                 messageNotificationsSystem: clientSettings.messageNotificationsSystem,

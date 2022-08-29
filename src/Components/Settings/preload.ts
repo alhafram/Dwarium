@@ -25,6 +25,8 @@ let initialState: SettingsWindowState = {
     ownServer: '',
     fightNotificationsSystem: false,
     fightNotificationsIngame: false,
+    fightFinishedNotificationsSystem: false,
+    fightFinishedNotificationsIngame: false,
     battlegroundNotificationsSystem: false,
     battlegroundNotificationsIngame: false,
     messageNotificationsSystem: false,

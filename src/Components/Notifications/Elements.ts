@@ -5,6 +5,12 @@ export const Elements = {
     fightNotificationsIngameInput(): HTMLInputElement {
         return document.getElementById('fightNotificationsIngameInput') as HTMLInputElement
     },
+    fightFinishedNotificationsSystemInput(): HTMLInputElement {
+        return document.getElementById('fightFinishedNotificationsSystemInput') as HTMLInputElement
+    },
+    fightFinishedNotificationsIngameInput(): HTMLInputElement {
+        return document.getElementById('fightFinishedNotificationsIngameInput') as HTMLInputElement
+    },
     battlegroundNotificationsSystemInput(): HTMLInputElement {
         return document.getElementById('battlegroundNotificationsSystemInput') as HTMLInputElement
     },

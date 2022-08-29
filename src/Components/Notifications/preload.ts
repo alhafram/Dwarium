@@ -7,6 +7,8 @@ import { render, setupView } from './Renderer'
 let initialState: NotificationsWindowState = {
     fightNotificationsSystem: false,
     fightNotificationsIngame: false,
+    fightFinishedNotificationsSystem: false,
+    fightFinishedNotificationsIngame: false,
     battlegroundNotificationsSystem: false,
     battlegroundNotificationsIngame: false,
     messageNotificationsSystem: false,
