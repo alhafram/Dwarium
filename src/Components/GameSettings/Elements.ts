@@ -113,5 +113,8 @@ export const Elements = {
     },
     hideHuntBackgroundInput(): HTMLInputElement {
         return document.getElementById('hideHuntBackgroundInput') as HTMLInputElement
+    },
+    hideFightBackgroundInput(): HTMLInputElement {
+        return document.getElementById('hideFightBackgroundInput') as HTMLInputElement
     }
 }

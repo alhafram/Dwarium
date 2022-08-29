@@ -15510,9 +15510,11 @@ canvas.app.battle.View = function(t) {
     this.effects = new canvas.px.Container,
     this.player1 = new canvas.px.Container,
     this.player2 = new canvas.px.Container;
-    t = new canvas.px.Sprite(canvas.ResourceLoader.getTexture("bg"));
-    this.addChild(t),
-    t.position.set(4, 12),
+    if(!top?.document.fightFlags.hideFightBackground) {
+        t = new canvas.px.Sprite(canvas.ResourceLoader.getTexture("bg"));
+        this.addChild(t),
+        t.position.set(4, 12)
+    }
     this.flagButton = new canvas.ui.SimpleButton(canvas.ResourceLoader.getImage("ui", "battle_flag")),
     this.flagButton.position.set(0, 50),
     this.flagCdGraphics = new canvas.px.Graphics,

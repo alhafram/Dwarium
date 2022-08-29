@@ -10,7 +10,8 @@ let initialState: GameSettingsWindowState = {
     gameLocationFlags: flags.gameLocationFlags,
     gameTopMenuFlags: flags.gameTopMenuFlags,
     gameRightMenuFlags: flags.gameRightMenuFlags,
-    huntFlags: flags.huntFlags
+    huntFlags: flags.huntFlags,
+    fightFlags: flags.fightFlags
 }
 
 export function dispatch(action: GameSettingsWindowActions): void {

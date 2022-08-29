@@ -1,6 +1,6 @@
 import { ipcRenderer } from 'electron'
 import { Channel } from '../../Models/Channel'
-import GameFlagsService, { GameLocationFlagsKeys, GameRightMenuFlagsKeys, GameTopMenuFlagsKeys, HuntFlagsKeys } from '../../services/GameFlagsService'
+import GameFlagsService, { GameLocationFlagsKeys, GameRightMenuFlagsKeys, GameTopMenuFlagsKeys, HuntFlagsKeys, FightFlagsKeys } from '../../services/GameFlagsService'
 import { GameSettingsWindowActions } from './Actions'
 import { Elements } from './Elements'
 import { GameSettingsWindowState } from './GameSettingsWindowState'
@@ -19,7 +19,8 @@ export default function reduce(state: GameSettingsWindowState, action: GameSetti
                 gameLocationFlags: flags.gameLocationFlags,
                 gameTopMenuFlags: flags.gameTopMenuFlags,
                 gameRightMenuFlags: flags.gameRightMenuFlags,
-                huntFlags: flags.huntFlags
+                huntFlags: flags.huntFlags,
+                fightFlags: flags.fightFlags
             }
         }
     }
@@ -65,4 +66,6 @@ function saveGameFlags() {
     GameFlagsService.writeData(HuntFlagsKeys.HIDE_MOBS_FILTER, Elements.hideMobsFilterInput().checked)
     GameFlagsService.writeData(HuntFlagsKeys.HIDE_NEW_RESOURCES_FILTER, Elements.hideNewResourcesFilterInput().checked)
     GameFlagsService.writeData(HuntFlagsKeys.HIDE_HUNT_BACKGROUND, Elements.hideHuntBackgroundInput().checked)
+    
+    GameFlagsService.writeData(FightFlagsKeys.HIDE_FIGHT_BACKGROUND, Elements.hideFightBackgroundInput().checked)
 }

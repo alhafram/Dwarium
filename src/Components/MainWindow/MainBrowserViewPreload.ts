@@ -17,6 +17,7 @@ document.gameLocationFlags = flags.gameLocationFlags
 document.gameTopMenuFlags = flags.gameTopMenuFlags
 document.gameRightMenuFlags = flags.gameRightMenuFlags
 document.huntFlags = flags.huntFlags
+document.fightFlags = flags.fightFlags
 
 window.addEventListener('DOMContentLoaded', async() => {
     ChatService.setupAutoResponder()
