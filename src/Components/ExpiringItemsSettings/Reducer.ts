@@ -14,7 +14,7 @@ export default async function reduce(state: ExpiringItemsSettingsWindowState, ac
             const expiringItemsContainer = await loadExpiringItems()
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
-            const expiringItems = expiringItemsContainer.allItems.sort((a, b) => a.quality - b.quality)
+            const expiringItems = expiringItemsContainer.allItems.sort((a, b) => a.time_expire - b.time_expire)
             SimpleAlt.setupArtAlt(expiringItemsContainer.altItems)
 
             const userId = (await Utils.getUserId()) as number
