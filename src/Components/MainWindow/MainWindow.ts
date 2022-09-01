@@ -15,6 +15,7 @@ export default class MainWindowContainer {
     restoreUrls: string[] = []
 
     constructor() {
+        ShortcutService.buildMenu()
         const mainWindowPosition = getClientWindowPosition(WindowType.MAIN)
         this.mainWindow = new BrowserWindow({
             x: mainWindowPosition?.x ?? 0,
@@ -25,15 +26,16 @@ export default class MainWindowContainer {
             minHeight: 500,
             title: 'Dwarium',
             icon: __dirname + '/icon.icns',
+            useContentSize: true,
+            show: false,
+            paintWhenInitiallyHidden: true,
+            autoHideMenuBar: true,
             webPreferences: {
                 preload: path.join(__dirname, 'preload.js'),
                 backgroundThrottling: false,
                 contextIsolation: false,
                 nodeIntegration: true
             },
-            useContentSize: true,
-            show: false,
-            paintWhenInitiallyHidden: true
         })
         const settings = ConfigService.getSettings()
         this.restoreUrls = settings.needToRestoreUrls ? settings.restoreUrls : []
@@ -42,7 +44,6 @@ export default class MainWindowContainer {
             saveClientWindowPosition(WindowType.MAIN, this.mainWindow.getBounds())
         })
         require('@electron/remote/main').enable(this.mainWindow.webContents)
-        this.mainWindow.setMenu(null)
         this.mainWindow.on('enter-full-screen', () => {
             const bounds = this.mainWindow.getBounds()
             if(TabsController.currentTab() != TabsController.getMain()) {
@@ -60,7 +61,6 @@ export default class MainWindowContainer {
         this.mainWindow.on('closed', () => {
             (this.browserView?.webContents as any).destroy()
             this.browserView = null
-            ShortcutService.unregisterShortcuts()
         })
 
         this.mainWindow.webContents.on('did-finish-load', () => {
@@ -70,11 +70,6 @@ export default class MainWindowContainer {
 
         this.mainWindow.on('focus', () => {
             this.browserView?.webContents.focus()
-            ShortcutService.registerShortcuts()
-        })
-
-        this.mainWindow.on('blur', () => {
-            ShortcutService.unregisterShortcuts()
         })
     }
 
@@ -147,7 +142,8 @@ export default class MainWindowContainer {
                             fullscreen: false,
                             webPreferences: {
                                 webSecurity: false
-                            }
+                            },
+                            autoHideMenuBar: true
                         }
                     }
                 }
@@ -169,6 +165,7 @@ export default class MainWindowContainer {
                         resizable: true,
                         movable: true,
                         fullscreen: false,
+                        autoHideMenuBar: true,
                         webPreferences: {
                             contextIsolation: false,
                             nativeWindowOpen: true,
@@ -184,17 +181,11 @@ export default class MainWindowContainer {
         this.browserView?.webContents.on('did-create-window', (window) => {
             this.setupCreatedWindow(window)
             setupContextMenu(window)
-            window.on('focus', () => {
-                ShortcutService.registerShortcuts()
-            })
-            window.on('blur', () => {
-                ShortcutService.unregisterShortcuts()
-            })
         })
     }
 
     setupCreatedWindow(window: BrowserWindow) {
-        window.setMenu(null)
+        window.setAutoHideMenuBar(true)
         window.setFullScreen(false)
         this.setupOpenHandler(window)
     }
@@ -212,16 +203,11 @@ export default class MainWindowContainer {
                 height: windowPosition?.height ?? defaultPosition.height,
                 parent: ConfigService.getSettings().windowsAboveApp ? this.mainWindow : undefined,
                 fullscreen: false,
+                autoHideMenuBar: true,
                 webPreferences: {
                     webSecurity: referrer.url == myGamesUrl,
                     nodeIntegration: true
                 }
-            })
-            newWindow.on('focus', () => {
-                ShortcutService.registerShortcuts()
-            })
-            newWindow.on('blur', () => {
-                ShortcutService.unregisterShortcuts()
             })
             setupContextMenu(newWindow)
             this.setupOpenHandler(newWindow)

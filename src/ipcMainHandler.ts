@@ -82,7 +82,8 @@ function createNewTab(url: string, id: string) {
                 overrideBrowserWindowOptions: {
                     webPreferences: {
                         webSecurity: false
-                    }
+                    },
+                    autoHideMenuBar: true
                 }
             }
         })

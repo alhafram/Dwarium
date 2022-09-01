@@ -1,3 +1,4 @@
+import { Menu, MenuItem, app } from 'electron'
 const { globalShortcut, session, BrowserWindow, clipboard } = process.type === 'browser' ? require('electron') : require('@electron/remote')
 import { Channel } from '../Models/Channel'
 import { buildPath, ConfigPath } from '../Models/ConfigPathes'
@@ -391,6 +392,215 @@ function unregisterShortcuts() {
     globalShortcut.unregisterAll()
 }
 
+const isMac = process.platform === 'darwin'
+const shortcuts = getShortcuts()
+const template = [
+    // { role: 'appMenu' }
+    ...(isMac ? [{
+        label: app.name,
+        submenu: [
+            { role: 'about' },
+            { type: 'separator' },
+            { type: 'separator' },
+            { role: 'hide' },
+            { role: 'hideOthers' },
+            { role: 'unhide' },
+            { type: 'separator' },
+            { role: 'quit' }
+        ]
+    }] : []),
+    // { role: 'fileMenu' }
+    {
+        label: 'File',
+        submenu: [
+            {
+                label: 'Create new tab',
+                accelerator: shortcuts.newTab,
+                click: () => { TabsController.mainWindow?.webContents.send(Channel.NEW_TAB) }
+            },
+            {
+                label: 'Обновить вкладку',
+                accelerator: shortcuts.reload,
+                click: () => { TabsController.mainWindow?.webContents.send(Channel.RELOAD) }
+            },
+            {
+                label: 'Следующая вкладка',
+                accelerator: shortcuts.nextTab,
+                click: () => { TabsController.mainWindow?.webContents.send(Channel.SWITCH_NEXT_TAB) }
+            }, 
+            {
+                label: 'Предыдущая вкладка',
+                accelerator: shortcuts.prevTab,
+                click: () => { TabsController.mainWindow?.webContents.send(Channel.SWITCH_PREV_TAB) }
+            }, 
+            {
+                label: 'Закрыть вкладку',
+                accelerator: shortcuts.closeTab,
+                click: () => {
+                    const openedWindow = BrowserWindow.getFocusedWindow()
+                    if(openedWindow && openedWindow != TabsController.mainWindow) {
+                        openedWindow.close()
+                        return
+                    }
+                    if(TabsController.currentTab() != TabsController.getMain()) {
+                        TabsController.mainWindow?.webContents.send(Channel.CLOSE_TAB, TabsController.current_tab_id)
+                    }
+                }
+            },
+            {
+                label: 'Скопировать URL страницы',
+                accelerator: shortcuts.copyWindowUrl,
+                click: () => {
+                    const url = BrowserWindow.getFocusedWindow()?.webContents.getURL()
+                    if(url && !url.startsWith('file:/')) {
+                        clipboard.writeText(url)
+                    } else {
+                        clipboard.writeText(TabsController.currentTab().webContents.getURL())
+                    }
+                }
+            }
+        ]
+    },
+    // { role: 'editMenu' }
+    {
+        label: 'Edit',
+        submenu: [
+            { role: 'undo' },
+            { role: 'redo' },
+            { type: 'separator' },
+            { role: 'cut' },
+            { role: 'copy' },
+            { role: 'paste' },
+            ...(isMac ? [
+                { role: 'pasteAndMatchStyle' },
+                { role: 'delete' },
+                { role: 'selectAll' },
+                { type: 'separator' },
+                {
+                    label: 'Speech',
+                    submenu: [
+                        { role: 'startSpeaking' },
+                        { role: 'stopSpeaking' }
+                    ]
+                }
+            ] : [
+                { role: 'delete' },
+                { type: 'separator' },
+                { role: 'selectAll' }
+            ])
+        ]
+    },
+    // { role: 'viewMenu' }
+    {
+        label: 'View',
+        submenu: [
+            { role: 'reload' },
+            { role: 'forceReload' },
+            { role: 'toggleDevTools' },
+            { type: 'separator' },
+            { role: 'resetZoom' },
+            { role: 'zoomIn' },
+            { role: 'zoomOut' },
+            { type: 'separator' },
+            { role: 'togglefullscreen' }
+        ]
+    },
+    // { role: 'windowMenu' }
+    {
+        label: 'Window',
+        submenu: [
+            { role: 'minimize' },
+            { role: 'zoom' },
+            ...(isMac ? [
+                { type: 'separator' },
+                { role: 'front' },
+                { type: 'separator' },
+                { role: 'window' }
+            ] : [
+                { role: 'close' }
+            ])
+        ]
+    },
+    {
+        role: 'help',
+        submenu: [
+            {
+                label: 'Learn More',
+                click: async() => {
+                    const { shell } = require('electron')
+                    await shell.openExternal('https://electronjs.org')
+                }
+            }
+        ]
+    }
+]
+  
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+const menu = Menu.buildFromTemplate(template)
+console.log(menu)
+Menu.setApplicationMenu(menu)
+
+function buildMenu() {
+//     const menu = Menu.getApplicationMenu()
+//     console.log(menu)
+//     if(menu != null) {
+//         const shortcuts = getShortcuts()
+//         const fileMenu = menu.items.find(item => item.role == 'fileMenu')!
+//         fileMenu.submenu = new Menu()
+//         // menu.insert(menu.items.length - 1, new MenuItem({
+//         //     label: 'Браузер',
+//         //     role: 'fileMenu',
+//         //     id: 'file',
+//         //     submenu: [
+//         //         {
+//         //             label: 'Обновить вкладку',
+//         //             accelerator: shortcuts.reload,
+//         //             click: () => { TabsController.mainWindow?.webContents.send(Channel.RELOAD) }
+//         //         },
+//         //         {
+//         //             label: 'Следующая вкладка',
+//         //             accelerator: shortcuts.nextTab,
+//         //             click: () => { TabsController.mainWindow?.webContents.send(Channel.SWITCH_NEXT_TAB) }
+//         //         }, 
+//         //         {
+//         //             label: 'Пердыдущая вкладка',
+//         //             accelerator: shortcuts.prevTab,
+//         //             click: () => { TabsController.mainWindow?.webContents.send(Channel.SWITCH_PREV_TAB) }
+//         //         }, 
+//         //         {
+//         //             label: 'Закрыть вкладку',
+//         //             accelerator: shortcuts.closeTab,
+//         //             click: () => {
+//         //                 const openedWindow = BrowserWindow.getFocusedWindow()
+//         //                 if(openedWindow && openedWindow != TabsController.mainWindow) {
+//         //                     openedWindow.close()
+//         //                     return
+//         //                 }
+//         //                 if(TabsController.currentTab() != TabsController.getMain()) {
+//         //                     TabsController.mainWindow?.webContents.send(Channel.CLOSE_TAB, TabsController.current_tab_id)
+//         //                 }
+//         //             }
+//         //         },
+//         //         {
+//         //             label: 'Скопировать URL страницы',
+//         //             accelerator: shortcuts.copyWindowUrl,
+//         //             click: () => {
+//         //                 const url = BrowserWindow.getFocusedWindow()?.webContents.getURL()
+//         //                 if(url && !url.startsWith('file:/')) {
+//         //                     clipboard.writeText(url)
+//         //                 } else {
+//         //                     clipboard.writeText(TabsController.currentTab().webContents.getURL())
+//         //                 }
+//         //             }
+//         //         }
+//         //     ]
+//         // }))
+//     }
+//     Menu.setApplicationMenu(menu)
+//     return menu
+}
+
 function isClearKey(event: KeyboardEvent): boolean {
     if(event.key == 'Escape' || event.code == 'Escape') {
         return true
@@ -454,6 +664,7 @@ function resetShortcuts(): void {
 }
 
 export default {
+    buildMenu,
     getShortcuts,
     writeData,
     registerShortcuts,

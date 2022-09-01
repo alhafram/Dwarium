@@ -27,13 +27,14 @@ export function createWindowAndLoad(windowType: WindowType, htmlPath?: HTMLPath,
         minWidth: minWidth,
         minHeight: minHeight,
         parent: ConfigService.getSettings().windowsAboveApp ? TabsController.mainWindow ?? undefined : undefined,
+        fullscreen: false,
+        autoHideMenuBar: true,
         webPreferences: {
             preload: preloadPath ? path.join(__dirname, preloadPath) : undefined,
             contextIsolation: contextIsolation,
             webSecurity: false,
             nodeIntegration: true
-        },
-        fullscreen: false
+        }
     })
     setupContextMenu(window)
     if(htmlPath) {
