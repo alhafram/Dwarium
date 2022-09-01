@@ -443,7 +443,11 @@ const template = [
                         return
                     }
                     if(openedWindow && openedWindow == TabsController.mainWindow && TabsController.tabsList.length == 1) {
-                        app.exit()
+                        if(isMac) {
+                            openedWindow.close()
+                        } else {
+                            app.exit()
+                        }
                     }
                     if(TabsController.currentTab() != TabsController.getMain()) {
                         TabsController.mainWindow?.webContents.send(Channel.CLOSE_TAB, TabsController.current_tab_id)
