@@ -272,7 +272,7 @@ export default class MainWindowContainer {
                 x: 0,
                 y: y,
                 width: size?.width ?? contentWidth,
-                height: size?.height ?? contentHeight - controlBounds.height
+                height: process.platform == 'win32' ? size?.height ?? contentHeight - controlBounds.height : contentHeight - controlBounds.height
             })
         }
     }
