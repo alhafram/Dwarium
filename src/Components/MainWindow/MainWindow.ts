@@ -35,7 +35,7 @@ export default class MainWindowContainer {
                 backgroundThrottling: false,
                 contextIsolation: false,
                 nodeIntegration: true
-            },
+            }
         })
         const settings = ConfigService.getSettings()
         this.restoreUrls = settings.needToRestoreUrls ? settings.restoreUrls : []

@@ -164,19 +164,14 @@ function buildMenu() {
     const shortcuts = getShortcuts()
     const template = [
         // { role: 'appMenu' }
-        ...(isMac ? [{
-            label: app.name,
-            submenu: [
-                { role: 'about' },
-                { type: 'separator' },
-                { type: 'separator' },
-                { role: 'hide' },
-                { role: 'hideOthers' },
-                { role: 'unhide' },
-                { type: 'separator' },
-                { role: 'quit' }
+        ...(isMac
+            ? [
+                {
+                    label: app.name,
+                    submenu: [{ role: 'about' }, { type: 'separator' }, { type: 'separator' }, { role: 'hide' }, { role: 'hideOthers' }, { role: 'unhide' }, { type: 'separator' }, { role: 'quit' }]
+                }
             ]
-        }] : []),
+            : []),
         // { role: 'fileMenu' }
         {
             label: 'Вкладки',
@@ -184,23 +179,31 @@ function buildMenu() {
                 {
                     label: 'Create new tab',
                     accelerator: shortcuts.newTab,
-                    click: () => { TabsController.mainWindow?.webContents.send(Channel.NEW_TAB) }
+                    click: () => {
+                        TabsController.mainWindow?.webContents.send(Channel.NEW_TAB)
+                    }
                 },
                 {
                     label: 'Обновить вкладку',
                     accelerator: shortcuts.reload,
-                    click: () => { TabsController.mainWindow?.webContents.send(Channel.RELOAD) }
+                    click: () => {
+                        TabsController.mainWindow?.webContents.send(Channel.RELOAD)
+                    }
                 },
                 {
                     label: 'Следующая вкладка',
                     accelerator: shortcuts.nextTab,
-                    click: () => { TabsController.mainWindow?.webContents.send(Channel.SWITCH_NEXT_TAB) }
-                }, 
+                    click: () => {
+                        TabsController.mainWindow?.webContents.send(Channel.SWITCH_NEXT_TAB)
+                    }
+                },
                 {
                     label: 'Предыдущая вкладка',
                     accelerator: shortcuts.prevTab,
-                    click: () => { TabsController.mainWindow?.webContents.send(Channel.SWITCH_PREV_TAB) }
-                }, 
+                    click: () => {
+                        TabsController.mainWindow?.webContents.send(Channel.SWITCH_PREV_TAB)
+                    }
+                },
                 {
                     label: 'Скопировать URL страницы',
                     accelerator: shortcuts.copyWindowUrl,
@@ -234,7 +237,7 @@ function buildMenu() {
                             TabsController.mainWindow?.webContents.send(Channel.CLOSE_TAB, TabsController.current_tab_id)
                         }
                     }
-                },
+                }
             ]
         },
         // { role: 'editMenu' }
@@ -247,23 +250,18 @@ function buildMenu() {
                 { role: 'cut' },
                 { role: 'copy' },
                 { role: 'paste' },
-                ...(isMac ? [
-                    { role: 'pasteAndMatchStyle' },
-                    { role: 'delete' },
-                    { role: 'selectAll' },
-                    { type: 'separator' },
-                    {
-                        label: 'Speech',
-                        submenu: [
-                            { role: 'startSpeaking' },
-                            { role: 'stopSpeaking' }
-                        ]
-                    }
-                ] : [
-                    { role: 'delete' },
-                    { type: 'separator' },
-                    { role: 'selectAll' }
-                ])
+                ...(isMac
+                    ? [
+                        { role: 'pasteAndMatchStyle' },
+                        { role: 'delete' },
+                        { role: 'selectAll' },
+                        { type: 'separator' },
+                        {
+                            label: 'Speech',
+                            submenu: [{ role: 'startSpeaking' }, { role: 'stopSpeaking' }]
+                        }
+                    ]
+                    : [{ role: 'delete' }, { type: 'separator' }, { role: 'selectAll' }])
             ]
         },
         // { role: 'viewMenu' }
@@ -303,16 +301,7 @@ function buildMenu() {
         // { role: 'windowMenu' }
         {
             label: 'Window',
-            submenu: [
-                { role: 'minimize' },
-                { role: 'zoom' },
-                ...(isMac ? [
-                    { type: 'separator' },
-                    { role: 'front' },
-                    { type: 'separator' },
-                    { role: 'window' }
-                ] : [])
-            ]
+            submenu: [{ role: 'minimize' }, { role: 'zoom' }, ...(isMac ? [{ type: 'separator' }, { role: 'front' }, { type: 'separator' }, { role: 'window' }] : [])]
         },
         {
             label: 'Плагины',
@@ -320,57 +309,79 @@ function buildMenu() {
                 {
                     label: 'Открыть поедалку',
                     accelerator: shortcuts.openFood,
-                    click: () => { TabsController.mainWindow?.webContents.send(Channel.OPEN_FOOD) }
+                    click: () => {
+                        TabsController.mainWindow?.webContents.send(Channel.OPEN_FOOD)
+                    }
                 },
                 {
                     label: 'Открыть блокнот',
                     accelerator: shortcuts.openNotes,
-                    click: () => {TabsController.mainWindow?.webContents.send(Channel.OPEN_NOTES) }
+                    click: () => {
+                        TabsController.mainWindow?.webContents.send(Channel.OPEN_NOTES)
+                    }
                 },
                 {
                     label: 'Открыть переодевалку комплектов',
                     accelerator: shortcuts.openDressingRoom,
-                    click: () => { TabsController.mainWindow?.webContents.send(Channel.OPEN_DRESSING_ROOM) }
+                    click: () => {
+                        TabsController.mainWindow?.webContents.send(Channel.OPEN_DRESSING_ROOM)
+                    }
                 },
                 {
                     label: 'Открыть переодевалку поясов',
                     accelerator: shortcuts.openBeltPotionRoom,
-                    click: () => { TabsController.mainWindow?.webContents.send(Channel.OPEN_BELT_POTION_ROOM) }
+                    click: () => {
+                        TabsController.mainWindow?.webContents.send(Channel.OPEN_BELT_POTION_ROOM)
+                    }
                 },
                 {
                     label: 'Открыть лог чата',
                     accelerator: shortcuts.openChatLog,
-                    click: () => { TabsController.mainWindow?.webContents.send(Channel.OPEN_CHAT_LOG) }
+                    click: () => {
+                        TabsController.mainWindow?.webContents.send(Channel.OPEN_CHAT_LOG)
+                    }
                 },
                 {
                     label: 'Открыть настройки чата',
                     accelerator: shortcuts.openChatSettings,
-                    click: () => { TabsController.mainWindow?.webContents.send(Channel.OPEN_CHAT_SETTINGS) }
+                    click: () => {
+                        TabsController.mainWindow?.webContents.send(Channel.OPEN_CHAT_SETTINGS)
+                    }
                 },
                 {
                     label: 'Открыть настройки нотификации',
                     accelerator: shortcuts.openNotifications,
-                    click: () => { TabsController.mainWindow?.webContents.send(Channel.OPEN_NOTIFICATIONS) }
+                    click: () => {
+                        TabsController.mainWindow?.webContents.send(Channel.OPEN_NOTIFICATIONS)
+                    }
                 },
                 {
                     label: 'Открыть наборы эффектов',
                     accelerator: shortcuts.openEffectSets,
-                    click: () => { TabsController.mainWindow?.webContents.send(Channel.OPEN_EFFECT_SETS) }
+                    click: () => {
+                        TabsController.mainWindow?.webContents.send(Channel.OPEN_EFFECT_SETS)
+                    }
                 },
                 {
                     label: 'Открыть настройки сгораемых вещей',
                     accelerator: shortcuts.openExpiringItems,
-                    click: () => { TabsController.mainWindow?.webContents.send(Channel.OPEN_EXPIRING_ITEMS_SETTINGS) }
+                    click: () => {
+                        TabsController.mainWindow?.webContents.send(Channel.OPEN_EXPIRING_ITEMS_SETTINGS)
+                    }
                 },
                 {
                     label: 'Сделать скриншот',
                     accelerator: shortcuts.makeScreenshot,
-                    click: () => { TabsController.mainWindow?.webContents.send(Channel.MAKE_SCREENSHOT) }
+                    click: () => {
+                        TabsController.mainWindow?.webContents.send(Channel.MAKE_SCREENSHOT)
+                    }
                 },
                 {
                     label: 'Открыть настройки',
                     accelerator: shortcuts.openSettings,
-                    click: () => { TabsController.mainWindow?.webContents.send(Channel.OPEN_SETTINGS) }
+                    click: () => {
+                        TabsController.mainWindow?.webContents.send(Channel.OPEN_SETTINGS)
+                    }
                 }
             ]
         },
@@ -380,78 +391,108 @@ function buildMenu() {
                 {
                     label: '1-й скилл',
                     accelerator: shortcuts.bowSkill1,
-                    click: () => { TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 1) }
+                    click: () => {
+                        TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 1)
+                    }
                 },
                 {
                     label: '2-й скилл',
                     accelerator: shortcuts.bowSkill2,
-                    click: () => { TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 2) }
+                    click: () => {
+                        TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 2)
+                    }
                 },
                 {
                     label: '3-й скилл',
                     accelerator: shortcuts.bowSkill3,
-                    click: () => { TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 3) }
+                    click: () => {
+                        TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 3)
+                    }
                 },
                 {
                     label: '4-й скилл',
                     accelerator: shortcuts.bowSkill4,
-                    click: () => { TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 4) }
+                    click: () => {
+                        TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 4)
+                    }
                 },
                 {
                     label: '5-й скилл',
                     accelerator: shortcuts.bowSkill5,
-                    click: () => { TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 5) }
+                    click: () => {
+                        TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 5)
+                    }
                 },
                 {
                     label: '6-й скилл',
                     accelerator: shortcuts.bowSkill6,
-                    click: () => { TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 6) }
+                    click: () => {
+                        TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 6)
+                    }
                 },
                 {
                     label: '7-й скилл',
                     accelerator: shortcuts.bowSkill7,
-                    click: () => { TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 7) }
+                    click: () => {
+                        TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 7)
+                    }
                 },
                 {
                     label: '8-й скилл',
                     accelerator: shortcuts.bowSkill8,
-                    click: () => { TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 8) }
+                    click: () => {
+                        TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 8)
+                    }
                 },
                 {
                     label: '9-й скилл',
                     accelerator: shortcuts.bowSkill9,
-                    click: () => { TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 9) }
+                    click: () => {
+                        TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 9)
+                    }
                 },
                 {
                     label: '10-й скилл',
                     accelerator: shortcuts.bowSkill10,
-                    click: () => { TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 10) }
+                    click: () => {
+                        TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 10)
+                    }
                 },
                 {
                     label: '11-й скилл',
                     accelerator: shortcuts.bowSkill11,
-                    click: () => { TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 11) }
+                    click: () => {
+                        TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 11)
+                    }
                 },
                 {
                     label: '12-й скилл',
                     accelerator: shortcuts.bowSkill12,
-                    click: () => { TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 12) }
+                    click: () => {
+                        TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 12)
+                    }
                 },
                 {
                     label: '13-й скилл',
                     accelerator: shortcuts.bowSkill13,
-                    click: () => { TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 13) }
+                    click: () => {
+                        TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 13)
+                    }
                 },
                 {
                     label: '14-й скилл',
                     accelerator: shortcuts.bowSkill14,
-                    click: () => { TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 14) }
+                    click: () => {
+                        TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 14)
+                    }
                 },
                 {
                     label: '15-й скилл',
                     accelerator: shortcuts.bowSkill15,
-                    click: () => { TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 15) }
-                },
+                    click: () => {
+                        TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 15)
+                    }
+                }
             ]
         },
         {
@@ -460,17 +501,23 @@ function buildMenu() {
                 {
                     label: 'Открыть рюкзак',
                     accelerator: shortcuts.openBackpack,
-                    click: () => { TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.OPEN_BACKPACK) }
+                    click: () => {
+                        TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.OPEN_BACKPACK)
+                    }
                 },
                 {
                     label: 'Открыть локацию',
                     accelerator: shortcuts.openLocation,
-                    click: () => { TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.OPEN_LOCATION) }
+                    click: () => {
+                        TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.OPEN_LOCATION)
+                    }
                 },
                 {
                     label: 'Открыть охоту',
                     accelerator: shortcuts.openHunt,
-                    click: () => { TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.OPEN_HUNT) }
+                    click: () => {
+                        TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.OPEN_HUNT)
+                    }
                 },
                 {
                     label: 'Спрятать/Открыть чат',
