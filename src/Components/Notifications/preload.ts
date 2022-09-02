@@ -1,4 +1,4 @@
-import setupMode from '../../services/DarkModeHandler'
+import setupMode from '../../Services/DarkModeHandler'
 import { NotificationsWindowActions } from './Actions'
 import { NotificationsWindowState } from './NotificationsWindowState'
 import reduce from './Reducer'

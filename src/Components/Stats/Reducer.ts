@@ -1,6 +1,6 @@
 import { ipcRenderer } from 'electron'
 import { Channel } from '../../Models/Channel'
-import DropService from '../../services/DropService'
+import DropService from '../../Services/DropService'
 import { StatsWindowActions } from './Actions'
 import { StatsWindowState } from './StatsWindowState'
 

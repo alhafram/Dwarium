@@ -1,6 +1,6 @@
 import { ipcRenderer } from 'electron'
 import { FoodType, InventoryItem } from '../../Models/InventoryItem'
-import ConfigService from '../../services/ConfigService'
+import ConfigService from '../../Services/ConfigService'
 import { FoodWindowActions } from './Actions'
 import { FoodWindowState } from './FoodWindowState'
 import SimpleAlt from '../../Scripts/simple_alt'

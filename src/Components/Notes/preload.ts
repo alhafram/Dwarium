@@ -1,7 +1,7 @@
 import { Elements } from './Elements'
 import { NotesWindowActions } from './Actions'
 import { NotesWindowState } from './NotesWindowState'
-import setupMode from '../../services/DarkModeHandler'
+import setupMode from '../../Services/DarkModeHandler'
 import reduce from './Reducer'
 import { handleDragOver } from '../Common/EventBuilder'
 import { render, getDragableNote } from './Renderer'

@@ -1,7 +1,7 @@
 import { ipcRenderer } from 'electron'
 import { Channel } from '../../Models/Channel'
 import { UserConfig } from '../../Models/UserConfig'
-import UserConfigService from '../../services/UserConfigService'
+import UserConfigService from '../../Services/UserConfigService'
 
 async function getUserId() {
     return (await ipcRenderer.invoke(Channel.GET_ID)) as number

@@ -1,12 +1,12 @@
 import { BrowserView, BrowserWindow, Rectangle, app } from 'electron'
 import path from 'path'
-import ConfigService from '../../services/ConfigService'
-import { TabsController } from '../../services/TabsController'
+import ConfigService from '../../Services/ConfigService'
+import { TabsController } from '../../Services/TabsController'
 import { Channel } from '../../Models/Channel'
 import { WindowType } from '../../Models/WindowModels'
-import setupContextMenu from '../../services/ContextMenu'
-import { getBrowserWindowPosition, getClientWindowPosition, saveBrowserWindowPosition, saveClientWindowPosition } from '../../services/WindowSizeManager'
-import ShortcutService from '../../services/ShortcutService'
+import setupContextMenu from '../../Services/ContextMenu'
+import { getBrowserWindowPosition, getClientWindowPosition, saveBrowserWindowPosition, saveClientWindowPosition } from '../../Services/WindowSizeManager'
+import ShortcutService from '../../Services/ShortcutService'
 
 export default class MainWindowContainer {
     browserView: BrowserView | null | undefined

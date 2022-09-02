@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import readline from 'readline'
 import { buildFolderPath, buildPathWithBase, ConfigPath, Folder } from '../../Models/ConfigPathes'
-import setupMode from '../../services/DarkModeHandler'
-import FileOperationsService from '../../services/FileOperationsService'
+import setupMode from '../../Services/DarkModeHandler'
+import FileOperationsService from '../../Services/FileOperationsService'
 import { Elements } from './Elements'
 import Utils from '../Common/Utils'
 import { getCalendar, setupCalendar } from './Calendar'

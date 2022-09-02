@@ -1,8 +1,8 @@
 import { app, BeforeSendResponse, OnBeforeSendHeadersListenerDetails, OnResponseStartedListenerDetails, session } from 'electron'
-import { TabsController } from './services/TabsController'
+import { TabsController } from './Services/TabsController'
 import MainWindowContainer from './Components/MainWindow/MainWindow'
 import { autoUpdater } from 'electron-updater'
-import ConfigService from './services/ConfigService'
+import ConfigService from './Services/ConfigService'
 require('@electron/remote/main').initialize()
 require('v8-compile-cache')
 import electronReload from 'electron-reload'

@@ -1,4 +1,4 @@
-import ConfigService from '../../services/ConfigService'
+import ConfigService from '../../Services/ConfigService'
 import { NotificationsWindowActions } from './Actions'
 import { Elements } from './Elements'
 import { NotificationsWindowState } from './NotificationsWindowState'

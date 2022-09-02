@@ -1,7 +1,7 @@
 import { ipcRenderer } from 'electron'
 import { Channel } from '../../Models/Channel'
-import FavouriteLinksService from '../../services/FavouriteLinksService'
-import setupMode from '../../services/DarkModeHandler'
+import FavouriteLinksService from '../../Services/FavouriteLinksService'
+import setupMode from '../../Services/DarkModeHandler'
 
 const Elements = {
     linksDiv(): HTMLDivElement {

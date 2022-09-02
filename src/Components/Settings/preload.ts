@@ -1,9 +1,9 @@
 import { SettingsWindowActions } from './Actions'
 import reduce from './Reducer'
 import { getTitle, SettingsWindowState, UserAgentType } from './SettingsWindowState'
-import setupMode from '../../services/DarkModeHandler'
+import setupMode from '../../Services/DarkModeHandler'
 import { render, setupView } from './Renderer'
-import ShortcutService from '../../services/ShortcutService'
+import ShortcutService from '../../Services/ShortcutService'
 
 let initialState: SettingsWindowState = {
     userAgents: Object.keys(UserAgentType).map((key) => {

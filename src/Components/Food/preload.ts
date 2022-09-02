@@ -4,7 +4,7 @@ import { handleDragOver } from '../Common/EventBuilder'
 import { FoodWindowState } from './FoodWindowState'
 import { FoodWindowActions } from './Actions'
 import reduce from './Reducer'
-import setupMode from '../../services/DarkModeHandler'
+import setupMode from '../../Services/DarkModeHandler'
 
 let initialState: FoodWindowState = {
     allItems: [],

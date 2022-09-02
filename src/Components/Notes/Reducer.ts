@@ -1,4 +1,4 @@
-import NotesService from '../../services/NotesService'
+import NotesService from '../../Services/NotesService'
 import { NotesWindowActions } from './Actions'
 import { Elements } from './Elements'
 import { NotesWindowState, Note } from './NotesWindowState'

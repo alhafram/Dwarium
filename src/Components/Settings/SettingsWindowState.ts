@@ -1,4 +1,4 @@
-import { Shortcuts } from '../../services/ShortcutService'
+import { Shortcuts } from '../../Services/ShortcutService'
 
 export interface SettingsWindowState {
     userAgents?: {

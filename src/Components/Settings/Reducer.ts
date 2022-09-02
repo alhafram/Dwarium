@@ -1,6 +1,6 @@
 import { app } from '@electron/remote'
-import ConfigService from '../../services/ConfigService'
-import ShortcutService, { ShortcutKeys } from '../../services/ShortcutService'
+import ConfigService from '../../Services/ConfigService'
+import ShortcutService, { ShortcutKeys } from '../../Services/ShortcutService'
 import { SettingsWindowActions } from './Actions'
 import { Elements } from './Elements'
 import { SettingsWindowState, UserAgentType } from './SettingsWindowState'

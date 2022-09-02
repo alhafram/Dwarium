@@ -1,14 +1,14 @@
 import { BrowserWindow, BrowserView, ipcMain, app } from 'electron'
-import ConfigService from './services/ConfigService'
-import { TabsController } from './services/TabsController'
+import ConfigService from './Services/ConfigService'
+import { TabsController } from './Services/TabsController'
 import { autoUpdater } from 'electron-updater'
 import path from 'path'
 import { Channel } from './Models/Channel'
 import { WindowType, Preload, HTMLPath } from './Models/WindowModels'
-import { createWindowAndLoad, setupCloseLogic } from './services/WindowCreationHelper'
-import setupContextMenu from './services/ContextMenu'
+import { createWindowAndLoad, setupCloseLogic } from './Services/WindowCreationHelper'
+import setupContextMenu from './Services/ContextMenu'
 import { buildFolderPath, Folder } from './Models/ConfigPathes'
-import FileOperationsService from './services/FileOperationsService'
+import FileOperationsService from './Services/FileOperationsService'
 
 ipcMain.on(Channel.LOAD_URL, (evt, server) => {
     ConfigService.writeData('server', server)

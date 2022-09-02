@@ -1,5 +1,5 @@
 import { InventoryItem } from '../../Models/InventoryItem'
-import ConfigService from '../../services/ConfigService'
+import ConfigService from '../../Services/ConfigService'
 
 function convertItemIntoDiv(item: InventoryItem, xmlFoodItem: Element | undefined): HTMLDivElement {
     const url = item.image.includes(ConfigService.getSettings().baseUrl) ? item.image : `${ConfigService.getSettings().baseUrl}/${item.image}`

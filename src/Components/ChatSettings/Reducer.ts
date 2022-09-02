@@ -1,7 +1,7 @@
 import { ipcRenderer } from 'electron'
 import { Channel } from '../../Models/Channel'
 import { ChatSettingsConfig } from '../../Models/ChatSettingsConfig'
-import ChatSettingsService from '../../services/ChatSettingsService'
+import ChatSettingsService from '../../Services/ChatSettingsService'
 import Utils from '../Common/Utils'
 import { ChatSettingsWindowActions } from './Actions'
 import { Elements } from './Elements'

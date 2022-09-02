@@ -1,8 +1,8 @@
 import { GameSettingsWindowActions } from './Actions'
 import reduce from './Reducer'
-import setupMode from '../../services/DarkModeHandler'
+import setupMode from '../../Services/DarkModeHandler'
 import { render, setupView } from './Renderer'
-import GameFlagsService from '../../services/GameFlagsService'
+import GameFlagsService from '../../Services/GameFlagsService'
 import { GameSettingsWindowState } from './GameSettingsWindowState'
 
 const flags = GameFlagsService.getGameFlags()

@@ -1,4 +1,4 @@
-import setupMode from '../../services/DarkModeHandler'
+import setupMode from '../../Services/DarkModeHandler'
 import { EffectSetsWindowActions } from './Actions'
 import { EffectSetsWindowState } from './EffectSetsWindowState'
 import reduce from './Reducer'

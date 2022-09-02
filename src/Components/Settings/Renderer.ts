@@ -1,5 +1,5 @@
 import { shell } from 'electron'
-import ShortcutService from '../../services/ShortcutService'
+import ShortcutService from '../../Services/ShortcutService'
 import { SettingsWindowActions } from './Actions'
 import { Elements } from './Elements'
 import { dispatch } from './preload'

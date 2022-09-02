@@ -1,6 +1,6 @@
 import { ipcRenderer } from 'electron'
 import { Channel } from '../../Models/Channel'
-import GameFlagsService, { GameLocationFlagsKeys, GameRightMenuFlagsKeys, GameTopMenuFlagsKeys, HuntFlagsKeys, FightFlagsKeys } from '../../services/GameFlagsService'
+import GameFlagsService, { GameLocationFlagsKeys, GameRightMenuFlagsKeys, GameTopMenuFlagsKeys, HuntFlagsKeys, FightFlagsKeys } from '../../Services/GameFlagsService'
 import { GameSettingsWindowActions } from './Actions'
 import { Elements } from './Elements'
 import { GameSettingsWindowState } from './GameSettingsWindowState'

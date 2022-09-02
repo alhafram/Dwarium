@@ -1,4 +1,4 @@
-import setupMode from '../../services/DarkModeHandler'
+import setupMode from '../../Services/DarkModeHandler'
 import { DressingWindowState } from './DressingWindowState'
 import { DressingWindowActions } from './Actions'
 import reduce from './Reducer'

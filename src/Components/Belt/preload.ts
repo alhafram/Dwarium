@@ -1,6 +1,6 @@
 import { BeltDressingWindowState } from './BeltDressingWindowState'
 import { BeltDressingWindowActions } from './Actions'
-import setupMode from '../../services/DarkModeHandler'
+import setupMode from '../../Services/DarkModeHandler'
 import reduce from './Reducer'
 import { render, setupView, setupFilters } from './Renderer'
 

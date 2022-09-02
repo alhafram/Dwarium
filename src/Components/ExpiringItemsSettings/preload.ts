@@ -1,4 +1,4 @@
-import setupMode from '../../services/DarkModeHandler'
+import setupMode from '../../Services/DarkModeHandler'
 import { ExpiringItemsSettingsWindowActions } from './Actions'
 import { ExpiringItemsSettingsWindowState } from './ExpiringItemsSettingsWindowState'
 import reduce from './Reducer'

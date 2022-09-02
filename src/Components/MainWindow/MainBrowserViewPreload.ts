@@ -2,15 +2,15 @@
 // @ts-nocheck
 import { ipcRenderer } from 'electron'
 import { Channel } from '../../Models/Channel'
-import sendNotification, { NotificationType } from '../../services/Notifications'
-import ChatService from '../../services/ChatService'
-import FoodService from '../../services/FoodService'
-import { setupCheckingItemsService } from '../../services/ExpiringItemsLoader'
-import GameFlagsService from '../../services/GameFlagsService'
-import ChatSettingsService from '../../services/ChatSettingsService'
+import sendNotification, { NotificationType } from '../../Services/Notifications'
+import ChatService from '../../Services/ChatService'
+import FoodService from '../../Services/FoodService'
+import { setupCheckingItemsService } from '../../Services/ExpiringItemsLoader'
+import GameFlagsService from '../../Services/GameFlagsService'
+import ChatSettingsService from '../../Services/ChatSettingsService'
 import Utils from '../Common/Utils'
-import DropService from '../../services/DropService'
-import ConfigService from '../../services/ConfigService'
+import DropService from '../../Services/DropService'
+import ConfigService from '../../Services/ConfigService'
 
 const flags = GameFlagsService.getGameFlags()
 document.gameLocationFlags = flags.gameLocationFlags

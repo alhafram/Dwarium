@@ -1,12 +1,12 @@
 import { ipcRenderer, shell } from 'electron'
-import ConfigService from '../../services/ConfigService'
+import ConfigService from '../../Services/ConfigService'
 import { Channel } from '../../Models/Channel'
 import Utils from '../Common/Utils'
 import { WindowType } from '../../Models/WindowModels'
-import FavouriteLinkService from '../../services/FavouriteLinksService'
-import sendNotification, { NotificationType } from '../../services/Notifications'
+import FavouriteLinkService from '../../Services/FavouriteLinksService'
+import sendNotification, { NotificationType } from '../../Services/Notifications'
 import { Elements } from './Elements'
-import { handleUserSession, openPage, setupService } from '../../services/AnalyticsService'
+import { handleUserSession, openPage, setupService } from '../../Services/AnalyticsService'
 import { app } from '@electron/remote'
 
 enum PluginConfigKeys {

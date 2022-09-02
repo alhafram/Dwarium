@@ -1,6 +1,6 @@
 import { ipcRenderer } from 'electron'
 import { Channel } from '../../Models/Channel'
-import ConfigService from '../../services/ConfigService'
+import ConfigService from '../../Services/ConfigService'
 
 function getMagicSchools(zikkuratId: string) {
     const req = `fetch(

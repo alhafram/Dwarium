@@ -1,6 +1,6 @@
 import { ChatSettingsWindowActions } from './Actions'
 import reduce from './Reducer'
-import setupMode from '../../services/DarkModeHandler'
+import setupMode from '../../Services/DarkModeHandler'
 import { render, setupView } from './Renderer'
 import { ChatSettingsConfig } from '../../Models/ChatSettingsConfig'
 
