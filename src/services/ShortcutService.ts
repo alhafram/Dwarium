@@ -288,8 +288,7 @@ function buildMenu() {
                 { role: 'zoomIn' },
                 { role: 'zoomOut' },
                 { type: 'separator' },
-                { role: 'togglefullscreen' },
-                {
+                isMac ? { role: 'togglefullscreen' } : {
                     label: 'Фуллскрин',
                     accelerator: shortcuts.fullscreen,
                     click: () => {
