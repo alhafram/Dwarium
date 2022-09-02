@@ -210,11 +210,9 @@ export function setupView() {
         dispatch(SettingsWindowActions.CHANGE_NEED_TO_RESTORE_URLS)
     }
     Elements.resetShortcutsButton().onclick = function() {
-        ShortcutService.unregisterShortcuts()
         ShortcutService.resetShortcuts()
         setTimeout(() => {
             document.location.reload()
-            ShortcutService.registerShortcuts()
         }, 500)
     }
 
@@ -222,12 +220,10 @@ export function setupView() {
     inputs.forEach((element) => {
         element.onfocus = function() {
             element.style.borderColor = '#000'
-            ShortcutService.unregisterShortcuts()
         }
         element.onblur = function() {
             element.style.borderColor = ''
             dispatch(SettingsWindowActions.SAVE_SHORTCUTS)
-            ShortcutService.registerShortcuts()
         }
         element.onkeyup = function(event) {
             if(ShortcutService.isExcludedKey(event)) {

@@ -1,5 +1,5 @@
-import { Menu, MenuItem, app } from 'electron'
-const { globalShortcut, session, BrowserWindow, clipboard } = process.type === 'browser' ? require('electron') : require('@electron/remote')
+import { Menu, app } from 'electron'
+const { session, BrowserWindow, clipboard } = process.type === 'browser' ? require('electron') : require('@electron/remote')
 import { Channel } from '../Models/Channel'
 import { buildPath, ConfigPath } from '../Models/ConfigPathes'
 import FileOperationsService from './FileOperationsService'
@@ -159,451 +159,367 @@ function readData(key: string): any {
     return contents[key]
 }
 
-function registerShortcuts() {
+function buildMenu() {
+    const isMac = process.platform === 'darwin'
     const shortcuts = getShortcuts()
-
-    if(shortcuts.openHunt != '') {
-        globalShortcut.register(shortcuts.openHunt, () => {
-            TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.OPEN_HUNT)
-        })
-    }
-
-    if(shortcuts.openBackpack != '') {
-        globalShortcut.register(shortcuts.openBackpack, () => {
-            TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.OPEN_BACKPACK)
-        })
-    }
-
-    if(shortcuts.openLocation != '') {
-        globalShortcut.register(shortcuts.openLocation, () => {
-            TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.OPEN_LOCATION)
-        })
-    }
-
-    if(shortcuts.openDevTools != '') {
-        globalShortcut.register(shortcuts.openDevTools, () => {
-            const window = BrowserWindow.getFocusedWindow()
-            if(window == TabsController.mainWindow) {
-                TabsController.currentTab().webContents.openDevTools()
-            } else {
-                window?.webContents.openDevTools()
-            }
-        })
-    }
-    if(shortcuts.prevTab != '') {
-        globalShortcut.register(shortcuts.prevTab, () => {
-            TabsController.mainWindow?.webContents.send(Channel.SWITCH_PREV_TAB)
-        })
-    }
-    if(shortcuts.nextTab != '') {
-        globalShortcut.register(shortcuts.nextTab, () => {
-            TabsController.mainWindow?.webContents.send(Channel.SWITCH_NEXT_TAB)
-        })
-    }
-    if(shortcuts.newTab != '') {
-        globalShortcut.register(shortcuts.newTab, () => {
-            TabsController.mainWindow?.webContents.send(Channel.NEW_TAB)
-        })
-    }
-    if(shortcuts.reload != '') {
-        globalShortcut.register(shortcuts.reload, () => {
-            const window = BrowserWindow.getFocusedWindow()
-            if(window == TabsController.mainWindow) {
-                TabsController.currentTab().webContents.reload()
-            } else {
-                window?.webContents.reload()
-            }
-        })
-    }
-    if(shortcuts.closeTab != '') {
-        globalShortcut.register(shortcuts.closeTab, () => {
-            const openedWindow = BrowserWindow.getFocusedWindow()
-            if(openedWindow && openedWindow != TabsController.mainWindow) {
-                openedWindow.close()
-                return
-            }
-            if(TabsController.currentTab() != TabsController.getMain()) {
-                TabsController.mainWindow?.webContents.send(Channel.CLOSE_TAB, TabsController.current_tab_id)
-            }
-            if(TabsController.onlyMain()) {
-                TabsController.mainWindow?.close()
-            }
-        })
-    }
-    if(shortcuts.clearCache != '') {
-        globalShortcut.register(shortcuts.clearCache, async() => {
-            await session.defaultSession.clearStorageData({ storages: ['appcache', 'filesystem', 'indexdb', 'shadercache', 'cachestorage'] })
-            TabsController.currentTab().webContents.reload()
-        })
-    }
-    if(shortcuts.copyWindowUrl != '') {
-        globalShortcut.register(shortcuts.copyWindowUrl, async() => {
-            const url = BrowserWindow.getFocusedWindow()?.webContents.getURL()
-            if(url) {
-                clipboard.writeText(url)
-            }
-        })
-    }
-
-    if(shortcuts.openFood != '') {
-        globalShortcut.register(shortcuts.openFood, () => {
-            TabsController.mainWindow?.webContents.send(Channel.OPEN_FOOD)
-        })
-    }
-    if(shortcuts.openNotes != '') {
-        globalShortcut.register(shortcuts.openNotes, () => {
-            TabsController.mainWindow?.webContents.send(Channel.OPEN_NOTES)
-        })
-    }
-    if(shortcuts.openDressingRoom != '') {
-        globalShortcut.register(shortcuts.openDressingRoom, () => {
-            TabsController.mainWindow?.webContents.send(Channel.OPEN_DRESSING_ROOM)
-        })
-    }
-    if(shortcuts.openBeltPotionRoom != '') {
-        globalShortcut.register(shortcuts.openBeltPotionRoom, () => {
-            TabsController.mainWindow?.webContents.send(Channel.OPEN_BELT_POTION_ROOM)
-        })
-    }
-    if(shortcuts.openChatLog != '') {
-        globalShortcut.register(shortcuts.openChatLog, () => {
-            TabsController.mainWindow?.webContents.send(Channel.OPEN_CHAT_LOG)
-        })
-    }
-    if(shortcuts.openChatSettings != '') {
-        globalShortcut.register(shortcuts.openChatSettings, () => {
-            TabsController.mainWindow?.webContents.send(Channel.OPEN_CHAT_SETTINGS)
-        })
-    }
-    if(shortcuts.openNotifications != '') {
-        globalShortcut.register(shortcuts.openNotifications, () => {
-            TabsController.mainWindow?.webContents.send(Channel.OPEN_NOTIFICATIONS)
-        })
-    }
-    if(shortcuts.openEffectSets != '') {
-        globalShortcut.register(shortcuts.openEffectSets, () => {
-            TabsController.mainWindow?.webContents.send(Channel.OPEN_EFFECT_SETS)
-        })
-    }
-    if(shortcuts.openExpiringItems != '') {
-        globalShortcut.register(shortcuts.openExpiringItems, () => {
-            TabsController.mainWindow?.webContents.send(Channel.OPEN_EXPIRING_ITEMS_SETTINGS)
-        })
-    }
-    if(shortcuts.makeScreenshot != '') {
-        globalShortcut.register(shortcuts.makeScreenshot, () => {
-            TabsController.mainWindow?.webContents.send(Channel.MAKE_SCREENSHOT)
-        })
-    }
-    if(shortcuts.openSettings != '') {
-        globalShortcut.register(shortcuts.openSettings, () => {
-            TabsController.mainWindow?.webContents.send(Channel.OPEN_SETTINGS)
-        })
-    }
-    if(shortcuts.hideShowChat != '') {
-        globalShortcut.register(shortcuts.hideShowChat, () => {
-            TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.HIDE_SHOW_CHAT)
-        })
-    }
-    if(shortcuts.fullscreen != '') {
-        globalShortcut.register(shortcuts.fullscreen, () => {
-            TabsController.mainWindowContainer?.mainWindow.setFullScreen(!TabsController.mainWindowContainer?.mainWindow.isFullScreen())
-        })
-    }
-
-    if(shortcuts.bowSkill1 != '') {
-        globalShortcut.register(shortcuts.bowSkill1, () => {
-            TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 1)
-        })
-    }
-    if(shortcuts.bowSkill2 != '') {
-        globalShortcut.register(shortcuts.bowSkill2, () => {
-            TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 2)
-        })
-    }
-    if(shortcuts.bowSkill3 != '') {
-        globalShortcut.register(shortcuts.bowSkill3, () => {
-            TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 3)
-        })
-    }
-    if(shortcuts.bowSkill4 != '') {
-        globalShortcut.register(shortcuts.bowSkill4, () => {
-            TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 4)
-        })
-    }
-    if(shortcuts.bowSkill5 != '') {
-        globalShortcut.register(shortcuts.bowSkill5, () => {
-            TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 5)
-        })
-    }
-    if(shortcuts.bowSkill6 != '') {
-        globalShortcut.register(shortcuts.bowSkill6, () => {
-            TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 6)
-        })
-    }
-    if(shortcuts.bowSkill7 != '') {
-        globalShortcut.register(shortcuts.bowSkill7, () => {
-            TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 7)
-        })
-    }
-    if(shortcuts.bowSkill8 != '') {
-        globalShortcut.register(shortcuts.bowSkill8, () => {
-            TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 8)
-        })
-    }
-    if(shortcuts.bowSkill9 != '') {
-        globalShortcut.register(shortcuts.bowSkill9, () => {
-            TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 9)
-        })
-    }
-    if(shortcuts.bowSkill10 != '') {
-        globalShortcut.register(shortcuts.bowSkill10, () => {
-            TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 10)
-        })
-    }
-    if(shortcuts.bowSkill11 != '') {
-        globalShortcut.register(shortcuts.bowSkill11, () => {
-            TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 11)
-        })
-    }
-    if(shortcuts.bowSkill12 != '') {
-        globalShortcut.register(shortcuts.bowSkill12, () => {
-            TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 12)
-        })
-    }
-    if(shortcuts.bowSkill13 != '') {
-        globalShortcut.register(shortcuts.bowSkill13, () => {
-            TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 13)
-        })
-    }
-    if(shortcuts.bowSkill14 != '') {
-        globalShortcut.register(shortcuts.bowSkill14, () => {
-            TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 14)
-        })
-    }
-    if(shortcuts.bowSkill15 != '') {
-        globalShortcut.register(shortcuts.bowSkill15, () => {
-            TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 15)
-        })
-    }
-}
-
-function unregisterShortcuts() {
-    globalShortcut.unregisterAll()
-}
-
-const isMac = process.platform === 'darwin'
-const shortcuts = getShortcuts()
-const template = [
-    // { role: 'appMenu' }
-    ...(isMac ? [{
-        label: app.name,
-        submenu: [
-            { role: 'about' },
-            { type: 'separator' },
-            { type: 'separator' },
-            { role: 'hide' },
-            { role: 'hideOthers' },
-            { role: 'unhide' },
-            { type: 'separator' },
-            { role: 'quit' }
-        ]
-    }] : []),
-    // { role: 'fileMenu' }
-    {
-        label: 'File',
-        submenu: [
-            {
-                label: 'Create new tab',
-                accelerator: shortcuts.newTab,
-                click: () => { TabsController.mainWindow?.webContents.send(Channel.NEW_TAB) }
-            },
-            {
-                label: 'Обновить вкладку',
-                accelerator: shortcuts.reload,
-                click: () => { TabsController.mainWindow?.webContents.send(Channel.RELOAD) }
-            },
-            {
-                label: 'Следующая вкладка',
-                accelerator: shortcuts.nextTab,
-                click: () => { TabsController.mainWindow?.webContents.send(Channel.SWITCH_NEXT_TAB) }
-            }, 
-            {
-                label: 'Предыдущая вкладка',
-                accelerator: shortcuts.prevTab,
-                click: () => { TabsController.mainWindow?.webContents.send(Channel.SWITCH_PREV_TAB) }
-            }, 
-            {
-                label: 'Закрыть вкладку',
-                accelerator: shortcuts.closeTab,
-                click: () => {
-                    const openedWindow = BrowserWindow.getFocusedWindow()
-                    if(openedWindow && openedWindow != TabsController.mainWindow) {
-                        openedWindow.close()
-                        return
-                    }
-                    if(openedWindow && openedWindow == TabsController.mainWindow && TabsController.tabsList.length == 1) {
-                        if(isMac) {
-                            openedWindow.close()
+    const template = [
+        // { role: 'appMenu' }
+        ...(isMac ? [{
+            label: app.name,
+            submenu: [
+                { role: 'about' },
+                { type: 'separator' },
+                { type: 'separator' },
+                { role: 'hide' },
+                { role: 'hideOthers' },
+                { role: 'unhide' },
+                { type: 'separator' },
+                { role: 'quit' }
+            ]
+        }] : []),
+        // { role: 'fileMenu' }
+        {
+            label: 'Вкладки',
+            submenu: [
+                {
+                    label: 'Create new tab',
+                    accelerator: shortcuts.newTab,
+                    click: () => { TabsController.mainWindow?.webContents.send(Channel.NEW_TAB) }
+                },
+                {
+                    label: 'Обновить вкладку',
+                    accelerator: shortcuts.reload,
+                    click: () => { TabsController.mainWindow?.webContents.send(Channel.RELOAD) }
+                },
+                {
+                    label: 'Следующая вкладка',
+                    accelerator: shortcuts.nextTab,
+                    click: () => { TabsController.mainWindow?.webContents.send(Channel.SWITCH_NEXT_TAB) }
+                }, 
+                {
+                    label: 'Предыдущая вкладка',
+                    accelerator: shortcuts.prevTab,
+                    click: () => { TabsController.mainWindow?.webContents.send(Channel.SWITCH_PREV_TAB) }
+                }, 
+                {
+                    label: 'Скопировать URL страницы',
+                    accelerator: shortcuts.copyWindowUrl,
+                    click: () => {
+                        const url = BrowserWindow.getFocusedWindow()?.webContents.getURL()
+                        if(url && !url.startsWith('file:/')) {
+                            clipboard.writeText(url)
                         } else {
-                            app.exit()
+                            clipboard.writeText(TabsController.currentTab().webContents.getURL())
                         }
                     }
-                    if(TabsController.currentTab() != TabsController.getMain()) {
-                        TabsController.mainWindow?.webContents.send(Channel.CLOSE_TAB, TabsController.current_tab_id)
-                    }
-                }
-            },
-            {
-                label: 'Скопировать URL страницы',
-                accelerator: shortcuts.copyWindowUrl,
-                click: () => {
-                    const url = BrowserWindow.getFocusedWindow()?.webContents.getURL()
-                    if(url && !url.startsWith('file:/')) {
-                        clipboard.writeText(url)
-                    } else {
-                        clipboard.writeText(TabsController.currentTab().webContents.getURL())
-                    }
-                }
-            }
-        ]
-    },
-    // { role: 'editMenu' }
-    {
-        label: 'Edit',
-        submenu: [
-            { role: 'undo' },
-            { role: 'redo' },
-            { type: 'separator' },
-            { role: 'cut' },
-            { role: 'copy' },
-            { role: 'paste' },
-            ...(isMac ? [
-                { role: 'pasteAndMatchStyle' },
-                { role: 'delete' },
-                { role: 'selectAll' },
+                },
                 { type: 'separator' },
                 {
-                    label: 'Speech',
-                    submenu: [
-                        { role: 'startSpeaking' },
-                        { role: 'stopSpeaking' }
-                    ]
+                    label: 'Закрыть вкладку',
+                    accelerator: shortcuts.closeTab,
+                    click: () => {
+                        const openedWindow = BrowserWindow.getFocusedWindow()
+                        if(openedWindow && openedWindow != TabsController.mainWindow) {
+                            openedWindow.close()
+                            return
+                        }
+                        if(openedWindow && openedWindow == TabsController.mainWindow && TabsController.tabsList.length == 1) {
+                            if(isMac) {
+                                openedWindow.close()
+                            } else {
+                                app.exit()
+                            }
+                        }
+                        if(TabsController.currentTab() != TabsController.getMain()) {
+                            TabsController.mainWindow?.webContents.send(Channel.CLOSE_TAB, TabsController.current_tab_id)
+                        }
+                    }
+                },
+            ]
+        },
+        // { role: 'editMenu' }
+        {
+            label: 'Edit',
+            submenu: [
+                { role: 'undo' },
+                { role: 'redo' },
+                { type: 'separator' },
+                { role: 'cut' },
+                { role: 'copy' },
+                { role: 'paste' },
+                ...(isMac ? [
+                    { role: 'pasteAndMatchStyle' },
+                    { role: 'delete' },
+                    { role: 'selectAll' },
+                    { type: 'separator' },
+                    {
+                        label: 'Speech',
+                        submenu: [
+                            { role: 'startSpeaking' },
+                            { role: 'stopSpeaking' }
+                        ]
+                    }
+                ] : [
+                    { role: 'delete' },
+                    { type: 'separator' },
+                    { role: 'selectAll' }
+                ])
+            ]
+        },
+        // { role: 'viewMenu' }
+        {
+            label: 'View',
+            submenu: [
+                { role: 'reload' },
+                { role: 'forceReload' },
+                { role: 'toggleDevTools' },
+                {
+                    label: 'Дев панель',
+                    accelerator: shortcuts.openDevTools,
+                    click: () => {
+                        const window = BrowserWindow.getFocusedWindow()
+                        if(window == TabsController.mainWindow) {
+                            TabsController.currentTab().webContents.openDevTools()
+                        } else {
+                            window?.webContents.openDevTools()
+                        }
+                    }
+                },
+                { type: 'separator' },
+                { role: 'resetZoom' },
+                { role: 'zoomIn' },
+                { role: 'zoomOut' },
+                { type: 'separator' },
+                { role: 'togglefullscreen' },
+                {
+                    label: 'Фуллскрин',
+                    accelerator: shortcuts.fullscreen,
+                    click: () => {
+                        TabsController.mainWindowContainer?.mainWindow.setFullScreen(!TabsController.mainWindowContainer?.mainWindow.isFullScreen())
+                    }
                 }
-            ] : [
-                { role: 'delete' },
-                { type: 'separator' },
-                { role: 'selectAll' }
-            ])
-        ]
-    },
-    // { role: 'viewMenu' }
-    {
-        label: 'View',
-        submenu: [
-            { role: 'reload' },
-            { role: 'forceReload' },
-            { role: 'toggleDevTools' },
-            { type: 'separator' },
-            { role: 'resetZoom' },
-            { role: 'zoomIn' },
-            { role: 'zoomOut' },
-            { type: 'separator' },
-            { role: 'togglefullscreen' }
-        ]
-    },
-    // { role: 'windowMenu' }
-    {
-        label: 'Window',
-        submenu: [
-            { role: 'minimize' },
-            { role: 'zoom' },
-            ...(isMac ? [
-                { type: 'separator' },
-                { role: 'front' },
-                { type: 'separator' },
-                { role: 'window' }
-            ] : [])
-        ]
-    },
-    {
-        role: 'help',
-        submenu: [
-            {
-                label: 'Learn More',
-                click: async() => {
-                    const { shell } = require('electron')
-                    await shell.openExternal('https://electronjs.org')
+            ]
+        },
+        // { role: 'windowMenu' }
+        {
+            label: 'Window',
+            submenu: [
+                { role: 'minimize' },
+                { role: 'zoom' },
+                ...(isMac ? [
+                    { type: 'separator' },
+                    { role: 'front' },
+                    { type: 'separator' },
+                    { role: 'window' }
+                ] : [])
+            ]
+        },
+        {
+            label: 'Плагины',
+            submenu: [
+                {
+                    label: 'Открыть поедалку',
+                    accelerator: shortcuts.openFood,
+                    click: () => { TabsController.mainWindow?.webContents.send(Channel.OPEN_FOOD) }
+                },
+                {
+                    label: 'Открыть блокнот',
+                    accelerator: shortcuts.openNotes,
+                    click: () => {TabsController.mainWindow?.webContents.send(Channel.OPEN_NOTES) }
+                },
+                {
+                    label: 'Открыть переодевалку комплектов',
+                    accelerator: shortcuts.openDressingRoom,
+                    click: () => { TabsController.mainWindow?.webContents.send(Channel.OPEN_DRESSING_ROOM) }
+                },
+                {
+                    label: 'Открыть переодевалку поясов',
+                    accelerator: shortcuts.openBeltPotionRoom,
+                    click: () => { TabsController.mainWindow?.webContents.send(Channel.OPEN_BELT_POTION_ROOM) }
+                },
+                {
+                    label: 'Открыть лог чата',
+                    accelerator: shortcuts.openChatLog,
+                    click: () => { TabsController.mainWindow?.webContents.send(Channel.OPEN_CHAT_LOG) }
+                },
+                {
+                    label: 'Открыть настройки чата',
+                    accelerator: shortcuts.openChatSettings,
+                    click: () => { TabsController.mainWindow?.webContents.send(Channel.OPEN_CHAT_SETTINGS) }
+                },
+                {
+                    label: 'Открыть настройки нотификации',
+                    accelerator: shortcuts.openNotifications,
+                    click: () => { TabsController.mainWindow?.webContents.send(Channel.OPEN_NOTIFICATIONS) }
+                },
+                {
+                    label: 'Открыть наборы эффектов',
+                    accelerator: shortcuts.openEffectSets,
+                    click: () => { TabsController.mainWindow?.webContents.send(Channel.OPEN_EFFECT_SETS) }
+                },
+                {
+                    label: 'Открыть настройки сгораемых вещей',
+                    accelerator: shortcuts.openExpiringItems,
+                    click: () => { TabsController.mainWindow?.webContents.send(Channel.OPEN_EXPIRING_ITEMS_SETTINGS) }
+                },
+                {
+                    label: 'Сделать скриншот',
+                    accelerator: shortcuts.makeScreenshot,
+                    click: () => { TabsController.mainWindow?.webContents.send(Channel.MAKE_SCREENSHOT) }
+                },
+                {
+                    label: 'Открыть настройки',
+                    accelerator: shortcuts.openSettings,
+                    click: () => { TabsController.mainWindow?.webContents.send(Channel.OPEN_SETTINGS) }
                 }
-            }
-        ]
-    }
-]
-  
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-const menu = Menu.buildFromTemplate(template)
-console.log(menu)
-Menu.setApplicationMenu(menu)
-
-function buildMenu() {
-//     const menu = Menu.getApplicationMenu()
-//     console.log(menu)
-//     if(menu != null) {
-//         const shortcuts = getShortcuts()
-//         const fileMenu = menu.items.find(item => item.role == 'fileMenu')!
-//         fileMenu.submenu = new Menu()
-//         // menu.insert(menu.items.length - 1, new MenuItem({
-//         //     label: 'Браузер',
-//         //     role: 'fileMenu',
-//         //     id: 'file',
-//         //     submenu: [
-//         //         {
-//         //             label: 'Обновить вкладку',
-//         //             accelerator: shortcuts.reload,
-//         //             click: () => { TabsController.mainWindow?.webContents.send(Channel.RELOAD) }
-//         //         },
-//         //         {
-//         //             label: 'Следующая вкладка',
-//         //             accelerator: shortcuts.nextTab,
-//         //             click: () => { TabsController.mainWindow?.webContents.send(Channel.SWITCH_NEXT_TAB) }
-//         //         }, 
-//         //         {
-//         //             label: 'Пердыдущая вкладка',
-//         //             accelerator: shortcuts.prevTab,
-//         //             click: () => { TabsController.mainWindow?.webContents.send(Channel.SWITCH_PREV_TAB) }
-//         //         }, 
-//         //         {
-//         //             label: 'Закрыть вкладку',
-//         //             accelerator: shortcuts.closeTab,
-//         //             click: () => {
-//         //                 const openedWindow = BrowserWindow.getFocusedWindow()
-//         //                 if(openedWindow && openedWindow != TabsController.mainWindow) {
-//         //                     openedWindow.close()
-//         //                     return
-//         //                 }
-//         //                 if(TabsController.currentTab() != TabsController.getMain()) {
-//         //                     TabsController.mainWindow?.webContents.send(Channel.CLOSE_TAB, TabsController.current_tab_id)
-//         //                 }
-//         //             }
-//         //         },
-//         //         {
-//         //             label: 'Скопировать URL страницы',
-//         //             accelerator: shortcuts.copyWindowUrl,
-//         //             click: () => {
-//         //                 const url = BrowserWindow.getFocusedWindow()?.webContents.getURL()
-//         //                 if(url && !url.startsWith('file:/')) {
-//         //                     clipboard.writeText(url)
-//         //                 } else {
-//         //                     clipboard.writeText(TabsController.currentTab().webContents.getURL())
-//         //                 }
-//         //             }
-//         //         }
-//         //     ]
-//         // }))
-//     }
-//     Menu.setApplicationMenu(menu)
-//     return menu
+            ]
+        },
+        {
+            label: 'Скиллы лука',
+            submenu: [
+                {
+                    label: '1-й скилл',
+                    accelerator: shortcuts.bowSkill1,
+                    click: () => { TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 1) }
+                },
+                {
+                    label: '2-й скилл',
+                    accelerator: shortcuts.bowSkill2,
+                    click: () => { TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 2) }
+                },
+                {
+                    label: '3-й скилл',
+                    accelerator: shortcuts.bowSkill3,
+                    click: () => { TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 3) }
+                },
+                {
+                    label: '4-й скилл',
+                    accelerator: shortcuts.bowSkill4,
+                    click: () => { TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 4) }
+                },
+                {
+                    label: '5-й скилл',
+                    accelerator: shortcuts.bowSkill5,
+                    click: () => { TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 5) }
+                },
+                {
+                    label: '6-й скилл',
+                    accelerator: shortcuts.bowSkill6,
+                    click: () => { TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 6) }
+                },
+                {
+                    label: '7-й скилл',
+                    accelerator: shortcuts.bowSkill7,
+                    click: () => { TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 7) }
+                },
+                {
+                    label: '8-й скилл',
+                    accelerator: shortcuts.bowSkill8,
+                    click: () => { TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 8) }
+                },
+                {
+                    label: '9-й скилл',
+                    accelerator: shortcuts.bowSkill9,
+                    click: () => { TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 9) }
+                },
+                {
+                    label: '10-й скилл',
+                    accelerator: shortcuts.bowSkill10,
+                    click: () => { TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 10) }
+                },
+                {
+                    label: '11-й скилл',
+                    accelerator: shortcuts.bowSkill11,
+                    click: () => { TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 11) }
+                },
+                {
+                    label: '12-й скилл',
+                    accelerator: shortcuts.bowSkill12,
+                    click: () => { TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 12) }
+                },
+                {
+                    label: '13-й скилл',
+                    accelerator: shortcuts.bowSkill13,
+                    click: () => { TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 13) }
+                },
+                {
+                    label: '14-й скилл',
+                    accelerator: shortcuts.bowSkill14,
+                    click: () => { TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 14) }
+                },
+                {
+                    label: '15-й скилл',
+                    accelerator: shortcuts.bowSkill15,
+                    click: () => { TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.BOW_SKILL, 15) }
+                },
+            ]
+        },
+        {
+            label: 'Игровые шорткаты',
+            submenu: [
+                {
+                    label: 'Открыть рюкзак',
+                    accelerator: shortcuts.openBackpack,
+                    click: () => { TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.OPEN_BACKPACK) }
+                },
+                {
+                    label: 'Открыть локацию',
+                    accelerator: shortcuts.openLocation,
+                    click: () => { TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.OPEN_LOCATION) }
+                },
+                {
+                    label: 'Открыть охоту',
+                    accelerator: shortcuts.openHunt,
+                    click: () => { TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.OPEN_HUNT) }
+                },
+                {
+                    label: 'Спрятать/Открыть чат',
+                    accelerator: shortcuts.hideShowChat,
+                    click: () => {
+                        TabsController.mainWindowContainer?.browserView?.webContents.send(Channel.HIDE_SHOW_CHAT)
+                    }
+                }
+            ]
+        },
+        {
+            role: 'help',
+            submenu: [
+                {
+                    label: 'Discord',
+                    click: async() => {
+                        const { shell } = require('electron')
+                        await shell.openExternal('https://discord.gg/zPtuxVnfVY')
+                    }
+                },
+                {
+                    label: 'Github',
+                    click: async() => {
+                        const { shell } = require('electron')
+                        await shell.openExternal('https://github.com/alhafram/Dwarium')
+                    }
+                },
+                {
+                    label: 'Youtube',
+                    click: async() => {
+                        const { shell } = require('electron')
+                        await shell.openExternal('https://www.youtube.com/c/DWARMalefice')
+                    }
+                },
+                { type: 'separator' },
+                {
+                    label: 'Почистить кеш',
+                    click: async() => {
+                        await session.defaultSession.clearStorageData({ storages: ['appcache', 'filesystem', 'indexdb', 'shadercache', 'cachestorage'] })
+                        TabsController.currentTab().webContents.reload()
+                    }
+                }
+            ]
+        }
+    ]
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    const menu = Menu.buildFromTemplate(template)
+    Menu.setApplicationMenu(menu)
 }
 
 function isClearKey(event: KeyboardEvent): boolean {
@@ -672,8 +588,6 @@ export default {
     buildMenu,
     getShortcuts,
     writeData,
-    registerShortcuts,
-    unregisterShortcuts,
     isExcludedKey,
     parseCombination,
     resetShortcuts,
