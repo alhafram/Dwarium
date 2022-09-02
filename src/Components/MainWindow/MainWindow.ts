@@ -258,15 +258,21 @@ export default class MainWindowContainer {
             y = this.isFullscreen ? 0 : y
             controlBounds.height = this.isFullscreen ? 0 : controlBounds.height
         }
-        if(size && process.platform == 'win32') {
+        if(size && process.platform == 'win32' && !this.isFullscreen) {
             size.width -= 15
         }
-        if(tab) {
+        if(size && process.platform == 'win32') {
+            size.height -= this.isFullscreen ? 72 : 110
+            if(ConfigService.getSettings().hideTopPanelInFullScreen && this.isFullscreen) {
+                size.height += controlBounds.height * 2
+            }
+        }
+        if(tab) { 
             tab.setBounds({
                 x: 0,
                 y: y,
                 width: size?.width ?? contentWidth,
-                height: contentHeight - controlBounds.height
+                height: size?.height ?? contentHeight - controlBounds.height
             })
         }
     }
