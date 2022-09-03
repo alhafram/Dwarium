@@ -222,6 +222,10 @@ function buildMenu() {
                     accelerator: shortcuts.closeTab,
                     click: () => {
                         const openedWindow = BrowserWindow.getFocusedWindow()
+                        if(!openedWindow && TabsController.currentTab().webContents.isDevToolsOpened()) {
+                            TabsController.currentTab().webContents.closeDevTools()
+                            return
+                        }
                         if(openedWindow && openedWindow != TabsController.mainWindow) {
                             openedWindow.close()
                             return
