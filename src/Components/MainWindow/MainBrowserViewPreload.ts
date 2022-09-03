@@ -20,10 +20,12 @@ document.huntFlags = flags.huntFlags
 document.fightFlags = flags.fightFlags
 
 window.addEventListener('DOMContentLoaded', async() => {
-    ChatService.setupAutoResponder()
-    ChatService.setupFlooding()
-    setupCheckingItemsService()
     const userId = (await Utils.getUserId()) as number
+    if(userId) {
+        ChatService.setupAutoResponder()
+        ChatService.setupFlooding()
+        setupCheckingItemsService()
+    }
     const settings = ChatSettingsService.get(userId)
     document.chatFlags = settings
     const animationSpeedType = ConfigService.getSettings().animationSpeedType
