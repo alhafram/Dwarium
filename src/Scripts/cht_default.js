@@ -1,16 +1,27 @@
-// @ts-nocheck
 // cht.js
 
-var debugLog = function(str, lock) { }
+var debugLog = function(str, lock) {
+	if (!debugLog.enabled) return;
+	debugLog.log = (debugLog.log || '') + str + "\n";
+	if (lock) {
+		debugLog.locked_log = debugLog.log;
+	}
+};
+debugLog.send = function() {
+	if (!debugLog.sendEnabled) return;
+	$.post('/pub/cht_debug_log.php', {log: debugLog.log});
+	debugLog.log = debugLog.locked_log || '';
+};
+debugLog.addFlashLog = function() {
+	debugLog('lmts connected=' + (LMTS.isConnected() ? 'yes' : 'no') + ' authorized=' + (LMTS.isAuthorized() ? 'yes' : 'no'));
+	debugLog('--------------- FLASH LOG ---------------');
+	var flash_log = LMTS.getLog().split('<br/>');
+	debugLog(flash_log.join("\n"));
+};
+debugLog.enabled = debugLog.sendEnabled = CHAT.debug;
 
-function removeItems(array, elements) {
-    for(var element of elements) {
-        var index = array.indexOf(element)
-        if(index != -1) {
-            array.splice(index, 1)
-        }
-    }
-    return array
+if (_top().location.hash == '#chat_debug') {
+	debugLog.enabled = 1;
 }
 
 var chatButtonState = {};
@@ -23,8 +34,8 @@ var chatButtons = {
 	'refresh_btn': ['images/chat_btn/refresh-reg.gif', 'images/chat_btn/refresh-roll.gif', 'images/chat_btn/refresh-pressed.gif']
 };
 
-for (let i in chatButtons) {
-	for (let j in chatButtons[i]) {
+for (i in chatButtons) {
+	for (j in chatButtons[i]) {
 		preloadImages(chatButtons[i][j]);
 	}
 }
@@ -40,7 +51,7 @@ preloadImages(
 
 function chatSetButtonHandlers() {
 	for (i in chatButtons) {
-		let obj = gebi(i);
+		obj = gebi(i);
 		if (!obj) continue;
 		obj.onmouseout = function() {
 			this.src = !chatButtonState[this.id] ? chatButtons[this.id][0]: chatButtons[this.id][3];
@@ -243,6 +254,7 @@ function chatTotalReconnect() {
 		dataType: 'json',
 		success: function(data) {
 			if (data) {
+				debugLog('conn data received', data);
 				var lmts_swfs = $('#lmts_swfs');
 				lmts_swfs.find('script').remove();
 				lmts_swfs.html(lmts_swfs.html());
@@ -280,6 +292,21 @@ function chatSendMessage(msg) {
 
 	if (msg == $('#message').data('dummy-text')) {
 		return false;
+	}
+
+	if (msg == '/chat_debug_send' && debugLog.enabled) {
+		debugLog.addFlashLog();
+		debugLog.send();
+		chatSysMsg('OK');
+		return true;
+	}
+	if (msg == '/chat_debug_log' && debugLog.enabled) {
+		debugLog.addFlashLog();
+		var chat_debug_log = debugLog.log.split("\n");
+		chatClearText();
+		chatSysMsg(chat_debug_log.join('<br/>'));
+		debugLog.log = '';
+		return true;
 	}
 
 	if (!LMTS.isAuthorized()) {
@@ -349,7 +376,6 @@ function chatToggleChBtnStyle(name, f) {
 }
 
 function chatChangePreset(i) {
-	localStorage.selectedTab = i
 	if (i == indx) return;
 	indx = i;
 	if (!chatOpts[indx]) return;
@@ -584,11 +610,6 @@ function chatReceiveMessage(msg) {
 			msg.msg_text = common_macro_resolve(macro_id, msg.macros_list[macro_id].name, msg.macros_list[macro_id].data, msg.msg_text);
 		}
 	}
-	
-	// Dwarium - Message
-	top?.document.dispatchEvent(new CustomEvent('Message', {
-		detail: msg
-	}))
 
 	var msg_dom = null;
 	var client_text = msg.msg_text;
@@ -688,17 +709,12 @@ function chatReceiveMessage(msg) {
 
 			if (chatButtonState['priv_btn'] && msg.chaotic_request || !chatButtonState['priv_btn'] || (msg.channel == channels.user) || !chatButtonState['priv_btn'] && (msg.type == msg_type.system) || (msg.user_id == session.id)
 					|| (msg.to_user_ids && inarray(msg.to_user_ids, session.id)) || msg.type == msg_type.broadcast || (msg.type == msg_type.system && msg.event_notify) ) {
-				attachMessageToChat(opt, msg_dom, msg)
+				opt.data.append($(msg_dom).clone());
 			}
 		}
 	}
 
-	// Dwarium - MessageDom
-	top?.document.dispatchEvent(new CustomEvent('MessageDom', {
-		detail: msg_dom
-	}))
-
-	let client_msg = {};
+	client_msg = {};
 	client_msg.data = {};
 	client_msg.data.msg = client_text.split('"').join('\\"');
 	client_msg.data.ctime = parseInt(msg.stime + session.time_offset + new Date().getTimezoneOffset()*60);
@@ -716,284 +732,11 @@ function chatReceiveMessage(msg) {
 		client_msg.data.recipient_list.push(msg.to_user_nicks[key]);
 	}
 	_top().clientExchangePut(vardump(client_msg).replace(/<\/?[^>]+>/gi, ''));
-	if (scrollCurrent >= scrollMax - 100) {
-		_top().frames['chat'].frames['chat_text'].scrollTo(0, 65535);
+	if (scrollCurrent >= scrollMax) {
+		chatScrollToBottom();
 	}
 	if (msie7) chatUpdateDataAttach();
 	return true;
-}
-
-var lastFightMessages: string[] = []
-var lastFightMessageIds: Number[] = []
-var fightStarted = false
-var fightStartedTimeout: NodeJS.Timeout | null = null
-
-function parseArtifactMacro(macro_name, macro_data) {
-	var html = html_add = '';
-	switch(macro_name) {
-		case 'ARTIFACT':
-			html = '<a class="artifact_info b macros_artifact_quality' + macro_data['quality'] + '" href="/artifact_info.php?artikul_id=' + macro_data['artikul_id'] + '" onClick="showArtifactInfo(false,' + macro_data['artikul_id'] + ');return false;">'
-				+ htmlspecialchars(macro_data['title']) + '</a>';
-			var num = parseInt(macro_data['num']);
-			if (num > 0) {
-				html_add += ' <b'+(macro_data['num_class'] ? ' class="'+macro_data['num_class']+'"' : '')+'>' + _top().TRANSLATE.amount_format.replace('%d', num) + '</b>';
-			}
-			break;
-		case 'ARTIFACT2':
-			html = '<a href="/artifact_info.php?artifact_id=' + macro_data['id'] + '&artikul_id='+macro_data['artikul_id']+'" onClick="showArtifactInfo(' + macro_data['id'] + ', '+macro_data['artikul_id']+');return false;"'
-			+ ' class="macros_artifact macros_artifact_quality' + macro_data['quality'] + '">'
-			+ htmlspecialchars(macro_data['title']) + '</a>';
-			break;
-		case 'MONEY':
-		if (macro_data['money_type'] == 1) {
-			html = html_money_str(1, macro_data['money'], 0, 0, 0, true);
-		} else if (macro_data['money_type'] == 2) {
-			html = html_money_str(1, 0, 0, 0, macro_data['money'], true);
-		} else if (macro_data['money_type'] == 3) {
-			html = html_money_str(1, 0, macro_data['money'], 0, 0, true);
-		}
-		break;
-	}
-	return html + html_add
-}
-
-function attachMessageToChat(opt, msg_dom, msg) {
-	const attackMessage = 'Вы совершили нападение на'
-	if(top?.document.chatFlags?.hideAttackedMessage == true && msg.msg_text.includes(attackMessage) && msg.channel == 2 && !msg.user_id) {
-		return
-	}
-	const fightStartedMessage = 'Начался бой'
-	if(msg.msg_text.includes(fightStartedMessage) && msg.channel == 2 && !msg.user_id) {
-		if(opt.channel == chatOpts.fight.channel) {
-			clearTimeout(fightStartedTimeout)
-			fightStarted = true
-		}
-		if(top?.document.chatFlags?.hideFightStartedMessage == true) {
-			return
-		}
-	}
-	const interruptFightMessage = 'Прерван бой'
-	if(msg.msg_text.includes(interruptFightMessage) && !msg.user_id) {
-		clearTimeout(fightStartedTimeout)
-		fightStarted = false
-	}
-	const giftPetMessage = 'вручил персонажу'
-	if(top?.document.chatFlags?.hideGiftPetMessage == true && msg.msg_text.includes(giftPetMessage) && msg.channel == 1 && !msg.user_id) {
-		return
-	}
-	const socialInvitesMessage = 'Приглашаем вас посетить наши группы в социальных'
-	if(top?.document.chatFlags?.hideSocialInvitesMessage == true && msg.msg_text.includes(socialInvitesMessage) && msg.channel == 1 && !msg.user_id) {
-		return
-	}
-	const meridianVaultsMessage = 'Началось формирование команд из бойцов'
-	if(top?.document.chatFlags?.hideMeridianVaultsMessage == true && msg.msg_text.includes(meridianVaultsMessage) && msg.channel == 1 && !msg.user_id) {
-		return
-	}
-	const upgradeMountMessage = 'воспользовавшись помощью кузнеца'
-	if(top?.document.chatFlags?.hideUpgradeMountMessage == true && msg.msg_text.includes(upgradeMountMessage) && msg.channel == 1 && !msg.user_id) {
-		return
-	}
-	const contestMessage = 'Конкурс:'
-	if(top?.document.chatFlags?.hideContestMessage == true && msg.msg_text.includes(contestMessage) && msg.channel == 1 && !msg.user_id) {
-		return
-	}
-	const guardiansMessage = 'Опасайтесь стать жертвой мошенников!'
-	if(top?.document.chatFlags?.hideGuardiansMessage == true && msg.msg_text.includes(guardiansMessage) && msg.channel == 1 && !msg.user_id) {
-		return
-	}
-	const chaoticFightMessage = 'Начинается подготовка к сражению «Хаотичная битва»'
-	if(top?.document.chatFlags?.hideChaoticFightMessage == true && msg.msg_text.includes(chaoticFightMessage) && msg.chaotic_request == 1 && !msg.user_id) {
-		return
-	}
-	const crusibleFightMessage = 'Начинается подготовка к сражению «Горнило войны»'
-	if(top?.document.chatFlags?.hideCrusibleFightMessage == true && msg.msg_text.includes(crusibleFightMessage) && msg.chaotic_request == 1 && !msg.user_id) {
-		return
-	}
-	const heavenFight = 'за Длань'
-	if(top?.document.chatFlags?.hideHeavenFightMessage == true && msg.msg_text.includes(heavenFight) && msg.channel == 1 && !msg.user_id) {
-		return
-	}
-	const kesariMessage = 'ниспослал благословение'
-	if(top?.document.chatFlags?.hideKesariMessage == true && msg.msg_text.includes(kesariMessage) && msg.channel == 1 && !msg.user_id) {
-		return
-	}
-	const newsMessage = '<b>Новость</b>:'
-	if(top?.document.chatFlags?.hideNewsMessage == true && msg.msg_text.includes(newsMessage) && msg.channel == 1 && !msg.user_id) {
-		return
-	}
-	const disableEventMessages = true
-	if(top?.document.chatFlags?.hideEventsMessage == true && msg.event_id && msg.channel == 1 && !msg.user_id && disableEventMessages) {
-		return
-	}
-	const boxPrizeMessages = ['Открыв один из особых драгоценных сундучков, купленных на Городской ярмарке', 'Открыв один из сундучков, купленных на Городской ярмарке', 'с интересом продолжил  исследовать содержимое сундука']
-	let prizeMessageIncludes = false
-	for(const boxPrizeMessage of boxPrizeMessages) {
-		if(msg.msg_text.includes(boxPrizeMessage)) {
-			prizeMessageIncludes = true
-			break
-		}
-	}
-	if(top?.document.chatFlags?.hideBoxPrizeMessage == true && prizeMessageIncludes && msg.channel == 1 && !msg.user_id) {
-		return
-	}
-	const medalMessage = 'Медаль «Поклонения»'
-	if(top?.document.chatFlags?.hideMedalsMessage == true && msg.msg_text.includes(medalMessage) && msg.channel == 1 && !msg.user_id) {
-		return
-	}
-	const mentorMessage = 'Если у вас есть вопросы по игре'
-	if(top?.document.chatFlags?.hideMentorsMessage == true && msg.msg_text.includes(mentorMessage) && msg.channel == 1 && !msg.user_id) {
-		return
-	}
-	const banditMessages = ['выиграл у Однорукого Бандита', 'сорвал Джекпот', 'Бриллиантового Бандита', 'Золотого Бандита', 'бандит']
-	let isBanditMessage = false
-	banditMessages.forEach(message => {
-		if(msg.msg_text.includes(message)) {
-			isBanditMessage = true
-		}
-	})
-	if(top?.document.chatFlags?.hideBanditMessage == true && isBanditMessage && msg.channel == 1 && !msg.user_id) {
-		return
-	}
-	const pitMessage = 'Пожертвовав горсть монет высшим силам, притаившимся в Колодце удачи'
-	if(top?.document.chatFlags?.hidePitMessage == true && msg.msg_text.includes(pitMessage) && msg.channel == 1 && !msg.user_id) {
-		return
-	}
-	const mirrorMessage = 'Обыграв духов Зазеркалья'
-	if(top?.document.chatFlags?.hideMirrorMessage == true && msg.msg_text.includes(mirrorMessage) && msg.channel == 1 && !msg.user_id) {
-		return
-	}
-	const endFightMessage = 'Окончен бой'
-	if(top?.document.chatFlags?.newLootSystem && !msg.user_id && fightStarted) {
-		if(msg.msg_text.startsWith('<a href="#" onClick="userPrvTag(') || msg.msg_text.includes('Вашей группой найдено:') || msg.msg_text.includes('Вашей группой получено')) {
-			return
-		}
-		if (msg.msg_text.startsWith('Игрок <a href=\"#\" onClick=\"userPrvTag(') && msg.msg_text.includes('получил')) {
-            return;
-        }
-		if(!msg.msg_text.includes(endFightMessage)) {
-			if(lastFightMessageIds.includes(msg.id)) {
-				return
-			}
-			const dropMessages = ['Вами получено', 'Вы получили', 'Получено:', 'Благодаря магическим эффектам']
-			let neededMessage = false
-			dropMessages.forEach(message => {
-				if(msg.msg_text.includes(message)) {
-					neededMessage = true
-				}
-			})
-			if(!msg.user_id && neededMessage || (msg.msg_text.startsWith('<a class="artifact_info') && msg.msg_text.endsWith('шт</b>'))) {
-				if(top?.document.chatFlags?.hideSatiety && msg.msg_text.includes('Сытость')) {
-					return
-				}
-				lastFightMessages.push(msg)
-				lastFightMessageIds.push(msg.id)
-				return
-			}
-		}
-		if(msg.msg_text.includes(endFightMessage)) {
-			setTimeout(() => {
-				if(lastFightMessages.length == 0) {
-					clearLastFightInfo()
-					return
-				}
-				const moneyMessages = lastFightMessages.filter(r => {
-					let keys = Object.keys(r.macros_list)
-					if(keys.length > 0) {
-						let isGold = r.macros_list[keys[0]].name == 'MONEY'
-						return isGold
-					}
-					return false
-				})
-				lastFightMessages = removeItems(lastFightMessages, moneyMessages)
-				const energyMessage = lastFightMessages.find(message => message.msg_text.includes('энергии'))
-				if(energyMessage) {
-					lastFightMessages = removeItems(lastFightMessages, [energyMessage])
-					lastFightMessages = moneyMessages.concat([energyMessage]).concat(lastFightMessages)
-				} else {
-					lastFightMessages = moneyMessages.concat(lastFightMessages)
-				}
-
-                for (const message of lastFightMessages) {
-					const isAdditionalShadow = message.msg_text.includes("<STRONG>Магический") && message.msg_text.includes('помог вам получить дополнительные предметы.')
-					if(isAdditionalShadow) {
-						const artKey = Object.keys(message.macros_list).find(key => message.macros_list[key].data.title == ' артефакт')
-                        delete message.macros_list[artKey];
-					}
-                    for(const key of Object.keys(message.macros_list)) {
-                        let data = parseArtifactMacro(message.macros_list[key].name, message.macros_list[key].data);
-                        if(message.macros_list[key].name == 'MONEY' && lastFightMessages.indexOf(message) > 0) {
-                            data = `+ ( ${data})`
-                        }
-                        if(data && data != '') {
-                            if(isAdditionalShadow) {
-                                message.msg_text = '<span>' + data + ' <img src="images/data/artifacts/shadow_seek_ring_red.gif" width="15" height="15"></span>'; 
-                            } else {
-                                message.msg_text = data;
-                            }
-                        }
-                    }
-                }
-				for(var lastFightMessage of lastFightMessages) {
-					if(lastFightMessage.msg_text.includes('Вы получили') && lastFightMessage.msg_text.includes('энергии')) {
-						lastFightMessage.msg_text = '<span>' + lastFightMessage.msg_text.replace(/\D/g, '') + ' <img src="images/work.gif" width="7" height="8"></span>'
-					}
-				}
-				top?.document.dispatchEvent(new CustomEvent('DropMessage', {
-					detail: {
-						fightId: _top().__lastFightId,
-						dropInfo: lastFightMessages
-					}
-				}))
-				let lootMessage = lastFightMessages.map(msg => msg.msg_text).join(' ')
-				lootMessage += ` <b><a href='javascript:void(0)' onclick='showFightInfo(${_top().__lastFightId})'>Бой</a><b>`
-				
-				var all_channels = 0;
-				for (var i in chatOpts) {
-					all_channels |= chatOpts[i].channel;
-				}
-				var res = {
-					type: msg_type.system,
-					urgent: true,
-					msg_text: lootMessage,
-					channel: all_channels, 
-					stime: current_server_time()
-				}
-				const domMessage = chatFormatMessage(res)
-				
-				for (var i in chatOpts) {
-					if(i != 'fight') {
-						continue
-					}
-					var opt = chatOpts[i];
-					for (var k in chatDependent) {
-						if (opt.channel & k) {
-							opt.channel |= chatDependent[k];
-						}
-					}
-					opt.data.append($(domMessage).clone())
-					_top().frames['chat'].frames['chat_text'].scrollTo(0, 65535);
-				}
-				clearLastFightInfo()
-				return
-			}, 2500)
-			if(opt.channel == chatOpts.fight.channel) {
-				fightStartedTimeout = setTimeout(() => {
-                    if (!top[0][1].canvas?.app?.battle?.model || top[0][1].canvas?.app?.battle?.model.fightResult == 1) {
-                        fightStarted = false;
-                    }
-                }, 5000)
-			}
-		}
-	}
-	if(top?.document.chatFlags?.hideEndFightMessage == true && msg.msg_text.includes(endFightMessage) && msg.channel == 2 && !msg.user_id) {
-		return
-	}
-	opt.data.append($(msg_dom).clone())
-}
-
-function clearLastFightInfo() {
-	lastFightMessages = []
-	lastFightMessageIds = []
 }
 
 var scrollLock = false;
@@ -1368,8 +1111,6 @@ function chatFormatMessage(msg) {
 	return html;
 }
 
-var session = null
-var chatLocId = null
 function sessionUpdate(data) {
 	session = data;
 
@@ -1425,28 +1166,49 @@ function sessionUpdate(data) {
 	}
 }
 
+if (debugLog.enabled) {
+	debugLog('conf ' + JSON.stringify(CHAT.conf));
+	if ('navigator' in window) {
+		var navigatorProps = ['appCodeName', 'appName', 'appVersion', 'cookieEnabled', 'language', 'oscpu', 'platform', 'product', 'userAgent'];
+		for (var i = 0; i < navigatorProps.length; i++) {
+			var prop = navigatorProps[i];
+			debugLog(prop + '=' + (prop in navigator ? navigator[prop] : 'unknown'));
+		}
+	}
+}
+
 var checkLmtsProxyReady = function() {
 	lastMsgTime = time_current();
 	var proxyRef = document.lmts_proxy;
 	if (proxyRef && typeof proxyRef.connect !== 'undefined') {
+		debugLog('lmts proxy ready');
 		lastMsgTime = time_current();
 		LMTS = esrv(proxyRef);
 
-		LMTS.onError = function(code, msg) { };
+		LMTS.onError = function(code, msg) {
+			debugLog('esrv error code=' + code + ' msg=' + msg);
+		};
 
-		LMTS.onConnect = function() { };
+		LMTS.onConnect = function() {
+			debugLog('lmts connected', true);
+		};
 
 		LMTS.onAuth = function() {
+			debugLog('lmts authorized');
 			$.get(chatUrl, {subscribe: 1});
 		};
 
 		var lmtsRequestRef = LMTS.request;
 		LMTS.request = function(data, success, fail) {
+			debugLog('data send ' + vardump(data));
 			lmtsRequestRef(data, success, fail);
 		};
 		LMTS.reconnect = chatTotalReconnect;
-		LMTS.onData = function(data) { };
+		LMTS.onData = function(data) {
+			debugLog('data recv ' + vardump(data));
+		};
 		LMTS.onDisconnect = function() {
+			debugLog('onDisconnect');
 			LMTS.reconnect();
 		};
 
@@ -1505,7 +1267,7 @@ function chat_channel_init() {
 	}).disableSelection();
 	$channel_tabs.find('li').on('click', chat_channel_click);
 	$channel_tabs.find('li .settings').on('click', chat_channel_settings_click);
-	chatChangePreset(localStorage.selectedTab ? localStorage.selectedTab : 'main');
+	chatChangePreset(CHAT.selected_tab ? CHAT.selected_tab : 'main');
 	chat_content_init();
 	chat_message_blur();
 };
@@ -1641,7 +1403,6 @@ function chat_change_timezone_confirm(locale) {
 	_top().popupDialogObj.close();
 };
 
-var $chat_user_list = {}
 var chat_user_list = $chat_user_list = null;
 function chat_user_list_init() {
 	chat_user_list = {};

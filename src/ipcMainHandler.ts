@@ -6,9 +6,9 @@ import path from 'path'
 import { Channel } from './Models/Channel'
 import { WindowType, Preload, HTMLPath } from './Models/WindowModels'
 import { createWindowAndLoad, setupCloseLogic } from './Services/WindowCreationHelper'
-import setupContextMenu from './Services/ContextMenu'
 import { buildFolderPath, Folder } from './Models/ConfigPathes'
 import FileOperationsService from './Services/FileOperationsService'
+import createNewTab from './NewTab/NewTab'
 
 ipcMain.on(Channel.LOAD_URL, (evt, server) => {
     ConfigService.writeData('server', server)
@@ -41,65 +41,8 @@ ipcMain.handle(Channel.IS_FORWARD_ENABLED, () => {
 })
 
 ipcMain.on(Channel.NEW_TAB, (evt, id, url) => {
-    createNewTab(url, id)
+    createNewTab(url, id, closeFavouriteListBrowserView)
 })
-
-function createNewTab(url: string, id: string) {
-    url = url ?? 'https://google.com'
-    const browserView = new BrowserView({
-        webPreferences: {
-            enablePreferredSizeMode: true,
-            webSecurity: false,
-            nodeIntegration: true
-        }
-    })
-    setupContextMenu(browserView)
-    const tabId = id
-    browserView.webContents.on('did-finish-load', () => {
-        const originalTitle = browserView.webContents.getTitle()
-        let title = originalTitle.slice(0, 8)
-        if(originalTitle.length > 10) {
-            title = title.concat('..')
-        }
-        TabsController.mainWindow?.webContents.send(Channel.FINISH_LOAD_URL, tabId, title)
-        TabsController.mainWindow?.webContents.send(Channel.URL, browserView.webContents.getURL(), tabId)
-    })
-    browserView.webContents.on('did-create-window', (window) => {
-        setupContextMenu(window)
-        TabsController.mainWindowContainer?.setupOpenHandler(window)
-    })
-    if(ConfigService.getSettings().windowOpenNewTab) {
-        browserView.webContents.setWindowOpenHandler(({ url }) => {
-            TabsController.mainWindow?.webContents.send(Channel.NEW_TAB, url)
-            return {
-                action: 'deny'
-            }
-        })
-    } else {
-        browserView.webContents.setWindowOpenHandler(() => {
-            return {
-                action: 'allow',
-                overrideBrowserWindowOptions: {
-                    webPreferences: {
-                        webSecurity: false
-                    },
-                    autoHideMenuBar: true
-                }
-            }
-        })
-    }
-    TabsController.addTab(tabId, browserView)
-    closeFavouriteListBrowserView()
-    TabsController.setupCurrent(tabId)
-    TabsController.mainWindow?.setBrowserView(browserView)
-
-    browserView.setAutoResize({
-        width: true
-    })
-    TabsController.mainWindowContainer?.setViewContentBounds(TabsController.currentTab())
-    browserView.webContents.loadURL(url)
-    TabsController.mainWindow?.webContents.send(Channel.URL, url, tabId)
-}
 
 ipcMain.on(Channel.MAKE_ACTIVE, (evt, id) => {
     TabsController.setupCurrent(id)
@@ -115,6 +58,10 @@ ipcMain.on(Channel.REMOVE_VIEW, (evt, id) => {
 
 ipcMain.on(Channel.CLOSE_TAB, (evt, id) => {
     TabsController.mainWindow?.webContents.send(Channel.CLOSE_TAB, id)
+})
+
+ipcMain.on(Channel.CLOSE_URL, () => {
+    TabsController.mainWindow?.webContents.send(Channel.CLOSE_TAB, TabsController.current_tab_id)
 })
 
 ipcMain.handle('makeWebRequest', async(evt, req) => {
