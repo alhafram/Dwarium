@@ -19,6 +19,7 @@ export enum Channel {
     REMOVE_VIEW = 'remove_view',
     MAKE_ACTIVE = 'make_active',
     CLOSE_TAB = 'close_tab',
+    CLOSE_URL = 'closeURL',
     GO_URL = 'goUrl',
     UPDATE_APPLICATION = 'updateApplication',
     FIND_CHARACTER = 'findCharacter',

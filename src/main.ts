@@ -80,6 +80,12 @@ function createWindow() {
                 })
                 return
             }
+            if(details.url.includes('common.js')) {
+                callback({
+                    redirectURL: `file://${app.getAppPath()}/src/Scripts/common.js`
+                })
+                return
+            }
         }
         callback({})
     })
