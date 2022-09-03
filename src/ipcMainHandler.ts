@@ -498,7 +498,8 @@ ipcMain.on(Channel.FAVOURITE_LIST, () => {
     }
     favouriteListBrowserView = new BrowserView({
         webPreferences: {
-            preload: `${path.join(app.getAppPath(), 'out', 'Components', 'FavouriteList', 'preload.js')}`
+            preload: `${path.join(app.getAppPath(), 'out', 'Components', 'FavouriteList', 'preload.js')}`,
+            nodeIntegration: true
         }
     })
     TabsController.mainWindow?.addBrowserView(favouriteListBrowserView)
