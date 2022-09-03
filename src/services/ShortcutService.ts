@@ -268,7 +268,6 @@ function buildMenu() {
         {
             label: 'View',
             submenu: [
-                { role: 'reload' },
                 { role: 'forceReload' },
                 { role: 'toggleDevTools' },
                 {
