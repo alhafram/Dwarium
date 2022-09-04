@@ -68,21 +68,31 @@ function createWindow() {
 
     session.defaultSession.webRequest.onBeforeRequest(filter, (details, callback) => {
         if(details.resourceType == 'script') {
-            if(details.url.includes('cht.js')) {
+            // https://w2.dwar.ru/js/cht.js?ux=1658999349
+            if(details.url.includes('js/cht.js?ux=')) {
                 callback({
                     redirectURL: `file://${app.getAppPath()}/out/Scripts/cht.js`
                 })
                 return
             }
-            if(details.url.includes('canvas.all.js')) {
+            // https://w2.dwar.ru/js/canvas/canvas.all.js?ux=1661417596
+            if(details.url.includes('canvas/canvas.all.js?ux=')) {
                 callback({
                     redirectURL: `file://${app.getAppPath()}/out/Scripts/canvas.all.js`
                 })
                 return
             }
-            if(details.url.includes('common.js')) {
+            // https://w2.dwar.ru/js/common.js?ux=1652950883
+            if(details.url.includes('js/common.js?ux=')) {
                 callback({
                     redirectURL: `file://${app.getAppPath()}/src/Scripts/common.js`
+                })
+                return
+            }
+            // https://w2.dwar.ru/info/themes/dwar_old/js/common.js?r=0
+            if(details.url.includes('dwar_old/js/common.js?r=')) {
+                callback({
+                    redirectURL: `file://${app.getAppPath()}/src/Scripts/common_old.js`
                 })
                 return
             }
