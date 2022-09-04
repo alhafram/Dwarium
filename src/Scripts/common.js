@@ -2443,11 +2443,11 @@ try {
 
 window.close_ = window.close;
 window.close = function(e, id) {
-	if(dwariumId) {
+	var win = _top().window;
+	if(win.dwariumId) {
 		top?.document.dispatchEvent(new Event('CloseTab'))
 		return
 	}
-	var win = _top().window;
 	if (win.js_popup && id) {
 		win.destroyPopup(e, id);
 	} else {
