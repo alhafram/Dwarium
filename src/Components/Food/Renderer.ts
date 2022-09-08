@@ -6,7 +6,7 @@ import { FoodType } from '../../Models/InventoryItem'
 import { convertItemIntoDiv } from '../Common/ItemBuilder'
 
 let currentState: FoodWindowState
-function render(state: FoodWindowState): void {
+async function render(state: FoodWindowState) {
     currentState = state
     const parent = Elements.allFoodDiv()
     Array.from(parent?.children ?? []).forEach((itemBox) => {

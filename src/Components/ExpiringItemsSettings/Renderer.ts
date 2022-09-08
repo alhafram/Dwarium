@@ -9,7 +9,7 @@ import { SetElements } from '../Common/Set/Elements'
 import Utils, { DressingFilterColor } from '../Common/Utils'
 import { InventoryItem } from '../../Models/InventoryItem'
 
-function render(state: ExpiringItemsSettingsWindowState): void {
+async function render(state: ExpiringItemsSettingsWindowState) {
     let parent = SetElements.allItemsDiv()
     Array.from(parent.children ?? []).forEach((item) => parent.removeChild(item))
 

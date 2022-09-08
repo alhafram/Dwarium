@@ -37,7 +37,7 @@ function createNoteElement(note: Note, isActive = false) {
     return newNoteDiv
 }
 
-function render(state: NotesWindowState): void {
+async function render(state: NotesWindowState) {
     Array.from(ListElements.setsDiv().children)
         .filter((element) => element.id.startsWith('note_'))
         .forEach((element) => ListElements.setsDiv().removeChild(element))

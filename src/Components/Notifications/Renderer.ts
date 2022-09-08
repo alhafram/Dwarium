@@ -9,7 +9,7 @@ export function setupView() {
     }
 }
 
-export function render(initialState: NotificationsWindowState) {
+export async function render(initialState: NotificationsWindowState) {
     Elements.fightNotificationsSystemInput().checked = initialState.fightNotificationsSystem
     Elements.fightNotificationsIngameInput().checked = initialState.fightNotificationsIngame
     Elements.fightFinishedNotificationsSystemInput().checked = initialState.fightFinishedNotificationsSystem

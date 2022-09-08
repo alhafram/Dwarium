@@ -6,7 +6,7 @@ import { GameSettingsWindowActions } from './Actions'
 
 let state: GameSettingsWindowState
 
-export function render(initialState: GameSettingsWindowState) {
+export async function render(initialState: GameSettingsWindowState) {
     state = initialState
     setupGameFlags()
 }

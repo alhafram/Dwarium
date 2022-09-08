@@ -34,7 +34,8 @@ export default class MainWindowContainer {
                 preload: path.join(__dirname, 'preload.js'),
                 backgroundThrottling: false,
                 contextIsolation: false,
-                nodeIntegration: true
+                nodeIntegration: true,
+                webSecurity: false
             }
         })
         const settings = ConfigService.getSettings()
@@ -168,7 +169,6 @@ export default class MainWindowContainer {
                         autoHideMenuBar: true,
                         webPreferences: {
                             contextIsolation: false,
-                            nativeWindowOpen: true,
                             nodeIntegrationInSubFrames: true,
                             enablePreferredSizeMode: true,
                             webSecurity: false
@@ -267,7 +267,7 @@ export default class MainWindowContainer {
                 size.height += controlBounds.height * 2
             }
         }
-        if(tab) { 
+        if(tab) {
             tab.setBounds({
                 x: 0,
                 y: y,
