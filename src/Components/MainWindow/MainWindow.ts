@@ -267,7 +267,7 @@ export default class MainWindowContainer {
                 size.height += controlBounds.height * 2
             }
         }
-        if(tab) { 
+        if(tab) {
             tab.setBounds({
                 x: 0,
                 y: y,

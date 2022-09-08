@@ -291,13 +291,15 @@ function buildMenu() {
                 { role: 'zoomIn' },
                 { role: 'zoomOut' },
                 { type: 'separator' },
-                isMac ? { role: 'togglefullscreen' } : {
-                    label: 'Фуллскрин',
-                    accelerator: shortcuts.fullscreen,
-                    click: () => {
-                        TabsController.mainWindowContainer?.mainWindow.setFullScreen(!TabsController.mainWindowContainer?.mainWindow.isFullScreen())
+                isMac
+                    ? { role: 'togglefullscreen' }
+                    : {
+                        label: 'Фуллскрин',
+                        accelerator: shortcuts.fullscreen,
+                        click: () => {
+                            TabsController.mainWindowContainer?.mainWindow.setFullScreen(!TabsController.mainWindowContainer?.mainWindow.isFullScreen())
+                        }
                     }
-                }
             ]
         },
         // { role: 'windowMenu' }

@@ -13,7 +13,7 @@ export default function createNewTab(url: string, id: string, closeFavouriteList
             enablePreferredSizeMode: true,
             webSecurity: false,
             nodeIntegration: true,
-            preload: path.join(__dirname, 'preload.js'),
+            preload: path.join(__dirname, 'preload.js')
         }
     })
     setupContextMenu(browserView)
