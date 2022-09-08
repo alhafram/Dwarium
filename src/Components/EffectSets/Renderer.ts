@@ -10,7 +10,7 @@ import { ListElements } from '../Common/List/Elements'
 import { EffectSet } from '../../Models/EffectSet'
 import Utils, { DressingFilterColor } from '../Common/Utils'
 
-function render(state: EffectSetsWindowState): void {
+async function render(state: EffectSetsWindowState) {
     let parent = SetElements.allItemsDiv()
     Array.from(parent.children ?? []).forEach((item) => parent.removeChild(item))
 

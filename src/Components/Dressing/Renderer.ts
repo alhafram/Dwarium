@@ -35,7 +35,7 @@ function getAllStaticDivs(): HTMLDivElement[] {
     ]
 }
 
-function render(initialState: DressingWindowState): void {
+async function render(initialState: DressingWindowState) {
     getAllStaticDivs().forEach((box) => {
         if(box != null) {
             box.classList.replace('potionBoxSmallHighlighted', 'potionBoxSmall')

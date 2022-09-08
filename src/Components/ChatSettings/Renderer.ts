@@ -5,7 +5,7 @@ import { ChatSettingsWindowActions } from './Actions'
 import { Elements } from './Elements'
 import { ChatSettingsConfig } from '../../Models/ChatSettingsConfig'
 
-function render(initialState: ChatSettingsConfig) {
+async function render(initialState: ChatSettingsConfig) {
     Elements.autoResponderInput().checked = initialState.autoResponderEnabled
     Elements.floodingInput().checked = initialState.floodingEnabled
     Elements.inactiveTimerInput().value = initialState.inactiveTimer.toString()

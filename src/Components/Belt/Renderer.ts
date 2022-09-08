@@ -130,7 +130,7 @@ function createDivPotionStr(variant: boolean) {
             </button>`
 }
 
-export function render(state: BeltDressingWindowState): void {
+export async function render(state: BeltDressingWindowState) {
     Array.from(SetElements.allItemsDiv().children ?? []).forEach((item) => SetElements.allItemsDiv().removeChild(item))
 
     const itemsStaticBoxes = Array.from(Elements.potionDivs()) as HTMLDivElement[]

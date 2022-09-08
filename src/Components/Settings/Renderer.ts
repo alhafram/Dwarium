@@ -8,7 +8,7 @@ import '../Common/Utils'
 
 let state: SettingsWindowState
 
-export function render(initialState: SettingsWindowState) {
+export async function render(initialState: SettingsWindowState) {
     state = initialState
     function createUserAgentOption(agent: { id: string; value: string }): HTMLOptionElement | null {
         if(!agent.value) {

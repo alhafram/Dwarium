@@ -18,7 +18,7 @@ ipcRenderer.on(Channel.FAVOURITE_UPDATED, () => {
     renderFavouriteLinks()
 })
 
-function renderFavouriteLinks() {
+async function renderFavouriteLinks() {
     Array.from(Elements.linksDiv().children).forEach((linkDiv) => {
         Elements.linksDiv().removeChild(linkDiv)
     })
