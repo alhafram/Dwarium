@@ -4251,3 +4251,31 @@ function redButtonClick() {
 		}
 	});
 }
+
+var oauth = (function() {
+	var self = function(result, state) {
+			var callback = callbacks[state];
+			if (callback) {
+				delete callbacks[state];
+				return callback(result);
+			}
+		},
+		callbacks  = [];
+
+	function hash(len) {
+		var arr = new Uint8Array(len / 2);
+		window.crypto.getRandomValues(arr);
+		return Array.prototype.map.call(arr, function(dec) { return ('0' + dec.toString(16)).slice(-2); }).join('');
+	}
+	self.redirect = function(opener, redirect_url) {
+		var state = hash(40);
+		setCookie('oauth_state_' + state, redirect_url, new Date((new Date().getTime() + 600000)), '/', location.hostname, true);
+		return [opener, state].join(':');
+	}
+	self.callback = function(opener, callback) {
+		var state = hash(40);
+		callbacks[state] = callback;
+		return [opener, state].join(':');
+	}
+	return self;
+})();
