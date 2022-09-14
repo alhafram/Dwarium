@@ -12,7 +12,7 @@ export default async function reduce(state: ShopLoaderState, action: ShopLoaderW
             items = items.concat(await loadPage(0))
             items = items.concat(await loadPage(1))
             items = items.flat()
-            items = items.sort((a, b) => a.color < b.color ? -1 : 1)
+            items = items.sort((a, b) => (a.color < b.color ? -1 : 1))
             return {
                 ...state,
                 energyItems: items
@@ -20,10 +20,10 @@ export default async function reduce(state: ShopLoaderState, action: ShopLoaderW
         }
         case ShopLoaderWindowActions.BUY: {
             const energyItem = data as EnergyItem
-            Elements.purchaseButtons().forEach(element => element.disabled = true)
+            Elements.purchaseButtons().forEach((element) => (element.disabled = true))
             await drink()
             await buy(energyItem)
-            Elements.purchaseButtons().forEach(element => element.disabled = false)
+            Elements.purchaseButtons().forEach((element) => (element.disabled = false))
             return state
         }
     }
@@ -54,11 +54,12 @@ async function loadPage(page: number): Promise<EnergyItem[]> {
     const text = await fetchEnergyItems(page)
     const parser = new DOMParser()
     const doc = parser.parseFromString(text, 'text/html')
-    
+
     const itemsDoc = doc.querySelector(
-        'body > table > tbody > tr:nth-child(1) > td > table > tbody > tr:nth-child(3) > td.bgg > table > tbody > tr > td:nth-child(1) > table > tbody > tr:nth-child(2) > td')?.children
+        'body > table > tbody > tr:nth-child(1) > td > table > tbody > tr:nth-child(3) > td.bgg > table > tbody > tr > td:nth-child(1) > table > tbody > tr:nth-child(2) > td'
+    )?.children
     const pageItems = Array.prototype.slice.call(itemsDoc)
-    const items = pageItems.map(item => {
+    const items = pageItems.map((item) => {
         const form = item.querySelector('#item_list > tbody > tr > td:nth-child(1) > div > table > tbody > tr > td')
         const item_name = item.querySelector('#item_list > tbody > tr > td:nth-child(2) > table > tbody > tr:nth-child(1) > td > a')
         let item_energy = ''
@@ -77,14 +78,11 @@ async function loadPage(page: number): Promise<EnergyItem[]> {
     return items
 }
 
-
-
 class EnergyPotion {
     name
     value
     constructor(name: string, value: number) {
-        this.name = name,
-        this.value = value
+        (this.name = name), (this.value = value)
     }
 }
 
@@ -140,12 +138,12 @@ async function drink() {
     const energy = await getEnergy()
     let energyDiff = energyMax - energy
     while(energyDiff > 20) {
-        const maxPotion = energyPotions.sort((obj1, obj2) => obj1.value < obj2.value ? 1 : -1)[0]
+        const maxPotion = energyPotions.sort((obj1, obj2) => (obj1.value < obj2.value ? 1 : -1))[0]
         if(!maxPotion) {
             return
         }
         const potionNeedToUse = parseInt((energyDiff / maxPotion.value).toString())
-        const filteredItem = items.filter(item => item.title == maxPotion.name)[0]
+        const filteredItem = items.filter((item) => item.title == maxPotion.name)[0]
         if(filteredItem) {
             for(let i = 0; i < potionNeedToUse; i++) {
                 await instapocketUseRequest(filteredItem.id)
@@ -199,8 +197,8 @@ async function addToCardRequest(body: string) {
 async function buy(energyItem: EnergyItem) {
     await cleanCard()
     const energyCost = energyItem.energy
-    const energy = await getEnergy() as number
-    const count = parseInt((energy /energyCost).toString())
+    const energy = (await getEnergy()) as number
+    const count = parseInt((energy / energyCost).toString())
     if(count == 0) {
         return
     }
