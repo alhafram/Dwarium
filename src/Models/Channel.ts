@@ -10,6 +10,7 @@ export enum Channel {
     OPEN_CHAT_LOG = 'openChatLog',
     OPEN_CHAT_SETTINGS = 'openChatSettings',
     OPEN_SETTINGS = 'openSettings',
+    OPEN_SHOP_LOADER = 'openShopLoader',
     OPEN_EFFECT_SETS = 'openEffectSets',
     OPEN_EXPIRING_ITEMS_SETTINGS = 'openExpiringItemsSettings',
     OPEN_GAME_SETTINGS = 'openGameSettings',

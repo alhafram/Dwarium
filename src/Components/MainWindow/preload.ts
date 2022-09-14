@@ -244,6 +244,13 @@ window.addEventListener('DOMContentLoaded', async() => {
         ipcRenderer.send(Channel.OPEN_SETTINGS)
         openPage(WindowType.SETTINGS)
     })
+    Elements.shopLoaderButton().addEventListener('click', () => {
+        // TODO: - FIXME before release
+        // localStorage.setItem(PluginConfigKeys.settingsButtonBadgeSpan, pluginConfig.settingsButtonBadgeSpan)
+        Elements.settingsButtonBadgeSpan().style.display = 'none'
+        ipcRenderer.send(Channel.OPEN_SHOP_LOADER)
+        openPage(WindowType.SHOP_LOADER)
+    })
     Elements.statsButton().onclick = function() {
         const value = pluginRestorationHandler(Elements.statsButton())
         if(value) {
@@ -682,7 +689,8 @@ const channels = [
     Channel.OPEN_EFFECT_SETS,
     Channel.OPEN_EXPIRING_ITEMS_SETTINGS,
     Channel.MAKE_SCREENSHOT,
-    Channel.OPEN_SETTINGS
+    Channel.OPEN_SETTINGS,
+    Channel.OPEN_SHOP_LOADER
 ]
 channels.forEach((channel) => {
     ipcRenderer.on(channel, () => {

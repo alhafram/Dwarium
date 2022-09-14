@@ -108,6 +108,12 @@ export const Elements = {
     settingsButtonBadgeSpan(): HTMLSpanElement {
         return document.getElementById('settingsButtonBadgeSpan') as HTMLSpanElement
     },
+    shopLoaderButton(): HTMLButtonElement {
+        return document.getElementById('shopLoaderButton') as HTMLButtonElement
+    },
+    shopLoaderButtonBadgeSpan(): HTMLSpanElement {
+        return document.getElementById('shopLoaderButtonBadgeSpan') as HTMLSpanElement
+    },
     statsButton(): HTMLButtonElement {
         return document.getElementById('statsButton') as HTMLButtonElement
     },
