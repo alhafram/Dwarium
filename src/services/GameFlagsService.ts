@@ -51,6 +51,10 @@ export type HuntFlags = {
     hideHuntBackground: boolean
 }
 
+export type FightFlags = {
+    hideFightBackground: boolean
+}
+
 export enum GameLocationFlagsKeys {
     HIDE_CASINO = 'hideCasino',
     HIDE_ACTIVITIES = 'hideActivities',
@@ -99,11 +103,16 @@ export enum HuntFlagsKeys {
     HIDE_HUNT_BACKGROUND = 'hideHuntBackground'
 }
 
+export enum FightFlagsKeys {
+    HIDE_FIGHT_BACKGROUND = 'hideFightBackground'
+}
+
 export type GameFlags = {
     gameLocationFlags: GameLocationFlags
     gameTopMenuFlags: GameTopMenuFlags
     gameRightMenuFlags: GameRightMenuFlags
     huntFlags: HuntFlags
+    fightFlags: FightFlags
 }
 
 function getGameFlags(): GameFlags {
@@ -151,15 +160,19 @@ function getGameFlags(): GameFlags {
         hideNewResourcesFilter: readData(HuntFlagsKeys.HIDE_NEW_RESOURCES_FILTER) ?? false,
         hideHuntBackground: readData(HuntFlagsKeys.HIDE_HUNT_BACKGROUND) ?? false
     }
+    const fightFlags = {
+        hideFightBackground: readData(FightFlagsKeys.HIDE_FIGHT_BACKGROUND) ?? false
+    }
     return {
         gameLocationFlags,
         gameTopMenuFlags,
         gameRightMenuFlags,
-        huntFlags
+        huntFlags,
+        fightFlags
     }
 }
 
-function writeData(key: GameLocationFlagsKeys | GameTopMenuFlagsKeys | GameRightMenuFlagsKeys | HuntFlagsKeys, value: any): void {
+function writeData(key: GameLocationFlagsKeys | GameTopMenuFlagsKeys | GameRightMenuFlagsKeys | HuntFlagsKeys | FightFlagsKeys, value: any): void {
     const contents = FileOperationsService.parseData(path) as any
     contents[key] = value
     Object.keys(contents).forEach((key) => {

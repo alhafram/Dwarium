@@ -258,7 +258,10 @@ function handleMessage(message: any) {
 function handleRedirect(message: any) {
     const chatMessage = message as ChatMessage
     // @ts-ignore
-    const nickName = top[0].canvas.app.avatar.model.login
+    const nickName = top[0].canvas?.app?.avatar?.model?.login
+    if(!nickName) {
+        return
+    }
     if(chatMessage && config && nickName && chatMessage.to_user_nicks) {
         if(config.redirectEnabled) {
             switch (chatMessage.channel) {

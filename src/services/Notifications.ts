@@ -21,7 +21,8 @@ export enum NotificationType {
     MESSAGE = 'Получено новое сообщение!',
     MAIL = 'Получено новое письмо!',
     EXPIRING_ITEMS = 'Горят шмотки, посмотри!',
-    RESOUCE_FARMING_FINISHED = 'Добыча ресурса завершена!'
+    RESOUCE_FARMING_FINISHED = 'Добыча ресурса завершена!',
+    FIGHT_FINISHED = 'Окончен бой!'
 }
 
 function getSoundFor(notificationType: NotificationType) {
@@ -38,6 +39,8 @@ function getSoundFor(notificationType: NotificationType) {
             return 'expiring_items.ogg'
         case NotificationType.RESOUCE_FARMING_FINISHED:
             return 'resource.ogg'
+        case NotificationType.FIGHT_FINISHED:
+            return 'fight_finished.ogg'
     }
 }
 
@@ -54,6 +57,17 @@ export default function sendNotification(message: ChatMessage | null, type: Noti
         }
         if(ConfigService.getSettings().fightNotificationsIngame) {
             playIngameNotificationSound(NotificationType.ATTACKED)
+        }
+    }
+
+    if(message?.channel == 2 && message?.msg_text?.toLocaleLowerCase().includes('окончен бой') && !message.to_user_nicks) {
+        setupBounce('informational')
+        setupFlashFlame()
+        if(ConfigService.getSettings().fightFinishedNotificationsSystem && currentWindowNotFocused()) {
+            new Notification({ title: notificationTitle, body: NotificationType.FIGHT_FINISHED }).show()
+        }
+        if(ConfigService.getSettings().fightFinishedNotificationsIngame) {
+            playIngameNotificationSound(NotificationType.FIGHT_FINISHED)
         }
     }
 
@@ -79,7 +93,7 @@ export default function sendNotification(message: ChatMessage | null, type: Noti
         }
     }
 
-    if(message?.to_user_nicks != undefined) {
+    if(message?.to_user_nicks != undefined && message?.to_user_nicks) {
         if(Object.values(message.to_user_nicks).includes(nickname)) {
             setupFlashFlame()
             setupBounce('informational')

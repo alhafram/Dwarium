@@ -1,5 +1,5 @@
 // @ts-nocheck
-import ConfigService from "../services/ConfigService";
+import ConfigService from "../Services/ConfigService";
 
 var art_alt = null
 

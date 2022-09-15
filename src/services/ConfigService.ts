@@ -19,6 +19,8 @@ function getSettings(): ClientSettings {
         animationSpeedType: animationSpeedType(),
         fightNotificationsSystem: fightNotificationsSystem(),
         fightNotificationsIngame: fightNotificationsIngame(),
+        fightFinishedNotificationsSystem: fightFinishedNotificationsSystem(),
+        fightFinishedNotificationsIngame: fightFinishedNotificationsIngame(),
         battlegroundNotificationsSystem: battlegroundNotificationsSystem(),
         battlegroundNotificationsIngame: battlegroundNotificationsIngame(),
         messageNotificationsSystem: messageNotificationsSystem(),
@@ -147,6 +149,24 @@ function fightNotificationsIngame(): boolean {
     if(settings) {
         settings = JSON.parse(settings)
         return settings.fightNotificationsIngame ?? false
+    }
+    return false
+}
+
+function fightFinishedNotificationsSystem(): boolean {
+    let settings = readData('settings')
+    if(settings) {
+        settings = JSON.parse(settings)
+        return settings.fightFinishedNotificationsSystem ?? false
+    }
+    return false
+}
+
+function fightFinishedNotificationsIngame(): boolean {
+    let settings = readData('settings')
+    if(settings) {
+        settings = JSON.parse(settings)
+        return settings.fightFinishedNotificationsIngame ?? false
     }
     return false
 }

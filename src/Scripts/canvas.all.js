@@ -6737,6 +6737,7 @@ canvas.Translator = {
         text733: "Активности",
         text734: "Однорукий бандит",
         text735: "Бриллиантовый бандит",
+        text736: "Колесо удачи",
         text800: "Название",
         text802: "Снять",
         text803: "Снять эффект",
@@ -10259,6 +10260,7 @@ canvas.data.ItemPrototypeData = {
     QUALITY_VIOLET: 3,
     QUALITY_RED: 4,
     QUALITY_TURQUOISE: 5,
+    QUALITY_ORANGE: 6,
     prototypes: {},
     unParsedData: {},
     loadPrototype: function(t) {
@@ -10306,6 +10308,8 @@ canvas.data.ItemPrototypeData = {
             return 16711680;
         case this.QUALITY_TURQUOISE:
             return 93809;
+        case this.QUALITY_ORANGE:
+            return 16080423;
         default:
             return 0
         }
@@ -11541,7 +11545,7 @@ canvas.data.manor.throne.UserData = function() {
     this.redressItemID
 }
 ,
-canvas.app.CanvasApp = function(t, e, a, s, i, n, o, r) {
+canvas.app.CanvasApp = function(t, e, a, s, i, n, o, r, c) {
     null == a && (a = !0),
     null == n && (n = !1),
     this.topWindow = null == o ? window : o,
@@ -11569,7 +11573,8 @@ canvas.app.CanvasApp = function(t, e, a, s, i, n, o, r) {
     canvas.px.utils.skipHello(),
     n || (this.app = new canvas.px.Application(this.par.width || 100,this.par.height || 100,{
         transparent: !0,
-        antialias: null != r && r
+        antialias: null != r && r,
+        preserveDrawingBuffer: null != c && c
     }),
     this.par.parent.appendChild(this.app.view),
     null != o && (this.app.renderer.plugins.interaction.removeEvents(),
@@ -11915,7 +11920,7 @@ canvas.app.CanvasBattle.prototype.ready = function() {
     this.main = new canvas.app.battle.Main(this.model,this.hintManager),
     this.root.addChild(this.main),
     this.main.resize(this.width, this.height),
-    this.fps = top?.document.animationFPS
+    this.fps = top?.document.animationFPS ?? this.model.fps
 }
 ,
 canvas.app.CanvasBattle.prototype.swfData = function(t, e) {
@@ -13263,7 +13268,7 @@ canvas.app.treasure.log = function(t, e) {
 }
 ,
 canvas.app.CanvasUser = function(t, e, a, s) {
-    canvas.app.CanvasApp.call(this, t, e, !0, 0, 0),
+    canvas.app.CanvasApp.call(this, t, e, !0, 0, 0, void 0, void 0, void 0, !0),
     canvas.app.user.Const.TOP = a || 0,
     canvas.app.user.Const.LEFT = s || 0
 }
@@ -13297,24 +13302,27 @@ canvas.app.CanvasUser.prototype.handlerEnterFrame = function() {
 }
 ,
 canvas.app.CanvasUser.prototype.createHtmlElements = function(t) {
-    var e, a = document.createElement("video");
+    var e = "0" == this.model.canputoff
+      , a = document.createElement("video");
     t.style.minWidth = this.par.width,
     t.style.height = this.par.height,
     this.app.view.style.position = "absolute",
-    "0" == this.model.canputoff && (this.app.view.style.left = 0 + canvas.app.user.Const.LEFT,
-    this.app.view.style.top = 54 + canvas.app.user.Const.TOP),
-    a.style = "border: none;background-color: transparent; position:absolute;top:108;left:78;outline: none;overflow: hidden;",
-    "0" == this.model.canputoff && (a.style.left = 58 + canvas.app.user.Const.LEFT,
+    e && (this.app.view.style.left = 0 + canvas.app.user.Const.LEFT,
+    this.app.view.style.top = 54 + canvas.app.user.Const.TOP);
+    var s, i = "border:none;background-color:transparent;position:absolute;top:108;left:78;outline:none;overflow:hidden;";
+    e && (i += "z-index:-1;"),
+    a.style = i,
+    e && (a.style.left = 58 + canvas.app.user.Const.LEFT,
     a.style.top = 128 + canvas.app.user.Const.TOP),
     a.autoplay = "1",
     a.loop = "1",
     t.insertBefore(a, this.app.view),
     this.main.view.background.video = a,
     this.main.view.background.update();
-    for (var s = 0; s < this.model.SLOTS_COUNT; s++)
-        this.main.view.slots[s] && ((e = document.createElement("img")).style = "border: none;background-color: transparent; position:absolute;outline: none;overflow: hidden;",
-        t.insertBefore(e, this.app.view),
-        this.main.view.slots[s].img = e)
+    for (var n = 0; n < this.model.SLOTS_COUNT; n++)
+        this.main.view.slots[n] && ((s = document.createElement("img")).style = "border: none;background-color: transparent; position:absolute;outline: none;overflow: hidden;",
+        t.insertBefore(s, this.app.view),
+        this.main.view.slots[n].img = s)
 }
 ,
 canvas.app.CanvasUser.prototype.resize = function() {
@@ -13570,7 +13578,8 @@ canvas.app.view.BigHint = function(t, e) {
     this.infoField = new canvas.ui.HtmlText(canvas.Const.FONT_TAHOMA_12,canvas.Const.FONT_TAHOMA_12,4010799,this.back.width - 45,1e3,"left"),
     this.infoField.position.set(22, 32),
     this.addChild(this.infoField),
-    this.update(e)
+    this.update(e),
+    this.interactiveChildren = !1
 }
 ,
 canvas.app.view.BigHint.prototype = Object.create(canvas.px.Container.prototype),
@@ -13588,7 +13597,8 @@ canvas.app.view.BigHint2 = function(t, e) {
     this.back.height = 80,
     this.infoField = this.addChild(new canvas.ui.HtmlText(canvas.Const.FONT_TAHOMA_11,canvas.Const.FONT_TAHOMA_11_BOLD,6770493,this.back.width - 45,1e3,"left")),
     this.infoField.position.set(22, 8),
-    this.update(e)
+    this.update(e),
+    this.interactiveChildren = !1
 }
 ,
 canvas.app.view.BigHint2.prototype = Object.create(canvas.px.Container.prototype),
@@ -15510,9 +15520,11 @@ canvas.app.battle.View = function(t) {
     this.effects = new canvas.px.Container,
     this.player1 = new canvas.px.Container,
     this.player2 = new canvas.px.Container;
-    t = new canvas.px.Sprite(canvas.ResourceLoader.getTexture("bg"));
-    this.addChild(t),
-    t.position.set(4, 12),
+    if(!top?.document.fightFlags.hideFightBackground) {
+        t = new canvas.px.Sprite(canvas.ResourceLoader.getTexture("bg"));
+        this.addChild(t),
+        t.position.set(4, 12)
+    }
     this.flagButton = new canvas.ui.SimpleButton(canvas.ResourceLoader.getImage("ui", "battle_flag")),
     this.flagButton.position.set(0, 50),
     this.flagCdGraphics = new canvas.px.Graphics,
@@ -21888,6 +21900,7 @@ canvas.app.location.Const = {
     BRILLIANT_IMAGE_PATH: "images/m_dmd.gif",
     POPUP_ZERO_LEVEL: "POPUP_ZERO_LEVEL",
     POPUP_ACTIVITY: "POPUP_ACTIVITY",
+    POPUP_WHEEL: "POPUP_WHEEL",
     LOC_SMALL_WIDTH: 986,
     LOC_MID_WIDTH: 1986,
     LOC_SMALL_HEIGHT: 326,
@@ -21949,7 +21962,6 @@ canvas.app.location.View = function(t) {
     this.clocks.y = 30,
     this.clocks.visible = !1,
     this.popupsContainer = new canvas.app.location.view.popups.Popups(canvas.app.location.Event),
-    this.popupsContainer.position.set(30, 20),
     this.frontsIcon = new canvas.app.location.view.fronts.FrontsIcon(this),
     this.frontsPanel = new canvas.app.location.view.fronts.FrontsPanel(this),
     this.m_brContainer = new canvas.px.Container,
@@ -22002,7 +22014,11 @@ canvas.app.location.View = function(t) {
             this.campaignInfo.y = 28)
     }
     if(top?.document.gameLocationFlags?.hideWheelFortune == false) {
-        e.wfEnabled && (this.popupWheelFortune = this.popupsExtContainer.addChild(new canvas.app.location.view.popups.PopupWheelFortune(e.wfMsg,e.wfExpireTime,e.wfUrl))),
+        this.popupsContainer.children.length < 1 && e.wfEnabled && (this.popupWheelFortune = this.popupsContainer.init(canvas.app.location.Const.POPUP_WHEEL, {
+            message: e.wfMsg,
+            expireTime: e.wfExpireTime,
+            url: e.wfUrl
+        })),
         "1" == e.localStorage.get("MapSide") && e.WITH_MAP && this.miniMapBtnDownHandler()
     }
     this.frontsPanel.y = e.brilliant_msg || this.award_msg ? 40 : 20,
@@ -22041,6 +22057,7 @@ canvas.app.location.View.prototype.resize = function() {
     this.m_brContainer.x = this.locSide.x + Math.round(.5 * (this.locSide._width - this.m_brContainer.width)),
     this.popupsExtContainer.position.set(this.locSide.x + Math.round(.5 * (this.locSide._width - this.popupsExtContainer.width)), 19),
     this.m_awardCnt && this.m_awardCnt.position.set(Math.round((this.locSide._width - (this.m_awardTf.width + 20)) / 2), 15),
+    this.popupsContainer.position.set((this.fightBtn ? 62 : 25) + (this.mapSide.visible ? this.mapSide._width - 25 : 0), 28),
     this.resizeStarted = !1)
 },
 canvas.app.location.View.prototype.setupMapButtonPosition = function() {
@@ -22355,8 +22372,7 @@ canvas.app.location.View.prototype.miniMapBtnDownHandler = function() {
     this.mapSide.isVisible = !this.mapSide.visible,
     this.mapSide.build(),
     this.miniMapHint.update(this.mapSide.visible ? t.STRINGS_ARR[t.S_CLOSE_MAP] : t.STRINGS_ARR[t.S_OPEN_MAP]),
-    this.resize(),
-    this.popupsContainer.visible = !this.mapSide.visible
+    this.resize()
 }
 ,
 canvas.app.location.View.prototype.awardClick = function() {
@@ -25037,7 +25053,7 @@ canvas.app.location.view.popups.Popups.prototype = Object.create(canvas.px.Conta
 canvas.app.location.view.popups.Popups.prototype.init = function(t, e) {
     var a, s;
     switch (canvas.Functions.destroyChildren(this),
-    t) {
+    this.popupType = t) {
     case canvas.app.location.Const.POPUP_ZERO_LEVEL:
         if (a = new canvas.app.location.view.popups.PopupZeroLevel(1e3 * parseInt(e.time_bonus_online),null == e.time_bonus_message ? "Останься в Легенде и получи подарок!" : e.time_bonus_message),
         s = new canvas.app.view.MappingHint(null == e.time_bonus_hint ? "Оставайтесь в игре и через указанное на таймере время получите подарок!" : e.time_bonus_hint),
@@ -25049,16 +25065,24 @@ canvas.app.location.view.popups.Popups.prototype.init = function(t, e) {
             return this.addChild(a);
         break;
     case canvas.app.location.Const.POPUP_ACTIVITY:
-        if(top?.document.gameLocationFlags?.hideActivities == false) {
-            if (a = new canvas.app.location.view.popups.PopupActivity(e),
-            s = new canvas.app.view.MappingHint(canvas.Translator.getText(733)),
-            canvas.EventManager.dispatchEvent(this.hintEvent.HINT_ADD, null, {
-                target: a,
-                params: new canvas.utils.HintParams(s)
-            }),
-            0 < a.children.length)
-                return this.addChild(a)
-        }
+        if (a = new canvas.app.location.view.popups.PopupActivity(e),
+        s = new canvas.app.view.MappingHint(canvas.Translator.getText(733)),
+        canvas.EventManager.dispatchEvent(this.hintEvent.HINT_ADD, null, {
+            target: a,
+            params: new canvas.utils.HintParams(s)
+        }),
+        0 < a.children.length)
+            return this.addChild(a);
+        break;
+    case canvas.app.location.Const.POPUP_WHEEL:
+        if (s = new canvas.app.view.BigHint(canvas.Translator.getText(736)),
+        a = new canvas.app.location.view.popups.PopupWheelFortune(e,s),
+        canvas.EventManager.dispatchEvent(this.hintEvent.HINT_ADD, null, {
+            target: a,
+            params: new canvas.utils.HintParams(s)
+        }),
+        0 < a.children.length)
+            return this.addChild(a)
     }
     return null
 }
@@ -25555,35 +25579,37 @@ canvas.app.location.view.popups.NPCEventBtn.prototype.completeHandler = function
     canvas.EventManager.dispatchEvent(canvas.app.location.Event.UPDATE_NPC_EVENTS)
 }
 ,
-canvas.app.location.view.popups.PopupWheelFortune = function(t, e, a) {
-    canvas.px.Container.call(this),
-    this.title = t,
-    this.expireTime = e,
-    this.url = a,
-    this.back = this.addChild(new canvas.px.RoundRect(0,.5,240,45,8,8)),
-    this.field = this.addChild(new canvas.ui.Text(canvas.Const.FONT_TAHOMA_11_BOLD,16705718,this.back.width,this.back.height,"center","middle")),
-    this.interactive = !0,
-    this.buttonMode = !0,
-    this.click = this.clickHandler.bind(this),
+canvas.app.location.view.popups.PopupWheelFortune = function(t, e) {
+    canvas.app.location.view.popups.Popup.call(this),
+    this.message = t.message,
+    this.expireTime = t.expireTime,
+    this.url = t.url,
+    this.hint = e,
+    this.hitArea = this.container.hitArea = new canvas.px.Circle(25,25,25),
+    this.container.addChild(new canvas.px.Sprite(canvas.ResourceLoader.getImage("ui", "wheel_of_fortune"))),
     this.updateTime()
 }
 ,
-canvas.app.location.view.popups.PopupWheelFortune.prototype = Object.create(canvas.px.Container.prototype),
+canvas.app.location.view.popups.PopupWheelFortune.prototype = Object.create(canvas.app.location.view.popups.Popup.prototype),
 canvas.app.location.view.popups.PopupWheelFortune.prototype.clickHandler = function() {
+    canvas.app.location.view.popups.Popup.prototype.clickHandler.apply(this, arguments),
     canvas.Functions.navigateToURL(this.url, "_self")
+}
+,
+canvas.app.location.view.popups.PopupWheelFortune.prototype.overHandler = function() {
+    canvas.app.location.view.popups.Popup.prototype.overHandler.apply(this, arguments),
+    this.filters = [canvas.Functions.getBrightness(1.2)]
+}
+,
+canvas.app.location.view.popups.PopupWheelFortune.prototype.outHandler = function() {
+    canvas.app.location.view.popups.Popup.prototype.outHandler.apply(this, arguments),
+    this.filters = null
 }
 ,
 canvas.app.location.view.popups.PopupWheelFortune.prototype.updateTime = function() {
     var t = this.expireTime - canvas.app.location.model.serverTime.getTime();
-    this.field.text = this.title + "\n" + canvas.Functions.formatDate(1e3 * t, "00", 2),
+    this.hint.update(this.message + " " + canvas.Functions.formatDate(1e3 * t, "00", 2)),
     t <= 0 && this.destroy()
-}
-,
-canvas.app.location.view.popups.PopupWheelFortune.prototype.destroy = function() {
-    this.parent && this.parent.removeChild(this),
-    canvas.px.Container.prototype.destroy.apply(this, [{
-        children: !0
-    }])
 }
 ,
 canvas.app.location.view.fronts.FrontsIcon = function(t) {
@@ -26569,12 +26595,12 @@ canvas.app.manor.Controller.prototype.useMineData = function() {
     t.type_id = canvas.app.manor.Const.TITLES.indexOf(canvas.app.manor.model.selectedBuilding) + 1,
     this.sendRequest("building", t, canvas.app.manor.Const.REQ_USE_MINE_DATA)
 }
-,
+;
 canvas.app.manor.Controller.prototype.useMineAction = function(t) {
     t.type_id = canvas.app.manor.Const.TITLES.indexOf(canvas.app.manor.model.selectedBuilding) + 1,
     this.sendRequest("building", t, canvas.app.manor.Const.REQ_USE_MINE_ACTION)
 }
-;
+,
 canvas.app.manor.Controller.prototype.usePortalData = function() {
     this.sendRequest("building", {
         type_id: 18,
@@ -36002,12 +36028,12 @@ canvas.app.world.view.InnerObject.prototype.senMouseOuthandler_scale = function(
     null != this.objLnk.location_id && this.itemLnk.locations[this.objLnk.location_id].lnk.force_out(),
     t.isModule && t.UnSelectWay()
 }
-,
+;
 canvas.app.world.view.InnerObject.prototype.frameDelta_scale = function(t) {
     this.v_delta = t,
     canvas.EventManager.addEventListener(canvas.app.world.Event.ENTER_FRAME, null, this.frameHandler_scale, this)
 }
-;
+,
 canvas.app.world.view.InnerObject.prototype.frameHandler_scale = function() {
     this.v_scale += this.v_delta,
     this.bmpc.scale.set(this.v_scale, this.v_scale),
@@ -40659,6 +40685,7 @@ canvas.app.user.view.PetView.prototype.update = function() {
     this.mc.y = -2,
     this.container.addChild(this.mc),
     canvas.EventManager.addEventListener(canvas.px.MovieClipEvent.EVENT_UPDATE, this.mc, this.updateHandler, this),
+    this.mc.ready && this.updateHandler(),
     this.levelBack.texture = canvas.ResourceLoader.getImage("ui", "pet_level_back_" + ("0" == e.pet_color ? 1 : parseInt(e.pet_color))),
     this.levelField.text = e.pet_level,
     this.hint.update(e.pet_name + " [" + e.pet_level + "]", e.getPetColor(e.pet_color)),
@@ -45107,14 +45134,14 @@ canvas.app.birthday.Main = function(t) {
     this.model.init()
 }
 ,
-canvas.app.birthday.Main.prototype = Object.create(canvas.px.Container.prototype),
+canvas.app.birthday.Main.prototype = Object.create(canvas.px.Container.prototype);
 canvas.app.birthday.Main.prototype.giftUserHandler = function(t) {
     canvas.ResourceLoader.inProgress || (this.model.selectedUser = t.params.id,
     canvas.ResourceLoader.remove("birthday_conf"),
     canvas.EventManager.addEventListener(canvas.ResourceLoader.EVENT_COMPLETE, null, this.completeHandler, this),
     canvas.ResourceLoader.add([["birthday_conf", canvas.app.birthday.Const.configUrl]]))
 }
-;
+,
 canvas.app.birthday.Main.prototype.giftHandler = function(t) {
     this.model.gift(t.params.id),
     canvas.utils.WindowsManager.instance.closeWindow(this.view.itemsWindow)
@@ -53261,11 +53288,11 @@ canvas.app.firstBattle.view.HpMpView.prototype.setHpPers = function(t, e) {
 canvas.app.firstBattle.view.HpMpView.prototype.setMpPers = function(t, e) {
     this.setValue(this.mpPersText, this.mpPers, t, e, 1)
 }
-,
+;
 canvas.app.firstBattle.view.HpMpView.prototype.setHpOpp = function(t, e) {
     this.setValue(this.hpOppText, this.hpOpp, t, e, -1)
 }
-;
+,
 canvas.app.firstBattle.view.HpMpView.prototype.setMpOpp = function(t, e) {
     this.setValue(this.mpOppText, this.mpOpp, t, e, -1)
 }

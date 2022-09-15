@@ -1210,6 +1210,7 @@ function chat_get_class(channel) {
 	else if (channel == channels.raid) t_cl = 'cml_rd';
 	else if (channel == channels.ally) t_cl = 'cml_all';
 	else if (channel == channels.aux) t_cl = 'cml_aux';
+	else if (channel == channels.find_party) t_cl = 'cml_fpty';
 	return t_cl;
 };
 

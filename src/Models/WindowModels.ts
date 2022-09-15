@@ -10,7 +10,8 @@ export enum Preload {
     EFFECT_SETS = '../Components/EffectSets/preload.js',
     EXPIRING_ITEMS_SETTINGS = '../Components/ExpiringItemsSettings/preload.js',
     GAME_SETTINGS = '../Components/GameSettings/preload.js',
-    STATS = '../Components/Stats/preload.js'
+    STATS = '../Components/Stats/preload.js',
+    SHOP_LOADER = '../Components/ShopLoader/preload.js'
 }
 
 export enum HTMLPath {
@@ -25,7 +26,8 @@ export enum HTMLPath {
     EFFECT_SETS = '../../gui/EffectSets/index.html',
     EXPIRING_ITEMS_SETTINGS = '../../gui/ExpiringItemsSettings/index.html',
     GAME_SETTINGS = '../../gui/GameSettings/index.html',
-    STATS = '../../gui/Stats/index.html'
+    STATS = '../../gui/Stats/index.html',
+    SHOP_LOADER = '../../gui/ShopLoader/index.html'
 }
 
 export enum WindowType {
@@ -45,5 +47,6 @@ export enum WindowType {
     EFFECT_SETS = 'effectSets',
     EXPIRING_ITEMS_SETTINGS = 'expiringItemsSettings',
     GAME_SETTINGS = 'gameSettings',
-    STATS = 'stats'
+    STATS = 'stats',
+    SHOP_LOADER = 'shopLoader'
 }
