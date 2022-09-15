@@ -93,7 +93,7 @@ export default function sendNotification(message: ChatMessage | null, type: Noti
         }
     }
 
-    if(message?.to_user_nicks != undefined) {
+    if(message?.to_user_nicks != undefined && message?.to_user_nicks) {
         if(Object.values(message.to_user_nicks).includes(nickname)) {
             setupFlashFlame()
             setupBounce('informational')
