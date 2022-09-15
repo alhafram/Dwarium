@@ -10,6 +10,10 @@ export default async function reduce(state: ShopLoaderState, action: ShopLoaderW
         case ShopLoaderWindowActions.LOAD_CONTENT: {
             let items: EnergyItem[] = []
             items = items.concat(await loadPage(0))
+            if(items.length == 0) {
+                alert('Кажется вы находитесь не в поместье!')
+                return state
+            }
             items = items.concat(await loadPage(1))
             items = items.flat()
             items = items.sort((a, b) => (a.color < b.color ? -1 : 1))
@@ -58,6 +62,9 @@ async function loadPage(page: number): Promise<EnergyItem[]> {
     const itemsDoc = doc.querySelector(
         'body > table > tbody > tr:nth-child(1) > td > table > tbody > tr:nth-child(3) > td.bgg > table > tbody > tr > td:nth-child(1) > table > tbody > tr:nth-child(2) > td'
     )?.children
+    if(!itemsDoc) {
+        return []
+    }
     const pageItems = Array.prototype.slice.call(itemsDoc)
     const items = pageItems.map((item) => {
         const form = item.querySelector('#item_list > tbody > tr > td:nth-child(1) > div > table > tbody > tr > td')
@@ -68,6 +75,9 @@ async function loadPage(page: number): Promise<EnergyItem[]> {
         } else if(item.querySelector('#item_list > tbody > tr > td:nth-child(2) > table > tbody > tr:nth-child(4) > td.b.grnn > span > span')) {
             item_energy = item.querySelector('#item_list > tbody > tr > td:nth-child(2) > table > tbody > tr:nth-child(4) > td.b.grnn > span > span').textContent.trim()
         }
+        if(item_energy == '') {
+            return null
+        }
         return {
             id: form.attributes.div_id.value,
             title: item_name.attributes.title.value,
@@ -75,7 +85,7 @@ async function loadPage(page: number): Promise<EnergyItem[]> {
             energy: parseInt(item_energy)
         }
     })
-    return items
+    return items.filter(item => item != null).map(item => item as EnergyItem)
 }
 
 class EnergyPotion {
