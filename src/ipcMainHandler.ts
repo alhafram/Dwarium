@@ -233,6 +233,7 @@ ipcMain.on(Channel.SWITCH_MODE, () => {
     expiringItemsSettings?.webContents.send(Channel.SWITCH_MODE)
     gameSettingsWindow?.webContents.send(Channel.SWITCH_MODE)
     settingsWindow?.webContents.send(Channel.SWITCH_MODE)
+    shopLoaderWindow?.webContents.send(Channel.SWITCH_MODE)
     statsWindow?.webContents.send(Channel.SWITCH_MODE)
 })
 
@@ -288,6 +289,18 @@ ipcMain.on(Channel.OPEN_SETTINGS, () => {
     settingsWindow = createWindowAndLoad(WindowType.SETTINGS, HTMLPath.SETTINGS, Preload.SETTINGS, true)
     setupCloseLogic(settingsWindow, WindowType.SETTINGS, function() {
         settingsWindow = null
+    })
+})
+
+let shopLoaderWindow: BrowserWindow | null
+ipcMain.on(Channel.OPEN_SHOP_LOADER, () => {
+    if(shopLoaderWindow) {
+        shopLoaderWindow.show()
+        return
+    }
+    shopLoaderWindow = createWindowAndLoad(WindowType.SHOP_LOADER, HTMLPath.SHOP_LOADER, Preload.SHOP_LOADER, true)
+    setupCloseLogic(shopLoaderWindow, WindowType.SHOP_LOADER, function() {
+        shopLoaderWindow = null
     })
 })
 
