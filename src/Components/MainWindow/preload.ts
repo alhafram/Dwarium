@@ -20,6 +20,7 @@ enum PluginConfigKeys {
     effectSetsButtonBadgeSpan = 'effectSetsButtonBadgeSpan',
     expiringItemsSettingsButtonBadgeSpan = 'expiringItemsSettingsButtonBadgeSpan',
     gameSettingsButtonBadgeSpan = 'gameSettingsButtonBadgeSpan',
+    shopLoaderButtonBadgeSpan = 'shopLoaderButtonBadgeSpan',
     settingsButtonBadgeSpan = 'settingsButtonBadgeSpan',
     statsButtonBadgeSpan = 'statsButtonBadgeSpan'
 }
@@ -36,6 +37,7 @@ type PluginConfig = {
     expiringItemsSettingsButtonBadgeSpan: ''
     gameSettingsButtonBadgeSpan: ''
     settingsButtonBadgeSpan: ''
+    shopLoaderButtonBadgeSpan: ''
     statsButtonBadgeSpan: ''
 }
 
@@ -69,6 +71,7 @@ window.addEventListener('DOMContentLoaded', async() => {
         Elements.effectSetsButton(),
         Elements.expiringItemsSettingsButton(),
         Elements.gameSettingsButton(),
+        Elements.shopLoaderButton(),
         Elements.statsButton()
     ]
     pluginButtons.forEach((pluginButton) => {
@@ -245,9 +248,12 @@ window.addEventListener('DOMContentLoaded', async() => {
         openPage(WindowType.SETTINGS)
     })
     Elements.shopLoaderButton().addEventListener('click', () => {
-        // TODO: - FIXME before release
-        // localStorage.setItem(PluginConfigKeys.settingsButtonBadgeSpan, pluginConfig.settingsButtonBadgeSpan)
-        Elements.settingsButtonBadgeSpan().style.display = 'none'
+        const value = pluginRestorationHandler(Elements.shopLoaderButton())
+        if(value) {
+            return true
+        }
+        localStorage.setItem(PluginConfigKeys.shopLoaderButtonBadgeSpan, pluginConfig.shopLoaderButtonBadgeSpan)
+        Elements.shopLoaderButtonBadgeSpan().style.display = 'none'
         ipcRenderer.send(Channel.OPEN_SHOP_LOADER)
         openPage(WindowType.SHOP_LOADER)
     })
@@ -656,6 +662,8 @@ function getElementIdBy(type: WindowType): HTMLElement | undefined {
             return Elements.chatSettingsButton()
         case WindowType.NOTIFICATIONS:
             return Elements.notificationsButton()
+        case WindowType.SHOP_LOADER:
+            return Elements.shopLoaderButton()
         case WindowType.EFFECT_SETS:
             return Elements.effectSetsButton()
     }
