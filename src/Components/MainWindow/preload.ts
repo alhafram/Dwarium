@@ -49,15 +49,15 @@ window.addEventListener('DOMContentLoaded', async() => {
     const pluginConfig = await setupBadges()
 
     Elements.shareTgButton().onclick = function() {
-        shell.openExternal('https://t.me/share?url=https://alhafram.github.io/DwariumLibrary/')
+        shell.openExternal('https://t.me/share?url=https://dwarium.online/')
     }
 
     Elements.shareVkButton().onclick = function() {
-        shell.openExternal('https://vk.com/share.php?url=https://alhafram.github.io/DwariumLibrary/')
+        shell.openExternal('https://vk.com/share.php?url=https://dwarium.online/')
     }
 
     Elements.shareWAButton().onclick = function() {
-        shell.openExternal('whatsapp://send?text=https://alhafram.github.io/DwariumLibrary/')
+        shell.openExternal('whatsapp://send?text=https://dwarium.online/')
     }
 
     const pluginButtons = [
