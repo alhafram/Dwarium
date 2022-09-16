@@ -85,7 +85,7 @@ async function loadPage(page: number): Promise<EnergyItem[]> {
             energy: parseInt(item_energy)
         }
     })
-    return items.filter(item => item != null).map(item => item as EnergyItem)
+    return items.filter((item) => item != null).map((item) => item as EnergyItem)
 }
 
 class EnergyPotion {
