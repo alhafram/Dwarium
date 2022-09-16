@@ -39,7 +39,7 @@ window.addEventListener('DOMContentLoaded', async() => {
             break
         }
         case 'x3Speed': {
-            fps = 60
+            fps = 80
             break
         }
     }
