@@ -68,31 +68,31 @@ function createWindow() {
 
     session.defaultSession.webRequest.onBeforeRequest(filter, (details, callback) => {
         if(details.resourceType == 'script') {
-            // https://w2.dwar.ru/js/cht.js?ux=1658999349
+            // https://w2.dwar.ru/js/cht.js
             if(details.url.includes('js/cht.js?ux=')) {
                 callback({
-                    redirectURL: `file://${app.getAppPath()}/out/Scripts/cht.js`
+                    redirectURL: 'https://dwarium.online/scripts/cht.js'
                 })
                 return
             }
-            // https://w2.dwar.ru/js/canvas/canvas.all.js?ux=1661417596
+            // https://w2.dwar.ru/js/canvas/canvas.all.js
             if(details.url.includes('canvas/canvas.all.js?ux=')) {
                 callback({
-                    redirectURL: `file://${app.getAppPath()}/out/Scripts/canvas.all.js`
+                    redirectURL: 'https://dwarium.online/scripts/canvas.all.js'
                 })
                 return
             }
-            // https://w2.dwar.ru/js/common.js?ux=1652950883
+            // https://w2.dwar.ru/js/common.js
             if(details.url.includes('js/common.js?ux=')) {
                 callback({
-                    redirectURL: `file://${app.getAppPath()}/src/Scripts/common.js`
+                    redirectURL: 'https://dwarium.online/scripts/common.js'
                 })
                 return
             }
-            // https://w2.dwar.ru/info/themes/dwar_old/js/common.js?r=0
+            // https://w2.dwar.ru/info/themes/dwar_old/js/common.js
             if(details.url.includes('dwar_old/js/common.js?r=')) {
                 callback({
-                    redirectURL: `file://${app.getAppPath()}/src/Scripts/common_old.js`
+                    redirectURL: 'https://dwarium.online/scripts/common_old.js'
                 })
                 return
             }

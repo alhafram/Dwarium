@@ -1481,14 +1481,17 @@ function chat_channel_init() {
 	$channel_tabs.find('li.channel').each(function(i, el) {
 		var $el = $(el);
 		var channel = $el.data('channel');
-		$el.attr('channel-serialize', 'channel_' + channel);
+		$el.attr('channel-serialize', 'channel=' + channel);
 		channel_list[channel] = $el;
 	});
 	$channel_tabs.sortable({
 		items: "li.moveable",
 		revert: 10,
 		update: function(e, ui) {
-			var serialized = $(e.target).sortable('serialize', {attribute: 'channel-serialize'});
+			var serialized = $(e.target).sortable('serialize', {
+				attribute: 'channel-serialize',
+				expression: /(.+)=(.+)/
+			});
 			serialized += '&action=tabs_sort';
 			$.ajax({
 				url: '/pub/cht_data_save.php',
